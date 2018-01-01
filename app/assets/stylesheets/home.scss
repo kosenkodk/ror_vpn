@@ -98,13 +98,23 @@ body {
   margin-bottom: -($spacer * 4) !important;
 }
 
-.btn-pink-dark {
+.btn-pink-blue {
   background-color:rgb(38,8,48);
   &.active, &:hover {
     background-color:rgb(44,176,181);
   }
   &.active:hover {
     opacity: $opacity;
+  }
+}
+
+.btn-pink-dark {
+  // @extend .btn-outline-primary;
+  background-color:rgb(38,8,48) !important;
+  color: white;
+  &.active, &:hover {
+    background-color: $pink2;
+    color: white;
   }
 }
 
