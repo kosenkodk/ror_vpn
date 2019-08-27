@@ -1,6 +1,10 @@
 html {
   background: #0F0216 url('../images/bg1.svg') no-repeat;
-  /* color: #ffffff; */
+  color: #ffffff;
+
+  /* background-image: url('../images/bg1.svg'), url('../images/bg2.svg');
+  background-position: top, bottom;
+  background-repeat: no-repeat, no-repeat; */
 }
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -20,6 +24,7 @@ html {
 body {
   color:#ffffff;
   background-color:transparent;
+
 }
 .logo {
 
@@ -28,6 +33,12 @@ body {
   background-color: #0F0216;
   color:#ffffff;
 }
+.bg2 {
+  background:#0F0216 url('../images/bg2.png') no-repeat bottom;
+
+}
+.footer {
+  background-color:#7D2864;
+}
 footer {
-  background-image: url('../images/bg2.svg');
 }
