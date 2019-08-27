@@ -1,0 +1,33 @@
+html {
+  background: #0F0216 url('../images/bg1.svg') no-repeat;
+  /* color: #ffffff; */
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+body {
+  color:#ffffff;
+  background-color:transparent;
+}
+.logo {
+
+}
+.card {
+  background-color: #0F0216;
+  color:#ffffff;
+}
+footer {
+  background-image: url('../images/bg2.svg');
+}
