@@ -1,4 +1,4 @@
-<div class="row bg2">
+<div class="row bg1">
   <div class="container-fluid">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
       <h5 class=".logo .text-white my-0 mr-md-auto font-weight-normal">VEGA <span>vpn</span></h5>
@@ -12,10 +12,15 @@
       <a class="btn btn-outline-light" href="#">Log in</a>
       <a class="btn btn-outline-danger" href="#">Sign up</a>
     </div>
-
+  </div>
+  <div class="container-fluid ">
     <%= render partial: 'shared/pricing'%>
     <%= render partial: 'shared/pricing'%>
     <%= render partial: 'shared/pricing'%>
-    <%= render partial: 'shared/pricing'%>
+    <div class="row bg2">
+      <div class="container">
+        <%= render partial: 'shared/downloads'%>
+      </div>
+    </div>
   </div>
 </div>
