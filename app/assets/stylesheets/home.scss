@@ -63,10 +63,14 @@ body {
 }
 
 #security_and_trust {
-  background: $bg-color asset-url('security_and_trust') left no-repeat;
+  background: $bg-color asset-url('bg_security_and_trust') left no-repeat;
+  background-size: contain;
   // mix-blend-mode: luminosity;
   h1 {
     text-shadow: 1px 2px #743c7c, 2px 1px #8d5460;
+  }
+  .card-text {
+    font-weight: 100;
   }
 }
 
