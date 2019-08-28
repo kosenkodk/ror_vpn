@@ -1,16 +1,17 @@
-<%= render partial: 'shared/header' %>
-
 <div class="container">
+
   <%= render partial: 'shared/product_with_btn_pricing'%>
+
+  <div class="row">
+    <%= render partial: 'shared/security_and_trust'%>
+  </div>
 </div>
 
 <div class="container">
-  <%= render partial: 'shared/security_and_trust'%>
+  <%= render partial: 'shared/pricing'%>
 </div>
 
-
-<%= render partial: 'shared/pricing'%>
-<div class="row bg2">
+<div class="container-fluid bg2">
   <div class="container">
     <%= render partial: 'shared/downloads'%>
   </div>
