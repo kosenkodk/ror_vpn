@@ -3,6 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $bg-color: #0F0216;
 
+.btn-outline-light {
+  border:0px;
+  &:hover {
+    background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
+  }
+}
+.btn-outline-primary {
+  background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
+  color: #ffffff;
+  // border-color: #ffffff;
+  border:0px;
+
+  &:hover{
+    // border-color: lightgrey;
+    border:0px;
+    color: black;
+
+  }
+}
+
 html {
   color: #ffffff;
   font-family: "Montserrat";
