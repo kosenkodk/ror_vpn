@@ -2,29 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $bg-color: #0F0216;
+$white: #ffffff;
 
-.btn-outline-light {
-  border:0px;
+.btn.btn-outline-light {
+  border: unset;
   &:hover {
     background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
+    opacity: 0.7;
+    color: $white;
   }
 }
-.btn-outline-primary {
+.btn.btn-outline-primary {
   background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
-  color: #ffffff;
-  // border-color: #ffffff;
-  border:0px;
+  color: $white;
+  border: unset;
 
   &:hover{
-    // border-color: lightgrey;
-    border:0px;
-    color: black;
-
+    border: unset;
+    opacity: 0.7;
   }
 }
 
 html {
-  color: #ffffff;
+  color: $white;
   font-family: "Montserrat";
 }
 
@@ -44,13 +44,13 @@ html {
 }
 
 body {
-  color:#ffffff;
+  color:$white;
   background-color:transparent;
 }
 
 .card {
   background-color: $bg-color;
-  color:#ffffff;
+  color:$white;
 }
 
 .bg1 {
