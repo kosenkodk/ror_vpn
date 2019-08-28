@@ -1,0 +1,87 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$bg-color: #0F0216;
+
+html {
+  color: #ffffff;
+  // height:100%;
+  // background: $bg-color asset-url('bg1.svg') no-repeat top;
+  // background-size: contain;
+  // background-image: asset-url('bg1.svg'), asset-url('bg2.svg');
+  // background-position: top, bottom;
+  // background-repeat: no-repeat, no-repeat;
+  // background-size: contain, contain;
+}
+// .bg1 {}
+.bg2 {
+  // background: $bg-color asset-url('bg2.svg') no-repeat center bottom;
+  // background: $bg-color asset-url('bg2.svg') no-repeat center bottom;
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+body {
+  color:#ffffff;
+  background-color:transparent;
+
+}
+.logo {
+
+}
+.card {
+  background-color: $bg-color;
+  color:#ffffff;
+}
+.bg1 {
+  background: $bg-color asset-url('bg1.svg') no-repeat top;
+  background-size: contain;
+}
+.bg2 {
+  background:$bg-color asset-url('bg2.svg') no-repeat bottom;
+  background-size: cover;
+}
+#downloads {
+ height: 650px;
+ padding-top: 115px;
+ &.card {
+  background-color: transparent !important;
+ }
+ 
+ .card-text {
+   opacity: 0.8;
+   font-weight: 100;
+   img {
+    opacity: 0.6;
+   }
+ }
+ h5 {
+  font-size:2.5rem;
+ }
+}
+#security_and_trust {
+  background: $bg-color asset-url('security_and_trust') left no-repeat;
+  mix-blend-mode: luminosity;
+}
+.footer {
+  background-color:#7D2864;
+}
+footer {
+  font-family: "Montserrat";
+/* font-style: normal; */
+/* font-weight: bold; */
+/* font-size: 18px; */
+/* line-height: 22px; */
+}
