@@ -3,7 +3,20 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $bg-color: #0F0216;
 $white: #ffffff;
-
+.nav {
+  border: unset !important;
+}
+.product_with_btn_pricing {
+  border: unset !important;
+  h1 {
+    font-size: 3.1rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  p {
+    padding-bottom: 20px;
+  }
+}
 .btn.btn-outline-light {
   border: unset;
   &:hover {
