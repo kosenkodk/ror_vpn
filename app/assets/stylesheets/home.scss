@@ -6,19 +6,22 @@ $white: #ffffff;
 .nav {
   border: unset !important;
 }
-.product_with_btn_pricing {
+@media (min-width: 992px) { 
+  .product_with_btn_pricing {
   
-  border: unset !important;
-  h1 {
-    font-size: 3.1rem;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 3.75rem;
-    letter-spacing: 0.09em;
-    // font-weight: 300;
-    font-weight: bold;
-    line-height: 62px;
+    border: unset !important;
+    h1 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      font-size: 3.75rem;
+      letter-spacing: 0.09em;
+      font-weight: bold;
+      line-height: 62px;
+    
   }
+ }
+
+
   p {
     padding-bottom: 20px;
     &.lead {
