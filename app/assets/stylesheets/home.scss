@@ -38,9 +38,7 @@ $white: #ffffff;
     padding:8px 20px;
   }
 }
-.btn {
-  
-}
+
 .btn.btn-outline-light {
   border: unset;
   &:hover {
@@ -49,6 +47,7 @@ $white: #ffffff;
     color: $white;
   }
 }
+
 .btn.btn-outline-primary {
   background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
   color: $white;
@@ -122,7 +121,6 @@ body {
 #security_and_trust {
   background: $bg-color asset-url('bg_security_and_trust') left no-repeat;
   background-size: contain;
-  // mix-blend-mode: luminosity;
   h1 {
     text-shadow: 1px 2px #743c7c, 2px 1px #8d5460;
   }
