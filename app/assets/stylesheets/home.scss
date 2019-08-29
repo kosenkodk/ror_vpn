@@ -1,25 +1,20 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// @import "bootstrap/scss/bootstrap";
 
 .nav {
   border: unset !important;
 }
 @media (min-width: 992px) { 
-  .product_with_btn_pricing {
   
-    border: unset !important;
-    h1 {
-      padding-top: 30px;
-      padding-bottom: 30px;
-      font-size: 3.75rem;
-      letter-spacing: 0.09em;
-      font-weight: bold;
-      line-height: 62px;
-    
+  h1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 3.75rem;
+    font-weight: bold;
+    line-height: 62px;
   }
- }
-
 
   p {
     padding-bottom: 20px;
@@ -121,7 +116,9 @@ body {
   background: $bg-color asset-url('bg_security_and_trust') left no-repeat;
   background-size: contain;
   h1 {
-    text-shadow: 1px 2px #743c7c, 2px 1px #8d5460;
+    text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
+    letter-spacing: 0.04em;
+    padding-bottom: 1rem;
   }
   .card-text {
     font-weight: 100;
