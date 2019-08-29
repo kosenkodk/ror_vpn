@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // @import "bootstrap/scss/bootstrap";
+.reviews {
+  padding: 2rem 5rem;
+  .card-header {
+    opacity: 0.7;
+  }
+  p {
+    padding-bottom: unset;
+    &.mb-0 {
+      opacity: 0.7;
+      font-weight: 100;
+    }
+    &.card-text {
+      font-size:1.5rem;
+      // background: linear-gradient(180deg, rgba(15, 2, 22, 0) 0%, #0F0216 100%) bottom;
+      // background: linear-gradient(180deg, white, rgb(42,29,48)) transparent;
+    }
+  }
+}
 
 .nav {
   border: unset !important;
@@ -13,12 +31,16 @@
   background: $pink;
 }
 .color-vega {
+  background-color: linear-gradient(90deg, $pink2 0%, $pink 100%);
   color: $pink;
+  opacity: 0.7;
+
   &:hover {
-    opacity: 0.7;
-    color: $pink2;
+    opacity: 1;
+    color: $pink;
   }
 }
+
 @media (min-width: 992px) { 
   
   h1 {
