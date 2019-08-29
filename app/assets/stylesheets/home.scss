@@ -7,15 +7,36 @@ $white: #ffffff;
   border: unset !important;
 }
 .product_with_btn_pricing {
+  
   border: unset !important;
   h1 {
     font-size: 3.1rem;
     padding-top: 30px;
     padding-bottom: 30px;
+    font-size: 3.75rem;
+    letter-spacing: 0.09em;
+    // font-weight: 300;
+    font-weight: bold;
+    line-height: 62px;
   }
   p {
     padding-bottom: 20px;
+    &.lead {
+      font-size: 1.15rem;
+      font-weight: 100;
+      opacity: 0.8;
+    }
   }
+  .btn.btn-outline-primary {
+    color:rgba(252, 252, 252, 0.85);
+    font-weight: lighter;
+    // font-size: 1.2erm;
+    letter-spacing: 0.02rem;
+    padding:8px 20px;
+  }
+}
+.btn {
+  
 }
 .btn.btn-outline-light {
   border: unset;
