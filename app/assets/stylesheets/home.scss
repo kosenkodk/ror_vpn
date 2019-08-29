@@ -14,9 +14,7 @@
       font-weight: 100;
     }
     &.card-text {
-      font-size:1.5rem;
-      // background: linear-gradient(180deg, rgba(15, 2, 22, 0) 0%, #0F0216 100%) bottom;
-      // background: linear-gradient(180deg, white, rgb(42,29,48)) transparent;
+      font-size: 1.5rem;
     }
   }
   .media {
@@ -34,23 +32,23 @@
   }
   
   #summary p.collapse:not(.show) {
-      height: 100px !important;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;  
+    height: 110px !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
   }
   
   #summary p.collapsing {
-      min-height: 100px !important;
+    min-height: 110px !important;
   }
   
   #summary a.collapsed:after  {
-      content: '+ read more';
+    content: '+ read more';
   }
   
   #summary a:not(.collapsed):after {
-      content: '- read less';
+    content: '- read less';
   }
 }
 
