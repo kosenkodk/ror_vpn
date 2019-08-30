@@ -24,3 +24,10 @@ $opacity: 0.7;
 //   "danger": $danger,
 //   "white": $white,
 // );
+$container-max-widths: (
+  xs: 320px,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
