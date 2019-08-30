@@ -17,12 +17,23 @@
       font-size: 1.5rem;
     }
   }
+  
+  .card-footer {
+    .review-owner-container {
+      opacity:.5;
+      z-index: 10;
+      &.active {
+        opacity: 1;
+        z-index: 30;
+      }
+    }
+  }
+
   .media {
-    opacity: $opacity;
+    // opacity: $opacity;
     cursor: pointer;
     padding-bottom: 1rem;
     &:hover, &.active {
-      opacity: 1;
     }
   }
 
