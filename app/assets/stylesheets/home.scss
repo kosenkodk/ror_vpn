@@ -2,8 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.services {
+  font-size:1rem;
+  p {
+    &.card-text {
+      font-weight: 100;
+      opacity: $opacity;
+    }
+  }
+  .card-body {
+    padding-top:unset;
+  }
+  .card-header {
+    img {
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      background: $pink_gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-width: 2px;
+      border-style: solid;
+      border-left: none; 
+      border-right: none; 
+      border-top: none;
+      border-image: $pink_gradient;
+    }
+  }
+
+}
+
 .reviews {
   padding: 2rem 5rem;
+  margin: 5rem 0;
+  
   .card-header {
     opacity: $opacity;
   }
