@@ -1,14 +1,14 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import '../fonts/montserrat/montserrat.css';
 
 @font-face {
-	font-family: 'montserrat';
-	src:font_url('fonts/montserrat/montserrat.eot');
-	src:font_url('fonts/montserrat/montserrat.eot?#iefix') format('embedded-opentype'),
-  font_url('fonts/montserrat/montserrat.ttf') format('truetype'),
-  font_url('fonts/montserrat/montserrat.woff') format('woff'),
-  font_url('fonts/montserrat/montserrat.svg#icofonts') format('svg');
+	font-family: 'Montserrat';
+	// src: font_url('montserrat/montserrat.css');
+	src: font_url('montserrat/montserrat.ttf') format('truetype'),
+  font_url('montserrat/montserrat.woff') format('woff'),
+  font_url('montserrat/montserrat.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 }	
