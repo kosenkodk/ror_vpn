@@ -3,17 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .status_page {
   h1 {
-    // font-style: normal;
-    // font-weight: bold;
-    // font-size: 100px;
-    // line-height: 62px;
-    // display: flex;
-    // align-items: center;
-    // text-align: center;
-    // letter-spacing: 0.0120588em;
-
     padding-bottom: unset;
     font-size: 5rem;
+  }
+  h2 {
+    font-size: 3rem;
   }
 }
 .services {
