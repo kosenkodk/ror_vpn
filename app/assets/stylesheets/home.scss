@@ -1,7 +1,21 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.status_page {
+  h1 {
+    // font-style: normal;
+    // font-weight: bold;
+    // font-size: 100px;
+    // line-height: 62px;
+    // display: flex;
+    // align-items: center;
+    // text-align: center;
+    // letter-spacing: 0.0120588em;
 
+    padding-bottom: unset;
+    font-size: 5rem;
+  }
+}
 .services {
   font-size:1rem;
   p {
@@ -200,6 +214,11 @@ body {
 
 .bg2 {
   background:$bg-color asset-url('bg2_with_vega') no-repeat bottom;
+  background-size: cover;
+}
+
+.bg2_mars {
+  background:$bg-color asset-url('bg2_with_mars') no-repeat bottom;
   background-size: cover;
 }
 

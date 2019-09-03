@@ -1,0 +1,39 @@
+<div class="reviews card text-center shadow-vega">
+  <div class="card-header">
+    Why the Media loves VPN
+  </div>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      1 <%= render 'reviews/review_summary' %>
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <%= render 'reviews/review_summary' %>
+    </div>
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+      3 <%= render 'reviews/review_summary' %>
+    </div>
+  </div>
+  <div class="card-footer">
+
+    <div class="row nav-pills mb-3" id="pills-tab" role="tablist">
+      <div class="nav-item col-sm-6 col-md-4 ">
+        <a class="nav-link active bg-transparent" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+          aria-controls="pills-home" aria-selected="true">
+          <%= render 'reviews/review_owner' %>
+        </a>
+      </div>
+      <div class="nav-item col-sm-6 col-md-4 ">
+        <a class="nav-link bg-transparent" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+          aria-controls="pills-profile" aria-selected="false">
+          <%= render 'reviews/review_owner' %>
+        </a>
+      </div>
+      <div class="nav-item col-sm-6 col-md-4 nav-item">
+        <a class="nav-link bg-transparent" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="div"
+          aria-controls="pills-contact" aria-selected="false">
+          <%= render 'reviews/review_owner' %>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
