@@ -6,14 +6,14 @@
       </div>
       <div class="col-md-4">
         <h1 class="featurette-heading">
-          404
+          <%= t('pages.not_found.title') %>
         </h1>
         <h2 class="featurette-heading">
-          Oh no!!!
+          <%= t('pages.not_found.subtitle') %>
         </h2>
-        <p class="lead">You’re either misspelling the URL or requesting a page that’s no longer here.</p>
-        <a href="#" class="btn btn-outline-primary ">
-          <span class="glyphicon glyphicon-circle-arrow-right"></span>Back to previous page</a>
+        <p class="lead"><%= t('pages.not_found.text') %></p>
+        <a href="<%=root_path%>" class="btn btn-outline-primary">
+          <span class="glyphicon glyphicon-circle-arrow-right"><%= t('buttons.back_to_prev_page') %></span></a>
       </div>
       <div class="col-md-3 justify-content-center align-self-center">
         <%= image_tag 'star.png', {class:'img-fluid'} %>

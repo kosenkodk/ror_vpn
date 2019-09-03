@@ -31,4 +31,11 @@
 
 en:
   hello: "Hello world"
-  vegaVPN: 'VEGA'
+  vegaVPN: "VEGA"
+  pages:
+    not_found:
+      title: "404"
+      subtitle: "Oh no!!!"
+      text: "You’re either misspelling the URL or requesting a page that’s no longer here."
+  buttons:
+    back_to_prev_page: "Back to previous page"
