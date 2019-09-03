@@ -39,3 +39,4 @@ en:
       text: "You’re either misspelling the URL or requesting a page that’s no longer here."
   buttons:
     back_to_prev_page: "Back to previous page"
+    back_to_home_page: "Back to home page"
