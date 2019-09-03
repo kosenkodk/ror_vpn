@@ -1,6 +1,19 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face {
+	font-family: 'montserrat';
+	src:font_url('fonts/montserrat/montserrat.eot');
+	src:font_url('fonts/montserrat/montserrat.eot?#iefix') format('embedded-opentype'),
+  font_url('fonts/montserrat/montserrat.ttf') format('truetype'),
+  font_url('fonts/montserrat/montserrat.woff') format('woff'),
+  font_url('fonts/montserrat/montserrat.svg#icofonts') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}	
+
+
 .status_page {
   h1 {
     // font-style: normal;
