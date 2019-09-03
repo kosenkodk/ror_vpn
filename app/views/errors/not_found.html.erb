@@ -1,25 +1,27 @@
-<div class="status_page container featurette text-center">
-  <div class="row">
-    <div class="col-md-5">
-      <%= image_tag 'astronaut.png', { class:'img-fluid', alt: '' } %>
+<div class="status_page">
+  <div class="featurette text-center">
+    <div class="row">
+      <div class="col-md-5">
+        <%= image_tag 'astronaut.png', { class:'img-fluid', alt: '' } %>
+      </div>
+      <div class="col-md-4">
+        <h1 class="featurette-heading">
+          404
+        </h1>
+        <h2 class="featurette-heading">
+          Oh no!!!
+        </h2>
+        <p class="lead">You’re either misspelling the URL or requesting a page that’s no longer here.</p>
+        <a href="#" class="btn btn-outline-primary ">
+          <span class="glyphicon glyphicon-circle-arrow-right"></span>Back to previous page</a>
+      </div>
+      <div class="col-md-3 justify-content-center align-self-center">
+        <%= image_tag 'star.png', {class:'img-fluid'} %>
+      </div>
+      <div class="col-md-12">
+        <%= image_tag 'bg2_with_mars.png', {class:'img-fluid'} %>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h1 class="featurette-heading">
-        404
-      </h1>
-      <h2 class="featurette-heading">
-        Oh no!!!
-      </h2>
-      <p class="lead">You’re either misspelling the URL or requesting a page that’s no longer here.</p>
-      <a href="#" class="btn btn-outline-primary ">
-        <span class="glyphicon glyphicon-circle-arrow-right"></span>Back to previous page</a>
-    </div>
-    <div class="col-md-3 justify-content-center align-self-center">
-      <%= image_tag 'star.png', {class:'img-fluid'} %>
-    </div>
-    <div class="col-md-12">
-      <%= image_tag 'bg2_with_mars.png', {class:'img-fluid'} %>
-    </div>
+    <%#= image_tag 'compare/header_with_first_section.png', {class:'img-fluid'} #%>
   </div>
-  <%#= image_tag 'compare/header_with_first_section.png', {class:'img-fluid'} #%>
 </div>
