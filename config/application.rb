@@ -13,6 +13,7 @@ module VegaVPN
     config.exceptions_app = self.routes
     config.hosts << 'vega.isit.su'
     config.hosts << 'localhost'
+    config.hosts << 'www.example.com'
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
