@@ -37,6 +37,10 @@ en:
       title: "404"
       subtitle: "Oh no!!!"
       text: "You’re either misspelling the URL or requesting a page that’s no longer here."
+    coming_soon:
+      title: ""
+      subtitle: "Coming Soon"
+      text: "Our developers are currently working hard building this page"
   buttons:
     back_to_prev_page: "Back to previous page"
     back_to_home_page: "Back to home page"
