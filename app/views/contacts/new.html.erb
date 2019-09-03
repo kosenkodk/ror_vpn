@@ -1,0 +1,28 @@
+<div class="container contact_us bg_star ">
+  <div class="featurette text-center bg_astronaut">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 ml-2 mr-2">
+        <!-- <h1 class="featurette-heading">
+          <%= t('pages.contact_us.title') %>
+        </h1> -->
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8 text-left">
+            <h2 class="featurette-heading">
+              <%= t('pages.contact_us.title') %>
+            </h2>
+            <p class="lead"><%= t('pages.contact_us.subtitle') %></p>
+          </div>
+        </div>
+        <div class="text-right">
+          <%= render partial: 'contacts/form' %>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-12">
+        <%= image_tag 'coming_soon/mars_with_spaceship.png', {class:'img-fluid'} %>
+      </div>
+    </div>
+  </div>
+</div>

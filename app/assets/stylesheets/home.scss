@@ -1,6 +1,12 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.bg_astronaut {
+  background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
+}
+.bg_star {
+  background: transparent asset-url('star_2');
+}
 .status_page {
   background: transparent asset-url('star_2');
   h1 {
