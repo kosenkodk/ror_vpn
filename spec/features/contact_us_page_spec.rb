@@ -22,9 +22,18 @@ RSpec.describe ContactsController, type: :feature do
         # click_button('Submit')
         # find('#contact_submit').click
         # find_button('Submit').click
-        expect(find('.lead').text).to eq('Your message has been created')
-        expect(find('.lead')).to have_text('Your message has been created')
-        expect(page).to have_text('Your message has been created')
+        message = I18n.t('pages.contact_us.success_message') # 'Your message has been created'
+        expect(find('.lead').text).to eq(message)
+        expect(find('.lead')).to have_text(message)
+      end
+      context 'invalid data' do
+        it 'redirect to error page' do
+          visit new_contact_path
+          click_on('Submit')
+          # expect(find('.lead')).to have_text(I18n.t('pages.contact_us.error_message'))
+          # expect(page).to have_content(I18n.t('pages.contact_us.error_message'))
+          expect(page).to have_text(`Email can't be blank`)
+        end
       end
     end
   end
