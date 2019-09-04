@@ -9,14 +9,14 @@ class ContactsController < ApplicationController
     if @contact.save
       # UserMailer.contact_created(current_user.email, @contact.id).deliver_now #TODO: will implement
       notice = 'Contact has been created'
-      flash[:notice] = notice
+      # flash[:notice] = notice
       redirect_to contact_path(@contact), notice: notice
     else
       notice = @contact.errors.full_messages.join(', ') # capitalize
       # notice = @contact.errors.messages.map { |k, v| "#{k}: #{v.split(',').join(' & ')}" }.join("; ") #{ |k,v| "#{k}: #{v}" }.join(";") # custom with ; and & delimitters
-      flash[:error] = notice
+      # flash[:error] = notice
       # render :new, error: notice
-      redirect_to new_contact_path
+      redirect_to new_contact_path, error: notice
     end
 
   end
