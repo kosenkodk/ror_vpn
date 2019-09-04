@@ -24,5 +24,12 @@ RSpec.describe HomeController, type: :feature do
       expect(page).to have_content('SUPPORT')
       expect(page).to have_content('CONTACT')
     end
+    it 'renders contact us page' do
+      visit root_path
+      click_on('Contact Us')
+      expect(page).to have_content('Contact us')
+      expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
+      expect(page).to have_content('Submit')
+    end
   end
 end
