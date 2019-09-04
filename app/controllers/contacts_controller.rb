@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     # @contact.department = # TODO: will implement
     if @contact.save
       # UserMailer.contact_created(current_user.email, @contact.id).deliver_now #TODO: will implement
-      notice = 'Contact has been created'
+      notice = 'Your message has been created'
       # flash[:notice] = notice
       redirect_to contact_path(@contact), notice: notice
     else
@@ -27,10 +27,12 @@ class ContactsController < ApplicationController
   def show
     if Contact.exists?(params[:id])
       @contact = Contact.find(params[:id])
-      flash[:notice] = 'ok'
+      flash[:notice] = flash[:notice]
+      # notice = 'Your message has been created'
+      # flash[:notice] = notice
       # render plain: "ok contact #{@contact.email} #{@contact.title}", status: 200
     else
-      flash[:error] = 'fail'
+      flash[:error] = flash[:error]
       # render plain: "fail contact is not found", status: 404
     end
   end

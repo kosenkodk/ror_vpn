@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-4">
         <h1 class="featurette-heading">
-          200
+
         </h1>
         <h2 class="featurette-heading">
           Success!
@@ -15,12 +15,11 @@
           <%=flash[:error] if flash[:error]%>
           <%=flash[:notice] if flash[:notice]%>
         </p>
-        <a href="/" class="btn btn-outline-primary">
-          <span class="glyphicon glyphicon-circle-arrow-right">Ok</span></a>
-        <br>
-        <br>
+        <a href="/" class="btn btn-outline-primary btn-block">
+          <span class="glyphicon glyphicon-circle-arrow-right ">Ok</span></a>
       </div>
       <div class="col-md-4 justify-content-center align-self-center">
+        <%= image_tag 'star.png', {class:'img-fluid'} %>
       </div>
       <div class="col-md-12">
         <%= image_tag 'coming_soon/mars_with_spaceship.png', {class:'img-fluid'} %>
