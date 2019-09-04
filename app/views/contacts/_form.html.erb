@@ -1,6 +1,7 @@
 <%= form_for @contact, url: contacts_path, remote: true do |f| %>
 <div class="form-group row">
-  <div class="col-12">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-8 text-center">
     <%if flash[:error]%>
     <div class="alert alert-danger" role="alert">
       <%=flash[:error]%>
