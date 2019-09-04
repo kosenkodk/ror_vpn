@@ -114,7 +114,8 @@ en:
         submit: "Submit"
         help:
           email: "vegavpn@inbox.com"
-          select_the_department: "Beta releases"
+          select_the_department1: "Alpha releases"
+          select_the_department2: "Beta releases"
           message_short: "Please summarize your message"
           message: "Please write your message here"
   buttons:
