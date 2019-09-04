@@ -27,9 +27,11 @@ class ContactsController < ApplicationController
   def show
     if Contact.exists?(params[:id])
       @contact = Contact.find(params[:id])
+      flash[:notice] = 'ok'
       # render plain: "ok contact #{@contact.email} #{@contact.title}", status: 200
     else
-      # render plain: "fail contact is not foun", status: 404
+      flash[:error] = 'fail'
+      # render plain: "fail contact is not found", status: 404
     end
   end
 
