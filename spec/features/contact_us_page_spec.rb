@@ -22,8 +22,9 @@ RSpec.describe ContactsController, type: :feature do
         # click_button('Submit')
         # find('#contact_submit').click
         # find_button('Submit').click
-        # expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
-        expect(page).to have_text('ok')
+        expect(find('.lead').text).to eq('Your message has been created')
+        expect(find('.lead')).to have_text('Your message has been created')
+        expect(page).to have_text('Your message has been created')
       end
     end
   end
