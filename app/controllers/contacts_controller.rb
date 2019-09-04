@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    # @contact.department = # TODO: wil implement
+    # @contact.department = # TODO: will implement
     if @contact.save
       # UserMailer.contact_created(current_user.email, @contact.id).deliver_now #TODO: will implement
       redirect_to contacts_url(@contact), notice: 'Contact has been created'
