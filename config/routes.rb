@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   get '/422', to: 'errors#unacceptable'
   get '/204', to: 'errors#coming_soon', as: :coming_soon
   get '/500', to: 'errors#internal_error'
-  resource :contacts
-  resource :contact
+  resources :contacts
 end

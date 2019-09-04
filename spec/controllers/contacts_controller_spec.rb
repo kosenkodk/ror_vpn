@@ -22,7 +22,7 @@ RSpec.describe ContactsController, type: :controller do
     context 'valid data' do
       it 'redirects to contacts#show' do
         post :create, params: { contact: valid_data }
-        expect(response).to redirect_to(contacts_url(assigns(:contact)))
+        expect(response).to redirect_to(contact_path(assigns(:contact)))
       end
       it 'create new contact in database' do
         expect {

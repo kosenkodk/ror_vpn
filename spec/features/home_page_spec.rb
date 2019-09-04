@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :feature do
   describe 'GET main/home page' do
     it 'renders :index template' do
-      # visit('/')
       visit(root_path)
       # nav menu
       expect(page).to have_content('Features')
