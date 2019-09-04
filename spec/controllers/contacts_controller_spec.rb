@@ -34,7 +34,8 @@ RSpec.describe ContactsController, type: :controller do
       let(:invalid_data) { FactoryBot.attributes_for(:contact, email: '') }
       it 'renders :new template' do
         post :create, params: { contact: invalid_data }
-        expect(response).to render_template(:new)
+        # expect(response).to render_template(:new)
+        expect(response).to redirect_to(new_contact_path)
       end
       it 'doesn\'t create new contact in the database' do
         expect {
