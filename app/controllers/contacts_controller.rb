@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     # @contact.department = # TODO: will implement
     if @contact.save
-      # UserMailer.contact_created(current_user.email, @contact.id).deliver_now #TODO: will implement
+      ContactUsMailer.notify_user(@contact.email, @contact.id).deliver_now #TODO: will implement
       notice = t('pages.contact_us.success_message')
       # flash[:notice] = notice
       redirect_to contact_path(@contact), notice: notice
