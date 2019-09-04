@@ -8,4 +8,5 @@ RSpec.describe ContactsController, type: :feature do
       expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
     end
   end
+  
 end
