@@ -2,7 +2,7 @@
 <div class="form-group row">
   <%= f.label t('pages.contact_us.form.email'), {class:'col-sm-4 col-form-label'} %>
   <div class="col-sm-8">
-    <%= f.text_field  :email, required: true, type: :email, class: "form-control", placeholder: t('pages.contact_us.form.help.email') %></br>
+    <%= f.text_field  :email, required: false, type: :email, class: "form-control", placeholder: t('pages.contact_us.form.help.email') %></br>
   </div>
 </div>
 <div class="form-group row">
@@ -17,13 +17,13 @@
 <div class="form-group row">
   <%= f.label t('pages.contact_us.form.message_short'), {class:'col-sm-4 col-form-label'} %>
   <div class="col-sm-8">
-    <%= f.text_field  :message_short, required: true, type: :text, class: "form-control", placeholder: t('pages.contact_us.form.help.message_short') %></br>
+    <%= f.text_field  :message_short, required: false, type: :text, class: "form-control", placeholder: t('pages.contact_us.form.help.message_short') %></br>
   </div>
 </div>
 <div class="form-group row">
   <%= f.label t('pages.contact_us.form.message'), {class:'col-sm-4 col-form-label'} %>
   <div class="col-sm-8">
-    <%= f.text_area  :message, required: true, type: :text, rows: 3, class: "form-control", placeholder: t('pages.contact_us.form.help.message') %></br>
+    <%= f.text_area  :message, required: false, type: :text, rows: 3, class: "form-control", placeholder: t('pages.contact_us.form.help.message') %></br>
   </div>
 </div>
 
@@ -39,7 +39,7 @@
   <div class="col-sm-4">
   </div>
   <div class="col-sm-8">
-    <%=f.submit(t("pages.contact_us.form.submit"), {class:'btn btn-outline-primary btn-block'})%>
+    <%=f.submit(t("pages.contact_us.form.submit"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%>
     <!-- <button type="submit" class="btn btn-outline-primary btn-block"><%=t("pages.contact_us.form.submit")%></button> -->
   </div>
 </div>

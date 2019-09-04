@@ -8,7 +8,8 @@ class ContactsController < ApplicationController
     # @contact.department = # TODO: will implement
     if @contact.save
       # UserMailer.contact_created(current_user.email, @contact.id).deliver_now #TODO: will implement
-      redirect_to contacts_url(@contact), notice: 'Contact has been created'
+      redirect_to contact_path(@contact), notice: 'Contact has been created'
+      
     else
       notice = @contact.errors.full_messages.join(' ') # capitalize
       # notice = @contact.errors.messages.map { |k, v| "#{k}: #{v.split(',').join(' & ')}" }.join("; ") #{ |k,v| "#{k}: #{v}" }.join(";") # custom with ; and & delimitters
@@ -18,8 +19,16 @@ class ContactsController < ApplicationController
 
   end
 
+  def index
+  end
+
   def show
-    render plain: "ok", status: 200
+    if Contact.exists?(params[:id])
+      @contact = Contact.find(params[:id])
+      # render plain: "ok contact #{@contact.email} #{@contact.title}", status: 200
+    else
+      # render plain: "fail contact is not foun", status: 404
+    end
   end
 
   private
