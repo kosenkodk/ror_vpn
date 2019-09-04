@@ -1,5 +1,18 @@
 <%= form_for @contact, url: contacts_path, remote: true do |f| %>
 <div class="form-group row">
+  <div class="col-12">
+    <%if flash[:error]%>
+    <div class="alert alert-danger" role="alert">
+      <%=flash[:error]%>
+    </div>
+    <%end%>
+    <%if flash[:notice]%>
+    <div class="alert alert-success" role="alert">
+      <%=flash[:notice]%>
+    </div>
+    <%end%>
+  </div>
+
   <%= f.label t('pages.contact_us.form.email'), {class:'col-sm-4 col-form-label'} %>
   <div class="col-sm-8">
     <%= f.text_field  :email, required: false, type: :email, class: "form-control", placeholder: t('pages.contact_us.form.help.email') %></br>
