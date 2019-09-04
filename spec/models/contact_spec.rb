@@ -11,6 +11,7 @@ RSpec.describe Contact, type: :model do
       expect(contact.message_short).to eq('message short')
       expect(contact.valid?).to be_truthy
     end
+    it "with depratment"
   end
   describe 'Contact invalid' do
     it 'without email' do

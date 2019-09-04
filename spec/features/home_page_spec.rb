@@ -29,7 +29,7 @@ RSpec.describe HomeController, type: :feature do
       click_on('Contact Us')
       expect(page).to have_content('Contact us')
       expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
-      expect(page).to have_content('Submit')
+      expect(find_button('Submit').value).to have_text('Submit')
     end
   end
 end
