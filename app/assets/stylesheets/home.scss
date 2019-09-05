@@ -7,6 +7,10 @@ body {
   background-color: $bg_color;
   min-height: 40rem;
 }
+.reset_pwd, .forgot_pwd {
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+}
 .login {
   .input-group-text {
     background: $white;
@@ -245,6 +249,11 @@ html {
 .bg1 {
   background: $bg_color asset-url('bg1.svg') no-repeat top;
   background-size: contain;
+}
+
+.bg1_cover {
+  background: $bg_color asset-url('bg1.svg') no-repeat top;
+  background-size: cover;
 }
 
 .bg2 {
