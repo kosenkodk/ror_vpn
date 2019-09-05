@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_170408) do
+ActiveRecord::Schema.define(version: 2019_09_05_053133) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "email"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 2019_09_03_170408) do
     t.string "title"
     t.text "message"
     t.string "message_short"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.string "password_confirm"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

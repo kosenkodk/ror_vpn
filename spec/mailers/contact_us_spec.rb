@@ -37,5 +37,6 @@ RSpec.describe ContactUsMailer, type: :mailer do
     it 'with contact link in body message' do
       expect(admin_email.body.to_s).to include(contact_url(contact_id))
     end
+
   end
 end

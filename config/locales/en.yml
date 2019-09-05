@@ -95,6 +95,17 @@ en:
       twitter: "Twitter"
       contact_us: "Contact Us"
   pages:
+    login:
+      title: ""
+      login_to_your_account: "Log in to your account"
+      do_not_have_an_account: "Don't have an account?"
+      form:
+        email_address: "Email address"
+        password: "Password"
+        login_trouble: "Having trouble logging in?"
+        login: "Log in"
+    signup:
+      title: "Sign Up"
     not_found:
       title: "404"
       subtitle: "Oh no!!!"
@@ -124,3 +135,4 @@ en:
     back_to_prev_page: "Back to previous page"
     back_to_home_page: "Back to home page"
     submit: "Submit"
+    login: "Log in"
