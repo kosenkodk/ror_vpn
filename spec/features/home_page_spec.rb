@@ -32,4 +32,5 @@ RSpec.describe HomeController, type: :feature do
       expect(find_button('Submit').value).to have_text('Submit')
     end
   end
+  
 end
