@@ -108,8 +108,7 @@ en:
         title: "Success!"
         subtitle: "You have successfully changed the password on the site."
     login:
-      title: ""
-      login_to_your_account: "Log in to your account"
+      title: "Log in to your account"
       do_not_have_an_account: "Don't have an account?"
       form:
         email_address: "Email address"
@@ -122,6 +121,11 @@ en:
           password: "*********"
     signup:
       title: "Sign Up"
+      title2: "Create an account"
+      form:
+        email_address: "Email address"
+        password: "Password"
+        password_confirm: "Confirm password"
     not_found:
       title: "404"
       subtitle: "Oh no!!!"
@@ -143,8 +147,9 @@ en:
         submit: "Submit"
         help:
           email: "vegavpn@inbox.com"
-          select_the_department1: "Alpha releases"
-          select_the_department2: "Beta releases"
+          select_the_department1: "Accountancy(Billing)"
+          select_the_department2: "Sales"
+          select_the_department3: "Technical Support"
           message_short: "Please summarize your message"
           message: "Please write your message here"
   buttons:
@@ -154,3 +159,4 @@ en:
     login: "Log in"
     reset_password: "Reset Password"
     ok: "Ok"
+    continue: "Continue"

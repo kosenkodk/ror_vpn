@@ -19,7 +19,7 @@
 <div class="form-group row">
   <%= f.label t('pages.reset_pwd.form.password'), {class:'col-sm-3 col-form-label'} %>
   <div class="col-sm-6">
-    <%= f.text_field :password, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.password') %></br>
+    <%= f.text_field :password, required: false, type: :password, class: "form-control", placeholder: t('pages.login.form.help.password') %></br>
   </div>
   <div class="col-sm-3"></div>
 </div>
@@ -27,7 +27,7 @@
 <div class="form-group row">
   <%= f.label t('pages.reset_pwd.form.password_confirm'), {class:'col-sm-3 col-form-label'} %>
   <div class="col-sm-6">
-    <%= f.text_field :password_confirm, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.password') %></br>
+    <%= f.text_field :password_confirm, required: false, type: :password, class: "form-control", placeholder: t('pages.login.form.help.password') %></br>
   </div>
   <div class="col-sm-3"></div>
 </div>
