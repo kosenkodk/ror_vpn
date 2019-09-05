@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get '/500', to: 'errors#internal_error'
   get '/login', to: 'auth#login', as: :login
   get '/signup', to: 'auth#signup', as: :signup
-  get '/forgot', to: 'auth#forgot', as: :forgot
+  get '/forgot', to: 'auth#forgot_pwd', as: :forgot_pwd
+  # get '/reset/:code', to: 'auth#reset_pwd', as: :reset_pwd
+  get '/reset', to: 'auth#reset_pwd', as: :reset_pwd
   resources :contacts
   # resource :auth
   # resources :user
