@@ -32,7 +32,7 @@
       <%= f.text_field :password, { required: false, type: :text, id: "forgot-pwd-addon", class: "form-control", "aria-describedby": "forgot-pwd-addon", "aria-label": t('pages.login.form.help.password'), placeholder: t('pages.login.form.help.password') } %></br>
       <div class="input-group-append">
         <span class="input-group-text" id="forgot-pwd-addon"><a
-            href="<%= forgot_path %>"><%= t("pages.login.form.forgot_pwd") %></a></span>
+            href="<%= forgot_pwd_path %>"><%= t("pages.login.form.forgot_pwd") %></a></span>
       </div>
     </div>
   </div>

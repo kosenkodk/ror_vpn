@@ -98,6 +98,12 @@ en:
     forgot_pwd:
       title: "Forgot Password"
       subtitle: "Enter email to reset your password."
+    reset_pwd:
+      title: "Reset your password"
+      subtitle: "Enter email to reset your password"
+      form:
+        password: "Password"
+        password_confirm: "Confirm password"
     login:
       title: ""
       login_to_your_account: "Log in to your account"
@@ -143,3 +149,4 @@ en:
     back_to_home_page: "Back to home page"
     submit: "Submit"
     login: "Log in"
+    reset_password: "Reset Password"
