@@ -103,7 +103,7 @@ en:
         email_address: "Email address"
         password: "Password"
         login_trouble: "Having trouble logging in?"
-        login: "Log in"
+        login: "Log in →"
         help:
           email: "vegavpn@inbox.com"
           password: "*********"
