@@ -11,6 +11,7 @@ RSpec.describe AuthController, type: :feature do
       expect(find('.login')).to have_content('Password')
       expect(find('.login')).to have_content('Log in')
       expect(find('.login')).to have_content('Having trouble logging in?')
+      expect(page).not_to have_css('footer')
     end
   end
 end
