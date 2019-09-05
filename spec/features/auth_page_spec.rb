@@ -17,20 +17,6 @@ RSpec.describe AuthController, type: :feature do
     end
   end
 
-  describe 'GET :signup' do
-    it 'render :signup template' do
-      visit(signup_path)
-      expect(find('.signup')).to have_content(I18n.t('pages.signup.steps.title1'))
-      expect(find('.signup')).to have_content('Email address')
-      expect(find('.signup')).to have_content('Password')
-      expect(find('.signup')).to have_content('Confirm password')
-      expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
-      # expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
-      expect(page).to have_css('nav')
-      expect(page).to have_css('footer')
-    end
-  end
-
   describe 'GET :forgot_pwd' do
     it 'render :forgot_pwd template' do
       visit(forgot_pwd_path)
