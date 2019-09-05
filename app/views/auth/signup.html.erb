@@ -5,20 +5,16 @@
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
         <h1 class="featurette-heading">
-          <%= t('pages.signup.title2') %>
+          <%= t('pages.signup.steps.title1') %>
         </h1>
-        <!-- <span class="border-top my-10 mx-10">
-          <% link_to '1 Step', '#step2', {class: 'btn btn-outline-primary'} %>
-        </span> -->
-        <!-- <hr>
-        <%=image_tag 'coming_soon/astronaut' %>
-        <hr> -->
-        <!-- <hr class="hr_signup mt-5 mb-5"> -->
+
+        <%= link_to image_tag('signup/step1.png'), '#step2', {id: 'step1', class:'img-fluid'} %>
         <p class="lead">
 
         </p>
       </div>
       <div class="col-md-2"></div>
+
 
       <div class="col-md-2"></div>
       <div class="col-md-8">
@@ -29,7 +25,16 @@
       <div class="col-md-2"></div>
 
       <div class="col-md-12">
-        <%#= image_tag 'coming_soon/mars_with_spaceship.png', {class:'img-fluid'} #%>
+        <h1 class="featurette-heading">
+          <%= t('pages.signup.steps.title2') %>
+        </h1>
+        <%= link_to image_tag('signup/step2.png'), '#step3', {id: 'step2', class:'img-fluid'} %>
+      </div>
+      <div class="col-md-12">
+        <h1 class="featurette-heading">
+          <%= t('pages.signup.steps.title3') %>
+        </h1>
+        <%= link_to image_tag('signup/step3.png'), '#', {id: 'step3', class:'img-fluid'} %>
       </div>
     </div>
   </div>

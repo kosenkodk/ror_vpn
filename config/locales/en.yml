@@ -122,7 +122,10 @@ en:
           password: "*********"
     signup:
       title: "Sign Up"
-      title2: "Create an account"
+      steps:
+        title1: "Create an account"
+        title2: "Choose a plan"
+        title3: "Select a Payment Method"
       form:
         email_address: "Email address"
         password: "Password"
