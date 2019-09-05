@@ -104,6 +104,9 @@ en:
         password: "Password"
         login_trouble: "Having trouble logging in?"
         login: "Log in"
+        help:
+          email: "vegavpn@inbox.com"
+          password: "*********"
     signup:
       title: "Sign Up"
     not_found:
