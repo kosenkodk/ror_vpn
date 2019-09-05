@@ -20,7 +20,7 @@
 <div class="form-group row">
   <%= f.label t('pages.login.form.email_address'), {class:'col-sm-3 col-form-label'} %>
   <div class="col-sm-6">
-    <%= f.text_field  :email, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.email') %></br>
+    <%= f.text_field :email, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.email') %></br>
   </div>
   <div class="col-sm-3"></div>
 </div>
@@ -28,8 +28,15 @@
 <div class="form-group row">
   <%= f.label t('pages.login.form.password'), {class:'col-sm-3 col-form-label'} %>
   <div class="col-sm-6">
-    <%= f.text_field  :password, required: false, type: :text, class: "form-control", placeholder: t('pages.login.form.help.password') %></br>
+    <div class="input-group">
+      <%= f.text_field :password, { required: false, type: :text, id: "forgot-pwd-addon", class: "form-control", "aria-describedby": "forgot-pwd-addon", "aria-label": t('pages.login.form.help.password'), placeholder: t('pages.login.form.help.password') } %></br>
+      <div class="input-group-append">
+        <span class="input-group-text" id="forgot-pwd-addon"><a
+            href="<%= forgot_path %>"><%= t("pages.login.form.forgot_pwd") %></a></span>
+      </div>
+    </div>
   </div>
+
   <div class="col-sm-3"></div>
 </div>
 

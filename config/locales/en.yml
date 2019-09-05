@@ -95,6 +95,8 @@ en:
       twitter: "Twitter"
       contact_us: "Contact Us"
   pages:
+    forgot_pwd:
+      title: "Forgot Password"
     login:
       title: ""
       login_to_your_account: "Log in to your account"
@@ -104,6 +106,7 @@ en:
         password: "Password"
         login_trouble: "Having trouble logging in?"
         login: "Log in →"
+        forgot_pwd: "Forgot Password ?"
         help:
           email: "vegavpn@inbox.com"
           password: "*********"

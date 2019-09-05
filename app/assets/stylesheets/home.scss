@@ -8,6 +8,21 @@ body {
   min-height: 40rem;
 }
 .login {
+  .input-group-text {
+    background: $white;
+    border-left: unset;
+  }
+  #forgot-pwd-addon {
+    border-right: unset;
+    a {
+      font-size: 1rem;
+      color: #949599;
+      &:hover {
+        color: #495057;
+        text-decoration: none;
+      }
+    }
+  } 
   a {
     color: $pink3;
     font-size: 1.15rem;
