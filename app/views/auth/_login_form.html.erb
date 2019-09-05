@@ -29,7 +29,7 @@
   <%= f.label t('pages.login.form.password'), {class:'col-sm-3 col-form-label'} %>
   <div class="col-sm-6">
     <div class="input-group">
-      <%= f.text_field :password, { required: false, type: :text, id: "forgot-pwd-addon", class: "form-control", "aria-describedby": "forgot-pwd-addon", "aria-label": t('pages.login.form.help.password'), placeholder: t('pages.login.form.help.password') } %></br>
+      <%= f.text_field :password, { required: false, type: :password, id: "forgot-pwd-addon", class: "form-control", "aria-describedby": "forgot-pwd-addon", "aria-label": t('pages.login.form.help.password'), placeholder: t('pages.login.form.help.password') } %></br>
       <div class="input-group-append">
         <span class="input-group-text" id="forgot-pwd-addon"><a
             href="<%= forgot_pwd_path %>"><%= t("pages.login.form.forgot_pwd") %></a></span>
