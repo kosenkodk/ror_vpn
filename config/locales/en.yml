@@ -104,6 +104,9 @@ en:
       form:
         password: "Password"
         password_confirm: "Confirm password"
+      success:
+        title: "Success!"
+        subtitle: "You have successfully changed the password on the site."
     login:
       title: ""
       login_to_your_account: "Log in to your account"
@@ -150,3 +153,4 @@ en:
     submit: "Submit"
     login: "Log in"
     reset_password: "Reset Password"
+    ok: "Ok"
