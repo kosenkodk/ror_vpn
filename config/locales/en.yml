@@ -97,6 +97,7 @@ en:
   pages:
     forgot_pwd:
       title: "Forgot Password"
+      subtitle: "Enter email to reset your password."
     login:
       title: ""
       login_to_your_account: "Log in to your account"

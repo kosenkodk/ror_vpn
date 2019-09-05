@@ -15,4 +15,18 @@ RSpec.describe AuthController, type: :feature do
       expect(page).not_to have_css('footer')
     end
   end
+
+  describe 'GET :forgot' do
+    it 'render :forgot template' do
+      visit(forgot_path)
+      expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.title'))
+      expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.subtitle'))
+      expect(find('label').text).to eq('Email address')
+      page.has_selector?('input.user_email')
+      expect(find_button('Submit').value).to eq('Submit')
+      expect(page).not_to have_css('footer')
+      expect(page).not_to have_css('header')
+    end
+  end
+
 end
