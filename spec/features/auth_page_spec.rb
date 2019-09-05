@@ -20,11 +20,11 @@ RSpec.describe AuthController, type: :feature do
   describe 'GET :signup' do
     it 'render :signup template' do
       visit(signup_path)
-      expect(find('.signup')).to have_content(I18n.t('pages.signup.title2'))
+      expect(find('.signup')).to have_content(I18n.t('pages.signup.steps.title1'))
       expect(find('.signup')).to have_content('Email address')
       expect(find('.signup')).to have_content('Password')
       expect(find('.signup')).to have_content('Confirm password')
-      # expect(find('.signup')).to have_content(I18n.t('buttons.continue'))
+      expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
       # expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       expect(page).to have_css('nav')
       expect(page).to have_css('footer')
@@ -39,6 +39,7 @@ RSpec.describe AuthController, type: :feature do
       expect(find('label').text).to eq('Email address')
       expect(page.has_selector?('input#user_email')).to eq(true)
       expect(find_button('Submit').value).to eq('Submit')
+      expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.submit'))
       expect(page).not_to have_css('footer')
       expect(page).not_to have_css('header')
     end
