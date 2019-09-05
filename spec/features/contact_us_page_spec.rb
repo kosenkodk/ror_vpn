@@ -32,7 +32,7 @@ RSpec.describe ContactsController, type: :feature do
           click_on('Submit')
           # expect(find('.lead')).to have_text(I18n.t('pages.contact_us.error_message'))
           # expect(page).to have_content(I18n.t('pages.contact_us.error_message'))
-          expect(page).to have_text(`Email can't be blank`)
+          expect(page).to have_text("Email can't be blank")
         end
       end
     end

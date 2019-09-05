@@ -44,4 +44,15 @@ RSpec.describe AuthController, type: :feature do
     end
   end
 
+  describe 'GET :success' do
+    it 'render :success template' do
+      visit(reset_pwd_success_path)
+      expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.success.title'))
+      expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.success.subtitle'))
+      expect(find_link(I18n.t('buttons.ok')).text).to eq(I18n.t('buttons.ok'))
+      expect(page).not_to have_css('footer')
+      expect(page).not_to have_css('header')
+    end
+  end
+
 end
