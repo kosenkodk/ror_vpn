@@ -12,10 +12,15 @@ body {
   h1 {
     padding: 0;
   }
+  .card.active {
+    @extend .border_1_pink;
+  }
 }
+
 .text-sm-1 {
   font-size: 1rem;
 }
+
 .mb-n6 {
   margin-bottom: -($spacer * 3.25) !important;
 }
@@ -38,6 +43,7 @@ body {
     opacity: $opacity;
   }
 }
+
 .card-info {
   .card-body {
     .table {
@@ -53,26 +59,26 @@ body {
 }
 
 .border_1_pink {
-    border-radius: $pricing_border_radius;
-    border-top: $pricing_border_width solid $pink;
-    border-bottom: $pricing_border_width solid $pink2;
+  border-radius: $pricing_border_radius;
+  border-top: $pricing_border_width solid $pink;
+  border-bottom: $pricing_border_width solid $pink2;
 
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($pink), to($pink2));
-    background-image: -webkit-linear-gradient($pink, $pink2);
-    background-image:
-        -moz-linear-gradient($pink3, $pink2),
-        -moz-linear-gradient($pink3, $pink2);
-    background-image:
-        -o-linear-gradient($pink3, $pink2),
-        -o-linear-gradient($pink3, $pink2);
-    background-image: 
-      linear-gradient($pink, $pink2),
-      linear-gradient($pink, $pink2);
-    -moz-background-size: $pricing_border_width 100%;
-    background-size: $pricing_border_width 100%;
-    background-position: 0 0, 100% 0;
-    background-repeat: no-repeat; 
- }
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($pink), to($pink2));
+  background-image: -webkit-linear-gradient($pink, $pink2);
+  background-image:
+      -moz-linear-gradient($pink, $pink2),
+      -moz-linear-gradient($pink, $pink2);
+  background-image:
+      -o-linear-gradient($pink, $pink2),
+      -o-linear-gradient($pink, $pink2);
+  background-image: 
+    linear-gradient($pink, $pink2),
+    linear-gradient($pink, $pink2);
+  -moz-background-size: $pricing_border_width 100%;
+  background-size: $pricing_border_width 100%;
+  background-position: 0 0, 100% 0;
+  background-repeat: no-repeat; 
+}
 
 .signup, .login {
   margin-bottom: 10rem;
