@@ -24,7 +24,8 @@ RSpec.describe ContactUsMailer, type: :mailer do
   end
 
   context 'notify admin' do
-    let(:admin_email) { ContactUsMailer.notify_admin(Rails.application.credentials.admin_email || 'admin@email.ru', contact_id).deliver_now }
+    # let(:admin_email) { ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, contact_id).deliver_now }
+    let(:admin_email) { ContactUsMailer.notify_admin('admin@email.ru', contact_id).deliver_now }
     
     it 'with correct email' do
       expect(admin_email.to).to include('admin@email.ru')
