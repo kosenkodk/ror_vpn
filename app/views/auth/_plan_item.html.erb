@@ -1,10 +1,12 @@
 <div class="card mb-3 shadow-vega border_1_pink">
   <div class="card-header">
-    <%= image_tag image_name, {class: 'mt-31'} %>
+    <%= image_tag image_name, {class: 'mt-relative'} %>
     <h4 class="my-0 font-weight-normal">Plan for 1 year</h4>
   </div>
   <div class="card-body">
-    <h1 class="card-title pricing-card-title">$2.99 <small class="text-muted">/ mo</small></h1>
+    <h1 class="card-title pricing-card-title"><span class="text-sm-1 align-text-top">$</span>2.99
+      <small class="text-muted">/
+        mo</small></h1>
     <%= link_to 'Save $ 322.65', '#', {class: "btn btn-pink-dark #{active_class} rounded-pill text-white"} %>
     <h3 class="card-title pricing-card-title text-info"><strike>$430.20</strike></h3>
     <h3 class="card-title pricing-card-title">$107.55 every 3 years</h3>
@@ -14,6 +16,7 @@
       <li>High Speed</li>
       <li>Unlimited traffic</li>
     </ul>
-    <button type="button" class="btn btn-lg btn-block btn-outline-primary rounded-pill">Best offer</button>
+    <button type="button" class="btn btn-outline-primary rounded-pill mb-relative">Best
+      offer</button>
   </div>
 </div>
