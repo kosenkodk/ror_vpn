@@ -4,3 +4,45 @@
   <%= render partial: 'auth/payment_method_item', locals: { image_name: image_name } %>
   <% end %>
 </div>
+<div class="card-info plans card-deck mb-3 text-dark text-center">
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header">
+      <%= image_tag 'signup/payment_methods/card_all', { class: 'img-fluid' } %>
+    </div>
+    <div class="card-body">
+      <table class="table text-white">
+        <tbody>
+          <tr>
+            <td class="text-left">Plan for 1 year</td>
+            <td></td>
+            <td class="text-right">268.80 $</td>
+          </tr>
+          <tr>
+            <td class="text-left">Discount -66%</td>
+            <td></td>
+            <td class="text-right">-191.05 $</td>
+          </tr>
+          <tr>
+            <td class="text-left">VAT 0% - USA
+              <select class="form-control col-xs-12 col-sm-6 col-md-4" id="exampleFormControlSelect1">
+                <option>USA</option>
+              </select>
+            </td>
+            <td></td>
+            <td class="text-right">0.00 $</td>
+          </tr>
+          <tr class="font-weight-bold">
+            <td class="text-left">Total</td>
+            <td></td>
+            <td class="text-right">USD 95.75 $</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <p class="text-left">By submitting this form, you agree to our <%= link_to 'Terms', '#', {class: ''} %> and
+        <%= link_to 'Privacy Policy', '#', {class: ''} %>.
+        If you do not want to receive information about VPN services, please send an email to privacy@vpn.com.</p>
+    </div>
+  </div>
+</div>
