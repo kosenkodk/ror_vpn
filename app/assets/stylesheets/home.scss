@@ -8,14 +8,19 @@ body {
   min-height: 40rem;
 }
 
-.plans {
+.payment_methods, .plans {
   h1 {
     padding: 0;
   }
   .card.active {
     @extend .border_1_pink;
   }
+  .card {
+    border-radius: $pricing_border_radius;
+  }
 }
+
+
 
 .text-sm-1 {
   font-size: 1rem;
