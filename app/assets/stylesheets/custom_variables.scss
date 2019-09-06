@@ -4,6 +4,8 @@ $pink2: #713980;
 $pink3: rgb(121,39,97);
 $pink_gradient: linear-gradient(to right, $pink, $pink2 ) 47% 0%; //linear-gradient(90deg, $pink2 0%, $pink 100%);
 $opacity: 0.7;
+$pricing_border_radius: 15px;
+$pricing_border_width: 3px;
 //TODO: make mixin like thid: gradient-linear: rgba(#8C5362 0%, #713980 100%);
 
 // @mixin linear-gradient($direction, $fromColor, $toColor)

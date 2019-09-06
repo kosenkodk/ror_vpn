@@ -8,15 +8,22 @@ body {
   min-height: 40rem;
 }
 
-.mt-relative {
-  margin-top: -3.5rem;
-}
-.mb-relative {
-  margin-bottom: -3.5rem;
-}
 .text-sm-1 {
   font-size: 1rem;
 }
+.mb-n6 {
+  margin-bottom: -($spacer * 3.25) !important;
+}
+.mb-n7 {
+  margin-bottom: -($spacer * 3.5) !important;
+}
+.mb-n8 {
+  margin-bottom: -($spacer * 3.75) !important;
+}
+.mb-n9 {
+  margin-bottom: -($spacer * 4) !important;
+}
+
 .btn-pink-dark {
   background-color:rgb(38,8,48);
   &.active, &:hover {
@@ -39,10 +46,37 @@ body {
   margin-top: 5rem;
   margin-bottom: 15rem;
 }
-
 .border_1_pink {
-  border: 1px solid $pink3;
-}
+  //   // // border: 3px solid $pink3;
+
+  // border-width: 3px;
+  // border-image: $pink_gradient;
+  // // border-style: solid;
+  // border-left: solid; 
+  // border-right: solid; 
+  // border-top: solid;
+  // border-bottom: solid;
+
+    border-radius: $pricing_border_radius;
+    border-top: $pricing_border_width solid $pink;
+    border-bottom: $pricing_border_width solid $pink2;
+
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($pink), to($pink2));
+    background-image: -webkit-linear-gradient($pink, $pink2);
+    background-image:
+        -moz-linear-gradient($pink3, $pink2),
+        -moz-linear-gradient($pink3, $pink2);
+    background-image:
+        -o-linear-gradient($pink3, $pink2),
+        -o-linear-gradient($pink3, $pink2);
+    background-image: 
+      linear-gradient($pink, $pink2),
+      linear-gradient($pink, $pink2);
+    -moz-background-size: $pricing_border_width 100%;
+    background-size: $pricing_border_width 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat; 
+ }
 
 .signup, .login {
   margin-bottom: 10rem;
