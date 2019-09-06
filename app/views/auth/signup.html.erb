@@ -18,7 +18,7 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div class="text-right">
-          <%= render partial: 'auth/signup_form', locals: {f:f} %>
+          <%= render partial: 'auth/signup_form', locals: {f: f} %>
         </div>
       </div>
       <div class="col-md-2"></div>
@@ -45,16 +45,16 @@
       </div>
 
       <div class="col-md-12">
-        <%= render 'auth/payment_methods' %>
+        <%= render partial: 'auth/payment_methods', locals: {f: f} %>
 
-        <div class="form-group row">
+        <!-- <div class="form-group row">
           <div class="col-sm-3"></div>
           <div class="col-sm-6">
 
             <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %>
           </div>
           <div class="col-sm-3"></div>
-        </div>
+        </div> -->
 
       </div>
     </div>
