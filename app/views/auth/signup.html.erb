@@ -1,4 +1,4 @@
-<%= form_for @user, url: signup_path, remote: true do |f| %>
+<%= form_for @user, url: signup_path, html: {class:'container'}, remote: true do |f| %>
 
 <div class="row signup">
   <div class="featurette text-center">
@@ -16,7 +16,6 @@
       </div>
       <div class="col-md-2"></div>
 
-
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div class="text-right">
@@ -30,6 +29,10 @@
           <%= t('pages.signup.steps.title2') %>
         </h1>
         <%= link_to image_tag('signup/step2.png'), '#step3', {id: 'step2', class:'img-fluid'} %>
+
+        <div class="container">
+          <%= render 'auth/step2_plans' %>
+        </div>
       </div>
 
       <div class="col-md-12">
@@ -39,19 +42,21 @@
         <%= link_to image_tag('signup/step3.png'), '#', {id: 'step3', class:'img-fluid'} %>
       </div>
 
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
+      <div class="col-md-12">
+        <%= render 'auth/step3_payments' %>
+
         <div class="form-group row">
           <div class="col-sm-3"></div>
           <div class="col-sm-6">
+
             <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %>
           </div>
           <div class="col-sm-3"></div>
         </div>
-        <div class="col-md-2"></div>
 
       </div>
     </div>
   </div>
 </div>
+
 <% end %>
