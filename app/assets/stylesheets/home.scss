@@ -8,6 +8,11 @@ body {
   min-height: 40rem;
 }
 
+.plans {
+  h1 {
+    padding: 0;
+  }
+}
 .text-sm-1 {
   font-size: 1rem;
 }
@@ -46,17 +51,8 @@ body {
   margin-top: 5rem;
   margin-bottom: 15rem;
 }
+
 .border_1_pink {
-  //   // // border: 3px solid $pink3;
-
-  // border-width: 3px;
-  // border-image: $pink_gradient;
-  // // border-style: solid;
-  // border-left: solid; 
-  // border-right: solid; 
-  // border-top: solid;
-  // border-bottom: solid;
-
     border-radius: $pricing_border_radius;
     border-top: $pricing_border_width solid $pink;
     border-bottom: $pricing_border_width solid $pink2;
