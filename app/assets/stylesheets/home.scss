@@ -10,7 +10,15 @@ body {
 .plans {
 
 }
-
+.btn-pink-dark {
+  background-color:rgb(38,8,48);
+  &.active, &:hover {
+    background-color:rgb(44,176,181);
+  }
+  &.active:hover {
+    opacity: $opacity;
+  }
+}
 .card-info {
   .card-body {
     .table {
