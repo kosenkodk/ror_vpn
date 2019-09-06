@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     # @contact.department = # TODO: will implement
     if @contact.save
       ContactUsMailer.notify_user(@contact.email, @contact.id).deliver_now
-      ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, @contact.id).deliver_now
+      ContactUsMailer.notify_admin(Rails.application.credentials.admin_email || "admin@email.ru", @contact.id).deliver_now
 
       notice = t('pages.contact_us.success_message')
       # flash[:notice] = notice
