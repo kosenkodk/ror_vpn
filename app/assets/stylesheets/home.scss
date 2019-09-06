@@ -24,11 +24,11 @@ body {
   margin-top: 5rem;
   margin-bottom: 15rem;
 }
-.signup {
-  .plans .card {
-    border: 1px solid $pink3;
-  }
+
+.border_1_pink {
+  border: 1px solid $pink3;
 }
+
 .signup, .login {
   margin-bottom: 10rem;
   .input-group-text {
