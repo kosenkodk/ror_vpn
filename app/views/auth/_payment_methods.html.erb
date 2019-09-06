@@ -1,6 +1,6 @@
 <div class="plans card-deck mb-3 text-dark text-center">
   <% (0..2).each do |item| %>
   <% image_name = item > 0 ? 'signup/off' : 'signup/on' %>
-  <%= render partial: 'payment_methods/item', locals: { image_name: image_name } %>
+  <%= render partial: 'auth/payment_method_item', locals: { image_name: image_name } %>
   <% end %>
 </div>
