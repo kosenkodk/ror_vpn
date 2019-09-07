@@ -26,6 +26,10 @@ body {
 }
 
 .payment_methods {
+  .credit_card_mt_n {
+    // margin-top: -20rem;
+    margin-top: -($spacer * 20) !important;
+  }
   .table {
     border-top: 2px solid gray !important;
     border-bottom: 2px solid gray;
