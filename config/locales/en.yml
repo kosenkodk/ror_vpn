@@ -30,7 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  email: "E-Mail"
   vegaVPN: "VEGA"
   nav_menu:
     features: "Features"
@@ -40,6 +40,23 @@ en:
     log_in: "Log in"
     sign_up: "Sign up"
     contact_us: "Contact us"
+  bank_card:
+    info: "Card Information"
+    number: "Card Number"
+    holder_name: "Cardholder Name"
+    cvv: "Card Verification Value"
+    cvc: "Card Verification Code"
+    cvvcvc: "CVV/CVC"
+    help:
+      number: "For example: John Gault"
+      holder_name: "For example: John Gault"
+      month: "11"
+      year: "2019"
+      cvc: "For example: 123"
+  payment_method:
+    cryptocurrencies: "Cryptocurrencies"
+    qiwi: "Qiwi"
+    credit_card: "Credit card"
   footer:
     product:
       title: "PRODUCT"

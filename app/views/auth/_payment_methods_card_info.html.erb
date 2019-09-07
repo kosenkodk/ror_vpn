@@ -1,43 +1,83 @@
-<div class="card mb-3">
+<div class="card mb-3 text-left">
   <div class="card-header">
-    <%= image_tag 'signup/payment_methods/card_all', { class: 'img-fluid' } %>
+    <%#= image_tag 'signup/payment_methods/card_all', { class: 'img-fluid' } #%>
+
+    <div class="card-info row">
+      <div class="col-8">
+        <div class="form-group row">
+          <div class="col-xs-8">
+            <h5><%=I18n.t('bank_card.info')%></h5>
+            <%= f.label :email, t('bank_card.number', rescue_format: :html), {class:'col-form-label'} %>
+            <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.info') %></br>
+          </div>
+          <div class="col-xs-4"></div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-xs-6">
+            <%= f.label :email, t('bank_card.holder_name'), {class:'col-form-label'} %>
+            <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.holder_name') %></br>
+          </div>
+          <div class="col-xs-2">
+            <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.month') %></br>
+          </div>
+          <div class="col-xs-2">
+            <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.year') %></br>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+
+        <div class="form-group row">
+          <div class="col-xs-6">
+            <%= f.label :email, t('bank_card.cvc'), {class:'col-form-label'} %>
+            <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.cvc') %></br>
+          </div>
+          <div class="col-xs-3"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="card-body">
-    <table class="table text-white">
-      <tbody>
-        <tr>
-          <td class="text-left">Plan for 1 year</td>
-          <td></td>
-          <td class="text-right">268.80 $</td>
-        </tr>
-        <tr>
-          <td class="text-left">Discount -66%</td>
-          <td></td>
-          <td class="text-right">-191.05 $</td>
-        </tr>
-        <tr>
-          <td class="text-left">VAT 0% - USA
-            <select class="form-control col-xs-12 col-sm-6 col-md-4" id="exampleFormControlSelect1">
-              <option>USA</option>
-            </select>
-          </td>
-          <td></td>
-          <td class="text-right">0.00 $</td>
-        </tr>
-        <tr class="font-weight-bold">
-          <td class="text-left">Total</td>
-          <td></td>
-          <td class="text-right">USD 95.75 $</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="card-footer">
-    <p class="text-left">By submitting this form, you agree to our <%= link_to 'Terms', '#', {class: ''} %> and
-      <%= link_to 'Privacy Policy', '#', {class: ''} %>.
-      If you do not want to receive information about VPN services, please send an email to
-      <%= link_to 'privacy@vega.com', "mailto:privacy@vega.com" %>.
-    </p>
-    <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %>
-  </div>
+
+</div>
+<div class="card-body">
+
+  <table class="table text-white">
+    <tbody>
+      <tr>
+        <td class="text-left">Plan for 1 year</td>
+        <td></td>
+        <td class="text-right">268.80 $</td>
+      </tr>
+      <tr>
+        <td class="text-left">Discount -66%</td>
+        <td></td>
+        <td class="text-right">-191.05 $</td>
+      </tr>
+      <tr>
+        <td class="text-left">VAT 0% - USA
+          <select class="form-control col-xs-12 col-sm-6 col-md-4" id="exampleFormControlSelect1">
+            <option>USA</option>
+          </select>
+        </td>
+        <td></td>
+        <td class="text-right">0.00 $</td>
+      </tr>
+      <tr class="font-weight-bold">
+        <td class="text-left">Total</td>
+        <td></td>
+        <td class="text-right">USD 95.75 $</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="card-footer">
+  <p class="text-left">By submitting this form, you agree to our <%= link_to 'Terms', '#', {class: ''} %> and
+    <%= link_to 'Privacy Policy', '#', {class: ''} %>.
+    If you do not want to receive information about VPN services, please send an email to
+    <%= link_to 'privacy@vega.com', "mailto:privacy@vega.com" %>.
+  </p>
+  <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %>
+</div>
 </div>
