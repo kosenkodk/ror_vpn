@@ -48,7 +48,7 @@ en:
     cvc: "Card Verification Code"
     cvvcvc: "CVV/CVC"
     help:
-      number: "For example: John Gault"
+      number: "For example, 4646 6464 6464 4747"
       holder_name: "For example: John Gault"
       month: "11"
       year: "2019"
