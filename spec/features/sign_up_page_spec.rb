@@ -12,10 +12,17 @@ RSpec.describe AuthController, type: :feature do
       
       # Choose a plan section
       expect(find('.signup')).to have_content('Choose a plan')
+      expect(find('.signup')).to have_content(I18n.t('payment_method.cryptocurrencies'))
+      # expect(find('.signup')).to have_content(I18n.t('payment_method.qiwi'))
+      # expect(find('.signup')).to have_content(I18n.t('payment_method.credit_card'))
 
       # Select a Payment Method section
       expect(find('.signup')).to have_content('Select a Payment Method')
-
+      expect(find('.signup')).to have_content(I18n.t('bank_card.info'))
+      expect(find('.signup')).to have_content(I18n.t('bank_card.number'))
+      expect(find('.signup')).to have_content(I18n.t('bank_card.holder_name'))
+      expect(find('.signup')).to have_content(I18n.t('bank_card.cvc'))
+      
       expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
       # expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       
