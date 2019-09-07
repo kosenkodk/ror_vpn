@@ -334,7 +334,10 @@ html {
 }
 
 .bg2 {
-  background:$bg_color asset-url('bg2_with_vega') no-repeat bottom;
+  // background: $bg_color asset-url('bg2_with_vega') no-repeat bottom;
+  // background: $bg_color asset-url('bg2_with_vega_cutted') repeat-x bottom;
+  // background-size: contain;
+  background: $bg_color asset-url('bg2_with_vega.svg') no-repeat bottom;
   background-size: cover;
 }
 
