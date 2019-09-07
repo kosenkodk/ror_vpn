@@ -20,6 +20,11 @@ body {
   }
 }
 
+.bg_credit_card {
+  background: asset-url('signup/payment_methods/card_all') no-repeat top;
+  background-size: contain;
+}
+
 .payment_methods {
   .table {
     border-top: 2px solid gray !important;
@@ -27,11 +32,6 @@ body {
     td {
       border: unset;
     }
-  }
-  .card-info {
-    background: asset-url('signup/payment_methods/card_all') no-repeat center;
-    height:400px;
-    background-size: contain;
   }
 }
 
