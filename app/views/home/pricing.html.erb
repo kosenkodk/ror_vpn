@@ -1,17 +1,30 @@
-<div class="container">
-  <h1>
-    One price for all your devices
-  </h1>
-  <div class="row">
-    <div class="col-xs-12">
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 border_1_pink text-center shadow-vega">
+        <h1>
+          One price for all your devices
+        </h1>
+        <%= link_to 'Start my free trial', '#', {class: 'btn btn-outline-primary'} %>
+      </div>
 
-      <%= link_to 'Start my free trial', '#', {class: 'btn btn-outline-primary'} %>
+      <%= render partial: 'shared/reviews_section_tab' %>
+
     </div>
   </div>
-  <%= render partial: 'shared/reviews_section_tab' %>
 </div>
 
-<div class="container-fluid bg2">
-  <div class="container">
+<!-- <div class="container payment_methods border_1_pink">
+  <div class="row shadow-vega pb-5">
+    <div class="col-md-8 offset-md-2 text-left">
+      <%#= render partial: 'payment_methods_card_info', locals: {f: f} #%>
+    </div>
   </div>
+</div> -->
+
+<!--
+<div class="container-fluid bg2_contain">
+  <div class="container min-vh-100">
+  </div> 
 </div>
+-->

@@ -388,6 +388,11 @@ html {
   background-size: cover;
 }
 
+.bg2_contain {
+  background:$bg_color asset-url('bg2_with_vega') no-repeat bottom;
+  background-size: contain;
+}
+
 .bg2_mars {
   background:$bg_color asset-url('bg2_with_mars') no-repeat bottom;
   background-size: cover;
