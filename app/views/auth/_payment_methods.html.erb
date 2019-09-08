@@ -6,19 +6,10 @@
   <% end %>
 </div>
 
-<div class="container border_1_pink">
-  <div class="row shadow-vega">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+<div class="container payment_methods border_1_pink">
+  <div class="row shadow-vega pb-5">
+    <div class="col-md-8 offset-md-2 text-left">
       <%= render partial: 'payment_methods_card_info', locals: {f: f} %>
     </div>
-    <div class="col-md-2"></div>
   </div>
-</div>
-
-
-<div class="payment_methods card-deck mb-3 text-dark text-center">
-
-  <%#= render 'payment_methods_card_info' #%>
-
 </div>
