@@ -21,9 +21,12 @@ body {
 }
 
 .bg_credit_card {
+  // background: asset-url('signup/payment_methods/card_all') fixed center no-repeat;
   background: asset-url('signup/payment_methods/card_all') no-repeat top;
   background-size: cover;
   // height: 60vh;
+  // display: flex;
+  // align-items: center;
 }
 
 // xs: 320px,
