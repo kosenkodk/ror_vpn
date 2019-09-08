@@ -23,6 +23,9 @@ RSpec.describe AuthController, type: :feature do
       expect(find('.signup')).to have_content(I18n.t('bank_card.holder_name'))
       expect(find('.signup')).to have_content(I18n.t('bank_card.cvc'))
       
+      expect(find('.signup')).to have_css('.plans .card.active')
+      expect(page).to have_css('.payment_methods .card.active')
+      
       expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
       # expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       
