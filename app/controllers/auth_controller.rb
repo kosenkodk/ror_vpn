@@ -7,6 +7,8 @@ class AuthController < ApplicationController
   end
 
   def signup
+    @plan_active_index = 0
+    @payment_method_item_active_index = 1
     render layout: 'application'
   end
 
