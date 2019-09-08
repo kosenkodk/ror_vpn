@@ -22,14 +22,53 @@ body {
 
 .bg_credit_card {
   background: asset-url('signup/payment_methods/card_all') no-repeat top;
-  background-size: contain;
+  background-size: cover;
+  // height: 60vh;
 }
 
+// xs: 320px,
+// sm: 540px,
+// md: 720px,
+// lg: 960px,
+// xl: 1140px
+
+// @media (min-width: 320px) {
+//   .credit_card_mt_n {
+//     // margin-top: -20rem;
+//     margin-top: -($spacer * 5) !important;
+//   }
+// }
+// @media (min-width: 540px) {
+//   .credit_card_mt_n {
+//     // margin-top: -20rem;
+//     margin-top: -($spacer * 14) !important;
+//   }
+// }
+// @media (min-width: 720px) { 
+//   .credit_card_mt_n {
+//     // margin-top: -20rem;
+//     margin-top: -($spacer * 13) !important;
+//   }
+// }
+// @media (min-width: 960px) {
+//   .credit_card_mt_n {
+//     // margin-top: -20rem;
+//     margin-top: -($spacer * 18) !important;
+//   }
+// }
+// @media (min-width: 1140px) {
+//   .credit_card_mt_n {
+//     // margin-top: -20rem;
+//     margin-top: -($spacer * 20) !important;
+//   }
+// }
+
+
 .payment_methods {
-  .credit_card_mt_n {
-    // margin-top: -20rem;
-    margin-top: -($spacer * 20) !important;
-  }
+  // .credit_card_mt_n {
+  //   // margin-top: -20rem;
+  //   margin-top: -($spacer * 20) !important;
+  // }
   .table {
     border-top: 2px solid gray !important;
     border-bottom: 2px solid gray;
