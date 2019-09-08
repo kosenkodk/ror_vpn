@@ -110,11 +110,14 @@ body {
 
 .btn-pink-dark {
   // @extend .btn-outline-primary;
-  background-color:rgb(38,8,48) !important;
+  background-color:rgb(38,8,48);
   color: white;
   &.active, &:hover {
-    background-color: $pink2;
+    background: $pink_button_gradient;
     color: white;
+  }
+  &.active:hover {
+    opacity: $opacity;
   }
 }
 
@@ -299,7 +302,7 @@ body {
   background: $pink;
 }
 .color-vega {
-  background-color: linear-gradient(90deg, $pink2 0%, $pink 100%);
+  background-color: $pink;
   color: $pink;
   opacity: $opacity;
 
@@ -339,14 +342,14 @@ body {
 .btn.btn-outline-light {
   border: unset;
   &:hover {
-    background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
+    background: $pink_button_gradient;
     opacity: $opacity;
     color: $white;
   }
 }
 
 .btn.btn-outline-primary {
-  background: linear-gradient(90deg, #8C5362 0%, #713980 100%);
+  background: $pink_button_gradient;
   color: $white;
   border: unset;
 
