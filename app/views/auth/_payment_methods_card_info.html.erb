@@ -1,9 +1,41 @@
-<div class="card mb-3">
-  <div class="card-header">
-    <%= image_tag 'signup/payment_methods/card_all', { class: 'img-fluid' } %>
+<!--<%= image_tag 'signup/payment_methods/card_all', class: 'img-fluid d-none d-sm-block' %>
+ <div class="row credit_card_mt_n pr-5 pl-5 bg_credit_card">
+-->
+<div class="row pr-5 pl-5 pt-5 bg_credit_card">
+  <div class="col-sm-8">
+    <h5><%= I18n.t('bank_card.info') %></h5>
+
+    <%= f.label :email, t('bank_card.number'), {class: 'col-form-label'} %>
   </div>
-  <div class="card-body">
-    <table class="table text-white">
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-8">
+    <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.number') %></br>
+  </div>
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-12"><%= f.label :email, t('bank_card.holder_name'), {class:'col-form-label'} %></div>
+  <div class="col-sm-4">
+    <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.holder_name') %></br>
+  </div>
+
+  <div class="col-sm-2">
+    <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.month') %></br>
+  </div>
+
+  <div class="col-sm-2">
+    <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.year') %></br>
+  </div>
+
+  <div class="col-sm-4 text-black-50 pl-5 pr-1">
+    <%= f.label :email, t('bank_card.cvc'), {class:'col-form-label'} %>
+    <%= f.text_field :email, required: false, type: :text, class: "form-control", placeholder: t('bank_card.help.cvc') %></br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table text-white mt-5">
       <tbody>
         <tr>
           <td class="text-left">Plan for 1 year</td>
@@ -31,13 +63,15 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="card-footer">
+
     <p class="text-left">By submitting this form, you agree to our <%= link_to 'Terms', '#', {class: ''} %> and
       <%= link_to 'Privacy Policy', '#', {class: ''} %>.
       If you do not want to receive information about VPN services, please send an email to
       <%= link_to 'privacy@vega.com', "mailto:privacy@vega.com" %>.
     </p>
+  </div>
+
+  <div class="col-md-4 offset-md-4">
     <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %>
   </div>
 </div>
