@@ -1,7 +1,6 @@
 <div class="plans card-deck mb-5 text-dark text-center">
-  <% item_active = 1
-    (0..3).each do |item|
-    active_image, active_class = signup_icon_active(item, item_active)
+  <% (0..3).each do |item|
+    active_image, active_class = signup_icon_active(item, @plan_active_index)
   %>
   <%= render partial: 'auth/plan_item', locals: { image_name: active_image, active_class: active_class } %>
   <% end %>
