@@ -1,5 +1,6 @@
-<!--<%= image_tag 'signup/payment_methods/card_all', class: 'img-fluid  d-none d-sm-block' %>
- <div class="row credit_card_mt_n pr-5 pl-5 bg_credit_card"> -->
+<!--<%= image_tag 'signup/payment_methods/card_all', class: 'img-fluid d-none d-sm-block' %>
+ <div class="row credit_card_mt_n pr-5 pl-5 bg_credit_card">
+-->
 <div class="row pr-5 pl-5 pt-5 bg_credit_card">
   <div class="col-sm-8">
     <h5><%= I18n.t('bank_card.info') %></h5>
@@ -70,11 +71,7 @@
     </p>
   </div>
 
-  <!-- <div class="mx-auto d-block">
-  </div> -->
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
+  <div class="col-md-4 offset-md-4">
     <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %>
   </div>
-  <div class="col-md-4"></div>
 </div>
