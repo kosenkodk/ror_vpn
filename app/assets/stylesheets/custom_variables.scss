@@ -7,6 +7,9 @@ $pink_button_gradient: linear-gradient(90deg, $pink 0%, $pink2 100%);
 $opacity: 0.7;
 $pricing_border_radius: 15px;
 $pricing_border_width: 3px;
+
+$shadow-vega: #5C1D49;
+$footer_bg_color: #7D2864;
 //TODO: make mixin like thid: gradient-linear: rgba(#8C5362 0%, #713980 100%);
 
 // @mixin linear-gradient($direction, $fromColor, $toColor)

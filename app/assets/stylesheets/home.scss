@@ -274,7 +274,7 @@ body {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
     
-    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,$opacity));
+    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255, $opacity));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -296,7 +296,7 @@ body {
   border: unset !important;
 }
 .shadow-vega {
-  box-shadow: 10px 10px 100px #5C1D49;
+  box-shadow: 10px 10px 100px $shadow-vega;
 }
 .bg-color-vega {
   background: $pink;
@@ -446,7 +446,7 @@ html {
 }
 
 .footer {
-  background-color:#7D2864;
+  background-color: $footer_bg_color;
 }
 
 footer {
