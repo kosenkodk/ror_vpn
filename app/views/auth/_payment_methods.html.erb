@@ -1,8 +1,9 @@
 <div class="payment_methods card-deck mb-3 text-dark text-center">
-  <% (0..2).each do |item| %>
-  <% image_name = item > 0 ? 'signup/off' : 'signup/on' %>
-  <% active_class = item > 0 ? '' : 'active' %>
-  <%= render partial: 'auth/payment_method_item', locals: { image_name: image_name, active_class: active_class } %>
+  <%
+  item_active = 1
+  (0..2).each do |item|
+    active_image, active_class = signup_icon_active(item, item_active) %>
+  <%= render partial: 'auth/payment_method_item', locals: { image_name: active_image, active_class: active_class } %>
   <% end %>
 </div>
 
