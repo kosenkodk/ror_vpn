@@ -7,10 +7,16 @@ RSpec.describe HomeController, type: :feature do
       
       expect(page).to have_content('One price for all your devices')
       expect(page).to have_content('Start my free trial')
-      expect(page).to have_content('Why the Media loves VPN')
-      
-      # expect(page).to have_content('Questions & Answers')
 
+      expect(page).to have_css('reviews')
+      expect(page).to have_content('Why the Media loves VPN')
+
+      # expect(page).to have_css('_section')
+      expect(page).to have_content('All plans include')
+      
+      # TODO: after faq implementation
+      # expect(page).to have_content('Questions & Answers')
+      
       expect(page).to have_css('nav')
       expect(page).to have_css('footer')
     end
