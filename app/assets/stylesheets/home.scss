@@ -8,6 +8,14 @@ body {
   min-height: 40rem;
 }
 
+.pricing {
+  .pricing-card-title {
+    font-size: 10rem;
+    .text-sm-1 {
+      font-size: 3rem;
+    }
+  }
+}
 .payment_methods, .plans {
   h1 {
     padding: 0;
