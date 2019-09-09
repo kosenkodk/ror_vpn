@@ -1,17 +1,44 @@
-<div
-  class="nav d-flex flex-column flex-md-row align-items-center p-3 px-md-0 mb-3 bg-transparent border-bottom shadow-sm">
-  <!-- <h5 class=".logo .text-white my-0 mr-md-auto font-weight-normal">VEGA <span class="badge badge-dark">vpn</span></h5> -->
-  <h5 class=".text-white my-0 mr-md-auto font-weight-normal">
-    <%= link_to image_tag('logo.svg', {class: 'img-fluid', alt: 'Vega VPN'}), root_path %>
-  </h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 btn btn-outline-light" href="<%=root_path%>#features"><%=t('nav_menu.features')%></a>
-    <a class="p-2 btn btn-outline-light" href="<%=pricing_path%>"><%=t('nav_menu.pricing')%></a>
-    <a class="p-2 btn btn-outline-light" href="<%=root_path%>#downloads"><%=t('nav_menu.apps')%></a>
-    <a class="p-2 btn btn-outline-light" href="<%=new_contact_path%>"><%=t('nav_menu.contact_us')%></a>
-    <a class="p-2 btn btn-outline-light" href="<%=coming_soon_path%>"><%=t('nav_menu.help')%></a>
-    <a class="btn btn-outline-light" href="<%=login_path%>"><%=t('nav_menu.log_in')%></a>
-    <a class="btn btn-outline-primary" href="<%=signup_path%>"><%=t('nav_menu.sign_up')%></a>
-  </nav>
-
-</div>
+<nav class="nav navbar navbar-expand-md navbar-dark bg-transparent">
+  <%= link_to image_tag('logo.svg', {class: 'navbar-brand mr-auto ml-2', alt: 'Vega VPN'}), root_path %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse justify-content-stretch" id="navbar6">
+    <!-- <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Left Active Link <span class="sr-only">Home</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Left Link</a>
+        </li>
+      </ul> -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-light"
+          href="<%=root_path%>#features"><%=t('nav_menu.features')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-light" href="<%=pricing_path%>"><%=t('nav_menu.pricing')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-light" href="<%=root_path%>#downloads"><%=t('nav_menu.apps')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-light"
+          href="<%=new_contact_path%>"><%=t('nav_menu.contact_us')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-light" href="<%=coming_soon_path%>"><%=t('nav_menu.help')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-light" href="<%=login_path%>"><%=t('nav_menu.log_in')%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white btn btn-outline-primary" href="<%=signup_path%>"><%=t('nav_menu.sign_up')%></a>
+      </li>
+    </ul>
+  </div>
+</nav>
