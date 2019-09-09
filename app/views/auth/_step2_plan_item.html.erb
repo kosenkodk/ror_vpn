@@ -22,7 +22,7 @@
       <h6 class="card-title"><%= item.try(:price_comment) %></h6>
       <% end %>
 
-      <ul class="text-left pt-2">
+      <ul class="text-left pt-2 text-opacity">
         <% item.features.split(',').each do |feature| %>
         <li>
           <%#= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } #%>
