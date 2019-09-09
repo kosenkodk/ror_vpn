@@ -1,0 +1,2 @@
+class TariffPlan < ApplicationRecord
+end
