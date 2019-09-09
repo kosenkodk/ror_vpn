@@ -29,7 +29,7 @@
           <%= link_to image_tag('signup/step2.png'), '#step3', {id: 'step2', class:'img-fluid'} %>
         </p>
         <div class="container">
-          <%= render 'auth/step2_plans' %>
+          <%= render partial: 'auth/step2_plans', locals: { items: @plans } %>
         </div>
       </div>
 
