@@ -8,24 +8,43 @@
     <span class="text-sm-1 align-text-top pt-n5">Per month</span>
     <h5 class="card-title"></h5>
     <div class="row">
-      <div class="col-md-6">
+      <% if item.price > 0 %>
+      <div class="col-md-6 offset-0">
         <ul class="text-left list-unstyled">
           <% item.features.split(',').each do |feature| %>
           <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> <%= feature %></li>
           <% end %>
         </ul>
       </div>
-      <div class="col-md-6 text-right">
+      <div class="col-md-6 offset-0 text-right">
         <p class="pb-0">
-          <%= link_to 'Save $ 322.65', '#', {class: "btn btn-pink-blue active rounded-pill text-white"} %>
+          <%= link_to "Save $ #{item.try(:price_duration_sale)}", '#', {class: "btn btn-pink-blue active rounded-pill text-white"} %>
         </p>
-        <h5 class="card-title text-info"><strike>$430.20</strike></h5>
-        <h5 class="card-title">$107.55 every 3 years</h5>
+        <h5 class="card-title text-info"><strike>$ <%= item.try(:price_duration) %></strike></h5>
+        <h5 class="card-title"><%= item.try(:price_comment) %></h5>
       </div>
-      <div class="col pt-2">
+      <div class="col-md-12 pt-2">
         <!-- <button type="button" class="btn btn-outline-primary rounded-pill mb-n9">Best offer</button> -->
         <%= link_to 'Start my free trial', '#', {class: 'btn btn-outline-primary'} %>
       </div>
+      <% else %>
+      <% featureCollection1, featureCollection2 = devide_on_two_collections item.features.split(',') %>
+      <div class="col-md-4 offset-0">
+        <ul class="text-left list-unstyled">
+          <% featureCollection1.each do |feature| %>
+          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> <%= feature %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4 offset-0">
+        <ul class="text-left list-unstyled">
+          <% featureCollection2.each do |feature| %>
+          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> <%= feature %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
     </div>
   </div>
 
