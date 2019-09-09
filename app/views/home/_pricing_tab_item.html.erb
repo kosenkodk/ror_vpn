@@ -3,18 +3,16 @@
   </div> -->
   <div class="card-body">
     <h1 class="card-title pricing-card-title pt-0 mt-0">
-      <span class="text-sm-1 align-text-top">$</span>2.99
+      <span class="text-sm-1 align-text-top">$</span><%=item.try(:price)%>
     </h1>
     <span class="text-sm-1 align-text-top pt-n5">Per month</span>
     <h5 class="card-title"></h5>
     <div class="row">
       <div class="col-md-6">
         <ul class="text-left list-unstyled">
-          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> All Countries</li>
-          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> 5 Devices
-            simultaneously</li>
-          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> High Speed</li>
-          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> Unlimited traffic</li>
+          <% item.features.split(',').each do |feature| %>
+          <li><%= image_tag 'icons/icon_checkbox_on.png', { class: 'img-fluid', alt: '' } %> <%= feature %></li>
+          <% end %>
         </ul>
       </div>
       <div class="col-md-6 text-right">
