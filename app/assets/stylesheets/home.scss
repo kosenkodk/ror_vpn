@@ -8,6 +8,10 @@ body {
   min-height: 40rem;
 }
 
+.text-opacity {
+  opacity: $opacity;
+}
+
 .pricing {
   .pricing-card-title {
     font-size: 10rem;
