@@ -1,41 +1,20 @@
-<ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
+<ul class="nav nav-pills mb-3" id="pills-tabPlan" role="tablist">
+  <% @plans.each_with_index do |item, index| %>
   <li class="nav-item col-sm-6 col-md-3">
-    <button class="btn btn-pink-dark rounded-pill active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-      role="tab" aria-controls="pills-home" aria-selected="true">
-      Plan for 1 year
+    <button class="btn btn-pink-dark rounded-pill <%= get_active_class_by_index(index, @plan_active_index) %>"
+      id="pills-plan<%= item.id %>-tab" data-toggle="pill" href="#pills-plan<%= item.id %>" role="tab"
+      aria-controls="pills-plan<%= item.id %>" aria-selected="true">
+      <%= item.try(:title) %>
     </button>
   </li>
-  <li class="nav-item col-sm-6 col-md-3">
-    <button class="btn btn-pink-dark rounded-pill" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-      role="tab" aria-controls="pills-profile" aria-selected="false">
-      Quarterly plan
-    </button>
-  </li>
-  <li class="nav-item col-sm-6 col-md-3">
-    <button class="btn btn-pink-dark rounded-pill" id="pills-plan-1mo-tab" data-toggle="pill" href="#pills-plan-1mo"
-      role="tab" aria-controls="pills-plan-1mo" aria-selected="true">
-      Plan for 1 month
-    </button>
-  </li>
-  <li class="nav-item col-sm-6 col-md-3">
-    <button class="btn btn-pink-dark rounded-pill" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
-      role="tab" aria-controls="pills-contact" aria-selected="false">
-      Free plan
-    </button>
-  </li>
+  <% end %>
 </ul>
 
-<div class="tab-content" id="pills-tab2Content">
-  <div class="tab-pane fade show active" id="pills-plan-1mo" role="tabpanel" aria-labelledby="pills-plan-1mo-tab">
-    <%= render 'home/pricing_tab_item.html.erb' %>
+<div class="tab-content" id="pills-tabPlanContent">
+  <% @plans.each do |item| %>
+  <div class="tab-pane fade show active" id="pills-plan<%= item.id %>" role="tabpanel"
+    aria-labelledby="pills-plan<%= item.id %>-tab">
+    <%= render partial: 'home/pricing_tab_item.html.erb', locals: {item: item} %>
   </div>
-  <div class="tab-pane fade show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <%= render 'home/pricing_tab_item.html.erb' %>
-  </div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    <%= render 'home/pricing_tab_item.html.erb' %>
-  </div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-    <%= render 'home/pricing_tab_item.html.erb' %>
-  </div>
+  <% end %>
 </div>
