@@ -1,13 +1,11 @@
-<div class="col-12">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @plan.title %>
-  </p>
+<p>
+  <strong>Title:</strong>
+  <%= @plan.title %>
+</p>
 
-  <p><%= @plan.content %></p>
+<p><%= @plan.content %></p>
 
-  <%= link_to 'Edit', edit_plan_path(@plan) %> |
-  <%= link_to 'Back', plans_path %>
-</div>
+<%= link_to 'Edit', edit_plan_path(@plan) %> |
+<%= link_to 'Back', plans_path %>

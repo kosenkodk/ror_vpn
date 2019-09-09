@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  layout 'narrow'
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   # GET /plans
