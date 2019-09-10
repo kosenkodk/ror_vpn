@@ -1,54 +1,6 @@
-<style>
-  .accordion .card-header:after {
-    font-family: 'FontAwesome';
-    content: "\f068";
-    float: right;
-  }
-
-  .accordion .card-header.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\f067";
-  }
-</style>
-
 <footer class="footer pt-4 my-md-5">
   <div class="row">
-    <div class="col-md-2">
-      <div class="container">
-        <div id="accordion" class="accordion">
-          <div class="card mb-0">
-            <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
-              <a class="card-title">
-                Item 1
-              </a>
-            </div>
-            <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
-              <p>item 1 text
-              </p>
-            </div>
-            <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              <a class="card-title">
-                Item 2
-              </a>
-            </div>
-            <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
-              <p>item 2 text
-              </p>
-            </div>
-            <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-              <a class="card-title">
-                Item 3
-              </a>
-            </div>
-            <div id="collapseThree" class="collapse" data-parent="#accordion">
-              <div class="card-body"> item 3 text
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2">
+    <div class="col-sm-4 col-md-2">
       <h5><%=t('footer.product.title')%></h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-light" href="<#>"><%=t('footer.product.how_it_works')%></a></li>
@@ -71,7 +23,7 @@
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.product.wireguard')%></a></li>
       </ul>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-4 col-md-2">
       <h5><%=t('footer.company.title')%></h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.company.about_us')%></a></li>
@@ -83,7 +35,7 @@
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.company.press_resources')%></a></li>
       </ul>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-4 col-md-2">
       <h5><%=t('footer.security.title')%></h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.security.terms_of_service')%></a>
@@ -97,7 +49,7 @@
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.security.transparency_report')%></a></li>
       </ul>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-4 col-md-2">
       <h5><%=t('footer.download.title')%></h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.download.windows_app')%></a></li>
@@ -109,7 +61,7 @@
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.download.setup_nas')%></a></li>
       </ul>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-4 col-md-2">
       <h5><%=t('footer.support.title')%></h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.support.help_center')%></a></li>
@@ -117,7 +69,7 @@
         <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.support.privacy_guides')%></a></li>
       </ul>
     </div>
-    <div class="col-md-2">
+    <div class="col-sm-4 col-md-2">
       <h5><%=t('footer.contact.title')%></h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-light" href="<%=new_contact_path%>"><%=t('footer.contact.contact_us')%></a></li>
