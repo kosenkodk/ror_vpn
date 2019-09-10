@@ -1,28 +1,7 @@
-<style>
-  .accordion .card-header:after {
-    font-family: 'FontAwesome';
-    content: "\f068";
-    float: right;
-  }
-
-  .accordion .card-header.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\f067";
-  }
-</style>
-
 <footer class="footer pt-4 my-md-5">
   <div class="row">
     <div class="col-12">
-      <!-- <nav class="nav navbar navbar-expand-md navbar-dark bg-transparent">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse justify-content-stretch" id="navbar6">
-     
-        </div>
-      </nav> -->
-      <div id="accordion" class="accordion col-12">
+      <div id="accordion" class="accordion col-12 mb-2">
         <div class="card mb-0 bg-transparent">
           <div class="card-header collapsed" data-toggle="collapse" href="#collapseProduct">
             <a class="card-title">
@@ -130,14 +109,13 @@
             <%=t('footer.support.title')%>
           </a>
         </div>
-        <div id="collapseDownload" class="card-body collapse" data-parent="#accordion">
+        <div id="collapseSupport" class="card-body collapse" data-parent="#accordion">
           <ul class="list-unstyled text-small">
             <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.support.help_center')%></a></li>
             <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.support.setup_guides')%></a></li>
             <li><a class="text-light" href="<%= coming_soon_path %>"><%=t('footer.support.privacy_guides')%></a></li>
           </ul>
         </div>
-
       </div>
     </div>
   </div>
