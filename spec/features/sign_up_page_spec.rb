@@ -2,6 +2,11 @@ require 'rails_helper'
   
 RSpec.describe AuthController, type: :feature do
   describe 'GET :signup' do
+    let!(:plan_free) { FactoryBot.create :tariff_plan }
+    let!(:plan) { FactoryBot.create :tariff_plan, price: 1 }
+    # before do
+    #   @plan = FactoryBot.create( :tariff_plan )
+    # end
     it 'render :signup template' do
       visit(signup_path)
       # create an account section
@@ -13,8 +18,8 @@ RSpec.describe AuthController, type: :feature do
       # Choose a plan section
       expect(find('.signup')).to have_content('Choose a plan')
       expect(find('.signup')).to have_content(I18n.t('payment_method.cryptocurrencies'))
-      # expect(find('.signup')).to have_content(I18n.t('payment_method.qiwi'))
-      # expect(find('.signup')).to have_content(I18n.t('payment_method.credit_card'))
+      expect(find('.signup')).to have_content(I18n.t('payment_method.qiwi'))
+      expect(find('.signup')).to have_content(I18n.t('payment_method.credit_card'))
 
       # Select a Payment Method section
       expect(find('.signup')).to have_content('Select a Payment Method')
@@ -23,7 +28,10 @@ RSpec.describe AuthController, type: :feature do
       expect(find('.signup')).to have_content(I18n.t('bank_card.holder_name'))
       expect(find('.signup')).to have_content(I18n.t('bank_card.cvc'))
       
+      # tariff plans
       expect(find('.signup')).to have_css('.plans .card.active')
+
+      # payment methods
       expect(page).to have_css('.payment_methods .card.active')
       
       expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
