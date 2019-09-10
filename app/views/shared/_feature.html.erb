@@ -1,7 +1,8 @@
 <div class="card" style="">
   <div class="card-header">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
-    <%= image_tag 'features/no_logs.png', {class: 'card-img-left', alt: 'no logs' } %>
+    <%#= image_tag 'features/no_logs.png', {class: 'card-img-left', alt: 'no logs' } #%>
+    <%= image_tag item.icon.present? ? url_for(item.try(:icon)) : 'features/no_logs.png', {class: 'card-img-left', alt: 'no logs' } %>
     <h5 class="card-title"><%= item.try(:title) %></h5>
   </div>
   <div class="card-body">

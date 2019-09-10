@@ -25,18 +25,21 @@ end
 
 
 features = [
-  { is_published: true, order: 10, title: 'NO LOGS', subtitle: 'Your privacy is and will always be our first priority', text: "VEGA never tracks personal information or logs your online activity as verified by a team of independent security auditors."},
-  { is_published: true, order: 20, title: 'NO LEAKS', subtitle: 'Your privacy can be easily compromised by leaks', text: "VEGA software automatically blocks all known privacy leaks, even recently discovered IPv6, DNS and disconnection leaks. It even disables WebRTC."},
-  { is_published: true, order: 30, title: 'FAST MULTI HOP', subtitle: 'Your privacy is ensured with high performance multihop servers', text: "Multihop is hard to implement with high performance but we've done it and no competitor comes close. No tunnels within tunnels or other cheap hacks."},
-  { is_published: true, order: 40, title: 'PERFORMANCE', subtitle: "Your sanity requires a VPN that can keep up with your fibre connection", text: "Our highly optimised load balanced servers are located near our customers to decrease latency and increase speed, you won't even realize you're connected."},
-  { is_published: true, order: 50, title: 'ENCRYPTION', subtitle: 'Your privacy requires strong encryption designed by experts', text: "Which is why VEGA uses AES-256 encryption with 4096-bit RSA keys. New encryption keys are generated every hour providing perfect forward secrecy."},
-  { is_published: true, order: 60, title: 'NO LOGS', subtitle: 'PRIVACY & SECURITY GUIDES', text: "Your privacy & security depend on more than connecting to a VPN"}
+  { icon_name: 'no_logs.png', is_published: true, order: 10, title: 'NO LOGS', subtitle: 'Your privacy is and will always be our first priority', text: "VEGA never tracks personal information or logs your online activity as verified by a team of independent security auditors."},
+  { icon_name: 'no_leaks.png', is_published: true, order: 20, title: 'NO LEAKS', subtitle: 'Your privacy can be easily compromised by leaks', text: "VEGA software automatically blocks all known privacy leaks, even recently discovered IPv6, DNS and disconnection leaks. It even disables WebRTC."},
+  { icon_name: 'fast_multi_hop.png', is_published: true, order: 30, title: 'FAST MULTI HOP', subtitle: 'Your privacy is ensured with high performance multihop servers', text: "Multihop is hard to implement with high performance but we've done it and no competitor comes close. No tunnels within tunnels or other cheap hacks."},
+  { icon_name: 'perfomance.png', is_published: true, order: 40, title: 'PERFORMANCE', subtitle: "Your sanity requires a VPN that can keep up with your fibre connection", text: "Our highly optimised load balanced servers are located near our customers to decrease latency and increase speed, you won't even realize you're connected."},
+  { icon_name: 'encryption.png', is_published: true, order: 50, title: 'ENCRYPTION', subtitle: 'Your privacy requires strong encryption designed by experts', text: "Which is why VEGA uses AES-256 encryption with 4096-bit RSA keys. New encryption keys are generated every hour providing perfect forward secrecy."},
+  { icon_name: 'privacy_and_security.png', is_published: true, order: 60, title: 'PRIVACY & SECURITY GUIDES', subtitle: "Your privacy & security depend on more than connecting to a VPN", text: "Which is why we compile high quality privacy and security guides for our customers to follow, for all levels of experience."}
 ].each do |item|
-  Feature.find_or_create_by(
+  feature = Feature.find_or_create_by(
     is_published: item[:is_published],
     order: item[:order],
     title: item[:title],
     subtitle: item[:subtitle],
     text: item[:text],
   )
+  path_to_file = Rails.root.join('app', 'assets', 'images', 'features', item[:icon_name])
+  puts "#{path_to_file}/#{item[:icon_name]}\n"
+  feature.icon.attach(io: File.open(path_to_file), filename: item[:icon_name])
 end
