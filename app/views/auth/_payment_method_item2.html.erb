@@ -1,10 +1,10 @@
 <div class="card mb-3 shadow-vega <%= active_class %>">
   <div class="card-header">
     <%= image_tag image_name, {class: 'mt-n5'} %>
-    <h5 class="my-0 font-weight-normal"><%=t('payment_method.cryptocurrencies')%></h5>
+    <h5 class="my-0 font-weight-normal"><%=t('payment_method.qiwi')%></h5>
   </div>
   <div class="card-body">
-    <% [ 'bitcoin', 'ripple', 'ethereum' ].each do |image_name| %>
+    <% [ 'qiwi' ].each do |image_name| %>
     <%= link_to image_tag("signup/payment_methods/#{image_name}.png", class: 'img-fluid'), '#', {class: ''} %>
     <% end %>
   </div>

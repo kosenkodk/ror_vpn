@@ -40,7 +40,7 @@ body {
 // lg: 960px,
 // xl: 1140px
 
-
+.pricing {
 .pricing-card-title {  
   @media (min-width: 320px) {
     font-size: 3.2rem;
@@ -63,6 +63,7 @@ body {
       font-size: 3rem;
     }
   }
+}
 }
 
 @media (min-width: 320px) {

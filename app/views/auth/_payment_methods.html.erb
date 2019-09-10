@@ -1,8 +1,13 @@
 <div class="payment_methods card-deck mb-3 text-dark text-center">
-  <% (0..2).each do |item|
-    active_image, active_class = get_img_and_class_by_active_item_index(item, @payment_method_item_active_index) %>
-  <%= render partial: 'auth/payment_method_item', locals: { image_name: active_image, active_class: active_class } %>
+  <%
+  item_active = 1
+  (0..2).each do |item|
+    active_image, active_class = get_img_and_class_by_active_item_index(item, item_active) %>
+  <%#= render partial: 'auth/payment_method_item', locals: { image_name: active_image, active_class: active_class } #%>
   <% end %>
+  <%= render partial: 'auth/payment_method_item', locals: { image_name: get_active_checkbox_icon, active_class: 'active' } %>
+  <%= render partial: 'auth/payment_method_item2', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
+  <%= render partial: 'auth/payment_method_item3', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
 </div>
 
 <div class="container payment_methods border_1_pink">
