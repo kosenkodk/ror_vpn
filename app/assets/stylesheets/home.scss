@@ -208,6 +208,19 @@ body {
   }
 }
 
+
+.btn-outline-pink {
+  background: transparent;
+  color: white !important;
+  &.active, &:hover {
+    background: $pink_button_gradient;
+    color: white;
+  }
+  &.active:hover {
+    opacity: $opacity;
+  }
+}
+
 .reset_pwd, .forgot_pwd {
   margin-top: 5rem;
   margin-bottom: 15rem;
