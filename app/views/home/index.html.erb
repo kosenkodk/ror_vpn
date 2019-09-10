@@ -6,8 +6,15 @@
 
   <%= render partial: 'shared/security_and_trust' %>
 
-  <%= render partial: 'shared/features' %>
+  <div id="features" class="features row">
+    <%#=image_tag 'compare/features.png' #%>
 
+    <% @features.each do |item| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= render partial: 'shared/feature', locals: {item: item} %>
+    </div>
+    <% end %>
+  </div>
 
   <%#= render partial: 'shared/pricing' #%>
 </div>

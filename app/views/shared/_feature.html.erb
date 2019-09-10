@@ -2,13 +2,11 @@
   <div class="card-header">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <%= image_tag 'features/no_logs.png', {class: 'card-img-left', alt: 'no logs' } %>
-    <h5 class="card-title">NO LOGS</h5>
+    <h5 class="card-title"><%= item.try(:title) %></h5>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Your privacy is and will always be our first priority</h5>
-    <p class="card-text"><%= t('vegaVPN') %> never tracks personal information or logs your online activity as
-      verified
-      by a team of independent security auditors.</p>
+    <h5 class="card-title"><%= item.try(:subtitle) %></h5>
+    <p class="card-text"><%= item.try(:text) %></p>
     <!-- <a href="#" class="btn btn-primary"></a> -->
   </div>
 </div>
