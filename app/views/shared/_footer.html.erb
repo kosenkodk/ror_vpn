@@ -79,20 +79,7 @@
   </div>
   <div class="row">
     <div class="col-12 text-center">
-      <%=image_tag('icons/ic_facebook.png', {class:'mb-2', alt:'Icon Facebook'})%>
-      <%=image_tag('icons/ic_twitter.png', {class:'mb-2', alt:'Icon Twitter'})%>
-      <%=image_tag('icons/ic_instagram.png', {class:'mb-2', alt:'Icon Instagram'})%>
-      <%=image_tag('icons/ic_pinterest.png', {class:'mb-2', alt:'Icon Pinterest'})%>
-      <%=image_tag('icons/ic_telegram.png', {class:'mb-2', alt:'Icon Telegram'})%>
-
-      <!-- <img class="mb-2" src="<%=asset_url 'icons/ic_facebook.png'%>" alt="" width="24" height="24">
-                <img class="mb-2" src="<%=asset_path 'icons/ic_twitter.png'%>" alt="" width="24" height="24">
-                <img class="mb-2" src="./images/icons/ic_facebook.png" alt="" width="24" height="24">
-                <img class="mb-2" src="./images/icons/ic_twitter.png" alt="" width="24" height="24">
-                <img class="mb-2" src="./images/icons/ic_instagram.png" alt="" width="24" height="24">
-                <img class="mb-2" src="./images/icons/ic_pinterest.png" alt="" width="24" height="24">
-                <img class="mb-2" src="./images/icons/ic_telegram.png" alt="" width="24" height="24"> -->
-
+      <%= render 'shared/footer_social_links' %>
     </div>
   </div>
 </footer>
