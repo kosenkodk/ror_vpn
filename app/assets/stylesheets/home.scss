@@ -6,6 +6,23 @@ html, body {
   height: 100%;
 }
 
+.icon-checkbox {
+  background: transparent asset-url('/assets/signup/off.png') no-repeat center;
+  background-size: contain;
+  margin: 0 auto;
+  height: 36px;
+  width: 36px;
+  margin-top: -2rem !important;
+  cursor: pointer;
+  &.active, &:hover {
+    background: transparent asset-url('/assets/signup/on.png') no-repeat center;
+  }
+}
+
+.plans .icon-checkbox {
+  margin-top: -1.8rem !important;
+}
+
 // .bg1, .bg1_cover {
 //     /* Full height */
 //     // height: 100%;
@@ -82,6 +99,9 @@ body {
   }
   .card {
     border-radius: $pricing_border_radius;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

@@ -1,7 +1,8 @@
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
   <div class="card mb-3 m-1 shadow-vega <%= active_class %>">
     <div class="card-header pt-0 pb-0">
-      <%= image_tag image_name, {class: 'mt-n4'} %>
+      <div class="icon-checkbox <%= active_class %> pb-5"></div>
+      <%#= image_tag image_name, {class: 'mt-n4'} #%>
       <h6 class="m-0 font-weight-normal"><%= item.try(:title) %></h6>
     </div>
     <div class="card-body pt-0 pb-0">
@@ -32,9 +33,10 @@
       </ul>
     </div>
     <div class="card-footer p-0 m-0 mt-n2">
-      <% if active_class.present? %>
-      <button type="button" class="btn btn-outline-primary rounded-pill mb-n4">Best offer</button>
-      <% end %>
+      <%# if active_class.present? #%>
+      <button type="button" class="btn btn-outline-primary rounded-pill mb-n4 <%=active_class%> d-none">Best
+        offer</button>
+      <%# end #%>
     </div>
   </div>
 </div>
