@@ -14,18 +14,17 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
-  <div class="container-fluid bg1">
+<body class="bg1_cover_only">
+  <div class="container-fluid">
     <div class="row">
       <div class="container">
         <%= render partial: 'shared/header' %>
       </div>
     </div>
-    <div class="row">
-      <%= yield %>
-    </div>
   </div>
-
+  <div class="container-fluid p-0">
+    <%= yield %>
+  </div>
   <div class="container-fluid footer">
     <div class="row">
       <div class="container-fluid p-0 d-block d-sm-none">

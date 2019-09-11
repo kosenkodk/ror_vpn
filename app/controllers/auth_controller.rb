@@ -10,7 +10,7 @@ class AuthController < ApplicationController
     @plan_active_index = 0
     @payment_method_item_active_index = 1
     @plans = TariffPlan.all
-    render layout: 'application'
+    render layout: 'signup'
   end
 
   def forgot_pwd

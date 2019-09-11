@@ -12,7 +12,6 @@ class HomeController < ApplicationController
   def pricing
     @plan_active_index = 0
     @plans = TariffPlan.all
-    render layout: 'bg_fit_container'
   end
   
 end

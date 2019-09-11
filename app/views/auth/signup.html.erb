@@ -1,7 +1,6 @@
-<%= form_for @user, url: signup_path, html: {class:'container'}, remote: true do |f| %>
-
-<div class="row">
-  <div class="signup text-center">
+<%= form_for @user, url: signup_path, html: {class:'signup'}, remote: true do |f| %>
+<div class="container text-center">
+  <div class="row">
     <div class="col-md-8 offset-md-2">
       <h1 class="m-0">
         <%= t('pages.signup.steps.title1') %>
@@ -19,7 +18,7 @@
     </div>
 
     <div class="col-md-12">
-      <h1 class="m-0 pt-0">
+      <h1 class="m-0">
         <%= t('pages.signup.steps.title2') %>
       </h1>
       <p class="mb-4">
@@ -30,6 +29,10 @@
       </div>
     </div>
 
+  </div>
+</div>
+<div class="bg2 mb-5">
+  <div class="row text-center">
     <div class="col-md-12">
       <h1 class="m-0">
         <%= t('pages.signup.steps.title3') %>
@@ -38,10 +41,8 @@
         <%= link_to image_tag('signup/step3.png'), '#', {id: 'step3', class:'img-fluid'} %>
       </p>
     </div>
-
     <div class="col-md-12">
       <%= render partial: 'auth/payment_methods', locals: {f: f} %>
-
     </div>
   </div>
 </div>

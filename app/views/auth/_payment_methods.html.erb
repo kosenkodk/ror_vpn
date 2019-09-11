@@ -1,19 +1,20 @@
-<div class="payment_methods card-deck mb-3 text-dark text-center">
-  <%
+<div class="container">
+  <div class="payment_methods card-deck mb-3 text-dark text-center">
+    <%
   item_active = 1
   (0..2).each do |item|
     active_image, active_class = get_img_and_class_by_active_item_index(item, item_active) %>
-  <%#= render partial: 'auth/payment_method_item', locals: { image_name: active_image, active_class: active_class } #%>
-  <% end %>
-  <%= render partial: 'auth/payment_method_item', locals: { image_name: get_active_checkbox_icon, active_class: 'active' } %>
-  <%= render partial: 'auth/payment_method_item2', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
-  <%= render partial: 'auth/payment_method_item3', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
-</div>
-
-<div class="container payment_methods border_1_pink">
-  <div class="row shadow-vega pb-5">
-    <div class="col-md-8 offset-md-2 text-left">
-      <%= render partial: 'payment_methods_card_info', locals: {f: f} %>
+    <%#= render partial: 'auth/payment_method_item', locals: { image_name: active_image, active_class: active_class } #%>
+    <% end %>
+    <%= render partial: 'auth/payment_method_item', locals: { image_name: get_active_checkbox_icon, active_class: 'active' } %>
+    <%= render partial: 'auth/payment_method_item2', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
+    <%= render partial: 'auth/payment_method_item3', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
+  </div>
+  <div class="payment_methods shadow-vega border_1_pink bg-color">
+    <div class="row pb-5">
+      <div class="col-md-8 offset-md-2 text-left">
+        <%= render partial: 'payment_methods_card_info', locals: {f: f} %>
+      </div>
     </div>
   </div>
 </div>
