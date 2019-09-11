@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  layout 'errors'
+
   def new
     @contact = Contact.new
   end
