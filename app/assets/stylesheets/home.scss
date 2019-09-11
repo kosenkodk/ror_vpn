@@ -282,14 +282,16 @@ body {
   }
   
 }
+
 .bg_astronaut {
   background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
 }
+
 .bg_star {
   background: transparent asset-url('star_2');
 }
+
 .status_page {
-  background: transparent asset-url('star_2');
   h1 {
     padding-bottom: unset;
     font-size: 5rem;
@@ -298,6 +300,7 @@ body {
     font-size: 3rem;
   }
 }
+
 .features {
   font-size:1rem;
   p {
