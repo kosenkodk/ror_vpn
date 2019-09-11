@@ -8,13 +8,14 @@
 <div class="form-group row">
   <%= f.label t('pages.login.form.email_address'), {class:'col-sm-3 col-form-label'} %>
   <div class="col-sm-6">
-    <%= f.text_field :email, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.email') %></br>
+    <%= f.text_field :email, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.email') %>
   </div>
   <div class="col-sm-3"></div>
 </div>
 
 <div class="form-group row">
   <div class="col-sm-6 offset-sm-3">
+    <br />
     <%=f.submit(t("buttons.submit"), {class:'btn btn-outline-primary btn-block'})%>
   </div>
 </div>
