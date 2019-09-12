@@ -22,7 +22,16 @@
 <div class="container payment_methods border_1_pink">
   <div class="row shadow-vega pb-5">
     <div class="col-md-8 offset-md-2 text-left">
-      <%= render partial: 'payment_methods_card_info', locals: {f: f, active_class: ''} %>
+      <div class="tab-content">
+        <div class="tab-pane active" id="pm1" role="tabpanel" aria-labelledby="pm1-tab">
+          <%= render partial: 'payment_methods_crypto', locals: {f: f, active_class: ''} %>
+        </div>
+        <div class="tab-pane" id="pm2" role="tabpanel" aria-labelledby="pm2-tab">
+          <%= render partial: 'payment_methods_qiwi', locals: {f: f, active_class: ''} %>
+        </div>
+        <div class="tab-pane" id="pm3" role="tabpanel" aria-labelledby="pm3-tab">
+          <%= render partial: 'payment_methods_card_info', locals: {f: f, active_class: ''} %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
