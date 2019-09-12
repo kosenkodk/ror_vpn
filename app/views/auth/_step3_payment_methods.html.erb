@@ -1,17 +1,17 @@
 <ul class="payment_methods card-deck mb-3 text-dark text-center nav nav-tabs" id="pmTab" role="tablist">
-  <li class="nav-item col-4">
+  <li class="nav-item col-sm-6 col-md-4">
     <a class="nav-link active bg-transparent p-0" id="pm1-tab" data-toggle="tab" href="#pm1" role="tab"
       aria-controls="pm1" aria-selected="false">
       <%= render partial: 'auth/payment_method_item', locals: { image_name: get_active_checkbox_icon, active_class: 'active' } %>
     </a>
   </li>
-  <li class="nav-item col-4">
+  <li class="nav-item col-sm-6 col-md-4">
     <a class="nav-link bg-transparent p-0" id="pm2-tab" data-toggle="tab" href="#pm2" role="tab" aria-controls="pm2"
       aria-selected="true">
       <%= render partial: 'auth/payment_method_item2', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
     </a>
   </li>
-  <li class="nav-item col-4">
+  <li class="nav-item col-sm-6 col-md-4">
     <a class="nav-link bg-transparent p-0" id="pm3-tab" data-toggle="tab" href="#pm3" role="tab" aria-controls="pm3"
       aria-selected="false">
       <%= render partial: 'auth/payment_method_item3', locals: { image_name: get_inactive_checkbox_icon, active_class: '' } %>
