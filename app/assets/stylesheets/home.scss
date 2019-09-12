@@ -179,6 +179,12 @@ body {
   //   // margin-top: -20rem;
   //   margin-top: -($spacer * 20) !important;
   // }
+  .nav-link {
+    padding: 0;
+    &.active, &:hover {
+      border: unset;
+    }
+  }
   .table {
     border-top: 2px solid gray !important;
     border-bottom: 2px solid gray;
