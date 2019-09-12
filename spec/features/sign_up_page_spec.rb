@@ -34,7 +34,8 @@ RSpec.describe AuthController, type: :feature do
       # payment methods
       expect(page).to have_css('.payment_methods .card.active')
       
-      expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
+      expect(find('.payment_methods .tab-pane.active input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
+      # expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
       # expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       
       # check if header with nav menu and footer sections are exist
