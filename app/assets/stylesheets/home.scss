@@ -7,7 +7,7 @@ html, body {
 }
 
 .icon-checkbox {
-  background: transparent asset-url('/assets/signup/off.png') no-repeat center;
+  background: transparent asset-url('signup/off.png') no-repeat center;
   background-size: contain;
   margin: 0 auto;
   height: 36px;
@@ -15,7 +15,7 @@ html, body {
   margin-top: -2rem !important;
   cursor: pointer;
   &.active, &:hover {
-    background: transparent asset-url('/assets/signup/on.png') no-repeat center;
+    background: transparent asset-url('signup/on.png') no-repeat center;
   }
 }
 
