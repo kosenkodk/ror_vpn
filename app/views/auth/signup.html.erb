@@ -7,7 +7,7 @@
     </h1>
 
     <p class="">
-      <%= link_to image_tag('signup/step1.png'), '#step2', {id: 'step1', class:'img-fluid'} %>
+      <%= link_to image_tag('signup/step1.png', class:'img-fluid'), '#step2', {id: 'step1'} %>
     </p>
   </div>
 
@@ -22,7 +22,7 @@
       <%= t('pages.signup.steps.title2') %>
     </h1>
     <p class="mb-4">
-      <%= link_to image_tag('signup/step2.png'), '#step3', {id: 'step2', class:'img-fluid'} %>
+      <%= link_to image_tag('signup/step2.png', class:'img-fluid'), '#step3', {id: 'step2'} %>
     </p>
     <div class="container">
       <%= render partial: 'auth/step2_plans', locals: { items: @plans } %>
@@ -34,7 +34,7 @@
       <%= t('pages.signup.steps.title3') %>
     </h1>
     <p class="mb-4">
-      <%= link_to image_tag('signup/step3.png'), '#', {id: 'step3', class:'img-fluid'} %>
+      <%= link_to image_tag('signup/step3.png', class:'img-fluid'), '#', {id: 'step3'} %>
     </p>
   </div>
 
