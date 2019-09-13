@@ -154,6 +154,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    refinerycms (0.9.7.15)
     regexp_parser (1.6.0)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails-controller-testing
+  refinerycms
   rspec-rails (~> 4.0.0.beta2)
   sass-rails (~> 5)
   selenium-webdriver
