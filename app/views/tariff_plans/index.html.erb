@@ -1,8 +1,9 @@
+<% if notice.present?%>
 <p id="notice"><%= notice %></p>
-
+<% end %>
 <h1>Tariff Plans</h1>
 
-<table>
+<table class="table text-white">
   <thead>
     <tr>
       <th>Title</th>
@@ -11,7 +12,7 @@
       <th>Price duration</th>
       <th>Price duration sale</th>
       <th>Price comment</th>
-      <th>Features</th>
+      <!-- <th>Features</th> -->
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,10 +26,12 @@
       <td><%= tariff_plan.price_duration %></td>
       <td><%= tariff_plan.price_duration_sale %></td>
       <td><%= tariff_plan.price_comment %></td>
-      <td><%= tariff_plan.features %></td>
-      <td><%= link_to 'Show', tariff_plan %></td>
-      <td><%= link_to 'Edit', edit_tariff_plan_path(tariff_plan) %></td>
-      <td><%= link_to 'Destroy', tariff_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <!-- <td><%= tariff_plan.features %></td> -->
+      <td><%= link_to 'Show', tariff_plan, { class: 'btn btn-outline-primary' } %></td>
+      <td><%= link_to 'Edit', edit_tariff_plan_path(tariff_plan), { class: 'btn btn-outline-primary' } %></td>
+      <td>
+        <%= link_to 'Destroy', tariff_plan, { data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-outline-primary' } %>
+      </td>
     </tr>
     <% end %>
   </tbody>
