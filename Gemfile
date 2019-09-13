@@ -61,4 +61,7 @@ group :development, :test do
 end
 
 # gem 'exception_handler', '~> 0.8.0.0'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+
+# admin panels
+gem 'rails_admin', '~> 2.0'
