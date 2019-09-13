@@ -43,3 +43,5 @@ features = [
   puts "#{path_to_file}/#{item[:icon_name]}\n"
   feature.icon.attach(io: File.open(path_to_file), filename: item[:icon_name])
 end
+
+Alchemy::Seeder.seed!

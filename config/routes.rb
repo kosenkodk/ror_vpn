@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Alchemy::Engine => '/alchemy_cms'
+
   # resources :tariff_plans
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
