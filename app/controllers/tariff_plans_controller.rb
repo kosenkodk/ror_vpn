@@ -1,6 +1,6 @@
 class TariffPlansController < ApplicationController
   before_action :set_tariff_plan, only: [:show, :edit, :update, :destroy]
-
+  layout 'with_left_sidebar'
   # GET /tariff_plans
   # GET /tariff_plans.json
   def index

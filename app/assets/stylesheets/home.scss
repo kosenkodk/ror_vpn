@@ -2,8 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html {
+  color: $white;
+  font-family: "Montserrat";
+}
+
 html, body {
   height: 100%;
+}
+
+.bg-vega {
+  background-color: $bg_color;
+  opacity: $opacity;
+  border-radius: $pricing_border_radius;
 }
 
 .icon-checkbox {
@@ -443,11 +454,6 @@ body {
     border: unset;
     opacity: $opacity;
   }
-}
-
-html {
-  color: $white;
-  font-family: "Montserrat";
 }
 
 .bd-placeholder-img {
