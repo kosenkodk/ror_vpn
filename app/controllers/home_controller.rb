@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   end
 
   def react_hello
-    
+    @features = Feature.all
   end
   
 end
