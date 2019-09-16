@@ -11,11 +11,12 @@ html, body {
   height: 100%;
 }
 
-.bg-vega {
-  background-color: $bg_color;
-  opacity: 0.85;
-  border-radius: $pricing_border_radius;
+body {
+  color: $white;
+  background-color: $bg_color_black;
+  min-height: 40rem;
 }
+
 
 .icon-checkbox {
   background: transparent asset-url('signup/off.png') no-repeat center;
@@ -23,62 +24,72 @@ html, body {
   margin: 0 auto;
   height: 36px;
   width: 36px;
-  margin-top: -2rem !important;
   cursor: pointer;
   &.active, &:hover {
     background: transparent asset-url('signup/on.png') no-repeat center;
   }
 }
 
+.payment_methods .icon-checkbox {
+  margin-top: -2rem !important;
+}
+
 .plans .icon-checkbox {
   margin-top: -1.8rem !important;
 }
 
-.bg-color {
-  background-color: $bg_color;
+
+
+/* start backgrounds */
+
+.bg-color-black {
+  background-color: $bg_color_black;
 }
 
-.bg1, .bg1_contain_only {
-  background: $bg_color asset-url('bg1.svg') no-repeat top;
+.bg-vega {
+  background-color: $bg_color_black;
+  opacity: 0.85;
+  border-radius: $pricing_border_radius;
+}
+
+.bg1, .bg1_contain {
+  background: $bg_color_black asset-url('bg1.svg') no-repeat top;
   background-size: contain;
 }
 
-.bg1_cover_only {
-  background: $bg_color asset-url('bg1.svg') no-repeat top;
-  background-size: cover;
-}
-
 .bg1_cover {
-  background: $bg_color asset-url('bg1.svg') no-repeat top;
+  background: $bg_color_black asset-url('bg1.svg') no-repeat top;
   background-size: cover;
 }
 
 .bg2 {
-  background:$bg_color asset-url('bg2_with_vega') no-repeat bottom;
+  background:$bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
   background-size: cover;
 }
 
 .bg2_contain {
-  background:$bg_color asset-url('bg2_with_vega') no-repeat bottom;
+  background:$bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
   background-size: contain;
 }
 
 .bg2_mars {
-  background:$bg_color asset-url('bg2_with_mars') no-repeat bottom;
+  background:$bg_color_black asset-url('bg2_with_mars') no-repeat bottom;
   background-size: cover;
 }
 
-
-body {
-  color: $white;
-  background-color: $bg_color;
-  min-height: 40rem;
+.bg_astronaut {
+  background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
 }
+
+.bg_star {
+  background: transparent asset-url('star_2');
+}
+
+/* end background images */
 
 .text-opacity {
   opacity: $opacity;
 }
-
 
 .payment_methods, .plans {
   h1 {
@@ -93,11 +104,11 @@ body {
       cursor: pointer;
     }
   }
-}
 
-.bg_credit_card {
-  background: asset-url('signup/payment_methods/card_all') no-repeat top;
-  background-size: cover;
+  .bg_credit_card {
+    background: asset-url('signup/payment_methods/card_all') no-repeat top;
+    background-size: cover;
+  }
 }
 
 .pricing {
@@ -281,14 +292,6 @@ body {
   
 }
 
-.bg_astronaut {
-  background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
-}
-
-.bg_star {
-  background: transparent asset-url('star_2');
-}
-
 .status_page {
   h1 {
     padding-bottom: unset;
@@ -396,9 +399,7 @@ body {
 .shadow-vega {
   box-shadow: 10px 10px 100px $shadow-vega;
 }
-.bg-color-vega {
-  background: $pink;
-}
+
 .color-vega {
   color: $pink;
   opacity: $opacity;
@@ -472,7 +473,7 @@ body {
 }
 
 .card {
-  background-color: $bg_color;
+  background-color: $bg_color_black;
   color:$white;
 }
 
@@ -496,7 +497,7 @@ body {
 }
 
 #security_and_trust {
-  background: $bg_color asset-url('bg_security_and_trust') left no-repeat;
+  background: $bg_color_black asset-url('bg_security_and_trust') left no-repeat;
   background-size: contain;
   h1 {
     text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
