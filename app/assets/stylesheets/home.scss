@@ -40,17 +40,17 @@ body {
 }
 
 .bg2 {
-  background:$bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
+  background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
   background-size: cover;
 }
 
 .bg2_contain {
-  background:$bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
+  background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
   background-size: contain;
 }
 
 .bg2_mars {
-  background:$bg_color_black asset-url('bg2_with_mars') no-repeat bottom;
+  background: $bg_color_black asset-url('bg2_with_mars') no-repeat bottom;
   background-size: cover;
 }
 
@@ -190,27 +190,16 @@ body {
   margin-bottom: -($spacer * 4) !important;
 }
 
-.btn-pink-blue {
-  background-color:rgb(38,8,48);
-  &.active, &:hover {
-    background-color:rgb(44,176,181);
-  }
-  &.active:hover {
+.btn-blue {
+  background-color: rgb(44,176,181);
+  &:hover {
     opacity: $opacity;
   }
 }
 
 .btn-pink-dark {
-  // @extend .btn-outline-primary;
-  background-color:rgb(38,8,48);
-  color: white;
-  &.active, &:hover {
-    background: $pink_button_gradient;
-    color: white;
-  }
-  &.active:hover {
-    opacity: $opacity;
-  }
+  @extend .btn-outline-pink;
+  background-color: rgb(38,8,48) !important;
 }
 
 .btn-outline-pink {
@@ -252,7 +241,7 @@ body {
   background-repeat: no-repeat; 
 }
 
-.signup, .login {
+.signup {
   margin-bottom: 10rem;
   .input-group-text {
     background: $white;
@@ -286,6 +275,10 @@ body {
   }
 }
 
+.login {
+  @extend .signup;
+}
+
 .status_page {
   h1 {
     padding-bottom: unset;
@@ -305,7 +298,7 @@ body {
     }
   }
   .card-body {
-    padding-top:unset;
+    padding-top: unset;
   }
   .card-header {
     img {
@@ -342,7 +335,7 @@ body {
   
   .card-footer {
     .review-owner-container {
-      opacity:.5;
+      opacity: 0.5;
       z-index: 10;
       &.active {
         opacity: 1;
@@ -423,11 +416,11 @@ body {
     }
   }
   .btn.btn-outline-primary {
-    color:rgba(252, 252, 252, 0.85);
+    color: rgba(252, 252, 252, 0.85);
     font-weight: lighter;
     // font-size: 1.2rem;
     letter-spacing: 0.02rem;
-    padding:8px 20px;
+    padding: 8px 20px;
   }
 }
 
@@ -445,7 +438,7 @@ body {
   color: $white;
   border: unset;
 
-  &:hover{
+  &:hover {
     border: unset;
     opacity: $opacity;
   }
