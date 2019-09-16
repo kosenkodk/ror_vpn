@@ -17,29 +17,6 @@ body {
   min-height: 40rem;
 }
 
-
-.icon-checkbox {
-  background: transparent asset-url('signup/off.png') no-repeat center;
-  background-size: contain;
-  margin: 0 auto;
-  height: 36px;
-  width: 36px;
-  cursor: pointer;
-  &.active, &:hover {
-    background: transparent asset-url('signup/on.png') no-repeat center;
-  }
-}
-
-.payment_methods .icon-checkbox {
-  margin-top: -2rem !important;
-}
-
-.plans .icon-checkbox {
-  margin-top: -1.8rem !important;
-}
-
-
-
 /* start backgrounds */
 
 .bg-color-black {
@@ -91,7 +68,19 @@ body {
   opacity: $opacity;
 }
 
-.payment_methods, .plans {
+.icon-checkbox {
+  background: transparent asset-url('signup/off.png') no-repeat center;
+  background-size: contain;
+  margin: 0 auto;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  &.active, &:hover {
+    background: transparent asset-url('signup/on.png') no-repeat center;
+  }
+}
+
+.plans {
   h1 {
     padding: 0;
   }
@@ -108,6 +97,30 @@ body {
   .bg_credit_card {
     background: asset-url('signup/payment_methods/card_all') no-repeat top;
     background-size: cover;
+  }
+
+  .icon-checkbox {
+    margin-top: -2rem !important;
+  }
+}
+
+.payment_methods {
+  @extend .plans;
+  .nav-link {
+    padding: 0;
+    &.active, &:hover {
+      border: unset;
+    }
+  }
+  .table {
+    border-top: 2px solid gray !important;
+    border-bottom: 2px solid gray;
+    td {
+      border: unset;
+    }
+  }
+  .icon-checkbox {
+    margin-top: -1.8rem !important;
   }
 }
 
@@ -160,23 +173,6 @@ body {
   }
 }
 
-
-.payment_methods {
-  .nav-link {
-    padding: 0;
-    &.active, &:hover {
-      border: unset;
-    }
-  }
-  .table {
-    border-top: 2px solid gray !important;
-    border-bottom: 2px solid gray;
-    td {
-      border: unset;
-    }
-  }
-}
-
 .text-sm-1 {
   font-size: 1rem;
 }
@@ -216,7 +212,6 @@ body {
     opacity: $opacity;
   }
 }
-
 
 .btn-outline-pink {
   background: transparent;
@@ -289,7 +284,6 @@ body {
       }
     }
   }
-  
 }
 
 .status_page {
@@ -329,7 +323,6 @@ body {
       border-image: $pink_gradient;
     }
   }
-
 }
 
 .reviews {
@@ -478,22 +471,21 @@ body {
 }
 
 #downloads {
- height: 950px;
- padding-top: 115px;
- &.card {
-  background-color: transparent !important;
- }
- 
- .card-text {
-   opacity: 0.8;
-   font-weight: 100;
-   img {
+  height: 950px;
+  padding-top: 115px;
+  &.card {
+    background-color: transparent !important;
+  }
+  .card-text {
+    opacity: 0.8;
+    font-weight: 100;
+    img {
     opacity: 0.6;
-   }
- }
- h5 {
+    }
+  }
+  h5 {
   font-size:2.5rem;
- }
+  }
 }
 
 #security_and_trust {
