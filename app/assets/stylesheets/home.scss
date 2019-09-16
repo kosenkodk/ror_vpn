@@ -102,13 +102,13 @@ body {
 
 .pricing {
   .pricing-card-title {  
-    @media (min-width: 320px) {
+    @media (min-width: $xs-width) {
       font-size: 3.2rem;
       .text-sm-1 {
         font-size: 1rem;
       }
     }
-    @media (min-width: 540px) {
+    @media (min-width: $sm-width) {
       font-size: 3.9rem;
     }
     @media (min-width: 576px) {
@@ -122,28 +122,28 @@ body {
   }
 }
 
-@media (min-width: 320px) {
+@media (min-width: $xs-width) {
   .credit_card_mt_n {
     margin-top: -($spacer * 5) !important;
   }
 }
-@media (min-width: 540px) {
+@media (min-width: $sm-width) {
   .credit_card_mt_n {
     margin-top: -($spacer * 14) !important;
   }
 }
-@media (min-width: 720px) { 
+@media (min-width: $md-width) { 
   .credit_card_mt_n {
     margin-top: -($spacer * 13) !important;
   }
   
 }
-@media (min-width: 960px) {
+@media (min-width: $lg-width) {
   .credit_card_mt_n {
     margin-top: -($spacer * 18) !important;
   }
 }
-@media (min-width: 1140px) {
+@media (min-width: $xl-width) {
   .credit_card_mt_n {
     margin-top: -($spacer * 20) !important;
   }

@@ -11,6 +11,12 @@ $pricing_border_width: 3px;
 $shadow-vega: #5C1D49;
 $footer_bg_color: #7D2864;
 
+$xs-width: 320px;
+$sm-width: 540px;
+$md-width: 720px;
+$lg-width: 960px;
+$xl-width: 1140px;
+
 //TODO: make mixin like thid: gradient-linear: rgba(#8C5362 0%, #713980 100%);
 
 // @mixin linear-gradient($direction, $fromColor, $toColor)
@@ -33,10 +39,11 @@ $footer_bg_color: #7D2864;
 //   "danger": $danger,
 //   "white": $white,
 // );
+
 $container-max-widths: (
-  xs: 320px,
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px
+  xs: $xs-width,
+  sm: $sm-width,
+  md: $md-width,
+  lg: $lg-width,
+  xl: $xl-width
 );
