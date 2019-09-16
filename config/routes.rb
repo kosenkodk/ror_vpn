@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/reset', to: 'auth#reset_pwd', as: :reset_pwd
   get '/reset_pwd_success', to: 'auth#success', as: :reset_pwd_success
   get '/pricing', to: 'home#pricing', as: :pricing
+  get '/react_hello', to: 'home#react_hello'
+
   resources :contacts
   # resource :auth
   # resources :user

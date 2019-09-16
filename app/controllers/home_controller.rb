@@ -14,5 +14,9 @@ class HomeController < ApplicationController
     @plans = TariffPlan.all
     render layout: 'bg_fit_container'
   end
+
+  def react_hello
+    
+  end
   
 end
