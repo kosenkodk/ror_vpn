@@ -141,7 +141,7 @@ body {
         font-size: 2rem;
       }
     }
-    @media (min-width: 767px) {
+    @media (min-width: 768px) {
     }
   }
 }
@@ -389,11 +389,12 @@ body {
 .nav {
   border: unset !important;
 }
+
 .shadow-vega {
   box-shadow: 10px 10px 100px $shadow-vega;
 }
 
-.color-vega {
+.a-color-pink {
   color: $pink;
   opacity: $opacity;
 
