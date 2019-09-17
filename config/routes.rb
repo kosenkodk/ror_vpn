@@ -18,5 +18,11 @@ Rails.application.routes.draw do
   resources :contacts
   # resource :auth
   # resources :user
+  namespace :api do
+    namespace :v1 do
+      get 'features', to: 'features#index'
+    end
+  end
+
 
 end
