@@ -17,6 +17,7 @@ class HomeController < ApplicationController
 
   def react_hello
     @features = Feature.all
+    # render :json => @post.merge({image: url_for(@post.image)})
     render component: 'Features', props: { features: @features }
   end
   
