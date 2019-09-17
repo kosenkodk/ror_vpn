@@ -1,11 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
 class Features extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      features: []
+    };
+  }
+
   render() {
+    // const { features } = this.state;
     return (
       <React.Fragment>
         <div id="features" className="features row">
-          {this.props.features.map(item => (
+          {this.state.features.map(item => (
             <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
               <div className="card">
                 <div className="card-header">
@@ -25,6 +33,20 @@ class Features extends React.Component {
       </React.Fragment>
     );
   }
+
+  componentDidMount() {
+    const url = "api/v1/features";
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.setState({ features: response }))
+      .catch(() => this.props.history);
+  }
+
 }
 
 Features.propTypes = {
