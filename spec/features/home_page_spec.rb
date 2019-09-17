@@ -9,7 +9,7 @@ RSpec.describe HomeController, type: :feature do
 
     scenario "Able to see title of react features section", js: true do
       visit(root_path)
-      expect(page).to have_content("NO LOGS")
+      expect(page).to have_content('NO LOGS')
     end
   
     it 'renders :index template' do
