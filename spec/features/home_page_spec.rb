@@ -1,9 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :feature do
-  describe 'GET main/home page' do
-    # let!(:feature) { FactoryBot.create(:feature) }
 
+
+RSpec.describe HomeController, type: :feature do
+
+  describe 'GET main/home page' do
+    let!(:feature) { FactoryBot.create(:feature) }
+
+    scenario "Able to see welcome text", js: true do
+      # home.visit_homepage
+      visit(root_path)
+      expect(page).to have_content("NO LOGS")
+    end
+  
     it 'renders :index template' do
       visit(root_path)
       # nav menu
