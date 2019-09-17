@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :contacts
   # resource :auth
   # resources :user
+
 end
