@@ -4,13 +4,22 @@ class Features extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h2>All Features</h2>
-        <ul>
+        <div id="features" className="features row">
           {this.props.features.map(item => (
-            <li key={item.id} > {`${item.title} ${item.subtitle}`}</li>
+            <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
+              <div className="card">
+                <div className="card-header">
+                  <h5 className="card-title">{item.title}</h5>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title">{item.subtitle}</h5>
+                  <p className="card-text">{item.text}</p>
+                </div>
+              </div>
+            </div>
           ))
           }
-        </ul>
+        </div>
       </React.Fragment>
     );
   }

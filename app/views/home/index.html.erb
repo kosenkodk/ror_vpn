@@ -7,6 +7,7 @@
   <%= render partial: 'shared/security_and_trust' %>
 
   <%= render partial: 'shared/features', locals: {items: @features}%>
+  <%= react_component('Features', { features: @features }) %>
 
   <%#= render partial: 'shared/pricing' #%>
 </div>
