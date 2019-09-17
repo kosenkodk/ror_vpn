@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+
 class Features extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -52,4 +54,5 @@ class Features extends React.Component {
 Features.propTypes = {
   features: PropTypes.array
 };
+
 export default Features
