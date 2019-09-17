@@ -7,8 +7,7 @@ RSpec.describe HomeController, type: :feature do
   describe 'GET main/home page' do
     let!(:feature) { FactoryBot.create(:feature) }
 
-    scenario "Able to see welcome text", js: true do
-      # home.visit_homepage
+    scenario "Able to see title of react features section", js: true do
       visit(root_path)
       expect(page).to have_content("NO LOGS")
     end
@@ -27,9 +26,6 @@ RSpec.describe HomeController, type: :feature do
       expect(page).to have_content('Why the Media loves VPN')
       expect(page).to have_content('Built for security and trust')
       expect(page).to have_content('One account for all your devices')
-      # features section
-      # can't test react component - therefor we use another tests from test folder
-      # expect(page).to have_content('NO LOGS')
       # footer section
       expect(page).to have_content('PRODUCT')
       expect(page).to have_content('COMPANY')
