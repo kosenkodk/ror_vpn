@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 
-
 RSpec.describe HomeController, type: :feature do
 
   describe 'GET main/home page' do
