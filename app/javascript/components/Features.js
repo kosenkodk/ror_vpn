@@ -17,7 +17,9 @@ class Features extends React.Component {
         <div id="features" className="features row">
           {
             features.map(item => (
-              <Feature key={item.id} {...item} />
+              <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
+                <Feature {...item} />
+              </div>
             ))
           }
         </div>
@@ -26,6 +28,7 @@ class Features extends React.Component {
   }
 
   componentDidMount() {
+    if (this.state.features.count > 0) return;
     const url = "api/v1/features";
     fetch(url)
       .then(response => {
