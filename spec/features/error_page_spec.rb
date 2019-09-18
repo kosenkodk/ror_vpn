@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ErrorsController, type: :feature do 
+RSpec.describe ErrorsController, type: :feature do
   describe 'Get 404 Page' do
     it 'renders not_found template' do
       visit(not_found_path)

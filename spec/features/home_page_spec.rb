@@ -5,11 +5,13 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :feature do
 
   describe 'GET main/home page' do
-    let!(:feature) { FactoryBot.create(:feature) }
+    let!(:feature) { FactoryBot.create(:feature, title:'title1', subtitle: 'subtitle1', text: 'text1') }
 
-    scenario "Able to see title of react features section", js: true do
+    scenario 'Able to see title of react features section', js: true do
       visit(root_path)
-      expect(page).to have_content('NO LOGS')
+      expect(page).to have_content('title1')
+      expect(page).to have_content('subtitle1')
+      expect(page).to have_content('text1')
     end
   
     it 'renders :index template' do
