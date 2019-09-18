@@ -17,7 +17,7 @@ class Features extends React.Component {
         <div id="features" className="features row">
           {
             this.state.features.map(item => (
-              <Feature {...item} />
+              <Feature key={item.id} {...item} />
             ))
           }
         </div>
