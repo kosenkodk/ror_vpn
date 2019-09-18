@@ -16,7 +16,6 @@ class Features extends React.Component {
     const { features } = this.state;
     return (
       <div id="features" className="features row">
-        <h1>features {features.length}</h1>
         {
           features.map(item => (
             <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
@@ -37,7 +36,7 @@ class Features extends React.Component {
     }
     console.log('getting data from api...')
 
-    const url = "api/v1/features";
+    const url = "api/v1/featurdes";
     fetch(url)
       .then(response => {
         if (response.ok) {
@@ -48,17 +47,13 @@ class Features extends React.Component {
       .then(response => this.setState({ features: response }))
       .catch((err) => {
         console.log(err)
-        this.props.history
-
       });
-
   }
 
 }
 
 Features.propTypes = {
-  features: PropTypes.node,
-  state: PropTypes.node
+  features: PropTypes.array
 };
 
 export default Features
