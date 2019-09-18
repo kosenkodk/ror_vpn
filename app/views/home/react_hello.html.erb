@@ -1,2 +1,11 @@
-<%#= react_component("HelloWorld", { greeting: "Hello from react-rails." }) #%>
-<%#= react_component("Features", { features: @features }) #%>
+<%= javascript_pack_tag 'hello_react' %>
+<%= react_component("HelloWorld", { greeting: "Hello from react-rails." }, { prerender: true }) %>
+<%= react_component("Features", { features: @features }, { prerender: true }) %>
+
+<div class="container">
+  <div class="features">
+    <% #(0..3).each_with_index do |item, index| %>
+    <%= react_component("Feature", { title: '1 title', subtitle: '1 subtitle', text:'1 text' }, { prerender: true }) %>
+    <% #end %>
+  </div>
+</div>

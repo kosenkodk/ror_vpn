@@ -5,13 +5,14 @@ require 'rails_helper'
 RSpec.describe HomeController, type: :feature do
 
   describe 'GET main/home page' do
-    let!(:feature) { FactoryBot.create(:feature, title:'title1', subtitle: 'subtitle1', text: 'text1') }
+    let!(:feature) { FactoryBot.create(:feature, title:'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
 
     scenario 'Able to see title of react features section', js: true do
       visit(root_path)
-      expect(page).to have_content('title1')
-      expect(page).to have_content('subtitle1')
-      expect(page).to have_content('text1')
+      # feature react section (client js side rendering)
+      expect(page).to have_content('Feature1Title')
+      expect(page).to have_content('Feature1Subtitle')
+      expect(page).to have_content('Feature1Text')
     end
   
     it 'renders :index template' do
@@ -28,6 +29,10 @@ RSpec.describe HomeController, type: :feature do
       expect(page).to have_content('Why the Media loves VPN')
       expect(page).to have_content('Built for security and trust')
       expect(page).to have_content('One account for all your devices')
+      # feature react section (server side rendering)
+      expect(page).to have_content('Feature1Title')
+      expect(page).to have_content('Feature1Subtitle')
+      expect(page).to have_content('Feature1Text')
       # footer section
       expect(page).to have_content('PRODUCT')
       expect(page).to have_content('COMPANY')
