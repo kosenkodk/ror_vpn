@@ -1,6 +1,7 @@
 <%= javascript_pack_tag 'hello_react' %>
 <%= react_component("HelloWorld", { greeting: "Hello from react-rails." }, { prerender: true }) %>
 <%= react_component("Features", { features: @features }, { prerender: true }) %>
+<%#= react_component("Features") #%>
 
 <div class="container">
   <div class="features">
