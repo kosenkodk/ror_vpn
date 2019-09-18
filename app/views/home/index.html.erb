@@ -8,8 +8,8 @@
 
   <!-- features section - client side rendering only (js only) -->
   <%#= react_component('Features', { features: @features }, { prerender: true }) #%>
-  <%= react_component('Features', { }, { prerender: true }) %>
-
+  <%#= react_component('Features', { }, { prerender: true }) #%>
+  <%= react_component("Features", props: {@features}, prerender: true) %>
   <!-- features section - server side rendering -->
   <%#= render partial: 'shared/features', locals: {items: @features} #%>
   <div id="features" class="features row">

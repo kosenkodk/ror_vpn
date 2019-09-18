@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Features from '../../../components/Features';
+import Feature from './Feature';
 
 export default class HelloWorld extends React.Component {
   static propTypes = {
@@ -39,6 +41,8 @@ export default class HelloWorld extends React.Component {
             onChange={(e) => this.updateName(e.target.value)}
           />
         </form>
+        <Feature title="title" />
+        <Features features={[{ title: "feature title" }]} />
       </div>
     );
   }
