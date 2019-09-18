@@ -6,7 +6,7 @@ class Feature extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div key={this.props.id} className="col-xs-12 col-sm-6 col-md-4">
+        <div className="col-xs-12 col-sm-6 col-md-4">
           <div className="card">
             <div className="card-header">
               {/* <img src={this.props.icon_url} className="card-img-top" alt="" /> */}
@@ -25,6 +25,7 @@ class Feature extends React.Component {
 }
 
 Feature.propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
   subtitle: PropTypes.string,
   icon_url: PropTypes.string,
