@@ -11,12 +11,12 @@ class Features extends React.Component {
   }
 
   render() {
-    // const { features } = this.state;
+    const { features } = this.state;
     return (
       <React.Fragment>
         <div id="features" className="features row">
           {
-            this.state.features.map(item => (
+            features.map(item => (
               <Feature key={item.id} {...item} />
             ))
           }
