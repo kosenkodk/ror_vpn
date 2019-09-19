@@ -23,7 +23,7 @@ class Login extends React.Component {
     // let formFields = {}
     // const { email, password } = this.state;
     return (
-      <LoginForm handleFormSubmit={this.handleFormSubmit} />
+      <LoginForm forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
     );
   }
 
@@ -54,7 +54,8 @@ class Login extends React.Component {
 
 Login.propTypes = {
   email: PropTypes.string,
-  password: PropTypes.string
+  password: PropTypes.string,
+  forgot_pwd_path: PropTypes.string
 };
 
 export default Login

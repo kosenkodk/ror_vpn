@@ -9,9 +9,9 @@ class LoginForm extends React.Component {
     this.password = React.createRef()
     this.state = {
       emailValue: '',
-      passwordValue: ''
-      //   email: props.email,
-      //   password: props.password
+      passwordValue: '',
+      // email: props.email,
+      // password: props.password
     };
     //   // this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -19,8 +19,7 @@ class LoginForm extends React.Component {
   handleFormSubmit2(e, email, password) {
     console.log('handleFormSubmit2')
     console.log(email, password)
-    this.setState({ emailValue: email })
-    this.setState({ passwordValue: password })
+    this.setState({ emailValue: email, passwordValue: password })
     e.preventDefault();
   }
 
@@ -36,12 +35,12 @@ class LoginForm extends React.Component {
     // const { email, password } = this.state;
     return (
       <form onSubmit={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); e.target.reset(); }}>
-        {/* <form onSubmit={this.handleFormSubmit3}> */}
         {/* <form onSubmit={(e) => { this.handleFormSubmit2(e, this.email.value, this.password.value); e.target.reset(); }}> */}
+        {/* <form onSubmit={this.handleFormSubmit3}> */}
 
         <div className="form-group row">
           <div className="col-sm-3">
-            <label>email:{this.state.emailValue}</label>
+            <label>Email address {this.state.emailValue}</label>
           </div>
           <div className="col-sm-6">
             <input className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
@@ -52,16 +51,15 @@ class LoginForm extends React.Component {
 
         <div className="form-group row">
           <div className="col-sm-3">
-            <label className="col-form-label">pwd:{this.state.passwordValue}</label>
+            <label className="col-form-label">Password {this.state.passwordValue}</label>
           </div>
           <div className="col-sm-6">
             <div className="input-group">
               <input className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
               <div className="input-group-append">
                 <span className="input-group-text" id="forgot-pwd-addon"><a
-                  href="<%= forgot_pwd_path %>">
+                  href={this.props.forgot_pwd_path}>
                   Forgot Password?
-                    {/* <%= t("pages.login.form.forgot_pwd") %> */}
                 </a></span>
               </div>
             </div>
@@ -108,8 +106,9 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  // email: PropTypes.string,
-  // password: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  forgot_pwd_path: PropTypes.string
   // handleFormSubmit: PropTypes.function
 };
 
