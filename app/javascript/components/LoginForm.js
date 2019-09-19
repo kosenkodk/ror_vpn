@@ -35,32 +35,50 @@ class LoginForm extends React.Component {
     let formFields = {}
     // const { email, password } = this.state;
     return (
-      <div id="login" className="login row">
-        <form onSubmit={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); e.target.reset(); }}>
-          {/* <form onSubmit={this.handleFormSubmit3}> */}
-          {/* <form onSubmit={(e) => { this.handleFormSubmit2(e, this.email.value, this.password.value); e.target.reset(); }}> */}
-          <h3>password: {this.state.passwordValue}</h3>
+      <form onSubmit={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); e.target.reset(); }}>
+        {/* <form onSubmit={this.handleFormSubmit3}> */}
+        {/* <form onSubmit={(e) => { this.handleFormSubmit2(e, this.email.value, this.password.value); e.target.reset(); }}> */}
 
-          <div className="form-group row">
+        <div className="form-group row">
+          <div className="col-sm-3">
+            <label>email:{this.state.emailValue}</label>
+          </div>
+          <div className="col-sm-6">
+            <input className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
+          </div>
+          <div className="col-sm-3">
+          </div>
+        </div>
 
-            <div className="col-sm-3">
-              <label>email:{this.state.emailValue}</label>
+        <div className="form-group row">
+          <div className="col-sm-3">
+            <label className="col-form-label">pwd:{this.state.passwordValue}</label>
+          </div>
+          <div className="col-sm-6">
+            <div className="input-group">
+              <input className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
+              <div className="input-group-append">
+                <span className="input-group-text" id="forgot-pwd-addon"><a
+                  href="<%= forgot_pwd_path %>">
+                  Forgot Password?
+                    {/* <%= t("pages.login.form.forgot_pwd") %> */}
+                </a></span>
+              </div>
             </div>
-            <div className="col-sm-6">
-              <input ref={(input) => { this.email = input }} placeholder='Enter the email' />
-            </div>
-            <div className="col-sm-3">
-            </div>
+            <div className="col-sm-3"></div>
+          </div>
+        </div>
 
-
-            <input ref={(input) => { this.password = input }} placeholder='Enter the password' />
-            {/* <input ref={this.email} placeholder='Enter the email' />
-        <input ref={this.password} placeholder='Enter the password' /> */}
-            <button>Submit</button>
+        <div className="form-group row">
+          <div className="col-sm-6 offset-sm-3">
+            <br />
+            {/* <%=f.submit(t("pages.login.form.login"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
+            <button className="btn btn-outline-primary btn-block">Submit</button>
             {/* <LoginForm handleFormSubmit={this.handleFormSubmit} /> */}
           </div>
-        </form>
-      </div>
+        </div>
+
+      </form>
     );
   }
 
