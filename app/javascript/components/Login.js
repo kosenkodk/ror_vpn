@@ -18,17 +18,24 @@ class Login extends React.Component {
     console.log(email, password)
 
     e.preventDefault();
-    let body = { 'email': email, 'password': password }
+    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    const postData = { 'email': email, 'password': password }
     fetch('/api/v1/login', {
-      // method: 'POST',
-      // body: body,
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      // mode: 'cors', // no-cors, cors, *same-origin
+      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'include', // same-origin, include, *same-origin, omit
+      // redirect: 'follow', // manual, *follow, error,
+      // referrer: 'no-referrer', // no-referrer, *client
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRF-Token': csrf
       },
+      body: JSON.stringify(postData), // data type should the same value as Content-Type header
     }).then((response) => { return response.json() })
       .then((item) => {
         console.log('success', item)
-
         // this.addNewItem(item)
         // navigate to the admin panel
         // this.props.history.push('/tariff_plans') # TODO: will implement react component
