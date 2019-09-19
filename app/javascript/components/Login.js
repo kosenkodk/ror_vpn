@@ -23,16 +23,7 @@ class Login extends React.Component {
     // let formFields = {}
     // const { email, password } = this.state;
     return (
-      <div id="login" className="login row">
-        <LoginForm handleFormSubmit={this.handleFormSubmit} />
-
-        {/* <form> */}
-        {/* <input ref={input => formFields.name = input} placeholder='Enter the name of the item' /> */}
-        {/* <input ref={input => formFields.description = input} placeholder='Enter a description' /> */}
-        {/* <button>Submit</button> */}
-        {/* <button onClick={this.handleFormSubmit}>Submit</button> */}
-        {/* </form> */}
-      </div>
+      <LoginForm handleFormSubmit={this.handleFormSubmit} />
     );
   }
 
