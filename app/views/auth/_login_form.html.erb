@@ -4,7 +4,10 @@
   </div>
 </div>
 
-<%= form_for @user, url: login_path, remote: true do |f| %>
+<%#= react_component("Login", { email: @user.email, password: @user.password }, { prerender: true }) #%>
+<%= react_component("Login") %>
+
+<% form_for @user, url: login_path, remote: true do |f| %>
 
 <div class="form-group row">
   <%= f.label t('pages.login.form.email_address'), {class:'col-sm-3 col-form-label'} %>
