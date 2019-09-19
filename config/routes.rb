@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
+      get 'login', to: 'auth#login'
     end
   end
   
