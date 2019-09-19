@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LoginForm from './LoginForm'
-
+import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
 
@@ -16,7 +16,10 @@ class Login extends React.Component {
 
   handleFormSubmit(e, email, password) {
     console.log(email, password)
+
     e.preventDefault();
+    let body = { 'email': email, 'password': password }
+
     fetch('/api/v1/login', {
       method: 'POST',
       headers: {
@@ -27,8 +30,11 @@ class Login extends React.Component {
       .then((item) => {
         // this.addNewItem(item)
         // navigate to the admin panel
+        this.props.history.push('/tariff_plans')
+        // this.props.history.push('/features')
       }).catch((err) => {
         console.log(err)
+        this.props.history.push('/')
       });
   }
 
@@ -77,4 +83,4 @@ Login.propTypes = {
   forgot_pwd_path: PropTypes.string
 };
 
-export default Login
+export default withRouter(Login)

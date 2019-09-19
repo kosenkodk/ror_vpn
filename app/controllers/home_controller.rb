@@ -19,5 +19,9 @@ class HomeController < ApplicationController
     @features = Feature.all
     # render component: 'Features', props: { features: @features }
   end
+
+  def react_app
+    # render component: 'App'
+  end
   
 end
