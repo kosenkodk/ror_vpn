@@ -19,19 +19,20 @@ class Login extends React.Component {
 
     e.preventDefault();
     let body = { 'email': email, 'password': password }
-
     fetch('/api/v1/login', {
-      method: 'POST',
+      // method: 'POST',
+      // body: body,
       headers: {
         'Content-Type': 'application/json'
       },
-      body: body,
     }).then((response) => { return response.json() })
       .then((item) => {
+        console.log('success', item)
+
         // this.addNewItem(item)
         // navigate to the admin panel
-        this.props.history.push('/tariff_plans')
-        // this.props.history.push('/features')
+        // this.props.history.push('/tariff_plans') # TODO: will implement react component
+        this.props.history.push('/features')
       }).catch((err) => {
         console.log(err)
         this.props.history.push('/')
