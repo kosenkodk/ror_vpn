@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/422', to: 'errors#unacceptable'
   get '/204', to: 'errors#coming_soon', as: :coming_soon
   get '/500', to: 'errors#internal_error'
-  get '/login', to: 'auth#login', as: :login
+  get '/login', to: 'auth#login', as: :login_get
+  post '/login', to: 'auth#login', as: :login
   get '/signup', to: 'auth#signup', as: :signup
   get '/forgot', to: 'auth#forgot_pwd', as: :forgot_pwd
   # get '/reset/:code', to: 'auth#reset_pwd', as: :reset_pwd
