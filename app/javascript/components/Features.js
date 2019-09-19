@@ -36,7 +36,7 @@ class Features extends React.Component {
     }
     console.log('getting data from api...')
 
-    const url = "api/v1/featurdes";
+    const url = "api/v1/features";
     fetch(url)
       .then(response => {
         if (response.ok) {

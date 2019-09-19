@@ -17,7 +17,26 @@ class Login extends React.Component {
   handleFormSubmit(e, email, password) {
     console.log(email, password)
     e.preventDefault();
+    fetch('/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: body,
+    }).then((response) => { return response.json() })
+      .then((item) => {
+        // this.addNewItem(item)
+        // navigate to the admin panel
+      }).catch((err) => {
+        console.log(err)
+      });
   }
+
+  // addNewItem(item) {
+  //   this.setState({
+  //     items: this.state.items.concat(item)
+  //   })
+  // }
 
   render() {
     // let formFields = {}
