@@ -91,5 +91,5 @@ Login.propTypes = {
   forgot_pwd_path: PropTypes.string
 };
 
-// export default withRouter(Login)
-export default Login
+export default withRouter(Login)
+// export default Login
