@@ -14,7 +14,7 @@ class App extends React.Component {
     return (
       <Router path={this.props.path} context={{}}>
         <Route path="/" exact render={(props) => (<div>token: {this.props.token}</div>)} />
-        <Route exact path="/login" render={() => <Login />} />
+        <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
         <Route exact path="/features" render={() => <Features />} />
       </Router>
     );
