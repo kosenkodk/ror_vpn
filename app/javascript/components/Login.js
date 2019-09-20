@@ -19,6 +19,8 @@ class Login extends React.Component {
 
     e.preventDefault();
     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    console.log('csrf:' + csrf)
+    console.log('csrf token:' + this.props.token)
     const postData = { 'email': email, 'password': password }
     fetch('/api/v1/login', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -56,7 +58,7 @@ class Login extends React.Component {
     // let formFields = {}
     // const { email, password } = this.state;
     return (
-      <LoginForm forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
+      <LoginForm token={this.props.token} form_action={this.props.form_action} forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
     );
   }
 
@@ -88,7 +90,9 @@ class Login extends React.Component {
 Login.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
-  forgot_pwd_path: PropTypes.string
+  form_action: PropTypes.string,
+  forgot_pwd_path: PropTypes.string,
+  token: PropTypes.string
 };
 
 export default withRouter(Login)
