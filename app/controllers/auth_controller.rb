@@ -5,6 +5,10 @@ class AuthController < ApplicationController
   def login
     render layout: 'no_footer'
   end
+  
+  def login_post
+    redirect_to tariff_plans_path
+  end
 
   def signup
     @plan_active_index = 0
