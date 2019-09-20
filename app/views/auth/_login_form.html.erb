@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= react_component("Login", { forgot_pwd_path: forgot_pwd_path, email: @user.email, password: @user.password }, { prerender: true }) %>
+<%#= react_component("Login", { forgot_pwd_path: forgot_pwd_path, email: @user.email, password: @user.password }, { prerender: true }) #%>
 <%# react_component("Login", { forgot_pwd_path: forgot_pwd_path }, { prerender: true }) #%>
 
 <%= form_for @user, url: login_path, remote: true do |f| %>
