@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Feature from './Feature'
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 class Features extends React.Component {
 
@@ -58,4 +58,6 @@ Features.propTypes = {
   features: PropTypes.array
 };
 
-export default withRouter(Features)
+// export default withRouter(Features)
+
+export default Features
