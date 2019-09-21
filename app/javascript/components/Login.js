@@ -19,8 +19,8 @@ class Login extends React.Component {
 
     e.preventDefault();
     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    console.log('csrf:' + csrf)
-    console.log('csrf token:' + this.props.token)
+    // console.log('csrf:' + csrf)
+    // console.log('csrf token:' + this.props.token)
     const postData = { 'email': email, 'password': password }
     fetch('/api/v1/login', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
