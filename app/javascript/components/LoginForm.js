@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
     let formFields = {}
     // const { email, password } = this.state;
     return (
-      <form data-remote="true" method="post" action={this.props.form_action}>
+      <form data-remote="true" method="post" action={this.props.form_action} onSubmit={(e) => { e.target.reset(); }}>
         {/* <form onSubmit={(e) => { this.handleFormSubmit2(e, this.email.value, this.password.value); e.target.reset(); }}> */}
         {/* <form onSubmit={this.handleFormSubmit3}> */}
 
@@ -73,7 +73,7 @@ class LoginForm extends React.Component {
           <div className="col-sm-6 offset-sm-3">
             <br />
             {/* <%=f.submit(t("pages.login.form.login"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
-            <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); e.target.reset(); }} className="btn btn-outline-primary btn-block">Submit</button>
+            <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); }} className="btn btn-outline-primary btn-block">Submit</button>
             {/* <LoginForm handleFormSubmit={this.handleFormSubmit} /> */}
           </div>
         </div>
