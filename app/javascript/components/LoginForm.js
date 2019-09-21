@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 class LoginForm extends React.Component {
 
   constructor(props) {
+
     super(props);
     // this.formFields = React.createRef()
     this.email = React.createRef()
@@ -34,7 +35,7 @@ class LoginForm extends React.Component {
     let formFields = {}
     // const { email, password } = this.state;
     return (
-      <form data-remote="true" method="post" action={this.props.form_action + '?_csrf=' + this.props.token} onSubmit={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); e.target.reset(); }}>
+      <form data-remote="true" method="post" action={this.props.form_action} onSubmit={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); e.target.reset(); }}>
         {/* <form onSubmit={(e) => { this.handleFormSubmit2(e, this.email.value, this.password.value); e.target.reset(); }}> */}
         {/* <form onSubmit={this.handleFormSubmit3}> */}
 
@@ -43,7 +44,7 @@ class LoginForm extends React.Component {
             <label>Email address {this.state.emailValue}</label>
           </div>
           <div className="col-sm-6">
-            <input type="hidden" name="_csrf" value={this.props.token} />
+            <input type='hidden' name='authenticity_token' value={this.props.token} />
             <input className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
           </div>
           <div className="col-sm-3">
