@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/login_get', to: 'auth#login', as: :login_get
   post '/login', to: 'auth#login_post', as: :login
   get '/signup', to: 'auth#signup', as: :signup
+  post '/signup', to: 'auth#signup_post'
   get '/forgot', to: 'auth#forgot_pwd', as: :forgot_pwd
   # get '/reset/:code', to: 'auth#reset_pwd', as: :reset_pwd
   get '/reset', to: 'auth#reset_pwd', as: :reset_pwd

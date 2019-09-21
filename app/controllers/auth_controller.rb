@@ -17,6 +17,10 @@ class AuthController < ApplicationController
     render layout: 'application'
   end
 
+  def signup_post
+    redirect_to tariff_plans_path
+  end
+
   def forgot_pwd
   end
 
