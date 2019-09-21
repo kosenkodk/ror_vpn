@@ -36,7 +36,11 @@
       <td><%= link_to 'Show', tariff_plan, { class: 'btn btn-sm btn-outline-info' } %></td>
       <td><%= link_to 'Edit', edit_tariff_plan_path(tariff_plan), { class: 'btn btn-sm btn-outline-warning' } %></td>
       <td>
-        <%= link_to 'Destroy', tariff_plan, { class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' }, method: :delete } %>
+        <%#= link_to 'Destroy', tariff_plan, { class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' }, method: :delete } #%>
+        <%#= form_for(tariff_plan, url: tariff_plan, method: 'delete', html: {id: 'form_id'} ) do |f| #%>
+        <%= form_with(model: tariff_plan, local: true, method: :delete) do |f| %>
+        <%= f.submit 'Destroy', {class: 'btn btn-sm btn-outline-danger'} %>
+        <% end %>
       </td>
     </tr>
     <% end %>
