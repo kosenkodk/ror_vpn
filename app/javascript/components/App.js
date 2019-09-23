@@ -20,7 +20,7 @@ class App extends React.Component {
             <li><Link to="/tariff_plans">Plans</Link></li>
           </ul>
         </div>
-        <Route path="/" exact render={(props) => (<div>home react {this.props.path} </div>)} />
+        <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} />
         <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
         <Route exact path="/features" render={() => <Features />} />
       </Router>
