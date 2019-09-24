@@ -13,13 +13,13 @@ class App extends React.Component {
   render() {
     return (
       <Router path={this.props.path} context={{}}>
-        <div>
+        {/* <div>
           <ul>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/features">Features</Link></li>
             <li><Link to="/tariff_plans">Plans</Link></li>
           </ul>
-        </div>
+        </div> */}
         <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} />
         <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
         <Route exact path="/features" render={() => <Features />} />

@@ -1,10 +1,12 @@
 class ReactStaticController < ApplicationController
+
   def index
+    render layout: 'react_app'
     @csrf_token = form_authenticity_token
   end
 
   def hello_erb
-    render layout: 'empty'
+    render layout: 'react_empty'
   end
 
   def react_hello
@@ -13,7 +15,7 @@ class ReactStaticController < ApplicationController
   end
 
   def react_app
-    render layout: 'empty'
+    render layout: 'react_empty'
     # render component: 'App'
   end
 
