@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
-import Login from './Login'
+import Login from './Login.js.erb'
 import Features from './Features'
 import Router from './Router'
 

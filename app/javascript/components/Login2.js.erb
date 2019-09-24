@@ -1,0 +1,52 @@
+// Run this example by adding <%%= javascript_pack_tag 'hello_erb' %> to the head of your layout file,
+// like app/views/layouts/application.html.erb. Don't forget to uncomment erb tag after adding it to your layout file.
+
+// <% name = 'Erb' %>
+console.log('Hello world from <%= name %>')
+
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+// import PropTypes from 'prop-types'
+// import LoginForm from './LoginForm'
+// import { withRouter } from "react-router-dom";
+
+class Login2 extends React.Component {
+
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  // addNewItem(item) {
+  //   this.setState({
+  //     items: this.state.items.concat(item)
+  //   })
+  // }
+
+  render() {
+    return (
+      <div className="container login">
+        <h1>
+          hi
+          {/* hi <%=name%> <%= I18n.t('pages.login.title') %> */}
+        </h1>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+
+  }
+
+}
+
+// Login2.propTypes = {
+//   email: PropTypes.string,
+//   password: PropTypes.string,
+//   form_action: PropTypes.string,
+//   forgot_pwd_path: PropTypes.string,
+//   token: PropTypes.string
+// };
+
+// export default withRouter(Login2)
+export default Login2

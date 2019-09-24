@@ -14,14 +14,5 @@ class HomeController < ApplicationController
     @plans = TariffPlan.all
     render layout: 'bg_fit_container'
   end
-
-  def react_hello
-    @features = Feature.all
-    # render component: 'Features', props: { features: @features }
-  end
-
-  def react_app
-    # render component: 'App'
-  end
   
 end

@@ -15,8 +15,6 @@ Rails.application.routes.draw do
   get '/reset', to: 'auth#reset_pwd', as: :reset_pwd
   get '/reset_pwd_success', to: 'auth#success', as: :reset_pwd_success
   get '/pricing', to: 'home#pricing', as: :pricing
-  get '/react_hello', to: 'home#react_hello'
-  get '/react_app', to: 'home#react_app'
 
   resources :contacts
   # resource :auth
@@ -28,7 +26,9 @@ Rails.application.routes.draw do
       post 'login', to: 'auth#login'
     end
   end
-  
+
+  get '/react_hello', to: 'react_static#react_hello'
+  get '/react_app', to: 'react_static#react_app'
   get '/hello_erb', to: 'react_static#hello_erb'
 
   # Forward all requests (except root_path, Ajax and HTML Mime type requests) to ReactController#index but requests
