@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       post 'login', to: 'auth#login'
     end
   end
+  
   get '/hello_erb', to: 'react_static#hello_erb'
 
   # Forward all requests (except root_path, Ajax and HTML Mime type requests) to ReactController#index but requests
