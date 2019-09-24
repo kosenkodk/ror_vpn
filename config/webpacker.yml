@@ -35,7 +35,7 @@ default: &default
 
   extensions:
     - .erb
-    - .jsx
+    - .js.erb
     - .mjs
     - .js
     - .jsx
