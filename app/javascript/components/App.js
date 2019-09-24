@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
 import Login from './Login'
-import Login2 from './Login2'
 import Features from './Features'
 import Router from './Router'
 
@@ -17,7 +16,6 @@ class App extends React.Component {
         <div>
           <ul>
             <li><Link to="/login">Login</Link></li>
-            <li><Link to="/login2">Login2</Link></li>
             <li><Link to="/features">Features</Link></li>
             <li><Link to="/tariff_plans">Plans</Link></li>
           </ul>
@@ -25,7 +23,6 @@ class App extends React.Component {
         <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} />
         <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
         <Route exact path="/features" render={() => <Features />} />
-        <Route exact path="/login2" render={() => <Login2 />} />
       </Router>
     );
   }
