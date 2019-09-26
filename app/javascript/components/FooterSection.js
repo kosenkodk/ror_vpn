@@ -5,12 +5,12 @@ import FooterAccordion from './FooterAccordion'
 class FooterSection extends React.Component {
   render() {
     return (
-      <div class="container-fluid footer">
-        <div class="row">
-          <div class="container-fluid d-block d-sm-none">
+      <div className="container-fluid footer">
+        <div className="row">
+          <div className="container-fluid d-block d-sm-none">
             <FooterAccordion />
           </div>
-          <div class="container d-none d-sm-block">
+          <div className="container d-none d-sm-block">
             <Footer />
           </div>
         </div>
