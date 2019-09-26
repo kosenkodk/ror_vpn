@@ -1,5 +1,6 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
+import FooterSocialLinks from './sections/FooterSocialLinks'
 
 class FooterAccordion extends React.Component {
   render() {
@@ -125,11 +126,8 @@ class FooterAccordion extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-12 text-center">
-            {/* <%= render 'shared/footer_social_links' } */}
-          </div>
-        </div>
+
+        <FooterSocialLinks />
       </footer>
     )
   }
