@@ -12,6 +12,17 @@ import Home from './HomePage/Home'
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isFooterVisible: true
+    }
+    this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
+  }
+
+  handleIsFooterVisible(isVisible) {
+    event.preventDefault()
+    this.setState({
+      isFooterVisible: isVisible
+    })
   }
 
   render() {
@@ -26,7 +37,7 @@ class App extends React.Component {
               <Router path={this.props.path} context={{}}>
                 {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
                 <Route exact path="/" render={() => <Home features={this.props.features} />} />
-                <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
                 <Route exact path="/signup" render={() => <Login form_action='/login' token={this.props.token} />} />
                 <Route exact path="/contact_us" render={() => <Login form_action='/login' token={this.props.token} />} />
                 <Route exact path="/coming_soon" render={() => <Login form_action='/login' token={this.props.token} />} />
@@ -41,7 +52,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <FooterSection />
+        {this.state.isFooterVisible && <FooterSection />}
       </div>
     );
   }
