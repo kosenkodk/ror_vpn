@@ -7,13 +7,20 @@ RSpec.describe HomeController, type: :feature do
   describe 'GET main/home page' do
     let!(:feature) { FactoryBot.create(:feature, title:'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
 
-    scenario 'Able to see title of react features section', js: true do
+    scenario 'features section > view item', js: true do
       visit(root_path)
       # feature react section (client js side rendering)
       expect(page).to have_content('Feature1Title')
       expect(page).to have_content('Feature1Subtitle')
       expect(page).to have_content('Feature1Text')
     end
+
+    scenario 'login page > invisible footer', js: true do
+      visit('/login')
+      # click_on('Log in')
+      expect(page).not_to have_css('footer')
+    end
+
   
     it 'renders :index template' do
       visit(root_path)
