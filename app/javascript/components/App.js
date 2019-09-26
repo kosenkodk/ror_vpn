@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
+import Header from './Header'
 import Login from './Login'
 import Features from './Features'
 import Router from './Router'
@@ -12,18 +13,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router path={this.props.path} context={{}}>
-        <div>
-          <ul>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/features">Features</Link></li>
-            <li><Link to="/tariff_plans">Plans</Link></li>
-          </ul>
-        </div>
-        <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} />
-        <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
-        <Route exact path="/features" render={() => <Features />} />
-      </Router>
+      <div>
+        <Header />
+        <Router path={this.props.path} context={{}}>
+          <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} />
+          <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
+          <Route exact path="/features" render={() => <Features />} />
+        </Router>
+      </div>
     );
   }
 }
