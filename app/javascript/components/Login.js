@@ -64,7 +64,7 @@ class Login extends React.Component {
 
             <div class="col-md-8 offset-md-2 text-center">
               <h1 class="featurette-heading">
-                hi <%= I18n.t('pages.login.title') %>
+                {/* hi <%= I18n.t('pages.login.title') %> */}
               </h1>
               <p class="lead">
                 {/* <%= t('pages.login.do_not_have_an_account') %> */}
