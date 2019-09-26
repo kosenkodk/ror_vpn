@@ -66,3 +66,4 @@ end
 
 # gem 'exception_handler', '~> 0.8.0.0'
 gem 'font-awesome-rails'
+gem 'i18n-js'
