@@ -14,7 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <body>
+      <div>
         <div className="container-fluid bg1">
           <div className="row">
             <div className="container">
@@ -27,10 +27,8 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-
         <FooterSection />
-
-      </body>
+      </div>
     );
   }
 }
