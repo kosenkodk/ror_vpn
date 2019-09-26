@@ -58,32 +58,32 @@ class Login extends React.Component {
     // let formFields = {}
     // const { email, password } = this.state;
     return (
-      <div class="container login">
-        <div class="featurette text-center">
-          <div class="row">
+      <div className="login">
+        <div className="featurette text-center">
+          <div className="row">
 
-            <div class="col-md-8 offset-md-2 text-center">
-              <h1 class="featurette-heading">
+            <div className="col-md-8 offset-md-2 text-center">
+              <h1 className="featurette-heading">
                 {/* hi <%= I18n.t('pages.login.title') %> */}
               </h1>
-              <p class="lead">
+              <p className="lead">
                 {/* <%= t('pages.login.do_not_have_an_account') %> */}
                 {/* <%= link_to t("pages.signup.title"), signup_path %> */}
               </p>
             </div>
 
-            <div class="col-md-8 offset-md-2">
-              <div class="text-right">
+            <div className="col-md-8 offset-md-2">
+              <div className="text-right">
                 <LoginForm token={this.props.token} form_action={this.props.form_action} forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
               </div>
-              <div class="row">
-                <div class="col-md-8 offset-md-2">
+              <div className="row">
+                <div className="col-md-8 offset-md-2">
                   {/* <%= link_to t("pages.login.form.login_trouble"), forgot_pwd_path, {class:'trouble'} %> */}
                 </div>
               </div>
             </div>
 
-            <div class="col-md-12">
+            <div className="col-md-12">
               {/* <%#= image_tag 'coming_soon/mars_with_spaceship.png', {class:'img-fluid'} #%> */}
             </div>
           </div>
