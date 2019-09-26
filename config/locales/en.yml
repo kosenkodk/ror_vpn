@@ -83,7 +83,9 @@ en:
       customer_reviews: "Customer Reviews"
       about_us: "About us"
       vpn_facts: "VPN Facts"
-      terms_of_service: "terms_of_service"
+      terms_of_service: "Terms of Service"
+      press_resources: "Press Resources"
+      blog: "Blog"
     security:
       title: "SECURITY"
       terms_of_service: "Terms of Service"
