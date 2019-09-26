@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from './Footer'
-import FooterAccordion from './FooterAccordion'
+import Footer from '../Footer'
+import FooterAccordion from '../FooterAccordion'
 
 class FooterSection extends React.Component {
   render() {
