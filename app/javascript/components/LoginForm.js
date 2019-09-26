@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import I18n from 'i18n-js/index.js.erb'
+
 class LoginForm extends React.Component {
 
   constructor(props) {
@@ -61,7 +63,7 @@ class LoginForm extends React.Component {
               <div className="input-group-append">
                 <span className="input-group-text" id="forgot-pwd-addon"><a
                   href="/forgot">
-                  Forgot Password?
+                  {I18n.t('pages.login.form.forgot_pwd')}
                 </a></span>
               </div>
             </div>

@@ -10,10 +10,22 @@ RSpec.describe AuthController, type: :feature do
       expect(find('.login')).to have_content('Email address')
       expect(find('.login')).to have_content('Password')
       expect(find('.login')).to have_content('Log in')
-      expect(find('.login')).to have_content('Having trouble logging in?')
+      expect(find('.login')).to have_content(I18n.t('pages.login.form.login_trouble'))
       expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       expect(page).to have_css('nav')
       expect(page).not_to have_css('footer')
+    end
+
+    it 'click on forgot password link' do
+      visit(login_path)
+      click_on(I18n.t('pages.login.form.forgot_pwd'))
+      expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.title'))
+    end
+
+    it 'click on Having trouble logging in link' do
+      visit(login_path)
+      click_on(I18n.t("pages.login.form.login_trouble"))
+      expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.title'))
     end
   end
 
