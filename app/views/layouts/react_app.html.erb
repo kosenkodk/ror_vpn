@@ -14,25 +14,8 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
-  <div class="container-fluid bg1">
-    <div class="row">
-      <div class="container">
-        <%= yield %>
-      </div>
-    </div>
-  </div>
 
-  <div class="container-fluid footer">
-    <div class="row">
-      <div class="container-fluid p-0 d-block d-sm-none">
-        <%= render partial: 'shared/footer_accordion' %>
-      </div>
-      <div class="container d-none d-sm-block">
-        <%= render partial: 'shared/footer' %>
-      </div>
-    </div>
-  </div>
-</body>
+<%= yield %>
+
 
 </html>
