@@ -13,7 +13,7 @@ class Home extends React.Component {
           <ProductWithPricingBtn />
           <Reviews />
           <SecurityAndTrust />
-          <Features />
+          <Features features={this.props.features} />
         </div>
         <div className="container-fluid bg2">
           <div className="container">
