@@ -1,5 +1,6 @@
 import React from 'react'
 import logoImage from 'images/logo.png'
+import I18n from 'i18n-js/index.js.erb'
 
 class HeaderNavBar extends React.Component {
   render() {
@@ -15,34 +16,34 @@ class HeaderNavBar extends React.Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/#features">Features</a>
+                href="/#features">{I18n.t('nav_menu.features')}</a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/pricing"> Pricing </a>
+                href="/pricing"> {I18n.t('nav_menu.pricing')} </a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/#downloads">Downloads</a>
+                href="/#downloads">{I18n.t('nav_menu.apps')}</a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/contacts/new>">Contact Us</a>
+                href="/contacts/new">{I18n.t('nav_menu.contact_us')}</a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/coming_soon">Help</a>
+                href="/coming_soon">{I18n.t('nav_menu.help')}</a>
             </li>
             <li className="nav-item d-block d-sm-none">
               <a className="nav-link"></a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/login">Login</a>
+                href="/login">{I18n.t('nav_menu.log_in')}</a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink active"
-                href="/signup">Sign up</a>
+                href="/signup">{I18n.t('nav_menu.sign_up')}</a>
             </li>
           </ul>
         </div>
