@@ -25,7 +25,7 @@ class App extends React.Component {
             <div className={this.props.path === '/' ? 'row' : 'container'}>
               <Router path={this.props.path} context={{}}>
                 {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
-                <Route exact path="/" render={() => <Home />} />
+                <Route exact path="/" render={() => <Home features={this.props.features} />} />
                 <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
                 <Route exact path="/signup" render={() => <Login form_action='/login' token={this.props.token} />} />
                 <Route exact path="/contact_us" render={() => <Login form_action='/login' token={this.props.token} />} />
