@@ -3,6 +3,7 @@ import Features from '../Features'
 import ProductWithPricingBtn from '../sections/ProductWithPricingBtn'
 import Reviews from '../sections/Reviews'
 import SecurityAndTrust from '../sections/SecurityAndTrust'
+import AppDownloads from '../sections/AppDownloads'
 
 class Home extends React.Component {
   render() {
@@ -16,7 +17,7 @@ class Home extends React.Component {
         </div>
         <div className="container-fluid bg2">
           <div className="container">
-            {/* // <%= render partial: 'shared/app_downloads' %> */}
+            <AppDownloads />
           </div>
         </div>
       </div>
