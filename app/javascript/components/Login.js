@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import LoginForm from './LoginForm'
 import { withRouter } from "react-router-dom";
+import I18n from 'i18n-js/index.js.erb'
 
 class Login extends React.Component {
 
@@ -64,11 +65,11 @@ class Login extends React.Component {
 
             <div className="col-md-8 offset-md-2 text-center">
               <h1 className="featurette-heading">
-                {/* hi <%= I18n.t('pages.login.title') %> */}
+                {I18n.t('pages.login.title')}
               </h1>
               <p className="lead">
-                {/* <%= t('pages.login.do_not_have_an_account') %> */}
-                {/* <%= link_to t("pages.signup.title"), signup_path %> */}
+                {I18n.t('pages.login.do_not_have_an_account')}
+                <a href="/signup"> {I18n.t("pages.signup.title")}</a>
               </p>
             </div>
 
@@ -78,7 +79,7 @@ class Login extends React.Component {
               </div>
               <div className="row">
                 <div className="col-md-8 offset-md-2">
-                  {/* <%= link_to t("pages.login.form.login_trouble"), forgot_pwd_path, {class:'trouble'} %> */}
+                  <a href="/forgot" className="trouble">{I18n.t("pages.login.form.login_trouble")}</a>
                 </div>
               </div>
             </div>
