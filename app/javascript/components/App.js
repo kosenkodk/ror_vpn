@@ -7,6 +7,8 @@ import Login from './Login'
 import Features from './Features'
 import Router from './Router'
 
+import Home from './HomePage/Home'
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,8 +22,18 @@ class App extends React.Component {
             <div className="container">
               <Header />
               <Router path={this.props.path} context={{}}>
-                <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} />
+                {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
+                <Route exact path="/" render={() => <Home />} />
                 <Route exact path="/login" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/signup" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/contact_us" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/coming_soon" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/status_page" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/forgot" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/reset" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/pricing" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/help" render={() => <Login form_action='/login' token={this.props.token} />} />
+
                 <Route exact path="/features" render={() => <Features />} />
               </Router>
             </div>

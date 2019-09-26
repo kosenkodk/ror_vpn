@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :tariff_plans
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'home#index'
+  # root 'home#index'
   get '/404', to: 'errors#not_found', as: :not_found
   get '/422', to: 'errors#unacceptable'
   get '/204', to: 'errors#coming_soon', as: :coming_soon
@@ -34,5 +34,5 @@ Rails.application.routes.draw do
     !req.xhr? && req.format.html?
   end
 
-  # root 'react_static#index'
+  root 'react_static#index'
 end
