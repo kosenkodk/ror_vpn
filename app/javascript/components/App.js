@@ -21,6 +21,8 @@ class App extends React.Component {
           <div className="row">
             <div className="container">
               <Header />
+            </div>
+            <div className={this.props.path === '/' ? 'row' : 'container'}>
               <Router path={this.props.path} context={{}}>
                 {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
                 <Route exact path="/" render={() => <Home />} />

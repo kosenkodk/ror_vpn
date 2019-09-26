@@ -8,7 +8,7 @@ import AppDownloads from '../sections/AppDownloads'
 class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div className="row">{/* <React.Fragment> */}
         <div className="container">
           <ProductWithPricingBtn />
           <Reviews />
