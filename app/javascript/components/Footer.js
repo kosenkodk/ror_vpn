@@ -1,4 +1,5 @@
 import React from 'react'
+import FooterSocialLinks from './sections/FooterSocialLinks'
 import I18n from 'i18n-js/index.js.erb'
 
 class Footer extends React.Component {
@@ -83,11 +84,7 @@ class Footer extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="row">
-          <div className="col-12 text-center">
-            {/* <%= render 'shared/footer_social_links' } */}
-          </div>
-        </div>
+        <FooterSocialLinks />
       </footer>)
   }
 }
