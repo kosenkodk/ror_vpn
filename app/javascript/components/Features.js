@@ -32,7 +32,7 @@ class Features extends React.Component {
 
   componentDidMount() {
     if (this.props.features && this.props.features.length > 0) {
-      console.log('use props')
+      console.log('getting data from props ...')
       // this.setState({ features: this.props.features })
       return;
     }
