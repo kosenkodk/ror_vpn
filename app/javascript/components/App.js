@@ -14,6 +14,7 @@ import PricingPage from './PricingPage'
 import PasswordResetPage from './PasswordResetPage'
 import PasswordForgotPage from './PasswordForgotPage'
 import ContactusPage from './ContactusPage'
+import SignupPage from './SignupPage/SignupPage'
 
 class App extends React.Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class App extends React.Component {
               {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
               <Route exact path="/" render={() => <Home features={this.props.features} />} />
               <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
-              <Route exact path="/signup" render={() => <ComingSoonPage />} />
+              <Route exact path="/signup" render={() => <SignupPage />} />
               <Route exact path="/contact_us" render={() => <ContactusPage />} />
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
               <Route exact path="/forgot" render={() => <PasswordForgotPage />} />
