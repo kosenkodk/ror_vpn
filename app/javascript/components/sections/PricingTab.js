@@ -1,6 +1,8 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
 import PricingTabItem from './PricingTabItem'
+import PricingTabItemFree from './PricingTabItemFree'
+
 class PricingTab extends React.Component {
   constructor(props) {
     super(props)
@@ -30,7 +32,7 @@ class PricingTab extends React.Component {
               <div key={item.id} className={`tab-pane fade show ${index == 0 ? 'active' : ''}`}
                 id={`pills-plan${index}`} role="tabpanel" aria-labelledby={`pills-plan${index}-tab`}>
                 {/* <PricingTabItem {...item} /> */}
-                <PricingTabItem item={item} />
+                {item.price > 0 ? <PricingTabItem item={item} /> : <PricingTabItemFree item={item} />}
               </div>
             ))
           }
