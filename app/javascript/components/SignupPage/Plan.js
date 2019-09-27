@@ -18,9 +18,16 @@ class Plan extends React.Component {
     e.preventDefault()
   }
 
+  UNSAFE_componentWillReceiveProps({ props }) {
+    console.log('componentWillReceiveProps({ props })', props)
+    this.forceUpdate()
+  }
+
+
   render() {
     let { item } = this.props
-    let { active_class } = this.state
+    // let { active_class } = this.state
+    let { active_class } = item
     return (
       <div onClick={(e) => this.props.handleClick(e, this.props.index)} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
         <div className={`card mb-3 m-1 shadow-vega ${active_class}`}>

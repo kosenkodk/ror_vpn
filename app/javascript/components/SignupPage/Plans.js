@@ -33,16 +33,17 @@ class Plans extends React.Component {
     this.forceUpdate()
 
     // this.shouldComponentUpdate(true)
-    // // 1. Make a shallow copy of the items
-    // let items = [...this.state.items];
-    // // 2. Make a shallow copy of the item you want to mutate
-    // let item = { ...items[index] };
-    // // 3. Replace the property you're intested in
-    // item.title = item.title + ' ';
-    // // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
-    // items[1] = item;
-    // // 5. Set the state to our new copy
-    // this.setState({ items });
+
+    // 1. Make a shallow copy of the items
+    let items = [...this.state.items];
+    // 2. Make a shallow copy of the item you want to mutate
+    let item = { ...items[index] };
+    // 3. Replace the property you're intested in
+    item.active_class = 'active';
+    // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
+    items[index] = item;
+    // 5. Set the state to our new copy
+    this.setState({ items: items });
 
     // console.log(this.planRef)
     // this.planRef.current.changeActiveClass('active')
@@ -50,14 +51,20 @@ class Plans extends React.Component {
   }
 
   render() {
+    console.log('plans.render()', this.state.active_index)
     return (
       <div className="plans card-deck mb-0 text-dark text-center">
         {this.state.items.map((item, index) => (
-          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} item={item} index={index} active_index={this.state.active_index} active_class={index == this.state.active_index ? 'active' : ''} />
+          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} item={item} index={index} active_index={this.state.active_index} active_class={item.active_class} active_class2={index == this.state.active_index ? 'active' : ''} />
         ))}
       </div>
     )
   }
+
+  UNSAFE_componentWillReceiveProps({ props }) {
+    console.log('plans componentWillReceiveProps({ props })', props)
+  }
+
 
   componentDidMount() {
     const url = "api/v1/tariff_plans";
