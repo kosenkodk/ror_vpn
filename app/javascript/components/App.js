@@ -8,6 +8,8 @@ import Features from './Features'
 import Router from './Router'
 import ComingSoonPage from './ComingSoonPage'
 import Home from './HomePage/Home'
+import NotFoundPage from './NotFoundPage'
+import SuccessPage from './SuccessPage'
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="container-fluid bg1">
+        <div className={`container-fluid ${this.props.path === '404' || this.props.path === '200' ? "bg1" : "bg_star"}`}>
           <div className="row">
             <div className="container">
               <Header />
@@ -46,6 +48,10 @@ class App extends React.Component {
                 <Route exact path="/reset" render={() => <ComingSoonPage />} />
                 <Route exact path="/pricing" render={() => <ComingSoonPage />} />
                 <Route exact path="/help" render={() => <ComingSoonPage />} />
+                <Route exact path="/404" render={() => <NotFoundPage />} />
+                <Route exact path="/200" render={() => <SuccessPage />} />
+                <Route exact path="/204" render={() => <ComingSoonPage />} />
+                {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
                 <Route exact path="/features" render={() => <Features />} />
               </Router>
