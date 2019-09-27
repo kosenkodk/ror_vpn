@@ -28,6 +28,7 @@ class App extends React.Component {
         break;
       }
     }
+    className = '/login' === this.props.path ? 'bg1_cover' : className
     return className;
   }
 
@@ -42,32 +43,30 @@ class App extends React.Component {
     return (
       <div>
         <div className={`container-fluid ${this.getBackgdroundClass()}`}>
-          <div className="row">
-            <div className="container">
-              <Header />
-            </div>
-            <div className={this.props.path === '/' ? 'row' : 'container'}>
-              <Router path={this.props.path} context={{}} >
-                {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
-                <Route exact path="/" render={() => <Home features={this.props.features} />} />
-                <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
-                <Route exact path="/signup" render={() => <ComingSoonPage />} />
-                <Route exact path="/contact_us" render={() => <ComingSoonPage />} />
-                <Route exact path="/status_page" render={() => <ComingSoonPage />} />
-                <Route exact path="/forgot" render={() => <ComingSoonPage />} />
-                <Route exact path="/reset" render={() => <ComingSoonPage />} />
-                <Route exact path="/pricing" render={() => <ComingSoonPage />} />
-                <Route exact path="/help" render={() => <ComingSoonPage />} />
-                <Route exact path="/404" render={() => <NotFoundPage />} />
-                <Route exact path="/200" render={() => <SuccessPage />} />
-                <Route exact path="/204" render={() => <ComingSoonPage />} />
-                <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
+          <div className="container">
+            <Header />
+          </div>
+          <div className={this.props.path === '/' ? 'row' : 'container'}>
+            <Router path={this.props.path} context={{}} >
+              {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
+              <Route exact path="/" render={() => <Home features={this.props.features} />} />
+              <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
+              <Route exact path="/signup" render={() => <ComingSoonPage />} />
+              <Route exact path="/contact_us" render={() => <ComingSoonPage />} />
+              <Route exact path="/status_page" render={() => <ComingSoonPage />} />
+              <Route exact path="/forgot" render={() => <ComingSoonPage />} />
+              <Route exact path="/reset" render={() => <ComingSoonPage />} />
+              <Route exact path="/pricing" render={() => <ComingSoonPage />} />
+              <Route exact path="/help" render={() => <ComingSoonPage />} />
+              <Route exact path="/404" render={() => <NotFoundPage />} />
+              <Route exact path="/200" render={() => <SuccessPage />} />
+              <Route exact path="/204" render={() => <ComingSoonPage />} />
+              <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
 
-                {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+              {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
-                <Route exact path="/features" render={() => <Features />} />
-              </Router>
-            </div>
+              <Route exact path="/features" render={() => <Features />} />
+            </Router>
           </div>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
