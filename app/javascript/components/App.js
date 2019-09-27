@@ -26,7 +26,7 @@ class App extends React.Component {
 
   getBackgdroundClass() {
     let className = 'bg1'
-    for (let item of ['/404', '/200', '/204', '/coming_soon']) {
+    for (let item of ['/404', '/200', '/204', '/coming_soon', '/contacts/new', 'contact_us']) {
       if (item === this.props.path) {
         className = 'bg_star';
         break;
