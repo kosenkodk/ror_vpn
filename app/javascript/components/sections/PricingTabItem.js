@@ -9,35 +9,35 @@ class PricingTabItem extends React.Component {
 
     return (
       <React.Fragment>
-        <div class="card mb-3 active">
-          {/* <!-- <div class="card-header">
+        <div className="card mb-3 active">
+          {/* <!-- <div className="card-header">
           </div> --> */}
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title pt-0 mt-0 mb-0">
-              <span class="text-sm-1 align-text-top">$</span> {item.price}
+          <div className="card-body">
+            <h1 className="card-title pricing-card-title pt-0 mt-0 mb-0">
+              <span className="text-sm-1 align-text-top">$</span> {item.price}
             </h1>
 
-            <span class="text-sm-1 align-text-top pt-n5">Per month</span>
-            <h5 class="card-title"></h5>
-            <div class="row">
-              <div class="col-md-6 offset-0">
-                <ul class="text-left list-unstyled">
+            <span className="text-sm-1 align-text-top pt-n5">Per month</span>
+            <h5 className="card-title"></h5>
+            <div className="row">
+              <div className="col-md-6 offset-0">
+                <ul className="text-left list-unstyled">
                   {
                     item.features.split(',').map((feature, index) => (
-                      <li key={index}><img src={icon} class='img-fluid' alt='' /> {feature} </li>
+                      <li key={index}><img src={icon} className="img-fluid" alt="" /> {feature} </li>
                     ))
                   }
                 </ul>
               </div>
-              <div class="col-md-6 offset-0 text-right">
-                <p class="pb-0">
+              <div className="col-md-6 offset-0 text-right">
+                <p className="pb-0">
                   <a className="btn btn-blue active rounded-pill text-white">{`Save $ ${item.price_duration_sale} `} </a>
                 </p>
-                <h5 class="card-title text-info"><strike>$ {item.price_duration}</strike></h5>
-                <h5 class="card-title">{item.price_comment}</h5>
+                <h5 className="card-title text-info"><strike>$ {item.price_duration}</strike></h5>
+                <h5 className="card-title">{item.price_comment}</h5>
               </div>
-              <div class="col-md-12 pt-2">
-                {/* <!-- <button type="button" class="btn btn-outline-primary rounded-pill mb-n9">Best offer</button> --> */}
+              <div className="col-md-12 pt-2">
+                {/* <!-- <button type="button" className="btn btn-outline-primary rounded-pill mb-n9">Best offer</button> --> */}
                 <a className="btn btn-outline-primary">
                   Start my free trial
                 </a>
@@ -46,7 +46,7 @@ class PricingTabItem extends React.Component {
             </div>
           </div>
 
-          {/* <!-- <div class="card-footer">
+          {/* <!-- <div className="card-footer">
           </div> --> */}
         </div>
       </React.Fragment>

@@ -14,31 +14,31 @@ class PricingTabItemFree extends React.Component {
 
     return (
       <React.Fragment>
-        <div class="card mb-3 active">
-          {/* <!-- <div class="card-header">
+        <div className="card mb-3 active">
+          {/* <!-- <div className="card-header">
           </div> --> */}
-          <div class="card-body">
+          <div className="card-body">
 
-            <h1 class="card-title pricing-card-title">Free</h1>
-            <span class="text-sm-1 align-text-top pt-n5">Per month</span>
-            <h5 class="card-title"></h5>
-            <div class="row">
+            <h1 className="card-title pricing-card-title">Free</h1>
+            <span className="text-sm-1 align-text-top pt-n5">Per month</span>
+            <h5 className="card-title"></h5>
+            <div className="row">
 
-              <div class="col-md-4 offset-0">
-                <ul class="text-left list-unstyled">
+              <div className="col-md-4 offset-0">
+                <ul className="text-left list-unstyled">
                   {
                     featureList.map((feature, index) => (
-                      <li key={index}><img src={icon} class='img-fluid' alt='' /> {feature} </li>
+                      <li key={index}><img src={icon} className="img-fluid" alt="" /> {feature} </li>
                     ))
                   }
                 </ul>
               </div>
-              <div class="col-md-4"></div>
-              <div class="col-md-4 offset-0">
-                <ul class="text-left list-unstyled">
+              <div className="col-md-4"></div>
+              <div className="col-md-4 offset-0">
+                <ul className="text-left list-unstyled">
                   {
                     featureList2.map((feature, index) => (
-                      <li key={index}><img src={icon} class='img-fluid' alt='' /> {feature} </li>
+                      <li key={index}><img src={icon} className="img-fluid" alt="" /> {feature} </li>
                     ))
                   }
                 </ul>
@@ -47,7 +47,7 @@ class PricingTabItemFree extends React.Component {
             </div>
           </div>
 
-          {/* <!-- <div class="card-footer">
+          {/* <!-- <div className="card-footer">
           </div> --> */}
         </div>
       </React.Fragment >
