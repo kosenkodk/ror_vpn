@@ -17,6 +17,11 @@ class Plan extends React.Component {
     e.preventDefault()
   }
 
+  changeActiveClass = (value) => {
+    this.setState({
+      active_class: value
+    });
+  };
   render() {
     let { item } = this.props
     let { active_class } = this.state

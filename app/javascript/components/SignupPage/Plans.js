@@ -11,13 +11,20 @@ class Plans extends React.Component {
     this.state = {
       items: []
     }
+    this.planRef = React.createRef()
+    this.handleClick = this.handleClick.bind(this)
   }
 
+  handleClick = () => {
+    console.log('click')
+    console.log(this.planRef.current)
+    this.planRef.current.changeActiveClass()
+  }
   render() {
     return (
       <div className="plans card-deck mb-0 text-dark text-center">
         {this.state.items.map((item, index) => (
-          <Plan key={item.id} item={item} active_class={index == 0 ? 'active' : ''} />
+          <Plan ref={this.planRef} key={item.id} item={item} active_class={index == 0 ? 'active' : ''} />
         ))}
       </div>
     )
