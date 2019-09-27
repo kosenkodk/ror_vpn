@@ -13,12 +13,15 @@ class Plans extends React.Component {
       active_index: 0,
     }
     this.handleClick = this.handleClick.bind(this)
+    // this.handleMouseEnter = this.handleMouseEnter.bind(this)
   }
 
   shouldComponentUpdate() {
     console.log('shouldComponentUpdate')
     return true
   }
+
+
 
   handleClick(e, index) {
     e.preventDefault()
