@@ -7,6 +7,7 @@ class Plan extends React.Component {
     this.state = {
       active_class: props.active_class
     }
+    this.handleItemSelection = this.handleItemSelection.bind(this);
   }
 
   handleItemSelection(e) {
