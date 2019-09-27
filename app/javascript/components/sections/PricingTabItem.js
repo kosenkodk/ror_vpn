@@ -23,8 +23,8 @@ class PricingTabItem extends React.Component {
               <div class="col-md-6 offset-0">
                 <ul class="text-left list-unstyled">
                   {
-                    item.features.split(',').map(feature => (
-                      <li><img src={icon} class='img-fluid' alt='' /> {feature} </li>
+                    item.features.split(',').map((feature, index) => (
+                      <li key={index}><img src={icon} class='img-fluid' alt='' /> {feature} </li>
                     ))
                   }
                 </ul>

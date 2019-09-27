@@ -27,8 +27,8 @@ class PricingTabItemFree extends React.Component {
               <div class="col-md-4 offset-0">
                 <ul class="text-left list-unstyled">
                   {
-                    featureList.map(feature => (
-                      <li><img src={icon} class='img-fluid' alt='' /> {feature} </li>
+                    featureList.map((feature, index) => (
+                      <li key={index}><img src={icon} class='img-fluid' alt='' /> {feature} </li>
                     ))
                   }
                 </ul>
@@ -37,8 +37,8 @@ class PricingTabItemFree extends React.Component {
               <div class="col-md-4 offset-0">
                 <ul class="text-left list-unstyled">
                   {
-                    featureList2.map(feature => (
-                      <li><img src={icon} class='img-fluid' alt='' /> {feature} </li>
+                    featureList2.map((feature, index) => (
+                      <li key={index}><img src={icon} class='img-fluid' alt='' /> {feature} </li>
                     ))
                   }
                 </ul>
