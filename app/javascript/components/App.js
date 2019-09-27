@@ -6,7 +6,7 @@ import FooterSection from './sections/FooterSection'
 import Login from './Login'
 import Features from './Features'
 import Router from './Router'
-
+import ComingSoonPage from './ComingSoonPage'
 import Home from './HomePage/Home'
 
 class App extends React.Component {
@@ -34,18 +34,18 @@ class App extends React.Component {
               <Header />
             </div>
             <div className={this.props.path === '/' ? 'row' : 'container'}>
-              <Router path={this.props.path} context={{}}>
+              <Router path={this.props.path} context={{}} >
                 {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
                 <Route exact path="/" render={() => <Home features={this.props.features} />} />
-                <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
-                <Route exact path="/signup" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/contact_us" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/coming_soon" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/status_page" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/forgot" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/reset" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/pricing" render={() => <Login form_action='/login' token={this.props.token} />} />
-                <Route exact path="/help" render={() => <Login form_action='/login' token={this.props.token} />} />
+                <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
+                <Route exact path="/signup" render={() => <ComingSoonPage />} />
+                <Route exact path="/contact_us" render={() => <ComingSoonPage />} />
+                <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
+                <Route exact path="/status_page" render={() => <ComingSoonPage />} />
+                <Route exact path="/forgot" render={() => <ComingSoonPage />} />
+                <Route exact path="/reset" render={() => <ComingSoonPage />} />
+                <Route exact path="/pricing" render={() => <ComingSoonPage />} />
+                <Route exact path="/help" render={() => <ComingSoonPage />} />
 
                 <Route exact path="/features" render={() => <Features />} />
               </Router>
