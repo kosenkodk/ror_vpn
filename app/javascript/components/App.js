@@ -11,6 +11,7 @@ import Home from './HomePage/Home'
 import NotFoundPage from './NotFoundPage'
 import SuccessPage from './SuccessPage'
 import PricingPage from './PricingPage'
+import PasswordForgotPage from './PasswordForgotPage'
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +30,14 @@ class App extends React.Component {
         break;
       }
     }
-    className = '/login' === this.props.path ? 'bg1_cover' : className
+
+    for (let item of ['/login', '/forgot', '/reset']) {
+      if (item === this.props.path) {
+        className = 'bg1_cover';
+        break;
+      }
+    }
+
     return className;
   }
 
@@ -54,8 +62,8 @@ class App extends React.Component {
               <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
               <Route exact path="/signup" render={() => <ComingSoonPage />} />
               <Route exact path="/contact_us" render={() => <ComingSoonPage />} />
-              <Route exact path="/forgot" render={() => <ComingSoonPage />} />
               <Route exact path="/reset" render={() => <ComingSoonPage />} />
+              <Route exact path="/forgot" render={() => <PasswordForgotPage />} />
               <Route exact path="/pricing" render={() => <PricingPage />} />
               <Route exact path="/help" render={() => <ComingSoonPage />} />
               <Route exact path="/404" render={() => <NotFoundPage />} />
