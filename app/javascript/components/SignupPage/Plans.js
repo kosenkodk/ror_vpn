@@ -21,6 +21,8 @@ class Plans extends React.Component {
   }
 
   handleClick(e, index) {
+    e.preventDefault()
+
     console.log('plan.active_index:', index)
     console.log('before set this.state.active_index:', this.state.active_index)
 
@@ -33,7 +35,13 @@ class Plans extends React.Component {
     this.forceUpdate()
 
     // this.shouldComponentUpdate(true)
-
+    let itemList = this.state.items.map((item, item_index) => {
+      item.active_class = item_index === index ? 'active' : ''
+      return item
+    })
+    console.log(itemList)
+    this.setState({ items: itemList })
+    return
     // 1. Make a shallow copy of the items
     let items = [...this.state.items];
     // 2. Make a shallow copy of the item you want to mutate
@@ -47,7 +55,6 @@ class Plans extends React.Component {
 
     // console.log(this.planRef)
     // this.planRef.current.changeActiveClass('active')
-    e.preventDefault()
   }
 
   render() {
