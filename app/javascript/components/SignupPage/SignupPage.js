@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SignupForm from './SignupForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
+
+import SignupForm from './SignupForm'
+import Plans from './Plans'
+
 import imgStep1 from 'images/signup/step1'
 import imgStep2 from 'images/signup/step2'
 import imgStep3 from 'images/signup/step3'
@@ -85,6 +88,7 @@ class SignupPage extends React.Component {
               {/* <%= link_to image_tag('signup/step2.png', class:'img-fluid'), '#step3', {id: 'step2'} %> */}
             </p>
             <div className="container">
+              <Plans />
               {/* <%= render partial: 'auth/step2_plans', locals: {items: @plans } %> */}
             </div>
           </div>
