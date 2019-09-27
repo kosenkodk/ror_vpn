@@ -94,7 +94,7 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.props.handleIsFooterVisible(false)
+    this.props.handleIsFooterVisible(this.props.isFooterVisible)
     // if (this.props.email || this.props.password) {
     //   console.log('use props')
     //   // this.setState({ features: this.props.features })
