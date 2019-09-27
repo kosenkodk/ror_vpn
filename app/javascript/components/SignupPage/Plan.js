@@ -26,7 +26,7 @@ class Plan extends React.Component {
     let { item } = this.props
     let { active_class } = this.state
     return (
-      <div onClick={this.handleItemSelection} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
+      <div onClick={(e) => this.props.handleClick(e, item.id)} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
         <div className={`card mb-3 m-1 shadow-vega ${active_class}`}>
           <div className="card-header pt-0 pb-0">
             <div className={`icon-checkbox ${active_class} pb-5`}></div>
