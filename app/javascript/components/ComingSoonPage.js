@@ -2,7 +2,7 @@ import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
 import astronautImage from 'images/coming_soon/astronaut'
 import starImage from 'images/star'
-import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
+// import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
 import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 
 class ComingSoonPage extends React.Component {
@@ -12,7 +12,7 @@ class ComingSoonPage extends React.Component {
         <div className="featurette text-center">
           <div className="row">
             <div className="col-md-4">
-              <img src={astronautImage} className="img-fluid" />
+              <img src={astronautImage} className="img-fluid" alt="" />
             </div>
             <div className="col-md-4">
               <h1 className="featurette-heading">
@@ -28,11 +28,11 @@ class ComingSoonPage extends React.Component {
               </a> --> */}
             </div>
             <div className="col-md-4 justify-content-center align-self-center">
-              <img src={starImage} className="img-fluid" />
+              <img src={starImage} className="img-fluid" alt="" />
               {/* <img src={spaceshipImage} className="img-fluid" /> */}
             </div>
             <div className="col-md-12">
-              <img src={marsWithSpaceshipImage} className="img-fluid" />
+              <img src={marsWithSpaceshipImage} className="img-fluid" alt="" />
             </div>
           </div>
         </div>
