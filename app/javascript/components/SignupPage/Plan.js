@@ -13,7 +13,8 @@ class Plan extends React.Component {
 
   handleItemSelection(e) {
     this.setState({
-      active_class: 'active'
+      active_class: 'active',
+      hover_class: ''
     })
     e.preventDefault()
   }
@@ -23,16 +24,29 @@ class Plan extends React.Component {
     this.forceUpdate()
   }
 
+  handleMouseEnter(e, index) {
+    this.setState({
+      hover_class: 'active',
+    })
+    e.preventDefault()
+  }
+
+  handleMouseLeave(e, index) {
+    this.setState({
+      hover_class: ''
+    })
+    e.preventDefault()
+  }
 
   render() {
     let { item } = this.props
-    // let { active_class } = this.state
+    let { hover_class } = this.state
     let { active_class } = item
     return (
-      <div onClick={(e) => this.props.handleClick(e, this.props.index)} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
-        <div className={`card mb-3 m-1 shadow-vega ${active_class}`}>
+      <div onMouseLeave={(e) => this.handleMouseLeave(e, this.props.index)} onMouseEnter={(e) => this.handleMouseEnter(e, this.props.index)} onClick={(e) => this.props.handleClick(e, this.props.index)} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
+        <div className={`card mb-3 m-1 shadow-vega ${active_class} ${hover_class}`}>
           <div className="card-header pt-0 pb-0">
-            <div className={`icon-checkbox ${active_class} pb-5`}></div>
+            <div className={`icon-checkbox ${active_class} ${hover_class} pb-5`}></div>
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
           </div>
@@ -51,7 +65,7 @@ class Plan extends React.Component {
             {item.price > 0 &&
               <div>
                 <p className="p-0 mb-0 mt-2">
-                  <a className={`btn btn-pink-blue ${active_class} rounded-pill text-white`}>Save $ {item.price_duration_sale}</a>
+                  <a className={`btn btn-pink-blue ${active_class} ${hover_class} rounded-pill text-white`}>Save $ {item.price_duration_sale}</a>
                   {/* <%= link_to "Save $ #{item.try(:price_duration_sale)}", '#', {class: "btn btn-blue #{active_class} rounded-pill text-white"} %> */}
                 </p>
                 <h5 className="card-title text-info"><strike>$ {item.price_duration} </strike></h5>
@@ -70,7 +84,7 @@ class Plan extends React.Component {
           </div>
           <div className="card-footer p-0 m-0 mt-n2">
             {/* <%# if active_class.present? #%> */}
-            <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${active_class} d-none`}>Best
+            <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${active_class || hover_class ? '' : 'd-none'}`}>Best
         offer</button>
             {/* <%# end #%> */}
           </div>
