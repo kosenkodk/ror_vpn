@@ -10,6 +10,7 @@ import ComingSoonPage from './ComingSoonPage'
 import Home from './HomePage/Home'
 import NotFoundPage from './NotFoundPage'
 import SuccessPage from './SuccessPage'
+import PricingPage from './PricingPage'
 
 class App extends React.Component {
   constructor(props) {
@@ -53,10 +54,9 @@ class App extends React.Component {
               <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
               <Route exact path="/signup" render={() => <ComingSoonPage />} />
               <Route exact path="/contact_us" render={() => <ComingSoonPage />} />
-              <Route exact path="/status_page" render={() => <ComingSoonPage />} />
               <Route exact path="/forgot" render={() => <ComingSoonPage />} />
               <Route exact path="/reset" render={() => <ComingSoonPage />} />
-              <Route exact path="/pricing" render={() => <ComingSoonPage />} />
+              <Route exact path="/pricing" render={() => <PricingPage />} />
               <Route exact path="/help" render={() => <ComingSoonPage />} />
               <Route exact path="/404" render={() => <NotFoundPage />} />
               <Route exact path="/200" render={() => <SuccessPage />} />
