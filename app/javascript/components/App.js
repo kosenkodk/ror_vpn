@@ -20,6 +20,17 @@ class App extends React.Component {
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
   }
 
+  getBackgdroundClass() {
+    let className = 'bg1'
+    for (let item of ['/404', '/200', '/204', '/coming_soon']) {
+      if (item === this.props.path) {
+        className = 'bg_star';
+        break;
+      }
+    }
+    return className;
+  }
+
   handleIsFooterVisible(isVisible) {
     event.preventDefault()
     this.setState({
@@ -30,7 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className={`container-fluid ${this.props.path === '404' || this.props.path === '200' ? "bg1" : "bg_star"}`}>
+        <div className={`container-fluid ${this.getBackgdroundClass()}`}>
           <div className="row">
             <div className="container">
               <Header />
@@ -42,7 +53,6 @@ class App extends React.Component {
                 <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
                 <Route exact path="/signup" render={() => <ComingSoonPage />} />
                 <Route exact path="/contact_us" render={() => <ComingSoonPage />} />
-                <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
                 <Route exact path="/status_page" render={() => <ComingSoonPage />} />
                 <Route exact path="/forgot" render={() => <ComingSoonPage />} />
                 <Route exact path="/reset" render={() => <ComingSoonPage />} />
@@ -51,6 +61,8 @@ class App extends React.Component {
                 <Route exact path="/404" render={() => <NotFoundPage />} />
                 <Route exact path="/200" render={() => <SuccessPage />} />
                 <Route exact path="/204" render={() => <ComingSoonPage />} />
+                <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
+
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
                 <Route exact path="/features" render={() => <Features />} />
