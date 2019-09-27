@@ -11,6 +11,7 @@ class PasswordResetPage extends React.Component {
 
   handleFormSubmit(e, email, password) {
     console.log(email, password)
+    e.preventDefault()
   }
 
   render() {
