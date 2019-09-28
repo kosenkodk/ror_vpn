@@ -1,5 +1,7 @@
 import React from 'react'
 import PaymentMethod from './PaymentMethod'
+import PaymentMethodDetails from './PaymentMethodDetails'
+import PaymentMethodCreditCardForm from './PaymentMethodCreditCardForm'
 
 class PaymentMethods extends React.Component {
 
@@ -41,7 +43,7 @@ class PaymentMethods extends React.Component {
             <li key={`pm-key${index}`} className="nav-item col-sm-6 col-md-4">
               <a className="nav-link bg-transparent p-0" id={`pm${index}-tab`} data-toggle="tab" href={`#pm${index}`}
                 role="tab" aria-controls={`pm1${index}`} aria-selected={index == this.state.preselectedIndex ? true : false}>
-                <PaymentMethod item={item} handleClick={this.handleClick} active_class />
+                <PaymentMethod item={item} handleClick={this.handleClick} />
               </a>
             </li>
           ))}
@@ -53,7 +55,8 @@ class PaymentMethods extends React.Component {
               <div className="tab-content">
                 {this.state.items.map((item, index) => (
                   <div key={`pm-key${index}`} className={`tab-pane ${index == this.state.preselectedIndex ? 'active' : ''}`} id={`pm${index}`} role="tabpanel" aria-labelledby={`pm1${index}-tab`}>
-                    {item.title}
+                    {item.title === 'Credit card' && <PaymentMethodCreditCardForm />}
+                    <PaymentMethodDetails item={item} />
                     {/* <%= render partial: 'payment_methods_item1_details', locals: {f: f, active_class: ''} %> */}
                   </div>
                 ))}
