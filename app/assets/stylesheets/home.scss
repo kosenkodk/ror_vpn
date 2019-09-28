@@ -192,14 +192,21 @@ body {
 
 .btn-blue {
   background-color: rgb(44,176,181);
-  &:hover {
+  &.active, &:hover {
     opacity: $opacity;
+  }
+}
+
+.btn-pink-dark-blue {
+  background: rgb(38,8,48) !important;
+  &.active, &:hover {
+    background:rgb(44,176,181) !important;
   }
 }
 
 .btn-pink-dark {
   @extend .btn-outline-pink;
-  background-color: rgb(38,8,48) !important;
+  background: rgb(38,8,48) !important;
 }
 
 .btn-outline-pink {
