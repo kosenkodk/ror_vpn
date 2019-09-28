@@ -5,6 +5,7 @@ import I18n from 'i18n-js/index.js.erb'
 
 import SignupForm from './SignupForm'
 import Plans from './Plans'
+import PaymentMethods from './PaymentMethods'
 
 import imgStep1 from 'images/signup/step1'
 import imgStep2 from 'images/signup/step2'
@@ -106,7 +107,7 @@ class SignupPage extends React.Component {
           </div>
 
           <div className="col-md-12">
-            {/* <%= render partial: 'auth/step3_payment_methods', locals: {f: f} %> */}
+            <PaymentMethods />
           </div>
         </div>
       </form>
