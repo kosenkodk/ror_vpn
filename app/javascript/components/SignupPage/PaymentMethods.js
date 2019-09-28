@@ -7,19 +7,14 @@ class PaymentMethods extends React.Component {
     super(props);
     this.state = {
       items: [],
-      active_index: 0,
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(e, index) {
+  handleClick(e, selected_item_id) {
 
-    this.setState({
-      active_index: index,
-    })
-
-    let itemList = this.state.items.map((item, item_index) => {
-      item.active_class = item_index === index ? 'active' : ''
+    let itemList = this.state.items.map((item) => {
+      item.active_class = item.id === selected_item_id ? 'active' : ''
       return item
     })
 
@@ -36,9 +31,7 @@ class PaymentMethods extends React.Component {
             <li key={`pm-key${index}`} className="nav-item col-sm-6 col-md-4">
               <a className="nav-link bg-transparent p-0" id={`pm${index}-tab`} data-toggle="tab" href={`#pm${index}`}
                 role="tab" aria-controls={`pm1${index}`} aria-selected={index == 0 ? true : false}>
-                <PaymentMethod item={item} />
-                {/* <PaymentMethod handleClick={this.handleClick} key={`plan-${item.id}`} item={item} index={index} active_index={this.state.active_index} active_className={item.active_class} active_class2={index == this.state.active_index ? 'active' : ''} /> */}
-                {/* <%= render partial: 'auth/payment_method_item', locals: {image_name: get_active_checkbox_icon, active_class: '' } %> */}
+                <PaymentMethod item={item} handleClick={this.handleClick} />
               </a>
             </li>
           ))}
