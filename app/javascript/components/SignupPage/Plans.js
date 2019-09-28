@@ -29,7 +29,7 @@ class Plans extends React.Component {
     return (
       <div className="plans card-deck mb-0 text-dark text-center">
         {this.state.items.map((item, index) => (
-          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} item={item} index={index} active_class={this.preselectedIndex === index ? 'active' : ''} />
+          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} index={index} item={item} />
         ))}
       </div>
     )
