@@ -7,6 +7,7 @@ class PaymentMethods extends React.Component {
     super(props);
     this.state = {
       items: [],
+      preselectedIndex: 2
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -30,30 +31,27 @@ class PaymentMethods extends React.Component {
           {this.state.items.map((item, index) => (
             <li key={`pm-key${index}`} className="nav-item col-sm-6 col-md-4">
               <a className="nav-link bg-transparent p-0" id={`pm${index}-tab`} data-toggle="tab" href={`#pm${index}`}
-                role="tab" aria-controls={`pm1${index}`} aria-selected={index == 0 ? true : false}>
-                <PaymentMethod item={item} handleClick={this.handleClick} />
+                role="tab" aria-controls={`pm1${index}`} aria-selected={index == this.state.preselectedIndex ? true : false}>
+                <PaymentMethod item={item} handleClick={this.handleClick} active_class />
               </a>
             </li>
           ))}
         </ul>
 
-        {/* <div className="container payment_methods border_1_pink">
+        <div className="container payment_methods border_1_pink">
           <div className="row shadow-vega pb-5">
             <div className="col-md-8 offset-md-2 text-left">
               <div className="tab-content">
-                <div className="tab-pane" id="pm1" role="tabpanel" aria-labelledby="pm1-tab">
-                  <%= render partial: 'payment_methods_item1_details', locals: {f: f, active_class: ''} %>
-        </div>
-                <div className="tab-pane" id="pm2" role="tabpanel" aria-labelledby="pm2-tab">
-                  <%= render partial: 'payment_methods_item2_details', locals: {f: f, active_class: ''} %>
-        </div>
-                <div className="tab-pane active" id="pm3" role="tabpanel" aria-labelledby="pm3-tab">
-                  <%= render partial: 'payment_methods_item3_details', locals: {f: f, active_class: ''} %>
-        </div>
+                {this.state.items.map((item, index) => (
+                  <div key={`pm-key${index}`} className={`tab-pane ${index == this.state.preselectedIndex ? 'active' : ''}`} id={`pm${index}`} role="tabpanel" aria-labelledby={`pm1${index}-tab`}>
+                    {item.title}
+                    {/* <%= render partial: 'payment_methods_item1_details', locals: {f: f, active_class: ''} %> */}
+                  </div>
+                ))}
               </div>
             </div>
-          </div> */}
-
+          </div>
+        </div>
       </React.Fragment>
     )
   }
@@ -67,7 +65,13 @@ class PaymentMethods extends React.Component {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ items: response }))
+      .then(response => {
+        response.map((item, index) => (
+          item.active_class = index === this.state.preselectedIndex ? 'active' : ''
+        ))
+        this.setState({ items: response })
+      }
+      )
       .catch((err) => {
         console.log(err)
       });

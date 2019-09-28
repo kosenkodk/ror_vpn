@@ -7,7 +7,6 @@ class PaymentMethod extends React.Component {
     super(props)
     this.state = {
       active_class: props.active_class,
-      active_index: props.active_index
     }
   }
 
