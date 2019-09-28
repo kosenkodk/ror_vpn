@@ -7,32 +7,29 @@ class Plans extends React.Component {
     super(props);
     this.state = {
       items: [],
-      active_index: 0,
+      preselectedIndex: 0
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick(e, index) {
+    this.selectItemInCollectionByIndex(this.state.items, index)
+    e.preventDefault()
+  }
 
-    this.setState({
-      active_index: index,
-    })
-
-    let itemList = this.state.items.map((item, item_index) => {
-      item.active_class = item_index === index ? 'active' : ''
+  selectItemInCollectionByIndex(collection, selected_index) {
+    let itemList = collection.map((item, item_index) => {
+      item.active_class = item_index === selected_index ? 'active' : ''
       return item
     })
-
     this.setState({ items: itemList })
-
-    e.preventDefault()
   }
 
   render() {
     return (
       <div className="plans card-deck mb-0 text-dark text-center">
         {this.state.items.map((item, index) => (
-          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} item={item} index={index} active_index={this.state.active_index} active_class={item.active_class} active_class2={index == this.state.active_index ? 'active' : ''} />
+          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} item={item} index={index} active_class={this.preselectedIndex === index ? 'active' : ''} />
         ))}
       </div>
     )
@@ -46,9 +43,9 @@ class Plans extends React.Component {
           return response.json();
         }
         throw new Error("Network response was not ok.");
-      })
-      .then(response => this.setState({ items: response }))
-      .catch((err) => {
+      }).then(response => {
+        this.selectItemInCollectionByIndex(response, this.state.preselectedIndex)
+      }).catch((err) => {
         console.log(err)
       });
   }
