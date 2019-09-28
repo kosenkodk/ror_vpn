@@ -13,15 +13,24 @@ class PaymentMethods extends React.Component {
   }
 
   handleClick(e, selected_item_id) {
+    this.selectItemInCollectionByItemId(this.state.items, selected_item_id)
+    e.preventDefault()
+  }
 
-    let itemList = this.state.items.map((item) => {
+  selectItemInCollectionByIndex(collection, selected_item_id) {
+    let itemList = collection.map((item, index) => {
+      item.active_class = index === selected_item_id ? 'active' : ''
+      return item
+    })
+    this.setState({ items: itemList })
+  }
+
+  selectItemInCollectionByItemId(collection, selected_item_id) {
+    let itemList = collection.map((item) => {
       item.active_class = item.id === selected_item_id ? 'active' : ''
       return item
     })
-
     this.setState({ items: itemList })
-
-    e.preventDefault()
   }
 
   render() {
@@ -66,12 +75,8 @@ class PaymentMethods extends React.Component {
         throw new Error("Network response was not ok.");
       })
       .then(response => {
-        response.map((item, index) => (
-          item.active_class = index === this.state.preselectedIndex ? 'active' : ''
-        ))
-        this.setState({ items: response })
-      }
-      )
+        this.selectItemInCollectionByIndex(response, this.state.preselectedIndex)
+      })
       .catch((err) => {
         console.log(err)
       });
