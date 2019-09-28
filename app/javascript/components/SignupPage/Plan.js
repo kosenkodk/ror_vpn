@@ -5,18 +5,18 @@ class Plan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      active_class: props.active_class,
+      hover_class: ''
     }
   }
 
-  handleMouseEnter(e, index) {
+  handleMouseEnter(e) {
     this.setState({
       hover_class: 'active',
     })
     e.preventDefault()
   }
 
-  handleMouseLeave(e, index) {
+  handleMouseLeave(e) {
     this.setState({
       hover_class: ''
     })
@@ -25,10 +25,13 @@ class Plan extends React.Component {
 
   render() {
     let { item } = this.props
-    let { hover_class } = this.state
     let { active_class } = item
+    let { hover_class } = this.state
     return (
-      <div onMouseLeave={(e) => this.handleMouseLeave(e, this.props.index)} onMouseEnter={(e) => this.handleMouseEnter(e, this.props.index)} onClick={(e) => this.props.handleClick(e, this.props.index)} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
+      <div onMouseLeave={(e) => this.handleMouseLeave(e)}
+        onMouseEnter={(e) => this.handleMouseEnter(e)}
+        onClick={(e) => this.props.handleClick(e, this.props.index)}
+        className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
         <div className={`card mb-3 m-1 shadow-vega ${active_class} ${hover_class}`}>
           <div className="card-header pt-2 pb-0">
             <div className={`icon-checkbox ${active_class} ${hover_class} pb-5`}></div>
