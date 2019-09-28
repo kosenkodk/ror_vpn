@@ -29,7 +29,6 @@ class Plans extends React.Component {
   }
 
   render() {
-    console.log('plans.render()', this.state.active_index)
     return (
       <div className="plans card-deck mb-0 text-dark text-center">
         {this.state.items.map((item, index) => (
