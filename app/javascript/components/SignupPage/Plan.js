@@ -31,7 +31,7 @@ class Plan extends React.Component {
     return (
       <div onMouseLeave={(e) => this.handleMouseLeave(e, this.props.index)} onMouseEnter={(e) => this.handleMouseEnter(e, this.props.index)} onClick={(e) => this.props.handleClick(e, this.props.index)} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 p-0 card-group">
         <div className={`card mb-3 m-1 shadow-vega ${active_class} ${hover_class}`}>
-          <div className="card-header pt-0 pb-0">
+          <div className="card-header pt-2 pb-0">
             <div className={`icon-checkbox ${active_class} ${hover_class} pb-5`}></div>
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
