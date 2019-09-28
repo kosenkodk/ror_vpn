@@ -37,7 +37,7 @@ class PaymentMethod extends React.Component {
         </div>
         <div className="card-body pt-0">
           {item.icon_urls.map((item, index) => (
-            <img src={item} className="img-fluid" />
+            <img key={`pm-icon-{index}`} src={item} className="img-fluid" />
           ))}
         </div>
         <div className="card-footer"></div>
