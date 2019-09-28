@@ -11,14 +11,14 @@ class PaymentMethod extends React.Component {
     }
   }
 
-  handleMouseEnter(e, index) {
+  handleMouseEnter(e) {
     this.setState({
       hover_class: 'active',
     })
     e.preventDefault()
   }
 
-  handleMouseLeave(e, index) {
+  handleMouseLeave(e) {
     this.setState({
       hover_class: ''
     })
@@ -27,17 +27,19 @@ class PaymentMethod extends React.Component {
 
   render() {
     let { item } = this.props
-    let { hover_class } = this.state
     let { active_class } = item
+    let { hover_class } = this.state
     return (
-      <div className="card m-0 mb-3 shadow-vega <%= active_class %>">
+      <div onMouseLeave={(e) => this.handleMouseLeave(e)}
+        onMouseEnter={(e) => this.handleMouseEnter(e)} onClick={(e) => this.props.handleClick(e, item.id)}
+        className={`card m-0 mb-3 shadow-vega ${active_class} ${hover_class}`}>
         <div className="card-header">
-          <div className="icon-checkbox <%= active_class %>"></div>
+          <div className={`icon-checkbox ${active_class} ${hover_class}`}></div>
           <h5 className="pt-3 mb-0 font-weight-normal">{item.title}</h5>
         </div>
         <div className="card-body pt-0">
           {item.icon_urls.map((item, index) => (
-            <img key={`pm-icon-{index}`} src={item} className="img-fluid" />
+            <img key={`pm-icon-key${index}`} src={item} className="img-fluid" />
           ))}
         </div>
         <div className="card-footer"></div>
