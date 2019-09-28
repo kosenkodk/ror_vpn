@@ -51,7 +51,7 @@ class Plan extends React.Component {
             {item.price > 0 &&
               <div>
                 <p className="p-0 mb-0 mt-2">
-                  <a className={`btn btn-pink-blue ${active_class} ${hover_class} rounded-pill text-white`}>Save $ {item.price_duration_sale}</a>
+                  <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill text-white`}>Save $ {item.price_duration_sale}</a>
                   {/* <%= link_to "Save $ #{item.try(:price_duration_sale)}", '#', {class: "btn btn-blue #{active_class} rounded-pill text-white"} %> */}
                 </p>
                 <h5 className="card-title text-info"><strike>$ {item.price_duration} </strike></h5>
