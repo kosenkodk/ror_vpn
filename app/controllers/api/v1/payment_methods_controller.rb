@@ -1,7 +1,7 @@
 class Api::V1::PaymentMethodsController < ApplicationController
   def index
     items = PaymentMethod.all
-    render json: items#.as_json(only: [:id, :title, :icons], methods: [:icon_url])
+    render json: items.as_json(only: [:id, :title, :icons], methods: [ :active_class])
   end
 
   def show
