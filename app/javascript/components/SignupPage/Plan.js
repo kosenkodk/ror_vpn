@@ -8,20 +8,6 @@ class Plan extends React.Component {
       active_class: props.active_class,
       active_index: props.active_index
     }
-    this.handleItemSelection = this.handleItemSelection.bind(this);
-  }
-
-  handleItemSelection(e) {
-    this.setState({
-      active_class: 'active',
-      hover_class: ''
-    })
-    e.preventDefault()
-  }
-
-  UNSAFE_componentWillReceiveProps({ props }) {
-    console.log('componentWillReceiveProps({ props })', props)
-    this.forceUpdate()
   }
 
   handleMouseEnter(e, index) {
@@ -83,10 +69,8 @@ class Plan extends React.Component {
             </ul>
           </div>
           <div className="card-footer p-0 m-0 mt-n2">
-            {/* <%# if active_class.present? #%> */}
             <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${active_class || hover_class ? '' : 'd-none'}`}>Best
         offer</button>
-            {/* <%# end #%> */}
           </div>
         </div>
       </div>
