@@ -199,8 +199,11 @@ body {
 
 .btn-pink-dark-blue {
   background: rgb(38,8,48) !important;
-  &.active, &:hover {
+  &.active {
     background:rgb(44,176,181) !important;
+  }
+  &:hover {
+    opacity: $opacity;
   }
 }
 
