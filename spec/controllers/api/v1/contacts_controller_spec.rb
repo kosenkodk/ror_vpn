@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ContactsController, type: :controller do
-  describe 'GET new' do
+  xdescribe 'GET new' do
     it 'renders :new template' do
       get :new
       expect(response).to render_template(:new)
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
     context 'valid data' do
       it 'redirects to contacts#show' do
         post :create, params: { contact: valid_data }
-        expect(response).to redirect_to(contact_path(assigns(:contact)))
+        expect(response.body).to eq I18n.t('pages.contact_us.success_message')
       end
       it 'create new contact in database' do
         expect {
@@ -33,8 +33,9 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
       let(:invalid_data) { FactoryBot.attributes_for(:contact, email: '') }
       it 'renders :new template' do
         post :create, params: { contact: invalid_data }
-        # expect(response).to render_template(:new)
-        expect(response).to redirect_to(new_contact_path)
+        # expect(response.body).to eq I18n.t('pages.contact_us.error_message')
+        expect(response.body).to have_content("Email can't be blank")
+        expect(response.body).to have_text("Email is invalid")
       end
       it 'doesn\'t create new contact in the database' do
         expect {
