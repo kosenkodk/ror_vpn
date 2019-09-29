@@ -13,7 +13,7 @@ class PaymentMethodDetails extends React.Component {
   render() {
     let { item } = this.props
     return (
-      <div className="row">
+      <div className="row p-2">
         <div className="col-xs-12">
           <table className="table text-white mt-5">
             <tbody>

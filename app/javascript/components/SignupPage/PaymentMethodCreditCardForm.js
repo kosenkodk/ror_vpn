@@ -15,7 +15,7 @@ class PaymentMethodCreditCardForm extends React.Component {
 
   render() {
     return (
-      <div className="row p-md-5 bg_credit_card">
+      <div className="row p-2 p-md-5 bg_credit_card">
         <div className="col-sm-8">
           <h5>{I18n.t('bank_card.info')}</h5>
           <label className="col-form-label">{I18n.t('bank_card.number')}</label>
