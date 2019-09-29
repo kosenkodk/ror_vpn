@@ -29,7 +29,7 @@ class PaymentMethodDetails extends React.Component {
               </tr>
               <tr>
                 <td className="text-left">VAT 0% - USA
-            <select className="form-control col-xs-12 col-sm-6 col-md-4" id="exampleFormControlSelect1">
+            <select className="form-control col-xs-12 col-sm-6 col-md-4" id={`countryControlSelect${item.id}`}>
                     <option>USA</option>
                   </select>
                 </td>
@@ -46,7 +46,7 @@ class PaymentMethodDetails extends React.Component {
 
           <p className="text-left">By submitting this form, you agree to our <a href="#">Terms</a> and
           <a href="#"> Privacy Policy </a>.
-                                    If you do not want to receive information about VPN services, please send an email to
+                                        If you do not want to receive information about VPN services, please send an email to
       <a href="mailto:privacy@vega.com">privacy@vega.com</a>.
     </p>
         </div>
@@ -55,7 +55,7 @@ class PaymentMethodDetails extends React.Component {
           <button className="btn btn-outline-primary btn-block">{I18n.t('buttons.continue')}</button>
           {/* <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %> */}
         </div>
-      </div>
+      </div >
     )
   }
 }
