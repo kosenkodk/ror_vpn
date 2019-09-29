@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resources :features, only: [:index, :show]
       resources :tariff_plans#, only: [:index, :show]
       resources :payment_methods, only: [:index, :show]
-      resources :contacts #, only: [:index, :show]
+      resources :contacts, only: [:new, :show, :create]
       
       post 'login', to: 'auth#login'
     end
