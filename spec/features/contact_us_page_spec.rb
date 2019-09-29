@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ContactsController, type: :feature do
+RSpec.describe Api::V1::ContactsController, type: :feature do
   describe 'Contact Us Page' do
     it 'display :new form' do
       visit new_contact_path
