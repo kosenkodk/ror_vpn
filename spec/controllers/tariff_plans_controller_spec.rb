@@ -23,7 +23,7 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe TariffPlansController, type: :controller do
+RSpec.xdescribe TariffPlansController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # TariffPlan. As you add validations to TariffPlan, be sure to
