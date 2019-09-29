@@ -18,14 +18,14 @@ Rails.application.routes.draw do
   # get '/react_hello', to: 'home#react_hello'
   # get '/react_app', to: 'home#react_app'
 
-  # resources :contacts
-
   namespace :api do
     namespace :v1 do
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
       resources :tariff_plans, only: [:index, :show]
       resources :payment_methods, only: [:index, :show]
+      resources :contacts #, only: [:index, :show]
+      
       post 'login', to: 'auth#login'
     end
   end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ContactsController, type: :controller do
-
+RSpec.describe Api::V1::ContactsController, type: :controller do
   describe 'GET new' do
     it 'renders :new template' do
       get :new
@@ -44,6 +43,5 @@ RSpec.describe ContactsController, type: :controller do
       end
     end
   end
-
 
 end

@@ -17,7 +17,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
     end
 
     it 'with contact link in body message' do
-      expect(email.body.to_s).to include(contact_url(contact_id))
+      expect(email.body.to_s).to include(api_v1_contact_url(contact_id))
     end
 
     it 'with not empty email template'
@@ -36,7 +36,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
     end
 
     it 'with contact link in body message' do
-      expect(admin_email.body.to_s).to include(contact_url(contact_id))
+      expect(admin_email.body.to_s).to include(api_v1_contact_url(contact_id))
     end
 
   end
