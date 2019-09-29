@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "tariff_plans/show", type: :view do
+RSpec.xdescribe "tariff_plans/show", type: :view do
   before(:each) do
     @tariff_plan = assign(:tariff_plan, TariffPlan.create!(
       :title => "Title",
