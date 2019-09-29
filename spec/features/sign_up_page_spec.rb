@@ -1,6 +1,6 @@
 require 'rails_helper'
   
-RSpec.describe AuthController, type: :feature do
+RSpec.describe AuthController, type: :feature, js: true do
   describe 'GET :signup' do
     let!(:plan_free) { FactoryBot.create :tariff_plan }
     let!(:plan) { FactoryBot.create :tariff_plan, price: 1 }
@@ -8,7 +8,7 @@ RSpec.describe AuthController, type: :feature do
     #   @plan = FactoryBot.create( :tariff_plan )
     # end
     it 'render :signup template' do
-      visit(signup_path)
+      visit('/signup')
       # create an account section
       expect(find('.signup')).to have_content(I18n.t('pages.signup.steps.title1'))
       expect(find('.signup')).to have_content('Email address')

@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::ContactsController, type: :feature do
+RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
+  before do
+    visit '/contacts/new'
+  end
   describe 'Contact Us Page' do
     it 'display :new form' do
-      visit new_contact_path
       expect(page).to have_content('Contact us')
       expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
     end
@@ -12,7 +14,6 @@ RSpec.describe Api::V1::ContactsController, type: :feature do
   describe 'POST :create' do
     context 'valid data' do
       it 'redirect to success page' do
-        visit new_contact_path
         expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
         fill_in('contact[email]', with: 'email@example.com')
         # fill_in('contact_message', with: 'message')
@@ -28,7 +29,6 @@ RSpec.describe Api::V1::ContactsController, type: :feature do
       end
       context 'invalid data' do
         it 'redirect to error page' do
-          visit new_contact_path
           click_on('Submit')
           # expect(find('.lead')).to have_text(I18n.t('pages.contact_us.error_message'))
           # expect(page).to have_content(I18n.t('pages.contact_us.error_message'))

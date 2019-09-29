@@ -1,9 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe AuthController, type: :feature do
+RSpec.describe AuthController, type: :feature, js: true do
+
   describe 'GET :login' do
+    before do 
+      visit('/login')
+    end
+    
     it 'render :login template' do
-      visit(login_path)
       expect(find('.login')).to have_content('Log in to your account')
       expect(find('.login')).to have_content("Don't have an account?")
       expect(find('.login')).to have_content('Sign Up')
@@ -17,13 +21,11 @@ RSpec.describe AuthController, type: :feature do
     end
 
     it 'click on forgot password link' do
-      visit(login_path)
       click_on(I18n.t('pages.login.form.forgot_pwd'))
       expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.title'))
     end
 
     it 'click on Having trouble logging in link' do
-      visit(login_path)
       click_on(I18n.t("pages.login.form.login_trouble"))
       expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.title'))
     end
@@ -31,7 +33,7 @@ RSpec.describe AuthController, type: :feature do
 
   describe 'GET :forgot_pwd' do
     it 'render :forgot_pwd template' do
-      visit(forgot_pwd_path)
+      visit('/forgot')
       expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.title'))
       expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.subtitle'))
       expect(find('label').text).to eq('Email address')
@@ -45,7 +47,7 @@ RSpec.describe AuthController, type: :feature do
 
   describe 'GET :reset_pwd' do
     it 'render :reset_pwd template' do
-      visit(reset_pwd_path)
+      visit('/reset')
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.title'))
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.subtitle'))
       expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password'))
@@ -60,7 +62,7 @@ RSpec.describe AuthController, type: :feature do
 
   describe 'GET :success' do
     it 'render :success template' do
-      visit(reset_pwd_success_path)
+      visit('/reset_pwd_success')
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.success.title'))
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.success.subtitle'))
       expect(find_link(I18n.t('buttons.ok')).text).to eq(I18n.t('buttons.ok'))

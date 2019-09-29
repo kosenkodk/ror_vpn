@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :feature do
+RSpec.describe HomeController, type: :feature, js: true do
   describe 'Pricing Page' do
     
     let!(:plan) { FactoryBot.create :tariff_plan, title: 'Plan for 1 year', price: 1.00 }
     let!(:plan_free) { FactoryBot.create :tariff_plan, title: 'Free plan', price: 0.00 }
 
     it 'display :new form' do
-      visit pricing_path
+      visit '/pricing'
       
       expect(page).to have_content('One price for all your devices')
 
