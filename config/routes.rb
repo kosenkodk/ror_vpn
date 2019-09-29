@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
-      resources :tariff_plans, only: [:index, :show]
+      resources :tariff_plans#, only: [:index, :show]
       resources :payment_methods, only: [:index, :show]
       resources :contacts #, only: [:index, :show]
       
