@@ -13,7 +13,7 @@ class PaymentMethodDetails extends React.Component {
   render() {
     let { item } = this.props
     return (
-      <div className="row p-2">
+      <div className="row m-1">
         <div className="col-xs-12">
           <table className="table text-white mt-5">
             <tbody>
@@ -46,7 +46,7 @@ class PaymentMethodDetails extends React.Component {
 
           <p className="text-left">By submitting this form, you agree to our <a href="#">Terms</a> and
           <a href="#"> Privacy Policy </a>.
-                                        If you do not want to receive information about VPN services, please send an email to
+                                          If you do not want to receive information about VPN services, please send an email to
       <a href="mailto:privacy@vega.com">privacy@vega.com</a>.
     </p>
         </div>
