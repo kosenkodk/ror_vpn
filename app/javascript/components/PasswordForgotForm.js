@@ -21,7 +21,7 @@ class PasswordForgotPage extends React.Component {
         <div className="form-group row">
           <label className="col-sm-3 col-form-label">{I18n.t('pages.login.form.email_address')}</label>
           <div className="col-sm-6">
-            <input type="email" required="false" className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.login.form.help.email')} />
+            <input id="user_email" type="email" required="false" className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.login.form.help.email')} />
           </div>
           <div className="col-sm-3"></div>
         </div>

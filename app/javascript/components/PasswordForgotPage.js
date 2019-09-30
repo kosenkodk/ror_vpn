@@ -71,6 +71,9 @@ class PasswordForgotPage extends React.Component {
       </div>
     )
   }
+  componentDidMount() {
+    this.props.handleIsFooterVisible(false)
+  }
 }
 
 export default PasswordForgotPage
