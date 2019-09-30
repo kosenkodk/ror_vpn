@@ -42,6 +42,10 @@ class PasswordResetPage extends React.Component {
       </div>
     )
   }
+
+  componentDidMount() {
+    this.props.handleIsFooterVisible(false)
+  }
 }
 
 export default PasswordResetPage

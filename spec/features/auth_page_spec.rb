@@ -38,8 +38,8 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(find('.forgot_pwd')).to have_content(I18n.t('pages.forgot_pwd.subtitle'))
       expect(find('label').text).to eq('Email address')
       expect(page.has_selector?('input#user_email')).to eq(true)
-      expect(find_button('Submit').value).to eq('Submit')
-      expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.submit'))
+      expect(find_button('Submit').text).to eq('Submit')
+      # expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.submit'))
       expect(page).not_to have_css('footer')
       expect(page).not_to have_css('header')
     end
@@ -52,9 +52,10 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.subtitle'))
       expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password'))
       expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password_confirm'))
+      
       expect(page.has_selector?('input#user_password')).to eq(true)
       expect(page.has_selector?('input#user_password_confirm')).to eq(true)
-      expect(find_button(I18n.t('buttons.reset_password')).value).to eq(I18n.t('buttons.reset_password'))
+      expect(find_button(I18n.t('buttons.reset_password')).text).to eq(I18n.t('buttons.reset_password'))
       expect(page).not_to have_css('footer')
       expect(page).not_to have_css('header')
     end
