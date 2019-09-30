@@ -6,7 +6,7 @@ RSpec.describe AuthController, type: :feature, js: true do
     before do 
       visit('/login')
     end
-    
+
     it 'render :login template' do
       expect(find('.login')).to have_content('Log in to your account')
       expect(find('.login')).to have_content("Don't have an account?")
