@@ -51,12 +51,12 @@ RSpec.describe HomeController, type: :feature do
     it 'renders contact us page' do
       visit(root_path)
       # within(:css, 'navbar') do
-        click_on('Contact Us', match: :first)
+        click_on(I18n.t('nav_menu.contact_us'), match: :first)
       # end
-      expect(find('.navbar')).to have_content('Contact us')
+      expect(find('.navbar')).to have_content(I18n.t('nav_menu.contact_us'))
       expect(find('.footer', match: :first)).to have_content(I18n.t('footer.contact.contact_us'))
       expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
-      expect(find_button('Submit').value).to have_text('Submit')
+      expect(find_button('Submit')).to have_text('Submit')
     end
   end
   
