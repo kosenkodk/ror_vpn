@@ -4,6 +4,9 @@ RSpec.describe AuthController, type: :feature, js: true do
   describe 'GET :signup' do
     let!(:plan_free) { FactoryBot.create :tariff_plan }
     let!(:plan) { FactoryBot.create :tariff_plan, price: 1 }
+    let!(:payment_method1) { FactoryBot.create :payment_method, title: I18n.t('payment_method.cryptocurrencies') }
+    let!(:payment_method2) { FactoryBot.create :payment_method, title: I18n.t('payment_method.qiwi')  }
+    let!(:payment_method3) { FactoryBot.create :payment_method, title: I18n.t('payment_method.credit_card')  }
     # before do
     #   @plan = FactoryBot.create( :tariff_plan )
     # end
@@ -26,7 +29,7 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(find('.signup')).to have_content(I18n.t('bank_card.info'))
       expect(find('.signup')).to have_content(I18n.t('bank_card.number'))
       expect(find('.signup')).to have_content(I18n.t('bank_card.holder_name'))
-      expect(find('.signup')).to have_content(I18n.t('bank_card.cvc'))
+      expect(find('.signup')).to have_content(I18n.t('bank_card.cvvcvc'))
       
       # tariff plans
       expect(find('.signup')).to have_css('.plans .card.active')
@@ -34,7 +37,8 @@ RSpec.describe AuthController, type: :feature, js: true do
       # payment methods
       expect(page).to have_css('.payment_methods .card.active')
       
-      expect(find('.payment_methods .tab-pane.active input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
+      expect(find('.payment_methods .tab-pane.active button').text).to eq(I18n.t('buttons.continue'))
+      # expect(find('.payment_methods .tab-pane.active input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
       # expect(find('input[type="submit"]').value).to eq(I18n.t('buttons.continue'))
       # expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       
