@@ -19,7 +19,7 @@ RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
     context 'valid data' do
       it 'redirect to success page' do
         # visit '/contacts/new'
-
+—
         expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
         fill_in('contact[email]', with: 'email@example.com')
         # fill_in('contact[email]', with: 'email@example.com')

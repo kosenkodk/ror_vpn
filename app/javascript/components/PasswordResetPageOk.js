@@ -14,6 +14,7 @@ class PasswordResetPageOk extends React.Component {
   }
 
   render() {
+
     return (
       <div className="container reset_pwd">
         <div className="featurette text-center">
@@ -31,6 +32,10 @@ class PasswordResetPageOk extends React.Component {
         </div>
       </div>
     )
+  }
+
+  componentDidMount() {
+    this.props.handleIsFooterVisible(false)
   }
 }
 

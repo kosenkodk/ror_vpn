@@ -69,7 +69,7 @@ class App extends React.Component {
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
               <Route exact path="/forgot" render={() => <PasswordForgotPage />} />
               <Route exact path="/reset" render={() => <PasswordResetPage />} />
-              <Route exact path="/reset_ok" render={() => <PasswordResetPageOk />} />
+              <Route exact path="/reset_ok" render={() => <PasswordResetPageOk handleIsFooterVisible={this.handleIsFooterVisible} />} />
 
               <Route exact path="/pricing" render={() => <PricingPage />} />
               <Route exact path="/help" render={() => <ComingSoonPage />} />
