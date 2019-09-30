@@ -9,34 +9,34 @@ class SuccessPage extends React.Component {
   render() {
     return (
 
-      <div class="container" >
-        <div class="featurette">
-          <div class="row status_page text-center">
-            <div class="col-md-4">
+      <div className="container" >
+        <div className="featurette">
+          <div className="row status_page text-center">
+            <div className="col-md-4">
               <img src={astronautImage} className="img-fluid" alt="" />
             </div>
-            <div class="col-md-4">
-              <h1 class="featurette-heading">
+            <div className="col-md-4">
+              <h1 className="featurette-heading">
 
               </h1>
-              <h2 class="featurette-heading">
+              <h2 className="featurette-heading">
                 {I18n.t('pages.reset_pwd.success.title')}
 
                 {/* {I18n.t('pages.reset_pwd.success.subtitle')} */}
               </h2>
-              <p class="lead">
+              <p className="lead">
                 {I18n.t('pages.reset_pwd.success.subtitle')}
 
                 {/* <%=flash[:error] if flash[:error]%>
           <%=flash[:notice] if flash[:notice]%> */}
               </p>
-              <a href="/" class="btn btn-outline-primary btn-block">
-                <span class="glyphicon glyphicon-circle-arrow-right ">Ok</span></a>
+              <a href="/" className="btn btn-outline-primary btn-block">
+                <span className="glyphicon glyphicon-circle-arrow-right ">Ok</span></a>
             </div>
-            <div class="col-md-4 justify-content-center align-self-center">
+            <div className="col-md-4 justify-content-center align-self-center">
               <img src={starImage} className="img-fluid" alt="" />
             </div>
-            <div class="col-md-12">
+            <div className="col-md-12">
               <img src={marsWithSpaceshipImage} className="img-fluid" alt="" />
             </div>
           </div>

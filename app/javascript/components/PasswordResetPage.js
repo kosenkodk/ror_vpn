@@ -16,25 +16,25 @@ class PasswordResetPage extends React.Component {
 
   render() {
     return (
-      <div class="container reset_pwd">
-        <div class="featurette text-center">
-          <div class="row">
-            <div class="col-md-8 offset-md-2 text-center">
-              <h1 class="featurette-heading">
+      <div className="container reset_pwd">
+        <div className="featurette text-center">
+          <div className="row">
+            <div className="col-md-8 offset-md-2 text-center">
+              <h1 className="featurette-heading">
                 {I18n.t('pages.reset_pwd.title')}
               </h1>
-              <p class="lead">
+              <p className="lead">
                 {I18n.t('pages.reset_pwd.subtitle')}
               </p>
             </div>
 
-            <div class="col-md-8 offset-md-2">
-              <div class="text-right">
+            <div className="col-md-8 offset-md-2">
+              <div className="text-right">
                 <PasswordResetForm handleFormSubmit={this.handleFormSubmit} />
               </div>
             </div>
 
-            <div class="col-md-12">
+            <div className="col-md-12">
               {/* <img src={Image_mars_with_spaceship} className="img-fluid" /> */}
             </div>
           </div>
