@@ -18,7 +18,7 @@ class ContactusPage extends React.Component {
   handleFormSubmit(e, email, message, message_short) {
     console.log(email, message, message_short);
 
-    const csrf = ''
+    let csrf = ''
     try {
       csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
       // csrf = $('meta[name="csrf-token"]').content //.attr('content')
