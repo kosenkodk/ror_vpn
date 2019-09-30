@@ -3,23 +3,31 @@ import PropTypes from 'prop-types'
 import LoginForm from './LoginForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
+import FlashMessages from './sections/FlashMessages'
 
 class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.state = {
-    //   email: props.email,
-    //   password: props.password
-    // };
+    this.state = {
+      notice: '',
+      error: ''
+      //   email: props.email,
+      //   password: props.password
+    };
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleFormSubmit(e, email, password) {
+    e.preventDefault()
     console.log(email, password)
+    this.setState({ notice: '', error: '' })
 
-    e.preventDefault();
-    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    let csrf = ''
+    try {
+      csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    } catch (e) { }
+
     // console.log('csrf:' + csrf)
     // console.log('csrf token:' + this.props.token)
     const postData = { 'email': email, 'password': password }
@@ -39,13 +47,15 @@ class Login extends React.Component {
     }).then((response) => { return response.json() })
       .then((item) => {
         console.log('success', item)
+        this.setState({ notice: item.message })
         // this.addNewItem(item)
         // navigate to the admin panel
         // this.props.history.push('/tariff_plans') # TODO: will implement react component
-        this.props.history.push('/features')
+        // this.props.history.push('/features')
       }).catch((err) => {
-        console.log(err)
-        this.props.history.push('/')
+        console.log('error', err)
+        this.setState({ error: err.message })
+        // this.props.history.push('/')
       });
   }
 
@@ -71,6 +81,10 @@ class Login extends React.Component {
                 {I18n.t('pages.login.do_not_have_an_account')}
                 <a href="/signup"> {I18n.t("pages.signup.title")}</a>
               </p>
+            </div>
+
+            <div className="col-md-4 offset-md-4 text-center">
+              <FlashMessages error={this.state.error} notice={this.state.notice} />
             </div>
 
             <div className="col-md-8 offset-md-2">
