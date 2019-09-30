@@ -12,6 +12,7 @@ import NotFoundPage from './NotFoundPage'
 import SuccessPage from './SuccessPage'
 import PricingPage from './PricingPage'
 import PasswordResetPage from './PasswordResetPage'
+import PasswordResetPageOk from './PasswordResetPageOk'
 import PasswordForgotPage from './PasswordForgotPage'
 import ContactusPage from './ContactusPage'
 import SignupPage from './SignupPage/SignupPage'
@@ -34,7 +35,7 @@ class App extends React.Component {
       }
     }
 
-    for (let item of ['/login', '/forgot', '/reset']) {
+    for (let item of ['/login', '/forgot', '/reset', '/reset_ok']) {
       if (item === this.props.path) {
         className = 'bg1_cover';
         break;
@@ -68,6 +69,8 @@ class App extends React.Component {
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
               <Route exact path="/forgot" render={() => <PasswordForgotPage />} />
               <Route exact path="/reset" render={() => <PasswordResetPage />} />
+              <Route exact path="/reset_ok" render={() => <PasswordResetPageOk />} />
+
               <Route exact path="/pricing" render={() => <PricingPage />} />
               <Route exact path="/help" render={() => <ComingSoonPage />} />
               <Route exact path="/404" render={() => <NotFoundPage />} />
