@@ -49,7 +49,6 @@ RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
         message = I18n.t('pages.contact_us.error_message')
         # expect(find('.lead')).to have_text(message))
         # expect(page).to have_content(message)
-        # expect(page).to have_text("Email can't be blank")
 
         # expect(find('.alert')).to have_text("Email can't be blank")
         expect(find('#flash_message')).to have_text("Email can't be blank")
