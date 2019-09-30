@@ -22,7 +22,7 @@ class SignupPage extends React.Component {
     console.log(email, password)
 
     e.preventDefault()
-    return;
+    /*return;
 
     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     // console.log('csrf:' + csrf)
@@ -51,7 +51,7 @@ class SignupPage extends React.Component {
       }).catch((err) => {
         console.log(err)
         this.props.history.push('/')
-      });
+      });*/
   }
 
   render() {
