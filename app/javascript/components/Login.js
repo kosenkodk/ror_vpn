@@ -18,19 +18,63 @@ class Login extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
-  handleFormSubmit(e, email, password) {
-    e.preventDefault()
-    console.log(email, password)
-    this.setState({ notice: '', error: '' })
+  http_with_csrf(url, method, data) {
 
     let csrf = ''
     try {
       csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     } catch (e) { }
 
+    const postData = data //{ 'email': email, 'message_short': message_short, 'message': message };
+    fetch(url, {
+      method: method, // *GET, POST, PUT, DELETE, etc.
+      credentials: 'include', // same-origin, include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrf
+      },
+      body: JSON.stringify(postData), // data type should the same value as Content-Type header
+    }).then((response) => {
+      this.setState({ error: '', notice: '' })
+
+      if (response.ok) {
+        return response.json();
+        // return [response.text(), response.status]
+        // return { response.text, response.status }
+      }
+      throw response //new Error('Network response was not ok.');
+    })
+      .then((item) => {
+        console.log('success', item)
+        this.setState({ notice: item.message })
+        // console.log('success', response.text(), response.status);
+        // this.props.history.push('/200')
+      }).catch((response) => {
+        response.json().then((item) => {
+          console.log('error', item)
+          this.setState({ error: item.message })
+          // (response.status === 200) ? this.setState({ notice: message }) : this.setState({ error: message })
+        })
+        // this.props.history.push('/404')
+      });
+  }
+
+  handleFormSubmit(e, email, password) {
+    e.preventDefault()
+    console.log(email, password)
+    this.setState({ notice: '', error: '' })
+
     // console.log('csrf:' + csrf)
     // console.log('csrf token:' + this.props.token)
     const postData = { 'email': email, 'password': password }
+    this.http_with_csrf('/api/v1/login', 'POST', postData)
+    return
+
+    let csrf = ''
+    try {
+      csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+    } catch (e) { }
+
     fetch('/api/v1/login', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       // mode: 'cors', // no-cors, cors, *same-origin

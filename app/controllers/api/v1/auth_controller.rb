@@ -7,7 +7,7 @@ class Api::V1::AuthController < ApplicationController
     if (User.exists?(email: params[:email]))
       render json: {'status': 200, 'message': 'ok'}
     else
-      render json: {'status': 404, 'message': 'please singup first'}
+      render json: {'status': 404, 'message': 'please singup first'}, status: 404
     end
   end
 
