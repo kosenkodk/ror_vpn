@@ -16,10 +16,11 @@ RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
       it 'redirect to success page' do
         expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
         fill_in('contact[email]', with: 'email@example.com')
+        # fill_in('contact[email]', with: 'email@example.com')
         # fill_in('contact_message', with: 'message')
         # fill_in('contact_message_short', with: 'message short')
         # select('Option', from: 'Alpha Department')
-        click_on('Submit')
+        click_on('Submit') # find(#contact_submit)
         # click_button('Submit')
         # find('#contact_submit').click
         # find_button('Submit').click

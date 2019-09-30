@@ -21,7 +21,7 @@ class Api::V1::ContactsController < ApplicationController
       notice = @contact.errors.full_messages.join(', ') # capitalize
       # notice = @contact.errors.messages.map { |k, v| "#{k}: #{v.split(',').join(' & ')}" }.join("; ") #{ |k,v| "#{k}: #{v}" }.join(";") # custom with ; and & delimitters
       # flash[:error] = notice || t('pages.contact_us.error_message')
-      render json: notice || t('pages.contact_us.error_message')
+      render json: notice || t('pages.contact_us.error_message'), status: 404
     end
 
   end
