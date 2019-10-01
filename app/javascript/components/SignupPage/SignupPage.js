@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
+import { postCsrfRequest, handleErrors } from 'helpers/http'
 
 import SignupForm from './SignupForm'
 import Plans from './Plans'
@@ -20,15 +21,15 @@ class SignupPage extends React.Component {
       password: '',
       password_confirm: '',
 
-      plan: '',
+      plan: 0,
 
-      payment_method: '',
+      payment_method: 0,
 
-      card_number: '',
+      card_number: 0,
       holder_name: '',
-      month: '',
-      year: '',
-      cvc: ''
+      month: 0,
+      year: 0,
+      cvc: 0
     }
     this.onFormSubmit = this.onFormSubmit.bind(this)
   }
@@ -49,16 +50,21 @@ class SignupPage extends React.Component {
   }
 
   onSignupChange() {
-
+    //TODO: onSignupChange instead of these: onEmailChange, onPasswordChange, onPasswordConfirmChange (example: onPaymentMethodChange)
   }
 
-  onPlanChange(event) {
-    console.log('onPlanChange')
-  }
-
-  onPaymentMethodChange(card_number, holder_name, month, year, cvc) {
-    console.log('onPaymentMethodChange', card_number, holder_name, month, year, cvc)
+  onPlanChange(e, id) {
+    console.log('onPlanChange', id)
     this.setState({
+      plan: id
+    })
+    e.preventDefault()
+  }
+
+  onPaymentMethodChange(id, card_number, holder_name, month, year, cvc) {
+    console.log('onPaymentMethodChange', id, card_number, holder_name, month, year, cvc)
+    this.setState({
+      payment_method: id,
       card_number: card_number,
       holder_name: holder_name,
       month: month,
@@ -68,7 +74,13 @@ class SignupPage extends React.Component {
   }
 
   onFormSubmit(e) {
-    console.log('onFormSubmit')
+    console.log('onFormSubmit', this.state)
+    const data = this.state
+
+    fetch(postCsrfRequest('/api/v1/signup', 'POST', data))
+      .then(handleErrors)
+      .then((item) => this.signinSuccessful(item))
+      .catch((error) => this.signinFailed(error));
 
     e.preventDefault()
 
@@ -103,6 +115,30 @@ class SignupPage extends React.Component {
         this.props.history.push('/')
       });*/
   }
+
+  signinSuccessful(response) {
+    this.setState({ notice: response.notice })
+    return response
+  }
+
+  signinFailed(error) {
+    // api error
+    try {
+      error.then(item => {
+        this.setState({ error: item.error })
+      })
+    } catch (e) {
+      this.setState({ error: e })
+    }
+
+    // network error
+    if (error instanceof TypeError) {
+      if (error.length > 0)
+        this.setState({ error: error })
+    }
+
+  }
+
 
   render() {
 
@@ -143,7 +179,7 @@ class SignupPage extends React.Component {
               {/* <%= link_to image_tag('signup/step2.png', class:'img-fluid'), '#step3', {id: 'step2'} %> */}
             </p>
             <div className="container">
-              <Plans onPlanChange={this.onPlanChange.bind(this, 'plan')} />
+              <Plans onPlanChange={this.onPlanChange.bind(this)} />
               {/* <%= render partial: 'auth/step2_plans', locals: {items: @plans } %> */}
             </div>
           </div>
