@@ -35,7 +35,7 @@ class App extends React.Component {
       }
     }
 
-    for (let item of ['/login', '/forgot', '/reset', '/reset_ok']) {
+    for (let item of ['/login', '/signin', '/forgot', '/reset', '/reset_ok']) {
       if (item === this.props.path) {
         className = 'bg1_cover';
         break;
@@ -64,6 +64,7 @@ class App extends React.Component {
               {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
               <Route exact path="/" render={() => <Home features={this.props.features} />} />
               <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
+              <Route exact path="/signin" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
               <Route exact path="/signup" render={() => <SignupPage />} />
               <Route exact path="/contact_us" render={() => <ContactusPage />} />
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
