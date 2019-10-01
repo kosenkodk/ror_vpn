@@ -48,7 +48,7 @@ class SignupForm extends React.Component {
           <label className="col-sm-3 col-form-label">{I18n.t('pages.signup.form.password_confirm')}</label>
           {/* <%= f.label t('pages.signup.form.password_confirm'), {class:'col-sm-3 col-form-label'} %> */}
           <div className="col-sm-6">
-            <input type="password" onChange={this.props.onPasswordConfirmChange} value={this.props.password_confirm} required={false} className="form-control" placeholder={I18n.t('pages.login.form.help.password')} />
+            <input type="password" onChange={this.props.onPasswordConfirmChange} value={this.props.password_confirmation} required={false} className="form-control" placeholder={I18n.t('pages.login.form.help.password')} />
             {/* <input type="password" required={false} className="form-control" ref={(input) => { this.password_confirm = input }} placeholder={I18n.t('pages.login.form.help.password')} /> */}
             {/* <%= f.text_field :password_confirm, required: false, type: :password, class: "form-control", placeholder: t('pages.login.form.help.password') %> */}
           </div>

@@ -19,7 +19,7 @@ class SignupPage extends React.Component {
     this.state = {
       email: '',
       password: '',
-      password_confirm: '',
+      password_confirmation: '',
 
       plan: 0,
 
@@ -163,7 +163,7 @@ class SignupPage extends React.Component {
               <SignupForm handleFormSubmit={this.handleFormSubmit}
                 email={this.state.email} onEmailChange={this.onEmailChange.bind(this, 'email')}
                 password={this.state.password} onPasswordChange={this.onPasswordChange.bind(this, 'password')}
-                password_confirm={this.state.password_confirm} onPasswordConfirmChange={this.onPasswordConfirmChange.bind(this, 'password_confirm')}
+                password_confirmation={this.state.password_confirmation} onPasswordConfirmChange={this.onPasswordConfirmChange.bind(this, 'password_confirmation')}
               />
             </div>
           </div>
