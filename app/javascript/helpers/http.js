@@ -12,13 +12,13 @@ const handleErrors = (response) => {
     if (response.ok) {
       return response.json();
     }
-    throw new ExceptionWithMessageAndResponse(response.json(), "")
+    throw new ExceptionWithMessageAndResponse(response, "")
   }
   // console.log('not json')
   if (response.ok) {
-    return response.text();
+    return response;
   }
-  throw new ExceptionWithMessageAndResponse(response.text(), "Network error") //TypeError("Oops, we haven't got JSON!");
+  throw new ExceptionWithMessageAndResponse(response, "Network error") //TypeError("Oops, we haven't got JSON!");
 
 }
 
