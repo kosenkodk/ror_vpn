@@ -1,46 +1,42 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
 import PasswordForgotForm from './PasswordForgotForm'
+import FlashMessages from './sections/FlashMessages'
+import { withRouter } from "react-router-dom";
+import { postCsrfRequest, handleErrors } from 'helpers/http'
 
 class PasswordForgotPage extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      error: '',
+      notice: ''
+    }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleFormSubmit(e, email, password) {
-    console.log(email, password)
+    this.setState({ error: '', notice: '' })
 
-    e.preventDefault();
-    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    // console.log('csrf:' + csrf)
-    // console.log('csrf token:' + this.props.token)
-    const postData = { 'email': email, 'password': password }
-    fetch('/api/v1/forgot', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      // mode: 'cors', // no-cors, cors, *same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      // redirect: 'follow', // manual, *follow, error,
-      // referrer: 'no-referrer', // no-referrer, *client
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRF-Token': csrf
-      },
-      body: JSON.stringify(postData), // data type should the same value as Content-Type header
-    }).then((response) => { return response.json() })
+    const data = { 'email': email }
+    fetch(postCsrfRequest('/api/v1/forgot', 'POST', data))
+      .then(handleErrors)
       .then((item) => {
         console.log('success', item)
-        // this.addNewItem(item)
-        // navigate to the admin panel
-        // this.props.history.push('/tariff_plans') # TODO: will implement react component
+        this.setState({ notice: item.message })
         this.props.history.push('/features')
-      }).catch((err) => {
-        console.log(err)
-        this.props.history.push('/')
+        // this.props.history.push('/200')
+      })
+      .catch((response) => {
+        response.json().then((item) => {
+          console.log('error', item)
+          this.setState({ error: item.message })
+        })
+        // this.props.history.push('/404')
       });
+
+    e.preventDefault();
   }
 
   render() {
@@ -55,6 +51,10 @@ class PasswordForgotPage extends React.Component {
               <p className="lead">
                 {I18n.t('pages.forgot_pwd.subtitle')}
               </p>
+            </div>
+
+            <div className="col-sm-8 offset-md-2 text-center">
+              <FlashMessages error={this.state.error} notice={this.state.notice} />
             </div>
 
             <div className="col-md-8 offset-md-2 ">
@@ -76,4 +76,4 @@ class PasswordForgotPage extends React.Component {
   }
 }
 
-export default PasswordForgotPage
+export default withRouter(PasswordForgotPage)
