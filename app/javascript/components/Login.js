@@ -22,35 +22,47 @@ class Login extends React.Component {
   handleFormSubmit(e, email, password) {
     e.preventDefault()
     this.setState({ notice: '', error: '' })
+
     const data = { 'email': email, 'password': password }
 
-    fetch(postCsrfRequest('/api/v1/login', 'POST', data))
+    fetch(postCsrfRequest('/api/v1/signin', 'POST', data))
       .then(handleErrors)
-      .then((item) => {
-        this.setState({ notice: item.message })
-
-        // this.props.history.push('/features')
-        // this.props.history.push('/200')
-      })
-      .catch((error) => {
-        // api error
-        try {
-          error.then(item => {
-            this.setState({ error: item.message })
-          })
-        } catch (e) {
-          this.setState({ error: e })
-        }
-
-        // network error
-        if (error instanceof TypeError) {
-          if (error.length > 0)
-            this.setState({ error: error })
-        }
-
-        // this.props.history.push('/404')
-      });
+      .then((item) => this.signinSuccessful(item))
+      .catch((error) => this.signinFailed(error));
   }
+
+  signinSuccessful(response) {
+    // console.log('signinSuccessful', response)
+    this.setState({ notice: response.notice })
+    // this.props.history.push('/features')
+    // this.props.history.push('/200')
+    return response
+  }
+
+  signinFailed(error) {
+    // console.log('signinFailed', error)
+    // let error_message = (error.response && error.response.data && error.response.data.error) || ''
+    // this.setState({ notice: error_message })
+    // return error
+    // api error
+    try {
+      error.then(item => {
+        this.setState({ error: item.error })
+      })
+    } catch (e) {
+      this.setState({ error: e })
+    }
+
+    // network error
+    if (error instanceof TypeError) {
+      if (error.length > 0)
+        this.setState({ error: error })
+    }
+
+    // this.props.history.push('/404')
+  }
+
+
 
   render() {
     // let formFields = {}

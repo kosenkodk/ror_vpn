@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  signin:
+    invalid_credentials: "Can not find such email/password combination"    
   email: "E-Mail"
   vegaVPN: "VEGA"
   nav_menu:

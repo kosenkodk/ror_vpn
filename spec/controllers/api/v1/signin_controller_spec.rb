@@ -53,7 +53,8 @@ RSpec.describe Api::V1::SigninController, type: :controller do
 
         expect(response.content_type).to eq('application/json; charset=utf-8')
         expect(response.cookies[JWTSessions.access_cookie]).not_to be_present
-        expect(response_json).to eq('ok')
+        expect(response_json.values).to eq(['ok'])
+        expect(response_json['notice']).to eq('ok')
         expect(response).to be_successful
       end
       it 'fail' do

@@ -23,12 +23,12 @@ class Api::V1::SigninController < ApplicationController
   def destroy
     session = JWTSessions::Session.new(payload: payload)
     session.flush_by_access_payload
-    render json: :ok
+    render json: { notice: :ok }
   end
 
   private
 
   def not_found
-    render json: { error: 'Cannont find such email/password combination' }, status: :not_found
+    render json: { error: I18n.t('signin.invalid_credentials') }, status: :not_found
   end
 end
