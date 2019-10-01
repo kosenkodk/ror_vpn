@@ -21,7 +21,7 @@ class PasswordForgotPage extends React.Component {
         <div className="form-group row">
           <label className="col-sm-3 col-form-label">{I18n.t('pages.login.form.email_address')}</label>
           <div className="col-sm-6">
-            <input id="user_email" type="email" required="false" className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.login.form.help.email')} />
+            <input id="user_email" type="email" required={false} className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.login.form.help.email')} />
           </div>
           <div className="col-sm-3"></div>
         </div>
@@ -29,7 +29,7 @@ class PasswordForgotPage extends React.Component {
         <div className="form-group row">
           <div className="col-sm-6 offset-sm-3">
             <br />
-            <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.email.value); }} className="btn btn-outline-primary btn-block">{I18n.t('buttons.submit')}</button>
+            <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value); }} className="btn btn-outline-primary btn-block">{I18n.t('buttons.submit')}</button>
           </div>
         </div>
       </form>
