@@ -126,6 +126,8 @@ class SignupPage extends React.Component {
   responseSuccessful(response) {
     console.log('responseFailed', response)
     this.setState({ notice: response.notice })
+    if (response.error && response.error.length > 0)
+      this.setState({ error: response.error })
     return response
   }
 
