@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import { postCsrfRequest, handleErrors } from 'helpers/http'
+import FlashMessages from '../sections/FlashMessages'
 
 import SignupForm from './SignupForm'
 import Plans from './Plans'
@@ -17,6 +18,9 @@ class SignupPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      notice: '',
+      error: '',
+
       email: '',
       password: '',
       password_confirmation: '',
@@ -75,12 +79,15 @@ class SignupPage extends React.Component {
 
   onFormSubmit(e) {
     console.log('onFormSubmit', this.state)
+
+    this.setState({ notice: '', error: '' })
+
     const data = this.state
 
     fetch(postCsrfRequest('/api/v1/signup', 'POST', data))
       .then(handleErrors)
-      .then((item) => this.signinSuccessful(item))
-      .catch((error) => this.signinFailed(error));
+      .then((item) => this.responseSuccessful(item))
+      .catch((error) => this.responseFailed(error));
 
     e.preventDefault()
 
@@ -116,26 +123,30 @@ class SignupPage extends React.Component {
       });*/
   }
 
-  signinSuccessful(response) {
+  responseSuccessful(response) {
+    console.log('responseFailed', response)
     this.setState({ notice: response.notice })
     return response
   }
 
-  signinFailed(error) {
+  responseFailed(error) {
+    console.log('responseFailed', error)
     // api error
     try {
       error.then(item => {
+        console.log('item', item)
+
         this.setState({ error: item.error })
       })
     } catch (e) {
       this.setState({ error: e })
     }
 
-    // network error
-    if (error instanceof TypeError) {
-      if (error.length > 0)
-        this.setState({ error: error })
-    }
+    // // network error
+    // if (error instanceof TypeError) {
+    //   if (error.length > 0)
+    //     this.setState({ error: error })
+    // }
 
   }
 
@@ -144,6 +155,11 @@ class SignupPage extends React.Component {
 
     return (
       <form className="container">
+        <div className="row">
+          <div className="col-md-8 offset-md-2">
+            <FlashMessages error={this.state.error} notice={this.state.notice} />
+          </div>
+        </div>
         <div className="row signup text-center">
           <div className="col-md-8 offset-md-2">
             <h1 className="m-0">
@@ -202,7 +218,9 @@ class SignupPage extends React.Component {
               onPaymentMethodChange={this.onPaymentMethodChange.bind(this)}
             />
           </div>
-
+          <div className="col-md-12">
+            <FlashMessages error={this.state.error} notice={this.state.notice} />
+          </div>
         </div>
       </form>
     );
