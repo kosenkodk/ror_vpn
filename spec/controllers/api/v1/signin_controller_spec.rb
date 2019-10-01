@@ -57,6 +57,7 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         expect(response_json['notice']).to eq('ok')
         expect(response).to be_successful
       end
+      
       it 'fail' do
         delete :destroy
         
