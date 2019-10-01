@@ -19,7 +19,7 @@ class Api::V1::TicketsController < ApplicationController
     @ticket = current_user.tickets.build(item_params)
 
     @ticket.save!
-    render json: @ticket, status: :created, location: @ticket
+    render json: @ticket, status: :created, location: api_v1_ticket_url(@ticket)
   end
 
   # PATCH/PUT /tickets/1

@@ -54,7 +54,7 @@ RSpec.describe Api::V1::TodosController, type: :controller do
         post :create, params: { todo: valid_attributes }
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json; charset=utf-8')
-        expect(response.location).to eq(todo_url(Todo.last))
+        expect(response.location).to eq(api_v1_todo_url(Todo.last))
       end
 
       it 'unauth without CSRF' do

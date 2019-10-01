@@ -54,7 +54,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
         post :create, params: { ticket: valid_attributes }
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json; charset=utf-8')
-        expect(response.location).to eq(ticket_url(Ticket.last))
+        expect(response.location).to eq(api_v1_ticket_url(Ticket.last))
       end
 
       it 'unauth without CSRF' do
