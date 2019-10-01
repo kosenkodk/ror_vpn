@@ -27,26 +27,24 @@ class Login extends React.Component {
     fetch(postCsrfRequest('/api/v1/login', 'POST', data))
       .then(handleErrors)
       .then((item) => {
-        // console.log('success', item)
         this.setState({ notice: item.message })
 
         // this.props.history.push('/features')
         // this.props.history.push('/200')
       })
       .catch((error) => {
+        try {
+          error.then(item => {
+            this.setState({ error: item.message })
+          })
+        } catch (e) {
+          this.setState({ error: e })
+        }
+
         if (error instanceof TypeError) {
           console.log('TypeError: not json')
           if (error.length > 0)
             this.setState({ error: error })
-        }
-
-        try {
-          console.log('error', error)
-          error.response.then(response => {
-            this.setState({ error: response.message })
-          })
-        } catch (e) {
-          this.setState({ error: e })
         }
 
         // this.props.history.push('/404')

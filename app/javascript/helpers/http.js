@@ -11,10 +11,11 @@ const handleErrors = (response) => {
     if (response.ok) {
       return response.json();
     }
-    throw new ExceptionWithMessageAndResponse(response.json(), "")
+    // throw new ExceptionWithMessageAndResponse(response.json(), "")
+    throw response.json()
   }
 
-  throw new TypeError("Network error")//Oops, we haven't got JSON!");
+  throw new TypeError("Network error")
 }
 
 const postCsrfRequest = (url, method, data) => {
