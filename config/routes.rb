@@ -26,7 +26,6 @@ Rails.application.routes.draw do
       resources :payment_methods, only: [:index, :show]
       resources :contacts, only: [:new, :show, :create]
       
-      post 'login', to: 'auth#login'
     end
   end
   
