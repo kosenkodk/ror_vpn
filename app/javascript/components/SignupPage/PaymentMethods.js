@@ -59,10 +59,9 @@ class PaymentMethods extends React.Component {
                       item.title === 'Credit card' &&
                       <PaymentMethodCreditCardForm
                         onPaymentMethodChange={this.props.onPaymentMethodChange}
-                        handleFormSubmit={this.props.handleFormSubmit}
                       />
                     }
-                    <PaymentMethodDetails item={item} />
+                    <PaymentMethodDetails onFormSubmit={this.props.onFormSubmit} item={item} />
                     {/* <%= render partial: 'payment_methods_item1_details', locals: {f: f, active_class: ''} %> */}
                   </div>
                 ))}
