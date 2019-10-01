@@ -7,15 +7,19 @@ function ExceptionWithMessageAndResponse(response, message) {
 
 const handleErrors = (response) => {
   let contentType = response.headers.get("content-type");
-
-  if (response.ok) {
-    if (contentType && contentType.includes("application/json")) {
+  if (contentType && contentType.includes("application/json")) {
+    console.log('json')
+    if (response.ok) {
       return response.json();
     }
-    throw new ExceptionWithMessageAndResponse(response, "Oops, we haven't got JSON!") //TypeError("Oops, we haven't got JSON!");
+    throw new ExceptionWithMessageAndResponse(response.json(), "")
+  } else {
+    console.log('not json')
+    if (response.ok) {
+      return response.text();
+    }
+    throw new ExceptionWithMessageAndResponse(response.text(), "Network error") //TypeError("Oops, we haven't got JSON!");
   }
-  throw new ExceptionWithMessageAndResponse(response, 'Network response was not ok.') //Error('Network response was not ok.')
-  // throw response //new Error('Network response was not ok.');
 }
 
 const postCsrfRequest = (url, method, data) => {
