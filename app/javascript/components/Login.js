@@ -4,7 +4,7 @@ import LoginForm from './LoginForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
-import { handleErrors } from 'helpers/http'
+import { postCsrfRequest, handleErrors } from 'helpers/http'
 
 class Login extends React.Component {
 
@@ -19,49 +19,32 @@ class Login extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
-  http_with_csrf(url, method, dataRaw) {
+  handleFormSubmit(e, email, password) {
+    e.preventDefault()
+    this.setState({ notice: '', error: '' })
+
     let csrf = ''
     try {
       csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     } catch (e) { }
 
-    const dataJson = JSON.stringify(dataRaw)
+    const data = { 'email': email, 'password': password }
 
-    let postRequest = new Request(url, {
-      method: method, // *GET, POST, PUT, DELETE, etc.
-      // mode: 'cors', // no-cors, cors, *same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      // redirect: 'follow', // manual, *follow, error,
-      // referrer: 'no-referrer', // no-referrer, *client
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRF-Token': csrf
-      },
-      body: dataJson
-    })
-
-    fetch(postRequest).then(handleErrors)
+    fetch(postCsrfRequest('/api/v1/login', 'POST', data, csrf))
+      .then(handleErrors)
       .then((item) => {
         console.log('success', item)
         this.setState({ notice: item.message })
         this.props.history.push('/features')
         // this.props.history.push('/200')
-      }).catch((response) => {
+      })
+      .catch((response) => {
         response.json().then((item) => {
           console.log('error', item)
           this.setState({ error: item.message })
         })
         // this.props.history.push('/404')
       });
-  }
-
-  handleFormSubmit(e, email, password) {
-    e.preventDefault()
-    this.setState({ notice: '', error: '' })
-    const postData = { 'email': email, 'password': password }
-    this.http_with_csrf('/api/v1/login', 'POST', postData)
   }
 
   render() {
