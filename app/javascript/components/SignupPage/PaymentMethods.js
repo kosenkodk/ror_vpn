@@ -55,7 +55,13 @@ class PaymentMethods extends React.Component {
               <div className="tab-content">
                 {this.state.items.map((item, index) => (
                   <div key={`pm-key${index}`} className={`tab-pane ${index == this.state.preselectedIndex ? 'active' : ''}`} id={`pm${index}`} role="tabpanel" aria-labelledby={`pm1${index}-tab`}>
-                    {item.title === 'Credit card' && <PaymentMethodCreditCardForm />}
+                    {
+                      item.title === 'Credit card' &&
+                      <PaymentMethodCreditCardForm
+                        onPaymentMethodChange={this.props.onPaymentMethodChange}
+                        handleFormSubmit={this.props.handleFormSubmit}
+                      />
+                    }
                     <PaymentMethodDetails item={item} />
                     {/* <%= render partial: 'payment_methods_item1_details', locals: {f: f, active_class: ''} %> */}
                   </div>
