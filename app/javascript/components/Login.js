@@ -35,16 +35,19 @@ class Login extends React.Component {
       })
       .catch((error) => {
         if (error instanceof TypeError) {
-          console.log('TypeError')
+          console.log('TypeError: not json')
+          if (error.length > 0)
+            this.setState({ error: error })
         }
-        // console.log('error', error)
 
-        error.response.json().then(response => {
-          this.setState({ error: response.message })
-        })
-
-        if (error.message.length > 0)
-          this.setState({ error: error.message })
+        try {
+          console.log('error', error)
+          error.response.then(response => {
+            this.setState({ error: response.message })
+          })
+        } catch (e) {
+          this.setState({ error: e })
+        }
 
         // this.props.history.push('/404')
       });
