@@ -32,7 +32,7 @@ class Login extends React.Component {
         this.props.history.push('/features')
         // this.props.history.push('/200')
       })
-      .catch((response) => {
+      .catch(({ response, message }) => {
         response.json().then((item) => {
           console.log('error', item)
           this.setState({ error: item.message })

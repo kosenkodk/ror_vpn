@@ -12,9 +12,9 @@ const handleErrors = (response) => {
     if (contentType && contentType.includes("application/json")) {
       return response.json();
     }
-    throw new ExceptionWithMessageAndResponse(response.text(), "Oops, we haven't got JSON!") //TypeError("Oops, we haven't got JSON!");
+    throw new ExceptionWithMessageAndResponse(response, "Oops, we haven't got JSON!") //TypeError("Oops, we haven't got JSON!");
   }
-  throw new ExceptionWithMessageAndResponse(response.text(), 'Network response was not ok.') //Error('Network response was not ok.')
+  throw new ExceptionWithMessageAndResponse(response, 'Network response was not ok.') //Error('Network response was not ok.')
   // throw response //new Error('Network response was not ok.');
 }
 

@@ -62,7 +62,7 @@ class PasswordForgotPage extends React.Component {
               </p>
             </div>
 
-            <div className="col-sm-8 offset-md-2 text-center">
+            <div className="col-sm-4 offset-md-4 text-center">
               <FlashMessages error={this.state.error} notice={this.state.notice} />
             </div>
 
