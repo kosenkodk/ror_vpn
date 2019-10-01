@@ -4,6 +4,7 @@ import LoginForm from './LoginForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
+import { handleErrors } from 'helpers/http'
 
 class Login extends React.Component {
 
@@ -18,7 +19,9 @@ class Login extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
+
   http_with_csrf(url, method, data) {
+    this.setState({ error: '', notice: '' })
 
     let csrf = ''
     try {
@@ -34,16 +37,7 @@ class Login extends React.Component {
         'X-CSRF-Token': csrf
       },
       body: JSON.stringify(postData), // data type should the same value as Content-Type header
-    }).then((response) => {
-      this.setState({ error: '', notice: '' })
-
-      if (response.ok) {
-        return response.json();
-        // return [response.text(), response.status]
-        // return { response.text, response.status }
-      }
-      throw response //new Error('Network response was not ok.');
-    })
+    }).then(handleErrors)
       .then((item) => {
         console.log('success', item)
         this.setState({ notice: item.message })
