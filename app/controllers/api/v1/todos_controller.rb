@@ -18,7 +18,7 @@ class Api::V1::TodosController < ApplicationController
   def create
     @todo = current_user.todos.build(todo_params)
     @todo.save!
-    render json: @todo, status: :created, location: @todo
+    render json: @todo, status: :created, location: api_v1_todo_url(@todo)
   end
 
   # PATCH/PUT /todos/1
