@@ -18,7 +18,8 @@ class SignupPage extends React.Component {
     this.state = {
       email: '',
       password: '',
-      password_confirm: ''
+      password_confirm: '',
+      payment_method: ''
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -36,6 +37,14 @@ class SignupPage extends React.Component {
   onPasswordConfirmChange(key, event) {
     console.log('onPasswordConfirmChange', key, event.target.value)
     this.setState({ [key]: event.target.value })
+  }
+
+  onPlanChange(event) {
+    console.log('onPlanChange')
+  }
+
+  onPaymentMethodChange(card_number, holder_name, month, year, cvc) {
+    console.log('onPaymentMethodChange', card_number, holder_name, month, year, cvc)
   }
 
   handleFormSubmit(e, email, password) {
@@ -114,7 +123,7 @@ class SignupPage extends React.Component {
               {/* <%= link_to image_tag('signup/step2.png', class:'img-fluid'), '#step3', {id: 'step2'} %> */}
             </p>
             <div className="container">
-              <Plans />
+              <Plans onPlanChange={this.onPlanChange.bind(this, 'plan')} />
               {/* <%= render partial: 'auth/step2_plans', locals: {items: @plans } %> */}
             </div>
           </div>
@@ -132,8 +141,12 @@ class SignupPage extends React.Component {
           </div>
 
           <div className="col-md-12">
-            <PaymentMethods />
+            <PaymentMethods
+              handleFormSubmit={this.handleFormSubmit}
+              onPaymentMethodChange={this.onPaymentMethodChange.bind(this)}
+            />
           </div>
+
         </div>
       </form>
     );
