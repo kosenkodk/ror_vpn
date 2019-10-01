@@ -19,9 +19,18 @@ class SignupPage extends React.Component {
       email: '',
       password: '',
       password_confirm: '',
-      payment_method: ''
+
+      plan: '',
+
+      payment_method: '',
+
+      card_number: '',
+      holder_name: '',
+      month: '',
+      year: '',
+      cvc: ''
     }
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this)
   }
 
   onEmailChange(key, event) {
@@ -39,16 +48,27 @@ class SignupPage extends React.Component {
     this.setState({ [key]: event.target.value })
   }
 
+  onSignupChange() {
+
+  }
+
   onPlanChange(event) {
     console.log('onPlanChange')
   }
 
   onPaymentMethodChange(card_number, holder_name, month, year, cvc) {
     console.log('onPaymentMethodChange', card_number, holder_name, month, year, cvc)
+    this.setState({
+      card_number: card_number,
+      holder_name: holder_name,
+      month: month,
+      year: year,
+      cvc: cvc
+    })
   }
 
-  handleFormSubmit(e, email, password) {
-    console.log(email, password)
+  onFormSubmit(e) {
+    console.log('onFormSubmit')
 
     e.preventDefault()
 
@@ -142,7 +162,7 @@ class SignupPage extends React.Component {
 
           <div className="col-md-12">
             <PaymentMethods
-              handleFormSubmit={this.handleFormSubmit}
+              onFormSubmit={this.onFormSubmit}
               onPaymentMethodChange={this.onPaymentMethodChange.bind(this)}
             />
           </div>
