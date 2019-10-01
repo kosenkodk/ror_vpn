@@ -33,6 +33,7 @@ class Login extends React.Component {
         // this.props.history.push('/200')
       })
       .catch((error) => {
+        // api error
         try {
           error.then(item => {
             this.setState({ error: item.message })
@@ -41,8 +42,8 @@ class Login extends React.Component {
           this.setState({ error: e })
         }
 
+        // network error
         if (error instanceof TypeError) {
-          console.log('TypeError: not json')
           if (error.length > 0)
             this.setState({ error: error })
         }
