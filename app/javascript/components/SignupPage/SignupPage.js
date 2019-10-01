@@ -15,13 +15,34 @@ class SignupPage extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      email: '',
+      password: '',
+      password_confirm: ''
+    }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
+  }
+
+  onEmailChange(key, event) {
+    console.log('onEmailChange', key, event.target.value)
+    this.setState({ [key]: event.target.value })
+  }
+
+  onPasswordChange(key, event) {
+    console.log('onPasswordChange', key, event.target.value)
+    this.setState({ [key]: event.target.value })
+  }
+
+  onPasswordConfirmChange(key, event) {
+    console.log('onPasswordConfirmChange', key, event.target.value)
+    this.setState({ [key]: event.target.value })
   }
 
   handleFormSubmit(e, email, password) {
     console.log(email, password)
 
     e.preventDefault()
+
     /*return;
 
     const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
@@ -74,7 +95,11 @@ class SignupPage extends React.Component {
 
           <div className="col-md-8 offset-md-2">
             <div className="text-right">
-              <SignupForm handleFormSubmit={this.handleFormSubmit} />
+              <SignupForm handleFormSubmit={this.handleFormSubmit}
+                email={this.state.email} onEmailChange={this.onEmailChange.bind(this, 'email')}
+                password={this.state.password} onPasswordChange={this.onPasswordChange.bind(this, 'password')}
+                password_confirm={this.state.password_confirm} onPasswordConfirmChange={this.onPasswordConfirmChange.bind(this, 'password_confirm')}
+              />
             </div>
           </div>
 
