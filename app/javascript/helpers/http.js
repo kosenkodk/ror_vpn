@@ -7,7 +7,11 @@ const handleErrors = (response) => {
   throw response //new Error('Network response was not ok.');
 }
 
-const postCsrfRequest = (url, method, data, csrf) => {
+const postCsrfRequest = (url, method, data) => {
+  let csrf = ''
+  try {
+    csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+  } catch (e) { }
   return new Request(url, {
     method: method, // *GET, POST, PUT, DELETE, etc.
     // mode: 'cors', // no-cors, cors, *same-origin

@@ -22,15 +22,9 @@ class Login extends React.Component {
   handleFormSubmit(e, email, password) {
     e.preventDefault()
     this.setState({ notice: '', error: '' })
-
-    let csrf = ''
-    try {
-      csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    } catch (e) { }
-
     const data = { 'email': email, 'password': password }
 
-    fetch(postCsrfRequest('/api/v1/login', 'POST', data, csrf))
+    fetch(postCsrfRequest('/api/v1/login', 'POST', data))
       .then(handleErrors)
       .then((item) => {
         console.log('success', item)
