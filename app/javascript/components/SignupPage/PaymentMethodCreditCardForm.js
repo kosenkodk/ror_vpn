@@ -14,7 +14,7 @@ class PaymentMethodCreditCardForm extends React.Component {
   }
 
   onChange = (e) => {
-    this.props.onPaymentMethodChange(this.card_number.value, this.holder_name.value, this.month.value, this.year.value, this.cvc.value)
+    this.props.onPaymentMethodChange(this.props.paymentMethodId, this.card_number.value, this.holder_name.value, this.month.value, this.year.value, this.cvc.value)
   }
 
   render() {

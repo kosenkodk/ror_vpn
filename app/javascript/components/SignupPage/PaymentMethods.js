@@ -58,7 +58,7 @@ class PaymentMethods extends React.Component {
                     {
                       item.title === 'Credit card' &&
                       <PaymentMethodCreditCardForm
-                        onPaymentMethodChange={this.props.onPaymentMethodChange}
+                        onPaymentMethodChange={this.props.onPaymentMethodChange} paymentMethodId={item.id}
                       />
                     }
                     <PaymentMethodDetails onFormSubmit={this.props.onFormSubmit} item={item} />
