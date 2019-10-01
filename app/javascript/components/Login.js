@@ -29,15 +29,27 @@ class Login extends React.Component {
       .then((item) => {
         console.log('success', item)
         this.setState({ notice: item.message })
-        this.props.history.push('/features')
+
+        // this.props.history.push('/features')
         // this.props.history.push('/200')
       })
-      .catch(({ response, message }) => {
-        response.json().then((item) => {
-          console.log('error', item)
-          this.setState({ error: item.message })
+      .catch((error) => {
+        console.log('error', error)
+        if (error.message.length > 0)
+          this.setState({ error: error.message })
+        error.response.then(response => {
+          this.setState({ error: response.message })
         })
-        // this.props.history.push('/404')
+        // this.setState({ error: error.response.message })
+
+        // try {
+        //   newObj = JSON.parse(response);
+        //   this.setState({ error: response.message })
+        // } catch (e) {
+        //   console.log('Not JSON');
+        //   this.setState({ error: message })
+        // }
+        // // this.props.history.push('/404')
       });
   }
 

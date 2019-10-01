@@ -29,20 +29,8 @@ class PasswordForgotPage extends React.Component {
         // this.props.history.push('/200')
       })
       .catch((error) => {
-        console.log('error', error.response)
-        console.log('error', error.message)
         this.setState({ error: error.message })
         // this.setState({ error: response.statusText })
-
-        // try {
-        //   response.json().then((item) => {
-        //     console.log('error', item)
-        //     this.setState({ error: item.message })
-        //   })
-        // } catch (e) {
-        //   console.log('catch e', e)// response, response.statusText)
-        // }
-        // this.props.history.push('/404')
       });
 
     e.preventDefault();
