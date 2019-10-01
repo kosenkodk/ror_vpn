@@ -19,59 +19,16 @@ class Login extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
-
-  http_with_csrf(url, method, data) {
-    this.setState({ error: '', notice: '' })
-
+  http_with_csrf(url, method, dataRaw) {
     let csrf = ''
     try {
       csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
     } catch (e) { }
 
-    const postData = data //{ 'email': email, 'message_short': message_short, 'message': message };
-    fetch(url, {
+    const dataJson = JSON.stringify(dataRaw)
+
+    let postRequest = new Request(url, {
       method: method, // *GET, POST, PUT, DELETE, etc.
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': csrf
-      },
-      body: JSON.stringify(postData), // data type should the same value as Content-Type header
-    }).then(handleErrors)
-      .then((item) => {
-        console.log('success', item)
-        this.setState({ notice: item.message })
-        // console.log('success', response.text(), response.status);
-        this.props.history.push('/features')
-        // this.props.history.push('/200')
-      }).catch((response) => {
-        response.json().then((item) => {
-          console.log('error', item)
-          this.setState({ error: item.message })
-          // (response.status === 200) ? this.setState({ notice: message }) : this.setState({ error: message })
-        })
-        // this.props.history.push('/404')
-      });
-  }
-
-  handleFormSubmit(e, email, password) {
-    e.preventDefault()
-    console.log(email, password)
-    this.setState({ notice: '', error: '' })
-
-    // console.log('csrf:' + csrf)
-    // console.log('csrf token:' + this.props.token)
-    const postData = { 'email': email, 'password': password }
-    this.http_with_csrf('/api/v1/login', 'POST', postData)
-    return
-
-    let csrf = ''
-    try {
-      csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    } catch (e) { }
-
-    fetch('/api/v1/login', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
       // mode: 'cors', // no-cors, cors, *same-origin
       // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'include', // same-origin, include, *same-origin, omit
@@ -82,27 +39,30 @@ class Login extends React.Component {
         // 'Content-Type': 'application/x-www-form-urlencoded',
         'X-CSRF-Token': csrf
       },
-      body: JSON.stringify(postData), // data type should the same value as Content-Type header
-    }).then((response) => { return response.json() })
+      body: dataJson
+    })
+
+    fetch(postRequest).then(handleErrors)
       .then((item) => {
         console.log('success', item)
         this.setState({ notice: item.message })
-        // this.addNewItem(item)
-        // navigate to the admin panel
-        // this.props.history.push('/tariff_plans') # TODO: will implement react component
-        // this.props.history.push('/features')
-      }).catch((err) => {
-        console.log('error', err)
-        this.setState({ error: err.message })
-        // this.props.history.push('/')
+        this.props.history.push('/features')
+        // this.props.history.push('/200')
+      }).catch((response) => {
+        response.json().then((item) => {
+          console.log('error', item)
+          this.setState({ error: item.message })
+        })
+        // this.props.history.push('/404')
       });
   }
 
-  // addNewItem(item) {
-  //   this.setState({
-  //     items: this.state.items.concat(item)
-  //   })
-  // }
+  handleFormSubmit(e, email, password) {
+    e.preventDefault()
+    this.setState({ notice: '', error: '' })
+    const postData = { 'email': email, 'password': password }
+    this.http_with_csrf('/api/v1/login', 'POST', postData)
+  }
 
   render() {
     // let formFields = {}
