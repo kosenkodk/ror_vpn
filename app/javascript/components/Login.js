@@ -39,7 +39,7 @@ class Login extends React.Component {
         }
         // console.log('error', error)
 
-        error.response.then(response => {
+        error.response.json().then(response => {
           this.setState({ error: response.message })
         })
 
