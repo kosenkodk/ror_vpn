@@ -22,17 +22,26 @@ class PasswordForgotPage extends React.Component {
     const data = { 'email': email }
     fetch(postCsrfRequest('/api/v1/forgot', 'POST', data))
       .then(handleErrors)
-      .then((item) => {
-        console.log('success', item)
+      .then((item, message) => {
+        console.log('success', item, message)
         this.setState({ notice: item.message })
         this.props.history.push('/features')
         // this.props.history.push('/200')
       })
-      .catch((response) => {
-        response.json().then((item) => {
-          console.log('error', item)
-          this.setState({ error: item.message })
-        })
+      .catch((error) => {
+        console.log('error', error.response)
+        console.log('error', error.message)
+        this.setState({ error: error.message })
+        // this.setState({ error: response.statusText })
+
+        // try {
+        //   response.json().then((item) => {
+        //     console.log('error', item)
+        //     this.setState({ error: item.message })
+        //   })
+        // } catch (e) {
+        //   console.log('catch e', e)// response, response.statusText)
+        // }
         // this.props.history.push('/404')
       });
 
