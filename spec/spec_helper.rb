@@ -17,6 +17,9 @@ require 'simplecov'
 SimpleCov.start 'rails'
 # Capybara.default_max_wait_time = 10
 
+require_relative 'support/auth_helper'
+require_relative 'support/response_helper'
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
