@@ -48,6 +48,7 @@ class Login extends React.Component {
         console.log('success', item)
         this.setState({ notice: item.message })
         // console.log('success', response.text(), response.status);
+        this.props.history.push('/features')
         // this.props.history.push('/200')
       }).catch((response) => {
         response.json().then((item) => {
