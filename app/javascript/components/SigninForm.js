@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import I18n from 'i18n-js/index.js.erb'
+import { Link } from 'react-router-dom'
 
 class SigninForm extends React.Component {
 
@@ -61,10 +62,11 @@ class SigninForm extends React.Component {
             <div className="input-group">
               <input type="password" className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
               <div className="input-group-append">
-                <span className="input-group-text" id="forgot-pwd-addon"><a
-                  href="/forgot">
-                  {I18n.t('pages.login.form.forgot_pwd')}
-                </a></span>
+                <span className="input-group-text" id="forgot-pwd-addon">
+                  <Link to="/forgot">
+                    {I18n.t('pages.login.form.forgot_pwd')}
+                  </Link>
+                </span>
               </div>
             </div>
             <div className="col-sm-3"></div>

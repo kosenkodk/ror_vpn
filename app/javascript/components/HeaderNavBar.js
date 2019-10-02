@@ -27,8 +27,9 @@ class HeaderNavBar extends React.Component {
                 smooth={true}
                 duration={500}
                 className='nav-link pl-3 pr-3 text-left btn btn-outline-pink'
-                activeClass='active'
-              >{I18n.t('nav_menu.features')}</ScrollLink>
+                activeClass='active'>
+                {I18n.t('nav_menu.features')}
+              </ScrollLink>
             </li>
             <li className="nav-item">
               <Link to="/pricing" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.pricing')}</Link>

@@ -37,6 +37,9 @@ class PasswordResetPageOk extends React.Component {
   componentDidMount() {
     this.props.handleIsFooterVisible(false)
   }
+  componentWillUnmount() {
+    this.props.handleIsFooterVisible(true)
+  }
 }
 
 export default PasswordResetPageOk

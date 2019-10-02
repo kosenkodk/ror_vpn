@@ -82,7 +82,7 @@ class App extends React.Component {
 
               {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
               <Route exact path="/" render={() => <Home features={this.props.features} />} />
-              <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
+              <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
               <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
               <Route exact path="/contact_us" render={() => <ContactusPage />} />
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
