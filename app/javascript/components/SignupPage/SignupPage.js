@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
-import { postCsrfRequest, handleErrors } from 'helpers/http'
+import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
 import FlashMessages from '../sections/FlashMessages'
 
 import SignupForm from './SignupForm'
@@ -150,32 +150,9 @@ class SignupPage extends React.Component {
   }
 
   responseFailed(error) {
-    this.displayError(error)
+    this.setState({ error: errorMessage(error) })
     //unset current user
     this.props.unsetCurrentUser()
-  }
-
-  displayError(error) {
-
-    console.log('responseFailed', error)
-
-    if (error.error) {
-      this.setState({ error: error.error })
-    } else if (error instanceof TypeError) {
-      // network error
-      this.setState({ error: error.message })
-    } else {
-      // api error (response ans pending promise)
-      try {
-        error.then(item => {
-          console.log('item', item)
-          this.setState({ error: item.error })
-        })
-      } catch (e) {
-        this.setState({ error: e.message })
-      }
-    }
-
   }
 
   componentDidMount() {

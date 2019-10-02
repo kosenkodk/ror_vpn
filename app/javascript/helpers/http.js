@@ -5,6 +5,26 @@ function ExceptionWithMessageAndResponse(response, message) {
   this.message = message
 }
 
+async function errorMessage(jsonResponse) {
+  if (jsonResponse.error) {
+    // api error
+    return jsonResponse.error
+  } else if (jsonResponse instanceof TypeError) {
+    // network error
+    return jsonResponse.message
+  } else {
+    // api error (json response as pending promise)
+    try {
+      let item = await jsonResponse.then(item => {
+        return item.error
+      })
+      return item
+    } catch (e) {
+      return e.message
+    }
+  }
+}
+
 const handleErrors = (response) => {
   let contentType = response.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
@@ -39,5 +59,5 @@ const postCsrfRequest = (url, method, data) => {
   })
 }
 
-export { postCsrfRequest, handleErrors }
+export { postCsrfRequest, handleErrors, errorMessage }
 

@@ -4,7 +4,7 @@ import LoginForm from './LoginForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
-import { postCsrfRequest, handleErrors } from 'helpers/http'
+import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
 
 class Login extends React.Component {
 
@@ -40,25 +40,10 @@ class Login extends React.Component {
   }
 
   signinFailed(error) {
-    // console.log('signinFailed', error)
-    // let error_message = (error.response && error.response.data && error.response.data.error) || ''
-    // this.setState({ notice: error_message })
-    // return error
-    // api error
-    try {
-      error.then(item => {
-        this.setState({ error: item.error })
-      })
-    } catch (e) {
-      this.setState({ error: e })
-    }
-
-    // network error
-    if (error instanceof TypeError) {
-      if (error.length > 0)
-        this.setState({ error: error })
-    }
-
+    errorMessage(error).then((message) => {
+      console.log(message)
+      this.setState({ error: message })
+    })
     // this.props.history.push('/404')
   }
 
