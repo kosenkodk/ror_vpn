@@ -5,7 +5,7 @@ function ExceptionWithMessageAndResponse(response, message) {
   this.message = message
 }
 
-async function errorMessage(jsonResponse) {
+const errorMessage = async (jsonResponse) => {
   if (jsonResponse.error) {
     // api error
     return jsonResponse.error
@@ -15,10 +15,10 @@ async function errorMessage(jsonResponse) {
   } else {
     // api error (json response as pending promise)
     try {
-      let item = await jsonResponse.then(item => {
+      let message = await jsonResponse.then(item => {
         return item.error
       })
-      return item
+      return message
     } catch (e) {
       return e.message
     }
