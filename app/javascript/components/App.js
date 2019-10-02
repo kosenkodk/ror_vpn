@@ -73,11 +73,13 @@ class App extends React.Component {
     return (
       <div>
         <div className={`container-fluid ${this.getBackgdroundClass()}`}>
-          <div className="container">
-            <Header />
-          </div>
-          <div className={this.props.path === '/' ? 'row' : 'container'}>
-            <Router path={this.props.path} context={{}} >
+
+          <Router path={this.props.path} context={{}} >
+            <div className="container">
+              <Header />
+            </div>
+            <div className={this.props.path === '/' ? 'row' : 'container'}>
+
               {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
               <Route exact path="/" render={() => <Home features={this.props.features} />} />
               <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
@@ -98,8 +100,8 @@ class App extends React.Component {
               {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
               <Route exact path="/features" render={() => <Features />} />
-            </Router>
-          </div>
+            </div>
+          </Router>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
       </div>

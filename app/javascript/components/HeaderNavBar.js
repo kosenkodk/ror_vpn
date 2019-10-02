@@ -1,49 +1,46 @@
 import React from 'react'
 import logoImage from 'images/logo.png'
 import I18n from 'i18n-js/index.js.erb'
+import { Link } from 'react-router-dom'
+
 
 class HeaderNavBar extends React.Component {
   render() {
     return (
       <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent">
-        <a href='/'><img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img></a>
+        <Link to="/">
+          <img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img>
+        </Link>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="navbar-collapse collapse justify-content-stretch" id="navbar6">
-
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/#features">{I18n.t('nav_menu.features')}</a>
+              {/* <Link to={{ pathname: "/", search: "?sort=name", hash: "#features", state: { fromDashboard: true } }} ></Link> */}
+              <Link to={{ pathname: "/", hash: "#features" }} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/pricing"> {I18n.t('nav_menu.pricing')} </a>
+              <Link to="/pricing" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.pricing')}</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/#downloads">{I18n.t('nav_menu.apps')}</a>
+              <Link to="/#downloads" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.apps')}</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/contacts/new">{I18n.t('nav_menu.contact_us')}</a>
+              <Link to="/contacts/new" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.contact_us')}</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/coming_soon">{I18n.t('nav_menu.help')}</a>
+              <Link to="/coming_soon" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.help')}</Link>
             </li>
             <li className="nav-item d-block d-sm-none">
               <a className="nav-link"></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/signin">{I18n.t('nav_menu.log_in')}</a>
+              <Link to="/signin" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.log_in')}</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink active"
-                href="/signup">{I18n.t('nav_menu.sign_up')}</a>
+              <Link to="/signup" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.sign_up')}</Link>
             </li>
           </ul>
         </div>
