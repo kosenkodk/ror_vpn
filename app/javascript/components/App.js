@@ -23,7 +23,8 @@ class App extends React.Component {
     this.state = {
       isFooterVisible: true,
       csrf: '',
-      user: []
+      user: [],
+      isSignedIn: false
     }
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
   }
@@ -57,13 +58,13 @@ class App extends React.Component {
 
   unsetCurrentUser() {
     console.log('unsetCurrentUser')
-    this.setState({ user: [], csrf: '' })
+    this.setState({ user: [], csrf: '', isSignedIn: false })
   }
 
   setCurrentUser(user, csrf) {
     // user fields: email, id, role
     console.log('setCurrentUser', user, csrf)
-    this.setState({ user: user, csrf: csrf })
+    this.setState({ user: user, csrf: csrf, isSignedIn: true })
   }
 
   render() {
@@ -79,7 +80,7 @@ class App extends React.Component {
               <Route exact path="/" render={() => <Home features={this.props.features} />} />
               <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
               <Route exact path="/signin" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
-              <Route exact path="/signup" render={() => <SignupPage unsetCurrentUser={this.unsetCurrentUser.bind(this)} setCurrentUser={this.setCurrentUser.bind(this)} />} />
+              <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser.bind(this)} setCurrentUser={this.setCurrentUser.bind(this)} />} />
               <Route exact path="/contact_us" render={() => <ContactusPage />} />
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
               <Route exact path="/forgot" render={() => <PasswordForgotPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
