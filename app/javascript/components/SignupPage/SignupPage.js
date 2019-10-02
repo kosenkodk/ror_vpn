@@ -124,33 +124,60 @@ class SignupPage extends React.Component {
   }
 
   responseSuccessful(response) {
-    console.log('responseFailed', response)
+    console.log('responseSuccessful', response)
+
     this.setState({ notice: response.notice })
-    if (response.error && response.error.length > 0)
-      this.setState({ error: response.error })
-    return response
+    this.setState({ error: response.error })
+
+
+    if (!response.csrf) {
+      return this.responseFailed(response)
+    }
+
+    fetch('/api/v1/me')
+      // .then(handleErrors)
+      .then((response) => response.json())
+      .then((meResponse) => {
+        console.log('/me', meResponse)
+        this.setState({ error: meResponse.message || '' })
+        // set data 
+        this.props.setCurrentUser(meResponse, response.csrf)
+        this.props.history.push('/features')
+      })
+      .catch((error) => {
+        return this.responseFailed(error)
+      });
   }
 
   responseFailed(error) {
-    console.log('responseFailed', error)
-    // api error
-    try {
-      error.then(item => {
-        console.log('item', item)
+    this.displayError(error)
+    //unset current user
+    this.props.unsetCurrentUser()
+  }
 
-        this.setState({ error: item.error })
-      })
-    } catch (e) {
-      this.setState({ error: e })
+  displayError(error) {
+
+    console.log('responseFailed', error)
+
+    if (error.error) {
+      this.setState({ error: error.error })
+    } else if (error instanceof TypeError) {
+      // network error
+      this.setState({ error: error.message })
+    } else {
+      // api error (response ans pending promise)
+      try {
+        error.then(item => {
+          console.log('item', item)
+          this.setState({ error: item.error })
+        })
+      } catch (e) {
+        this.setState({ error: e.message })
+      }
     }
 
-    // // network error
-    // if (error instanceof TypeError) {
-    //   if (error.length > 0)
-    //     this.setState({ error: error })
-    // }
-
   }
+
 
 
   render() {
