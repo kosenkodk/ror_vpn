@@ -71,40 +71,38 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Router path={this.props.path} context={{}} >
+
         <div className={`container-fluid ${this.getBackgdroundClass()}`}>
+          <div className="container">
+            <Header />
+          </div>
+          <div className={this.props.path === '/' ? 'row' : 'container'}>
 
-          <Router path={this.props.path} context={{}} >
-            <div className="container">
-              <Header />
-            </div>
-            <div className={this.props.path === '/' ? 'row' : 'container'}>
+            {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
+            <Route exact path="/" render={() => <Home features={this.props.features} />} />
+            <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
+            <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
+            <Route exact path="/contact_us" render={() => <ContactusPage />} />
+            <Route exact path="/contacts/new" render={() => <ContactusPage />} />
+            <Route exact path="/forgot" render={() => <PasswordForgotPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/reset" render={() => <PasswordResetPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/reset_ok" render={() => <PasswordResetPageOk handleIsFooterVisible={this.handleIsFooterVisible} />} />
 
-              {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
-              <Route exact path="/" render={() => <Home features={this.props.features} />} />
-              <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
-              <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
-              <Route exact path="/contact_us" render={() => <ContactusPage />} />
-              <Route exact path="/contacts/new" render={() => <ContactusPage />} />
-              <Route exact path="/forgot" render={() => <PasswordForgotPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
-              <Route exact path="/reset" render={() => <PasswordResetPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
-              <Route exact path="/reset_ok" render={() => <PasswordResetPageOk handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/pricing" render={() => <PricingPage />} />
+            <Route exact path="/help" render={() => <ComingSoonPage />} />
+            <Route exact path="/404" render={() => <NotFoundPage />} />
+            <Route exact path="/200" render={() => <SuccessPage />} />
+            <Route exact path="/204" render={() => <ComingSoonPage />} />
+            <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
 
-              <Route exact path="/pricing" render={() => <PricingPage />} />
-              <Route exact path="/help" render={() => <ComingSoonPage />} />
-              <Route exact path="/404" render={() => <NotFoundPage />} />
-              <Route exact path="/200" render={() => <SuccessPage />} />
-              <Route exact path="/204" render={() => <ComingSoonPage />} />
-              <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
+            {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
-              {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-
-              <Route exact path="/features" render={() => <Features />} />
-            </div>
-          </Router>
+            <Route exact path="/features" render={() => <Features />} />
+          </div>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
-      </div>
+      </Router>
     );
   }
 }
