@@ -7,12 +7,12 @@ class FlashMessages extends React.Component {
     return (
       <React.Fragment>
         {
-          error && error.length > 0 && <div id="flash_message" className={`alert ${error ? "alert-danger" : ""}`} role="alert">
+          error && error.length > 0 && <div id="flash_message" className={`alert ${error ? "alert-danger" : ""} text-center`} role="alert">
             {error}
           </div>
         }
         {
-          notice && notice.length > 0 && <div id="flash_message" className={`alert ${notice ? "alert-success" : ""}`} role="alert">
+          notice && notice.length > 0 && <div id="flash_message" className={`alert ${notice ? "alert-success" : ""} text-center`} role="alert">
             {notice}
           </div>
         }
