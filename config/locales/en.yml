@@ -33,7 +33,7 @@ en:
   errors:
     something_went_wrong: "Something went wrong"
   signin:
-    invalid_credentials: "Can not find such email/password combination"    
+    invalid_credentials: "Invalid email or password"    
   email: "E-Mail"
   vegaVPN: "VEGA"
   nav_menu:

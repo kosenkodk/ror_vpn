@@ -177,7 +177,7 @@ class SignupPage extends React.Component {
     return (
       <form className="container">
         <div className="row">
-          <div className="col-md-8 offset-md-2">
+          <div className="col-md-12">
             <FlashMessages error={this.state.error} notice={this.state.notice} />
           </div>
         </div>

@@ -49,7 +49,7 @@ class Login extends React.Component {
     // method 2 (with async and await)
     // this.setState({ error: await errorMessage(error) })
 
-    // method 3
+    // method 3 (plain text only)
     this.setState({ error: (error && error.message) || message })
 
     // this.props.history.push('/404')
