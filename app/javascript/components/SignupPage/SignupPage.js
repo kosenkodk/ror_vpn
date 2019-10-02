@@ -178,7 +178,22 @@ class SignupPage extends React.Component {
 
   }
 
+  componentDidMount() {
+    console.log('componentDidMount')
+    this.isSignedIn()
+  }
 
+  componentDidUpdate() {
+    console.log('componentDidUpdate')
+    this.isSignedIn()
+  }
+
+  isSignedIn() {
+    console.log('isSignedIn', this.props.isSignedIn)
+    if (this.props.isSignedIn) {
+      this.props.history.push('/features')
+    }
+  }
 
   render() {
 
@@ -247,7 +262,7 @@ class SignupPage extends React.Component {
               onPaymentMethodChange={this.onPaymentMethodChange.bind(this)}
             />
           </div>
-          <div className="col-md-12">
+          <div className="col-md-12 pt-4">
             <FlashMessages error={this.state.error} notice={this.state.notice} />
           </div>
         </div>
