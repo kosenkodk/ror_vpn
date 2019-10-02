@@ -39,11 +39,15 @@ class Login extends React.Component {
     return response
   }
 
-  signinFailed(error) {
-    errorMessage(error).then((message) => {
-      // console.log(message)
-      this.setState({ error: message })
-    })
+  async signinFailed(error) {
+    // method 1
+    // errorMessage(error).then((message) => {
+    //   // console.log(message)
+    //   this.setState({ error: message })
+    // })
+
+    // method 2
+    this.setState({ error: await errorMessage(error) })
 
     // this.props.history.push('/404')
   }
