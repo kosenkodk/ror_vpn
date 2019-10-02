@@ -24,14 +24,17 @@ const errorMessage = (jsonResponse) => {
   }
 }
 
-const handleErrors = (response) => {
+const handleErrors = async (response) => {
   let contentType = response.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     if (response.ok) {
       return response.json();
     }
     // throw new ExceptionWithMessageAndResponse(response.json(), "")
-    throw response.json()
+    // return response.json();
+    let responseJson = await response.json()
+
+    throw new TypeError(responseJson && responseJson.error)
   }
 
   throw new TypeError("Network error")

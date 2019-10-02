@@ -28,7 +28,7 @@ class Login extends React.Component {
     fetch(postCsrfRequest('/api/v1/signin', 'POST', data))
       .then(handleErrors)
       .then((item) => this.signinSuccessful(item))
-      .catch((error) => this.signinFailed(error));
+      .catch((error) => this.signinFailed(error, I18n.t('errors.something_went_wrong')));
   }
 
   signinSuccessful(response) {
@@ -39,15 +39,18 @@ class Login extends React.Component {
     return response
   }
 
-  async signinFailed(error) {
+  async signinFailed(error, message) {
     // method 1
     // errorMessage(error).then((message) => {
     //   // console.log(message)
     //   this.setState({ error: message })
     // })
 
-    // method 2
-    this.setState({ error: await errorMessage(error) })
+    // method 2 (with async and await)
+    // this.setState({ error: await errorMessage(error) })
+
+    // method 3
+    this.setState({ error: (error && error.message) || message })
 
     // this.props.history.push('/404')
   }
