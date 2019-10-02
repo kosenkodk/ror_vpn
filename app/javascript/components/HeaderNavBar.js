@@ -2,8 +2,9 @@ import React from 'react'
 import logoImage from 'images/logo.png'
 import I18n from 'i18n-js/index.js.erb'
 import { Link } from 'react-router-dom'
-import Scroll from 'react-scroll'
-const ScrollLink = Scroll.ScrollLink
+// import Scroll from 'react-scroll'
+// const ScrollLink = Scroll.ScrollLink
+import { HashLink } from 'react-router-hash-link';
 
 class HeaderNavBar extends React.Component {
   render() {
@@ -19,23 +20,13 @@ class HeaderNavBar extends React.Component {
         <div className="navbar-collapse collapse justify-content-stretch" id="navbar6">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              {/* <Link to={{ pathname: "/", search: "?sort=name", hash: "#features", state: { fromDashboard: true } }} ></Link> */}
-              {/* <Link to={{ pathname: "/", hash: "#features" }} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</Link> */}
-              <ScrollLink
-                to="/#downloads"
-                spy={true}
-                smooth={true}
-                duration={500}
-                className='nav-link pl-3 pr-3 text-left btn btn-outline-pink'
-                activeClass='active'>
-                {I18n.t('nav_menu.features')}
-              </ScrollLink>
+              <HashLink to="/#features" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</HashLink>
             </li>
             <li className="nav-item">
               <Link to="/pricing" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.pricing')}</Link>
             </li>
             <li className="nav-item">
-              <Link to="/#downloads" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.apps')}</Link>
+              <HashLink to="/#downloads" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.apps')}</HashLink>
             </li>
             <li className="nav-item">
               <Link to="/contacts/new" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.contact_us')}</Link>
