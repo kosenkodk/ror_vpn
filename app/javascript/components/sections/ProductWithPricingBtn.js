@@ -1,6 +1,7 @@
 import React from 'react'
 import PhoneImage from 'images/phone'
 import I18n from 'i18n-js/index.js.erb'
+import { Link } from 'react-router-dom'
 
 class ProductWithPricingBtn extends React.Component {
   render() {
@@ -16,8 +17,8 @@ class ProductWithPricingBtn extends React.Component {
           <p className="lead">{I18n.t('vegaVPN')} encrypts your internet activity, shielding you from hackers, ISP's and everyone
             else who has
       no business recording what you haven't chosen to share.</p>
-          <a href="#" className="btn btn-outline-primary "><span className=" 	glyphicon glyphicon-circle-arrow-right"></span>View
-      pricing &#8594;</a>
+          <Link to="/pricing" className="btn btn-outline-primary"><span className="glyphicon glyphicon-circle-arrow-right"></span>View
+      pricing &#8594;</Link>
         </div>
         <div className="col-md-6 d-none d-md-block">
           <img src={PhoneImage} className="img-fluid" alt="" />
