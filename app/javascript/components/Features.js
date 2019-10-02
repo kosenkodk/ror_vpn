@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Feature from './Feature'
 import { withRouter } from "react-router-dom";
-import { Element } from 'react-scroll'
 
 class Features extends React.Component {
 
