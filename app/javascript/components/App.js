@@ -24,7 +24,8 @@ class App extends React.Component {
       isFooterVisible: true,
       csrf: '',
       user: [],
-      isSignedIn: false
+      isSignedIn: false,
+      bgClass: 'bg1'
     }
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
     this.unsetCurrentUser = this.unsetCurrentUser.bind(this)
@@ -41,7 +42,7 @@ class App extends React.Component {
       }
     }
 
-    for (let item of ['/login', '/signin', '/forgot', '/reset', '/reset_ok']) {
+    for (let item of ['/signin', '/forgot', '/reset', '/reset_ok']) {
       if (item === this.props.path) {
         className = 'bg1_cover';
         break;
@@ -52,7 +53,6 @@ class App extends React.Component {
   }
 
   handleIsFooterVisible(isVisible) {
-    event.preventDefault()
     this.setState({
       isFooterVisible: isVisible
     })
@@ -73,7 +73,7 @@ class App extends React.Component {
     return (
       <Router path={this.props.path} context={{}} >
 
-        <div className={`container-fluid ${this.getBackgdroundClass()}`}>
+        <div className={`container-fluid ${this.state.bgClass}`}>
           <div className="container">
             <Header />
           </div>
@@ -104,6 +104,13 @@ class App extends React.Component {
         {this.state.isFooterVisible && <FooterSection />}
       </Router>
     );
+  }
+  componentDidUpdate() {
+    // console.log('app > componentDidUpdate')
+    // this.setState({ bgClass: this.getBackgdroundClass() })
+  }
+  componentDidMount() {
+    this.setState({ bgClass: this.getBackgdroundClass() })
   }
 }
 
