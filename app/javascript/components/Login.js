@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
 import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
+import { config } from 'config';
 
 class Login extends React.Component {
 
@@ -25,7 +26,7 @@ class Login extends React.Component {
 
     const data = { 'email': email, 'password': password }
 
-    fetch(postCsrfRequest('/api/v1/signin', 'POST', data))
+    fetch(postCsrfRequest(`${config.apiUrl}/signin`, 'POST', data))
       .then(handleErrors)
       .then((item) => this.signinSuccessful(item))
       .catch((error) => this.signinFailed(error, I18n.t('errors.something_went_wrong')));
