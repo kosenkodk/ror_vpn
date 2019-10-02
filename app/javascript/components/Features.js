@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Feature from './Feature'
 import { withRouter } from "react-router-dom";
+import { Element } from 'react-scroll'
 
 class Features extends React.Component {
 
@@ -17,16 +18,18 @@ class Features extends React.Component {
   render() {
     const { features } = this.state;
     return (
-      <div id="features" className="features row">
-        {
-          features.map(item => (
-            <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
-              <Feature {...item} />
-              {/* <Feature title={item.title} /> */}
-            </div>
-          ))
-        }
-      </div>
+      <React.Fragment>
+        <Element id="features" name="features" className="features row">
+          {
+            features.map(item => (
+              <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
+                <Feature {...item} />
+                {/* <Feature title={item.title} /> */}
+              </div>
+            ))
+          }
+        </Element>
+      </React.Fragment>
     );
   }
 
