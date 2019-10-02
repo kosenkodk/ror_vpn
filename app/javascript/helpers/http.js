@@ -15,10 +15,9 @@ const errorMessage = async (jsonResponse) => {
   } else {
     // api error (json response as pending promise)
     try {
-      let message = await jsonResponse.then(item => {
+      return await jsonResponse.then(item => {
         return item.error
       })
-      return message
     } catch (e) {
       return e.message
     }
