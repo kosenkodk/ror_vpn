@@ -51,7 +51,7 @@ class PaymentMethods extends React.Component {
 
         <div className="container payment_methods border_1_pink">
           <div className="row shadow-vega pb-5">
-            <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-left">
+            <div className="col-lg-8 offset-lg-2 text-left">
               <div className="tab-content">
                 {this.state.items.map((item, index) => (
                   <div key={`pm-key${index}`} className={`tab-pane ${index == this.state.preselectedIndex ? 'active' : ''}`} id={`pm${index}`} role="tabpanel" aria-labelledby={`pm1${index}-tab`}>

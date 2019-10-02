@@ -100,24 +100,29 @@ body {
 }
 
 .credit_card {
-  label.cvc {
-    @media (min-width: $xs-width) {
-      color: $white;
+  @media (min-width: $xs-width) {
+    .cvc {
+      label {
+        color: $white;
+      }
     }
-    @media (min-width: $sm-width) {
-      color: $bg_color_black;
+  }
+  @media (min-width: $sm-width) {
+    .cvc {
+      label {
+        color: $bg_color_black;
+      }
     }
   }
 
   &.credit_card_bg {
-    background-size: cover;
     @media (min-width: $xs-width) {
       background: none;
     }
-    @media (min-width: $sm-width) {// and (min-width: $md-width) and (min-width: $lg-width) and (min-width: $xl-width) {
-      background: asset-url('signup/payment_methods/card_all') no-repeat top;
+    @media (min-width: $sm-width) {
+      background: asset-url('signup/payment_methods/card_all') no-repeat center;
+      background-size: contain;
     }
-    
   }
 }
 
