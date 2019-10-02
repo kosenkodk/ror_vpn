@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link';
 
 import ic_facebook from 'images/icons/ic_facebook.png'
 import ic_twitter from 'images/icons/ic_twitter.png'
@@ -11,18 +13,13 @@ class FooterSocialLinks extends React.Component {
     return (
       <div className="row">
         <div className="col-12 text-center">
-          <a href="#"><img src={ic_facebook} className="mb-2" alt="Icon Facebook" /></a>
-          <a href="#"><img src={ic_twitter} className="mb-2" alt="Icon Twitter" /></a>
-          <a href="#"><img src={ic_instagram} className="mb-2" alt="Icon Instagram" /></a>
-          <a href="#"><img src={ic_pinterest} className="mb-2" alt="Icon Pinterest" /></a>
-          <a href="#"><img src={ic_telegram} className="mb-2" alt="Icon Telegram" /></a>
-          {/* <%= link_to image_tag('icons/ic_facebook.png', {class:'mb-2', alt:'Icon Facebook'}), '#' %>
-<%= link_to image_tag('icons/ic_twitter.png', {class:'mb-2', alt:'Icon '}), '#' %>
-<%= link_to image_tag('icons/.png', {class:'mb-2', alt:'Icon '}), '#' %>
-<%= link_to image_tag('icons/.png', {class:'mb-2', alt:'Icon '}), '#' %>
-<%= link_to image_tag('icons/.png', {class:'mb-2', alt:'Icon '}), '#' %> */}
+          <HashLink to="#"><img src={ic_facebook} className="mb-2" alt="Icon Facebook" /></HashLink>
+          <HashLink to="#"><img src={ic_twitter} className="mb-2" alt="Icon Twitter" /></HashLink>
+          <HashLink to="#"><img src={ic_instagram} className="mb-2" alt="Icon Instagram" /></HashLink>
+          <HashLink to="#"><img src={ic_pinterest} className="mb-2" alt="Icon Pinterest" /></HashLink>
+          <HashLink to="#"><img src={ic_telegram} className="mb-2" alt="Icon Telegram" /></HashLink>
         </div>
-      </div >
+      </div>
     )
   }
 }
