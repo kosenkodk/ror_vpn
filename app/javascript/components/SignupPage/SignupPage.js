@@ -149,8 +149,8 @@ class SignupPage extends React.Component {
       });
   }
 
-  responseFailed(error) {
-    this.setState({ error: errorMessage(error) })
+  async responseFailed(error) {
+    this.setState({ error: await errorMessage(error) })
     //unset current user
     this.props.unsetCurrentUser()
   }
