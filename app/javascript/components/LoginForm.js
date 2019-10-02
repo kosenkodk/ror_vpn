@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
           </div>
           <div className="col-sm-6">
             <div className="input-group">
-              <input className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
+              <input type="password" className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
               <div className="input-group-append">
                 <span className="input-group-text" id="forgot-pwd-addon"><a
                   href="/forgot">
