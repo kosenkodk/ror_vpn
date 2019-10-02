@@ -9,7 +9,7 @@ const errorMessage = (jsonResponse) => {
   if (jsonResponse.error) {
     // api error
     return jsonResponse.error
-  } else if (jsonResponse instanceof TypeError) {
+  } else if (jsonResponse instanceof TypeError || jsonResponse instanceof Error) {
     // network error
     return jsonResponse.message
   } else {
