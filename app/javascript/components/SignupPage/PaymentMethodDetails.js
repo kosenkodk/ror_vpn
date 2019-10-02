@@ -1,5 +1,7 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
+import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link';
 
 class PaymentMethodDetails extends React.Component {
 
@@ -44,8 +46,8 @@ class PaymentMethodDetails extends React.Component {
             </tbody>
           </table>
 
-          <p className="text-left">By submitting this form, you agree to our <a href="#">Terms</a> and
-            <a href="#"> Privacy Policy </a>.
+          <p className="text-left">By submitting this form, you agree to our <HashLink to="#">Terms</HashLink> and
+            <HashLink to="#"> Privacy Policy </HashLink>.
                                           If you do not want to receive information about VPN services, please send an email to
             <a href="mailto:privacy@vega.com">privacy@vega.com</a>.
           </p>
