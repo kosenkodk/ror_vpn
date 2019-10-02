@@ -2,8 +2,6 @@ import React from 'react'
 import logoImage from 'images/logo.png'
 import I18n from 'i18n-js/index.js.erb'
 import { Link } from 'react-router-dom'
-// import Scroll from 'react-scroll'
-// const ScrollLink = Scroll.ScrollLink
 import { HashLink } from 'react-router-hash-link';
 
 class HeaderNavBar extends React.Component {
