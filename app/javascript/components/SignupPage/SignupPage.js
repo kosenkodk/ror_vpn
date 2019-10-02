@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
+import config from 'config';
 import FlashMessages from '../sections/FlashMessages'
 
 import SignupForm from './SignupForm'
@@ -84,7 +85,7 @@ class SignupPage extends React.Component {
 
     const data = this.state
 
-    fetch(postCsrfRequest('/api/v1/signup', 'POST', data))
+    fetch(postCsrfRequest(`${config.apiUrl}/signup`, 'POST', data))
       .then(handleErrors)
       .then((item) => this.responseSuccessful(item))
       .catch((error) => this.responseFailed(error));
