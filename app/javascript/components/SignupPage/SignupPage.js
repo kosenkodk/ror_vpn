@@ -135,7 +135,7 @@ class SignupPage extends React.Component {
       return this.responseFailed(response)
     }
 
-    fetch('/api/v1/me')
+    fetch(`${config.apiUrl}/me`)
       // .then(handleErrors)
       .then((response) => response.json())
       .then((meResponse) => {
@@ -143,7 +143,7 @@ class SignupPage extends React.Component {
         this.setState({ error: meResponse.message || '' })
         // set data 
         this.props.setCurrentUser(meResponse, response.csrf)
-        this.props.history.push('/features')
+        this.props.history.push(config.userUrlAfterSignin)
       })
       .catch((error) => {
         return this.responseFailed(error)

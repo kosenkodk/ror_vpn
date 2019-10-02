@@ -39,7 +39,7 @@ class HeaderNavBar extends React.Component {
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink"
-                href="/login">{I18n.t('nav_menu.log_in')}</a>
+                href="/signin">{I18n.t('nav_menu.log_in')}</a>
             </li>
             <li className="nav-item">
               <a className="nav-link pl-3 pr-3 text-left btn btn-outline-pink active"

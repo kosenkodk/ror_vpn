@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import I18n from 'i18n-js/index.js.erb'
 
-class LoginForm extends React.Component {
+class SigninForm extends React.Component {
 
   constructor(props) {
 
@@ -93,7 +93,7 @@ class LoginForm extends React.Component {
 
     // console.log('getting data from api...')
 
-    // const url = "api/v1/login";
+    // const url = "api/v1/signin";
     // fetch(url)
     //   .then(response => {
     //     if (response.ok) {
@@ -109,11 +109,11 @@ class LoginForm extends React.Component {
 
 }
 
-LoginForm.propTypes = {
+SigninForm.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   forgot_pwd_path: PropTypes.string
   // handleFormSubmit: PropTypes.function
 };
 
-export default LoginForm
+export default SigninForm
