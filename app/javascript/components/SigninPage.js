@@ -82,7 +82,7 @@ class SigninPage extends React.Component {
     // let formFields = {}
     // const { email, password } = this.state;
     return (
-      <div className="login">
+      <div className="container login">
         <div className="featurette text-center">
           <div className="row">
 
