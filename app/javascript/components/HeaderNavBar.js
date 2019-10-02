@@ -2,7 +2,8 @@ import React from 'react'
 import logoImage from 'images/logo.png'
 import I18n from 'i18n-js/index.js.erb'
 import { Link } from 'react-router-dom'
-
+import Scroll from 'react-scroll'
+const ScrollLink = Scroll.ScrollLink
 
 class HeaderNavBar extends React.Component {
   render() {
@@ -19,7 +20,15 @@ class HeaderNavBar extends React.Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               {/* <Link to={{ pathname: "/", search: "?sort=name", hash: "#features", state: { fromDashboard: true } }} ></Link> */}
-              <Link to={{ pathname: "/", hash: "#features" }} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</Link>
+              {/* <Link to={{ pathname: "/", hash: "#features" }} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</Link> */}
+              <ScrollLink
+                to="/#downloads"
+                spy={true}
+                smooth={true}
+                duration={500}
+                className='nav-link pl-3 pr-3 text-left btn btn-outline-pink'
+                activeClass='active'
+              >{I18n.t('nav_menu.features')}</ScrollLink>
             </li>
             <li className="nav-item">
               <Link to="/pricing" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.pricing')}</Link>
