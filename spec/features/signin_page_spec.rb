@@ -5,7 +5,7 @@ RSpec.describe AuthController, type: :feature, js: true do
   describe 'GET :signin' do
     
     before do 
-      visit('/login')
+      visit('/signin')
     end
 
     context 'error' do

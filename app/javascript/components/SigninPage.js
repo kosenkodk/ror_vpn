@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import LoginForm from './LoginForm'
+import SigninForm from './SigninForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
 import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
 import { config } from 'config';
 
-class Login extends React.Component {
+class SigninPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -28,19 +28,39 @@ class Login extends React.Component {
 
     fetch(postCsrfRequest(`${config.apiUrl}/signin`, 'POST', data))
       .then(handleErrors)
-      .then((item) => this.signinSuccessful(item))
-      .catch((error) => this.signinFailed(error, I18n.t('errors.something_went_wrong')));
+      .then((item) => this.responseSuccessful(item))
+      .catch((error) => this.responseFailed(error, I18n.t('errors.something_went_wrong')));
   }
 
-  signinSuccessful(response) {
+  responseSuccessful(response) {
     // console.log('signinSuccessful', response)
+
     this.setState({ notice: response.notice })
+    this.setState({ error: response.error })
+
     // this.props.history.push('/features')
     // this.props.history.push('/200')
-    return response
+
+    if (!response.csrf) {
+      return this.responseFailed(response)
+    }
+
+    fetch(`${config.apiUrl}/me`)
+      // .then(handleErrors)
+      .then((response) => response.json())
+      .then((meResponse) => {
+        console.log('/me', meResponse)
+        this.setState({ error: meResponse.message || '' })
+        // set data 
+        this.props.setCurrentUser(meResponse, response.csrf)
+        this.props.history.push(config.userUrlAfterSignin)
+      })
+      .catch((error) => {
+        return this.responseFailed(error)
+      });
   }
 
-  signinFailed(error, message) {
+  responseFailed(error, message) {
     // method 1
     // errorMessage(error).then((message) => {
     //   // console.log(message)
@@ -82,7 +102,7 @@ class Login extends React.Component {
 
             <div className="col-md-8 offset-md-2">
               <div className="text-right">
-                <LoginForm token={this.props.token} form_action={this.props.form_action} forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
+                <SigninForm token={this.props.token} form_action={this.props.form_action} forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
               </div>
               <div className="row">
                 <div className="col-md-8 offset-md-2">
@@ -102,6 +122,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     this.props.handleIsFooterVisible(this.props.isFooterVisible)
+
     // if (this.props.email || this.props.password) {
     //   console.log('use props')
     //   // this.setState({ features: this.props.features })
@@ -110,7 +131,7 @@ class Login extends React.Component {
 
     // console.log('getting data from api...')
 
-    // const url = "api/v1/login";
+    // const url = "api/v1/signin";
     // fetch(url)
     //   .then(response => {
     //     if (response.ok) {
@@ -126,7 +147,7 @@ class Login extends React.Component {
 
 }
 
-Login.propTypes = {
+SigninPage.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   form_action: PropTypes.string,
@@ -134,5 +155,5 @@ Login.propTypes = {
   token: PropTypes.string
 };
 
-export default withRouter(Login)
-// export default Login
+export default withRouter(SigninPage)
+// export default SigninPage

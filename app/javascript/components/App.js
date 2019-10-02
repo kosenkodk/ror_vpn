@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
 import Header from './Header'
 import FooterSection from './sections/FooterSection'
-import Login from './Login'
+import SigninPage from './SigninPage'
 import Features from './Features'
 import Router from './Router'
 import ComingSoonPage from './ComingSoonPage'
@@ -27,6 +27,8 @@ class App extends React.Component {
       isSignedIn: false
     }
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
+    this.unsetCurrentUser = this.unsetCurrentUser.bind(this)
+    this.setCurrentUser = this.setCurrentUser.bind(this)
   }
 
 
@@ -78,9 +80,8 @@ class App extends React.Component {
             <Router path={this.props.path} context={{}} >
               {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
               <Route exact path="/" render={() => <Home features={this.props.features} />} />
-              <Route exact path="/login" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
-              <Route exact path="/signin" render={() => <Login handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
-              <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser.bind(this)} setCurrentUser={this.setCurrentUser.bind(this)} />} />
+              <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} isFooterVisible={false} form_action='/login' token={this.props.token} />} />
+              <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
               <Route exact path="/contact_us" render={() => <ContactusPage />} />
               <Route exact path="/contacts/new" render={() => <ContactusPage />} />
               <Route exact path="/forgot" render={() => <PasswordForgotPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
@@ -114,7 +115,7 @@ App.propTypes = {
 // const App = props => (
 //   <Router path={props.path} context={props}>
 //     <Route path="/" exact render={(props) => (<div>token: {props.token}</div>)} />
-//     <Route exact path="/login" render={() => <Login />} />
+//     <Route exact path="/signin" render={() => <Login />} />
 //     <Route exact path="/features" render={() => <Features />} />
 //   </Router>
 // )

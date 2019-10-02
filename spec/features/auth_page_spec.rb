@@ -4,7 +4,7 @@ RSpec.describe AuthController, type: :feature, js: true do
 
   describe 'GET :login' do
     before do 
-      visit('/login')
+      visit('/signin')
     end
 
     it 'render :login template' do

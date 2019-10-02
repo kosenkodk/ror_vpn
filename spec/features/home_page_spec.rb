@@ -16,7 +16,7 @@ RSpec.describe HomeController, type: :feature do
     end
 
     scenario 'login page > invisible footer', js: true do
-      visit('/login')
+      visit('/signin')
       # click_on('Log in')
       expect(page).not_to have_css('footer')
     end
