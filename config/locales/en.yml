@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  errors:
+    something_went_wrong: "Something went wrong"
   signin:
     invalid_credentials: "Can not find such email/password combination"    
   email: "E-Mail"
