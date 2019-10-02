@@ -6,6 +6,7 @@ import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
 import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
 import { config } from 'config';
+import { Link } from 'react-router-dom'
 
 class SigninPage extends React.Component {
 
@@ -92,7 +93,8 @@ class SigninPage extends React.Component {
               </h1>
               <p className="lead">
                 {I18n.t('pages.login.do_not_have_an_account')}
-                <a href="/signup"> {I18n.t("pages.signup.title")}</a>
+                <Link to="/signup">{I18n.t("pages.signup.title")}</Link>
+                {/* <a href="/signup"> {I18n.t("pages.signup.title")}</a> */}
               </p>
             </div>
 
@@ -106,7 +108,8 @@ class SigninPage extends React.Component {
               </div>
               <div className="row">
                 <div className="col-md-8 offset-md-2">
-                  <a href="/forgot" className="trouble">{I18n.t("pages.login.form.login_trouble")}</a>
+                  <Link to="/forgot" className="trouble">{I18n.t("pages.login.form.login_trouble")}</Link>
+                  {/* <a href="/forgot" className="trouble">{I18n.t("pages.login.form.login_trouble")}</a> */}
                 </div>
               </div>
             </div>
@@ -119,9 +122,11 @@ class SigninPage extends React.Component {
       </div>
     );
   }
-
+  componentWillUnmount() {
+    this.props.handleIsFooterVisible(true)
+  }
   componentDidMount() {
-    this.props.handleIsFooterVisible(this.props.isFooterVisible)
+    this.props.handleIsFooterVisible(false)
 
     // if (this.props.email || this.props.password) {
     //   console.log('use props')

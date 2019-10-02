@@ -71,6 +71,9 @@ class PasswordForgotPage extends React.Component {
   componentDidMount() {
     this.props.handleIsFooterVisible(false)
   }
+  componentWillUnmount() {
+    this.props.handleIsFooterVisible(true)
+  }
 }
 
 export default withRouter(PasswordForgotPage)
