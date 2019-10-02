@@ -94,13 +94,30 @@ body {
     }
   }
 
-  .bg_credit_card {
-    background: asset-url('signup/payment_methods/card_all') no-repeat top;
-    background-size: cover;
-  }
-
   .icon-checkbox {
     margin-top: -2rem !important;
+  }
+}
+
+.credit_card {
+  label.cvc {
+    @media (min-width: $xs-width) {
+      color: $white;
+    }
+    @media (min-width: $sm-width) {
+      color: $bg_color_black;
+    }
+  }
+
+  &.credit_card_bg {
+    background-size: cover;
+    @media (min-width: $xs-width) {
+      background: none;
+    }
+    @media (min-width: $sm-width) {// and (min-width: $md-width) and (min-width: $lg-width) and (min-width: $xl-width) {
+      background: asset-url('signup/payment_methods/card_all') no-repeat top;
+    }
+    
   }
 }
 
@@ -214,10 +231,10 @@ body {
 
 .btn-outline-pink {
   background: transparent;
-  color: white !important;
+  color: $white !important;
   &.active, &:hover {
     background: $pink_button_gradient;
-    color: white;
+    color: $white;
   }
   &.active:hover {
     opacity: $opacity;
@@ -471,7 +488,7 @@ body {
 
 .card {
   background-color: $bg_color_black;
-  color:$white;
+  color: $white;
 }
 
 #downloads {
