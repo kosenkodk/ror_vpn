@@ -39,7 +39,7 @@ class Login extends React.Component {
     return response
   }
 
-  async signinFailed(error, message) {
+  signinFailed(error, message) {
     // method 1
     // errorMessage(error).then((message) => {
     //   // console.log(message)
