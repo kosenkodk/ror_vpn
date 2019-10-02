@@ -51,7 +51,7 @@ class PaymentMethodDetails extends React.Component {
           </p>
         </div>
 
-        <div className="col-md-4 offset-md-4">
+        <div className="col-md-6 offset-md-3">
           <button onClick={(e) => { this.props.onFormSubmit(e) }} className="btn btn-outline-primary btn-block">{I18n.t('buttons.continue')}</button>
           {/* <%= f.submit t('buttons.continue'), {class:'btn btn-outline-primary btn-block'} %> */}
         </div>
