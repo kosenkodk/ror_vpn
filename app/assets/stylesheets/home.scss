@@ -229,21 +229,21 @@ body {
   }
 }
 
-.btn-pink-dark {
-  @extend .btn-outline-pink;
-  background: rgb(38,8,48) !important;
-}
-
 .btn-outline-pink {
   background: transparent;
   color: $white !important;
   &.active, &:hover {
-    background: $pink_button_gradient;
+    background: $pink_button_gradient !important;
     color: $white;
   }
   &.active:hover {
     opacity: $opacity;
   }
+}
+
+.btn-pink-dark {
+  @extend .btn-outline-pink;
+  background: rgb(38,8,48) !important;
 }
 
 .reset_pwd, .forgot_pwd {
