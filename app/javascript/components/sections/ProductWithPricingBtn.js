@@ -17,8 +17,9 @@ class ProductWithPricingBtn extends React.Component {
           <p className="lead">{I18n.t('vegaVPN')} encrypts your internet activity, shielding you from hackers, ISP's and everyone
             else who has
       no business recording what you haven't chosen to share.</p>
-          <Link to="/pricing" className="btn btn-outline-primary"><span className="glyphicon glyphicon-circle-arrow-right"></span>View
-      pricing &#8594;</Link>
+          <Link to="/pricing" className="btn btn-outline-primary">
+            {I18n.t('buttons.view_pricing')} <span className="glyphicon glyphicon-circle-arrow-right">&#8594;</span>
+          </Link>
         </div>
         <div className="col-md-6 d-none d-md-block">
           <img src={PhoneImage} className="img-fluid" alt="" />

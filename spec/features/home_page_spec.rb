@@ -1,29 +1,36 @@
 require 'rails_helper'
 
-
-
 RSpec.describe HomeController, type: :feature do
+  
+  before do
+    visit(root_path)
+  end
 
-  describe 'GET main/home page' do
-    let!(:feature) { FactoryBot.create(:feature, title:'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
+  describe 'home page checking links', js: true do
+    it 'render login page' do
+      click_on('Log in')
+      expect(page).to have_content(I18n.t('pages.login.title'))
+      expect(page).not_to have_css('footer')
+    end
 
+    it 'render pricing page' do
+      click_on(I18n.t('buttons.view_pricing'))
+      expect(page).to have_content(I18n.t('pages.pricing.title'))
+      expect(page).to have_css('footer')
+    end
+  end
+
+  describe 'GET main/home page (ssr)', js: true do
+    let!(:feature) { FactoryBot.create(:feature, title: 'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
+    
     scenario 'features section > view item', js: true do
-      visit(root_path)
       # feature react section (client js side rendering)
       expect(page).to have_content('Feature1Title')
       expect(page).to have_content('Feature1Subtitle')
       expect(page).to have_content('Feature1Text')
     end
 
-    scenario 'login page > invisible footer', js: true do
-      visit('/signin')
-      # click_on('Log in')
-      expect(page).not_to have_css('footer')
-    end
-
-  
     it 'renders :index template' do
-      visit(root_path)
       # nav menu
       expect(page).to have_content('Features')
       expect(page).to have_content('Pricing')
@@ -48,8 +55,8 @@ RSpec.describe HomeController, type: :feature do
       expect(page).to have_content('SUPPORT')
       expect(page).to have_content('CONTACT')
     end
+
     it 'renders contact us page' do
-      visit(root_path)
       # within(:css, 'navbar') do
         click_on(I18n.t('nav_menu.contact_us'), match: :first)
       # end

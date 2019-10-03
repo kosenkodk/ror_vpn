@@ -121,6 +121,8 @@ en:
       twitter: "Twitter"
       contact_us: "Contact Us"
   pages:
+    pricing:
+      title: "One price for all your devices"
     forgot_pwd:
       title: "Forgot Password"
       subtitle: "Enter email to reset your password."
@@ -189,3 +191,5 @@ en:
     reset_password: "Reset Password"
     ok: "Ok"
     continue: "Continue"
+    view_pricing: "View pricing"
+    view_pricing_html: "View pricing &#8594;"
