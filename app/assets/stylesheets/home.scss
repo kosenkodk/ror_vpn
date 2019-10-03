@@ -29,7 +29,17 @@ body {
   border-radius: $pricing_border_radius;
 }
 
-.bg1, .bg1_contain {
+.bg1 {
+  background: $bg_color_black asset-url('bg1.svg') no-repeat top;
+  @media (min-width: 0) and (max-width: $md-width) {
+    background-size: contain;
+  }
+  @media (min-width: $md-width) {
+    background-size: cover;
+  }
+}
+
+.bg1_contain {
   background: $bg_color_black asset-url('bg1.svg') no-repeat top;
   background-size: contain;
 }

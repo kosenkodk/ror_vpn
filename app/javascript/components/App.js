@@ -76,7 +76,7 @@ class App extends React.Component {
     return (
       <Router path={this.props.path} context={{}} >
 
-        <div className={`container-fluid ${this.state.bgClass}`}>
+        <div className={`container-fluid bg1`}>
           <div className="container">
             <Header />
           </div>
