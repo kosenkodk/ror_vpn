@@ -33,12 +33,13 @@ class App extends React.Component {
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
     this.unsetCurrentUser = this.unsetCurrentUser.bind(this)
     this.setCurrentUser = this.setCurrentUser.bind(this)
+    this.setAppState = this.setAppState.bind(this)
   }
 
 
   getBackgdroundClass() {
     let className = 'bg1'
-    for (let item of ['/404', '/200', '/204', '/coming_soon', '/contacts/new', 'contact_us']) {
+    for (let item of ['/404', '/200', '/204', '/coming_soon', '/contacts/new', '/contact_us']) {
       if (item === this.props.path) {
         className = 'bg_star';
         break;
@@ -51,7 +52,7 @@ class App extends React.Component {
         break;
       }
     }
-
+    this.setState({ bgClass: className })
     return className;
   }
 
@@ -72,11 +73,15 @@ class App extends React.Component {
     this.setState({ user: user, csrf: csrf, isSignedIn: true })
   }
 
+  setAppState(state) {
+    this.setState(state)
+  }
+
   render() {
     return (
       <Router path={this.props.path} context={{}} >
 
-        <div className={`container-fluid bg1`}>
+        <div className={`container-fluid ${this.state.bgClass}`}>
           <div className="container">
             <Header />
           </div>
@@ -86,8 +91,8 @@ class App extends React.Component {
           <div className='container'>
 
             {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
-            <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
-            <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
+            <Route exact path="/signin" render={() => <SigninPage setAppState={this.setAppState} isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
+            <Route exact path="/signup" render={() => <SignupPage setAppState={this.setAppState} isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
             <Route exact path="/forgot" render={() => <PasswordForgotPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
@@ -117,7 +122,6 @@ class App extends React.Component {
   }
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
-    this.setState({ bgClass: this.getBackgdroundClass() })
   }
 }
 
