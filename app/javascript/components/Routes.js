@@ -1,14 +1,12 @@
 export const Routes = {
-
   'tickets': {
     path: '/tickets',
     name: 'Tickets',
     component: ''
   },
   'coming_soon': {
-    path: '/404',
+    path: '/coming_soon',
     name: 'Coming Soon',
     component: ''
-  },
-
+  }
 };

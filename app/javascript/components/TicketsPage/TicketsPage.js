@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Ticket from './Ticket'
-import { withRouter } from "react-router-dom";
-// import Sidebar from '../Sidebar'
+import { withRouter } from "react-router-dom"
+import Sidebar from '../Sidebar'
 
 class TicketsPage extends React.Component {
 
@@ -17,19 +17,24 @@ class TicketsPage extends React.Component {
   render() {
     const { items } = this.state;
     return (
-      <React.Fragment>
-        {/* <Sidebar /> */}
-        <div id="tickets" className="tickets row">
-          {
-            items.map(item => (
-              <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
-                <Ticket {...item} />
-                {/* <Ticket title={item.title} /> */}
-              </div>
-            ))
-          }
+      <div className="row">
+        <div className="col-sm-4">
+          <Sidebar />
         </div>
-      </React.Fragment>
+        <div className="col-sm-8">
+          <div id="tickets" className="tickets row">
+            <h1>Tickets</h1>
+            {
+              items.map(item => (
+                <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
+                  <Ticket {...item} />
+                  {/* <Ticket title={item.title} /> */}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     );
   }
 
