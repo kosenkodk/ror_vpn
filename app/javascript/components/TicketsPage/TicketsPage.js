@@ -47,7 +47,16 @@ class TicketsPage extends React.Component {
     console.log('getting data from api...')
 
     const url = "api/v1/tickets";
-    fetch(url)
+    let options = {
+      method: 'GET', // *GET, POST, PATCH, PUT, DELETE, etc.
+      credentials: 'include', // same-origin, include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': this.props.appState.csrf
+      }
+    }
+
+    fetch(url, options)
       .then(response => {
         if (response.ok) {
           return response.json();

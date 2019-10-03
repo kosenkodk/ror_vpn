@@ -58,5 +58,12 @@ payment_methods = [
     puts "#{path_to_file}\n"
     payment_method.icons.attach(io: File.open(path_to_file), filename: icon)
   end
+end
 
+puts 'Tickets\n\n'
+tickets = [
+  {title: 'Ticket 1'},{title: 'Ticket 2'},{title: 'Ticket 3'}
+].each do |item|
+  ticket = Ticket.find_or_create_by(title:item[:title])
+  puts ticket.title
 end

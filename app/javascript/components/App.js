@@ -52,7 +52,6 @@ class App extends React.Component {
         break;
       }
     }
-    this.setState({ bgClass: className })
     return className;
   }
 
@@ -74,10 +73,12 @@ class App extends React.Component {
   }
 
   setAppState(state) {
-    this.setState(state)
+    console.log('setAppState > app state', state)
+    this.setState(...state)
   }
 
   render() {
+    console.log('render > app state', this.state)
     return (
       <Router path={this.props.path} context={{}} >
 
@@ -109,7 +110,7 @@ class App extends React.Component {
             {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
             <Route exact path="/features" render={() => <Features />} />
-            <Route exact path="/tickets" render={() => <TicketsPage />} />
+            <Route exact path="/tickets" render={() => <TicketsPage appState={this.state} setAppState={this.setAppState} />} />
           </div>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
