@@ -1,5 +1,5 @@
 export const config = {
   apiUrl: '/api/v1',
-  userUrlAfterSignin: '/features',
+  userUrlAfterSignin: '/tickets',
   isDebug: true
 };

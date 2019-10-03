@@ -11,7 +11,7 @@ class Ticket extends React.Component {
   render() {
     const { tickets } = this.state;
     return (
-      <div id="tickets" className="tickets row">
+      <div className="ticket">
         {this.props.title}
       </div>
     );
