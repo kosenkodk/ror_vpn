@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    render json: { error: 'Not found' }, status: :not_found
+    render json: { error: I18n.t('errors.api.not_found') }, status: :not_found
   end
 
   def unprocessable_entity(exception)

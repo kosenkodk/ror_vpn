@@ -34,6 +34,7 @@ en:
     something_went_wrong: "Something went wrong"
     api:
       network_error: "Network error"
+      not_found: "Not Found"
   signin:
     invalid_credentials: "Invalid email or password"    
   email: "E-Mail"
