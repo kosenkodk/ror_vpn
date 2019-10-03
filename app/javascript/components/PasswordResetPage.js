@@ -2,6 +2,8 @@ import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
 import PasswordResetForm from './PasswordResetForm'
 import { postCsrfRequest, handleErrors } from 'helpers/http'
+import FlashMessages from './sections/FlashMessages'
+import { withRouter } from "react-router-dom";
 
 class PasswordResetPage extends React.Component {
 
@@ -19,7 +21,7 @@ class PasswordResetPage extends React.Component {
     console.log(password, password_confirm)
     const data = { 'password': password, 'password_confirm': password_confirm }
 
-    fetch(postCsrfRequest('/api/v1/password_resets', 'PATCH', data))
+    fetch(postCsrfRequest('/api/v1/password_resets/token', 'PATCH', data))
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
@@ -77,4 +79,4 @@ class PasswordResetPage extends React.Component {
   }
 }
 
-export default PasswordResetPage
+export default withRouter(PasswordResetPage)
