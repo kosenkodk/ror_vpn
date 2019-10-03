@@ -41,6 +41,11 @@ class HeaderNavBar extends React.Component {
             <li className="nav-item">
               <Link to="/signup" className="nav-link active pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.sign_up')}</Link>
             </li>
+            {this.props.appState.isSignedIn &&
+              <li className="nav-item">
+                <Link to="/tickets" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.tickets')}</Link>
+              </li>
+            }
           </ul>
         </div>
       </nav>

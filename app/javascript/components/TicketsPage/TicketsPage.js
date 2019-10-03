@@ -38,6 +38,10 @@ class TicketsPage extends React.Component {
     );
   }
 
+  componentDidUpdate() {
+
+  }
+
   componentDidMount() {
     if (this.props.items && this.props.items.length > 0) {
       console.log('getting data from props ...')

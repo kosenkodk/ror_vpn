@@ -84,7 +84,7 @@ class App extends React.Component {
 
         <div className={`container-fluid ${this.state.bgClass}`}>
           <div className="container">
-            <Header />
+            <Header appState={this.state} />
           </div>
 
           <Route exact path="/" render={() => <Home />} />
