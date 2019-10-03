@@ -19,6 +19,7 @@
     "react-router-dom": "^5.0.1",
     "react-router-hash-link": "^1.2.2",
     "react_ujs": "^2.6.0",
+    "smoothscroll-polyfill": "^0.4.4",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
