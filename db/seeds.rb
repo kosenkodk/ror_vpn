@@ -61,7 +61,7 @@ payment_methods = [
 end
 
 puts 'Tickets\n\n'
-user = User.find_or_create_by!(email:'test@email.com', password:'123')
+user = User.find_or_create_by(email:'test@email.com', password:'123')
 tickets = [
   {title: 'Ticket 1'}, 
   {title: 'Ticket 2'}, 
