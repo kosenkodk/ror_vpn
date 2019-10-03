@@ -16,6 +16,7 @@ import PasswordResetPageOk from './PasswordResetPageOk'
 import PasswordForgotPage from './PasswordForgotPage'
 import ContactusPage from './ContactusPage'
 import SignupPage from './SignupPage/SignupPage'
+import smoothscroll from 'smoothscroll-polyfill';
 
 class App extends React.Component {
   constructor(props) {
@@ -110,6 +111,7 @@ class App extends React.Component {
     // this.setState({ bgClass: this.getBackgdroundClass() })
   }
   componentDidMount() {
+    smoothscroll.polyfill(); // native smooth scrolling
     this.setState({ bgClass: this.getBackgdroundClass() })
   }
 }
