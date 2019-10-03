@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
+import smoothscroll from 'smoothscroll-polyfill';
+
 import Header from './Header'
 import FooterSection from './sections/FooterSection'
 import SigninPage from './SigninPage'
@@ -16,7 +18,7 @@ import PasswordResetPageOk from './PasswordResetPageOk'
 import PasswordForgotPage from './PasswordForgotPage'
 import ContactusPage from './ContactusPage'
 import SignupPage from './SignupPage/SignupPage'
-import smoothscroll from 'smoothscroll-polyfill';
+import TicketsPage from './TicketsPage/TicketsPage'
 
 class App extends React.Component {
   constructor(props) {
@@ -100,6 +102,7 @@ class App extends React.Component {
             {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
 
             <Route exact path="/features" render={() => <Features />} />
+            <Route exact path="/tickets" render={() => <TicketsPage />} />
           </div>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
