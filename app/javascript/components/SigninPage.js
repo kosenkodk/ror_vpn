@@ -126,6 +126,7 @@ class SigninPage extends React.Component {
     this.props.handleIsFooterVisible(true)
   }
   componentDidMount() {
+    // this.props.setAppState({bgClass:'bg1_cover'})
     this.props.handleIsFooterVisible(false)
 
     // if (this.props.email || this.props.password) {
