@@ -8,11 +8,6 @@ class PaymentMethod < ApplicationRecord
   end
 
   def icon_urls
-    urls = []
-    self.icons.each do |item|
-      urls << rails_blob_url(item, host: Rails.application.config.host)#only_path: true)
-       #if item.try(:attached?)# && item.try(:image).try(:blob?)
-    end
-    urls
+    self.icons.map { |item| rails_blob_path(item, only_path: true) }
   end
 end
