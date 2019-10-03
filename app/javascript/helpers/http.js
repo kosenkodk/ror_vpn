@@ -47,8 +47,9 @@ const postCsrfRequest = (url, method, data) => {
   try {
     csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   } catch (e) { }
+
   return new Request(url, {
-    method: method, // *GET, POST, PUT, DELETE, etc.
+    method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
     // mode: 'cors', // no-cors, cors, *same-origin
     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'include', // same-origin, include, *same-origin, omit
