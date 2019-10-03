@@ -80,10 +80,12 @@ class App extends React.Component {
           <div className="container">
             <Header />
           </div>
-          <div className={this.props.path === '/' ? 'row' : 'container'}>
+
+          <Route exact path="/" render={() => <Home />} />
+
+          <div className='container'>
 
             {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
-            <Route exact path="/" render={() => <Home />} />
             <Route exact path="/signin" render={() => <SigninPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
             <Route exact path="/signup" render={() => <SignupPage isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
