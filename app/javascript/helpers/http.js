@@ -1,5 +1,7 @@
 
 
+import I18n from 'i18n-js/index.js.erb'
+
 function ExceptionWithMessageAndResponse(response, message) {
   this.response = response
   this.message = message
@@ -37,7 +39,7 @@ const handleErrors = async (response) => {
     throw new TypeError(responseJson && responseJson.error)
   }
 
-  throw new TypeError("Network error")
+  throw new TypeError(I18n.t('errors.api.network_error'))
 }
 
 const postCsrfRequest = (url, method, data) => {
