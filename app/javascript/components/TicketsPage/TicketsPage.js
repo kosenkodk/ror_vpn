@@ -22,16 +22,36 @@ class TicketsPage extends React.Component {
           <Sidebar />
         </div>
         <div className="col-sm-8">
-          <div id="tickets" className="tickets row">
-            <h1>Tickets</h1>
-            {
-              items.map(item => (
-                <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
-                  <Ticket {...item} />
-                  {/* <Ticket title={item.title} /> */}
-                </div>
-              ))
-            }
+          <div id="tickets" className="tickets">
+            <div className="row">
+
+              <div className="col-sm-6 text-left">
+                <h2 className="mt-2">Tickets</h2>
+              </div>
+              <div className="col-sm-6 text-right">
+                {/* <%= link_to 'New Tariff Plan', new_tariff_plan_path, class: 'btn btn-outline-success' %> */}
+              </div>
+            </div>
+
+            <table className="table text-white">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Text</th>
+                  <th colSpan="3"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  items.map(item => (
+                    <tr key={item.id} >
+                      <Ticket {...item} />
+                      {/* <Ticket title={item.title} /> */}
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
+import { Link } from 'react-router-dom'
+// import { HashLink } from 'react-router-hash-link';
 
 class Ticket extends React.Component {
 
@@ -9,11 +11,15 @@ class Ticket extends React.Component {
   }
 
   render() {
-    const { tickets } = this.state;
+
     return (
-      <div className="ticket">
-        {this.props.title}
-      </div>
+      <React.Fragment>
+        <td>{this.props.title}</td>
+        <td>{this.props.text}</td>
+        <td><Link to="#" className='btn btn-sm btn-outline-info'>Show</Link></td>
+        <td><Link to="#" className='btn btn-sm btn-outline-warning'>Edit</Link></td>
+        <td><Link to="#" className='btn btn-sm btn-outline-danger'>Destroy</Link></td>
+      </React.Fragment>
     );
   }
 
