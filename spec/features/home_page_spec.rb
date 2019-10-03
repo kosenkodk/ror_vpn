@@ -1,34 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe HomeController, type: :feature do
-  
-  before do
+  let!(:feature) { FactoryBot.create(:feature, title: 'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
+
+  before(:each) do
     visit(root_path)
   end
+  
+  describe 'home page', js: true do
 
-  describe 'home page checking links', js: true do
-    it 'render login page' do
-      click_on('Log in')
-      expect(page).to have_content(I18n.t('pages.login.title'))
-      expect(page).not_to have_css('footer')
+    context 'checking links' do
+      it 'render login page' do
+        click_on('Log in')
+        expect(page).to have_content(I18n.t('pages.login.title'))
+        expect(page).not_to have_css('footer')
+      end
+
+      it 'render pricing page' do
+        click_on(I18n.t('buttons.view_pricing'))
+        expect(page).to have_content(I18n.t('pages.pricing.title'))
+        expect(page).to have_css('footer')
+      end
     end
 
-    it 'render pricing page' do
-      click_on(I18n.t('buttons.view_pricing'))
-      expect(page).to have_content(I18n.t('pages.pricing.title'))
-      expect(page).to have_css('footer')
-    end
-  end
-
-  describe 'GET main/home page (ssr)', js: true do
-    let!(:feature) { FactoryBot.create(:feature, title: 'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
-    
-    scenario 'features section > view item', js: true do
+    it 'features section > view item' do
       # feature react section (client js side rendering)
       expect(page).to have_content('Feature1Title')
       expect(page).to have_content('Feature1Subtitle')
       expect(page).to have_content('Feature1Text')
     end
+  end
+
+  describe 'GET main/home page (ssr)' do
 
     it 'renders :index template' do
       # nav menu
