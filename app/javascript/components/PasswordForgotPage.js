@@ -20,7 +20,7 @@ class PasswordForgotPage extends React.Component {
     this.setState({ error: '', notice: '' })
 
     const data = { 'email': email }
-    fetch(postCsrfRequest('/api/v1/forgot', 'POST', data))
+    fetch(postCsrfRequest('/api/v1/password_resets', 'POST', data))
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
