@@ -37,7 +37,9 @@ class TicketsPage extends React.Component {
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th>Text</th>
+                  <th>Department</th>
+                  {/* <th>Text</th> */}
+                  <th>Status</th>
                   <th colSpan="3"></th>
                 </tr>
               </thead>
