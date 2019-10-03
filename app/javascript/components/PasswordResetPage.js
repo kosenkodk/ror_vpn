@@ -27,7 +27,7 @@ class PasswordResetPage extends React.Component {
         console.log('success', item, message)
         this.setState({ error: '' })
         this.setState({ notice: item.message })
-        // this.props.history.push('/reset_ok')
+        this.props.history.push('/reset_ok')
         // this.props.history.push('/200')
       })
       .catch((error) => {
