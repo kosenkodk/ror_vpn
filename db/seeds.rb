@@ -61,9 +61,12 @@ payment_methods = [
 end
 
 puts 'Tickets\n\n'
+user = User.find_or_create_by!(email:'test@email.com', password:'123')
 tickets = [
-  {title: 'Ticket 1'},{title: 'Ticket 2'},{title: 'Ticket 3'}
+  {title: 'Ticket 1'}, 
+  {title: 'Ticket 2'}, 
+  {title: 'Ticket 3'}
 ].each do |item|
-  ticket = Ticket.find_or_create_by(title:item[:title])
+  ticket = Ticket.find_or_create_by(title:item[:title], user: user)
   puts ticket.title
 end

@@ -47,6 +47,7 @@ en:
     log_in: "Log in"
     sign_up: "Sign up"
     contact_us: "Contact us"
+    tickets: "Tickets"
   bank_card:
     info: "Card Information"
     number: "Card Number"
