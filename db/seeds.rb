@@ -41,7 +41,7 @@ features = [
     text: item[:text],
   )
   path_to_file = Rails.root.join('app', 'assets', 'images', 'features', item[:icon_name])
-  puts "#{path_to_file}/#{item[:icon_name]}\n"
+  puts "#{path_to_file}\n"
   feature.icon.attach(io: File.open(path_to_file), filename: item[:icon_name])
 end
 
@@ -55,7 +55,7 @@ payment_methods = [
   # icons = []
   item[:icons].each do |icon|
     path_to_file = Rails.root.join('app', 'assets', 'images', 'signup', 'payment_methods', icon)
-    puts "#{path_to_file}/#{icon}\n"
+    puts "#{path_to_file}\n"
     payment_method.icons.attach(io: File.open(path_to_file), filename: icon)
   end
 
