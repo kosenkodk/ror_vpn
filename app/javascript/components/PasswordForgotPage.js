@@ -4,6 +4,7 @@ import PasswordForgotForm from './PasswordForgotForm'
 import FlashMessages from './sections/FlashMessages'
 import { withRouter } from "react-router-dom";
 import { postCsrfRequest, handleErrors } from 'helpers/http'
+import { config } from 'config';
 
 class PasswordForgotPage extends React.Component {
 
@@ -16,21 +17,22 @@ class PasswordForgotPage extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
-  handleFormSubmit(e, email, password) {
-    this.setState({ error: '', notice: '' })
+  handleFormSubmit(e, email) {
 
     const data = { 'email': email }
-    fetch(postCsrfRequest('/api/v1/password_resets', 'POST', data))
+    fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
-        this.setState({ notice: item.message })
+        let notice = 'Email with password reset instructions had been sent.'
+        this.setState({ notice: notice, error: '' })
+        // this.setState({ notice: item.message })
         this.props.history.push('/reset')
         // this.props.history.push('/200')
       })
       .catch((error) => {
         console.log('error', error.message)
-        this.setState({ error: error.message })
+        this.setState({ error: error.message, notice: '' })
         // this.setState({ error: response.statusText })
       });
 

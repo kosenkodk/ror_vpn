@@ -4,6 +4,7 @@ import PasswordResetForm from './PasswordResetForm'
 import { postCsrfRequest, handleErrors } from 'helpers/http'
 import FlashMessages from './sections/FlashMessages'
 import { withRouter } from "react-router-dom";
+import { config } from 'config';
 
 class PasswordResetPage extends React.Component {
 
@@ -11,31 +12,43 @@ class PasswordResetPage extends React.Component {
     super(props);
     this.state = {
       error: '',
-      notice: ''
+      notice: '',
+      token: '',
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleFormSubmit(e, password, password_confirm) {
     e.preventDefault()
-    console.log(password, password_confirm)
     const data = { 'password': password, 'password_confirm': password_confirm }
 
-    fetch(postCsrfRequest('/api/v1/password_resets/token', 'PATCH', data))
+    // const token = get_from_local_storage
+
+    fetch(postCsrfRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
         this.setState({ error: '' })
-        this.setState({ notice: item.message })
+        let notice = 'Your password has been reset successfully! Please sign in with your new password.'
+        this.setState({ notice: notice })
+        // this.setState({ notice: item.message })
         this.props.history.push('/reset_ok')
         // this.props.history.push('/200')
       })
       .catch((error) => {
         console.log('error', error.message)
-        this.setState({ error: error.message })
+        this.setState({ error: error.message, notice: '' })
         // this.setState({ error: response.statusText })
       });
+  }
 
+  checkPasswordToken() {
+    fetch(`${config.apiUrl}/password_resets/${this.state.token}`)
+      .catch(error => {
+        // this.resetFailed(error)
+        this.setState({ notice: '', error: '' })
+        this.props.history.push('/forgot')
+      })
   }
 
   render() {
@@ -73,6 +86,7 @@ class PasswordResetPage extends React.Component {
 
   componentDidMount() {
     this.props.handleIsFooterVisible(false)
+    this.checkPasswordToken()
   }
   componentWillUnmount() {
     this.props.handleIsFooterVisible(true)
