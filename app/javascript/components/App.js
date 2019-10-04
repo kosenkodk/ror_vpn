@@ -28,7 +28,8 @@ class App extends React.Component {
       csrf: '',
       user: [],
       isSignedIn: false,
-      bgClass: 'bg1'
+      bgClass: 'bg1',
+      token: props.token
     }
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
     this.unsetCurrentUser = this.unsetCurrentUser.bind(this)

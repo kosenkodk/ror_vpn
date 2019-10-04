@@ -1,6 +1,7 @@
 class Api::V1::RefreshController < ApplicationController
   before_action :authorize_refresh_by_access_request!
-
+  # protect_from_forgery unless: -> { request.format.json? || request.format.xml? }
+  
   def create
     session = JWTSessions::Session.new(payload: claimless_payload,
       refresh_by_access_allowed: true,

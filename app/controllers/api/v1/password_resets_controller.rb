@@ -1,6 +1,7 @@
 class Api::V1::PasswordResetsController < ApplicationController
   before_action :set_user, only: [:edit, :update]
   KEYS = [:password, :password_confirmation].freeze
+  # protect_from_forgery unless: -> { request.format.json? || request.format.xml? }
 
   def create
     user = User.find_by(email: params[:email])
@@ -9,7 +10,7 @@ class Api::V1::PasswordResetsController < ApplicationController
       UserMailer.reset_password(user).deliver_now
     end
 
-    render json: :ok
+    render json: user
   end
 
   def edit
