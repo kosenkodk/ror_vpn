@@ -12,7 +12,8 @@ class PasswordForgotPage extends React.Component {
     super(props);
     this.state = {
       error: '',
-      notice: ''
+      notice: '',
+      token: props.appState.csrf || '',
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -20,7 +21,17 @@ class PasswordForgotPage extends React.Component {
   handleFormSubmit(e, email) {
 
     const data = { 'email': email }
-    fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
+    const options = {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': this.state.token
+      },
+      body: JSON.stringify(data)
+    }
+    // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
+    fetch(`${config.apiUrl}/password_resets`, options)
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
