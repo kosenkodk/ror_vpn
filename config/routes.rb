@@ -26,7 +26,8 @@ Rails.application.routes.draw do
       resources :payment_methods, only: [:index, :show]
       resources :contacts, only: [:new, :show, :create]
       
-      post 'refresh', controller: :refresh, action: :create
+      # post 'refresh', controller: :refresh, action: :create
+      post '/refresh', to: 'refresh#create'
       post '/signin', to: 'signin#create'
       post '/signup', to: 'signup#create'
       delete '/signin', to: 'signin#destroy'
