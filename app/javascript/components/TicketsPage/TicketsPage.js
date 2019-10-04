@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom"
 import Sidebar from '../Sidebar'
 // import { Link } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
+import FlashMessages from '../sections/FlashMessages'
 
 class TicketsPage extends React.Component {
 
@@ -12,20 +13,29 @@ class TicketsPage extends React.Component {
     super(props);
 
     this.state = {
-      items: []
+      items: [],
+      error: '',
+      notice: ''
     };
   }
 
   render() {
-    const { items } = this.state;
+    const { items, error, notice } = this.state;
     return (
       <div className="row">
         <div className="col-sm-4">
           <Sidebar />
         </div>
         <div className="col-sm-8">
+          <div className="row">
+
+            <div className="col-12">
+              <FlashMessages error={error} notice={notice}></FlashMessages>
+            </div>
+          </div>
           <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
             <div className="row">
+
               <div className="col-sm-6 text-left">
                 <h2 className="mt-2">Tickets</h2>
               </div>
@@ -97,8 +107,9 @@ class TicketsPage extends React.Component {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ items: response }))
+      .then(response => this.setState({ items: response, error: response.error, notice: response.notice }))
       .catch((err) => {
+        this.setState({ error: err.message, notice: '' })
         console.log(err)
       });
   }
