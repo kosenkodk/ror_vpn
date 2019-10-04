@@ -13,22 +13,23 @@ class PasswordForgotPage extends React.Component {
     this.state = {
       error: '',
       notice: '',
-      token: props.appState.csrf || '',
+      csrf: props.appState.csrf,
+      token: props.appState.token,
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleFormSubmit(e, email) {
 
+    console.log('handleFormSubmit token', this.state.token)
     const data = { 'email': email }
     const options = {
       method: 'POST',
-      credentials: 'same-origin',//'include',
-      'Referrer Policy': 'no-referrer-when-downgrade',
-
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        // 'X-CSRF-Token': this.state.token
+        // 'Referrer Policy': 'no-referrer-when-downgrade',
+        'X-CSRF-Token': this.state.token
       },
       body: JSON.stringify(data)
     }
@@ -88,31 +89,36 @@ class PasswordForgotPage extends React.Component {
 
   componentDidMount() {
     this.props.handleIsFooterVisible(false)
+    let csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
+    this.setState({ token: this.state.token || csrf })
+    console.log('handlcomponentDidMount  token', this.state.token)
+    // document.querySelector("meta[name='csrf-token']").getAttribute("content")
     const data = {}
     const options = {
       method: 'POST',
-      credentials: 'same-origin', // same-origin, include, *same-origin, omit
-      mode: 'cors', // no-cors, cors, *same-origin
+      // credentials: 'same-origin', // same-origin, include, *same-origin, omit
+      // mode: 'cors', // no-cors, cors, *same-origin
       // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'include', // same-origin, include, *same-origin, omit
       // redirect: 'follow', // manual, *follow, error,
-      referrer: 'no-referrer', // no-referrer, *client
+      // referrer: 'no-referrer', // no-referrer, *client
       headers: {
         'Content-Type': 'application/json',
         // 'Referrer Policy': 'no-referrer-when-downgrade',
-        // 'X-CSRF-Token': this.state.token
+        'X-CSRF-Token': this.state.token
       },
       body: JSON.stringify(data)
     }
-    // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
-    fetch(`${config.apiUrl}/refresh`, options)
+
+    fetch(postCsrfRequest(`${config.apiUrl}/refresh`, 'POST', data))
+      // fetch(`${config.apiUrl}/refresh`, options)
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
         let notice = 'Email with password reset instructions had been sent.'
         this.setState({ notice: notice, error: '' })
-        this.setState({ token: item.csrf })
+        this.setState({ token: item && item.csrf })
         // this.setState({ notice: item.message })
         // this.props.history.push('/reset')
         // this.props.history.push('/200')
