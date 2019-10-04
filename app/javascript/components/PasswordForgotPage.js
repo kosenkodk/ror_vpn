@@ -23,10 +23,12 @@ class PasswordForgotPage extends React.Component {
     const data = { 'email': email }
     const options = {
       method: 'POST',
-      credentials: 'include',
+      credentials: 'same-origin',//'include',
+      'Referrer Policy': 'no-referrer-when-downgrade',
+
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': this.state.token
+        // 'X-CSRF-Token': this.state.token
       },
       body: JSON.stringify(data)
     }
@@ -38,12 +40,13 @@ class PasswordForgotPage extends React.Component {
         let notice = 'Email with password reset instructions had been sent.'
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message })
-        this.props.history.push('/reset')
+        // this.props.history.push('/reset')
         // this.props.history.push('/200')
       })
       .catch((error) => {
         console.log('error', error.message)
         this.setState({ error: error.message, notice: '' })
+
         // this.setState({ error: response.statusText })
       });
 
@@ -82,8 +85,44 @@ class PasswordForgotPage extends React.Component {
       </div>
     )
   }
+
   componentDidMount() {
     this.props.handleIsFooterVisible(false)
+
+    const data = {}
+    const options = {
+      method: 'POST',
+      credentials: 'same-origin', // same-origin, include, *same-origin, omit
+      mode: 'cors', // no-cors, cors, *same-origin
+      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'include', // same-origin, include, *same-origin, omit
+      // redirect: 'follow', // manual, *follow, error,
+      referrer: 'no-referrer', // no-referrer, *client
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Referrer Policy': 'no-referrer-when-downgrade',
+        // 'X-CSRF-Token': this.state.token
+      },
+      body: JSON.stringify(data)
+    }
+    // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
+    fetch(`${config.apiUrl}/refresh`, options)
+      .then(handleErrors)
+      .then((item, message) => {
+        console.log('success', item, message)
+        let notice = 'Email with password reset instructions had been sent.'
+        this.setState({ notice: notice, error: '' })
+        this.setState({ token: item.csrf })
+        // this.setState({ notice: item.message })
+        // this.props.history.push('/reset')
+        // this.props.history.push('/200')
+      })
+      .catch((error) => {
+        console.log('error', error.message)
+        this.setState({ error: error.message, notice: '' })
+
+        // this.setState({ error: response.statusText })
+      });
   }
   componentWillUnmount() {
     this.props.handleIsFooterVisible(true)
