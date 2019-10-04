@@ -52,6 +52,13 @@ class TicketsPage extends React.Component {
                     </tr>
                   ))
                 }
+
+                {
+                  items.length <= 0 &&
+                  <tr>
+                    <td colSpan="3">No items to display</td>
+                  </tr>
+                }
               </tbody>
             </table>
           </div>
