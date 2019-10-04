@@ -13,7 +13,7 @@ class PasswordResetPage extends React.Component {
     this.state = {
       error: '',
       notice: '',
-      token: props.appState.csrf || '',
+      token: this.props.match.params.token
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -26,23 +26,22 @@ class PasswordResetPage extends React.Component {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': this.state.token
+        'X-CSRF-Token': this.props.appState.csrf
       },
       body: JSON.stringify(data)
     }
 
     // const token = get_from_local_storage
 
-    // fetch(postCsrfRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
-    fetch(`${config.apiUrl}/password_resets/${this.state.token}`, options)
+    fetch(postCsrfRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
+      // fetch(`${config.apiUrl}/password_resets/${this.state.token}`, options)
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
-        this.setState({ error: '' })
         let notice = 'Your password has been reset successfully! Please sign in with your new password.'
-        this.setState({ notice: notice })
+        this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message })
-        this.props.history.push('/reset_ok')
+        // this.props.history.push('/reset_ok')
         // this.props.history.push('/200')
       })
       .catch((error) => {
