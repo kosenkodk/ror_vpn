@@ -18,9 +18,9 @@ class PasswordResetPage extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
-  handleFormSubmit(e, password, password_confirm) {
+  handleFormSubmit(e, password, password_confirmation) {
     e.preventDefault()
-    const data = { 'password': password, 'password_confirm': password_confirm }
+    const data = { 'password': password, 'password_confirmation': password_confirmation }
     const options = {
       method: 'PATCH',
       credentials: 'include',
