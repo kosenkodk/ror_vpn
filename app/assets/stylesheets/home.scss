@@ -557,3 +557,17 @@ body {
 footer {
   font-family: "Montserrat";
 }
+
+.sidebar {
+  li {
+    @extend .btn-outline-pink;
+    cursor: pointer;
+    a {
+      color: $white;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  
+}

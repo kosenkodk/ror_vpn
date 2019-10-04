@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Ticket from './Ticket'
 import { withRouter } from "react-router-dom"
 import Sidebar from '../Sidebar'
+// import { Link } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link'
 
 class TicketsPage extends React.Component {
 
@@ -22,17 +24,15 @@ class TicketsPage extends React.Component {
           <Sidebar />
         </div>
         <div className="col-sm-8">
-          <div id="tickets" className="tickets">
+          <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
             <div className="row">
-
               <div className="col-sm-6 text-left">
                 <h2 className="mt-2">Tickets</h2>
               </div>
-              <div className="col-sm-6 text-right">
-                {/* <%= link_to 'New Tariff Plan', new_tariff_plan_path, class: 'btn btn-outline-success' %> */}
+              <div className="col-sm-6 text-right align-self-center">
+                <Link to="#" className="btn btn-outline-success">New</Link>
               </div>
             </div>
-
             <table className="table text-white">
               <thead>
                 <tr>
@@ -55,6 +55,7 @@ class TicketsPage extends React.Component {
               </tbody>
             </table>
           </div>
+
         </div>
       </div>
     );
