@@ -98,7 +98,15 @@ class App extends React.Component {
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
             <Route exact path="/forgot" render={() => <PasswordForgotPage appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
-            <Route exact path="/reset" render={() => <PasswordResetPage appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/password_resets/:token" render={() => <PasswordResetPage appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            {/* <Route path="/password_resets/:token" render={({ match }) => (
+              <PasswordResetPage
+                appState={this.state}
+                token={match.params.token}
+                handleIsFooterVisible={this.handleIsFooterVisible}
+              />
+            )} /> */}
+
             <Route exact path="/reset_ok" render={() => <PasswordResetPageOk appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
 
             <Route exact path="/pricing" render={() => <PricingPage />} />
@@ -112,6 +120,7 @@ class App extends React.Component {
 
             <Route exact path="/features" render={() => <Features />} />
             <Route exact path="/tickets" render={() => <TicketsPage appState={this.state} setAppState={this.setAppState} />} />
+
           </div>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
