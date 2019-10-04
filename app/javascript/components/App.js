@@ -96,9 +96,9 @@ class App extends React.Component {
             <Route exact path="/signup" render={() => <SignupPage setAppState={this.setAppState} isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
-            <Route exact path="/forgot" render={() => <PasswordForgotPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
-            <Route exact path="/reset" render={() => <PasswordResetPage handleIsFooterVisible={this.handleIsFooterVisible} />} />
-            <Route exact path="/reset_ok" render={() => <PasswordResetPageOk handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/forgot" render={() => <PasswordForgotPage appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/reset" render={() => <PasswordResetPage appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
+            <Route exact path="/reset_ok" render={() => <PasswordResetPageOk appState={this.state} handleIsFooterVisible={this.handleIsFooterVisible} />} />
 
             <Route exact path="/pricing" render={() => <PricingPage />} />
             <Route exact path="/help" render={() => <ComingSoonPage />} />

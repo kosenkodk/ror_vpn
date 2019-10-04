@@ -13,7 +13,7 @@ class PasswordResetPage extends React.Component {
     this.state = {
       error: '',
       notice: '',
-      token: '',
+      token: props.appState.csrf || '',
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -21,10 +21,20 @@ class PasswordResetPage extends React.Component {
   handleFormSubmit(e, password, password_confirm) {
     e.preventDefault()
     const data = { 'password': password, 'password_confirm': password_confirm }
+    const options = {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': this.state.token
+      },
+      body: JSON.stringify(data)
+    }
 
     // const token = get_from_local_storage
 
-    fetch(postCsrfRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
+    // fetch(postCsrfRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
+    fetch(`${config.apiUrl}/password_resets/${this.state.token}`, options)
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
