@@ -6,8 +6,4 @@ class ContactUsMailer < ApplicationMailer
   def notify_admin(email, contact_id)
     mail to: email, subject: 'Contact Us. New message.', body: "contact link: #{api_v1_contact_url(contact_id)}"
   end
-  def reset_password(user)
-    @user = user
-    mail(to: @user.email, subject: 'Reset your password')
-  end
 end
