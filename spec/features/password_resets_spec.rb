@@ -24,7 +24,8 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
       it 'with valid data' do
         fill_in :user_email, with: email
         click_on('Submit')
-        expect(page).to have_css('.reset_pwd')
+        # expect(page).to have_css('.reset_pwd')
+        expect(find('.alert')).to have_content(I18n.t('pages.forgot_pwd.success.message'))
       end
     end
   end
@@ -50,8 +51,12 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
         fill_in :password_confirm, with: password_confirm
         # TODO: fill_in token ?
         click_on(I18n.t('buttons.reset_password'))
-        # success page
-        expect(page).to have_content(I18n.t('pages.reset_pwd.success.title'))
+        
+        # success message on the same page
+        expect(page).to have_content(I18n.t('pages.reset_pwd.success.message'))
+        
+        # success page on a new page
+        # expect(page).to have_content(I18n.t('pages.reset_pwd.success.title'))
       end
     end
   end

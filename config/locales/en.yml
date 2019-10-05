@@ -130,6 +130,8 @@ en:
     forgot_pwd:
       title: "Forgot Password"
       subtitle: "Enter email to reset your password."
+      success:
+        message: "Email with password reset instructions had been sent."
     reset_pwd:
       title: "Reset your password"
       subtitle: "Enter email to reset your password"
@@ -139,6 +141,7 @@ en:
       success:
         title: "Success!"
         subtitle: "You have successfully changed the password on the site."
+        message: "Your password has been reset successfully! Please sign in with your new password."
     login:
       title: "Log in to your account"
       do_not_have_an_account: "Don't have an account?"

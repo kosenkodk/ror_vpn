@@ -35,7 +35,7 @@ class PasswordForgotPage extends React.Component {
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
-        let notice = 'Email with password reset instructions had been sent.'
+        let notice = I18n.t('pages.forgot_pwd.success.message')
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message })
         // this.props.history.push('/reset')
