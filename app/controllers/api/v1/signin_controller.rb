@@ -1,4 +1,4 @@
-class Api::V1::SigninController < ApplicationController
+class Api::V1::SigninController < Api::V1::ApiController
   before_action :authorize_access_request!, only: [:destroy]
 
   def create

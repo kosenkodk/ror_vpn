@@ -1,4 +1,4 @@
-class Api::V1::SignupController < ApplicationController
+class Api::V1::SignupController < Api::V1::ApiController
   KEYS = [:email, :password, :password_confirmation].freeze
 
   def create

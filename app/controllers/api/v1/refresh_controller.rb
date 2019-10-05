@@ -1,4 +1,4 @@
-class Api::V1::RefreshController < ApplicationController
+class Api::V1::RefreshController < Api::V1::ApiController
   before_action :authorize_refresh_by_access_request!
   # protect_from_forgery unless: -> { request.format.json? || request.format.xml? }
   
