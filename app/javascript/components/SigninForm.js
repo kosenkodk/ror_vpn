@@ -27,7 +27,6 @@ class SigninForm extends React.Component {
     e.preventDefault();
   }
 
-
   handleFormSubmit3 = e => {
     console.log('handleFormSubmit3')
     this.setState({ emailValue: this.email.value, passwordValue: this.password.value })
@@ -38,7 +37,9 @@ class SigninForm extends React.Component {
     let formFields = {}
     // const { email, password } = this.state;
     return (
-      <form data-remote="true" method="post" action={this.props.form_action} onSubmit={(e) => { e.target.reset(); }}>
+      <form onSubmit={this.props.handleFormSubmit}>
+
+        {/* <form data-remote="true" method="post" action={this.props.form_action} onSubmit={(e) => { e.target.reset(); }}> */}
         {/* <form onSubmit={(e) => { this.handleFormSubmit2(e, this.email.value, this.password.value); e.target.reset(); }}> */}
         {/* <form onSubmit={this.handleFormSubmit3}> */}
 
@@ -48,7 +49,8 @@ class SigninForm extends React.Component {
           </div>
           <div className="col-sm-6">
             <input type='hidden' name='authenticity_token' value={this.props.token} />
-            <input className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
+            <input type='hidden' name='csrf-token' value={this.props.token} />
+            <input type='email' name='email' className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
           </div>
           <div className="col-sm-3">
           </div>
@@ -60,7 +62,7 @@ class SigninForm extends React.Component {
           </div>
           <div className="col-sm-6">
             <div className="input-group">
-              <input type="password" className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
+              <input type="password" name='password' className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
               <div className="input-group-append">
                 <span className="input-group-text" id="forgot-pwd-addon">
                   <Link to="/forgot">
@@ -77,7 +79,8 @@ class SigninForm extends React.Component {
           <div className="col-sm-6 offset-sm-3">
             <br />
             {/* <%=f.submit(t("pages.login.form.login"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
-            <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); }} className="btn btn-outline-primary btn-block">Submit</button>
+            {/* <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); }} className="btn btn-outline-primary btn-block">Submit</button> */}
+            <button className="btn btn-outline-primary btn-block">Submit</button>
             {/* <LoginForm handleFormSubmit={this.handleFormSubmit} /> */}
           </div>
         </div>

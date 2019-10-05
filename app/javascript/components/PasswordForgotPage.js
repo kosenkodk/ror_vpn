@@ -28,7 +28,8 @@ class PasswordForgotPage extends React.Component {
     const data = { 'email': email }
     // fetch(httpPlainRequest(`http://localhost:3000/password_resets`, 'POST', data))
     // fetch(httpPlainRequest(`${config.apiUrl}/password_resets`, 'POST', data))
-    fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, csrf_from_api || csrf_app || csrf_meta))
+    // fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, csrf_from_api || csrf_app || csrf_meta))
+    fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, csrf_from_api))
       // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
       // fetch(`${config.apiUrl}/password_resets`, options)
       .then(handleErrors)

@@ -4,9 +4,10 @@ import SigninForm from './SigninForm'
 import { withRouter } from "react-router-dom";
 import I18n from 'i18n-js/index.js.erb'
 import FlashMessages from './sections/FlashMessages'
-import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
+import { postCsrfRequest, httpPlainRequest, handleErrors, errorMessage } from 'helpers/http'
 import { config } from 'config';
 import { Link } from 'react-router-dom'
+// import { httpPlainRequest } from '../helpers/http';
 
 class SigninPage extends React.Component {
 
@@ -19,25 +20,38 @@ class SigninPage extends React.Component {
       //   password: props.password
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  handleInputChange() {
+    let name = e.target.name
+    let value = (e.target.type === 'checkbox') ? e.target.checked : e.target.value
+
+    this.setState({
+      [name]: value
+    })
   }
 
   handleFormSubmit(e, email, password) {
-    e.preventDefault()
-    this.setState({ notice: '', error: '' })
+    e.preventDefault();
 
-    const data = { 'email': email, 'password': password }
+    // const data = { 'email': email, 'password': password }
+    let data = {}
+    let formData = new FormData(e.target);
+    formData.forEach((value, key) => { data[key] = value });
+    // const jsonData = JSON.stringify(data);
 
-    fetch(postCsrfRequest(`${config.apiUrl}/signin`, 'POST', data))
+    // fetch(postCsrfRequest(`${config.apiUrl}/signin`, 'POST', data))
+    fetch(httpPlainRequest(`${config.apiUrl}/signin`, 'POST', data))
       .then(handleErrors)
       .then((item) => this.responseSuccessful(item))
       .catch((error) => this.responseFailed(error, I18n.t('errors.something_went_wrong')));
   }
 
   responseSuccessful(response) {
-    // console.log('signinSuccessful', response)
+    console.log('signinSuccessful', response)
 
-    this.setState({ notice: response.notice })
-    this.setState({ error: response.error })
+    this.setState({ notice: response.notice, error: response.error })
 
     // this.props.history.push('/features')
     // this.props.history.push('/200')
@@ -51,7 +65,7 @@ class SigninPage extends React.Component {
       .then((response) => response.json())
       .then((meResponse) => {
         console.log('/me', meResponse)
-        this.setState({ error: meResponse.message || '' })
+        this.setState({ error: meResponse.message || '', notice: '' })
         // set data 
         this.props.setCurrentUser(meResponse, response.csrf)
         this.props.history.push(config.userUrlAfterSignin)
@@ -62,6 +76,8 @@ class SigninPage extends React.Component {
   }
 
   responseFailed(error, message) {
+    console.log('signinFailed', error, message)
+
     // method 1
     // errorMessage(error).then((message) => {
     //   // console.log(message)
@@ -72,7 +88,7 @@ class SigninPage extends React.Component {
     // this.setState({ error: await errorMessage(error) })
 
     // method 3 (plain text only)
-    this.setState({ error: (error && error.message) || message })
+    this.setState({ error: (error && error.message) || message, notice: '' })
 
     // this.props.history.push('/404')
   }
