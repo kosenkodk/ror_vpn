@@ -3,7 +3,7 @@ import I18n from 'i18n-js/index.js.erb'
 import PasswordForgotForm from './PasswordForgotForm'
 import FlashMessages from './sections/FlashMessages'
 import { withRouter } from "react-router-dom";
-import { postCsrfRequest, handleErrors } from 'helpers/http'
+import { postCsrfRequest, httpPlainRequest, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config';
 
 class PasswordForgotPage extends React.Component {
@@ -20,21 +20,17 @@ class PasswordForgotPage extends React.Component {
   }
 
   handleFormSubmit(e, email) {
+    let csrf_meta = document.querySelector("meta[name='csrf-token']").getAttribute("content"); //authenticity_token
+    let csrf_app = this.state.token //authenticity_token
+    let csrf_from_api = this.state.csrf
+    // console.log('csrf_meta: ', csrf_meta, '\ncsrf_app: ', csrf_app, '\ncsrf_from_api: ', csrf_from_api)
 
-    console.log('handleFormSubmit token', this.state.token)
     const data = { 'email': email }
-    const options = {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Referrer Policy': 'no-referrer-when-downgrade',
-        'X-CSRF-Token': this.state.token
-      },
-      body: JSON.stringify(data)
-    }
-    // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
-    fetch(`${config.apiUrl}/password_resets`, options)
+    // fetch(httpPlainRequest(`http://localhost:3000/password_resets`, 'POST', data))
+    // fetch(httpPlainRequest(`${config.apiUrl}/password_resets`, 'POST', data))
+    fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, csrf_from_api || csrf_app || csrf_meta))
+      // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
+      // fetch(`${config.apiUrl}/password_resets`, options)
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
@@ -89,46 +85,6 @@ class PasswordForgotPage extends React.Component {
 
   componentDidMount() {
     this.props.handleIsFooterVisible(false)
-    let csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-
-    this.setState({ token: this.state.token || csrf })
-    console.log('handlcomponentDidMount  token', this.state.token)
-    // document.querySelector("meta[name='csrf-token']").getAttribute("content")
-    const data = {}
-    const options = {
-      method: 'POST',
-      // credentials: 'same-origin', // same-origin, include, *same-origin, omit
-      // mode: 'cors', // no-cors, cors, *same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      // redirect: 'follow', // manual, *follow, error,
-      // referrer: 'no-referrer', // no-referrer, *client
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Referrer Policy': 'no-referrer-when-downgrade',
-        'X-CSRF-Token': this.state.token
-      },
-      body: JSON.stringify(data)
-    }
-
-    fetch(postCsrfRequest(`${config.apiUrl}/refresh`, 'POST', data))
-      // fetch(`${config.apiUrl}/refresh`, options)
-      .then(handleErrors)
-      .then((item, message) => {
-        console.log('success', item, message)
-        let notice = 'Email with password reset instructions had been sent.'
-        this.setState({ notice: notice, error: '' })
-        this.setState({ token: item && item.csrf })
-        // this.setState({ notice: item.message })
-        // this.props.history.push('/reset')
-        // this.props.history.push('/200')
-      })
-      .catch((error) => {
-        console.log('error', error.message)
-        this.setState({ error: error.message, notice: '' })
-
-        // this.setState({ error: response.statusText })
-      });
   }
   componentWillUnmount() {
     this.props.handleIsFooterVisible(true)

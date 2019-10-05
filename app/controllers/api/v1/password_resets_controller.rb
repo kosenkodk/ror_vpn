@@ -10,7 +10,7 @@ class Api::V1::PasswordResetsController < ApplicationController
       UserMailer.reset_password(user).deliver_now
     end
 
-    render json: user
+    render json: :ok
   end
 
   def edit
