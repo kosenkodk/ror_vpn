@@ -14,19 +14,19 @@ class Api::V1::ApiController < ActionController::API
   end
 
   def bad_request
-    render json: { error: 'Bad request' }, status: :bad_request
+    render json: { error: I18n.t('api.errors.bad_request') }, status: :bad_request
   end
 
   def forbidden
-    render json: { error: 'Forbidden' }, status: :forbidden
+    render json: { error: I18n.t('api.errors.Forbidden') }, status: :forbidden
   end
 
   def not_authorized
-    render json: { error: 'Not authorized' }, status: :unauthorized
+    render json: { error: I18n.t('api.errors.unauthorized') }, status: :unauthorized
   end
 
   def not_found
-    render json: { error: I18n.t('errors.api.not_found') }, status: :not_found
+    render json: { error: I18n.t('api.errors.not_found') }, status: :not_found
   end
 
   def unprocessable_entity(exception)

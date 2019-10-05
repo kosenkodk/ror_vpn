@@ -45,7 +45,7 @@ class SigninPage extends React.Component {
     fetch(httpPlainRequest(`${config.apiUrl}/signin`, 'POST', data))
       .then(handleErrors)
       .then((item) => this.responseSuccessful(item))
-      .catch((error) => this.responseFailed(error, I18n.t('errors.something_went_wrong')));
+      .catch((error) => this.responseFailed(error, I18n.t('api.errors.something_went_wrong')));
   }
 
   responseSuccessful(response) {
