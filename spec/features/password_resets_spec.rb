@@ -34,7 +34,7 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
     let(:password_confirm) { 'password' }
     
     before do 
-      visit('/reset')
+      visit('/password_resets/token_from_email')
     end
 
     context 'error' do
@@ -46,7 +46,7 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
     
     context 'success' do
       it 'with valid data' do
-        fill_in :user_password, with: password 
+        fill_in :password, with: password 
         fill_in :password_confirm, with: password_confirm
         # TODO: fill_in token ?
         click_on(I18n.t('buttons.reset_password'))
