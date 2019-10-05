@@ -19,7 +19,7 @@ class User < ApplicationRecord
     begin
       self.reset_password_token = SecureRandom.urlsafe_base64
     end while User.exists?(reset_password_token: self.reset_password_token)
-    self.reset_password_token_expires_at = 1.day.from_now
+    self.reset_password_token_expires_at = 2.hours.from_now #1.day.from_now
     save!
   end
 
