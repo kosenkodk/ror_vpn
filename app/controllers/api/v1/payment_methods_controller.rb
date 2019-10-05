@@ -1,4 +1,4 @@
-class Api::V1::PaymentMethodsController < ApplicationController
+class Api::V1::PaymentMethodsController < Api::V1::ApiController
   def index
     items = PaymentMethod.all
     render json: items.as_json(only: [:id, :title, :icons], methods: [ :active_class, :icon_urls])

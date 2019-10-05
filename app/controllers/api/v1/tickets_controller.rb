@@ -1,4 +1,4 @@
-class Api::V1::TicketsController < ApplicationController
+class Api::V1::TicketsController < Api::V1::ApiController
   before_action :authorize_access_request!
   before_action :set_item, only: [:show, :update, :destroy]
 

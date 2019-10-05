@@ -1,4 +1,4 @@
-class Api::V1::TodosController < ApplicationController
+class Api::V1::TodosController < Api::V1::ApiController
   before_action :authorize_access_request!
   before_action :set_todo, only: [:show, :update, :destroy]
 
