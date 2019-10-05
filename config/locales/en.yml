@@ -137,7 +137,7 @@ en:
       subtitle: "Enter email to reset your password"
       form:
         password: "Password"
-        password_confirm: "Confirm password"
+        password_confirmation: "Confirm Password"
       success:
         title: "Success!"
         subtitle: "You have successfully changed the password on the site."
@@ -163,7 +163,7 @@ en:
       form:
         email_address: "Email address"
         password: "Password"
-        password_confirm: "Confirm password"
+        password_confirmation: "Confirm Password"
     not_found:
       title: "404"
       subtitle: "Oh no!!!"

@@ -253,7 +253,7 @@ class SignupPage extends React.Component {
 SignupPage.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
-  password_confirm: PropTypes.string,
+  password_confirmation: PropTypes.string,
 };
 
 export default withRouter(SignupPage)

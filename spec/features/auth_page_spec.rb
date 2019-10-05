@@ -51,10 +51,10 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.title'))
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.subtitle'))
       expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password'))
-      expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password_confirm'))
+      expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password_confirmation'))
       
       expect(page.has_selector?('input#password')).to eq(true)
-      expect(page.has_selector?('input#password_confirm')).to eq(true)
+      expect(page.has_selector?('input#password_confirmation')).to eq(true)
       expect(find_button(I18n.t('buttons.reset_password')).text).to eq(I18n.t('buttons.reset_password'))
       expect(page).not_to have_css('footer')
       expect(page).not_to have_css('header')

@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
-
+  let(:password) { 'password' }
+  let(:password_confirmation) { 'password' }
+  let(:email) { "test@email.com" }
+  let(:user) { create(:user, email: email) }
+  
   describe 'forgot password' do
-    let(:email) { "test@email.com" }
     let(:email_invalid) { "test@email." }
 
-    before do 
+    before do
       visit('/forgot')
     end
 
@@ -31,11 +34,10 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
   end
 
   describe 'reset password' do
-    let(:password) { 'password' }
-    let(:password_confirm) { 'password' }
     
     before do 
-      visit('/password_resets/token_from_email')
+      user.generate_password_token!
+      visit("/password_resets/#{user.reset_password_token}")
     end
 
     context 'error' do
@@ -47,13 +49,14 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
     
     context 'success' do
       it 'with valid data' do
-        fill_in :password, with: password 
-        fill_in :password_confirm, with: password_confirm
+        
+        fill_in :password, with: password
+        fill_in :password_confirmation, with: password_confirmation
         # TODO: fill_in token ?
         click_on(I18n.t('buttons.reset_password'))
         
         # success message on the same page
-        expect(page).to have_content(I18n.t('pages.reset_pwd.success.message'))
+        expect(find('.alert')).to have_text(I18n.t('pages.reset_pwd.success.message'))
         
         # success page on a new page
         # expect(page).to have_content(I18n.t('pages.reset_pwd.success.title'))
