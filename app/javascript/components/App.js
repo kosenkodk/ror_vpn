@@ -29,7 +29,6 @@ class App extends React.Component {
       user: [],
       isSignedIn: false,
       bgClass: 'bg1',
-      token: props.token
     }
     this.handleIsFooterVisible = this.handleIsFooterVisible.bind(this);
     this.unsetCurrentUser = this.unsetCurrentUser.bind(this)
@@ -93,7 +92,7 @@ class App extends React.Component {
           <div className='container'>
 
             {/* <Route path="/" exact render={() => (<div>home react {this.props.path} </div>)} /> */}
-            <Route exact path="/signin" render={() => <SigninPage setAppState={this.setAppState} isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' token={this.props.token} />} />
+            <Route exact path="/signin" render={() => <SigninPage setAppState={this.setAppState} isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} handleIsFooterVisible={this.handleIsFooterVisible} form_action='/login' />} />
             <Route exact path="/signup" render={() => <SignupPage setAppState={this.setAppState} isSignedIn={this.state.isSignedIn} unsetCurrentUser={this.unsetCurrentUser} setCurrentUser={this.setCurrentUser} />} />
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
@@ -143,7 +142,7 @@ App.propTypes = {
 
 // const App = props => (
 //   <Router path={props.path} context={props}>
-//     <Route path="/" exact render={(props) => (<div>token: {props.token}</div>)} />
+//     <Route path="/" exact render={(props) => (<div>token: {props.csrf}</div>)} />
 //     <Route exact path="/signin" render={() => <Login />} />
 //     <Route exact path="/features" render={() => <Features />} />
 //   </Router>

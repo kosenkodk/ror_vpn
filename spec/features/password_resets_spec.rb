@@ -51,18 +51,18 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
         # expect(find('.alert')).to have_text(I18n.t('api.errors.not_found'))
       end
     end
-    
+
     context 'success' do
       it 'with valid data' do
-        
+
         fill_in :password, with: password
         fill_in :password_confirmation, with: password_confirmation
-        # TODO: fill_in token ?
+
         click_on(I18n.t('buttons.reset_password'))
-        
+
         # success message on the same page
         expect(find('.alert')).to have_text(I18n.t('pages.reset_pwd.success.message'))
-        
+
         # success page on a new page
         # expect(page).to have_content(I18n.t('pages.reset_pwd.success.title'))
       end

@@ -40,17 +40,17 @@ class SignupPage extends React.Component {
   }
 
   onEmailChange(key, event) {
-    console.log('onEmailChange', key, event.target.value)
+    // console.log('onEmailChange', key, event.target.value)
     this.setState({ [key]: event.target.value })
   }
 
   onPasswordChange(key, event) {
-    console.log('onPasswordChange', key, event.target.value)
+    // console.log('onPasswordChange', key, event.target.value)
     this.setState({ [key]: event.target.value })
   }
 
   onPasswordConfirmChange(key, event) {
-    console.log('onPasswordConfirmChange', key, event.target.value)
+    // console.log('onPasswordConfirmChange', key, event.target.value)
     this.setState({ [key]: event.target.value })
   }
 
@@ -59,7 +59,7 @@ class SignupPage extends React.Component {
   }
 
   onPlanChange(e, id) {
-    console.log('onPlanChange', id)
+    // console.log('onPlanChange', id)
     this.setState({
       plan: id
     })
@@ -67,7 +67,7 @@ class SignupPage extends React.Component {
   }
 
   onPaymentMethodChange(id, card_number, holder_name, month, year, cvc) {
-    console.log('onPaymentMethodChange', id, card_number, holder_name, month, year, cvc)
+    // console.log('onPaymentMethodChange', id, card_number, holder_name, month, year, cvc)
     this.setState({
       payment_method: id,
       card_number: card_number,
@@ -79,7 +79,7 @@ class SignupPage extends React.Component {
   }
 
   onFormSubmit(e) {
-    console.log('onFormSubmit', this.state)
+    // console.log('onFormSubmit', this.state)
 
     this.setState({ notice: '', error: '' })
 
@@ -91,37 +91,6 @@ class SignupPage extends React.Component {
       .catch((error) => this.responseFailed(error));
 
     e.preventDefault()
-
-    /*return;
-
-    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-    // console.log('csrf:' + csrf)
-    // console.log('csrf token:' + this.props.token)
-    const postData = { 'email': email, 'password': password }
-    fetch('/api/v1/signup', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      // mode: 'cors', // no-cors, cors, *same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      // redirect: 'follow', // manual, *follow, error,
-      // referrer: 'no-referrer', // no-referrer, *client
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRF-Token': csrf
-      },
-      body: JSON.stringify(postData), // data type should the same value as Content-Type header
-    }).then((response) => { return response.json() })
-      .then((item) => {
-        console.log('success', item)
-        // this.addNewItem(item)
-        // navigate to the admin panel
-        // this.props.history.push('/tariff_plans') # TODO: will implement react component
-        this.props.history.push('/features')
-      }).catch((err) => {
-        console.log(err)
-        this.props.history.push('/')
-      });*/
   }
 
   responseSuccessful(response) {

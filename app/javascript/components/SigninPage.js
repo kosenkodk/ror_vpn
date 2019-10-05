@@ -120,7 +120,7 @@ class SigninPage extends React.Component {
 
             <div className="col-md-8 offset-md-2">
               <div className="text-right">
-                <SigninForm token={this.props.token} form_action={this.props.form_action} forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
+                <SigninForm form_action={this.props.form_action} forgot_pwd_path={this.props.forgot_pwd_path} handleFormSubmit={this.handleFormSubmit} />
               </div>
               <div className="row">
                 <div className="col-md-8 offset-md-2">
