@@ -47,7 +47,7 @@ RSpec.describe AuthController, type: :feature, js: true do
 
   describe 'GET :reset_pwd' do
     it 'render :reset_pwd template' do
-      visit('/reset')
+      visit('/password_resets/token_from_email')
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.title'))
       expect(find('.reset_pwd')).to have_content(I18n.t('pages.reset_pwd.subtitle'))
       expect(find('.reset_pwd')).to have_text(I18n.t('pages.reset_pwd.form.password'))
