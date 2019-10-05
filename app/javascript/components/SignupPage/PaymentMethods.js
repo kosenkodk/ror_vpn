@@ -2,6 +2,7 @@ import React from 'react'
 import PaymentMethod from './PaymentMethod'
 import PaymentMethodDetails from './PaymentMethodDetails'
 import PaymentMethodCreditCardForm from './PaymentMethodCreditCardForm'
+import I18n from 'i18n-js/index.js.erb'
 
 class PaymentMethods extends React.Component {
 
@@ -56,7 +57,7 @@ class PaymentMethods extends React.Component {
                 {this.state.items.map((item, index) => (
                   <div key={`pm-key${index}`} className={`tab-pane ${index == this.state.preselectedIndex ? 'active' : ''}`} id={`pm${index}`} role="tabpanel" aria-labelledby={`pm1${index}-tab`}>
                     {
-                      item.title === 'Credit card' &&
+                      item.title === I18n.t('pages.payment_method.credit_card') &&
                       <PaymentMethodCreditCardForm
                         onPaymentMethodChange={this.props.onPaymentMethodChange} paymentMethodId={item.id}
                       />

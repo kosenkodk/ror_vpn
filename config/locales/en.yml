@@ -51,6 +51,8 @@ en:
     sign_up: "Sign up"
     contact_us: "Contact us"
     tickets: "Tickets"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
   bank_card:
     info: "Card Information"
     number: "Card Number"

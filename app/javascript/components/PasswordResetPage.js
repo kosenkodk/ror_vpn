@@ -1,11 +1,10 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
 import PasswordResetForm from './PasswordResetForm'
-import { postCsrfRequest, handleErrors } from 'helpers/http'
+import { httpSecuredRequest, httpPlainRequest, postCsrfRequest, handleErrors } from 'helpers/http'
 import FlashMessages from './sections/FlashMessages'
 import { withRouter } from "react-router-dom";
 import { config } from 'config';
-import { httpSecuredRequest, httpPlainRequest } from '../helpers/http'
 
 class PasswordResetPage extends React.Component {
 

@@ -7,7 +7,6 @@ import FlashMessages from './sections/FlashMessages'
 import { postCsrfRequest, httpPlainRequest, handleErrors, errorMessage } from 'helpers/http'
 import { config } from 'config';
 import { Link } from 'react-router-dom'
-// import { httpPlainRequest } from '../helpers/http';
 
 class SigninPage extends React.Component {
 

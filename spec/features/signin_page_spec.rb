@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe AuthController, type: :feature, js: true do
+  let(:email) {'email@example.com'}
+  let(:pwd) {'password'}
+  let!(:user) {create(:user, email: email, password: pwd, password_confirmation: pwd)}
+  let!(:payment_method) {create(:payment_method, title: I18n.t('pages.payment_method.credit_card'))}
+  let!(:tariff_plan) {create(:tariff_plan)}
 
   describe 'GET :signin' do
-    
-    before do 
+ 
+    before do
       visit('/signin')
     end
 
@@ -32,6 +37,27 @@ RSpec.describe AuthController, type: :feature, js: true do
         click_on(I18n.t("pages.login.form.login_trouble"))
         expect(page).to have_css('.forgot_pwd')
       end
+    end
+  end
+
+  describe 'signout' do
+    it 'click on signout after successfull signin' do
+      
+      # visit('/signup')
+      # fill_in :email, with: email
+      # fill_in :password, with: pwd
+      # fill_in :password_confirmation, with: pwd
+      # click_on(I18n.t('buttons.continue'))
+
+      visit('/signin')
+      fill_in :email, with: email
+      fill_in :password, with: pwd
+      click_on(I18n.t('buttons.submit'))
+
+      expect(page).to have_content(I18n.t('nav_menu.sign_out'))
+
+      click_on(I18n.t('nav_menu.sign_out'))
+      expect(page).not_to have_content(I18n.t('nav_menu.sign_out'))
     end
   end
 end

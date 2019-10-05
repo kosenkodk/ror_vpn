@@ -45,11 +45,11 @@ class SigninForm extends React.Component {
 
         <div className="form-group row">
           <div className="col-sm-3">
-            <label>Email address {this.state.emailValue}</label>
+            <label>Email address</label>
           </div>
           <div className="col-sm-6">
             {/* <input type='hidden' name='authenticity_token' value={this.props.appState.csrf} /> */}
-            <input type='email' name='email' className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
+            <input type="email" name="email" className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
           </div>
           <div className="col-sm-3">
           </div>
@@ -57,11 +57,11 @@ class SigninForm extends React.Component {
 
         <div className="form-group row">
           <div className="col-sm-3">
-            <label className="col-form-label">Password {this.state.passwordValue}</label>
+            <label className="col-form-label">Password</label>
           </div>
           <div className="col-sm-6">
             <div className="input-group">
-              <input type="password" name='password' className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
+              <input type="password" name="password" className="form-control" ref={(input) => { this.password = input }} placeholder='Enter the password' />
               <div className="input-group-append">
                 <span className="input-group-text" id="forgot-pwd-addon">
                   <Link to="/forgot">
@@ -79,7 +79,7 @@ class SigninForm extends React.Component {
             <br />
             {/* <%=f.submit(t("pages.login.form.login"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
             {/* <button onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.password.value); }} className="btn btn-outline-primary btn-block">Submit</button> */}
-            <button className="btn btn-outline-primary btn-block">Submit</button>
+            <button className="btn btn-outline-primary btn-block">{I18n.t('buttons.submit')}</button>
             {/* <LoginForm handleFormSubmit={this.handleFormSubmit} /> */}
           </div>
         </div>
