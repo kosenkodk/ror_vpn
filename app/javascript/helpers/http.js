@@ -39,7 +39,7 @@ const handleErrors = async (response) => {
     throw new TypeError(responseJson && responseJson.error)
   }
 
-  throw new TypeError(I18n.t('errors.api.network_error'))
+  throw new TypeError(I18n.t('api.errors.network_error'))
 }
 
 const httpPlainRequest = (url, method, data) => {

@@ -15,11 +15,15 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
 
     context 'error' do
       it 'with invalid data' do
+        # always return success message for security reasons
         click_on('Submit')
-        expect(find('.alert')).to have_text(I18n.t('errors.api.network_error'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.network_error'))
+        expect(find('.alert')).to have_content(I18n.t('pages.forgot_pwd.success.message'))
 
         fill_in :user_email, with: email_invalid
-        expect(find('.alert')).to have_text(I18n.t('errors.api.network_error'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.network_error'))
+        expect(find('.alert')).to have_content(I18n.t('pages.forgot_pwd.success.message'))
+
       end
     end
 
@@ -43,7 +47,8 @@ RSpec.describe Api::V1::PasswordResetsController, type: :feature, js: true do
     context 'error' do
       it 'with invalid data' do
         click_on(I18n.t('buttons.reset_password'))
-        expect(find('.alert')).to have_text(I18n.t('errors.api.not_found'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.bad_request'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.not_found'))
       end
     end
     

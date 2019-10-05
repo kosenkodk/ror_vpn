@@ -38,7 +38,7 @@ class PasswordResetPage extends React.Component {
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
-        let notice = I18n.t('pages.forgot_pwd.success.message')
+        let notice = I18n.t('pages.reset_pwd.success.message')
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message })
         // this.props.history.push('/reset_ok')
@@ -62,7 +62,7 @@ class PasswordResetPage extends React.Component {
 
   render() {
     return (
-      <div className="container reset_pwd">
+      <div className="container reset_pwd ">
         <div className="featurette text-center">
           <div className="row">
             <div className="col-md-8 offset-md-2 text-center">
