@@ -49,7 +49,6 @@ class SigninForm extends React.Component {
           </div>
           <div className="col-sm-6">
             <input type='hidden' name='authenticity_token' value={this.props.token} />
-            <input type='hidden' name='csrf-token' value={this.props.token} />
             <input type='email' name='email' className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
           </div>
           <div className="col-sm-3">
