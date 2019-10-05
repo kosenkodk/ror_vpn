@@ -63,18 +63,16 @@ const httpPlainRequest = (url, method, data) => {
 
 
 const httpSecuredRequest = (url, method, data, csrf) => {
-  if (method !== 'OPTIONS' && method !== 'GET') {
-    return new Request(url, {
-      method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': csrf
-      },
-      body: JSON.stringify(data)
-    })
-  }
-  return httpPlainRequest();
+  // if (method !== 'OPTIONS' && method !== 'GET')
+  return new Request(url, {
+    method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
+    credentials: 'include', // same-origin, include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrf
+    },
+    body: JSON.stringify(data)
+  })
 }
 
 const postCsrfRequest = (url, method, data) => {
