@@ -70,8 +70,6 @@ const httpSecuredRequest = (url, method, data, csrf) => {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrf
-        // 'X-CSRF-Token': this.state.appState.csrf,
-        // 'X-XSRF-TOKEN': getCookieValue('XSRF-TOKEN')
       },
       body: JSON.stringify(data)
     })
@@ -93,9 +91,13 @@ const postCsrfRequest = (url, method, data) => {
     // redirect: 'follow', // manual, *follow, error,
     // referrer: 'no-referrer', // no-referrer, *client
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json',
       // 'Content-Type': 'application/x-www-form-urlencoded',
-      'X-CSRF-Token': csrf
+      'X-CSRF-Token': csrf,
+      // 'X-XSRF-TOKEN': getCookieValue('XSRF-TOKEN')
+      // 'X-Refresh-Token': '',
+      // 'Authorization': 'Bearer #{access_cookie}' // enable for mobile clients
     },
     body: JSON.stringify(data)
   })
@@ -110,7 +112,6 @@ function addTicket(url, details) {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      // 'X-XSRF-TOKEN': getCookieValue('XSRF-TOKEN')
     }
   }).then(response => {
     return response.json().then(data => {
