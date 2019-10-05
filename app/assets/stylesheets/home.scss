@@ -35,7 +35,9 @@ body {
     background-size: contain;
   }
   @media (min-width: $xl-width) {
-    // background-size: cover;
+  }
+  @media (min-width: $fullhd-width) {
+    background-size: cover;
   }
 }
 
