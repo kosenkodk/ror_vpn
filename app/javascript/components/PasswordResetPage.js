@@ -5,6 +5,7 @@ import { postCsrfRequest, handleErrors } from 'helpers/http'
 import FlashMessages from './sections/FlashMessages'
 import { withRouter } from "react-router-dom";
 import { config } from 'config';
+import { httpSecuredRequest, httpPlainRequest } from '../helpers/http'
 
 class PasswordResetPage extends React.Component {
 
@@ -33,8 +34,7 @@ class PasswordResetPage extends React.Component {
 
     // const token = get_from_local_storage
 
-    fetch(postCsrfRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
-      // fetch(`${config.apiUrl}/password_resets/${this.state.token}`, options)
+    fetch(httpPlainRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
