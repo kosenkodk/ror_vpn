@@ -43,7 +43,6 @@ const handleErrors = async (response) => {
 }
 
 const httpPlainRequest = (url, method, data) => {
-
   return new Request(url, {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
     credentials: 'include', // include, *same-origin, omit
@@ -55,8 +54,8 @@ const httpPlainRequest = (url, method, data) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      // 'Referrer Policy': 'no-referrer-when-downgrade',
-      // Authorization: localStorage.getItem("id_token") || undefined,
+      // 'Referrer Policy': 'no-referrer-when-downgrade', // isn't working > use this option instead: referrer: 'no-referrer'
+      // Authorization: localStorage.getItem("id_token") || undefined, // TODO: for mobile clients
     },
     body: JSON.stringify(data)
   })
@@ -71,10 +70,7 @@ const httpSecuredRequest = (url, method, data, csrf) => {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrf
-        // 'X-CSRF-Token': this.state.token,
-        // 'X-CSRF-Token': csrf_app, // 401 error - not authorized
-        // 'X-CSRF-Token': csrf_from_api, // 422 (Unprocessable Entity)
-        // 'X-CSRF-Token': csrf_meta, // 401 (Unauthorized)
+        // 'X-CSRF-Token': this.state.appState.csrf,
         // 'X-XSRF-TOKEN': getCookieValue('XSRF-TOKEN')
       },
       body: JSON.stringify(data)

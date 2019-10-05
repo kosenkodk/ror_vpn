@@ -48,7 +48,7 @@ class SigninForm extends React.Component {
             <label>Email address {this.state.emailValue}</label>
           </div>
           <div className="col-sm-6">
-            <input type='hidden' name='authenticity_token' value={this.props.token} />
+            {/* <input type='hidden' name='authenticity_token' value={this.props.appState.csrf} /> */}
             <input type='email' name='email' className="form-control" ref={(input) => { this.email = input }} placeholder='Enter the email' />
           </div>
           <div className="col-sm-3">

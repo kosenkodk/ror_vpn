@@ -14,41 +14,28 @@ class PasswordForgotPage extends React.Component {
       error: '',
       notice: '',
       csrf: props.appState.csrf,
-      token: props.appState.token,
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
   handleFormSubmit(e, email) {
-    let csrf_meta = document.querySelector("meta[name='csrf-token']").getAttribute("content"); //authenticity_token
-    let csrf_app = this.state.token //authenticity_token
-    let csrf_from_api = this.state.csrf
-    // console.log('csrf_meta: ', csrf_meta, '\ncsrf_app: ', csrf_app, '\ncsrf_from_api: ', csrf_from_api)
-
+    e.preventDefault()
     const data = { 'email': email }
-    // fetch(httpPlainRequest(`http://localhost:3000/password_resets`, 'POST', data))
     // fetch(httpPlainRequest(`${config.apiUrl}/password_resets`, 'POST', data))
-    // fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, csrf_from_api || csrf_app || csrf_meta))
-    fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, csrf_from_api))
+    fetch(httpSecuredRequest(`${config.apiUrl}/password_resets`, 'POST', data, this.state.csrf))
       // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
-      // fetch(`${config.apiUrl}/password_resets`, options)
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
         let notice = I18n.t('pages.forgot_pwd.success.message')
         this.setState({ notice: notice, error: '' })
-        // this.setState({ notice: item.message })
-        // this.props.history.push('/reset')
-        // this.props.history.push('/200')
+        // this.setState({ notice: item.message, error: '' })
       })
       .catch((error) => {
         console.log('error', error.message)
         this.setState({ error: error.message, notice: '' })
-
-        // this.setState({ error: response.statusText })
+        // this.setState({ error: response.statusText, notice: '' })
       });
-
-    e.preventDefault();
   }
 
   render() {

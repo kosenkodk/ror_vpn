@@ -23,8 +23,6 @@ class ContactusPage extends React.Component {
       csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
       // csrf = $('meta[name="csrf-token"]').content //.attr('content')
     } catch (e) { }
-    // console.log('csrf:' + csrf)
-    // console.log('csrf token:' + this.props.token)
     const postData = { 'email': email, 'message_short': message_short, 'message': message };
     fetch('/api/v1/contacts', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.

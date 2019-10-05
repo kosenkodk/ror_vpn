@@ -40,7 +40,7 @@ class PasswordResetPage extends React.Component {
         console.log('success', item, message)
         let notice = I18n.t('pages.reset_pwd.success.message')
         this.setState({ notice: notice, error: '' })
-        // this.setState({ notice: item.message })
+        // this.setState({ notice: item.message, error: '' })
         // this.props.history.push('/reset_ok')
         // this.props.history.push('/200')
       })
