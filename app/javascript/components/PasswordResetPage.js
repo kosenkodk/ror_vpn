@@ -38,7 +38,7 @@ class PasswordResetPage extends React.Component {
       .then(handleErrors)
       .then((item, message) => {
         console.log('success', item, message)
-        let notice = 'Your password has been reset successfully! Please sign in with your new password.'
+        let notice = I18n.t('pages.forgot_pwd.success.message')
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message })
         // this.props.history.push('/reset_ok')
