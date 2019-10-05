@@ -6,7 +6,7 @@ class PasswordResetForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.password_confirm = React.createRef()
+    this.password_confirmation = React.createRef()
     this.password = React.createRef()
   }
 
@@ -30,9 +30,9 @@ class PasswordResetForm extends React.Component {
         </div>
 
         <div className="form-group row">
-          <label className="col-sm-3 col-form-label">{I18n.t('pages.reset_pwd.form.password_confirm')}</label>
+          <label className="col-sm-3 col-form-label">{I18n.t('pages.reset_pwd.form.password_confirmation')}</label>
           <div className="col-sm-6">
-            <input id="password_confirm" type="password" name="user[password_confirm]" required={false} className="form-control" ref={(input) => { this.password_confirm = input }} placeholder={I18n.t('pages.login.form.help.password')} />
+            <input id="password_confirmation" type="password" name="user[password_confirmation]" required={false} className="form-control" ref={(input) => { this.password_confirmation = input }} placeholder={I18n.t('pages.login.form.help.password')} />
           </div>
           <div className="col-sm-3"></div>
         </div>
@@ -40,7 +40,7 @@ class PasswordResetForm extends React.Component {
         <div className="form-group row">
           <div className="col-sm-6 offset-sm-3">
             <br />
-            <button onClick={(e) => { this.props.handleFormSubmit(e, this.password.value, this.password_confirm.value); }} className="btn btn-outline-primary btn-block">{I18n.t('buttons.reset_password')}</button>
+            <button onClick={(e) => { this.props.handleFormSubmit(e, this.password.value, this.password_confirmation.value); }} className="btn btn-outline-primary btn-block">{I18n.t('buttons.reset_password')}</button>
           </div>
         </div>
       </form>

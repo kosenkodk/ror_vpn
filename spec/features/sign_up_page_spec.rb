@@ -16,7 +16,7 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(find('.signup')).to have_content(I18n.t('pages.signup.steps.title1'))
       expect(find('.signup')).to have_content('Email address')
       expect(find('.signup')).to have_content('Password')
-      expect(find('.signup')).to have_content('Confirm password')
+      expect(find('.signup')).to have_content(I18n.t('pages.signup.form.password_confirmation'))
       
       # Choose a plan section
       expect(find('.signup')).to have_content('Choose a plan')
