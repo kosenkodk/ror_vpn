@@ -1,4 +1,4 @@
-class Api::V1::PasswordResetsController < ApplicationController
+class Api::V1::PasswordResetsController < Api::V1::ApiController
   before_action :set_user, only: [:edit, :update]
   KEYS = [:password, :password_confirmation].freeze
   # protect_from_forgery unless: -> { request.format.json? || request.format.xml? }
