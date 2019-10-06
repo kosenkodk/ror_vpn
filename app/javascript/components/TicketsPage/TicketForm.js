@@ -14,35 +14,39 @@ class TicketForm extends React.Component {
   render() {
 
     return (
-      <form>
+      <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}>
+        {/* <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}> */}
+
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.email')}</label>
-          <div className="col-sm-8">
-            <input type="email" name="contact[email]" required={true} className="form-control" placeholder={I18n.t('pages.contact_us.form.help.email')} />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.select_the_department')}</label>
+          <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
             <select className="form-control" id="departmentControlSelect">
-              <option>{I18n.t('pages.contact_us.form.help.select_the_department1')}</option>
-              <option>{I18n.t('pages.contact_us.form.help.select_the_department2')}</option>
-              <option>{I18n.t('pages.contact_us.form.help.select_the_department3')}</option>
+              <option>{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
+              <option>{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
+              <option>{I18n.t('pages.tickets.form.help.select_the_department3')}</option>
             </select>
           </div>
         </div>
+
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.message_short')}</label>
+          <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
           <div className="col-sm-8">
-            <input type="text" name="contact[message_short]" required={true} className="form-control" placeholder={I18n.t('pages.contact_us.form.help.message_short')} />
-            {/* <%= f.text_field  :message_short, required: false, type: :text, class: "form-control", placeholder: t('pages.contact_us.form.help.message_short') %> */}
+            <input type="hidden" name="ticket[id]" value={this.props.id} />
+            <input type="text" name="ticket[title]" required={true} className="form-control" placeholder={I18n.t('pages.tickets.form.help.title')} />
           </div>
         </div>
+
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.message')}</label>
+          <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.text')}</label>
           <div className="col-sm-8">
-            <textarea type="text" name="contact[message]" className="form-control" required={false} rows="3" placeholder={I18n.t('pages.contact_us.form.help.message')}></textarea>
-            {/* <%= f.text_area  :message, required: false, type: :text, rows: 3, class: "form-control", placeholder: t('pages.contact_us.form.help.message') %> */}
+            <textarea type="text" name="ticket[text]" className="form-control" required={false} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
+          </div>
+        </div>
+
+        <div className="form-group row">
+          <label for="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
+          <div className="col-sm-8">
+            <input id="ticketAttachment" type="file" name="ticket[attachment]" required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
           </div>
         </div>
 
@@ -51,9 +55,9 @@ class TicketForm extends React.Component {
           </div>
           <div className="col-sm-8">
             <br />
-            <button id="contact_submit" className="btn btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button>
-            {/* <button id="contact_submit" onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.message.value, this.message_short.value); }} className="btn btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button> */}
-            {/* <%=f.submit(t("pages.contact_us.form.submit"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
+            <button id="contact_submit" className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button>
+            {/* <button id="contact_submit" onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.message.value, this.message_short.value); }} className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button> */}
+            {/* <%=f.submit(t("pages.tickets.form.submit"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
           </div>
         </div>
       </form>

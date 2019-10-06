@@ -11,6 +11,9 @@ class Ticket extends React.Component {
     super(props);
   }
 
+  // onFormSubmit(e, item) {
+  // }
+
   render() {
 
     return (
@@ -20,11 +23,11 @@ class Ticket extends React.Component {
         <td>{this.props.department}</td>
         <td>{this.props.status}</td>
         <td>
-          <TicketViewModal isEdit={false} {...this.props} />
+          <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={false} {...this.props} />
           {/* <Link to="#" className='btn btn-sm btn-outline-info'>Show</Link> */}
         </td>
         <td>
-          <TicketViewModal isEdit={true} {...this.props} />
+          <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={true} {...this.props} />
           {/* <button onClick={(e) => this.isEditHandler(e, true)} className='btn btn-sm btn-outline-warning'>Edit</button> */}
         </td>
         <td><button onClick={(e) => this.props.onDeleteItem(e, this.props)} className='btn btn-sm btn-outline-danger'>Delete</button></td>
