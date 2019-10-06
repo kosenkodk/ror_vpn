@@ -20,18 +20,18 @@ class TicketsPage extends React.Component {
       error: '',
       notice: ''
     };
+    this.onDeleteItem = this.onDeleteItem.bind(this)
   }
 
   addItem = (e) => {
     e.preventDefault()
-    console.log('add item', e)
     fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', { ticket: { title: 'new ticket' } }, this.props.appState.csrf))
       .then(handleErrors)
       .then((item, message) => {
-
-        console.log('add ticket success', item, message)
         this.setState(prevState => {
-          items: [...prevState.items, item] // prevState.items.concat(item);
+          return {
+            items: [...prevState.items, item] // prevState.items.concat(item);
+          }
         })
         this.setState({
           error: '',
@@ -40,12 +40,29 @@ class TicketsPage extends React.Component {
       })
       .catch((error) => {
         this.setState({ error: error.message || I18n.t('api.errors.item_added'), notice: '' })
-        console.log('add ticket error', error)
       })
   }
 
-  deleteItem = (e) => {
-
+  onDeleteItem(e, item) {
+    e.preventDefault()
+    fetch(httpSecuredRequest(`${config.apiUrl}/tickets/${item.id}`, 'DELETE', {}, this.props.appState.csrf))
+      .then(handleErrors)
+      .then((item, message) => {
+        this.setState(prevState => {
+          console.log('onDeleteItem', item, this.state.items)
+          return {
+            // items: prevState.items.splice(prevState.items.indexOf(item), 1),
+            items: prevState.items.filter(item2 => item2.id !== item.id),
+          }
+        })
+        this.setState({
+          error: '',
+          notice: item.notice && item.notice || I18n.t('api.notices.item_deleted'),
+        })
+      })
+      .catch((error) => {
+        this.setState({ error: error.message || I18n.t('api.errors.item_deleted'), notice: '' })
+      })
   }
 
   render() {
@@ -87,7 +104,7 @@ class TicketsPage extends React.Component {
                 {
                   items.map(item => (
                     <tr key={item.id} >
-                      <Ticket {...item} />
+                      <Ticket {...item} onDeleteItem={this.onDeleteItem} />
                       {/* <Ticket title={item.title} /> */}
                     </tr>
                   ))

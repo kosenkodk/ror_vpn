@@ -42,18 +42,9 @@ RSpec.describe AuthController, type: :feature, js: true do
 
   describe 'signout' do
     it 'click on signout after successfull signin' do
-      
-      # visit('/signup')
-      # fill_in :email, with: email
-      # fill_in :password, with: pwd
-      # fill_in :password_confirmation, with: pwd
-      # click_on(I18n.t('buttons.continue'))
+      # fsign_up_as(user)
 
-      visit('/signin')
-      fill_in :email, with: email
-      fill_in :password, with: pwd
-      click_on(I18n.t('buttons.submit'))
-
+      fsign_in_as(user)
       expect(page).to have_content(I18n.t('nav_menu.sign_out'))
 
       click_on(I18n.t('nav_menu.sign_out'))
