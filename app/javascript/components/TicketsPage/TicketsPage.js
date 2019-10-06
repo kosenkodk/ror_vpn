@@ -29,7 +29,7 @@ class TicketsPage extends React.Component {
 
   addItem = (e, item) => {
     e.preventDefault()
-    fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', item, this.props.appState.csrf))
+    fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', { ticket: item }, this.props.appState.csrf))
       .then(handleErrors)
       .then((item, message) => {
         this.setState(prevState => {
@@ -67,7 +67,7 @@ class TicketsPage extends React.Component {
 
   onEditItem(e, item) {
     e.preventDefault()
-    fetch(httpSecuredRequest(`${config.apiUrl}/tickets/${item.id}`, 'PATCH', {}, this.props.appState.csrf))
+    fetch(httpSecuredRequest(`${config.apiUrl}/tickets/${item.id}`, 'PATCH', { ticket: item }, this.props.appState.csrf))
       .then(handleErrors)
       .then((response, message) => {
         this.setState(prevState => {
@@ -113,6 +113,7 @@ class TicketsPage extends React.Component {
     let data = {}
     formData.forEach((value, key) => { data[key] = value });
 
+    // let item = {ticket: data}
     // const item = formData.map((value, key) => { key: value })
     console.log('onFormSubmit', data)
 
