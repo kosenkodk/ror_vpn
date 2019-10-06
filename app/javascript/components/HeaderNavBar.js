@@ -3,28 +3,34 @@ import logoImage from 'images/logo.png'
 import I18n from 'i18n-js/index.js.erb'
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
-import { httpSecuredRequest, handleErrors } from 'helpers/http'
+import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config'
 
 class HeaderNavBar extends React.Component {
 
   signOut = (e) => {
-    fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-      .then(handleErrors)
+    e.preventDefault()
+
+    fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
+      // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
+      // .then(handleErrors)
       .then((item, message) => {
+        console.log('/signin success', item)
         // unset current user
-        this.props.setAppState({
-          user: [],
-          csrf: '',
-          isSignedIn: false
-        })
-        this.props.history.push('/')
+        // this.props.setAppState({
+        //   user: [],
+        //   csrf: '',
+        //   isSignedIn: false
+        // })
+        // this.props.history.push('/')
       })
       .catch((error) => {
-        console.log(error)
+        // if (error.status === 401) {
+
+        // }
+        console.log('/signin error', error)
         //TODO: Flash message with text "Can not sign out"
       })
-    e.preventDefault()
   }
 
   render() {

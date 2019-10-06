@@ -1,5 +1,7 @@
 class Api::V1::SigninController < Api::V1::ApiController
   before_action :authorize_access_request!, only: [:destroy]
+  # before_action :authorize_refresh_by_access_header!, only: [:destroy]
+  # before_action :authorize_by_access_header!,only: [:destroy]
 
   def create
     user = User.find_by!(email: params[:email])
