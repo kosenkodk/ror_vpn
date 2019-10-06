@@ -25,7 +25,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.edit'), match: :first)
         fill_in :title, with: 'ticket 2'
         fill_in :text, with: 'text 2'
-        click_on(I18n.t('buttons.save'))
+        click_on(I18n.t('buttons.submit'))
+        # click_on(I18n.t('buttons.save'))
         expect(page).to have_content('ticket 2')
         expect(page).to have_content('text 2')
       end
@@ -34,7 +35,9 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.add'))
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
-        click_on(I18n.t('buttons.save'))
+        # click_on(I18n.t('buttons.save'))
+        click_on(I18n.t('buttons.submit'))
+
         expect(page).to have_content('ticket 1')
         expect(page).to have_content('text 1')
       end

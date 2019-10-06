@@ -589,5 +589,6 @@ footer {
 
 // unblock buttons of modal popup window
 .modal-backdrop {
-  position: unset !important;
+  // position: unset !important;
+  // z-index: -1;
 }
