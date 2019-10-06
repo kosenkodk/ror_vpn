@@ -31,6 +31,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
   # DELETE /tickets/1
   def destroy
     @ticket.destroy
+    render json: :ok
   end
 
   private

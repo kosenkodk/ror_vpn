@@ -33,8 +33,10 @@ en:
   api:
     notices:
       item_added: "Item has been added successfully"
+      item_deleted: "Item has been deleted successfully"
     errors:
       item_added: "Item can't be created"
+      item_deleted: "Item can't be deleted"
       forbidden: "Forbidden"
       something_went_wrong: "Something went wrong"
       network_error: "Network error"

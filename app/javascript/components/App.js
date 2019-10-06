@@ -62,23 +62,23 @@ class App extends React.Component {
   }
 
   unsetCurrentUser() {
-    console.log('unsetCurrentUser')
+    // console.log('unsetCurrentUser')
     this.setState({ user: [], csrf: '', isSignedIn: false })
   }
 
   setCurrentUser(user, csrf) {
     // user fields: email, id, role
-    console.log('setCurrentUser', user, csrf)
+    // console.log('setCurrentUser', user, csrf)
     this.setState({ user: user, csrf: csrf, isSignedIn: true })
   }
 
   setAppState(state) {
-    console.log('setAppState > app state', state)
+    // console.log('setAppState > app state', state)
     this.setState(...state)
   }
 
   render() {
-    console.log('render > app state', this.state)
+    // console.log('render > app state', this.state)
     return (
       <Router path={this.props.path} context={{}} >
 

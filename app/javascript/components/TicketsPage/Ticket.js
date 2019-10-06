@@ -20,7 +20,7 @@ class Ticket extends React.Component {
         <td>{this.props.status}</td>
         <td><Link to="#" className='btn btn-sm btn-outline-info'>Show</Link></td>
         <td><Link to="#" className='btn btn-sm btn-outline-warning'>Edit</Link></td>
-        <td><Link to="#" className='btn btn-sm btn-outline-danger'>Delete</Link></td>
+        <td><button onClick={(e) => this.props.onDeleteItem(e, this.props)} className='btn btn-sm btn-outline-danger'>Delete</button></td>
       </React.Fragment>
     );
   }
