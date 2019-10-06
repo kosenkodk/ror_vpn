@@ -214,3 +214,8 @@ en:
     continue: "Continue"
     view_pricing: "View pricing"
     view_pricing_html: "View pricing &#8594;"
+    view: "View"
+    edit: "Edit"
+    delete: "Delete"
+    close: "Close"
+    save: "Save"
