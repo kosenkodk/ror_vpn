@@ -18,7 +18,7 @@ class Api::V1::ApiController < ActionController::API
   end
 
   def forbidden
-    render json: { error: I18n.t('api.errors.Forbidden') }, status: :forbidden
+    render json: { error: I18n.t('api.errors.forbidden') }, status: :forbidden
   end
 
   def not_authorized

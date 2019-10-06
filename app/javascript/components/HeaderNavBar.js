@@ -11,11 +11,12 @@ class HeaderNavBar extends React.Component {
   signOut = (e) => {
     e.preventDefault()
 
-    fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-      // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-      // .then(handleErrors)
+    // fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
+    // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
+    httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf)
+      .then(handleErrors)
       .then((item, message) => {
-        console.log('/signin success', item)
+        console.log('/signout success', item)
         // unset current user
         // this.props.setAppState({
         //   user: [],
@@ -28,7 +29,7 @@ class HeaderNavBar extends React.Component {
         // if (error.status === 401) {
 
         // }
-        console.log('/signin error', error)
+        console.log('/signout error', error)
         //TODO: Flash message with text "Can not sign out"
       })
   }
