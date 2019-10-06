@@ -21,13 +21,22 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket.text)
       end
 
-      it 'add item to list'
+      it 'add item to list' do
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket 1'
+        fill_in :text, with: 'text 1'
+        click_on(I18n.t('buttons.save'))
+        expect(page).to have_content('ticket 1')
+        expect(page).to have_content('text 1')
+      end
+
       it 'delete item from list' do
         click_on(I18n.t('buttons.delete'), match: :first)
         expect(page).not_to have_content(ticket.title)
       end
+
       it 'edit item'
-      it "quests can't see the user's tickets"
+      it "guests can't see the user's tickets"
     end
   end
 end

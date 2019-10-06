@@ -3,7 +3,7 @@ import React from 'react'
 // import { withRouter } from "react-router-dom";
 // import { Link } from 'react-router-dom'
 // import { HashLink } from 'react-router-hash-link';
-// import { TicketForm } from './TicketForm'
+import TicketForm from './TicketForm'
 import I18n from 'i18n-js/index.js.erb'
 
 class TicketViewModal extends React.Component {
@@ -13,28 +13,35 @@ class TicketViewModal extends React.Component {
   }
 
   render() {
+    const idModal = `modalView${this.props.id}${this.props.isEdit}`
+    const idModalTitle = `modalViewTitle${this.props.id}${this.props.isEdit}`
+
     return (
       <div>
-        <button type="button" className="btn btn-sm btn-outline-info" data-toggle="modal" data-target={`#modalCenter${this.props.id}`}>
-          {I18n.t('buttons.view')}
+        <button type="button" className={`btn btn-sm ${this.props.isEdit ? 'btn-outline-warning' : 'btn-outline-info'}`} data-toggle="modal" data-target={`#${idModal}`}>
+          {this.props.isEdit ? I18n.t('buttons.edit') : I18n.t('buttons.view')}
         </button>
 
-        <div className="modal fade" id={`modalCenter${this.props.id}`} tabIndex="-1" role="dialog" aria-labelledby={`modalCenterTitle${this.props.id}`} aria-hidden="true">
+        <div className="modal fade" id={idModal} tabIndex="-1" role="dialog" aria-labelledby={idModalTitle} aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id={`modalCenterTitle${this.props.id}`}>{this.props.title}</h5>
+                <h5 className="modal-title" id={idModalTitle}>{this.props.title}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">
-                {this.props.text}
-                {/* <TicketForm /> */}
+              <div className="modal-body ">
+                {
+                  this.props.isEdit ?
+                    <TicketForm />
+                    : this.props.text
+                }
+
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
-                {/* <button type="button" className="btn btn-outline-pink active">{I18n.t('buttons.save')}</button> */}
+                {this.props.isEdit && <button type="button" className="btn btn-outline-pink active">{I18n.t('buttons.save')}</button>}
               </div>
             </div>
           </div>
