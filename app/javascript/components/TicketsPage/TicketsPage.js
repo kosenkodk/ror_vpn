@@ -6,6 +6,9 @@ import Sidebar from '../Sidebar'
 // import { Link } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import FlashMessages from '../sections/FlashMessages'
+import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
+import { config } from 'config'
+import I18n from 'i18n-js/index.js.erb'
 
 class TicketsPage extends React.Component {
 
@@ -17,6 +20,44 @@ class TicketsPage extends React.Component {
       error: '',
       notice: ''
     };
+  }
+
+  addItem = (e) => {
+    console.log('add item', e)
+    fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', { ticket: { title: 'new ticket' } }, this.props.appState.csrf))
+      .then(handleErrors)
+      .then((item, message) => {
+
+        console.log('add ticket success', item, message)
+        // let items = this.state.items
+        this.setState(prevState => {
+          // const newItems = prevState.items.push(item); 
+          // const newItems = prevState.items.concat(item);
+          const newItems = [...prevState.items, item];
+          return {
+            items: newItems
+          }
+        })
+        this.setState({
+          error: '',
+          notice: item.notice && item.notice || I18n.t('api.notices.item_added'),
+        })
+        // unset current user
+        // this.props.setAppState({
+        //   user: [],
+        //   csrf: '',
+        //   isSignedIn: false
+        // })
+        // this.props.history.push('/')
+      })
+      .catch((error) => {
+        // if (error.status === 401) {
+
+        // }
+        this.setState({ error: error.message, notice: '' })
+        console.log('add ticket error', error)
+        //TODO: Flash message with text "Can not sign out"
+      })
   }
 
   render() {
@@ -40,7 +81,8 @@ class TicketsPage extends React.Component {
                 <h2 className="mt-2">Tickets</h2>
               </div>
               <div className="col-sm-6 text-right align-self-center">
-                <Link to="#" className="btn btn-outline-success">New</Link>
+                {/* <Link to="/tickets/new" className="btn btn-outline-success">New</Link> */}
+                <button onClick={this.addItem} className="btn btn-outline-success">New</button>
               </div>
             </div>
             <table className="table text-white">

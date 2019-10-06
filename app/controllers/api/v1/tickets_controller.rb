@@ -19,7 +19,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
     @ticket = current_user.tickets.build(item_params)
 
     @ticket.save!
-    render json: @ticket, status: :created, location: api_v1_ticket_url(@ticket)
+    render json: @ticket, status: :created, notice: I18n.t('api.notices.item_added'), location: api_v1_ticket_url(@ticket)
   end
 
   # PATCH/PUT /tickets/1
