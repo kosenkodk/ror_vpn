@@ -34,6 +34,7 @@ const handleErrors = async (response) => {
     }
     // throw new ExceptionWithMessageAndResponse(response.json(), "")
     // return response.json();
+
     let responseJson = await response.json()
 
     throw new TypeError(responseJson && responseJson.error)
@@ -45,7 +46,7 @@ const handleErrors = async (response) => {
 const httpPlainRequest = (url, method, data) => {
   return new Request(url, {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
-    credentials: 'include', // include, *same-origin, omit
+    // credentials: 'include', // include, *same-origin, omit
     // mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // redirect: 'follow', // manual, *follow, error,
@@ -62,14 +63,91 @@ const httpPlainRequest = (url, method, data) => {
 }
 
 
+function handle401Error(url, method, data, csrf) {
+  console.log('handle401Error', url, method, data, csrf)
+  return fetch(httpSecuredRequest('/api/v1/refresh', 'POST', {}, csrf))
+    .then(response => {
+      return response.json().then(refreshData => {
+        if (response.ok) {
+          // plainAxiosInstance.get('/me')
+          //   .then(meResponse => store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf }))
+          // And after successful refresh - repeat the original request
+          // let retryConfig = error.response.config
+          // retryConfig.headers['X-CSRF-TOKEN'] = response.data.csrf
+          // return plainAxiosInstance.request(retryConfig)
+
+          // let resonseJson = await response.json()
+          console.log('/api/v1/refresh', refreshData)
+          // retrying request with a new refreshed csrf token
+          return fetch(httpSecuredRequest(url, method, data, refreshData.csrf))
+            .then(response => {
+              console.log('retrying request', response)
+              return response.json().then(data => {
+                console.log('json data', data)
+
+                if (response.ok) {
+                  return data;
+                } else {
+                  return Promise.reject({ status: response.status, data });
+                }
+              });
+            }).catch(error => {
+              console.log('retrying error', error)
+              return Promise.reject(error)
+            });
+        } else {
+          console.log('refresh request is not ok', response, refreshData)
+
+          return Promise.reject({ status: response.status, refreshData });
+        }
+      });
+    }).catch(error => {
+      console.log('refresh error', error)
+
+      // store.commit('unsetCurrentUser')
+      // redirect to signin in case refresh request fails
+      // location.replace('/')
+      return Promise.reject(error)
+    })
+}
+
+const httpRequestAndRefreshToken = (url, method, data, csrf) => {
+  console.log('httpRequestAndRefreshToken', url, method, data, csrf)
+
+  return fetch(url, {
+    // mode: 'cors',
+    method: method,
+    // credentials: 'include',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CSRF-Token': csrf
+    }
+  }).then(response => {
+    return response.json().then(data => {
+      if (response.ok) {
+        return data;
+      } else {
+        if (response.status === 401) {
+          console.log('handleErrors 401', response)
+          return handle401Error(url, method, data, csrf)
+        }
+        return Promise.reject({ status: response.status, data });
+      }
+    });
+  });
+}
+
 const httpSecuredRequest = (url, method, data, csrf) => {
   // if (method !== 'OPTIONS' && method !== 'GET')
   return new Request(url, {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
-    credentials: 'include', // same-origin, include, *same-origin, omit
+    // credentials: 'include', // same-origin, include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-Token': csrf
+      'X-CSRF-Token': csrf,
+      'Authorization': `Bearer ${csrf}`
     },
     body: JSON.stringify(data)
   })
@@ -85,7 +163,7 @@ const postCsrfRequest = (url, method, data) => {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
     // mode: 'cors', // no-cors, cors, *same-origin
     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'include', // same-origin, include, *same-origin, omit
+    // credentials: 'include', // same-origin, include, *same-origin, omit
     // redirect: 'follow', // manual, *follow, error,
     // referrer: 'no-referrer', // no-referrer, *client
     headers: {
@@ -122,5 +200,5 @@ function addTicket(url, details) {
   });
 }
 
-export { httpPlainRequest, httpSecuredRequest, postCsrfRequest, handleErrors, errorMessage }
+export { httpRequestAndRefreshToken, httpPlainRequest, httpSecuredRequest, postCsrfRequest, handleErrors, errorMessage }
 
