@@ -4,7 +4,7 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 // import { HashLink } from 'react-router-hash-link';
 // import { TicketForm } from './TicketForm'
-// import I18n from 'i18n-js/index.js.erb'
+import I18n from 'i18n-js/index.js.erb'
 
 class TicketViewModal extends React.Component {
 
@@ -15,25 +15,26 @@ class TicketViewModal extends React.Component {
   render() {
     return (
       <div>
-        <button type="button" className="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter">
-          View
+        <button type="button" className="btn btn-sm btn-outline-info" data-toggle="modal" data-target={`#modalCenter${this.props.id}`}>
+          {I18n.t('buttons.view')}
         </button>
 
-        <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal fade" id={`modalCenter${this.props.id}`} tabIndex="-1" role="dialog" aria-labelledby={`modalCenterTitle${this.props.id}`} aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalCenterTitle">{this.props.title}</h5>
+                <h5 className="modal-title" id={`modalCenterTitle${this.props.id}`}>{this.props.title}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div className="modal-body">
+                {this.props.text}
                 {/* <TicketForm /> */}
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-pink-dark" data-dismiss="modal">Close</button>
-                {/* <button type="button" className="btn btn-outline-pink active">Save changes</button> */}
+                <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
+                {/* <button type="button" className="btn btn-outline-pink active">{I18n.t('buttons.save')}</button> */}
               </div>
             </div>
           </div>
