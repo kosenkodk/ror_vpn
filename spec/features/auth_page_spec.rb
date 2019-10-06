@@ -8,12 +8,11 @@ RSpec.describe AuthController, type: :feature, js: true do
     end
 
     it 'render :login template' do
-      expect(find('.login')).to have_content('Log in to your account')
-      expect(find('.login')).to have_content("Don't have an account?")
-      expect(find('.login')).to have_content('Sign Up')
+      expect(find('.login')).to have_content(I18n.t('pages.login.title'))
+      expect(find('.login')).to have_content(I18n.t('pages.login.do_not_have_an_account'))
+      expect(find('.login')).to have_content(I18n.t('pages.signup.title'))
       expect(find('.login')).to have_content('Email address')
       expect(find('.login')).to have_content('Password')
-      expect(find('.login')).to have_content('Log in')
       expect(find('.login')).to have_content(I18n.t('pages.login.form.login_trouble'))
       expect(find('span#forgot-pwd-addon a')).to have_text(I18n.t('pages.login.form.forgot_pwd'))
       expect(page).to have_css('nav')
