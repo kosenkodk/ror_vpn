@@ -24,11 +24,12 @@ class TicketsPage extends React.Component {
     this.onDeleteItem = this.onDeleteItem.bind(this)
     this.onViewItem = this.onViewItem.bind(this)
     this.onEditItem = this.onEditItem.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this)
   }
 
-  addItem = (e) => {
+  addItem = (e, item) => {
     e.preventDefault()
-    fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', { ticket: { title: 'new ticket' } }, this.props.appState.csrf))
+    fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', item, this.props.appState.csrf))
       .then(handleErrors)
       .then((item, message) => {
         this.setState(prevState => {
@@ -105,6 +106,23 @@ class TicketsPage extends React.Component {
       })
   }
 
+  onFormSubmit(e, isEdit) {
+    e.preventDefault()
+    // item = {ticket: { title: 'new ticket' }}
+    let formData = new FormData(e.target)
+    let data = {}
+    formData.forEach((value, key) => { data[key] = value });
+
+    // const item = formData.map((value, key) => { key: value })
+    console.log('onFormSubmit', data)
+
+    if (isEdit) {
+      this.onEditItem(e, data)
+    } else {
+      this.onAddItem(e, data)
+    }
+  }
+
   render() {
     const { items, error, notice } = this.state;
     return (
@@ -142,7 +160,7 @@ class TicketsPage extends React.Component {
               <tbody>
                 {
                   items.map(item => (
-                    <Ticket key={item.id} {...item} onDeleteItem={this.onDeleteItem} onEditItem={this.onEditItem} />
+                    <Ticket key={item.id} {...item} onFormSubmit={this.onFormSubmit} onDeleteItem={this.onDeleteItem} onEditItem={this.onEditItem} />
                   ))
                 }
 

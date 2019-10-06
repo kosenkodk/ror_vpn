@@ -34,7 +34,7 @@ class TicketViewModal extends React.Component {
               <div className="modal-body ">
                 {
                   this.props.isEdit ?
-                    <TicketForm />
+                    <TicketForm isEdit={this.props.isEdit} onFormSubmit={this.props.onFormSubmit} {...this.props} />
                     : this.props.text
                 }
 
