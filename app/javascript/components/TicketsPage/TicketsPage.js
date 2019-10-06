@@ -47,12 +47,11 @@ class TicketsPage extends React.Component {
     e.preventDefault()
     fetch(httpSecuredRequest(`${config.apiUrl}/tickets/${item.id}`, 'DELETE', {}, this.props.appState.csrf))
       .then(handleErrors)
-      .then((item, message) => {
+      .then((response, message) => {
         this.setState(prevState => {
-          console.log('onDeleteItem', item, this.state.items)
           return {
             // items: prevState.items.splice(prevState.items.indexOf(item), 1),
-            items: prevState.items.filter(item2 => item2.id !== item.id),
+            items: prevState.items.filter(item2 => item2.id !== item.id)
           }
         })
         this.setState({

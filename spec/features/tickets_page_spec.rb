@@ -22,6 +22,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).not_to have_content(ticket.title)
       end
       it 'edit item'
+      it "quests can't see the user's tickets"
     end
   end
 end
