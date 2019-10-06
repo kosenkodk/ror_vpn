@@ -46,9 +46,9 @@ features = [
 end
 
 payment_methods = [
-  {title: I18n.t('pages.payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
-  {title: I18n.t('pages.payment_method.qiwi'), icons: ['qiwi.png']},
-  {title: I18n.t('pages.payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
+  {title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
+  {title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
+  {title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
 ].each do |item|
   payment_method = PaymentMethod.find_or_create_by(title: item[:title])
   puts payment_method.try(:title)

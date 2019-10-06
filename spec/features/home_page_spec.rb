@@ -11,7 +11,7 @@ RSpec.describe HomeController, type: :feature do
 
     context 'checking links' do
       it 'render login page' do
-        click_on('Log in')
+        click_on(I18n.t('nav_menu.sign_in'))
         expect(page).to have_content(I18n.t('pages.login.title'))
         expect(page).not_to have_css('footer')
       end
@@ -39,8 +39,8 @@ RSpec.describe HomeController, type: :feature do
       expect(page).to have_content('Pricing')
       expect(page).to have_content('Apps')
       expect(page).to have_content('Help')
-      expect(page).to have_content('Log in')
-      expect(page).to have_content('Sign up')
+      expect(page).to have_content(I18n.t('nav_menu.sign_in'))
+      expect(page).to have_content(I18n.t('nav_menu.sign_up'))
       # sections
       expect(page).to have_content('Take control of who has access to your private data')
       expect(page).to have_content('Why the Media loves VPN')
