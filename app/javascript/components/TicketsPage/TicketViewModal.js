@@ -52,6 +52,6 @@ class TicketViewModal extends React.Component {
   }
 }
 TicketViewModal.propTypes = {
-  id: PropTypes.number
+  // id: PropTypes.number
 }
 export default TicketViewModal

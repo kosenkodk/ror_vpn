@@ -74,7 +74,7 @@ class TicketsPage extends React.Component {
       .then((response, message) => {
         this.setState(prevState => {
           return {
-            items: prevState.items.map(item2 => item2.id === item.id ? item : item2)
+            items: prevState.items.map(itemPrev => itemPrev.id == item.id ? item : itemPrev)
           }
         })
         this.setState({
