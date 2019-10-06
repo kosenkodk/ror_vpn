@@ -22,8 +22,8 @@ class TicketAddModal extends React.Component {
           {I18n.t('buttons.add')}
         </button>
 
-        <div className="modal fade" id={idModal} tabIndex="-1" role="dialog" aria-labelledby={idModalTitle} aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal fade" data-backdrop={false} id={idModal} tabIndex="-1" role="dialog" aria-labelledby={idModalTitle} aria-hidden="true">
+          <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id={idModalTitle}>New Ticket</h5>
@@ -34,10 +34,10 @@ class TicketAddModal extends React.Component {
               <div className="modal-body ">
                 <TicketForm isEdit={this.props.isEdit} onFormSubmit={this.props.onFormSubmit} {...this.props} />
               </div>
-              <div className="modal-footer">
+              {/* <div className="modal-footer">
                 <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
                 <button type="button" className="btn btn-outline-pink active">{I18n.t('buttons.save')}</button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
