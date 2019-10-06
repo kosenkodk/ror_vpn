@@ -34,6 +34,7 @@ en:
     notices:
       item_added: "Item has been added successfully"
     errors:
+      item_added: "Item can't be created"
       forbidden: "Forbidden"
       something_went_wrong: "Something went wrong"
       network_error: "Network error"
