@@ -15,7 +15,11 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket.title)
       end
 
-      it 'view item'
+      it 'view item' do
+        click_on('View', match: :first)
+        expect(page).to have_content(ticket.title)
+      end
+
       it 'add item to list'
       it 'delete item from list' do
         click_on('Delete', match: :first)
