@@ -10,6 +10,7 @@ import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'he
 import { config } from 'config'
 import I18n from 'i18n-js/index.js.erb'
 import { httpPlainRequest } from 'helpers/http'
+import TicketAddModal from './TicketAddModal'
 
 class TicketsPage extends React.Component {
 
@@ -25,9 +26,10 @@ class TicketsPage extends React.Component {
     this.onViewItem = this.onViewItem.bind(this)
     this.onEditItem = this.onEditItem.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onAddItem = this.onAddItem.bind(this)
   }
 
-  addItem = (e, item) => {
+  onAddItem(e, item) {
     e.preventDefault()
     fetch(httpSecuredRequest(`${config.apiUrl}/tickets`, 'POST', { ticket: item }, this.props.appState.csrf))
       .then(handleErrors)
@@ -145,7 +147,8 @@ class TicketsPage extends React.Component {
               </div>
               <div className="col-sm-6 text-right align-self-center">
                 {/* <Link to="/tickets/new" className="btn btn-outline-success">New</Link> */}
-                <button onClick={this.addItem} className="btn btn-outline-success">New</button>
+                {/* <button onClick={this.addItem} className="btn btn-outline-success">New</button> */}
+                <TicketAddModal onFormSubmit={this.onFormSubmit} isEdit={false} {...this.props} />
               </div>
             </div>
             <table className="table text-white">
