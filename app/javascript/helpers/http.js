@@ -62,6 +62,20 @@ const httpPlainRequest = (url, method, data) => {
   })
 }
 
+const httpSecuredRequest = (url, method, data, csrf) => {
+  // if (method !== 'OPTIONS' && method !== 'GET')
+  return new Request(url, {
+    method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
+    // credentials: 'include', // same-origin, include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrf,
+      // 'Authorization': `Bearer ${csrf}`,
+      // 'X-Refresh-Token': refresh_token,
+    },
+    body: JSON.stringify(data)
+  })
+}
 
 function handle401Error(url, method, data, csrf) {
   console.log('handle401Error', url, method, data, csrf)
@@ -81,28 +95,30 @@ function handle401Error(url, method, data, csrf) {
           // retrying request with a new refreshed csrf token
           return fetch(httpSecuredRequest(url, method, data, refreshData.csrf))
             .then(response => {
-              console.log('retrying request', response)
+              console.log('retrying request', url, method, data, refreshData.csrf)
+              console.log('retrying request response', response)
               return response.json().then(data => {
                 console.log('json data', data)
 
                 if (response.ok) {
+                  console.log('retrying ok', response, data)
                   return data;
                 } else {
+                  console.log('retrying fail', response, data)
                   return Promise.reject({ status: response.status, data });
                 }
               });
             }).catch(error => {
-              console.log('retrying error', error)
+              console.log('retrying catch error', error)
               return Promise.reject(error)
             });
         } else {
           console.log('refresh request is not ok', response, refreshData)
-
           return Promise.reject({ status: response.status, refreshData });
         }
       });
     }).catch(error => {
-      console.log('refresh error', error)
+      console.log('refresh catch error', error)
 
       // store.commit('unsetCurrentUser')
       // redirect to signin in case refresh request fails
@@ -113,44 +129,24 @@ function handle401Error(url, method, data, csrf) {
 
 const httpRequestAndRefreshToken = (url, method, data, csrf) => {
   console.log('httpRequestAndRefreshToken', url, method, data, csrf)
-
-  return fetch(url, {
-    // mode: 'cors',
-    method: method,
-    // credentials: 'include',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'X-CSRF-Token': csrf
-    }
-  }).then(response => {
-    return response.json().then(data => {
-      if (response.ok) {
-        return data;
-      } else {
-        if (response.status === 401) {
-          console.log('handleErrors 401', response)
-          return handle401Error(url, method, data, csrf)
+  return fetch(httpSecuredRequest(url, method, data, csrf))
+    .then(response => {
+      return response.json().then(data => {
+        if (response.ok) {
+          return data;
+        } else {
+          if (response.status === 401) {
+            console.log('handle 401', response)
+            return handle401Error(url, method, data, csrf)
+          }
+          return Promise.reject({ status: response.status, data });
         }
-        return Promise.reject({ status: response.status, data });
-      }
-    });
-  });
-}
-
-const httpSecuredRequest = (url, method, data, csrf) => {
-  // if (method !== 'OPTIONS' && method !== 'GET')
-  return new Request(url, {
-    method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
-    // credentials: 'include', // same-origin, include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrf,
-      'Authorization': `Bearer ${csrf}`
-    },
-    body: JSON.stringify(data)
-  })
+      })
+    })
+    .catch(error => {
+      console.log('httpRequestAndRefreshToken catch error', error)
+      return Promise.reject(error)
+    })
 }
 
 const postCsrfRequest = (url, method, data) => {
