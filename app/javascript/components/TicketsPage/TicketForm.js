@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { withRouter } from "react-router-dom";
-import { Link } from 'react-router-dom'
+// import PropTypes from 'prop-types'
+// import { withRouter } from "react-router-dom";
+// import { Link } from 'react-router-dom'
 // import { HashLink } from 'react-router-hash-link';
 import I18n from 'i18n-js/index.js.erb'
 
@@ -51,16 +51,13 @@ class TicketForm extends React.Component {
           </div>
           <div className="col-sm-8">
             <br />
-            <button id="contact_submit" onClick={} className="btn btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button>
+            <button id="contact_submit" className="btn btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button>
             {/* <button id="contact_submit" onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.message.value, this.message_short.value); }} className="btn btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button> */}
             {/* <%=f.submit(t("pages.contact_us.form.submit"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
           </div>
         </div>
       </form>
-    );
-  }
-
-  componentDidMount() {
+    )
   }
 }
 
