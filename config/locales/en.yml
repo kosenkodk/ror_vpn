@@ -31,6 +31,8 @@
 
 en:
   api:
+    notices:
+      item_added: "Item has been added successfully"
     errors:
       forbidden: "Forbidden"
       something_went_wrong: "Something went wrong"
