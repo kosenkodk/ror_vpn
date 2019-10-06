@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 // import { withRouter } from "react-router-dom";
 // import { Link } from 'react-router-dom'
 // import { HashLink } from 'react-router-hash-link';
@@ -51,5 +51,7 @@ class TicketViewModal extends React.Component {
     );
   }
 }
-
+TicketViewModal.propTypes = {
+  id: PropTypes.number
+}
 export default TicketViewModal
