@@ -107,8 +107,7 @@ class SigninPage extends React.Component {
                 {I18n.t('pages.login.title')}
               </h1>
               <p className="lead">
-                {I18n.t('pages.login.do_not_have_an_account')}
-                <Link to="/signup">{I18n.t("pages.signup.title")}</Link>
+                {I18n.t('pages.login.do_not_have_an_account')} <Link to="/signup" className="trouble">{I18n.t("pages.signup.title")}</Link>
                 {/* <a href="/signup"> {I18n.t("pages.signup.title")}</a> */}
               </p>
             </div>

@@ -573,3 +573,21 @@ footer {
   }
   
 }
+
+.tickets {
+  .modal-content {
+    @extend .shadow-vega;
+    background: $bg_color_black;
+    .close {
+      color: $pink2;
+      &:hover {
+        color: $pink3;
+      }
+    }
+  }
+}
+
+// unblock buttons of modal popup window
+.modal-backdrop {
+  position: unset !important;
+}

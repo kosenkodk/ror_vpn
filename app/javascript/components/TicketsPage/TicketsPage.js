@@ -9,6 +9,7 @@ import FlashMessages from '../sections/FlashMessages'
 import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config'
 import I18n from 'i18n-js/index.js.erb'
+import { httpPlainRequest } from 'helpers/http'
 
 class TicketsPage extends React.Component {
 
@@ -21,6 +22,8 @@ class TicketsPage extends React.Component {
       notice: ''
     };
     this.onDeleteItem = this.onDeleteItem.bind(this)
+    this.onViewItem = this.onViewItem.bind(this)
+    this.onEditItem = this.onEditItem.bind(this)
   }
 
   addItem = (e) => {
@@ -40,6 +43,44 @@ class TicketsPage extends React.Component {
       })
       .catch((error) => {
         this.setState({ error: error.message || I18n.t('api.errors.item_added'), notice: '' })
+      })
+  }
+
+  onViewItem(e, item) {
+    e.preventDefault()
+    // this.props.history.push(`/tickets/${response.id}`)
+    return
+    fetch(httpPlainRequest(`${config.apiUrl}/tickets/${item.id}`, 'GET', {}))
+      .then(handleErrors)
+      .then((response, message) => {
+
+        this.setState({
+          error: '',
+          notice: item.notice && item.notice || I18n.t('api.notices.item_viewed'),
+        })
+      })
+      .catch((error) => {
+        this.setState({ error: error.message || I18n.t('api.errors.item_viewed'), notice: '' })
+      })
+  }
+
+  onEditItem(e, item) {
+    e.preventDefault()
+    fetch(httpSecuredRequest(`${config.apiUrl}/tickets/${item.id}`, 'PATCH', {}, this.props.appState.csrf))
+      .then(handleErrors)
+      .then((response, message) => {
+        this.setState(prevState => {
+          return {
+            items: prevState.items.map(item2 => item2.id === item.id ? item : item2)
+          }
+        })
+        this.setState({
+          error: '',
+          notice: item.notice && item.notice || I18n.t('api.notices.item_updated'),
+        })
+      })
+      .catch((error) => {
+        this.setState({ error: error.message || I18n.t('api.errors.item_updated'), notice: '' })
       })
   }
 
@@ -80,7 +121,6 @@ class TicketsPage extends React.Component {
           </div>
           <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
             <div className="row">
-
               <div className="col-sm-6 text-left">
                 <h2 className="mt-2">Tickets</h2>
               </div>
@@ -102,10 +142,7 @@ class TicketsPage extends React.Component {
               <tbody>
                 {
                   items.map(item => (
-                    <tr key={item.id} >
-                      <Ticket {...item} onDeleteItem={this.onDeleteItem} />
-                      {/* <Ticket title={item.title} /> */}
-                    </tr>
+                    <Ticket key={item.id} {...item} onDeleteItem={this.onDeleteItem} onEditItem={this.onEditItem} />
                   ))
                 }
 

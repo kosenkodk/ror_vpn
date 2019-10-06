@@ -34,9 +34,13 @@ en:
     notices:
       item_added: "Item has been added successfully"
       item_deleted: "Item has been deleted successfully"
+      item_updated: "Item has been updated successfully"
+      item_updated: "Item has been found"
     errors:
       item_added: "Item can't be created"
       item_deleted: "Item can't be deleted"
+      item_updated: "Item can't be updated"
+      item_viewed: "Item can't be found"
       forbidden: "Forbidden"
       something_went_wrong: "Something went wrong"
       network_error: "Network error"
