@@ -32,19 +32,19 @@ class TicketForm extends React.Component {
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
           <div className="col-sm-8">
             <input type="hidden" name="id" value={this.props.id && this.props.id} />
-            <input type="text" name="title" required={true} className="form-control" value={this.props.title} placeholder={I18n.t('pages.tickets.form.help.title')} />
+            <input type="text" name="title" required={true} className="form-control" defaultValue={this.props.title} placeholder={I18n.t('pages.tickets.form.help.title')} />
           </div>
         </div>
 
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.text')}</label>
           <div className="col-sm-8">
-            <textarea type="text" name="text" className="form-control" value={this.props.text} required={false} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
+            <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
           </div>
         </div>
 
         <div className="form-group row">
-          <label for="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
+          <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8">
             <input id="ticketAttachment" type="file" name="attachment" required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
           </div>
