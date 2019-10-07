@@ -46,7 +46,7 @@ const handleErrors = async (response) => {
 const httpPlainRequest = (url, method, data) => {
   return new Request(url, {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
-    // credentials: 'include', // include, *same-origin, omit
+    credentials: 'include', // include, *same-origin, omit
     // mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // redirect: 'follow', // manual, *follow, error,
@@ -66,7 +66,7 @@ const httpSecuredRequest = (url, method, data, csrf) => {
   // if (method !== 'OPTIONS' && method !== 'GET')
   return new Request(url, {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
-    // credentials: 'include', // same-origin, include, *same-origin, omit
+    credentials: 'include', // same-origin, include, *same-origin, omit
     headers: {
       'Content-Type': 'application/json',
       'X-CSRF-Token': csrf,
