@@ -79,9 +79,10 @@ const httpSecuredRequest = (url, method, data, csrf) => {
 
 function handle401Error(url, method, data, csrf) {
   console.log('handle401Error', url, method, data, csrf)
-  return fetch(httpSecuredRequest('/api/v1/refresh', 'POST', {}, csrf))
+  return fetch(httpSecuredRequest('/api/v1/refresh', 'POST', data, csrf))
     .then(response => {
       return response.json().then(refreshData => {
+        console.log('refreshData', refreshData)
         if (response.ok) {
           // plainAxiosInstance.get('/me')
           //   .then(meResponse => store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf }))
