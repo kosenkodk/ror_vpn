@@ -111,7 +111,7 @@ class SignupPage extends React.Component {
         console.log('/me', meResponse)
         this.setState({ error: meResponse.message || '' })
         // set data 
-        this.props.setCurrentUser(meResponse, response.csrf)
+        this.props.setCurrentUser(meResponse, response)
         this.props.history.push(config.userUrlAfterSignin)
       })
       .catch((error) => {

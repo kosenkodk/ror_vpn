@@ -26,6 +26,7 @@ class App extends React.Component {
     this.state = {
       isFooterVisible: true,
       csrf: '',
+      access: '',
       user: [],
       isSignedIn: false,
       bgClass: 'bg1',
@@ -66,10 +67,10 @@ class App extends React.Component {
     this.setState({ user: [], csrf: '', isSignedIn: false })
   }
 
-  setCurrentUser(user, csrf) {
+  setCurrentUser(user, response) {
     // user fields: email, id, role
-    // console.log('setCurrentUser', user, csrf)
-    this.setState({ user: user, csrf: csrf, isSignedIn: true })
+    // console.log('setCurrentUser', user, response.csrf)
+    this.setState({ user: user, csrf: response.csrf, access: response.access, isSignedIn: true })
   }
 
   setAppState(state) {

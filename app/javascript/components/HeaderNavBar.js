@@ -11,9 +11,7 @@ class HeaderNavBar extends React.Component {
   signOut = (e) => {
     e.preventDefault()
 
-    // fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-    // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-    httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf)
+    httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf, this.props.appState.access)
       .then(handleErrors)
       .then((item, message) => {
         console.log('/signout success', item)

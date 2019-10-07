@@ -66,7 +66,10 @@ class SigninPage extends React.Component {
         console.log('/me', meResponse)
         this.setState({ error: meResponse.message || '', notice: '' })
         // set data 
-        this.props.setCurrentUser(meResponse, response.csrf)
+        // let state = this.props.appState
+        // state['access'] = response.access
+        // this.props.setAppState(state)
+        this.props.setCurrentUser(meResponse, response)
         this.props.history.push(config.userUrlAfterSignin)
       })
       .catch((error) => {

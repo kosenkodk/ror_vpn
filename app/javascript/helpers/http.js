@@ -62,7 +62,7 @@ const httpPlainRequest = (url, method, data) => {
   })
 }
 
-const httpSecuredRequest = (url, method, data, csrf) => {
+const httpSecuredRequest = (url, method, data, csrf, access) => {
   // if (method !== 'OPTIONS' && method !== 'GET')
   return new Request(url, {
     method: method, // *GET, POST, PATCH, PUT, DELETE, etc.
@@ -70,16 +70,16 @@ const httpSecuredRequest = (url, method, data, csrf) => {
     headers: {
       'Content-Type': 'application/json',
       'X-CSRF-Token': csrf,
-      // 'Authorization': `Bearer ${csrf}`,
+      'Authorization': `Bearer ${access}`, // use access_token
       // 'X-Refresh-Token': refresh_token,
     },
     body: JSON.stringify(data)
   })
 }
 
-function handle401Error(url, method, data, csrf) {
-  console.log('handle401Error', url, method, data, csrf)
-  return fetch(httpSecuredRequest('/api/v1/refresh', 'POST', {}, csrf))
+function handle401Error(url, method, data, csrf, access) {
+  console.log('handle401Error', url, method, data, csrf, access)
+  return fetch(httpSecuredRequest('/api/v1/refresh', 'POST', {}, csrf, access))
     .then(response => {
       return response.json().then(refreshData => {
         if (response.ok) {
@@ -127,9 +127,9 @@ function handle401Error(url, method, data, csrf) {
     })
 }
 
-const httpRequestAndRefreshToken = (url, method, data, csrf) => {
-  console.log('httpRequestAndRefreshToken', url, method, data, csrf)
-  return fetch(httpSecuredRequest(url, method, data, csrf))
+const httpRequestAndRefreshToken = (url, method, data, csrf, access) => {
+  console.log('httpRequestAndRefreshToken', url, method, data, csrf, access)
+  return fetch(httpSecuredRequest(url, method, data, csrf, access))
     .then(response => {
       return response.json().then(data => {
         if (response.ok) {
@@ -137,7 +137,7 @@ const httpRequestAndRefreshToken = (url, method, data, csrf) => {
         } else {
           if (response.status === 401) {
             console.log('handle 401', response)
-            return handle401Error(url, method, data, csrf)
+            return handle401Error(url, method, data, csrf, access)
           }
           return Promise.reject({ status: response.status, data });
         }
