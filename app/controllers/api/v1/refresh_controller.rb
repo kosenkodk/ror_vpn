@@ -10,7 +10,7 @@ class Api::V1::RefreshController < Api::V1::ApiController
     tokens = session.refresh_by_access_payload do # web client (renewing a new access with the old expired one)
       # notify the support team, flush the session or skip the block and ignore this kind of activity
       # overrided by application controller
-      raise JWTSessions::Errors::Unauthorized, 'Malicious activity detected'
+      # raise JWTSessions::Errors::Unauthorized, 'Malicious activity detected'
     end
     response.set_cookie(JWTSessions.access_cookie,
                         value: tokens[:access],
