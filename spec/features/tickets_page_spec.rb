@@ -27,6 +27,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       it 'add item to list' do
+
         click_on(I18n.t('buttons.add'))
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
@@ -35,7 +36,11 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         find('.modal .close').click # click_on(find('.modal .close'))
 
         expect(page).to have_content('ticket 1')
-        click_on(I18n.t('buttons.view'), match: :first) # :first, :smart, :prefer_exact, :one
+        
+        all('.btn-outline-info').last.click
+        # click_on(I18n.t('buttons.delete'), match: :first)
+        # click_on(I18n.t('buttons.view'), match: :first) # :first, :smart, :prefer_exact, :one
+        
         expect(page).to have_content('text 1')
       end
 
