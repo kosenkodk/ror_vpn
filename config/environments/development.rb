@@ -63,4 +63,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  
+  # If you require your cookies to be read by Rails 5.2 and older, or you are still validating your 6.0 deploy and want to be able to rollback set 
+  config.action_dispatch.use_cookies_with_metadata = false
 end

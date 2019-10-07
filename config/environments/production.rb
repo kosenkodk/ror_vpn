@@ -111,4 +111,7 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  
+  # If you require your cookies to be read by Rails 5.2 and older, or you are still validating your 6.0 deploy and want to be able to rollback set 
+  config.action_dispatch.use_cookies_with_metadata = false
 end
