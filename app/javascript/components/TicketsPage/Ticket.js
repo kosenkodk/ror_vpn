@@ -18,7 +18,8 @@ class Ticket extends React.Component {
 
     return (
       <tr>
-        <td>{this.props.title}</td>
+        <th scope="row">{this.props.index + 1}</th>
+        <td >{this.props.title}</td>
         {/* <td>{this.props.text}</td> */}
         <td>{this.props.department}</td>
         <td>{this.props.status}</td>

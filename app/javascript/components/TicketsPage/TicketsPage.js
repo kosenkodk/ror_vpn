@@ -141,41 +141,48 @@ class TicketsPage extends React.Component {
             </div>
           </div>
           <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
-            <div className="row">
-              <div className="col-sm-6 text-left">
-                <h2 className="mt-2">Tickets</h2>
-              </div>
-              <div className="col-sm-6 text-right align-self-center">
-                {/* <Link to="/tickets/new" className="btn btn-outline-success">New</Link> */}
-                {/* <button onClick={this.addItem} className="btn btn-outline-success">New</button> */}
-                <TicketAddModal onFormSubmit={this.onFormSubmit} isEdit={false} {...this.props} />
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-6 mr-auto">
+                  <h2 className="mt-2">Tickets</h2>
+                </div>
+                <div className="col-xs-6 ml-auto align-self-center">
+                  {/* <Link to="/tickets/new" className="btn btn-outline-success">New</Link> */}
+                  {/* <button onClick={this.addItem} className="btn btn-outline-success">New</button> */}
+                  <TicketAddModal onFormSubmit={this.onFormSubmit} isEdit={false} {...this.props} />
+                </div>
               </div>
             </div>
-            <table className="table text-white">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Department</th>
-                  {/* <th>Text</th> */}
-                  <th>Status</th>
-                  <th colSpan="3"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  items.map(item => (
-                    <Ticket key={item.id} {...item} onFormSubmit={this.onFormSubmit} onDeleteItem={this.onDeleteItem} onEditItem={this.onEditItem} />
-                  ))
-                }
 
-                {
-                  items.length <= 0 &&
+            <div className="table-responsive">
+              <table className="table text-white table-striped">
+                <thead>
                   <tr>
-                    <td colSpan="3">No items to display</td>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Department</th>
+                    {/* <th>Text</th> */}
+                    <th scope="col">Status</th>
+                    <th colSpan="3" scope="col"></th>
                   </tr>
-                }
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {
+                    items.map((item, index) => (
+                      <Ticket key={item.id} index={index} {...item} onFormSubmit={this.onFormSubmit} onDeleteItem={this.onDeleteItem} onEditItem={this.onEditItem} />
+                    ))
+                  }
+
+                  {
+                    items.length <= 0 &&
+                    <tr>
+                      <td colSpan="3" scope="row">No items to display</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+
+            </div>
           </div>
 
         </div>
