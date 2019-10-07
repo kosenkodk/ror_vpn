@@ -158,12 +158,12 @@ class TicketsPage extends React.Component {
               <table className="table text-white table-striped">
                 <thead>
                   <tr>
-                    <th colSpan="3" scope="col"></th>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Department</th>
+                    <th colSpan="3" scope="col" className="w-5"></th>
+                    <th scope="col" className="w-10">#</th>
+                    <th scope="col" className="w-50">Title</th>
+                    <th scope="col" className="w-20">Department</th>
                     {/* <th>Text</th> */}
-                    <th scope="col">Status</th>
+                    <th scope="col" className="w-15">Status</th>
                   </tr>
                 </thead>
                 <tbody>
