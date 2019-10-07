@@ -56,8 +56,16 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.view'), match: :first)
         expect(page).to have_content('text 2')
       end
-
+      it 'filled input fields of edit form' do
+        click_on(I18n.t('buttons.edit'), match: :first)
+        expect(page).to have_content(ticket.title)
+        expect(page).to have_content(ticket.text)
+      end
       it "guests can't see the user's tickets"
+      it "pagination click on next page button"
+      it "pagination click on prev page button"
+      it "select deparment drop down"
+      it "attach file or image"
     end
   end
 end
