@@ -66,6 +66,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       it "pagination click on prev page button"
       it "select deparment drop down"
       it "attach file or image"
+      it "title can't be empty"
     end
   end
 end
