@@ -70,7 +70,11 @@ const httpSecuredRequest = (url, method, data, csrf, access) => {
     headers: {
       'Content-Type': 'application/json',
       'X-CSRF-Token': csrf,
-      'Authorization': `Bearer ${access}`, // use access_token
+      // 'Authorization': `Bearer ${access}`, // use access_token
+      'Authorization': `JWT_ACCESS ${access}`, // use access_token
+      // 'Authorization': `jwt_access ${access}`, // use access_token
+      // 'Authorization': `jwt ${access}`, // use access_token
+
       // 'X-Refresh-Token': refresh_token,
     },
     body: JSON.stringify(data)
