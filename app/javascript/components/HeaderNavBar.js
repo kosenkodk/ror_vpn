@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config'
+import { withRouter } from "react-router-dom";
 
 class HeaderNavBar extends React.Component {
 
@@ -101,4 +102,4 @@ class HeaderNavBar extends React.Component {
   }
 }
 
-export default HeaderNavBar
+export default withRouter(HeaderNavBar)
