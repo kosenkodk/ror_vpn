@@ -20,24 +20,25 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         expect(response.status).to eq(401)
       end
     end
+  end
 
-    context 'logout' do
+  describe 'logout > DELETE #destroy' do
 
-      let(:access_cookie) { @tokens[:access] }
-      let(:csrf_token) { @tokens[:csrf] }
-
+    let(:access_cookie) { @tokens[:access] }
+    let(:csrf_token) { @tokens[:csrf] }
+   
+    context 'success' do
       before do
-        # set expiration time to 0 to create an already expired access token
-        # JWTSessions.access_exp_time = 0
+        JWTSessions.access_exp_time = 3600
+
         payload = { user_id: user.id }
         session = JWTSessions::Session.new(payload: payload, 
           refresh_by_access_allowed: true, 
           namespace: "user_#{user.id}"
         )
         @tokens = session.login
-        JWTSessions.access_exp_time = 3600
       end
-     
+
       it 'success' do
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
@@ -60,14 +61,38 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         expect(response_json['notice']).to eq('ok')
         expect(response).to be_successful
       end
-      
-      it 'fail' do
+    end
+    context 'fail' do
+      before do
+        # set expiration time to 0 to create an already expired access token
+        JWTSessions.access_exp_time = 0
+
+        payload = { user_id: user.id }
+        session = JWTSessions::Session.new(payload: payload, 
+          refresh_by_access_allowed: true, 
+          namespace: "user_#{user.id}"
+        )
+        @tokens = session.login
+      end
+
+      it 'fail with empty tokens' do
+        
         delete :destroy
         
         expect(response_json.keys).not_to eq(['csrf'])
         expect(response.cookies[JWTSessions.access_cookie]).not_to be_present
         expect(response_json.values).to eq(['Not authorized'])
         expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'fail with expired tokens' do
+        request.cookies[JWTSessions.access_cookie] = access_cookie
+        request.headers[JWTSessions.csrf_header] = csrf_token
+        
+        delete :destroy
+
+        expect(response_json.values).to eq(['Forbidden'])
+        expect(response).to have_http_status(:forbidden)
       end
     end
   end
