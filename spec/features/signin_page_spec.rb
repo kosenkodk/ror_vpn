@@ -49,6 +49,8 @@ RSpec.describe AuthController, type: :feature, js: true do
 
       click_on(I18n.t('nav_menu.sign_out'))
       expect(page).not_to have_content(I18n.t('nav_menu.sign_out'))
+      expect(page).to have_selector('.row.home')
+      # expect(page).to have_css('.row.home')
     end
   end
 end
