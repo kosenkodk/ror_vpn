@@ -14,16 +14,16 @@ class HeaderNavBar extends React.Component {
     // fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
     // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
     httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf)
-      .then(handleErrors)
+      // .then(handleErrors)
       .then((item, message) => {
         console.log('/signout success', item)
         // unset current user
-        // this.props.setAppState({
-        //   user: [],
-        //   csrf: '',
-        //   isSignedIn: false
-        // })
-        // this.props.history.push('/')
+        this.props.setAppState({
+          user: [],
+          csrf: '',
+          isSignedIn: false
+        })
+        this.props.history.push('/')
       })
       .catch((error) => {
         // if (error.status === 401) {

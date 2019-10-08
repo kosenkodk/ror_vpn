@@ -6,7 +6,7 @@ class Header extends React.Component {
     return (
       <div className="row">
         <div className="container">
-          <HeaderNavBar appState={this.props.appState} />
+          <HeaderNavBar {...this.props} />
         </div>
       </div>
     )

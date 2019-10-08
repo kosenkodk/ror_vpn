@@ -74,7 +74,7 @@ class App extends React.Component {
 
   setAppState(state) {
     // console.log('setAppState > app state', state)
-    this.setState(...state)
+    this.setState(state)
   }
 
   render() {
@@ -84,7 +84,7 @@ class App extends React.Component {
 
         <div className={`container-fluid ${this.state.bgClass}`}>
           <div className="container">
-            <Header appState={this.state} />
+            <Header appState={this.state} setAppState={this.setAppState} />
           </div>
 
           <Route exact path="/" render={() => <Home />} />
