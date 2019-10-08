@@ -73,6 +73,7 @@ RSpec.describe Api::V1::SigninController, type: :controller do
           namespace: "user_#{user.id}"
         )
         @tokens = session.login
+        JWTSessions.access_exp_time = 3600
       end
 
       it 'fail with empty tokens' do
