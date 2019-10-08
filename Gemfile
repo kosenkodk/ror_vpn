@@ -59,9 +59,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.0.beta2' #, '~> 3.8.2'
   gem 'factory_bot_rails' #, '~> 5.1.0'
+
+  gem 'ruby-debug-ide'
+  gem 'debase'
 end
 
 # gem 'exception_handler', '~> 0.8.0.0'
