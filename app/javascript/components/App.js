@@ -74,7 +74,7 @@ class App extends React.Component {
 
   setAppState(state) {
     // console.log('setAppState > app state', state)
-    this.setState(state)
+    this.setState({ ...state })
   }
 
   render() {
