@@ -222,7 +222,7 @@ class TicketsPage extends React.Component {
       .then(response => this.setState({ items: response, error: response.error, notice: response.notice }))
       .catch((err) => {
         this.setState({ error: err.message, notice: '' })
-        console.log(err)
+        // console.log(err)
       });
   }
 
