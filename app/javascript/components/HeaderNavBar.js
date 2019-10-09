@@ -19,6 +19,7 @@ class HeaderNavBar extends React.Component {
       .then((item, message) => {
         // console.log('/signout success', item)
         // unset current user
+        // this.props.unsetCurrentUser()
         this.props.setAppState({
           user: [],
           csrf: '',

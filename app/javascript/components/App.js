@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
-import smoothscroll from 'smoothscroll-polyfill';
+import smoothscroll from 'smoothscroll-polyfill'
+// import { history } from '_helpers'
+// import history from '_helpers/history'
+// import { createBrowserHistory } from 'history'
+
 
 import Header from './Header'
 import FooterSection from './sections/FooterSection'
@@ -23,6 +27,8 @@ import TicketsPage from './TicketsPage/TicketsPage'
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // const history = createBrowserHistory()
+
     this.state = {
       isFooterVisible: true,
       csrf: '',
@@ -59,6 +65,14 @@ class App extends React.Component {
     this.setState({
       isFooterVisible: isVisible
     })
+  }
+
+  checkSignedIn() {
+    if (this.state.isSignedIn) {
+      return true;
+    }
+    // this.history.push('/signin')
+    return false;
   }
 
   unsetCurrentUser() {
@@ -131,6 +145,8 @@ class App extends React.Component {
     // this.setState({ bgClass: this.getBackgdroundClass() })
   }
   componentDidMount() {
+    // this.history.push('/signin')
+    // this.props.history.push('signin')
     smoothscroll.polyfill(); // native smooth scrolling
   }
 }
