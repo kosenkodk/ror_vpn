@@ -48,7 +48,7 @@ class SigninPage extends React.Component {
   }
 
   responseSuccessful(response) {
-    console.log('signinSuccessful', response)
+    // console.log('signinSuccessful', response)
 
     this.setState({ notice: response.notice, error: response.error })
 
@@ -63,7 +63,7 @@ class SigninPage extends React.Component {
       // .then(handleErrors)
       .then((response) => response.json())
       .then((meResponse) => {
-        console.log('/me', meResponse)
+        // console.log('/me', meResponse)
         this.setState({ error: meResponse.message || '', notice: '' })
         // set data 
         this.props.setCurrentUser(meResponse, response.csrf)
@@ -75,7 +75,7 @@ class SigninPage extends React.Component {
   }
 
   responseFailed(error, message) {
-    console.log('signinFailed', error, message)
+    // console.log('signinFailed', error, message)
 
     // method 1
     // errorMessage(error).then((message) => {

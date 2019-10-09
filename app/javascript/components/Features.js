@@ -32,11 +32,11 @@ class Features extends React.Component {
 
   componentDidMount() {
     if (this.props.features && this.props.features.length > 0) {
-      console.log('getting data from props ...')
+      // console.log('getting data from props ...')
       // this.setState({ features: this.props.features })
       return;
     }
-    console.log('getting data from api...')
+    // console.log('getting data from api...')
 
     const url = "api/v1/features";
     fetch(url)

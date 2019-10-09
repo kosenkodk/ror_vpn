@@ -26,13 +26,13 @@ class PasswordForgotPage extends React.Component {
       // fetch(postCsrfRequest(`${config.apiUrl}/password_resets`, 'POST', data))
       .then(handleErrors)
       .then((item, message) => {
-        console.log('success', item, message)
+        // console.log('success', item, message)
         let notice = I18n.t('pages.forgot_pwd.success.message')
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message, error: '' })
       })
       .catch((error) => {
-        console.log('error', error.message)
+        // console.log('error', error.message)
         this.setState({ error: error.message, notice: '' })
         // this.setState({ error: response.statusText, notice: '' })
       });

@@ -117,7 +117,7 @@ class TicketsPage extends React.Component {
 
     // let item = {ticket: data}
     // const item = formData.map((value, key) => { key: value })
-    console.log('onFormSubmit', data)
+    // console.log('onFormSubmit', data)
 
     if (isEdit) {
       this.onEditItem(e, data)
@@ -196,11 +196,11 @@ class TicketsPage extends React.Component {
 
   componentDidMount() {
     if (this.props.items && this.props.items.length > 0) {
-      console.log('getting data from props ...')
+      // console.log('getting data from props ...')
       // this.setState({ items: this.props.items })
       return;
     }
-    console.log('getting data from api...')
+    // console.log('getting data from api...')
 
     const url = "api/v1/tickets";
     let options = {

@@ -17,7 +17,7 @@ class HeaderNavBar extends React.Component {
     httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf)
       // .then(handleErrors)
       .then((item, message) => {
-        console.log('/signout success', item)
+        // console.log('/signout success', item)
         // unset current user
         this.props.setAppState({
           user: [],
@@ -30,7 +30,7 @@ class HeaderNavBar extends React.Component {
         // if (error.status === 401) {
 
         // }
-        console.log('/signout error', error)
+        // console.log('/signout error', error)
         //TODO: Flash message with text "Can not sign out"
 
         // force logout on client side
