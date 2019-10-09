@@ -13,7 +13,6 @@ class ContactusForm extends React.Component {
   render() {
     return (
       <form>
-
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.email')}</label>
           <div className="col-sm-8">
