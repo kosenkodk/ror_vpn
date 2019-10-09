@@ -1,0 +1,20 @@
+import { ticketConstants } from '../_constants';
+
+export function tickets(state = {}, action) {
+  switch (action.type) {
+    case ticketConstants.GETALL_REQUEST:
+      return {
+        loading: true
+      };
+    case ticketConstants.GETALL_SUCCESS:
+      return {
+        items: action.tckets
+      };
+    case ticketConstants.GETALL_FAILURE:
+      return {
+        error: action.error
+      };
+    default:
+      return state
+  }
+}
