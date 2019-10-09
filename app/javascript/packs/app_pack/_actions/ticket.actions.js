@@ -18,6 +18,6 @@ function getAll() {
   }
 
   function request() { return { type: ticketConstants.GETALL_REQUEST } }
-  function success(tickets) { return { type: ticketConstants.GETALL_REQUEST, tickets } }
-  function failure(error) { return { type: ticketConstants.GETALL_REQUEST, error } }
+  function success(tickets) { return { type: ticketConstants.GETALL_SUCCESS, tickets } }
+  function failure(error) { return { type: ticketConstants.GETALL_FAILURE, error } }
 }

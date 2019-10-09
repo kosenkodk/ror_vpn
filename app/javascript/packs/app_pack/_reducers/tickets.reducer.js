@@ -8,7 +8,7 @@ export function tickets(state = {}, action) {
       };
     case ticketConstants.GETALL_SUCCESS:
       return {
-        items: action.tckets
+        items: action.tickets
       };
     case ticketConstants.GETALL_FAILURE:
       return {
