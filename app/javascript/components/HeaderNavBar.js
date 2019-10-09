@@ -32,6 +32,12 @@ class HeaderNavBar extends React.Component {
         // }
         console.log('/signout error', error)
         //TODO: Flash message with text "Can not sign out"
+
+        // force logout on client side
+        this.props.setAppState({
+          isSignedIn: false
+        })
+        this.props.history.push(config.urlAfterSignout)
       })
   }
 
