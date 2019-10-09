@@ -49,7 +49,7 @@ class ContactusPage extends React.Component {
         // this.props.history.push('/200')
       }).catch((response) => {
         response.text().then((message) => {
-          console.log('error', message)
+          // console.log('error', message)
           this.setState({ error: message })
           // (response.status === 200) ? this.setState({ notice: message }) : this.setState({ error: message })
         })
