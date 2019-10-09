@@ -18,9 +18,9 @@ class HomePage extends React.Component {
         <h3>Tickets from secure api end point:</h3>
         {tickets.loading && <em>Loading tickets...</em>}
         {tickets.error && <span className="text-danger">ERROR: {tickets.error}</span>}
-        {tickets.length > 0 &&
+        {tickets.items &&
           <ul>
-            {tickets.map((ticket, index) =>
+            {tickets.items.map((ticket, index) =>
               <li key={ticket.id}>
                 {ticket.title + ' ' + ticket.text}
               </li>
