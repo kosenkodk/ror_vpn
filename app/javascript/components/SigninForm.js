@@ -21,14 +21,14 @@ class SigninForm extends React.Component {
   }
 
   handleFormSubmit2(e, email, password) {
-    console.log('handleFormSubmit2')
-    console.log(email, password)
+    // console.log('handleFormSubmit2')
+    // console.log(email, password)
     this.setState({ emailValue: email, passwordValue: password })
     e.preventDefault();
   }
 
   handleFormSubmit3 = e => {
-    console.log('handleFormSubmit3')
+    // console.log('handleFormSubmit3')
     this.setState({ emailValue: this.email.value, passwordValue: this.password.value })
     e.preventDefault();
   };

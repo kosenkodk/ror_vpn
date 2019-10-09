@@ -16,7 +16,7 @@ class ContactusPage extends React.Component {
   }
 
   handleFormSubmit(e, email, message, message_short) {
-    console.log(email, message, message_short);
+    // console.log(email, message, message_short);
 
     let csrf = ''
     try {
@@ -43,7 +43,7 @@ class ContactusPage extends React.Component {
       throw response //new Error('Network response was not ok.');
     })
       .then((message) => {
-        console.log('success', message)
+        // console.log('success', message)
         this.setState({ notice: message })
         // console.log('success', response.text(), response.status);
         // this.props.history.push('/200')

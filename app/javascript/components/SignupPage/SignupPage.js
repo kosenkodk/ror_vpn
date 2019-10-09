@@ -94,7 +94,7 @@ class SignupPage extends React.Component {
   }
 
   responseSuccessful(response) {
-    console.log('responseSuccessful', response)
+    // console.log('responseSuccessful', response)
 
     this.setState({ notice: response.notice })
     this.setState({ error: response.error })
@@ -108,7 +108,7 @@ class SignupPage extends React.Component {
       // .then(handleErrors)
       .then((response) => response.json())
       .then((meResponse) => {
-        console.log('/me', meResponse)
+        // console.log('/me', meResponse)
         this.setState({ error: meResponse.message || '' })
         // set data 
         this.props.setCurrentUser(meResponse, response.csrf)
@@ -126,17 +126,17 @@ class SignupPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
+    // console.log('componentDidMount')
     this.isSignedIn()
   }
 
   componentDidUpdate() {
-    console.log('componentDidUpdate')
+    // console.log('componentDidUpdate')
     this.isSignedIn()
   }
 
   isSignedIn() {
-    console.log('isSignedIn', this.props.isSignedIn)
+    // console.log('isSignedIn', this.props.isSignedIn)
     if (this.props.isSignedIn) {
       this.props.history.push('/features')
     }

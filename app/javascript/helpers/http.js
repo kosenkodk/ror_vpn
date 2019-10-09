@@ -78,7 +78,7 @@ const httpSecuredRequest = (url, method, data, csrf) => {
 }
 
 function handle401Error(url, method, data, csrf) {
-  console.log('handle401Error', url, method, data, csrf)
+  // console.log('handle401Error', url, method, data, csrf)
   return fetch(httpSecuredRequest('/api/v1/refresh', 'POST', {}, csrf))
     .then(response => {
       return response.json().then(refreshData => {
@@ -91,34 +91,34 @@ function handle401Error(url, method, data, csrf) {
           // return plainAxiosInstance.request(retryConfig)
 
           // let resonseJson = await response.json()
-          console.log('/api/v1/refresh', refreshData)
+          // console.log('/api/v1/refresh', refreshData)
           // retrying request with a new refreshed csrf token
           return fetch(httpSecuredRequest(url, method, data, refreshData.csrf))
             .then(response => {
-              console.log('retrying request', url, method, data, refreshData.csrf)
-              console.log('retrying request response', response)
+              // console.log('retrying request', url, method, data, refreshData.csrf)
+              // console.log('retrying request response', response)
               return response.json().then(data => {
-                console.log('json data', data)
+                // console.log('json data', data)
 
                 if (response.ok) {
-                  console.log('retrying ok', response, data)
+                  // console.log('retrying ok', response, data)
                   return data;
                 } else {
-                  console.log('retrying fail', response, data)
+                  // console.log('retrying fail', response, data)
                   return Promise.reject({ status: response.status, data });
                 }
               });
             }).catch(error => {
-              console.log('retrying catch error', error)
+              // console.log('retrying catch error', error)
               return Promise.reject(error)
             });
         } else {
-          console.log('refresh request is not ok', response, refreshData)
+          // console.log('refresh request is not ok', response, refreshData)
           return Promise.reject({ status: response.status, refreshData });
         }
       });
     }).catch(error => {
-      console.log('refresh catch error', error)
+      // console.log('refresh catch error', error)
 
       // store.commit('unsetCurrentUser')
       // redirect to signin in case refresh request fails
@@ -128,7 +128,7 @@ function handle401Error(url, method, data, csrf) {
 }
 
 const httpRequestAndRefreshToken = (url, method, data, csrf) => {
-  console.log('httpRequestAndRefreshToken', url, method, data, csrf)
+  // console.log('httpRequestAndRefreshToken', url, method, data, csrf)
   return fetch(httpSecuredRequest(url, method, data, csrf))
     .then(response => {
       return response.json().then(data => {
@@ -136,7 +136,7 @@ const httpRequestAndRefreshToken = (url, method, data, csrf) => {
           return data;
         } else {
           if (response.status === 401) {
-            console.log('handle 401', response)
+            // console.log('handle 401', response)
             return handle401Error(url, method, data, csrf)
           }
           return Promise.reject({ status: response.status, data });
@@ -144,7 +144,7 @@ const httpRequestAndRefreshToken = (url, method, data, csrf) => {
       })
     })
     .catch(error => {
-      console.log('httpRequestAndRefreshToken catch error', error)
+      // console.log('httpRequestAndRefreshToken catch error', error)
       return Promise.reject(error)
     })
 }

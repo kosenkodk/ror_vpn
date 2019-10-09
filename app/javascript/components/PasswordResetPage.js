@@ -36,7 +36,7 @@ class PasswordResetPage extends React.Component {
     fetch(httpPlainRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
       .then(handleErrors)
       .then((item, message) => {
-        console.log('success', item, message)
+        // console.log('success', item, message)
         let notice = I18n.t('pages.reset_pwd.success.message')
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message, error: '' })
@@ -44,7 +44,7 @@ class PasswordResetPage extends React.Component {
         // this.props.history.push('/200')
       })
       .catch((error) => {
-        console.log('error', error.message)
+        // console.log('error', error.message)
         this.setState({ error: error.message, notice: '' })
         // this.setState({ error: response.statusText })
       });
