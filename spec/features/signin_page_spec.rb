@@ -43,6 +43,7 @@ RSpec.describe AuthController, type: :feature, js: true do
   describe 'signout' do
     it 'click on signout after successfull signin' do
       # fsign_up_as(user)
+      # JWTSessions.access_exp_time = 0
 
       fsign_in_as(user)
       expect(page).to have_content(I18n.t('nav_menu.sign_out'))
@@ -51,6 +52,8 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(page).not_to have_content(I18n.t('nav_menu.sign_out'))
       expect(page).to have_selector('.row.home')
       # expect(page).to have_css('.row.home')
+      # JWTSessions.access_exp_time = 3600
+
     end
   end
 end
