@@ -195,6 +195,12 @@ class TicketsPage extends React.Component {
   }
 
   componentDidMount() {
+
+    if (!this.props.appState.isSignedIn) {
+      this.props.history.push('/signin')
+      return
+    }
+
     if (this.props.items && this.props.items.length > 0) {
       // console.log('getting data from props ...')
       // this.setState({ items: this.props.items })
