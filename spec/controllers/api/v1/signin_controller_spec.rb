@@ -12,7 +12,26 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         post :create, params: user_params
         expect(response).to be_successful
         expect(response_json.keys).to eq(['csrf'])
+        # expect(response.cookies.keys.sort).to eq ['jwt_access', 'jwt_refresh']
         expect(response.cookies[JWTSessions.access_cookie]).to be_present
+      end
+
+      it 'success after refresh' do
+        payload = { user_id: user.id }
+        session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true, namespace: "user_#{user.id}")
+        session.login
+
+         session2 = JWTSessions::Session.new(payload: session.payload, refresh_by_access_allowed: true, namespace: "user_#{user.id}")
+        tokens = session2.refresh_by_access_payload
+
+        request.cookies[JWTSessions.access_cookie] = tokens[:access]
+        # request.headers[JWTSessions.access_header] = "Bearer #{tokens[:access]}"
+        request.headers[JWTSessions.csrf_header] = tokens[:csrf]
+        delete :destroy
+     
+        # expect(response).to be_successful
+        expect(response.status).to eq(200)
+        expect(response_json['notice']).to eq 'ok'
       end
 
       it 'returns unauthorized status for invalid params' do
@@ -29,7 +48,7 @@ RSpec.describe Api::V1::SigninController, type: :controller do
    
     context 'success' do
       before do
-        JWTSessions.access_exp_time = 3600
+        # JWTSessions.access_exp_time = 3600
 
         payload = { user_id: user.id }
         session = JWTSessions::Session.new(payload: payload, 
@@ -39,7 +58,7 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         @tokens = session.login
       end
 
-      it 'success' do
+      it 'success with valid tokens' do
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
 
@@ -91,7 +110,8 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         request.headers[JWTSessions.csrf_header] = csrf_token
         
         delete :destroy
-
+        
+        # expect(response.status).to eq(200) # should return 200 with expired tokens ? refresh_by_access_allowed it seems isn't working
         expect(response_json.values).to eq(['Forbidden'])
         expect(response).to have_http_status(:forbidden)
       end
