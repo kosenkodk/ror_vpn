@@ -55,4 +55,6 @@ RSpec.describe AuthController, type: :feature, js: true do
       # JWTSessions.access_exp_time = 3600
     end
   end
+
+  it 'autologout after 2 hours (after login and signup) or (inactivity)'
 end
