@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Link } from 'react-router-dom'
+import { withRouter, Route, Link } from 'react-router-dom'
+import Router from './Router'
+
 import smoothscroll from 'smoothscroll-polyfill'
 // import { history } from '_helpers'
 // import history from '_helpers/history'
@@ -11,7 +13,6 @@ import Header from './Header'
 import FooterSection from './sections/FooterSection'
 import SigninPage from './SigninPage'
 import Features from './Features'
-import Router from './Router'
 import ComingSoonPage from './ComingSoonPage'
 import Home from './HomePage/Home'
 import NotFoundPage from './NotFoundPage'
@@ -146,7 +147,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     // this.history.push('/signin')
-    // this.props.history.push('signin')
+    this.props.history.push('/signin')
     smoothscroll.polyfill(); // native smooth scrolling
   }
 }
@@ -164,4 +165,4 @@ App.propTypes = {
 //   </Router>
 // )
 
-export default App
+export default withRouter(App)
