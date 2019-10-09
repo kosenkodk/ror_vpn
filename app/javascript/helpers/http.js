@@ -123,6 +123,10 @@ function handle401Error(url, method, data, csrf) {
       // store.commit('unsetCurrentUser')
       // redirect to signin in case refresh request fails
       // location.replace('/')
+
+      // TODO:
+      // this.props.unsetCurrentUser()
+      // this.props.history.push('/signin')
       return Promise.reject(error)
     })
 }
