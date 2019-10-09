@@ -24,7 +24,7 @@ class HeaderNavBar extends React.Component {
           csrf: '',
           isSignedIn: false
         })
-        this.props.history.push('/')
+        this.props.history.push(config.urlAfterSignout)
       })
       .catch((error) => {
         // if (error.status === 401) {
