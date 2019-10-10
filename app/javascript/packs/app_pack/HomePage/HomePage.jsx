@@ -2,34 +2,36 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { ticketActions } from '../_actions';
+import { featureActions } from '../_actions';
+
+import Features from '../_sections/Features'
+import ProductWithPricingBtn from '../_sections/ProductWithPricingBtn'
+import Reviews from '../_sections/Reviews'
+import SecurityAndTrust from '../_sections/SecurityAndTrust'
+import AppDownloads from '../_sections/AppDownloads'
 
 class HomePage extends React.Component {
   componentDidMount() {
-    this.props.dispatch(ticketActions.getAll());
+    // this.props.dispatch(featureActions.getAll());
   }
 
   render() {
-    const { user, tickets } = this.props;
+    const { user, features } = this.props;
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <h1>Hi {user.firstName}!</h1>
-        <p>You're logged in with React & JWT!!</p>
-        <h3>Tickets from secure api end point:</h3>
-        {tickets.loading && <em>Loading tickets...</em>}
-        {tickets.error && <span className="text-danger">ERROR: {tickets.error}</span>}
-        {tickets.items &&
-          <ul>
-            {tickets.items.map((ticket, index) =>
-              <li key={ticket.id}>
-                {ticket.title + ' ' + ticket.text}
-              </li>
-            )}
-          </ul>
-        }
-        <p>
-          <Link to="/login">Logout</Link>
-        </p>
+      <div id="home" className="row home">
+        <div className="container">
+          <ProductWithPricingBtn />
+          <Reviews />
+          <SecurityAndTrust />
+          {features && features.items &&
+            <Features features={features.items} />
+          }
+        </div>
+        <div className="container-fluid bg2">
+          <div className="container">
+            <AppDownloads />
+          </div>
+        </div>
       </div>
     );
   }
