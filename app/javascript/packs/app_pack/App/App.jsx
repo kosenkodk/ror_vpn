@@ -56,7 +56,7 @@ class App extends React.Component {
           </div>
 
           <div className="container">
-            <div className="col-8 offset-2">
+            <div className="col">
               {alert.message &&
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
               }
