@@ -5,47 +5,50 @@ import { connect } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
-import { HomePage } from '../HomePage';
+// import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
+import { TicketsPage } from '../TicketsPage';
+// import I18n from 'i18n-js/index.js.erb'
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        const { dispatch } = this.props;
-        history.listen((location, action) => {
-            // clear alert on location change
-            dispatch(alertActions.clear());
-        });
-    }
+    const { dispatch } = this.props;
+    history.listen((location, action) => {
+      // clear alert on location change
+      dispatch(alertActions.clear());
+    });
+  }
 
-    render() {
-        const { alert } = this.props;
-        return (
-            <div className="jumbotron">
-                <div className="container">
-                    <div className="col-sm-8 col-sm-offset-2">
-                        {alert.message &&
-                            <div className={`alert ${alert.type}`}>{alert.message}</div>
-                        }
-                        <Router history={history}>
-                            <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                            </div>
-                        </Router>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    const { alert } = this.props;
+    return (
+      <div className="jumbotron">
+        <div className="container">
+          <div className="col-sm-8 col-sm-offset-2">
+            {/* <h1>{I18n.t('buttons.continue')}</h1> */}
+            {alert.message &&
+              <div className={`alert ${alert.type}`}>{alert.message}</div>
+            }
+            <Router history={history}>
+              <div>
+                <PrivateRoute exact path="/" component={TicketsPage} />
+                <Route path="/login" component={LoginPage} />
+              </div>
+            </Router>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
-    const { alert } = state;
-    return {
-        alert
-    };
+  const { alert } = state;
+  return {
+    alert
+  };
 }
 
 const connectedApp = connect(mapStateToProps)(App);
