@@ -53,7 +53,7 @@ class HeaderNavBar extends React.Component {
   }
 
   render() {
-    const { loggingIn } = this.props;
+    const { loggedIn } = this.props;
     return (
       <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent">
         <Link to="/">
@@ -65,7 +65,7 @@ class HeaderNavBar extends React.Component {
         </button>
         <div className="navbar-collapse collapse justify-content-stretch" id="navbar6">
           {
-            loggingIn && loggingIn ?
+            loggedIn ?
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <HashLink smooth to="/#features" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</HashLink>
@@ -121,9 +121,11 @@ class HeaderNavBar extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loggingIn } = state.authentication;
+  const { loggingIn, loggedIn } = state.authentication;
   return {
-    loggingIn
+    loggingIn,
+    loggedIn,
+
   };
 }
 
