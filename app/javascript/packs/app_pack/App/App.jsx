@@ -66,11 +66,9 @@ class App extends React.Component {
           <Route exact path="/" render={() => <HomePage />} />
 
           <div className='container'>
-            {/* <Route exact path="/signin" render={() => <SigninPage />} /> */}
-            <Route path="/signin" component={SigninPage} />
+            <Route exact path="/signin" component={SigninPage} />
             <Route exact path="/" component={HomePage} />
             <PrivateRoute exact path="/tickets" component={TicketsPage} />
-            {/* <PrivateRoute exact path="/tickets" render={() => <TicketsPage />} /> */}
 
             {/*
             <Route exact path="/signup" render={() => <SignupPage />} />
