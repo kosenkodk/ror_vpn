@@ -63,5 +63,5 @@ function mapStateToProps(state) {
   };
 }
 
-const connectedSigninPagePage = connect(mapStateToProps)(SigninPage);
-export { connectedSigninPagePage as SigninPage }; 
+const connectedPage = connect(mapStateToProps)(SigninPage);
+export { connectedPage as SigninPage }; 

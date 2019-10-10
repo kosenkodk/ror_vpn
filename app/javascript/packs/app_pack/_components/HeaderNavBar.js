@@ -6,10 +6,21 @@ import { HashLink } from 'react-router-hash-link'
 import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config'
 
+import { userActions } from '../_actions';
+import { connect } from 'react-redux';
+
 class HeaderNavBar extends React.Component {
 
+  // constructor(props) {
+  //   super(props);
+  // }
+
   signOut = (e) => {
+
+    this.props.dispatch(userActions.logout());
+
     e.preventDefault()
+    return;
 
     // fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
     // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
@@ -42,6 +53,7 @@ class HeaderNavBar extends React.Component {
   }
 
   render() {
+    const { loggingIn } = this.props;
     return (
       <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent">
         <Link to="/">
@@ -53,7 +65,7 @@ class HeaderNavBar extends React.Component {
         </button>
         <div className="navbar-collapse collapse justify-content-stretch" id="navbar6">
           {
-            this.props.isSignedIn ?
+            loggingIn && loggingIn ?
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <HashLink smooth to="/#features" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</HashLink>
@@ -103,9 +115,17 @@ class HeaderNavBar extends React.Component {
               </ul>
           }
         </div>
-      </nav>
+      </nav >
     )
   }
 }
 
-export default HeaderNavBar
+function mapStateToProps(state) {
+  const { loggingIn } = state.authentication;
+  return {
+    loggingIn
+  };
+}
+
+const connectedHeaderNavBarPage = connect(mapStateToProps)(HeaderNavBar);
+export { connectedHeaderNavBarPage as HeaderNavBar }; 
