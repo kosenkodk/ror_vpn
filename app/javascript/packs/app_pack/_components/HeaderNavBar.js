@@ -18,7 +18,7 @@ class HeaderNavBar extends React.Component {
   signOut = (e) => {
 
     this.props.dispatch(userActions.logout());
-
+    // this.props.history.push(confi.urlAfterSignout)
     e.preventDefault()
     return;
 
@@ -125,7 +125,6 @@ function mapStateToProps(state) {
   return {
     loggingIn,
     loggedIn,
-
   };
 }
 

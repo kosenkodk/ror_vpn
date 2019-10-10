@@ -34,6 +34,7 @@ function login(email, password) {
 
 function logout() {
   userService.logout();
+  history.push(config.urlAfterSignout);
   return { type: userConstants.LOGOUT };
 }
 

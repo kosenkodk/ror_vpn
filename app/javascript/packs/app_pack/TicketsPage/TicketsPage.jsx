@@ -13,7 +13,7 @@ class TicketsPage extends React.Component {
     const { user, tickets } = this.props;
     return (
       <div className="col-md-6 col-md-offset-3">
-        <h1>Hi {user.firstName}!</h1>
+        <h1>Hi {user && user.email}!</h1>
         <p>You're logged in with React & JWT!!</p>
         <h3>Tickets from secure api end point:</h3>
         {tickets.loading && <em>Loading tickets...</em>}
