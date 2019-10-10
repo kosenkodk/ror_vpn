@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import I18n from 'i18n-js/index.js.erb'
 
-class LoginPage extends React.Component {
+class SigninPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -84,5 +84,5 @@ function mapStateToProps(state) {
   };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage }; 
+const connectedSigninPagePage = connect(mapStateToProps)(SigninPage);
+export { connectedSigninPagePage as SigninPage }; 
