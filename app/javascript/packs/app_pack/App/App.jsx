@@ -9,7 +9,6 @@ import { alertActions } from '../_actions';
 // components
 import { Header, PrivateRoute } from '../_components';
 import { FooterSection } from '../_sections'
-// import { Features } from '../_sections/Features'
 
 // pages
 import { HomePage } from '../HomePage';
@@ -81,7 +80,6 @@ class App extends React.Component {
                 <Route exact path="/contact_us" render={() => <ContactusPage />} />
                 <Route exact path="/contacts/new" render={() => <ContactusPage />} />
                 <Route exact path="/pricing" render={() => <PricingPage />} />
-                <Route exact path="/features" render={() => <Features />} />
                 */}
 
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
