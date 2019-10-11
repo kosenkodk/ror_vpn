@@ -18,9 +18,9 @@ require("packs/home")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 // Support component names relative to this directory:
-var componentRequireContext = require.context("components", true);
-var ReactRailsUJS = require("react_ujs");
-ReactRailsUJS.useContext(componentRequireContext);
+// var componentRequireContext = require.context("components", true);
+// var ReactRailsUJS = require("react_ujs");
+// ReactRailsUJS.useContext(componentRequireContext);
 
 // I18n support
 // import I18n from 'i18n-js/index.js.erb'
