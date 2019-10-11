@@ -19,7 +19,7 @@ import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../P
 import { SignupPage } from '../SignupPage'
 import { ComingSoonPage, SuccessPage, NotFoundPage } from '../StatusPages'
 // import { PricingPage } from '../PricingPage'
-// import { ContactusPage } from '../ContactusPage'
+import { ContactusPage } from '../ContactusPage'
 
 class App extends React.Component {
   constructor(props) {
@@ -73,16 +73,14 @@ class App extends React.Component {
                 <Route exact path="/help" component={ComingSoonPage} />
                 <Route exact path="/204" component={ComingSoonPage} />
                 <Route exact path="/coming_soon" component={ComingSoonPage} />
-
-                <Route component={NotFoundPage} />
+                <Route exact path="/contact_us" component={ContactusPage} />
 
                 {/*
-                <Route exact path="/contact_us" render={() => <ContactusPage />} />
-                <Route exact path="/contacts/new" render={() => <ContactusPage />} />
                 <Route exact path="/pricing" render={() => <PricingPage />} />
                 */}
 
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+                <Route component={NotFoundPage} />
               </Switch>
             </div>
           </Switch>
