@@ -10,7 +10,7 @@ RSpec.describe ErrorsController, type: :feature, js: true do
       expect(page).to have_content('Oh no!!!')
       expect(page).to have_content('You’re either misspelling the URL or requesting a page that’s no longer here.')
       expect(page).to have_css('footer')
-      expect(page).to have_css('header')
+      expect(page).to have_css('.row.header')
     end
     it 'redirect to home page after click on "Back to previous page" button'
     it 'redirect to home page after click on "Back to home page" button' do
@@ -18,7 +18,7 @@ RSpec.describe ErrorsController, type: :feature, js: true do
       expect(page).not_to have_content('404')
       expect(page).to have_css('.row.home')
       expect(page).to have_css('footer')
-      expect(page).to have_css('header')
+      expect(page).to have_css('.row.header')
     end
   end
   describe 'Get 200 page' do
@@ -28,7 +28,7 @@ RSpec.describe ErrorsController, type: :feature, js: true do
       click_on(I18n.t('buttons.ok'))
       expect(page).to have_css('.row.home')
       expect(page).to have_css('footer')
-      expect(page).to have_css('header')
+      expect(page).to have_css('.row.header')
     end
   end
 end
