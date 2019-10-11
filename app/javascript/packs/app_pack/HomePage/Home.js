@@ -1,9 +1,9 @@
 import React from 'react'
-import Features from '../Features'
-import ProductWithPricingBtn from '../sections/ProductWithPricingBtn'
-import Reviews from '../sections/Reviews'
-import SecurityAndTrust from '../sections/SecurityAndTrust'
-import AppDownloads from '../sections/AppDownloads'
+import Features from '../_sections/Features'
+import ProductWithPricingBtn from '../_sections/ProductWithPricingBtn'
+import Reviews from '../_sections/Reviews'
+import SecurityAndTrust from '../_sections/SecurityAndTrust'
+import AppDownloads from '../_sections/AppDownloads'
 
 class Home extends React.Component {
   render() {
