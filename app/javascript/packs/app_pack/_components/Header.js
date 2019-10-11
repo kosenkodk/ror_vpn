@@ -4,7 +4,7 @@ import { HeaderNavBar } from './HeaderNavBar'
 class Header extends React.Component {
   render() {
     return (
-      <div className="row">
+      <div className="header row">
         <div className="container">
           <HeaderNavBar />
         </div>
