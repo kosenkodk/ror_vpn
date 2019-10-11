@@ -96,12 +96,10 @@ RSpec.describe Api::V1::SigninController, type: :controller do
       end
 
       it 'fail with empty tokens' do
-        
         delete :destroy
-        
         expect(response_json.keys).not_to eq(['csrf'])
         expect(response.cookies[JWTSessions.access_cookie]).not_to be_present
-        expect(response_json.values).to eq(['Not authorized'])
+        expect(response_json.values).to eq(['Unauthorized'])
         expect(response).to have_http_status(:unauthorized)
       end
 
@@ -110,7 +108,6 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         request.headers[JWTSessions.csrf_header] = csrf_token
         
         delete :destroy
-        
         # expect(response.status).to eq(200) # should return 200 with expired tokens ? refresh_by_access_allowed it seems isn't working
         expect(response_json.values).to eq(['Forbidden'])
         expect(response).to have_http_status(:forbidden)
