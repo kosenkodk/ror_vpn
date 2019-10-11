@@ -91,8 +91,10 @@ class SigninForm extends React.Component {
             <button className="btn btn-outline-primary btn-block">{I18n.t('buttons.submit')}</button>
 
             {loggingIn &&
-              <div className="spinner-border text-center" role="status">
-                <span className="sr-only">Loading...</span>
+              <div class="text-center">
+                <div className="spinner-border text-center" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
               </div>
             }
           </div>
