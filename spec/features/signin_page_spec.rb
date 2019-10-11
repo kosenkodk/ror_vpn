@@ -43,11 +43,12 @@ RSpec.describe AuthController, type: :feature, js: true do
         fill_in :email, with: email
         fill_in :password, with: password
         click_on(I18n.t('buttons.submit'))
-        expect(page).to have_content(I18n.t('pages.tickets'))
+        expect(page).to have_content(I18n.t('nav_menu.sign_out'))
+        expect(page).to have_content(I18n.t('pages.tickets.title'))
       end
     end
 
-    context 'checking links on' do
+    context 'checking links of' do
       it 'sign up page' do
         click_on(I18n.t("pages.signup.title")) # Don't have account link
         expect(page).to have_css('.signup')

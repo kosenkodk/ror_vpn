@@ -1,6 +1,6 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
-import FlashMessages from './sections/FlashMessages'
+import FlashMessages from '../_sections/FlashMessages'
 
 class PasswordForgotForm extends React.Component {
 

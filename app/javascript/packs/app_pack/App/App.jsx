@@ -16,6 +16,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { TicketsPage } from '../TicketsPage'
 import { SigninPage } from '../SigninPage'
+import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
 
 // import { SignupPage } from '../SignupPage'
 // import { ComingSoonPage } from '../ComingSoonPage'
@@ -23,9 +24,7 @@ import { SigninPage } from '../SigninPage'
 // import { NotFoundPage } from '../NotFoundPage'
 // import { SuccessPage } from '../SuccessPage'
 // import { PricingPage } from '../PricingPage'
-// import { PasswordResetPage } from '../PasswordResetPage'
-// import { PasswordResetPageOk } from '../PasswordResetPageOk'
-// import { PasswordForgotPage } from '../PasswordForgotPage'
+
 // import { ContactusPage } from '../ContactusPage'
 
 class App extends React.Component {
@@ -63,20 +62,19 @@ class App extends React.Component {
             </div>
           </div>
 
-          <Route exact path="/" render={() => <HomePage />} />
+          {/* <Route exact path="/" render={() => <HomePage />} /> */}
+          <Route exact path="/" component={HomePage} />
 
           <div className='container'>
             <Route exact path="/signin" component={SigninPage} />
-            <Route exact path="/" component={HomePage} />
-            <PrivateRoute exact path="/tickets" component={TicketsPage} />
-
-            {/*
             <Route exact path="/signup" render={() => <SignupPage />} />
+            <PrivateRoute exact path="/tickets" component={TicketsPage} />
+            <Route exact path="/forgot" component={PasswordForgotPage} />
+            {/* <Route path="/password_resets/:token" component={PasswordResetPage} /> */}
+            {/* <Route exact path="/reset_ok" component={PasswordResetPageOk} /> */}
+            {/*
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
-            <Route exact path="/forgot" render={() => <PasswordForgotPage />} />
-            <Route exact path="/password_resets/:token" render={() => <PasswordResetPage />} /> 
-            <Route exact path="/reset_ok" render={() => <PasswordResetPageOk />} />
 
             <Route exact path="/pricing" render={() => <PricingPage />} />
             <Route exact path="/help" render={() => <ComingSoonPage />} />
