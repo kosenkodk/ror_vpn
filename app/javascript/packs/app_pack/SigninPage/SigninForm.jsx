@@ -30,7 +30,6 @@ class SigninForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
 
     this.setState({ submitted: true });
     const { email, password } = this.state;
@@ -38,6 +37,8 @@ class SigninForm extends React.Component {
     if (email && password) {
       dispatch(userActions.login(email, password));
     }
+
+    e.preventDefault();
   }
 
   render() {
@@ -91,7 +92,7 @@ class SigninForm extends React.Component {
             <button className="btn btn-outline-primary btn-block">{I18n.t('buttons.submit')}</button>
 
             {loggingIn &&
-              <div class="text-center">
+              <div className="text-center">
                 <div className="spinner-border text-center" role="status">
                   <span className="sr-only">Loading...</span>
                 </div>

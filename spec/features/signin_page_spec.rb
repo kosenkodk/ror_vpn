@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe AuthController, type: :feature, js: true do
   let(:email) {'email@example.com'}
-  let(:pwd) {'password'}
-  let!(:user) {create(:user, email: email, password: pwd, password_confirmation: pwd)}
+  let(:email_invalid) {'invalid@example.com'}
+  let(:password) {'password'}
+  let(:password_invalid) {'password_invalid'}
+  let!(:user) {create(:user, email: email, password: password, password_confirmation: password)}
   let!(:payment_method) {create(:payment_method, title: I18n.t('pages.payment_method.credit_card'))}
   let!(:tariff_plan) {create(:tariff_plan)}
 
@@ -14,14 +16,35 @@ RSpec.describe AuthController, type: :feature, js: true do
     end
 
     context 'error' do
-      it 'with invalid credentials' do
-        click_on('Submit')
-        expect(find('.alert')).to have_text(I18n.t('signin.invalid_credentials'))
+      it 'with invalid email and password' do
+        fill_in :email, with: email_invalid
+        fill_in :password, with: password_invalid
+        click_on(I18n.t('buttons.submit'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.not_found'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
+      end
+      it 'with invalid email' do
+        fill_in :email, with: email_invalid
+        fill_in :password, with: password
+        click_on(I18n.t('buttons.submit'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.not_found'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
+      end
+      it 'with invalid password' do
+        fill_in :email, with: email
+        fill_in :password, with: password_invalid
+        click_on(I18n.t('buttons.submit'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.unauthorized'))
       end
     end
 
     context 'success' do
-      it 'with valid credentials'
+      it 'with valid credentials' do
+        fill_in :email, with: email
+        fill_in :password, with: password
+        click_on(I18n.t('buttons.submit'))
+        expect(page).to have_content(I18n.t('pages.tickets'))
+      end
     end
 
     context 'checking links on' do

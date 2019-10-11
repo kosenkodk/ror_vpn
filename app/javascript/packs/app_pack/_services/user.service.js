@@ -17,12 +17,16 @@ function login(email, password) {
 
   return fetch(`${config.apiUrl}/signin`, requestOptions)
     .then(handleResponse)
-    .then(user => {
+    .then(response => {
 
-      localStorage.setItem('csrf', JSON.stringify(user.csrf));
+      if (!response.csrf) {
+        // auto logout if empty csrf returned from api
+        logout()
+        const error = (response && response.error) || response.statusText;
+        return Promise.reject(error);
+      }
 
-      // if (!user.csrf)
-      //   return this.responseFailed(response)
+      localStorage.setItem('csrf', JSON.stringify(response.csrf));
 
       return fetch(`${config.apiUrl}/me`, { method: 'GET', headers: authHeader() })
         .then(handleResponse)
@@ -68,10 +72,10 @@ function handleResponse(response) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         logout();
-        location.reload(true);
+        // location.reload(true);
       }
 
-      const error = (data && data.message) || response.statusText;
+      const error = (data && data.error) || (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
 

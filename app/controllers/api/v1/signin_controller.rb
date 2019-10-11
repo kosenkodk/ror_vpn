@@ -35,6 +35,6 @@ class Api::V1::SigninController < Api::V1::ApiController
   private
 
   def not_found
-    render json: { error: I18n.t('signin.invalid_credentials') }, status: :not_found
+    render json: { error: I18n.t('api.errors.invalid_credentials') }, status: :not_found
   end
 end
