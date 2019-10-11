@@ -23,9 +23,10 @@ class HomePage extends React.Component {
           <ProductWithPricingBtn />
           <Reviews />
           <SecurityAndTrust />
-          {features && features.items &&
+          {/* {features && features.items &&
             <Features features={features.items} />
-          }
+          } */}
+          <Features />
         </div>
         <div className="container-fluid bg2">
           <div className="container">
