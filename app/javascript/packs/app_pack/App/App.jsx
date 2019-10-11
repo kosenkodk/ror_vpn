@@ -18,7 +18,7 @@ import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../P
 
 import { SignupPage } from '../SignupPage'
 import { ComingSoonPage, SuccessPage, NotFoundPage } from '../StatusPages'
-// import { PricingPage } from '../PricingPage'
+import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
 
 class App extends React.Component {
@@ -59,25 +59,25 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage} />
             <div className='container'>
               <Switch>
+                {/* public pages */}
                 <Route exact path="/signin" component={SigninPage} />
                 <Route exact path="/signup" component={SignupPage} />
-                <PrivateRoute exact path="/tickets" component={TicketsPage} />
+                <Route exact path="/pricing" component={PricingPage} />
                 <Route exact path="/forgot" component={PasswordForgotPage} />
-
-                <Route exact path="/200" component={SuccessPage} />
-                <Route exact path="/404" component={NotFoundPage} />
-
                 <Route exact path="/password_resets/:token" component={PasswordResetPage} />
                 <Route exact path="/reset_ok" component={PasswordResetPageOk} />
 
                 <Route exact path="/help" component={ComingSoonPage} />
-                <Route exact path="/204" component={ComingSoonPage} />
-                <Route exact path="/coming_soon" component={ComingSoonPage} />
                 <Route exact path="/contact_us" component={ContactusPage} />
 
-                {/*
-                <Route exact path="/pricing" render={() => <PricingPage />} />
-                */}
+                {/* private user's pages */}
+                <PrivateRoute exact path="/tickets" component={TicketsPage} />
+
+                {/* status pages */}
+                <Route exact path="/200" component={SuccessPage} />
+                <Route exact path="/404" component={NotFoundPage} />
+                <Route exact path="/204" component={ComingSoonPage} />
+                <Route exact path="/coming_soon" component={ComingSoonPage} />
 
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
                 <Route component={NotFoundPage} />
