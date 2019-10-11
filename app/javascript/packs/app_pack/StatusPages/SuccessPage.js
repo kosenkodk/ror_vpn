@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import I18n from 'i18n-js/index.js.erb'
 import astronautImage from 'images/coming_soon/astronaut'
 import starImage from 'images/star'
@@ -8,8 +9,7 @@ import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 class SuccessPage extends React.Component {
   render() {
     return (
-
-      <div className="container" >
+      <div className="container">
         <div className="featurette">
           <div className="row status_page text-center">
             <div className="col-md-4">
@@ -21,17 +21,16 @@ class SuccessPage extends React.Component {
               </h1>
               <h2 className="featurette-heading">
                 {I18n.t('pages.reset_pwd.success.title')}
-
                 {/* {I18n.t('pages.reset_pwd.success.subtitle')} */}
               </h2>
               <p className="lead">
-                {I18n.t('pages.reset_pwd.success.subtitle')}
-
-                {/* <%=flash[:error] if flash[:error]%>
-          <%=flash[:notice] if flash[:notice]%> */}
+                {/* {I18n.t('pages.reset_pwd.success.subtitle')} */}
+                {this.props.error && this.props.error}
+                {this.props.notice && this.props.notice}
               </p>
-              <a href="/" className="btn btn-outline-primary btn-block">
-                <span className="glyphicon glyphicon-circle-arrow-right ">Ok</span></a>
+              <Link to="/" className="btn btn-outline-primary btn-block">
+                <span className="glyphicon glyphicon-circle-arrow-right ">{I18n.t('buttons.ok')}</span>
+              </Link>
             </div>
             <div className="col-md-4 justify-content-center align-self-center">
               <img src={starImage} className="img-fluid" alt="" />
@@ -51,7 +50,7 @@ class SuccessPage extends React.Component {
               <p className="lead">
                 {I18n.t('pages.reset_pwd.success.subtitle')}
               </p>
-              <a href="/" className="btn  btn-outline-primary btn-block">{I18n.t('buttons.ok')}</a>
+              <a href="/" className="btn btn-outline-primary btn-block">{I18n.t('buttons.ok')}</a>
             </div>
           </div>
         </div>
