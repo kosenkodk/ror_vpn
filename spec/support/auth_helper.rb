@@ -21,4 +21,11 @@ module AuthHelper
     fill_in :password_confirmation, with: user.password_confirmation
     click_on(I18n.t('buttons.continue'))
   end
+
+  def is_coming_soon_page
+    expect(page).to have_content(I18n.t('pages.coming_soon.subtitle'))
+    expect(page).to have_content(I18n.t('pages.coming_soon.text'))
+    expect(page).to have_css('.row.header')
+    expect(page).to have_css('footer')
+  end
 end

@@ -13,18 +13,13 @@ import { FooterSection } from '../_sections'
 
 // pages
 import { HomePage } from '../HomePage';
-import { LoginPage } from '../LoginPage';
 import { TicketsPage } from '../TicketsPage'
 import { SigninPage } from '../SigninPage'
 import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
 
 import { SignupPage } from '../SignupPage'
-// import { ComingSoonPage } from '../ComingSoonPage'
-// import { Home } from '../HomePage'
-import { SuccessPage, NotFoundPage } from '../StatusPages'
-// import { SuccessPage } from '../SuccessPage'
+import { ComingSoonPage, SuccessPage, NotFoundPage } from '../StatusPages'
 // import { PricingPage } from '../PricingPage'
-
 // import { ContactusPage } from '../ContactusPage'
 
 class App extends React.Component {
@@ -75,35 +70,27 @@ class App extends React.Component {
 
                 <Route exact path="/password_resets/:token" component={PasswordResetPage} />
                 <Route exact path="/reset_ok" component={PasswordResetPageOk} />
+
+                <Route exact path="/help" component={ComingSoonPage} />
+                <Route exact path="/204" component={ComingSoonPage} />
+                <Route exact path="/coming_soon" component={ComingSoonPage} />
+
                 <Route component={NotFoundPage} />
 
                 {/*
-            <Route exact path="/contact_us" render={() => <ContactusPage />} />
-            <Route exact path="/contacts/new" render={() => <ContactusPage />} />
-
-            <Route exact path="/pricing" render={() => <PricingPage />} />
-            <Route exact path="/help" render={() => <ComingSoonPage />} />
-            
-            <Route exact path="/204" render={() => <ComingSoonPage />} />
-            <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
-
-            <Route exact path="/features" render={() => <Features />} />
-            */}
+                <Route exact path="/contact_us" render={() => <ContactusPage />} />
+                <Route exact path="/contacts/new" render={() => <ContactusPage />} />
+                <Route exact path="/pricing" render={() => <PricingPage />} />
+                <Route exact path="/features" render={() => <Features />} />
+                */}
 
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
               </Switch>
             </div>
           </Switch>
         </div>
-
         {this.state.isFooterVisible && <FooterSection />}
-
-        {/* <div>
-                <PrivateRoute exact path="/" component={TicketsPage} />
-                <Route path="/login" component={LoginPage} />
-              </div> */}
       </Router>
-
     );
   }
   componentDidMount() {

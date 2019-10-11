@@ -31,4 +31,12 @@ RSpec.describe ErrorsController, type: :feature, js: true do
       expect(page).to have_css('.row.header')
     end
   end
+  describe 'Get 204 page' do
+    it 'display coming soon page' do
+      visit('/204')
+      is_coming_soon_page
+      visit('/coming_soon')
+      is_coming_soon_page
+    end
+  end
 end
