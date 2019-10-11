@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Switch, Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import smoothscroll from 'smoothscroll-polyfill';
 
@@ -21,7 +21,7 @@ import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../P
 import { SignupPage } from '../SignupPage'
 // import { ComingSoonPage } from '../ComingSoonPage'
 // import { Home } from '../HomePage'
-// import { NotFoundPage } from '../NotFoundPage'
+import { SuccessPage, NotFoundPage } from '../StatusPages'
 // import { SuccessPage } from '../SuccessPage'
 // import { PricingPage } from '../PricingPage'
 
@@ -48,7 +48,6 @@ class App extends React.Component {
     const { alert } = this.props;
     return (
       <Router history={history}>
-
         <div className={`container-fluid ${this.state.bgClass}`}>
           <div className="container">
             <Header />
@@ -61,18 +60,22 @@ class App extends React.Component {
               }
             </div>
           </div>
+          <Switch>
 
-          {/* <Route exact path="/" render={() => <HomePage />} /> */}
-          <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage} />
 
-          <div className='container'>
-            <Route exact path="/signin" component={SigninPage} />
-            <Route exact path="/signup" component={SignupPage} />
-            <PrivateRoute exact path="/tickets" component={TicketsPage} />
-            <Route exact path="/forgot" component={PasswordForgotPage} />
-            {/* <Route path="/password_resets/:token" component={PasswordResetPage} /> */}
-            {/* <Route exact path="/reset_ok" component={PasswordResetPageOk} /> */}
-            {/*
+            <div className='container'>
+              <Switch>
+
+                <Route exact path="/signin" component={SigninPage} />
+                <Route exact path="/signup" component={SignupPage} />
+                <PrivateRoute exact path="/tickets" component={TicketsPage} />
+                <Route exact path="/forgot" component={PasswordForgotPage} />
+                <Route component={NotFoundPage} />
+
+                {/* <Route path="/password_resets/:token" component={PasswordResetPage} /> */}
+                {/* <Route exact path="/reset_ok" component={PasswordResetPageOk} /> */}
+                {/*
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
 
@@ -86,10 +89,12 @@ class App extends React.Component {
             <Route exact path="/features" render={() => <Features />} />
             */}
 
-            {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-
-          </div>
+                {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+              </Switch>
+            </div>
+          </Switch>
         </div>
+
         {this.state.isFooterVisible && <FooterSection />}
 
         {/* <div>

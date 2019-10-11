@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ErrorsController, type: :feature do
+RSpec.describe ErrorsController, type: :feature, js: true do
   describe 'Get 404 Page' do
     before do
       visit('/404')
