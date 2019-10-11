@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
   
   before do
-    visit '/contacts/new'
+    visit '/contact_us'
   end
 
   describe 'Contact Us Page' do
