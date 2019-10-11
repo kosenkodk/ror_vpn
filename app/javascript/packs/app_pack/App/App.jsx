@@ -60,29 +60,30 @@ class App extends React.Component {
               }
             </div>
           </div>
+
           <Switch>
-
             <Route exact path="/" component={HomePage} />
-
             <div className='container'>
               <Switch>
-
                 <Route exact path="/signin" component={SigninPage} />
                 <Route exact path="/signup" component={SignupPage} />
                 <PrivateRoute exact path="/tickets" component={TicketsPage} />
                 <Route exact path="/forgot" component={PasswordForgotPage} />
+
+                <Route exact path="/200" component={SuccessPage} />
+                <Route exact path="/404" component={NotFoundPage} />
+
+                <Route exact path="/password_resets/:token" component={PasswordResetPage} />
+                <Route exact path="/reset_ok" component={PasswordResetPageOk} />
                 <Route component={NotFoundPage} />
 
-                {/* <Route path="/password_resets/:token" component={PasswordResetPage} /> */}
-                {/* <Route exact path="/reset_ok" component={PasswordResetPageOk} /> */}
                 {/*
             <Route exact path="/contact_us" render={() => <ContactusPage />} />
             <Route exact path="/contacts/new" render={() => <ContactusPage />} />
 
             <Route exact path="/pricing" render={() => <PricingPage />} />
             <Route exact path="/help" render={() => <ComingSoonPage />} />
-            <Route exact path="/404" render={() => <NotFoundPage />} />
-            <Route exact path="/200" render={() => <SuccessPage />} />
+            
             <Route exact path="/204" render={() => <ComingSoonPage />} />
             <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
 

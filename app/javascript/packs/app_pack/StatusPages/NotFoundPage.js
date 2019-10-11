@@ -5,7 +5,6 @@ import astronautImage from 'images/coming_soon/astronaut'
 import starImage from 'images/star'
 import bg2WithMarsImage from 'images/bg2_with_mars'
 
-
 class NotFoundPage extends React.Component {
   render() {
     return (
