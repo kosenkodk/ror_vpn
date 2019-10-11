@@ -18,7 +18,7 @@ import { TicketsPage } from '../TicketsPage'
 import { SigninPage } from '../SigninPage'
 import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
 
-// import { SignupPage } from '../SignupPage'
+import { SignupPage } from '../SignupPage'
 // import { ComingSoonPage } from '../ComingSoonPage'
 // import { Home } from '../HomePage'
 // import { NotFoundPage } from '../NotFoundPage'
@@ -67,7 +67,7 @@ class App extends React.Component {
 
           <div className='container'>
             <Route exact path="/signin" component={SigninPage} />
-            <Route exact path="/signup" render={() => <SignupPage />} />
+            <Route exact path="/signup" component={SignupPage} />
             <PrivateRoute exact path="/tickets" component={TicketsPage} />
             <Route exact path="/forgot" component={PasswordForgotPage} />
             {/* <Route path="/password_resets/:token" component={PasswordResetPage} /> */}
