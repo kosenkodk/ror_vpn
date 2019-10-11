@@ -47,8 +47,7 @@ en:
       not_found: "Not Found"
       bad_request: "Bad request"
       unauthorized: "Not authorized"
-  signin:
-    invalid_credentials: "Invalid email or password"    
+      invalid_credentials: "Invalid email or password"    
   email: "E-Mail"
   vegaVPN: "VEGA"
   nav_menu:
