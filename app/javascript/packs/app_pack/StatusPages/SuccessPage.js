@@ -5,8 +5,15 @@ import astronautImage from 'images/coming_soon/astronaut'
 import starImage from 'images/star'
 // import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
 import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
+import { connect } from 'react-redux'
+import { bgClassActions } from '../_actions'
 
 class SuccessPage extends React.Component {
+
+  componentDidMount() {
+    this.props.dispatch(bgClassActions.set('bg_star'));
+  }
+
   render() {
     return (
       <div className="container">
@@ -60,4 +67,15 @@ class SuccessPage extends React.Component {
   }
 }
 
-export { SuccessPage }
+
+function mapStateToProps(state) {
+  const { tickets, authentication } = state;
+  const { user } = authentication;
+  return {
+    user,
+    tickets
+  };
+}
+
+const connectedPage = connect(mapStateToProps)(SuccessPage);
+export { connectedPage as SuccessPage };
