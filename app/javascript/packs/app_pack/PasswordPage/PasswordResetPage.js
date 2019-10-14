@@ -13,7 +13,7 @@ class PasswordResetPage extends React.Component {
     this.state = {
       error: '',
       notice: '',
-      token: this.props.match.params.token
+      token: this.props.token || this.props.match && this.props.match.params && this.props.match.params.token
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
@@ -93,11 +93,11 @@ class PasswordResetPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.handleIsFooterVisible(false)
-    this.checkPasswordToken()
+    // this.props.handleIsFooterVisible(false)
+    // this.checkPasswordToken()
   }
   componentWillUnmount() {
-    this.props.handleIsFooterVisible(true)
+    // this.props.handleIsFooterVisible(true)
   }
 }
 
