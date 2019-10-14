@@ -44,5 +44,5 @@ function mapStateToProps(state) {
   };
 }
 
-const connectedTicketsPagePage = connect(mapStateToProps)(TicketsPage);
-export { connectedTicketsPagePage as TicketsPage };
+const connectedTicketsPage = connect(mapStateToProps)(TicketsPage);
+export { connectedTicketsPage as TicketsPage };

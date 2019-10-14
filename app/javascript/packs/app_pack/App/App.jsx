@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import smoothscroll from 'smoothscroll-polyfill';
 
 import { history } from '../_helpers';
-import { alertActions } from '../_actions';
+import { alertActions, bgClassActions } from '../_actions';
 
 // components
 import { Header, PrivateRoute } from '../_components';
@@ -29,7 +29,7 @@ class App extends React.Component {
       csrf: '',
       user: [],
       isSignedIn: false,
-      bgClass: 'bg1',
+      // bgClass: 'bg1',
     }
     const { dispatch } = this.props;
     history.listen((location, action) => {
@@ -38,11 +38,15 @@ class App extends React.Component {
     });
   }
 
+  UNSAFE_componentWillUpdate() {
+
+  }
+
   render() {
-    const { alert } = this.props;
+    const { alert, bgClass } = this.props;
     return (
       <Router history={history}>
-        <div className={`container-fluid ${this.state.bgClass}`}>
+        <div className={`container-fluid ${bgClass.value}`}>
           <div className="container">
             <Header />
           </div>
@@ -99,13 +103,14 @@ class App extends React.Component {
   }
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
+    this.props.dispatch(bgClassActions.set('bg1'))
   }
 }
 
 function mapStateToProps(state) {
-  const { alert } = state;
+  const { alert, bgClass } = state;
   return {
-    alert
+    alert, bgClass
   };
 }
 
