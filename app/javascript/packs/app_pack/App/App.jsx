@@ -42,8 +42,10 @@ class App extends React.Component {
   }
 
   isFooterVisible() {
+    let currentUrl = history.location.pathname
     this.setState({ isFooterVisible: true })
-    if ([urls.reset.path, urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(location.pathname))
+    if (currentUrl.startsWith(urls.reset.path.split('/')[0]) ||
+      [urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(currentUrl))
       this.setState({ isFooterVisible: false })
   }
 
