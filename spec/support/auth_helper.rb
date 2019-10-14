@@ -11,7 +11,7 @@ module AuthHelper
     visit('/signin')
     fill_in :email, with: user.email
     fill_in :password, with: user.password
-    click_on(I18n.t('buttons.submit'))
+    click_on(I18n.t('buttons.login'))
   end
 
   def fsign_up_as(user)
