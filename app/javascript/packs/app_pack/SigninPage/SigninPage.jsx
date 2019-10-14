@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { bgClassActions } from '../_actions';
 import I18n from 'i18n-js/index.js.erb'
 import { SigninForm } from './SigninForm'
 // import FlashMessages from './_components/FlashMessages'
