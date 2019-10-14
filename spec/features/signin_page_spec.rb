@@ -19,21 +19,21 @@ RSpec.describe AuthController, type: :feature, js: true do
       it 'with invalid email and password' do
         fill_in :email, with: email_invalid
         fill_in :password, with: password_invalid
-        click_on(I18n.t('buttons.submit'))
+        click_on(I18n.t('buttons.login'))
         # expect(find('.alert')).to have_text(I18n.t('api.errors.not_found'))
         expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
       end
       it 'with invalid email' do
         fill_in :email, with: email_invalid
         fill_in :password, with: password
-        click_on(I18n.t('buttons.submit'))
+        click_on(I18n.t('buttons.login'))
         # expect(find('.alert')).to have_text(I18n.t('api.errors.not_found'))
         expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
       end
       it 'with invalid password' do
         fill_in :email, with: email
         fill_in :password, with: password_invalid
-        click_on(I18n.t('buttons.submit'))
+        click_on(I18n.t('buttons.login'))
         expect(find('.alert')).to have_text(I18n.t('api.errors.unauthorized'))
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe AuthController, type: :feature, js: true do
       it 'with valid credentials' do
         fill_in :email, with: email
         fill_in :password, with: password
-        click_on(I18n.t('buttons.submit'))
+        click_on(I18n.t('buttons.login'))
         expect(page).to have_content(I18n.t('nav_menu.sign_out'))
         expect(page).to have_content(I18n.t('pages.tickets.title'))
       end
