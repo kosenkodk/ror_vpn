@@ -106,7 +106,7 @@ class FooterAccordion extends React.Component {
               </div>
               <div id="collapseContact" className="card-body collapse" data-parent="#accordion">
                 <ul className="list-unstyled text-small">
-                  <li><a className="text-light" href="/contacts/new">{I18n.t('footer.contact.contact_us')}</a></li>
+                  <li><a className="text-light" href="/contact_us">{I18n.t('footer.contact.contact_us')}</a></li>
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.contact.twitter')}</a></li>
                 </ul>
               </div>

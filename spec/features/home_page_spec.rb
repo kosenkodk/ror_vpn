@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :feature do
+RSpec.describe HomeController, type: :feature, js: true do
   let!(:feature) { FactoryBot.create(:feature, title: 'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
 
   before(:each) do
@@ -65,7 +65,7 @@ RSpec.describe HomeController, type: :feature do
       # end
       expect(find('.navbar')).to have_content(I18n.t('nav_menu.contact_us'))
       expect(find('.footer', match: :first)).to have_content(I18n.t('footer.contact.contact_us'))
-      expect(page).to have_content('Send us a message and we will be in touch within 24 hours.')
+      expect(page).to have_content(I18n.t('pages.contact_us.subtitle'))
       expect(find_button('Submit')).to have_text('Submit')
     end
   end
