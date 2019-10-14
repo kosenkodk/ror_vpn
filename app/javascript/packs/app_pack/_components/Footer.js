@@ -81,7 +81,7 @@ class Footer extends React.Component {
           <div className="col-sm-4 col-md-2">
             <h5>{I18n.t('footer.contact.title')}</h5>
             <ul className="list-unstyled text-small">
-              <li><HashLink to="/contacts/new" className="text-light">{I18n.t('footer.contact.contact_us')}</HashLink></li>
+              <li><HashLink to="/contact_us" className="text-light">{I18n.t('footer.contact.contact_us')}</HashLink></li>
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.contact.twitter')}</Link></li>
             </ul>
           </div>
