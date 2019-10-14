@@ -89,7 +89,7 @@ class SigninForm extends React.Component {
         <div className="form-group row">
           <div className="col-sm-6 offset-sm-3">
             <br />
-            <button className="btn btn-outline-primary btn-block">{I18n.t('buttons.submit')}</button>
+            <button className="btn btn-outline-primary btn-block">{I18n.t('pages.login.form.login')}</button>
 
             {loggingIn &&
               <div className="text-center">
