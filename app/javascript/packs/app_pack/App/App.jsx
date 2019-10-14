@@ -37,11 +37,14 @@ class App extends React.Component {
       dispatch(bgClassActions.set('bg1'))
       if ([urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
+      this.isFooterVisible()
     });
   }
 
-  UNSAFE_componentWillUpdate() {
-    // console.log('app will update store.getState()', store.getState())
+  isFooterVisible() {
+    this.setState({ isFooterVisible: true })
+    if ([urls.reset.path, urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(location.pathname))
+      this.setState({ isFooterVisible: false })
   }
 
   render() {
@@ -97,6 +100,7 @@ class App extends React.Component {
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
     this.props.dispatch(bgClassActions.set('bg1'))
+    this.isFooterVisible()
   }
 }
 
@@ -108,4 +112,4 @@ function mapStateToProps(state) {
 }
 
 const connectedApp = connect(mapStateToProps)(App);
-export { connectedApp as App }; 
+export { connectedApp as App };
