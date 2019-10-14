@@ -34,6 +34,9 @@ class App extends React.Component {
     const { dispatch } = this.props;
     history.listen((location, action) => {
       // clear alert on location change
+      dispatch(alertActions.clear())
+
+      // set background image
       dispatch(bgClassActions.set('bg1'))
       if ([urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
