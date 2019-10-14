@@ -65,6 +65,14 @@ class App extends React.Component {
                 <Route exact path="/pricing" component={PricingPage} />
                 <Route exact path="/forgot" component={PasswordForgotPage} />
                 <Route exact path="/password_resets/:token" component={PasswordResetPage} />
+                {/* <Route path="/password_resets/:token" render={() => <PasswordResetPage />} /> */}
+                {/* <Route exact path="/password_resets/:token" render={({ match }) => (
+                  <PasswordResetPage
+                    appState={this.state}
+                    token={match.params.token}
+                    handleIsFooterVisible={this.handleIsFooterVisible}
+                  />
+                )} /> */}
                 <Route exact path="/reset_ok" component={PasswordResetPageOk} />
 
                 <Route exact path="/help" component={ComingSoonPage} />
