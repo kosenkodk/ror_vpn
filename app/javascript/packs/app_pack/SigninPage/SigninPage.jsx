@@ -13,8 +13,6 @@ class SigninPage extends React.Component {
   }
 
   render() {
-    this.props.dispatch(bgClassActions.set('bg1'));
-
     return (
       <div className="container login">
         <div className="featurette text-center">
