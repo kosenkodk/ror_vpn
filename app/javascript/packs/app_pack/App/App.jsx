@@ -38,7 +38,7 @@ class App extends React.Component {
 
       // set background image
       dispatch(bgClassActions.set('bg1'))
-      if ([urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
+      if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
       this.isFooterVisible()
     });
@@ -46,8 +46,9 @@ class App extends React.Component {
 
   isFooterVisible() {
     let currentUrl = history.location.pathname
+    let resetUrl = '/' + urls.reset.path.split('/')[1]
     this.setState({ isFooterVisible: true })
-    if (currentUrl.startsWith(urls.reset.path.split('/')[0]) ||
+    if (currentUrl.startsWith(resetUrl) ||
       [urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(currentUrl))
       this.setState({ isFooterVisible: false })
   }

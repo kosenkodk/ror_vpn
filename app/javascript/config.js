@@ -62,9 +62,14 @@ const urls = {
     // component: NotFoundPage
   },
   coming_soon: {
-    path: '/204',
+    path: '/coming_soon',
     name: 'Coming Soon',
     // component: ComingSoonPage
   },
+  http204: {
+    path: '/204',
+    name: 'Coming Soon',
+    // component: ComingSoonPage
+  }
 };
 export { urls, config }
