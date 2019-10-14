@@ -29,17 +29,18 @@ class App extends React.Component {
       csrf: '',
       user: [],
       isSignedIn: false,
-      // bgClass: 'bg1',
     }
     const { dispatch } = this.props;
     history.listen((location, action) => {
       // clear alert on location change
-      dispatch(alertActions.clear());
+      dispatch(bgClassActions.set('bg1'))
+      if (['/404', '/200', '/204', '/coming_soon', '/contact_us'].includes(location.pathname))
+        dispatch(bgClassActions.set('bg_star'))
     });
   }
 
   UNSAFE_componentWillUpdate() {
-
+    // console.log('app will update store.getState()', store.getState())
   }
 
   render() {
