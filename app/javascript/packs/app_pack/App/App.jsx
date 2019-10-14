@@ -20,6 +20,7 @@ import { SignupPage } from '../SignupPage'
 import { ComingSoonPage, SuccessPage, NotFoundPage } from '../StatusPages'
 import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
+import { urls } from 'config'
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class App extends React.Component {
     history.listen((location, action) => {
       // clear alert on location change
       dispatch(bgClassActions.set('bg1'))
-      if (['/404', '/200', '/204', '/coming_soon', '/contact_us'].includes(location.pathname))
+      if ([urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
     });
   }
@@ -65,32 +66,23 @@ class App extends React.Component {
             <div className='container'>
               <Switch>
                 {/* public pages */}
-                <Route exact path="/signin" component={SigninPage} />
-                <Route exact path="/signup" component={SignupPage} />
-                <Route exact path="/pricing" component={PricingPage} />
-                <Route exact path="/forgot" component={PasswordForgotPage} />
-                <Route exact path="/password_resets/:token" component={PasswordResetPage} />
-                {/* <Route path="/password_resets/:token" render={() => <PasswordResetPage />} /> */}
-                {/* <Route exact path="/password_resets/:token" render={({ match }) => (
-                  <PasswordResetPage
-                    appState={this.state}
-                    token={match.params.token}
-                    handleIsFooterVisible={this.handleIsFooterVisible}
-                  />
-                )} /> */}
-                <Route exact path="/reset_ok" component={PasswordResetPageOk} />
+                <Route exact path={urls.signin.path} component={SigninPage} />
+                <Route exact path={urls.signup.path} component={SignupPage} />
+                <Route exact path={urls.pricing.path} component={PricingPage} />
+                <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
+                <Route exact path={urls.reset.path} component={PasswordResetPage} />
+                <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
 
-                <Route exact path="/help" component={ComingSoonPage} />
-                <Route exact path="/contact_us" component={ContactusPage} />
+                <Route exact path={urls.help.path} component={ComingSoonPage} />
+                <Route exact path={urls.contact_us.path} component={ContactusPage} />
 
                 {/* private user's pages */}
-                <PrivateRoute exact path="/tickets" component={TicketsPage} />
+                <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
 
                 {/* status pages */}
-                <Route exact path="/200" component={SuccessPage} />
-                <Route exact path="/404" component={NotFoundPage} />
-                <Route exact path="/204" component={ComingSoonPage} />
-                <Route exact path="/coming_soon" component={ComingSoonPage} />
+                <Route exact path={urls.success.path} component={SuccessPage} />
+                <Route exact path={urls.not_found.path} component={NotFoundPage} />
+                <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
 
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
                 <Route component={NotFoundPage} />
