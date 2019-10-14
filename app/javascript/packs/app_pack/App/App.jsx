@@ -92,6 +92,7 @@ class App extends React.Component {
                 <Route exact path={urls.success.path} component={SuccessPage} />
                 <Route exact path={urls.not_found.path} component={NotFoundPage} />
                 <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
+                <Route exact path={urls.http204.path} component={ComingSoonPage} />
 
                 {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
                 <Route component={NotFoundPage} />
