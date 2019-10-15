@@ -2,6 +2,8 @@
 import { ticketConstants } from '../_constants';
 import { userService } from '../_services';
 import { alertActions } from './'
+import { history } from '../_helpers';
+import { urls } from 'config';
 
 export const ticketActions = {
   getAll,
@@ -32,11 +34,17 @@ function add(item) {
     dispatch(request({ item }))
     userService.addTicket(item)
       .then(
-        notice => dispatch(alertActions.notice(notice)),
+        item => {
+          dispatch(success(item))
+          dispatch(alertActions.success(item.notice))
+        },
         error => dispatch(alertActions.error(error))
       )
   }
   function request() { return { type: ticketConstants.ADD_REQUEST } }
-  // function success(tickets) { return { type: ticketConstants.ADD_SUCCESS, tickets } }
+  function success(item) {
+    history.push(urls.tickets.path)
+    return { type: ticketConstants.ADD_SUCCESS, item }
+  }
   // function failure(error) { return { type: ticketConstants.ADD_FAILURE, error } }
 }
