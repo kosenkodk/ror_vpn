@@ -4,9 +4,15 @@ export function authHeader() {
   let csrf = JSON.parse(localStorage.getItem('csrf'));
 
   if (user && user.token) {
-    return { 'Authorization': 'Bearer ' + user.token };
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + user.token
+    };
   } else if (csrf) {
-    return { 'X-CSRF-Token': csrf };
+    return {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrf
+    };
   } else {
     return {};
   }

@@ -12,8 +12,7 @@ import { FooterSection } from '../_sections'
 
 // pages
 import { HomePage } from '../HomePage'
-import { TicketsPage } from '../TicketsPage'
-import TicketsNewPage from '../TicketsPage/TicketsNewPage'
+import { TicketsPage, TicketsNewPage } from '../TicketsPage'
 
 import { SigninPage } from '../SigninPage'
 import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
