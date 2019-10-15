@@ -6,6 +6,10 @@ export function tickets(state = {}, action) {
       return {
         loading: true
       };
+    case ticketConstants.ADD_SUCCESS:
+      return {
+        item: action.item
+      };
     case ticketConstants.GETALL_REQUEST:
       return {
         loading: true
