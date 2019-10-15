@@ -7,7 +7,7 @@ import { history } from '../_helpers'
 import { alertActions, bgClassActions } from '../_actions'
 
 // components
-import { Header, PrivateRoute } from '../_components'
+import { Header, PrivateRoute, PrivateRouteWithSidebar } from '../_components'
 import { FooterSection } from '../_sections'
 
 // pages
@@ -88,8 +88,8 @@ class App extends React.Component {
                 <Route exact path={urls.contact_us.path} component={ContactusPage} />
 
                 {/* private user's pages */}
-                <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
-                <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
+                <PrivateRouteWithSidebar exact path={urls.tickets.path} component={TicketsPage} />
+                <PrivateRouteWithSidebar exact path={urls.tickets_new.path} component={TicketsNewPage} />
 
                 {/* status pages */}
                 <Route exact path={urls.success.path} component={SuccessPage} />
