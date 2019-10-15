@@ -26,7 +26,7 @@ class PasswordResetPage extends React.Component {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': this.props.appState.csrf
+        // 'X-CSRF-Token': this.props.appState.csrf
       },
       body: JSON.stringify(data)
     }
