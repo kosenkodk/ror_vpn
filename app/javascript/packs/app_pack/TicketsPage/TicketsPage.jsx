@@ -43,10 +43,8 @@ class TicketsPage extends React.Component {
                 :
                 <tr>
                   <td colSpan="7" scope="row">
-                    {tickets.loading && <em>Loading tickets...</em>}
-                    {tickets.error ? <span className="text-danger">ERROR: {tickets.error}</span>
-                      :
-                      <p>No items to display</p>}
+                    {tickets.loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
+                    {/* {tickets.error && <span className="text-danger">ERROR: {tickets.error}</span>} */}
                   </td>
                 </tr>
               }
