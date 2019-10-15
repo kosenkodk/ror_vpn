@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import TicketForm from './TicketForm'
-import Sidebar from '../_components/Sidebar'
 import { urls } from 'config'
 
 class TicketsNewPage extends React.Component {
@@ -15,8 +14,6 @@ class TicketsNewPage extends React.Component {
             </div>
             <div className="col-xs-6 ml-auto align-self-center">
               <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
-              {/* <button onClick={this.addItem} className="btn btn-outline-success">New</button> */}
-              {/* <TicketAddModal onFormSubmit={this.onFormSubmit} isEdit={false} {...this.props} /> */}
             </div>
           </div>
         </div>

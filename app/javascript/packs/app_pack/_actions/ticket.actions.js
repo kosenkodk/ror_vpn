@@ -1,6 +1,7 @@
 
 import { ticketConstants } from '../_constants';
 import { userService } from '../_services';
+import { alertActions } from './'
 
 export const ticketActions = {
   getAll,
@@ -13,7 +14,10 @@ function getAll() {
     userService.getTickets()
       .then(
         tickets => dispatch(success(tickets)),
-        error => dispatch(failure(error))
+        error => {
+          dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
       )
   }
 
