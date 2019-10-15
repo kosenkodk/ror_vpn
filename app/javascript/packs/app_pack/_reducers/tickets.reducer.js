@@ -2,6 +2,10 @@ import { ticketConstants } from '../_constants';
 
 export function tickets(state = {}, action) {
   switch (action.type) {
+    case ticketConstants.ADD_REQUEST:
+      return {
+        loading: true
+      };
     case ticketConstants.GETALL_REQUEST:
       return {
         loading: true

@@ -5,7 +5,8 @@ export const userService = {
   login,
   logout,
   getTickets,
-  getAll
+  getAll,
+  addTicket,
 };
 
 function login(email, password) {
@@ -51,6 +52,16 @@ function getAll() {
   };
 
   return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+}
+
+function addTicket(item) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader(),
+    body: JSON.stringify({ 'ticket': item })
+    // body: { ticket: { title: 'title 1', text: 'text 1' } }
+  }
+  return fetch(`${config.apiUrl}/tickets`, requestOptions).then(handleResponse);
 }
 
 function getTickets() {
