@@ -1,9 +1,8 @@
 import React from 'react'
 import I18n from 'i18n-js/index.js.erb'
 import PasswordResetForm from './PasswordResetForm'
-import { httpSecuredRequest, httpPlainRequest, postCsrfRequest, handleErrors } from 'helpers/http'
+import { httpPlainRequest, handleErrors } from 'helpers/http'
 import FlashMessages from '../_sections/FlashMessages'
-import { withRouter } from "react-router-dom";
 import { config } from 'config';
 
 class PasswordResetPage extends React.Component {
@@ -26,25 +25,19 @@ class PasswordResetPage extends React.Component {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        // 'X-CSRF-Token': this.props.appState.csrf
       },
       body: JSON.stringify(data)
     }
 
-    // const token = get_from_local_storage
-
     fetch(httpPlainRequest(`${config.apiUrl}/password_resets/${this.state.token}`, 'PATCH', data))
       .then(handleErrors)
       .then((item, message) => {
-        // console.log('success', item, message)
         let notice = I18n.t('pages.reset_pwd.success.message')
         this.setState({ notice: notice, error: '' })
         // this.setState({ notice: item.message, error: '' })
         // this.props.history.push('/reset_ok')
-        // this.props.history.push('/200')
       })
       .catch((error) => {
-        // console.log('error', error.message)
         this.setState({ error: error.message, notice: '' })
         // this.setState({ error: response.statusText })
       });
@@ -93,12 +86,9 @@ class PasswordResetPage extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.handleIsFooterVisible(false)
     // this.checkPasswordToken()
   }
-  componentWillUnmount() {
-    // this.props.handleIsFooterVisible(true)
-  }
+
 }
 
 export { PasswordResetPage }
