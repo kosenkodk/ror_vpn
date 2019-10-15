@@ -51,6 +51,16 @@ const urls = {
     name: 'Tickets',
     // component: TicketsPage
   },
+  tickets_view: {
+    path: '/tickets/:id',
+    name: 'View Ticket',
+    // component: TicketViewPage
+  },
+  tickets_edit: {
+    path: '/tickets/:id/edit',
+    name: 'Edit Ticket',
+    // component: TicketEditPage
+  },
   tickets_new: {
     path: '/tickets/new',
     name: 'New Ticket',

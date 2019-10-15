@@ -8,6 +8,7 @@ import { urls } from 'config';
 export const ticketActions = {
   getAll,
   add,
+  view,
 }
 
 function getAll() {
@@ -47,4 +48,22 @@ function add(item) {
     return { type: ticketConstants.ADD_SUCCESS, item }
   }
   // function failure(error) { return { type: ticketConstants.ADD_FAILURE, error } }
+}
+
+
+function view(id) {
+  return dispatch => {
+    dispatch(request({ ticket: id }))
+    userService.viewTicket(id)
+      .then(
+        item => {
+          dispatch(success(item))
+          dispatch(alertActions.success(item.notice))
+        },
+        error => dispatch(alertActions.error(error))
+      )
+  }
+  function request() { return { type: ticketConstants.VIEW_REQUEST } }
+  function success(item) { return { type: ticketConstants.VIEW_SUCCESS, item } }
+  // function failure(error) { return { type: ticketConstants.VIEW_FAILURE, error } }
 }

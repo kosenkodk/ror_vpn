@@ -10,6 +10,14 @@ export function tickets(state = {}, action) {
       return {
         item: action.item
       };
+    case ticketConstants.VIEW_REQUEST:
+      return {
+        loading: true
+      };
+    case ticketConstants.VIEW_SUCCESS:
+      return {
+        item: action.item
+      };
     case ticketConstants.GETALL_REQUEST:
       return {
         loading: true
