@@ -65,10 +65,12 @@ class App extends React.Component {
           </div>
 
           <div className="container">
-            <div className="col">
-              {alert.message &&
-                <div className={`alert ${alert.type} text-center`}>{alert.message}</div>
-              }
+            <div className="row">
+              <div className="col">
+                {alert.message &&
+                  <div className={`alert ${alert.type} text-center`}>{alert.message}</div>
+                }
+              </div>
             </div>
           </div>
 
