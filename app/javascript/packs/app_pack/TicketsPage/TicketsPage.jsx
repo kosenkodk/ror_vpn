@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
 import Ticket from './Ticket';
-import Sidebar from './Sidebar';
+import Sidebar from '../_components/Sidebar';
+import { urls } from 'config';
+
+// import { Switch, Router, Route } from 'react-router-dom'
+// import { Header, PrivateRoute } from '../_components'
+// import TicketsNewPage from './TicketsNewPage'
 
 class TicketsPage extends React.Component {
   componentDidMount() {
@@ -30,7 +35,7 @@ class TicketsPage extends React.Component {
                   <h2 className="mt-2">Tickets</h2>
                 </div>
                 <div className="col-xs-6 ml-auto align-self-center">
-                  <Link to="/tickets/new" className="btn btn-outline-success">New</Link>
+                  <Link to={urls.tickets_new.path} className="btn btn-outline-success">New</Link>
                   {/* <button onClick={this.addItem} className="btn btn-outline-success">New</button> */}
                   {/* <TicketAddModal onFormSubmit={this.onFormSubmit} isEdit={false} {...this.props} /> */}
                 </div>

@@ -1,18 +1,20 @@
-import React from 'react';
-import { Switch, Router, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import smoothscroll from 'smoothscroll-polyfill';
+import React from 'react'
+import { Switch, Router, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import smoothscroll from 'smoothscroll-polyfill'
 
-import { history } from '../_helpers';
-import { alertActions, bgClassActions } from '../_actions';
+import { history } from '../_helpers'
+import { alertActions, bgClassActions } from '../_actions'
 
 // components
-import { Header, PrivateRoute } from '../_components';
+import { Header, PrivateRoute } from '../_components'
 import { FooterSection } from '../_sections'
 
 // pages
-import { HomePage } from '../HomePage';
+import { HomePage } from '../HomePage'
 import { TicketsPage } from '../TicketsPage'
+import TicketsNewPage from '../TicketsPage/TicketsNewPage'
+
 import { SigninPage } from '../SigninPage'
 import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
 
@@ -24,7 +26,7 @@ import { urls } from 'config'
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isFooterVisible: true,
       csrf: '',
@@ -87,6 +89,7 @@ class App extends React.Component {
 
                 {/* private user's pages */}
                 <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+                <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
 
                 {/* status pages */}
                 <Route exact path={urls.success.path} component={SuccessPage} />
