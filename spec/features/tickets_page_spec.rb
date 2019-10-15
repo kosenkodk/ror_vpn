@@ -63,8 +63,11 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       it "pagination click on next page button"
       it "pagination click on prev page button"
       it "select deparment drop down"
+      it "display ticket's status"
       it "attach file or image"
       it "title can't be empty"
+      it "view ticket > add comments"
+      it "admins can edit and delete tickets - why delete ? - just change ticket's status"
     end
   end
 end
