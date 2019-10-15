@@ -51,6 +51,11 @@ const urls = {
     name: 'Tickets',
     // component: TicketsPage
   },
+  tickets_new: {
+    path: '/tickets/new',
+    name: 'New Ticket',
+    // component: TicketNewPage
+  },
   success: {
     path: '/200',
     name: 'Success',
