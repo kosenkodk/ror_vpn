@@ -11,7 +11,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
-export const PrivateRouteWithSidebar = ({ component: Component, ...reset }) => (
+export const PrivateRouteWithSidebar = ({ component: Component, ...rest }) => (
   <div className="row">
     <div className="col-sm-4">
       <Sidebar />
