@@ -12,7 +12,7 @@ import { FooterSection } from '../_sections'
 
 // pages
 import { HomePage } from '../HomePage'
-import { TicketsPage, TicketsNewPage } from '../TicketsPage'
+import { TicketsPage, TicketsNewPage, TicketsEditPage, TicketsViewPage } from '../TicketsPage'
 
 import { SigninPage } from '../SigninPage'
 import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
@@ -91,6 +91,8 @@ class App extends React.Component {
                 {/* private user's pages */}
                 <PrivateRouteWithSidebar exact path={urls.tickets.path} component={TicketsPage} />
                 <PrivateRouteWithSidebar exact path={urls.tickets_new.path} component={TicketsNewPage} />
+                <PrivateRouteWithSidebar exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+                <PrivateRouteWithSidebar exact path={urls.tickets_view.path} component={TicketsViewPage} />
 
                 {/* status pages */}
                 <Route exact path={urls.success.path} component={SuccessPage} />

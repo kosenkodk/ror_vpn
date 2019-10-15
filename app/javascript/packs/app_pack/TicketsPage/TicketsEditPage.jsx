@@ -6,7 +6,7 @@ import { ticketActions } from '../_actions'
 import TicketForm from './TicketForm'
 import { urls } from 'config'
 
-class TicketsNewPage extends React.Component {
+class TicketsEditPage extends React.Component {
   constructor(props) {
     super(props)
     this.onFormSubmit = this.onFormSubmit.bind(this)
@@ -44,5 +44,5 @@ function mapStateToProps(state) {
   return { loading }
 }
 
-const connectedApp = connect(mapStateToProps)(TicketsNewPage);
-export { connectedApp as TicketsNewPage };
+const connectedApp = connect(mapStateToProps)(TicketsEditPage);
+export { connectedApp as TicketsEditPage };

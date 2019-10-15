@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
-import Ticket from './Ticket';
+import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
 
 class TicketsPage extends React.Component {
@@ -39,7 +39,7 @@ class TicketsPage extends React.Component {
             </thead>
             <tbody>
               {tickets.items && tickets.items.length > 0 ?
-                tickets.items.map((ticket, index) => <Ticket key={ticket.id} no={index + 1} {...ticket} />)
+                tickets.items.map((ticket, index) => <TicketTableItem key={ticket.id} no={index + 1} {...ticket} />)
                 :
                 <tr>
                   <td colSpan="7" scope="row">
