@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-
 import { ticketActions } from '../_actions';
+import Ticket from './Ticket';
+import Sidebar from './Sidebar';
 
 class TicketsPage extends React.Component {
   componentDidMount() {
@@ -10,36 +11,72 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { user, tickets } = this.props;
+    const { tickets } = this.props;
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <h1>Hi {user && user.email}!</h1>
-        <p>You're logged in with React & JWT!!</p>
-        <h3>Tickets from secure api end point:</h3>
-        {tickets.loading && <em>Loading tickets...</em>}
-        {tickets.error && <span className="text-danger">ERROR: {tickets.error}</span>}
-        {tickets.items &&
-          <ul>
-            {tickets.items.map((ticket, index) =>
-              <li key={ticket.id}>
-                {ticket.title + ' ' + ticket.text}
-              </li>
-            )}
-          </ul>
-        }
-        <p>
-          <Link to="/login">Logout</Link>
-        </p>
+      <div className="row">
+        <div className="col-sm-4">
+          <Sidebar />
+        </div>
+        <div className="col-sm-8">
+          {/* <div className="row">
+            <div className="col-12">
+              <FlashMessages error={error} notice={notice}></FlashMessages>
+            </div>
+          </div> */}
+          <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-6 mr-auto">
+                  <h2 className="mt-2">Tickets</h2>
+                </div>
+                <div className="col-xs-6 ml-auto align-self-center">
+                  <Link to="/tickets/new" className="btn btn-outline-success">New</Link>
+                  {/* <button onClick={this.addItem} className="btn btn-outline-success">New</button> */}
+                  {/* <TicketAddModal onFormSubmit={this.onFormSubmit} isEdit={false} {...this.props} /> */}
+                </div>
+              </div>
+            </div>
+
+            <div className="table-responsive">
+              <table className="table text-white table-striped">
+                <thead>
+                  <tr>
+                    <th colSpan="3" scope="col" className="w-5"></th>
+                    <th scope="col" className="w-10">#</th>
+                    <th scope="col" className="w-50">Title</th>
+                    <th scope="col" className="w-20">Department</th>
+                    {/* <th>Text</th> */}
+                    <th scope="col" className="w-15">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tickets.items && tickets.items.length > 0 ?
+                    tickets.items.map((ticket, index) => <Ticket key={ticket.id} no={index + 1} {...ticket} />)
+                    :
+                    <tr>
+                      <td colSpan="7" scope="row">
+                        {tickets.loading && <em>Loading tickets...</em>}
+                        {tickets.error ? <span className="text-danger">ERROR: {tickets.error}</span>
+                          :
+                          <p>No items to display</p>}
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { tickets, authentication } = state;
-  const { user } = authentication;
+  const { tickets } = state;
   return {
-    user,
     tickets
   };
 }
