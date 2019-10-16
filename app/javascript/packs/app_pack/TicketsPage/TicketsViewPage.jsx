@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { ticketActions } from '../_actions'
-// import TicketForm from './TicketForm'
 import { urls } from 'config'
 import I18n from 'i18n-js/index.js.erb'
 
@@ -12,7 +11,6 @@ class TicketsViewPage extends React.Component {
     super(props)
     this.state = {
       id: props.match.params.id
-      // this.props.token || this.props.match && this.props.match.params && this.props.match.params.token
     }
   }
 
@@ -58,8 +56,6 @@ class TicketsViewPage extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
           <div className="col-sm-8">
-            {/* <input type="hidden" name="id" value={this.props.id && this.props.id} />
-            <input type="text" name="title" required={true} className="form-control" defaultValue={this.props.title} placeholder={I18n.t('pages.tickets.form.help.title')} /> */}
             {item && item.title}
           </div>
         </div>
@@ -67,7 +63,6 @@ class TicketsViewPage extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.text')}</label>
           <div className="col-sm-8">
-            {/* <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea> */}
             {item && item.text}
           </div>
         </div>
@@ -76,18 +71,6 @@ class TicketsViewPage extends React.Component {
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8">
             {item && item.attachment}
-            {/* <input id="ticketAttachment" type="file" name="attachment" required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} /> */}
-          </div>
-        </div>
-
-        <div className="form-group row">
-          <div className="col-sm-4">
-          </div>
-          <div className="col-sm-8">
-            <br />
-            <button id="contact_submit" className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button>
-            {/* <button id="contact_submit" onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.message.value, this.message_short.value); }} className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button> */}
-            {/* <%=f.submit(t("pages.tickets.form.submit"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
           </div>
         </div>
       </div>
