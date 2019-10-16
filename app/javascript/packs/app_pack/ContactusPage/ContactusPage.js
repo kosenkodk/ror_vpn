@@ -1,17 +1,17 @@
-import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
-import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
-import ContactusForm from './ContactusForm'
-import FlashMessages from '../_sections/FlashMessages'
-
+import React from 'react';
+import I18n from 'i18n-js/index.js.erb';
+import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship';
+import ContactusForm from './ContactusForm';
+import FlashMessages from '../_sections/FlashMessages';
+import { connect } from 'react-redux';
 
 class ContactusPage extends React.Component {
   constructor(props) {
-    super(props)
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    super(props);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.state = {
       error: '',
-      notice: ''
+      notice: '',
     }
   }
 
@@ -84,7 +84,7 @@ class ContactusPage extends React.Component {
                     <FlashMessages error={this.state.error} notice={this.state.notice} />
                   </div>
                 </div>
-                <ContactusForm handleFormSubmit={this.handleFormSubmit} />
+                <ContactusForm handleFormSubmit={this.handleFormSubmit} departments={this.props && this.props.items} />
               </div>
             </div>
             <div className="col-md-12">
@@ -97,4 +97,10 @@ class ContactusPage extends React.Component {
   }
 }
 
-export { ContactusPage }
+function mapStateToProps(state) {
+  const { loading, items } = state.departments;
+  return { loading, items }
+}
+
+const connectedApp = connect(mapStateToProps)(ContactusPage);
+export { connectedApp as ContactusPage };
