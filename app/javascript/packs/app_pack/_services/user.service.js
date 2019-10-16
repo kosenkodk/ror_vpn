@@ -9,6 +9,7 @@ export const userService = {
   addTicket,
   viewTicket,
   getDepartments,
+  contactUs,
 };
 
 function login(email, password) {
@@ -54,6 +55,15 @@ function getAll() {
   };
 
   return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+}
+
+function contactUs(contact) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader(),
+    body: JSON.stringify({ contact })
+  }
+  return fetch(`${config.apiUrl}/contacts`, requestOptions).then(handleResponse);
 }
 
 function addTicket(ticket) {

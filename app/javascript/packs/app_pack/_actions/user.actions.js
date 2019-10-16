@@ -8,6 +8,7 @@ export const userActions = {
   login,
   logout,
   getAll,
+  contactUs,
 };
 
 function login(email, password) {
@@ -30,6 +31,26 @@ function login(email, password) {
   function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
   function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
   function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function contactUs(data) {
+  return dispatch => {
+    dispatch(request({ data }));
+
+    userService.contactUs(data)
+      .then(
+        response => {
+          dispatch(alertActions.success(response.notice));
+        },
+        error => {
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request(contact) { return { type: userConstants.CONTACTUS_REQUEST, contact } }
+  // function success(contact) { return { type: userConstants.CONTACTUS_SUCCESS, contact } }
+  // function failure(error) { return { type: userConstants.CONTACTUS_FAILURE, error } }
 }
 
 function logout() {
