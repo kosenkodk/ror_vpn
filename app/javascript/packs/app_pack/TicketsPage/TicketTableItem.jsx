@@ -25,7 +25,7 @@ class TicketTableItem extends React.Component {
         <th scope="row">{this.props.no}</th>
         <td>{this.props.title}</td>
         {/* <td>{this.props.text}</td> */}
-        <td>{this.props.department}</td>
+        <td>{this.props.department && this.props.department.title}</td>
         <td>{this.props.status}</td>
       </tr>
     );
@@ -36,7 +36,7 @@ TicketTableItem.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   status: PropTypes.number,
-  department: PropTypes.number,
+  department: PropTypes.object,
 }
 
 export default TicketTableItem

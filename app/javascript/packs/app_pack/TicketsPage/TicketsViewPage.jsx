@@ -49,7 +49,7 @@ class TicketsViewPage extends React.Component {
                 {item.name}</option>
               )}
             </select> */}
-            {item && item.department}
+            {item && item.department && item.department.title}
           </div>
         </div>
 
