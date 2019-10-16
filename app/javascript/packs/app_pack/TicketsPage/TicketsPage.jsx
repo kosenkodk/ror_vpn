@@ -11,7 +11,7 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { tickets } = this.props;
+    const { items, loading, error } = this.props;
     return (
       <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
         <div className="container">
@@ -38,13 +38,13 @@ class TicketsPage extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {tickets.items && tickets.items.length > 0 ?
-                tickets.items.map((ticket, index) => <TicketTableItem key={ticket.id} no={index + 1} {...ticket} />)
+              {items && items.length > 0 ?
+                items.map((item, index) => <TicketTableItem key={item.id} no={index + 1} {...item} />)
                 :
                 <tr>
                   <td colSpan="7" scope="row">
-                    {tickets.loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
-                    {/* {tickets.error && <span className="text-danger">ERROR: {tickets.error}</span>} */}
+                    {loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
+                    {/* {error && <span className="text-danger">ERROR: {error}</span>} */}
                   </td>
                 </tr>
               }
@@ -57,9 +57,11 @@ class TicketsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { tickets } = state;
+  const { items, loading, error } = state.tickets;
   return {
-    tickets
+    items,
+    loading,
+    error
   };
 }
 
