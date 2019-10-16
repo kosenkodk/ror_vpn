@@ -9,12 +9,12 @@ class Api::V1::ContactsController < Api::V1::ApiController
     # @contact.department = # TODO: will implement
     if @contact.save
       ContactUsMailer.notify_user(@contact.email, @contact.id).deliver_now
-      ContactUsMailer.notify_admin("admin@email.ru", @contact.id).deliver_now
-      # ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, @contact.id).deliver_now
+      # ContactUsMailer.notify_admin("admin@email.ru", @contact.id).deliver_now
+      ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, @contact.id).deliver_now
 
       notice = I18n.t('pages.contact_us.success_message')
       # flash[:notice] = notice
-      render json: notice || I18n.t('pages.contact_us.success_message')
+      render json: { notice: notice }
     else
       notice = @contact.errors.full_messages.join(', ') # capitalize
       # notice = @contact.errors.messages.map { |k, v| "#{k}: #{v.split(',').join(' & ')}" }.join("; ") #{ |k,v| "#{k}: #{v}" }.join(";") # custom with ; and & delimitters

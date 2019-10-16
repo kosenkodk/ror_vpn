@@ -4,6 +4,7 @@ import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship';
 import ContactusForm from './ContactusForm';
 import FlashMessages from '../_sections/FlashMessages';
 import { connect } from 'react-redux';
+import { userActions } from '../_actions';
 
 class ContactusPage extends React.Component {
   constructor(props) {
@@ -15,9 +16,14 @@ class ContactusPage extends React.Component {
     }
   }
 
-  handleFormSubmit(e, email, message, message_short) {
-    // console.log(email, message, message_short);
-
+  handleFormSubmit(e) {
+    e.preventDefault()
+    let formData = new FormData(e.target)
+    let data = {}
+    formData.forEach((value, key) => { data[key] = value });
+    this.props.dispatch(userActions.contactUs(data))
+    // console.log(data)
+    return;
     let csrf = ''
     try {
       csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
@@ -61,7 +67,7 @@ class ContactusPage extends React.Component {
 
   render() {
     return (
-      <div className="container contact_us mt-5 pt-5">
+      <div className="container contact_us mt-lg-5 pt-lg-5">
         <div className="featurette text-center bg_astronaut">
           <div className="row">
             <div className="col-md-8 offset-md-2">
