@@ -18,15 +18,19 @@ class TicketForm extends React.Component {
   }
 
   render() {
+    // const { departments } = this.props
     return (
       <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}>
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
             <select className="form-control" id="departmentSelectBox" name="department" value={this.state.departmentSelectValue} onChange={this.onDepartmentSelectChange}>
-              <option value="1">{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
+              {this.props.departments && this.props.departments.map((item) =>
+                <option key={`department${item.id}`} value={item.id}>{item.title}</option>
+              )}
+              {/* <option value="1">{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
               <option value="2">{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
-              <option value="3">{I18n.t('pages.tickets.form.help.select_the_department3')}</option>
+              <option value="3">{I18n.t('pages.tickets.form.help.select_the_department3')}</option> */}
             </select>
           </div>
         </div>
@@ -69,6 +73,7 @@ class TicketForm extends React.Component {
 TicketForm.propTypes = {
   id: PropTypes.number,
   department: PropTypes.string,
+  departments: PropTypes.array,
   status: PropTypes.number,
   title: PropTypes.string,
   text: PropTypes.string,

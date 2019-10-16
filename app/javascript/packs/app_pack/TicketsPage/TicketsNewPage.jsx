@@ -21,6 +21,7 @@ class TicketsNewPage extends React.Component {
   }
 
   render() {
+    const { items } = this.props
     return (
       <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
         <div className="container">
@@ -33,15 +34,15 @@ class TicketsNewPage extends React.Component {
             </div>
           </div>
         </div>
-        <TicketForm onFormSubmit={this.onFormSubmit} />
+        <TicketForm onFormSubmit={this.onFormSubmit} departments={items} />
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { loading } = state
-  return { loading }
+  const { loading, items } = state.departments
+  return { loading, items }
 }
 
 const connectedApp = connect(mapStateToProps)(TicketsNewPage);

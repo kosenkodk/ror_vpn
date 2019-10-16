@@ -4,10 +4,11 @@ import { authHeader } from '../_helpers';
 export const userService = {
   login,
   logout,
-  getTickets,
   getAll,
+  getTickets,
   addTicket,
   viewTicket,
+  getDepartments,
 };
 
 function login(email, password) {
@@ -78,6 +79,14 @@ function getTickets() {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/tickets`, requestOptions).then(handleResponse);
+}
+
+function getDepartments() {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/departments`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

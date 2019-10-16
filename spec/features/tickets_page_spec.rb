@@ -45,6 +45,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         all('.btn-outline-info').last.click # click on last view item
         
         expect(page).to have_content('text 1')
+        expect(page).to have_content('Sales')
       end
 
       xit 'edit item' do
