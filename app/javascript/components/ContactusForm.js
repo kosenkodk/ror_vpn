@@ -22,7 +22,7 @@ class ContactusForm extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.select_the_department')}</label>
           <div className="col-sm-8">
-            <select className="form-control" id="departmentControlSelect">
+            <select className="form-control" id="departmentSelectBox">
               <option>{I18n.t('pages.contact_us.form.help.select_the_department1')}</option>
               <option>{I18n.t('pages.contact_us.form.help.select_the_department2')}</option>
               <option>{I18n.t('pages.contact_us.form.help.select_the_department3')}</option>

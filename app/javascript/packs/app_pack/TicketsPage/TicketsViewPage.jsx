@@ -41,7 +41,7 @@ class TicketsViewPage extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
-            <select className="form-control" id="departmentControlSelect">
+            <select className="form-control" id="departmentSelectBox">
               {[
                 { name: I18n.t('pages.tickets.form.help.select_the_department1'), value: 1 },
                 { name: I18n.t('pages.tickets.form.help.select_the_department2'), value: 2 },
