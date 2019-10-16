@@ -24,9 +24,9 @@ class TicketForm extends React.Component {
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
             <select className="form-control" id="departmentSelectBox" name="department" value={this.state.departmentSelectValue} onChange={this.onDepartmentSelectChange}>
-              <option value="0">{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
-              <option value="1">{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
-              <option value="2">{I18n.t('pages.tickets.form.help.select_the_department3')}</option>
+              <option value="1">{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
+              <option value="2">{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
+              <option value="3">{I18n.t('pages.tickets.form.help.select_the_department3')}</option>
             </select>
           </div>
         </div>
