@@ -7,7 +7,7 @@ class TicketForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      departmentSelectValue: 0
+      departmentSelectValue: "billing"
     }
     this.onDepartmentSelectChange = this.onDepartmentSelectChange.bind(this);
   }
