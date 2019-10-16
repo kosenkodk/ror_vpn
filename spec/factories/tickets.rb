@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :ticket do
-    department { "billing" }
+    department { nil }
     title { "Ticket" }
     text { "TicketText" }
     user { nil }
-    status { 1 }
+    status { 0 }
   end
 end
