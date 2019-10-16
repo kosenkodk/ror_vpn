@@ -59,15 +59,27 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket.text)
       end
       
+      it "select department drop down" do
+        # select('Option', from: 'departmentSelectBox')
+        # find("#departmentSelectBox").select("value")
+      end
+
+      it "attach file or image" do
+        # attach_file('Image', '/path/to/image.jpg')
+      end
+
+      it "display ticket's status"
+
+      it "searching tickets by title or text"
+
+      
       it "guests can't see the user's tickets"
       it "pagination click on next page button"
       it "pagination click on prev page button"
-      it "select deparment drop down"
-      it "display ticket's status"
-      it "attach file or image"
       it "title can't be empty"
       it "view ticket > add comments"
       it "admins can edit and delete tickets - why delete ? - just change ticket's status"
+      it "email user and selected department about ticket's status or new comment"
     end
   end
 end

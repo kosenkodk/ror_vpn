@@ -1,29 +1,32 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
-// import { withRouter } from "react-router-dom";
-// import { Link } from 'react-router-dom'
-// import { HashLink } from 'react-router-hash-link';
-import I18n from 'i18n-js/index.js.erb'
+import React from 'react';
+import PropTypes from 'prop-types'
+import I18n from 'i18n-js/index.js.erb';
 
 class TicketForm extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      departmentSelectValue: 0
+    }
+    this.onDepartmentSelectChange = this.onDepartmentSelectChange.bind(this);
+  }
+
+  onDepartmentSelectChange(e) {
+    this.setState({ departmentSelectValue: event.target.value })
+    e.preventDefault();
   }
 
   render() {
-
     return (
       <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}>
-        {/* <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}> */}
-
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
-            <select className="form-control" id="departmentControlSelect">
-              <option>{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
-              <option>{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
-              <option>{I18n.t('pages.tickets.form.help.select_the_department3')}</option>
+            <select className="form-control" id="departmentSelectBox" name="department" value={this.state.departmentSelectValue} onChange={this.onDepartmentSelectChange}>
+              <option value="billing">{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
+              <option value="sales">{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
+              <option value="technical_support">{I18n.t('pages.tickets.form.help.select_the_department3')}</option>
             </select>
           </div>
         </div>
@@ -56,8 +59,6 @@ class TicketForm extends React.Component {
           <div className="col-sm-8">
             <br />
             <button id="contact_submit" className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button>
-            {/* <button id="contact_submit" onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.message.value, this.message_short.value); }} className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button> */}
-            {/* <%=f.submit(t("pages.tickets.form.submit"), {id: 'contact_submit', class:'btn btn-outline-primary btn-block'})%> */}
           </div>
         </div>
       </form>
@@ -65,4 +66,11 @@ class TicketForm extends React.Component {
   }
 }
 
+TicketForm.propTypes = {
+  id: PropTypes.number,
+  department: PropTypes.number,
+  status: PropTypes.number,
+  title: PropTypes.string,
+  text: PropTypes.string,
+}
 export default TicketForm
