@@ -28,12 +28,18 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
       it 'add item to list' do
         click_on(I18n.t('buttons.add'))
+        
+        select('Sales', from: 'departmentSelectBox') # find option by text
+        find("#departmentSelectBox").select("Sales") # find option by text
+        find("option[value='sales']").click # find option by value
+
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
         # click_on(I18n.t('buttons.save'))
         click_on(I18n.t('buttons.submit'))
 
         expect(page).to have_content('ticket 1')
+        expect(page).to have_content('sales')
         
         all('.btn-outline-info').last.click
         # click_on(I18n.t('buttons.view'), match: :first) # :first, :smart, :prefer_exact, :one
