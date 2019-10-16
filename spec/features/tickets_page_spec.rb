@@ -40,7 +40,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
 
         expect(page).to have_content('ticket 1')
-        expect(page).to have_content('sales')
+        expect(page).to have_content('Sales')
         
         all('.btn-outline-info').last.click # click on last view item
         
