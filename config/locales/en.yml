@@ -147,6 +147,7 @@ en:
       form:
         title: "Subject"
         select_the_department: "Select the department"
+        department: "Department"
         text: "Message"
         attachment: "Attachment"
         submit: "Submit"
