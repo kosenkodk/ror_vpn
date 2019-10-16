@@ -7,7 +7,7 @@ class TicketForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      departmentSelectValue: "billing"
+      departmentSelectValue: this.props.department && this.props.department || "billing"
     }
     this.onDepartmentSelectChange = this.onDepartmentSelectChange.bind(this);
   }
@@ -68,7 +68,7 @@ class TicketForm extends React.Component {
 
 TicketForm.propTypes = {
   id: PropTypes.number,
-  department: PropTypes.number,
+  department: PropTypes.string,
   status: PropTypes.number,
   title: PropTypes.string,
   text: PropTypes.string,

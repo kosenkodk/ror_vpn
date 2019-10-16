@@ -19,6 +19,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.view'), match: :first)
         expect(page).to have_content(ticket.title)
         expect(page).to have_content(ticket.text)
+        expect(page).to have_content(ticket.department)
       end
 
       xit 'delete item from list' do
@@ -30,8 +31,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.add'))
         
         select('Sales', from: 'departmentSelectBox') # find option by text
-        find("#departmentSelectBox").select("Sales") # find option by text
-        find("option[value='sales']").click # find option by value
+        # find("#departmentSelectBox").select("Sales") # find option by text
+        # find("option[value='sales']").click # find option by value
 
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
@@ -41,8 +42,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content('ticket 1')
         expect(page).to have_content('sales')
         
-        all('.btn-outline-info').last.click
-        # click_on(I18n.t('buttons.view'), match: :first) # :first, :smart, :prefer_exact, :one
+        all('.btn-outline-info').last.click # click on last view item
         
         expect(page).to have_content('text 1')
       end
@@ -60,7 +60,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       xit 'filled input fields of edit form' do
-        click_on(I18n.t('buttons.edit'), match: :first)
+        click_on(I18n.t('buttons.edit'), match: :first) # :first, :smart, :prefer_exact, :one
+
         expect(page).to have_content(ticket.title)
         expect(page).to have_content(ticket.text)
       end
