@@ -30,14 +30,10 @@ class Api::V1::ContactsController < Api::V1::ApiController
   def show
     if Contact.exists?(params[:id])
       @contact = Contact.find(params[:id])
-      flash[:notice] = flash[:notice]
       # notice = 'Your message has been created'
       # flash[:notice] = notice
-      # render plain: "ok contact #{@contact.email} #{@contact.title}", status: 200
-      render json: I18n.t('pages.contact_us.success_message')
+      render json: {contact: @contact, notice: I18n.t('pages.contact_us.success_message')}
     else
-      # flash[:error] = flash[:error]
-      # render json: "fail contact is not found", status: 404\
       render json: I18n.t('pages.contact_us.error_message'), status: 404
     end
   end

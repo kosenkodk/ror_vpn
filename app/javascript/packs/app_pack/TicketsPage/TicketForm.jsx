@@ -1,37 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import I18n from 'i18n-js/index.js.erb';
+import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 
 class TicketForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      departmentSelectValue: this.props.department && this.props.department || 0
-    }
-    this.onDepartmentSelectChange = this.onDepartmentSelectChange.bind(this);
-  }
-
-  onDepartmentSelectChange(e) {
-    this.setState({ departmentSelectValue: event.target.value })
-    e.preventDefault();
-  }
-
   render() {
-    // const { departments } = this.props
     return (
       <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}>
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
-            <select className="form-control" id="departmentSelectBox" name="department" value={this.state.departmentSelectValue} onChange={this.onDepartmentSelectChange}>
-              {this.props.departments && this.props.departments.map((item) =>
-                <option key={`department${item.id}`} value={item.id}>{item.title}</option>
-              )}
-              {/* <option value="1">{I18n.t('pages.tickets.form.help.select_the_department1')}</option>
-              <option value="2">{I18n.t('pages.tickets.form.help.select_the_department2')}</option>
-              <option value="3">{I18n.t('pages.tickets.form.help.select_the_department3')}</option> */}
-            </select>
+            <SelectBoxDepartment departments={this.props.departments} />
           </div>
         </div>
 
