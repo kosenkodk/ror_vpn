@@ -104,14 +104,17 @@ class SignupPage extends React.Component {
       return this.responseFailed(response)
     }
 
+    localStorage.setItem('csrf', JSON.stringify(response.csrf));
+
     fetch(`${config.apiUrl}/me`)
-      // .then(handleErrors)
-      .then((response) => response.json())
+      .then(handleErrors)
+      // .then((response) => response.json())
       .then((meResponse) => {
         // console.log('/me', meResponse)
         this.setState({ error: meResponse.message || '' })
         // set data 
-        this.props.setCurrentUser(meResponse, response.csrf)
+        localStorage.setItem('user', JSON.stringify(meResponse));
+        // this.props.setCurrentUser(meResponse, response.csrf)
         this.props.history.push(config.userUrlAfterSignin)
       })
       .catch((error) => {
@@ -122,7 +125,9 @@ class SignupPage extends React.Component {
   responseFailed(error) {
     this.setState({ error: errorMessage(error) })
     //unset current user
-    this.props.unsetCurrentUser()
+    localStorage.removeItem('csrf');
+    localStorage.removeItem('user');
+    // this.props.unsetCurrentUser()
   }
 
   componentDidMount() {
