@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title">Hi <%=@contact.email%></h5>
       <p class="card-text">
-        <%=@contact.department.try(:title)%>
+        <%=@contact.try(:department).try(:title)%>
       </p>
       <p class="card-text">
         <%=@contact.title%>
