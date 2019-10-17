@@ -12,17 +12,21 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 export const PrivateRouteWithSidebar = ({ component: Component, ...rest }) => (
-  <div className="row">
-    <div className="col-sm-4">
-      <Sidebar />
-    </div>
-    <div className="col-sm-8">
-      <Route {...rest} render={props => (
-        localStorage.getItem('user')
-          ? <Component {...props} />
-          : <Redirect to={{ pathname: config.urlAfterSignout, state: { from: props.location } }} />
-
-      )} />
-    </div>
-  </div>
+  <React.Fragment>
+    {
+      localStorage.getItem('user') &&
+      <div className="row">
+        <div className="col-sm-4">
+          <Sidebar />
+        </div>
+        <div className="col-sm-8">
+          <Route {...rest} render={props => (
+            localStorage.getItem('user')
+              ? <Component {...props} />
+              : <Redirect to={{ pathname: config.urlAfterSignout, state: { from: props.location } }} />
+          )} />
+        </div>
+      </div>
+    }
+  </React.Fragment>
 )

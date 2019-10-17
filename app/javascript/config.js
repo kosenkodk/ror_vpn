@@ -6,6 +6,11 @@ const config = {
 };
 
 const urls = {
+  home: {
+    path: '/',
+    name: 'Home',
+    // component: HomePage
+  },
   signin: {
     path: '/signin',
     name: 'Sign in',
