@@ -13,6 +13,11 @@ RSpec.describe Contact, type: :model do
         expect(contact.message_short).to eq('message short')
         expect(contact.valid?).to be_truthy
       end
+      it 'with the same email' do
+        contact = Contact.create(email: 'test@example.com')
+        contact2 = Contact.create(email: 'test@example.com')
+        expect(contact2.valid?).to be_truthy
+      end
       it "with department"
     end
   
@@ -34,11 +39,6 @@ RSpec.describe Contact, type: :model do
         expect(contact.valid?).to be_falsy
         contact = Contact.new(email: 'test@test')
         expect(contact.valid?).to be_falsy
-      end
-      it 'with not unique email (duplicated email)' do
-        contact = Contact.create(email: 'test@example.com')
-        contact2 = Contact.create(email: 'test@example.com')
-        expect(contact2.valid?).to be_falsy
       end
     end
   end

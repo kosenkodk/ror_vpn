@@ -67,7 +67,7 @@ class App extends React.Component {
             <div className="row">
               <div className="col">
                 {alert.message &&
-                  <div className={`alert ${alert.type} text-center`}>{alert.message}</div>
+                  <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
                 }
               </div>
             </div>
