@@ -6,13 +6,14 @@ class Api::V1::ContactsController < Api::V1::ApiController
 
   def create
     @contact = Contact.new(contact_params)
-    # @contact.department = # TODO: will implement
+    # @contact.department = department # TODO: will implement
     if @contact.save
-      department = Department.find(@contact.department)
-      ContactUsMailer.notify_department_from(@contact.email, department.email, @contact).deliver_now
-      ContactUsMailer.notify_user_from(department.email, @contact.email, @contact).deliver_now
-      # ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, @contact.id).deliver_now
-
+      while Department.exists?(@contact.department) do
+        department = Department.find(@contact.department)
+        ContactUsMailer.notify_department_from(@contact.email, department.email, @contact).deliver_now
+        ContactUsMailer.notify_user_from(department.email, @contact.email, @contact).deliver_now
+        # ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, @contact.id).deliver_now
+      end
       notice = I18n.t('pages.contact_us.success_message')
       # flash[:notice] = notice
       render json: { notice: notice }
