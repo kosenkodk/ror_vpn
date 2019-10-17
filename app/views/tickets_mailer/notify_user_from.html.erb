@@ -1,31 +1,18 @@
-<div class="container">
-  <div class="card">
-    <div class="card-header" style="background-color: #eee">
-      <%= image_tag 'logo_mail_black', class: 'pl-3', style:"height:50px;" %>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title"><%=@ticket.try(:user).try(:email)%></h5>
-      <p class="card-text">
-        <%=@ticket.try(:department).try(:title)%>
-      </p>
-      <p class="card-text">
-        <%=@ticket.title%>
-      </p>
-      <p class="card-text">
-        <%=@ticket.text%>
-      </p>
+<h5 class="card-title"><%=@ticket.try(:user).try(:email)%></h5>
+<p class="card-text">
+  <%=@ticket.try(:department).try(:title)%>
+</p>
+<p class="card-text">
+  <%=@ticket.title%>
+</p>
+<p class="card-text">
+  <%=@ticket.text%>
+</p>
 
-      <p class="card-text">
-        <%#=@ticket.attachment#%>
-      </p>
+<p class="card-text">
+  <%#=@ticket.attachment#%>
+</p>
 
-      <!-- <a href="<%#=api_v1_ticket_url(@ticket.id)#%>" class="btn btn-outline-secondary">
-            view more details
-          </a> -->
-
-    </div>
-    <div class="card-footer text-muted text-center" style="">
-      Copyright &copy; VegaVPN, All rights reserved
-    </div>
-  </div>
-</div>
+<!-- <a href="<%#=api_v1_ticket_url(@ticket.id)#%>" class="btn btn-outline-secondary">
+  view more details
+</a> -->
