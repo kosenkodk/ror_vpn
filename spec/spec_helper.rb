@@ -15,7 +15,7 @@
 require 'capybara/rspec'
 require 'simplecov'
 SimpleCov.start 'rails'
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 20
 
 require_relative 'support/auth_helper'
 require_relative 'support/response_helper'
