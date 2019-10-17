@@ -75,36 +75,37 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <div className='container'>
-              <Switch>
-                {/* public pages */}
-                <Route exact path={urls.signin.path} component={SigninPage} />
-                <Route exact path={urls.signup.path} component={SignupPage} />
-                <Route exact path={urls.pricing.path} component={PricingPage} />
-                <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
-                <Route exact path={urls.reset.path} component={PasswordResetPage} />
-                <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
-
-                <Route exact path={urls.help.path} component={ComingSoonPage} />
-                <Route exact path={urls.contact_us.path} component={ContactusPage} />
-
-                {/* private user's pages */}
-                <PrivateRouteWithSidebar exact path={urls.tickets.path} component={TicketsPage} />
-                <PrivateRouteWithSidebar exact path={urls.tickets_new.path} component={TicketsNewPage} />
-                <PrivateRouteWithSidebar exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                <PrivateRouteWithSidebar exact path={urls.tickets_view.path} component={TicketsViewPage} />
-
-                {/* status pages */}
-                <Route exact path={urls.success.path} component={SuccessPage} />
-                <Route exact path={urls.not_found.path} component={NotFoundPage} />
-                <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
-                <Route exact path={urls.http204.path} component={ComingSoonPage} />
-
-                {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-                <Route component={NotFoundPage} />
-              </Switch>
-            </div>
           </Switch>
+
+          <div className='container'>
+            <Switch>
+              {/* public pages */}
+              <Route exact path={urls.signin.path} component={SigninPage} />
+              <Route exact path={urls.signup.path} component={SignupPage} />
+              <Route exact path={urls.pricing.path} component={PricingPage} />
+              <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
+              <Route exact path={urls.reset.path} component={PasswordResetPage} />
+              <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
+
+              <Route exact path={urls.help.path} component={ComingSoonPage} />
+              <Route exact path={urls.contact_us.path} component={ContactusPage} />
+
+              {/* private user's pages */}
+              <PrivateRouteWithSidebar exact path={urls.tickets.path} component={TicketsPage} />
+              <PrivateRouteWithSidebar exact path={urls.tickets_new.path} component={TicketsNewPage} />
+              <PrivateRouteWithSidebar exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+              <PrivateRouteWithSidebar exact path={urls.tickets_view.path} component={TicketsViewPage} />
+
+              {/* status pages */}
+              <Route exact path={urls.success.path} component={SuccessPage} />
+              <Route exact path={urls.not_found.path} component={NotFoundPage} />
+              <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
+              <Route exact path={urls.http204.path} component={ComingSoonPage} />
+
+              {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
         </div>
         {this.state.isFooterVisible && <FooterSection />}
       </Router>
