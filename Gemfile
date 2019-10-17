@@ -71,4 +71,5 @@ end
 gem 'font-awesome-rails'
 gem 'i18n-js'
 
+gem 'bootstrap-email'
 
