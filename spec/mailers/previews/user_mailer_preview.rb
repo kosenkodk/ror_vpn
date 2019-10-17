@@ -4,4 +4,8 @@ class UserMailerPreview < ActionMailer::Preview
     @user = User.new(email: 'user@email.ru', reset_password_token: 'token')
     UserMailer.reset_password(@user).deliver_now
   end
+  def signup
+    @user = User.new(email: 'user@email.ru', reset_password_token: 'token')
+    UserMailer.signup(@user).deliver_now
+  end
 end

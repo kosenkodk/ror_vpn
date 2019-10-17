@@ -5,6 +5,7 @@ class Api::V1::SignupController < Api::V1::ApiController
     # endpoint for web client — we’ll be renewing a new access with the old expired one
     user = User.new(user_params)
     if user.save
+      UserMailer.signup(user).deliver_now
       payload  = { user_id: user.id, aud: [user.role] }
       session = JWTSessions::Session.new(payload: payload,
                                          refresh_by_access_allowed: true,
