@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header" style="background-color: #eee">
+      <%= image_tag 'logo_mail_black', class: 'pl-3', style:"height:50px;" %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%=@contact.email%></h5>
+      <p class="card-text">
+        <%=@contact.try(:department).try(:title)%>
+      </p>
+      <p class="card-text">
+        <%=@contact.title%>
+      </p>
+      <p class="card-text">
+        <%=@contact.message_short%>
+      </p>
+
+      <p class="card-text">
+        <%=@contact.message%>
+      </p>
+
+      <!-- <a href="<%=api_v1_contact_url(@contact.id)%>" class="btn btn-outline-secondary">
+          view more details
+        </a> -->
+
+    </div>
+    <div class="card-footer text-muted text-center" style="">
+      Copyright &copy; VegaVPN, All rights reserved
+    </div>
+  </div>
+</div>

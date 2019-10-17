@@ -223,6 +223,12 @@ en:
           select_the_department3: "Technical Support"
           message_short: "Please summarize your message"
           message: "Please write your message here"
+      user:
+        subject: "Congrats with your new message!"
+      admin:
+        subject: "Contact Us. New message."
+      department:
+        subject: "Contact Us. New message."
   buttons:
     back_to_prev_page: "Back to previous page"
     back_to_home_page: "Back to home page"
