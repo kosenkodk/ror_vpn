@@ -46,5 +46,10 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(page).to have_css('nav')
       expect(page).to have_css('footer')
     end
+
+    it "signup" do
+      fsign_up_as(User.new(email:'user@email.com', password:'password', password_confirmation:'password'))
+      expect(page).to have_css('tickets')
+    end
   end
 end
