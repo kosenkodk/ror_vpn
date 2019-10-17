@@ -41,33 +41,32 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
 
         expect(page).to have_content('ticket 1')
-        expect(page).to have_content('Billing')
+        expect(page).to have_content(department_billing.title)
         
         all('.btn-outline-info').last.click # click on last view item
         
         expect(page).to have_content('text 1')
-        expect(page).to have_content('Billing')
+        expect(page).to have_content(department_billing.title)
       end
 
-      it 'add item with department to list' do
+      it 'add item with sales department to list' do
         click_on(I18n.t('buttons.add'))
         
-        select('Sales', from: 'departmentSelectBox') # find option by text
+        select(department_sales.title, from: 'departmentSelectBox') # find option by text
         # find("#departmentSelectBox").select("Sales") # find option by text
         # find("option[value='sales']").click # find option by value
 
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
-        # click_on(I18n.t('buttons.save'))
         click_on(I18n.t('buttons.submit'))
 
         expect(page).to have_content('ticket 1')
-        expect(page).to have_content('Sales')
+        expect(page).to have_content(department_sales.title)
         
         all('.btn-outline-info').last.click # click on last view item
         
         expect(page).to have_content('text 1')
-        expect(page).to have_content('Sales')
+        expect(page).to have_content(department_sales.title)
       end
 
       xit 'edit item' do
