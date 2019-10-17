@@ -22,52 +22,11 @@ class ContactusPage extends React.Component {
     let data = {}
     formData.forEach((value, key) => { data[key] = value });
     this.props.dispatch(userActions.contactUs(data))
-    // console.log(data)
-    return;
-    let csrf = ''
-    try {
-      csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-      // csrf = $('meta[name="csrf-token"]').content //.attr('content')
-    } catch (e) { }
-    const postData = { 'email': email, 'message_short': message_short, 'message': message };
-    fetch('/api/v1/contacts', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      credentials: 'include', // same-origin, include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': csrf
-      },
-      body: JSON.stringify(postData), // data type should the same value as Content-Type header
-    }).then((response) => {
-      this.setState({ error: '', notice: '' })
-
-      if (response.ok) {
-        return response.text();
-        // return [response.text(), response.status]
-        // return { response.text, response.status }
-      }
-      throw response //new Error('Network response was not ok.');
-    })
-      .then((message) => {
-        // console.log('success', message)
-        this.setState({ notice: message })
-        // console.log('success', response.text(), response.status);
-        // this.props.history.push('/200')
-      }).catch((response) => {
-        response.text().then((message) => {
-          // console.log('error', message)
-          this.setState({ error: message })
-          // (response.status === 200) ? this.setState({ notice: message }) : this.setState({ error: message })
-        })
-        // this.props.history.push('/404')
-      });
-
-    e.preventDefault();
   }
 
   render() {
     return (
-      <div className="container contact_us mt-lg-5 pt-lg-5">
+      <div className="contact_us mt-lg-5 pt-lg-5">
         <div className="featurette text-center bg_astronaut">
           <div className="row">
             <div className="col-md-8 offset-md-2">

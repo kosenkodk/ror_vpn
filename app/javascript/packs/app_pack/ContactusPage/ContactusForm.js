@@ -17,7 +17,7 @@ class ContactusForm extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.contact_us.form.email')}</label>
           <div className="col-sm-8">
-            <input type="email" name="email" required={true} className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.contact_us.form.help.email')} />
+            <input type="email" name="email" required={false} className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.contact_us.form.help.email')} />
           </div>
         </div>
         <div className="form-group row">

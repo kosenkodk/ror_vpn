@@ -61,7 +61,8 @@ function contactUs(contact) {
   const requestOptions = {
     method: 'POST',
     headers: authHeader(),
-    body: JSON.stringify({ contact })
+    body: JSON.stringify({ contact: contact }),
+    // body: JSON.stringify({ contact })
   }
   return fetch(`${config.apiUrl}/contacts`, requestOptions).then(handleResponse);
 }
@@ -106,6 +107,7 @@ function handleResponse(response) {
       data = JSON.parse(text);
     } catch (e) { }
 
+    // network error
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
@@ -116,6 +118,10 @@ function handleResponse(response) {
       const error = (data && data.error) || (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
+
+    // api error
+    const error = (data && data.error) || (data && data.message) || response.statusText;
+    if (data && data.error) return Promise.reject(error)
 
     return data;
   });

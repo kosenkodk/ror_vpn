@@ -19,7 +19,7 @@ class Api::V1::ContactsController < Api::V1::ApiController
       notice = @contact.errors.full_messages.join(', ') # capitalize
       # notice = @contact.errors.messages.map { |k, v| "#{k}: #{v.split(',').join(' & ')}" }.join("; ") #{ |k,v| "#{k}: #{v}" }.join(";") # custom with ; and & delimitters
       # flash[:error] = notice || I18n.t('pages.contact_us.error_message')
-      render json: notice || I18n.t('pages.contact_us.error_message'), status: 404
+      render json: { error: notice || I18n.t('pages.contact_us.error_message'), status: 404 }
     end
 
   end
@@ -32,9 +32,9 @@ class Api::V1::ContactsController < Api::V1::ApiController
       @contact = Contact.find(params[:id])
       # notice = 'Your message has been created'
       # flash[:notice] = notice
-      render json: {contact: @contact, notice: I18n.t('pages.contact_us.success_message')}
+      render json: { contact: @contact, notice: I18n.t('pages.contact_us.success_message') }
     else
-      render json: I18n.t('pages.contact_us.error_message'), status: 404
+      render json: { error: I18n.t('pages.contact_us.error_message'), status: 404 }
     end
   end
 

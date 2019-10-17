@@ -41,7 +41,7 @@ class TicketsNewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loading, items } = state.departments
+  const { loading, items } = state.departments;
   return { loading, items }
 }
 

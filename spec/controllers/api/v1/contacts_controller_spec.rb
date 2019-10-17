@@ -21,7 +21,7 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
     context 'valid data' do
       it 'redirects to contacts#show' do
         post :create, params: { contact: valid_data }
-        expect(response.body).to eq I18n.t('pages.contact_us.success_message')
+        expect(response_json['notice']).to eq I18n.t('pages.contact_us.success_message')
       end
       it 'create new contact in database' do
         expect {
