@@ -112,4 +112,8 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
       }.to change(Ticket, :count).by(-1)
     end
   end
+
+  it "send email to billing department"
+  it "send email to sales department"
+  it "send email to tech support department"
 end
