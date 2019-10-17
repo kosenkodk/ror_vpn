@@ -16,6 +16,10 @@
         <%= yield %>
       </div>
       <div class="card-footer text-muted text-center" style="">
+        <%=link_to 'visit our website', root_url, class: '' %> |
+        <%=link_to 'sign in to your account', root_url+'signin', class: '' %> |
+        <%=link_to 'contact us', root_url+'contact_us', class: '' %>
+        <br />
         Copyright &copy; VegaVPN, All rights reserved
       </div>
     </div>
