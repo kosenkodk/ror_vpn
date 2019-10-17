@@ -73,12 +73,10 @@ class App extends React.Component {
             </div>
           </div>
 
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-          </Switch>
-
-          <div className='container'>
+          <div className={`${history.location.pathname === urls.home.path ? '' : 'container'}`}>
             <Switch>
+              <Route exact path={urls.home.path} component={HomePage} />
+
               {/* public pages */}
               <Route exact path={urls.signin.path} component={SigninPage} />
               <Route exact path={urls.signup.path} component={SignupPage} />
@@ -101,14 +99,15 @@ class App extends React.Component {
               <Route exact path={urls.not_found.path} component={NotFoundPage} />
               <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
               <Route exact path={urls.http204.path} component={ComingSoonPage} />
-
               {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
               <Route component={NotFoundPage} />
             </Switch>
+
           </div>
+
         </div>
         {this.state.isFooterVisible && <FooterSection />}
-      </Router>
+      </Router >
     );
   }
   componentDidMount() {
