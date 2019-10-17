@@ -14,7 +14,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
     end
 
     it 'with correct subject' do
-      expect(email.subject).to eq('Congrats with your new message!')
+      expect(email.subject).to eq(I18n.t('pages.contact_us.user.subject'))
     end
 
     it 'with contact link in body message' do
@@ -36,7 +36,37 @@ RSpec.describe ContactUsMailer, type: :mailer do
     end
 
     it 'with correct subject' do
-      expect(email.subject).to eq('Congrats with your new message!')
+      expect(email.subject).to eq(I18n.t('pages.contact_us.user.subject'))
+    end
+
+    it 'with title, message, message short and email in body message' do
+      expect(email.text_part.body.to_s).to have_text(contact.email)
+      expect(email.text_part.body.to_s).to have_text(contact.message)
+      expect(email.text_part.body.to_s).to have_text(contact.message_short)
+      expect(email.text_part.body.to_s).to have_text(contact.title)
+
+      expect(email.html_part.body.to_s).to have_text(contact.email)
+      expect(email.html_part.body.to_s).to have_text(contact.message)
+      expect(email.html_part.body.to_s).to have_text(contact.message_short)
+      expect(email.html_part.body.to_s).to have_text(contact.title)
+    end
+
+    it 'with not empty email template'
+  end
+
+  context 'notify department from' do
+    let(:email) { ContactUsMailer.notify_department_from('from@email.ru', 'to@email.ru', contact).deliver_now }
+    
+    it 'with correct email from' do
+      expect(email.from).to include('from@email.ru')
+    end
+
+    it 'with correct email to' do
+      expect(email.to).to include('to@email.ru')
+    end
+
+    it 'with correct subject' do
+      expect(email.subject).to eq(I18n.t('pages.contact_us.department.subject'))
     end
 
     it 'with title, message, message short and email in body message' do
@@ -63,7 +93,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
     end
 
     it 'with correct subject' do
-      expect(admin_email.subject).to eq('Contact Us. New message.')
+      expect(admin_email.subject).to eq(I18n.t('pages.contact_us.admin.subject'))
     end
 
     it 'with contact link in body message' do
