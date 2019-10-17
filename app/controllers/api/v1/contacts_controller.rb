@@ -10,8 +10,8 @@ class Api::V1::ContactsController < Api::V1::ApiController
     if @contact.save
       while Department.exists?(@contact.department) do
         department = Department.find(@contact.department)
-        ContactUsMailer.notify_department_from(@contact.email, department.email, @contact).deliver_now
         ContactUsMailer.notify_user_from(department.email, @contact.email, @contact).deliver_now
+        ContactUsMailer.notify_department_from(@contact.email, department.email, @contact).deliver_now
         # ContactUsMailer.notify_admin(Rails.application.credentials.admin_email, @contact.id).deliver_now
       end
       notice = I18n.t('pages.contact_us.success_message')

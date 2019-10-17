@@ -4,6 +4,7 @@ RSpec.describe ContactUsMailer, type: :mailer do
   include Rails.application.routes.url_helpers
 
   let(:contact_id) { 1 }
+  let(:contact) { FactoryBot.create(:contact) }
 
   context 'notify user' do
     let(:email) { ContactUsMailer.notify_user('user@email.ru', contact_id).deliver_now }
@@ -18,6 +19,32 @@ RSpec.describe ContactUsMailer, type: :mailer do
 
     it 'with contact link in body message' do
       expect(email.body.to_s).to include(api_v1_contact_url(contact_id))
+    end
+
+    it 'with not empty email template'
+  end
+
+  context 'notify user from' do
+    let(:email) { ContactUsMailer.notify_user_from('from@email.ru', 'user@email.ru', contact).deliver_now }
+    
+    it 'with correct email' do
+      expect(email.to).to include('user@email.ru')
+    end
+
+    it 'with correct subject' do
+      expect(email.subject).to eq('Congrats with your new message!')
+    end
+
+    it 'with title, message, message short and email in body message' do
+      expect(email.text_part.body.to_s).to have_text(contact.email)
+      expect(email.text_part.body.to_s).to have_text(contact.message)
+      expect(email.text_part.body.to_s).to have_text(contact.message_short)
+      expect(email.text_part.body.to_s).to have_text(contact.title)
+
+      expect(email.html_part.body.to_s).to have_text(contact.email)
+      expect(email.html_part.body.to_s).to have_text(contact.message)
+      expect(email.html_part.body.to_s).to have_text(contact.message_short)
+      expect(email.html_part.body.to_s).to have_text(contact.title)
     end
 
     it 'with not empty email template'

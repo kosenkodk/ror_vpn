@@ -8,8 +8,8 @@ FactoryBot.define do
 
     message { 'Message' }
     message_short { 'Message Short' }
-    featured { false }
-    cover_image { "#{Rails.root}/fixtures/cover_image.png" }
+    # featured { false }
+    # cover_image { "#{Rails.root}/fixtures/cover_image.png" }
 
     # # factory :contact_with_department do
     # # department's association
@@ -22,7 +22,7 @@ FactoryBot.define do
     end
 
     factory :alpha_contact do
-    department { :alpha }
+      department { :alpha }
     end
   end
 end
