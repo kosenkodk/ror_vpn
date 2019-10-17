@@ -1,16 +1,31 @@
 <div class="container">
   <div class="card">
-    <h5 class="card-header"><%=image_tag 'logo_mail_black' %></h5>
+    <div class="card-header" style="background-color: #eee">
+      <%= image_tag 'logo_mail_black', class: 'pl-3', style:"height:50px;" %>
+    </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
+      <h5 class="card-title">Hi <%=@contact.email%></h5>
       <p class="card-text">
-        notify user
-
-        contact link: <%=api_v1_contact_url(@contact.id)%>
-
+        <%=@contact.department.try(:title)%>
       </p>
-      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      <p class="card-text">
+        <%=@contact.title%>
+      </p>
+      <p class="card-text">
+        <%=@contact.message_short%>
+      </p>
+
+      <p class="card-text">
+        <%=@contact.message%>
+      </p>
+
+      <!-- <a href="<%=api_v1_contact_url(@contact.id)%>" class="btn btn-outline-secondary">
+        view more details
+      </a> -->
+
+    </div>
+    <div class="card-footer text-muted text-center" style="">
+      Copyright &copy; VegaVPN, All rights reserved
     </div>
   </div>
-
 </div>
