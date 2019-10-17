@@ -49,7 +49,7 @@ RSpec.describe AuthController, type: :feature, js: true do
 
     it "signup" do
       fsign_up_as(User.new(email:'user@email.com', password:'password', password_confirmation:'password'))
-      expect(page).to have_css('tickets')
+      expect(page).to have_content('Tickets')
     end
   end
 end
