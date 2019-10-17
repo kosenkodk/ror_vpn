@@ -43,6 +43,10 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
         }.not_to change(Contact, :count)
       end
     end
+
+    it "send email to billing department"
+    it "send email to sales department"
+    it "send email to tech support department"
   end
 
 end
