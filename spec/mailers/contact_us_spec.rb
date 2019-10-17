@@ -25,10 +25,14 @@ RSpec.describe ContactUsMailer, type: :mailer do
   end
 
   context 'notify user from' do
-    let(:email) { ContactUsMailer.notify_user_from('from@email.ru', 'user@email.ru', contact).deliver_now }
+    let(:email) { ContactUsMailer.notify_user_from('from@email.ru', 'to@email.ru', contact).deliver_now }
     
-    it 'with correct email' do
-      expect(email.to).to include('user@email.ru')
+    it 'with correct email from' do
+      expect(email.from).to include('from@email.ru')
+    end
+
+    it 'with correct email to' do
+      expect(email.to).to include('to@email.ru')
     end
 
     it 'with correct subject' do
