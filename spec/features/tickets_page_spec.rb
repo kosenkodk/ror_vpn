@@ -4,6 +4,12 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   describe 'Tickets' do
     let!(:user) {create(:user, role: 0)}
     let!(:ticket) {create(:ticket, user: user)}
+    let!(:department_billing) {create(:department, title: 'Billing')}
+    let!(:department_sales) {create(:department, title: 'Sales')}
+    let!(:department_tech) {create(:department, title: 'Technical Support')}
+    # let!(:ticket_billing) {create(:ticket, user: user, department: department_billing)}
+    # let!(:ticket_sales) {create(:ticket, user: user, department: department_sales)}
+    # let!(:ticket_tech) {create(:ticket, user: user, department: department_tech)}
 
     context 'user' do
       before(:each) do
@@ -27,7 +33,23 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).not_to have_content(ticket.title)
       end
 
-      it 'add item to list' do
+      it 'add item with defaultdepartment to list' do
+        click_on(I18n.t('buttons.add'))
+        
+        fill_in :title, with: 'ticket 1'
+        fill_in :text, with: 'text 1'
+        click_on(I18n.t('buttons.submit'))
+
+        expect(page).to have_content('ticket 1')
+        expect(page).to have_content('Sales')
+        
+        all('.btn-outline-info').last.click # click on last view item
+        
+        expect(page).to have_content('text 1')
+        expect(page).to have_content('Billing')
+      end
+
+      it 'add item with department to list' do
         click_on(I18n.t('buttons.add'))
         
         select('Sales', from: 'departmentSelectBox') # find option by text
