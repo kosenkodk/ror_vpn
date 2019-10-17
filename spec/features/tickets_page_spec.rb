@@ -33,7 +33,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).not_to have_content(ticket.title)
       end
 
-      it 'add item with defaultdepartment to list' do
+      it 'add item with default department to list' do
         click_on(I18n.t('buttons.add'))
         
         fill_in :title, with: 'ticket 1'
@@ -41,7 +41,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
 
         expect(page).to have_content('ticket 1')
-        expect(page).to have_content('Sales')
+        expect(page).to have_content('Billing')
         
         all('.btn-outline-info').last.click # click on last view item
         
