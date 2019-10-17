@@ -158,6 +158,10 @@ en:
           select_the_department3: "Technical Support"
           text: "Please write your message here"
           attachment: "Please attach your file"
+      user:
+        subject: "Congrats with your new ticket!"
+      department:
+        subject: "New ticket."
     pricing:
       title: "One price for all your devices"
     forgot_pwd:
