@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_102327) do
     t.string "title"
     t.text "text"
     t.integer "user_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "department_id"

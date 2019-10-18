@@ -7,7 +7,7 @@ class CreateTickets < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :text
       t.references :user, null: false, foreign_key: true
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end
