@@ -22,8 +22,16 @@ class TicketsNewPage extends React.Component {
     let formData = new FormData(e.target)
     fileToBase64(this.state.file, this.state.file.name).then(result => {
       let data = {}
-      formData.append('attachment2', result)
+      const attachment_base64 = {
+        type: this.state.file.type,
+        name: this.state.file.name,
+        size: this.state.file.size,
+        lastModified: this.state.file.lastModified,
+        file: result
+      }
+      // formData.append('attachment2', result)
       formData.forEach((value, key) => { data[key] = value });
+      data['attachment2'] = attachment_base64
       // console.log('onFormSubmit', 'jsonData', data, 'formData', formData)
       // return
       this.props.dispatch(ticketActions.add(data))

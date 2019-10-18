@@ -26,7 +26,8 @@ class Api::V1::TicketsController < Api::V1::ApiController
     
     # begin
       attachment = params[:ticket][:attachment]
-      attachmentUrl = params[:ticket][:attachment2] # data:application/octet-stream;base64,FILE
+      attachmentUrl = params[:ticket][:attachment2][:file] # data:application/octet-stream;base64,FILE
+      attachmentFileName =  params[:ticket][:attachment2][:name]
       start = attachmentUrl.index(',') + 1
       attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
       
@@ -35,7 +36,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
         f.write(attachment_base64_decoded)
       end
 
-      @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: file_name)
+      @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: attachmentFileName)
       # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
     
     # rescue => exception
