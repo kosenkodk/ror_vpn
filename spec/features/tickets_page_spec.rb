@@ -94,7 +94,16 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       it "attach file or image" do
-        # attach_file('Image', '/path/to/image.jpg')
+        # attach_file('Image', '/path/to/image.jpg') # input element that has a name, id, or label_text
+        fill_in :title, with: 'ticket'
+        file = fixture_file_upload(Rails.root.join('app','assets', 'images', 'logo.png'), 'image/png') 
+        attach_file('attachment', file)
+        click_on(I18n.t('buttons.submit'))
+        
+        all('.btn-outline-info').last.click # click on last view item
+        
+        # visit page.find('img#myimage')[:src]
+        # page.status_code.should be 200
       end
 
       it "display ticket's status"

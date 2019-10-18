@@ -4,7 +4,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
   let(:user) { create(:user) }
 
   let(:valid_attributes) {
-    { title: 'new title' }
+    { title: 'new title', attachment: fixture_file_upload(Rails.root.join('app','assets', 'images', 'logo.png'), 'image/png') }
   }
 
   let(:invalid_attributes) {
@@ -48,6 +48,14 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
         expect {
           post :create, params: { ticket: valid_attributes }
         }.to change(Ticket, :count).by(1)
+      end
+
+      it 'attaches the uploaded file' do
+        # file = fixture_file_upload(Rails.root.join('public', 'favicon.ico'), 'image/png')
+        file = fixture_file_upload(Rails.root.join('app','assets', 'images', 'logo.png'), 'image/png') 
+        expect {
+          post :create, params: { ticket: { title: 'title', attachment: file } }
+        }.to change(Ticket, :count).by(1) #change(ActiveStorage::Attachment, :count).by(1)
       end
 
       it 'renders a JSON response with the new ticket' do
