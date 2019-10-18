@@ -95,16 +95,17 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
       it "attach file or image" do
         click_on(I18n.t('buttons.add'))
-        fill_in :title, with: 'ticket'
+        fill_in :title, with: 'ticket with attachment'
         file = Rails.root.join('app','assets', 'images', 'logo.png')
         attach_file('attachment', file) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
         all('.btn-outline-info').last.click # click on last view item
+        expect(page).to have_content('ticket with attachment')
         expect(page).to have_content(I18n.t('pages.tickets.form.attachment_url'))
-        # click_on(I18n.t('pages.tickets.form.attachment_url'))
+        click_on(I18n.t('pages.tickets.form.attachment_url'))
         ## visit page.find('img#myimage')[:src]
-        # page.status_code.should be 200
+        # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
 
       it "display ticket's status"
