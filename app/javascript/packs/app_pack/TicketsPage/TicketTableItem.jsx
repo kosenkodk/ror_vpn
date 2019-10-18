@@ -35,7 +35,7 @@ class TicketTableItem extends React.Component {
 TicketTableItem.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
-  status: PropTypes.string,
+  // status: PropTypes.string,
   department: PropTypes.object,
 }
 

@@ -108,7 +108,9 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
 
-      it "display ticket's status"
+      it "display ticket's status" do
+        expect(page).to have_content('opened')
+      end
 
       it "searching tickets by title or text"
 
