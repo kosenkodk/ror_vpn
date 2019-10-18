@@ -7,9 +7,9 @@ import TicketForm from './TicketForm'
 import { urls } from 'config'
 
 // Convert file to base64 string
-export const fileToBase64 = (filename, filepath) => {
+export const fileToBase64 = (bits, filename_or_path_to_the_file) => {
   return new Promise(resolve => {
-    var file = new File([filename], filepath);
+    var file = new File([bits], filename_or_path_to_the_file);
     var reader = new FileReader();
     // Read file content on file loaded event
     reader.onload = function (event) {
@@ -34,12 +34,10 @@ class TicketsNewPage extends React.Component {
   onFormSubmit(e) {
     e.preventDefault()
     let formData = new FormData(e.target)
-    fileToBase64(this.state.file, this.state.file).then(result => {
-      formData.append('attachment2', result)
-
+    fileToBase64(this.state.file, this.state.file.name).then(result => {
       let data = {}
       formData.forEach((value, key) => { data[key] = value });
-      console.log('onFormSubmit', 'jsonData', data, 'formData', formData)
+      // console.log('onFormSubmit', 'jsonData', data, 'formData', formData)
       // return
       this.props.dispatch(ticketActions.add(data))
       // this.props.dispatch(ticketActions.add(formData))
