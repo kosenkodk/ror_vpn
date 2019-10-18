@@ -150,6 +150,7 @@ en:
         department: "Department"
         text: "Message"
         attachment: "Attachment"
+        attachment_url: "Visit Attachment Url"
         submit: "Submit"
         help:
           title: "Please write your title here"
