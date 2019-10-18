@@ -23,19 +23,25 @@ class Api::V1::TicketsController < Api::V1::ApiController
   def create
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment2))
     department_id = params[:ticket][:department]
-    attachment = params[:ticket][:attachment]
     
-    attachmentUrl = params[:ticket][:attachment2] # data:application/octet-stream;base64,FILE
-    start = attachmentUrl.index(',') + 1
-    attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
-    
-    file_name = 'attachment.png'
-    File.open(file_name, 'wb') do|f|
-      f.write(attachment_base64_decoded)
-    end
+    # begin
+      attachment = params[:ticket][:attachment]
+      attachmentUrl = params[:ticket][:attachment2] # data:application/octet-stream;base64,FILE
+      start = attachmentUrl.index(',') + 1
+      attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
+      
+      file_name = 'attachment.png'
+      File.open(file_name, 'wb') do|f|
+        f.write(attachment_base64_decoded)
+      end
 
-    @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: file_name)
-    # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
+      @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: file_name)
+      # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
+    
+    # rescue => exception
+    #   render json: {error: except.message, status: 404}
+    # end
+
     if (Department.exists?(department_id))
       department = Department.find(department_id)
       @ticket.department = department

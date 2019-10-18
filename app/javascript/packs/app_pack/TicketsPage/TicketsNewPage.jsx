@@ -5,21 +5,7 @@ import { connect } from 'react-redux'
 import { ticketActions } from '../_actions'
 import TicketForm from './TicketForm'
 import { urls } from 'config'
-
-// Convert file to base64 string
-export const fileToBase64 = (bits, filename_or_path_to_the_file) => {
-  return new Promise(resolve => {
-    var file = new File([bits], filename_or_path_to_the_file);
-    var reader = new FileReader();
-    // Read file content on file loaded event
-    reader.onload = function (event) {
-      resolve(event.target.result);
-    };
-
-    // Convert data to base64 
-    reader.readAsDataURL(file);
-  });
-};
+import { fileToBase64 } from '../_helpers'
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
@@ -36,18 +22,18 @@ class TicketsNewPage extends React.Component {
     let formData = new FormData(e.target)
     fileToBase64(this.state.file, this.state.file.name).then(result => {
       let data = {}
+      formData.append('attachment2', result)
       formData.forEach((value, key) => { data[key] = value });
       // console.log('onFormSubmit', 'jsonData', data, 'formData', formData)
       // return
       this.props.dispatch(ticketActions.add(data))
-      // this.props.dispatch(ticketActions.add(formData))
     })
 
   }
 
   onFileChange(e) {
     e.preventDefault();
-    console.log('onFileChange', e.target.files);
+    // console.log('onFileChange', e.target.files);
     // if (e.target && e.target.files && e.target.files.length > 0)
     this.setState({ file: e.target.files[0] });
   }
