@@ -23,8 +23,8 @@ class Api::V1::TicketsController < Api::V1::ApiController
   def create
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment2))
     department_id = params[:ticket][:department]
-    
-    # begin
+    attachment_error = ''
+    begin
       attachment = params[:ticket][:attachment]
       attachmentUrl = params[:ticket][:attachment2][:file] # data:application/octet-stream;base64,FILE
       attachmentFileName =  params[:ticket][:attachment2][:name]
@@ -39,9 +39,11 @@ class Api::V1::TicketsController < Api::V1::ApiController
       @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: attachmentFileName)
       # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
     
-    # rescue => exception
-    #   render json: {error: except.message, status: 404}
-    # end
+    rescue => exception
+      # render json: {error: "can't upload your attachments", status: 404}
+      # return
+      attachment_error = "can't upload your attachments"
+    end
 
     if (Department.exists?(department_id))
       department = Department.find(department_id)
@@ -50,7 +52,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
       TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket).deliver_now
     end
     @ticket.save!
-    render json: @ticket, status: :created, notice: I18n.t('api.notices.item_added'), location: api_v1_ticket_url(@ticket)
+    render json: @ticket, status: :created, error: attachment_error, notice: I18n.t('api.notices.item_added'), location: api_v1_ticket_url(@ticket)
   end
 
   # PATCH/PUT /tickets/1
