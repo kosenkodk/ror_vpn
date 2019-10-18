@@ -70,7 +70,7 @@ class TicketsViewPage extends React.Component {
         <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8">
-            {item && item.attachment}
+            <a href={item && item.attachment_url}>attachment url</a>
           </div>
         </div>
       </div>
