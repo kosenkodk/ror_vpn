@@ -20,30 +20,31 @@ class TicketsNewPage extends React.Component {
   onFormSubmit(e) {
     e.preventDefault()
     let formData = new FormData(e.target)
-    fileToBase64(this.state.file, this.state.file.name).then(result => {
-      let data = {}
-      const attachment_base64 = {
-        type: this.state.file.type,
-        name: this.state.file.name,
-        size: this.state.file.size,
-        lastModified: this.state.file.lastModified,
-        file: result
-      }
-      // formData.append('attachment2', result)
-      formData.forEach((value, key) => { data[key] = value });
-      data['attachment2'] = attachment_base64
-      // console.log('onFormSubmit', 'jsonData', data, 'formData', formData)
-      // return
-      this.props.dispatch(ticketActions.add(data))
-    })
+    let jsonData = {}
+    formData.forEach((value, key) => { jsonData[key] = value });
 
+    // prepare attachment for json api
+    if (this.state.file) {
+      fileToBase64(this.state.file, this.state.file.name).then(result => {
+        return {
+          type: this.state.file.type,
+          name: this.state.file.name,
+          size: this.state.file.size,
+          lastModified: this.state.file.lastModified,
+          file: result
+        }
+      }).then(attachment_base64 => {
+        jsonData['attachment2'] = attachment_base64
+        this.props.dispatch(ticketActions.add(jsonData))
+        return
+      })
+    }
+    this.props.dispatch(ticketActions.add(jsonData))
   }
 
   onFileChange(e) {
-    e.preventDefault();
-    // console.log('onFileChange', e.target.files);
-    // if (e.target && e.target.files && e.target.files.length > 0)
     this.setState({ file: e.target.files[0] });
+    e.preventDefault();
   }
 
   render() {

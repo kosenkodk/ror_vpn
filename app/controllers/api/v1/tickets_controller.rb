@@ -21,11 +21,10 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # POST /tickets
   def create
-    @ticket = current_user.tickets.build(item_params.except(:department, :attachment2))
+    @ticket = current_user.tickets.build(item_params.except(:department, :attachment, :attachment2))
     department_id = params[:ticket][:department]
     attachment_error = ''
     begin
-      attachment = params[:ticket][:attachment]
       attachmentUrl = params[:ticket][:attachment2][:file] # data:application/octet-stream;base64,FILE
       attachmentFileName =  params[:ticket][:attachment2][:name]
       start = attachmentUrl.index(',') + 1
