@@ -6,18 +6,52 @@ import { ticketActions } from '../_actions'
 import TicketForm from './TicketForm'
 import { urls } from 'config'
 
+// Convert file to base64 string
+export const fileToBase64 = (filename, filepath) => {
+  return new Promise(resolve => {
+    var file = new File([filename], filepath);
+    var reader = new FileReader();
+    // Read file content on file loaded event
+    reader.onload = function (event) {
+      resolve(event.target.result);
+    };
+
+    // Convert data to base64 
+    reader.readAsDataURL(file);
+  });
+};
+
 class TicketsNewPage extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      file: null
+    }
     this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onFileChange = this.onFileChange.bind(this)
   }
 
   onFormSubmit(e) {
     e.preventDefault()
     let formData = new FormData(e.target)
-    let data = {}
-    formData.forEach((value, key) => { data[key] = value });
-    this.props.dispatch(ticketActions.add(data))
+    fileToBase64(this.state.file, this.state.file).then(result => {
+      formData.append('attachment2', result)
+
+      let data = {}
+      formData.forEach((value, key) => { data[key] = value });
+      console.log('onFormSubmit', 'jsonData', data, 'formData', formData)
+      // return
+      this.props.dispatch(ticketActions.add(data))
+      // this.props.dispatch(ticketActions.add(formData))
+    })
+
+  }
+
+  onFileChange(e) {
+    e.preventDefault();
+    console.log('onFileChange', e.target.files);
+    // if (e.target && e.target.files && e.target.files.length > 0)
+    this.setState({ file: e.target.files[0] });
   }
 
   render() {
@@ -34,7 +68,8 @@ class TicketsNewPage extends React.Component {
             </div>
           </div>
         </div>
-        <TicketForm onFormSubmit={this.onFormSubmit} departments={items} />
+        <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
+        {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
       </div>
     )
   }
