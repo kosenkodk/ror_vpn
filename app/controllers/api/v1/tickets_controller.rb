@@ -24,20 +24,18 @@ class Api::V1::TicketsController < Api::V1::ApiController
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment2))
     department_id = params[:ticket][:department]
     attachment = params[:ticket][:attachment]
-    attachment_base64_decoded = Base64.decode64 params[:ticket][:attachment2] # ActiveSupport::Base64.encode64 decode64 params[:ticket][:attachment2]
+    
+    attachmentUrl = params[:ticket][:attachment2] # data:application/octet-stream;base64,FILE
+    start = attachmentUrl.index(',') + 1
+    attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
+    
     file_name = 'attachment.png'
-    file = File.open(file_name, 'wb') do|f|
-      # f.write(Base64.decode64(base_64_encoded_data))
+    File.open(file_name, 'wb') do|f|
       f.write(attachment_base64_decoded)
     end
 
-    file2 = File.read(file_name)
-    file3 = File.open(file_name, 'rb')
-
-    @ticket.attachment.attach(io: file3, filename: file_name)
-    # @ticket.attachment.attach(io: attachment['file']  ,filename: attachment['name'])
+    @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: file_name)
     # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
-    
     if (Department.exists?(department_id))
       department = Department.find(department_id)
       @ticket.department = department
