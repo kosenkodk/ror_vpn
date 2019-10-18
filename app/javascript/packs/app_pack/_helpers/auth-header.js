@@ -17,6 +17,9 @@ export function authHeader() {
     };
   } else if (csrf) {
     return {
+      // 'Accept': 'application/json',
+      // 'Content-Type': 'multipart/form-data',
+      // 'Content-Type': 'application/vnd.json+api',
       'Content-Type': 'application/json',
       'X-CSRF-Token': csrf //|| csrfFromMeta
     };

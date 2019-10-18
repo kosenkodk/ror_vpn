@@ -4,6 +4,20 @@ import I18n from 'i18n-js/index.js.erb';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 
 class TicketForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      file: null
+    }
+    this.onFileChange = this.onFileChange.bind(this)
+  }
+
+  onFileChange(e) {
+    e.preventDefault();
+    console.log('onFileChange', e.target.files);
+    // if (e.target && e.target.files && e.target.files.length > 0)
+    this.setState({ file: e.target.files[0] });
+  }
 
   render() {
     return (
@@ -33,7 +47,8 @@ class TicketForm extends React.Component {
         <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8">
-            <input id="ticketAttachment" type="file" name="attachment" required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
+            {/* <input id="ticketAttachment" type="file" name="attachment" onChange={this.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} /> */}
+            <input id="ticketAttachment" type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
           </div>
         </div>
 

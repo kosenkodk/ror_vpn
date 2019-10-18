@@ -14,13 +14,28 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # GET /tickets/1
   def show
-    render json: @ticket.as_json(include: {department: {only: [:id, :title]} })
+    render json: @ticket.as_json(
+      methods: [:attachment_url],
+      include: {department: {only: [:id, :title]} })
   end
 
   # POST /tickets
   def create
-    @ticket = current_user.tickets.build(item_params.except(:department))
+    @ticket = current_user.tickets.build(item_params.except(:department, :attachment2))
     department_id = params[:ticket][:department]
+    attachment = params[:ticket][:attachment]
+    attachment2 = Base64.decode64 params[:ticket][:attachment2] # ActiveSupport::Base64.encode64 decode64 params[:ticket][:attachment2]
+    file = File.open('attachment.png', 'wb') do|f|
+      # f.write(Base64.decode64(base_64_encoded_data))
+      f.write(attachment2)
+    end
+
+    file2 = File.read('attachment.png')
+    file3 = File.open('attachment.png', 'rb')
+    @ticket.attachment.attach(io: file3, filename: '')
+    # @ticket.attachment.attach(io: attachment['file']  ,filename: attachment['name'])
+    # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
+    
     if (Department.exists?(department_id))
       department = Department.find(department_id)
       @ticket.department = department
@@ -50,6 +65,6 @@ class Api::V1::TicketsController < Api::V1::ApiController
   end
 
   def item_params
-    params.require(:ticket).permit(:id, :title, :text, :status, :department)
+    params.require(:ticket).permit(:id, :title, :text, :status, :department, :attachment, :attachment2)
   end
 end
