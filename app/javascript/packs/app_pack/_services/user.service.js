@@ -118,7 +118,7 @@ function getDepartments() {
   return fetch(`${config.apiUrl}/departments`, requestOptions).then(handleResponse);
 }
 
-function sendRequestAndRetryByUrlMethodData(url, method, data) {
+async function sendRequestAndRetryByUrlMethodData(url, method, data) {
   let requestOptions = {
     method: method,
     headers: authHeader(),
@@ -129,11 +129,12 @@ function sendRequestAndRetryByUrlMethodData(url, method, data) {
       method: method,
       headers: authHeader(),
     }
-
-  return fetch(url, requestOptions).then(refreshAndRetry)
+  let response = await fetch(url, requestOptions)
+  return refreshAndRetry(response, url, method, data)
+  // return fetch(url, requestOptions).then(refreshAndRetry)
 }
 
-function refreshAndRetry(response) {
+function refreshAndRetry(response, url, method, data) {
   return response.text()
     .then(text => {
       let data = {}
