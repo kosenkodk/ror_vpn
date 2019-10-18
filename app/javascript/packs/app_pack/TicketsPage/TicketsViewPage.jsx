@@ -37,7 +37,7 @@ class TicketsViewPage extends React.Component {
         {/* TODO: display status <p>{item && item.status}</p> */}
 
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.department')}</label>
+          <label className="col-sm-4">{I18n.t('pages.tickets.form.department')}</label>
           <div className="col-sm-8 ">
             {/* <select className="form-control" id="departmentSelectBox">
               {[
@@ -54,21 +54,21 @@ class TicketsViewPage extends React.Component {
         </div>
 
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
+          <label className="col-sm-4">{I18n.t('pages.tickets.form.title')}</label>
           <div className="col-sm-8">
             {item && item.title}
           </div>
         </div>
 
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.text')}</label>
+          <label className="col-sm-4">{I18n.t('pages.tickets.form.text')}</label>
           <div className="col-sm-8">
             {item && item.text}
           </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
+          <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8">
             <a href={item && item.attachment_url}>attachment url</a>
           </div>
