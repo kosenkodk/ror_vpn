@@ -46,7 +46,7 @@ class TicketForm extends React.Component {
 
         <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
-          <div className="col-sm-8">
+          <div className="col-sm-8 align-self-center">
             {/* <input id="ticketAttachment" type="file" name="attachment" onChange={this.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} /> */}
             <input id="ticketAttachment" type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
           </div>
