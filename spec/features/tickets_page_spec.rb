@@ -102,8 +102,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         
         all('.btn-outline-info').last.click # click on last view item
         expect(page).to have_content('ticket with attachment')
-        expect(page).to have_content(I18n.t('pages.tickets.form.attachment_url'))
-        click_on(I18n.t('pages.tickets.form.attachment_url'))
+        expect(page).to have_content('logo.png')
+        click_on('logo.png')
         ## visit page.find('img#myimage')[:src]
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end

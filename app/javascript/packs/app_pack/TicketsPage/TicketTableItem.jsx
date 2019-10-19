@@ -23,7 +23,7 @@ class TicketTableItem extends React.Component {
         </td>
 
         <th scope="row">{this.props.no}</th>
-        <td>{this.props.title}</td>
+        <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.title}</Link></td>
         {/* <td>{this.props.text}</td> */}
         <td>{this.props.department && this.props.department.title}</td>
         <td>{this.props.status}</td>
