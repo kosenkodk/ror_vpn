@@ -15,8 +15,8 @@ class Api::V1::TicketsController < Api::V1::ApiController
   # GET /tickets/1
   def show
     render json: @ticket.as_json(
-      methods: [:attachment_url],
-      include: {department: {only: [:id, :title]} })
+      methods: [:attachment_url, :attachment_name],
+      include: {department: {only: [:id, :title]}})
   end
 
   # POST /tickets
