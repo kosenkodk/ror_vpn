@@ -1,5 +1,6 @@
 import { config } from 'config';
-import { authHeader } from '../_helpers';
+import { history, authHeader } from '../_helpers';
+const autoRefreshToken = true;
 
 export const userService = {
   login,
@@ -32,13 +33,17 @@ function login(email, password) {
 
       localStorage.setItem('csrf', JSON.stringify(response.csrf));
 
-      return fetch(`${config.apiUrl}/me`, { method: 'GET', headers: authHeader() })
-        .then(handleResponse)
-        .then(user => {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(user));
-          return user;
-        });
+      return getUser()
+    });
+}
+
+function getUser() {
+  return fetch(`${config.apiUrl}/me`, { method: 'GET', headers: authHeader() })
+    .then(handleResponse)
+    .then(user => {
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('user', JSON.stringify(user));
+      return user;
     });
 }
 
@@ -46,9 +51,13 @@ function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
   localStorage.removeItem('csrf');
+  history.push(config.urlAfterSignout)
 }
 
 function getAll() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/users`, 'GET', {})
+
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -58,6 +67,9 @@ function getAll() {
 }
 
 function contactUs(contact) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/contacts`, 'POST', { contact: contact })
+
   const requestOptions = {
     method: 'POST',
     headers: authHeader(),
@@ -68,6 +80,9 @@ function contactUs(contact) {
 }
 
 function addTicket(ticket) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets`, 'POST', { ticket })
+
   const requestOptions = {
     method: 'POST',
     headers: authHeader(),
@@ -77,6 +92,9 @@ function addTicket(ticket) {
 }
 
 function viewTicket(id) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets/${id}`, 'GET', {})
+
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
@@ -85,6 +103,9 @@ function viewTicket(id) {
 }
 
 function getTickets() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets`, 'GET', {})
+
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -93,11 +114,76 @@ function getTickets() {
 }
 
 function getDepartments() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/departments`, 'GET', {})
+
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/departments`, requestOptions).then(handleResponse);
+}
+
+function getRequestOptions(method, data) {
+  if (method === 'GET')
+    return {
+      method: method,
+      headers: authHeader(),
+    }
+  return {
+    method: method,
+    headers: authHeader(),
+    body: JSON.stringify(data),
+  }
+}
+
+async function sendRequestAndRetryByUrlMethodData(url, method, data) {
+  let response = await fetch(url, getRequestOptions(method, data))
+  return refreshTokenAndRetryResponse(response, url, method, data)
+}
+
+function refreshTokenAndRetryResponse(response, url, method, data_orig) {
+  return response.text()
+    .then(text => {
+      let data = {}
+      try {
+        data = JSON.parse(text);
+      } catch (e) { }
+
+      // network error
+      if (!response.ok) {
+        if (response.status === 401) {
+          return handle401Status(url, method, data_orig)
+        }
+
+        const error = (data && data.error) || (data && data.message) || response.statusText;
+        return Promise.reject(error);
+      }
+
+      // api error
+      const error = (data && data.error) || (data && data.message) || response.statusText;
+      if (data && data.error) return Promise.reject(error)
+
+      return data;
+    });
+}
+
+function handle401Status(url, method, data) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/refresh`, requestOptions).then(handleResponse)
+    .then(response => {
+      localStorage.setItem('csrf', JSON.stringify(response.csrf))
+      return getUser().then(user => {
+        // retrying request with a new refreshed csrf token
+        return fetch(url, getRequestOptions(method, data)).then(handleResponse)
+      })
+    }).catch(error => {
+      logout()
+      return Promise.reject(error);
+    });
 }
 
 function handleResponse(response) {

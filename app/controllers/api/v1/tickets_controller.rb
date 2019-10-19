@@ -10,6 +10,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
       include: {department: {only: [:id, :title]} },
     #   except: [:text, :created_at, :updated_at]
     )
+    # , status: 401
   end
 
   # GET /tickets/1
