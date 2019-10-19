@@ -118,23 +118,26 @@ function getDepartments() {
   return fetch(`${config.apiUrl}/departments`, requestOptions).then(handleResponse);
 }
 
-async function sendRequestAndRetryByUrlMethodData(url, method, data) {
-  let requestOptions = {
+function getRequestOptions(method, data) {
+  if (method === 'GET')
+    return {
+      method: method,
+      headers: authHeader(),
+    }
+  return {
     method: method,
     headers: authHeader(),
     body: JSON.stringify(data),
   }
-  if (method === 'GET')
-    requestOptions = {
-      method: method,
-      headers: authHeader(),
-    }
-  let response = await fetch(url, requestOptions)
+}
+
+async function sendRequestAndRetryByUrlMethodData(url, method, data) {
+  let response = await fetch(url, getRequestOptions(method, data))
   return refreshAndRetry(response, url, method, data)
   // return fetch(url, requestOptions).then(refreshAndRetry)
 }
 
-function refreshAndRetry(response, url, method, data) {
+function refreshAndRetry(response, url, method, data_orig) {
   return response.text()
     .then(text => {
       let data = {}
@@ -145,7 +148,7 @@ function refreshAndRetry(response, url, method, data) {
       // network error
       if (!response.ok) {
         if (response.status === 401) {
-          return handle401Status(url, method, data)
+          return handle401Status(url, method, data_orig)
         }
 
         const error = (data && data.error) || (data && data.message) || response.statusText;
@@ -168,14 +171,10 @@ function handle401Status(url, method, data) {
   return fetch(`${config.apiUrl}/refresh`, requestOptions).then(handleResponse)
     .then(response => {
       localStorage.setItem('csrf', JSON.stringify(response.csrf))
-      getUser()
-      // retrying request with a new refreshed csrf token
-      const requestOptions = {
-        method: method,
-        headers: authHeader(),
-        body: JSON.stringify(data)
-      }
-      return fetch(url, requestOptions).then(handleResponse)
+      return getUser().then(user => {
+        // retrying request with a new refreshed csrf token
+        return fetch(url, getRequestOptions(method, data)).then(handleResponse)
+      })
     }).catch(error => {
       logout()
       return Promise.reject(error);
