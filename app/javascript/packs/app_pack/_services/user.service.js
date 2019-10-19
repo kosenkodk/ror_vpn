@@ -1,6 +1,6 @@
 import { config } from 'config';
 import { history, authHeader } from '../_helpers';
-// import { handleErrors } from '../../../helpers/http';
+const autoRefreshToken = true;
 
 export const userService = {
   login,
@@ -55,7 +55,8 @@ function logout() {
 }
 
 function getAll() {
-  return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/users`, 'GET', {})
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/users`, 'GET', {})
 
   const requestOptions = {
     method: 'GET',
@@ -66,7 +67,8 @@ function getAll() {
 }
 
 function contactUs(contact) {
-  return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/contacts`, 'POST', { contact: contact })
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/contacts`, 'POST', { contact: contact })
 
   const requestOptions = {
     method: 'POST',
@@ -78,7 +80,8 @@ function contactUs(contact) {
 }
 
 function addTicket(ticket) {
-  return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets`, 'POST', { ticket })
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets`, 'POST', { ticket })
 
   const requestOptions = {
     method: 'POST',
@@ -89,7 +92,8 @@ function addTicket(ticket) {
 }
 
 function viewTicket(id) {
-  return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets/${id}`, 'GET', {})
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets/${id}`, 'GET', {})
 
   const requestOptions = {
     method: 'GET',
@@ -99,7 +103,8 @@ function viewTicket(id) {
 }
 
 function getTickets() {
-  return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets`, 'GET', {})
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets`, 'GET', {})
 
   const requestOptions = {
     method: 'GET',
@@ -109,7 +114,8 @@ function getTickets() {
 }
 
 function getDepartments() {
-  return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/departments`, 'GET', {})
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/departments`, 'GET', {})
 
   const requestOptions = {
     method: 'GET',
@@ -133,11 +139,10 @@ function getRequestOptions(method, data) {
 
 async function sendRequestAndRetryByUrlMethodData(url, method, data) {
   let response = await fetch(url, getRequestOptions(method, data))
-  return refreshAndRetry(response, url, method, data)
-  // return fetch(url, requestOptions).then(refreshAndRetry)
+  return refreshTokenAndRetryResponse(response, url, method, data)
 }
 
-function refreshAndRetry(response, url, method, data_orig) {
+function refreshTokenAndRetryResponse(response, url, method, data_orig) {
   return response.text()
     .then(text => {
       let data = {}
@@ -207,4 +212,3 @@ function handleResponse(response) {
     return data;
   });
 }
-
