@@ -122,20 +122,17 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
   end
 
   describe 'Pagination' do
-    
+    let(:per_page) {3}
     before {
-    create(:ticket, user: user)
-    create(:ticket, user: user)
-    create(:ticket, user: user)
-    create(:ticket, user: user)
+      tickets = (0..5).map {|item| create(:ticket, user: user) }
     }
     it 'display first page' do
-      get :index, params: {page: 1, format: :json}
-      expect(response_json.size).to eq 2
+      get :index, params: {page: 1, per_page: per_page, format: :json}
+      expect(response_json.size).to eq per_page
     end
     it 'display second page' do
-      get :index, params: {page:2, format: :json}
-      expect(response_json.size).to eq 2
+      get :index, params: {page: 2, per_page: per_page, format: :json}
+      expect(response_json.size).to eq per_page
     end
   end
   it "send email to billing department"
