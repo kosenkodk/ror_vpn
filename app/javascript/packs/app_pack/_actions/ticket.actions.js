@@ -11,11 +11,11 @@ export const ticketActions = {
   view,
 }
 
-function getAll() {
+function getAll(page) {
   return dispatch => {
     dispatch(request())
 
-    userService.getTickets()
+    userService.getTickets(page)
       .then(
         tickets => dispatch(success(tickets)),
         error => {

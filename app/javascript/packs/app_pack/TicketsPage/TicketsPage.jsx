@@ -15,6 +15,7 @@ class TicketsPage extends React.Component {
 
   onPageChange(e, page) {
     console.log('onPageChange', page);
+    this.props.dispatch(ticketActions.getAll({ page: page }));
     e.preventDefault();
   }
 
