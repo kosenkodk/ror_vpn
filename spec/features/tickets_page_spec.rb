@@ -165,8 +165,12 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
   describe 'pagination' do
     context 'success' do
-      it 'pagination click on next page button'
-      it 'pagination click on prev page button'
+      it 'pagination click on next page button' do
+        click_on('Next')
+      end
+      it 'pagination click on prev page button' do
+        click_on('Previous')
+      end
     end
   end
   

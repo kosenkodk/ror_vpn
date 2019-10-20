@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { ticketActions, alertActions } from '../_actions';
 import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
+import { Paginator } from '../_components';
 
 class TicketsPage extends React.Component {
   componentDidMount() {
@@ -55,6 +56,8 @@ class TicketsPage extends React.Component {
               }
             </tbody>
           </table>
+
+          <Paginator />
         </div>
       </div>
     );
