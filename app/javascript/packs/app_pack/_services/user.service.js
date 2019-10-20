@@ -51,7 +51,7 @@ function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
   localStorage.removeItem('csrf');
-  history.push(config.urlAfterSignout)
+  // history.push(config.urlAfterSignout)
 }
 
 function getAll() {

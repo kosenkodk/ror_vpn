@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ticketActions } from '../_actions';
+import { ticketActions, alertActions } from '../_actions';
 import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
 
@@ -9,8 +9,10 @@ class TicketsPage extends React.Component {
   componentDidMount() {
     if (this.props.loggedIn)
       this.props.dispatch(ticketActions.getAll());
-    else
-      this.props.history.push(urls.signin.path)
+    else {
+      // this.props.history.push(urls.signin.path);
+      this.props.dispatch(alertActions.error(I18n.t('api.errors.unauthorized')));
+    }
   }
 
   render() {
