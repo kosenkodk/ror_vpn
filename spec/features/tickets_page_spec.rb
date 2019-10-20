@@ -6,48 +6,70 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   let!(:department_billing) {create(:department, title: 'Billing')}
   let!(:department_sales) {create(:department, title: 'Sales')}
   let!(:department_tech) {create(:department, title: 'Technical Support')}
+  # let!(:ticket_billing) {create(:ticket, user: user, department: department_billing)}
+  # let!(:ticket_sales) {create(:ticket, user: user, department: department_sales)}
+  # let!(:ticket_tech) {create(:ticket, user: user, department: department_tech)}
 
   before(:each) do
     fsign_in_as(user)
     # visit('/tickets')
   end
 
-  describe 'view ticket' do
+  describe 'GET #index - view all tickets' do
     context 'success' do
-      xit 'add comments' do
-        click_on(I18n.t('buttons.add'))
-        fill_in :title, with: 'ticket with comment'
-        fill_in :comment, with: 'comment'
-        click_on(I18n.t('buttons.submit'))
-        click_on('ticket with comment')
-        expect(page).to have_content('ticket with comment')
-        expect(page).to have_content('comment')
-      end
-    end
-  end
-
-  describe 'Tickets' do
-    # let!(:ticket_billing) {create(:ticket, user: user, department: department_billing)}
-    # let!(:ticket_sales) {create(:ticket, user: user, department: department_sales)}
-    # let!(:ticket_tech) {create(:ticket, user: user, department: department_tech)}
-
-    context 'user' do
-      it 'list' do
+      it 'display ticket title' do
         expect(page).to have_content(ticket.title)
       end
 
-      it 'view item' do
+      it "display ticket's status" do
+        expect(page).to have_content('opened')
+      end
+
+           
+      it "select department drop down" do
+        # select('Option', from: 'departmentSelectBox')
+        # find("#departmentSelectBox").select("value")
+      end
+
+      it "attach file or image" do
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket with attachment'
+        file = Rails.root.join('app','assets', 'images', 'logo.png')
+        attach_file('attachment', file) # input element that has a name, id, or label_text
+        click_on(I18n.t('buttons.submit'))
+        
+        all('.btn-outline-info').last.click # click on last view item
+        expect(page).to have_content('ticket with attachment')
+        expect(page).to have_content('logo.png')
+        click_on('logo.png')
+        ## visit page.find('img#myimage')[:src]
+        # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
+      end
+
+      
+      it "searching tickets by title or text"
+      it "guests can't see the user's tickets"
+    end
+    context 'fail' do
+    end
+  end
+
+  describe 'view ticket' do
+    context 'success' do
+      it 'when user click on close ticket button'
+      it 'display title, text, department' do
         click_on(I18n.t('buttons.view'), match: :first)
         expect(page).to have_content(ticket.title)
         expect(page).to have_content(ticket.text)
         expect(page).to have_content(ticket.department)
       end
+    end
+    context 'fail' do
+    end
+  end
 
-      xit 'delete item from list' do
-        click_on(I18n.t('buttons.delete'), match: :first)
-        expect(page).not_to have_content(ticket.title)
-      end
-
+  describe 'add ticket' do
+    context 'success' do
       it 'add item with default department to list' do
         click_on(I18n.t('buttons.add'))
         
@@ -83,7 +105,24 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content('text 1')
         expect(page).to have_content(department_sales.title)
       end
+      
+      xit 'with comments' do
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket with comment'
+        fill_in :comment, with: 'comment'
+        click_on(I18n.t('buttons.submit'))
+        click_on('ticket with comment')
+        expect(page).to have_content('ticket with comment')
+        expect(page).to have_content('comment')
+      end
+    end
+    context 'fail' do
+      it "with empty title"
+    end
+  end
 
+  describe 'edit ticket' do
+    context 'success' do
       xit 'edit item' do
         click_on(I18n.t('buttons.edit'), match: :first)
         fill_in :title, with: 'ticket 2'
@@ -102,41 +141,33 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket.title)
         expect(page).to have_content(ticket.text)
       end
-      
-      it "select department drop down" do
-        # select('Option', from: 'departmentSelectBox')
-        # find("#departmentSelectBox").select("value")
-      end
-
-      it "attach file or image" do
-        click_on(I18n.t('buttons.add'))
-        fill_in :title, with: 'ticket with attachment'
-        file = Rails.root.join('app','assets', 'images', 'logo.png')
-        attach_file('attachment', file) # input element that has a name, id, or label_text
-        click_on(I18n.t('buttons.submit'))
-        
-        all('.btn-outline-info').last.click # click on last view item
-        expect(page).to have_content('ticket with attachment')
-        expect(page).to have_content('logo.png')
-        click_on('logo.png')
-        ## visit page.find('img#myimage')[:src]
-        # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
-      end
-
-      it "display ticket's status" do
-        expect(page).to have_content('opened')
-      end
-      
-      it "searching tickets by title or text"
-
-      
-      it "guests can't see the user's tickets"
-      it "pagination click on next page button"
-      it "pagination click on prev page button"
-      it "title can't be empty"
-      
-      it "admins can edit and delete tickets - why delete ? - just change ticket's status"
-      it "email user and selected department about ticket's status or new comment"
     end
+    context 'fail' do
+      it "with empty title"
+    end
+  end
+
+
+  describe 'delete ticket' do
+    context 'success' do
+      xit 'delete item from list' do
+        click_on(I18n.t('buttons.delete'), match: :first)
+        expect(page).not_to have_content(ticket.title)
+      end
+    end
+    context 'fail' do
+    end
+  end
+
+  describe 'pagination' do
+    context 'success' do
+      it 'pagination click on next page button'
+      it 'pagination click on prev page button'
+    end
+  end
+  
+  describe 'Tickets' do
+    it "admins can edit and delete tickets - why delete ? - just change ticket's status"
+    it "email user and selected department about ticket's status or new comment"
   end
 end
