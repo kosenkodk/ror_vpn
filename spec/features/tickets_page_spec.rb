@@ -28,7 +28,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       it "select department drop down" do
         click_on(I18n.t('buttons.add'))
         select(department_billing.title, from: 'departmentSelectBox')
-        # find("#departmentSelectBox").select("value")
+        # find("#departmentSelectBox").select(department_billing.title)
         expect(find('#departmentSelectBox').value.to_i).to eq(department_billing.id)
         select(department_sales.title, from: 'departmentSelectBox')
         expect(find('#departmentSelectBox').value.to_i).to eq(department_sales.id)

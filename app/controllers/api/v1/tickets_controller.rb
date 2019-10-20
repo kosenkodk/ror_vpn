@@ -4,7 +4,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # GET /tickets
   def index
-    @tickets = current_user.tickets
+    @tickets = current_user.tickets.paginate(page: params[:page])
     render json: @tickets
     .as_json(
       include: {department: {only: [:id, :title]} },
