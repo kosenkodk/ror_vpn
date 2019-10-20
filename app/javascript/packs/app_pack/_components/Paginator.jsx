@@ -8,14 +8,14 @@ class Paginator extends React.Component {
     super(props);
     this.state = {
       pageCurrent: this.props.pageCurrent || 1,
-      pageTotal: this.props.pageTotal || 1,
+      pageTotal: this.props.pageTotal || 2,
     }
     this.onPageChange = this.onPageChange.bind(this);
   }
 
   onPageChange(e, pageNumber) {
     this.setState({ pageCurrent: pageNumber });
-    // this.props.onPageChange(e, pageNumber);
+    this.props.onPageChange(e, pageNumber);
     e.preventDefault();
   }
 
@@ -38,7 +38,7 @@ class Paginator extends React.Component {
         <ul className="pagination justify-content-end">
           <li className={`page-item ${pageCurrent > 1 ? '' : 'disabled'}`}>
             <Link to={`${urls.tickets.path}?page=${this.pagePrev(pageCurrent)}`} className="page-link" tabIndex="-1"
-              onClick={(e) => this.onPageChange(e, item)}>Previous</Link>
+              onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</Link>
           </li>
           {Array(pageTotal).fill().map((v, i) => i + 1).map((item, index) =>
             <li key={`page${item}`} className={`page-item ${pageCurrent === item ? 'active' : ''}`}>
@@ -54,7 +54,7 @@ class Paginator extends React.Component {
           )}
           <li className={`page-item ${pageCurrent >= pageTotal ? 'disabled' : ''}`}>
             <Link to={`${urls.tickets.path}?page=${this.pageNext(pageCurrent)}`}
-              onClick={(e) => this.onPageChange(e, item)} className="page-link">Next</Link>
+              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))} className="page-link">Next</Link>
           </li>
         </ul>
       </nav>
