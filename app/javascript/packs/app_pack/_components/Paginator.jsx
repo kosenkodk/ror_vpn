@@ -2,6 +2,7 @@ import React from 'react';
 // import { HashLink as Link } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
 import { urls } from 'config';
+import { connect } from 'react-redux';
 
 class Paginator extends React.Component {
   constructor(props) {
@@ -12,6 +13,13 @@ class Paginator extends React.Component {
     }
     this.onPageChange = this.onPageChange.bind(this);
   }
+
+  // componentWillUpdate() {
+  //   this.setState({
+  //     pageCurrent: this.props.pageCurrent,
+  //     pageTotal: this.props.pageTotal,
+  //   })
+  // }
 
   onPageChange(e, pageNumber) {
     this.setState({ pageCurrent: pageNumber });
@@ -27,12 +35,15 @@ class Paginator extends React.Component {
 
   pageNext(pageCurrent) {
     pageCurrent += 1
-    if (pageCurrent > this.state.pageTotal) pageCurrent = this.state.pageTotal
+    if (pageCurrent > this.props.pageTotal) pageCurrent = this.props.pageTotal
     return pageCurrent
   }
 
   render() {
-    const { pageCurrent, pageTotal } = this.state
+    // const { pageCurrent, pageTotal } = this.state
+    const { pageCurrent, pageTotal } = this.props
+    // const { pages, page } = this.props
+
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
@@ -62,4 +73,20 @@ class Paginator extends React.Component {
   }
 }
 
-export { Paginator }
+// export { Paginator }
+
+function mapStateToProps(state) {
+  const { loggedIn } = state.authentication
+  const { items, page: pageCurrent, pages: pageTotal, loading, error } = state.tickets;
+  return {
+    loggedIn,
+    items,
+    pageCurrent,
+    pageTotal,
+    loading,
+    error
+  };
+}
+
+const connectedTicketsPage = connect(mapStateToProps)(Paginator);
+export { connectedTicketsPage as Paginator };
