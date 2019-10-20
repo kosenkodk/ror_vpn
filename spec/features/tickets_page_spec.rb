@@ -25,10 +25,15 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content('opened')
       end
 
-           
       it "select department drop down" do
-        # select('Option', from: 'departmentSelectBox')
+        click_on(I18n.t('buttons.add'))
+        select(department_billing.title, from: 'departmentSelectBox')
         # find("#departmentSelectBox").select("value")
+        expect(find('#departmentSelectBox').value.to_i).to eq(department_billing.id)
+        select(department_sales.title, from: 'departmentSelectBox')
+        expect(find('#departmentSelectBox').value.to_i).to eq(department_sales.id)
+        select(department_tech.title, from: 'departmentSelectBox')
+        expect(find('#departmentSelectBox').value.to_i).to eq(department_tech.id)
       end
 
       it "attach file or image" do
@@ -46,7 +51,6 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
 
-      
       it "searching tickets by title or text"
       it "guests can't see the user's tickets"
     end
