@@ -17,7 +17,8 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { items, loading, error } = this.props;
+    const { loading, error, items, pages, page } = this.props
+
     return (
       <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
         <div className="container">
@@ -57,7 +58,7 @@ class TicketsPage extends React.Component {
             </tbody>
           </table>
 
-          <Paginator />
+          <Paginator pageCurrent={page} pageTotal={pages} />
         </div>
       </div>
     );
@@ -66,10 +67,12 @@ class TicketsPage extends React.Component {
 
 function mapStateToProps(state) {
   const { loggedIn } = state.authentication
-  const { items, loading, error } = state.tickets;
+  const { items, page, pages, loading, error } = state.tickets;
   return {
     loggedIn,
     items,
+    page,
+    pages,
     loading,
     error
   };

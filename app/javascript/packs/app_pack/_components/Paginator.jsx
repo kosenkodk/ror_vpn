@@ -8,7 +8,7 @@ class Paginator extends React.Component {
     super(props);
     this.state = {
       pageCurrent: this.props.pageCurrent || 1,
-      pageMax: this.props.pageMax || 1,
+      pageTotal: this.props.pageTotal || 1,
     }
     this.onPageChange = this.onPageChange.bind(this);
   }
@@ -27,12 +27,12 @@ class Paginator extends React.Component {
 
   pageNext(pageCurrent) {
     pageCurrent += 1
-    if (pageCurrent > this.state.pageMax) pageCurrent = this.state.pageMax
+    if (pageCurrent > this.state.pageTotal) pageCurrent = this.state.pageTotal
     return pageCurrent
   }
 
   render() {
-    const { pageCurrent, pageMax } = this.state
+    const { pageCurrent, pageTotal } = this.state
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
@@ -40,7 +40,7 @@ class Paginator extends React.Component {
             <Link to={`${urls.tickets.path}?page=${this.pagePrev(pageCurrent)}`} className="page-link" tabIndex="-1"
               onClick={(e) => this.onPageChange(e, item)}>Previous</Link>
           </li>
-          {Array(pageMax).fill().map((v, i) => i + 1).map((item, index) =>
+          {Array(pageTotal).fill().map((v, i) => i + 1).map((item, index) =>
             <li key={`page${item}`} className={`page-item ${pageCurrent === item ? 'active' : ''}`}>
               {pageCurrent === item ?
                 <span className="page-link">{item}
@@ -52,7 +52,7 @@ class Paginator extends React.Component {
               }
             </li>
           )}
-          <li className={`page-item ${pageCurrent >= pageMax ? 'disabled' : ''}`}>
+          <li className={`page-item ${pageCurrent >= pageTotal ? 'disabled' : ''}`}>
             <Link to={`${urls.tickets.path}?page=${this.pageNext(pageCurrent)}`}
               onClick={(e) => this.onPageChange(e, item)} className="page-link">Next</Link>
           </li>
