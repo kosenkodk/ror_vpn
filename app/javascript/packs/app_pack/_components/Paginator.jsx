@@ -1,5 +1,4 @@
 import React from 'react';
-// import { HashLink as Link } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
 import { urls } from 'config';
 import { connect } from 'react-redux';
@@ -7,22 +6,10 @@ import { connect } from 'react-redux';
 class Paginator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pageCurrent: this.props.pageCurrent || 1,
-      pageTotal: this.props.pageTotal || 2,
-    }
     this.onPageChange = this.onPageChange.bind(this);
   }
 
-  // componentWillUpdate() {
-  //   this.setState({
-  //     pageCurrent: this.props.pageCurrent,
-  //     pageTotal: this.props.pageTotal,
-  //   })
-  // }
-
   onPageChange(e, pageNumber) {
-    this.setState({ pageCurrent: pageNumber });
     this.props.onPageChange(e, pageNumber);
     e.preventDefault();
   }
@@ -40,15 +27,12 @@ class Paginator extends React.Component {
   }
 
   render() {
-    // const { pageCurrent, pageTotal } = this.state
     const { pageCurrent, pageTotal } = this.props
-    // const { pages, page } = this.props
-
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
           <li className={`page-item ${pageCurrent > 1 ? '' : 'disabled'}`}>
-            <Link to={`${urls.tickets.path}?page=${this.pagePrev(pageCurrent)}`} className="page-link" tabIndex="-1"
+            <Link className="page-link" tabIndex="-1"
               onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</Link>
           </li>
           {Array(pageTotal).fill().map((v, i) => i + 1).map((item, index) =>
@@ -58,14 +42,14 @@ class Paginator extends React.Component {
                   <span className="sr-only">(current)</span>
                 </span>
                 :
-                <Link to={`${urls.tickets.path}?page=${item}`} className="page-link"
+                <Link className="page-link"
                   onClick={(e) => this.onPageChange(e, item)}>{item}</Link>
               }
             </li>
           )}
           <li className={`page-item ${pageCurrent >= pageTotal ? 'disabled' : ''}`}>
-            <Link to={`${urls.tickets.path}?page=${this.pageNext(pageCurrent)}`}
-              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))} className="page-link">Next</Link>
+            <Link className="page-link"
+              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))}>Next</Link>
           </li>
         </ul>
       </nav>
@@ -73,18 +57,11 @@ class Paginator extends React.Component {
   }
 }
 
-// export { Paginator }
-
 function mapStateToProps(state) {
-  const { loggedIn } = state.authentication
-  const { items, page: pageCurrent, pages: pageTotal, loading, error } = state.tickets;
+  const { page: pageCurrent, pages: pageTotal } = state.tickets;
   return {
-    loggedIn,
-    items,
     pageCurrent,
     pageTotal,
-    loading,
-    error
   };
 }
 
