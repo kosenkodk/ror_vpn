@@ -19,8 +19,8 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     it 'returns a success response' do
       get :index
       expect(response).to be_successful
-      expect(response_json.size).to eq 1
-      expect(response_json.first['id']).to eq ticket.id
+      expect(response_json['tickets'].size).to eq 1
+      expect(response_json['tickets'].first['id']).to eq ticket.id
     end
 
     # usually there's no need to test this kind of stuff, it's here for the presentation purpose
@@ -126,7 +126,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     let!(:tickets) {(0..5).map {|item| create(:ticket, user: user)}}
     it 'display the first page with empty params' do
       get :index
-      expect(response_json.size).to eq WillPaginate.per_page
+      expect(response_json['tickets'].size).to eq WillPaginate.per_page
     end
     it 'display first page' do
       get :index, params: {page: 1, per_page: per_page, format: :json}
@@ -135,6 +135,9 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     it 'display last page' do
       get :index, params: {page: tickets.size/per_page, per_page: per_page, format: :json}
       expect(response_json.size).to eq per_page
+      expect(response_json.keys).to include "page"
+      expect(response_json.keys).to include "pages"
+      expect(response_json.keys).to include "tickets"
     end
   end
   it "send email to billing department"

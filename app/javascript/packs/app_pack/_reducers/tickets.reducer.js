@@ -24,7 +24,9 @@ export function tickets(state = {}, action) {
       };
     case ticketConstants.GETALL_SUCCESS:
       return {
-        items: action.tickets
+        items: action.tickets.tickets,
+        page: action.tickets.page,
+        pages: action.tickets.pages,
       };
     case ticketConstants.GETALL_FAILURE:
       return {

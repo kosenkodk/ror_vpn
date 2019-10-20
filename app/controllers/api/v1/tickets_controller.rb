@@ -4,13 +4,16 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # GET /tickets
   def index
-    @tickets = current_user.tickets.paginate(page: params[:page], per_page: params[:per_page]).order('id DESC')
-    render json: @tickets
-    .as_json(
-      include: {department: {only: [:id, :title]} },
-    #   except: [:text, :created_at, :updated_at]
-    )
-    # , status: 401
+    @tickets = current_user.tickets.paginate(page: params[:page] || 1, per_page: params[:per_page]).order('id DESC')
+    render json: { 
+      tickets: @tickets.as_json(
+        include: {department: {only: [:id, :title]} },
+        # except: [:text, :created_at, :updated_at]
+      ),
+      pages: @tickets.total_pages,
+      page: @tickets.current_page,
+      # , status: 401
+    }
   end
 
   # GET /tickets/1
