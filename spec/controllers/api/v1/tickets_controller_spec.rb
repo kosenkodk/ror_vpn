@@ -121,6 +121,23 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     end
   end
 
+  describe 'Pagination' do
+    
+    before {
+    create(:ticket, user: user)
+    create(:ticket, user: user)
+    create(:ticket, user: user)
+    create(:ticket, user: user)
+    }
+    it 'display first page' do
+      get :index, params: {page: 1, format: :json}
+      expect(response_json.size).to eq 2
+    end
+    it 'display second page' do
+      get :index, params: {page:2, format: :json}
+      expect(response_json.size).to eq 2
+    end
+  end
   it "send email to billing department"
   it "send email to sales department"
   it "send email to tech support department"
