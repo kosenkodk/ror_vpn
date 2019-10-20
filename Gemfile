@@ -72,4 +72,4 @@ gem 'font-awesome-rails'
 gem 'i18n-js'
 
 gem 'bootstrap-email'
-
+gem 'will_paginate'
