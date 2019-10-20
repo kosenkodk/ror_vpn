@@ -7,7 +7,10 @@ import { urls } from 'config';
 
 class TicketsPage extends React.Component {
   componentDidMount() {
-    this.props.dispatch(ticketActions.getAll());
+    if (this.props.loggedIn)
+      this.props.dispatch(ticketActions.getAll());
+    else
+      this.props.history.push(urls.signin.path)
   }
 
   render() {
@@ -57,8 +60,10 @@ class TicketsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { loggedIn } = state.authentication
   const { items, loading, error } = state.tickets;
   return {
+    loggedIn,
     items,
     loading,
     error
