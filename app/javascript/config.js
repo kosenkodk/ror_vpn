@@ -1,3 +1,5 @@
+import I18n from 'i18n-js/index.js.erb'
+
 const config = {
   apiUrl: '/api/v1',
   userUrlAfterSignin: '/tickets',
@@ -8,52 +10,52 @@ const config = {
 const urls = {
   home: {
     path: '/',
-    name: 'Home',
+    name: I18n.t('nav_menu.home'),
     // component: HomePage
   },
   signin: {
     path: '/signin',
-    name: 'Sign in',
+    name: I18n.t('nav_menu.sign_in'),
     // component: SigninPage
   },
   signup: {
     path: '/signup',
-    name: 'Sign up',
+    name: I18n.t('nav_menu.sign_up'),
     // component: SignupPage
   },
   pricing: {
     path: '/pricing',
-    name: 'Pricing',
+    name: I18n.t('nav_menu.pricing'),
     // component: PricingPage
   },
   forgot: {
     path: '/forgot',
-    name: 'Password Forgot',
+    name: I18n.t('nav_menu.password_forgot'),
     // component: PasswordForgotPage
   },
   reset: {
     path: '/password_resets/:token',
-    name: 'Password Reset',
+    name: I18n.t('nav_menu.password_reset'),
     // component: PasswordResetPage
   },
   reset_ok: {
     path: '/reset_ok',
-    name: 'Password Reset Success',
+    name: I18n.t('nav_menu.password_reset_ok'),
     // component: PasswordResetPageOk
   },
   help: {
     path: '/help',
-    name: 'Help',
+    name: I18n.t('nav_menu.help'),
     // component: HelpPage
   },
   contact_us: {
     path: '/contact_us',
-    name: 'Contact us',
+    name: I18n.t('nav_menu.contact_us'),
     // component: ContactusPage
   },
   tickets: {
     path: '/tickets',
-    name: 'Tickets',
+    name: I18n.t('nav_menu.tickets'),
     // component: TicketsPage
   },
   tickets_view: {
