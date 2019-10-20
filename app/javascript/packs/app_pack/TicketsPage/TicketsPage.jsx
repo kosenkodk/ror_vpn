@@ -70,7 +70,8 @@ class TicketsPage extends React.Component {
             </tbody>
           </table>
 
-          <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
+          {/* <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} /> */}
+          <Paginator onPageChange={this.onPageChange} />
         </div>
       </div>
     );

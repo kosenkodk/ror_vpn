@@ -102,7 +102,6 @@ function viewTicket(id) {
   return fetch(`${config.apiUrl}/tickets/${id}`, requestOptions).then(handleResponse);
 }
 
-// function getTickets(page) {
 function getTickets({ page = 1 } = {}) {
   if (autoRefreshToken)
     return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets?page=${page}`, 'GET', {})
