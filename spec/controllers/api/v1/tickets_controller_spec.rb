@@ -123,7 +123,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
   describe 'Pagination' do
     let(:per_page) {3}
-    before { @tickets = (0..5).map {|item| create(:ticket, user: user)} }
+    let!(:tickets) {(0..5).map {|item| create(:ticket, user: user)}}
     it 'display the first page with empty params' do
       get :index
       expect(response_json.size).to eq WillPaginate.per_page
@@ -133,7 +133,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
       expect(response_json.size).to eq per_page
     end
     it 'display last page' do
-      get :index, params: {page: @tickets.size/per_page, per_page: per_page, format: :json}
+      get :index, params: {page: tickets.size/per_page, per_page: per_page, format: :json}
       expect(response_json.size).to eq per_page
     end
   end
