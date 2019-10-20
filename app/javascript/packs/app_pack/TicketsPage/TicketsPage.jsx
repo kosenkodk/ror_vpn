@@ -7,6 +7,17 @@ import { urls } from 'config';
 import { Paginator } from '../_components';
 
 class TicketsPage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.onPageChange = this.onPageChange.bind(this);
+  }
+
+  onPageChange(e, page) {
+    console.log('onPageChange', page);
+    e.preventDefault();
+  }
+
   componentDidMount() {
     if (this.props.loggedIn)
       this.props.dispatch(ticketActions.getAll());
@@ -58,7 +69,7 @@ class TicketsPage extends React.Component {
             </tbody>
           </table>
 
-          <Paginator pageCurrent={page} pageTotal={pages} />
+          <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
         </div>
       </div>
     );
