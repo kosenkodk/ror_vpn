@@ -1,19 +1,23 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link'
+import { NavHashLink as Link } from 'react-router-hash-link'
 import { urls } from 'config'
+import { history } from '../_helpers'
 
 class Sidebar extends React.Component {
+  getNavLinkClass = (path) => {
+    return history.location.pathname === path ? 'active' : '';
+  }
+
   render() {
     return (
       <ul className="sidebar list-group shadow-vega bg-vega mb-4">
         {/* <li className="list-group-item">SETTINGS</li> */}
-        <li className="list-group-item"><Link to={urls.coming_soon.path}>Dashboard</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path}>Account</Link></li>
-        <li className="list-group-item"><Link to={urls.tickets.path}>{urls.tickets.name}</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path}>Payment</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path}>Downloads</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path}>Refer Friends</Link></li>
+        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Dashboard</Link></li>
+        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Account</Link></li>
+        <li className={`list-group-item ${this.getNavLinkClass(urls.tickets.path)}`}><Link to={urls.tickets.path} activeClassName="active" >{urls.tickets.name}</Link></li>
+        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Payment</Link></li>
+        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Downloads</Link></li>
+        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Refer Friends</Link></li>
 
         {/* <!--
         <li className="list-group-item">Invoices</li>
