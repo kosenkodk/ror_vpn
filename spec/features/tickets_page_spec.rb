@@ -43,7 +43,9 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         attach_file('attachment', file) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
-        all('.btn-outline-info').last.click # click on last view item
+        # all('.btn-outline-info').last.click # click on last view item
+        click_on(I18n.t('buttons.view'), match: :first)
+        # click_on('ticket with attachment', match: :first)
         expect(page).to have_content('ticket with attachment')
         expect(page).to have_content('logo.png')
         click_on('logo.png')
@@ -84,8 +86,9 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content('ticket 1')
         expect(page).to have_content(department_billing.title)
         
-        all('.btn-outline-info').last.click # click on last view item
-        
+        # all('.btn-outline-info').last.click # click on last view item
+        click_on(I18n.t('buttons.view'), match: :first)
+
         expect(page).to have_content('text 1')
         expect(page).to have_content(department_billing.title)
       end
@@ -104,7 +107,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content('ticket 1')
         expect(page).to have_content(department_sales.title)
         
-        all('.btn-outline-info').last.click # click on last view item
+        # all('.btn-outline-info').last.click # click on last view item
+        click_on(I18n.t('buttons.view'), match: :first)
         
         expect(page).to have_content('text 1')
         expect(page).to have_content(department_sales.title)
@@ -166,10 +170,10 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   describe 'pagination' do
     context 'success' do
       it 'pagination click on next page button' do
-        click_on('Next')
+        # click_on('Next')
       end
       it 'pagination click on prev page button' do
-        click_on('Previous')
+        # click_on('Previous')
       end
     end
   end
