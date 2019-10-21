@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 class Paginator extends React.Component {
   constructor(props) {
@@ -26,7 +25,6 @@ class Paginator extends React.Component {
 
   render() {
     const { pageCurrent = 1, pageTotal = 1 } = this.props
-    console.log('paginator pageCurrent:', pageCurrent, 'pageTotal', pageTotal)
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
@@ -57,14 +55,3 @@ class Paginator extends React.Component {
 }
 
 export { Paginator }
-
-// function mapStateToProps(state) {
-//   const { page: pageCurrent, pages: pageTotal } = state.tickets;
-//   return {
-//     pageCurrent,
-//     pageTotal,
-//   };
-// }
-
-// const connectedTicketsPage = connect(mapStateToProps)(Paginator);
-// export { connectedTicketsPage as Paginator };

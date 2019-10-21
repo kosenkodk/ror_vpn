@@ -5,6 +5,7 @@ import { ticketActions, alertActions } from '../_actions';
 import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
 import { Paginator } from '../_components';
+import I18n from 'i18n-js/index.js.erb'
 
 class TicketsPage extends React.Component {
 
@@ -14,7 +15,6 @@ class TicketsPage extends React.Component {
   }
 
   onPageChange(e, page) {
-    // console.log('onPageChange', page);
     this.props.dispatch(ticketActions.getAll({ page: page }));
     e.preventDefault();
   }
@@ -29,8 +29,7 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { loading, error, items, pages, page } = this.props
-    console.log('tickets page', this.props.page, 'pages', this.props.pages, 'tickets', this.props.tickets)
+    const { error, items, loading, pages, page } = this.props
     return (
       <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
         <div className="container">
@@ -69,8 +68,7 @@ class TicketsPage extends React.Component {
               }
             </tbody>
           </table>
-
-          <Paginator onPageChange={this.onPageChange} pageCurrent={this.props.page} pageTotal={this.props.pages} />
+          <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
         </div>
       </div>
     );
@@ -79,13 +77,12 @@ class TicketsPage extends React.Component {
 
 function mapStateToProps(state) {
   const { loggedIn } = state.authentication
-  const { tickets, items, page, pages, loading, error } = state.tickets;
+  const { items, page, pages, loading, error } = state.tickets;
   return {
-    tickets,
-    loggedIn,
     items,
     page,
     pages,
+    loggedIn,
     loading,
     error
   };
