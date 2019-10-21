@@ -605,6 +605,7 @@ ul.pagination {
     .page-link {
       @extend .btn-outline-pink;
       border-color: unset;
+      cursor: pointer;
     }
   }
 }
