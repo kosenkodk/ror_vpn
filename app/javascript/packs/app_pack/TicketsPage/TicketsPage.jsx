@@ -14,7 +14,7 @@ class TicketsPage extends React.Component {
   }
 
   onPageChange(e, page) {
-    console.log('onPageChange', page);
+    // console.log('onPageChange', page);
     this.props.dispatch(ticketActions.getAll({ page: page }));
     e.preventDefault();
   }
@@ -30,7 +30,7 @@ class TicketsPage extends React.Component {
 
   render() {
     const { loading, error, items, pages, page } = this.props
-
+    console.log('tickets page', this.props.page, 'pages', this.props.pages, 'tickets', this.props.tickets)
     return (
       <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
         <div className="container">
@@ -70,7 +70,7 @@ class TicketsPage extends React.Component {
             </tbody>
           </table>
 
-          <Paginator onPageChange={this.onPageChange} />
+          <Paginator onPageChange={this.onPageChange} pageCurrent={this.props.page} pageTotal={this.props.pages} />
         </div>
       </div>
     );
@@ -79,8 +79,9 @@ class TicketsPage extends React.Component {
 
 function mapStateToProps(state) {
   const { loggedIn } = state.authentication
-  const { items, page, pages, loading, error } = state.tickets;
+  const { tickets, items, page, pages, loading, error } = state.tickets;
   return {
+    tickets,
     loggedIn,
     items,
     page,
