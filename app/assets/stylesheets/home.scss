@@ -564,6 +564,9 @@ footer {
   li {
     @extend .btn-outline-pink;
     cursor: pointer;
+    &.list-group-item.active {
+      border: unset;
+    }
     a {
       color: $white;
       &:hover {
