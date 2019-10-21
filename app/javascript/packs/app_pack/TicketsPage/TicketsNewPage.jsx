@@ -18,7 +18,6 @@ class TicketsNewPage extends React.Component {
   }
 
   onFormSubmit(e) {
-    e.preventDefault()
     let formData = new FormData(e.target)
     let jsonData = {}
     formData.forEach((value, key) => { jsonData[key] = value });
@@ -38,8 +37,10 @@ class TicketsNewPage extends React.Component {
         this.props.dispatch(ticketActions.add(jsonData))
         return
       })
+    } else {
+      this.props.dispatch(ticketActions.add(jsonData))
     }
-    this.props.dispatch(ticketActions.add(jsonData))
+    e.preventDefault();
   }
 
   onFileChange(e) {
