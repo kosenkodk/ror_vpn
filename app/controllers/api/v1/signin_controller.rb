@@ -24,7 +24,7 @@ class Api::V1::SigninController < Api::V1::ApiController
 
   def destroy
     session = JWTSessions::Session.new(payload: payload, 
-      # refresh_by_access_allowed: true, # it automatically injects refresh UID into access token, and allows to perform flush_by_access_payload
+      refresh_by_access_allowed: true, # it automatically injects refresh UID into access token, and allows to perform flush_by_access_payload
       namespace: "user_#{payload['user_id']}"
       # namespace: "user_#{claimless_payload['user_id']}" # it works
     )
