@@ -3,53 +3,18 @@ import logoImage from 'images/logo.png'
 import I18n from 'i18n-js/index.js.erb'
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
-import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
-import { config } from 'config'
+import { urls, config } from 'config'
 
 import { userActions } from '../_actions';
 import { connect } from 'react-redux';
 
 class HeaderNavBar extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  // }
-
   signOut = (e) => {
-
     this.props.dispatch(userActions.logout());
-    // this.props.history.push(confi.urlAfterSignout)
+    // this.props.history.push(config.urlAfterSignout)
     e.preventDefault()
     return;
-
-    // fetch(httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-    // fetch(httpSecuredRequest(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf))
-    httpRequestAndRefreshToken(`${config.apiUrl}/signin`, 'DELETE', {}, this.props.appState.csrf)
-      // .then(handleErrors)
-      .then((item, message) => {
-        // console.log('/signout success', item)
-        // unset current user
-        this.props.setAppState({
-          user: [],
-          csrf: '',
-          isSignedIn: false
-        })
-        this.props.history.push(config.urlAfterSignout)
-      })
-      .catch((error) => {
-        // if (error.status === 401) {
-
-        // }
-        // console.log('/signout error', error)
-        //TODO: Flash message with text "Can not sign out"
-        // or force logout on client side
-
-        // this.props.unsetCurrentUser()
-        this.props.setAppState({
-          isSignedIn: false
-        })
-        this.props.history.push(config.urlAfterSignout)
-      })
   }
 
   render() {
@@ -67,23 +32,18 @@ class HeaderNavBar extends React.Component {
           {
             loggedIn ?
               <ul className="navbar-nav ml-auto">
+                {[urls.features, urls.downloads, urls.contact_us, urls.help, urls.tickets].map((item, index) =>
+                  <li key={`navbar-nav${index}`} className="nav-item">
+                    {
+                      item.isHashLink ?
+                        <HashLink smooth to={item.path} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</HashLink>
+                        :
+                        <Link to={item.path} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</Link>
+                    }
+                  </li>
+                )}
                 <li className="nav-item">
-                  <HashLink smooth to="/#features" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</HashLink>
-                </li>
-                <li className="nav-item">
-                  <HashLink smooth to="/#downloads" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.apps')}</HashLink>
-                </li>
-                <li className="nav-item">
-                  <Link to="/contact_us" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.contact_us')}</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/coming_soon" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.help')}</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/tickets" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.tickets')}</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/signout" onClick={this.signOut} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.sign_out')}</Link>
+                  <Link to={urls.signout.path} onClick={this.signOut} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{urls.signout.name}</Link>
                 </li>
               </ul>
               :
