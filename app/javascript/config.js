@@ -26,6 +26,7 @@ const urls = {
   signup: {
     path: '/signup',
     name: I18n.t('nav_menu.sign_up'),
+    isActive: true,
     // component: SignupPage
   },
   pricing: {
@@ -36,13 +37,11 @@ const urls = {
   features: {
     path: '/#features',
     name: I18n.t('nav_menu.features'),
-    isHashLink: true,
     // component: Features
   },
   downloads: {
     path: '/#downloads',
     name: I18n.t('nav_menu.apps'),
-    isHashLink: true,
     // component: AppDownloads
   },
   forgot: {
