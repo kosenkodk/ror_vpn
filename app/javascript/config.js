@@ -18,6 +18,11 @@ const urls = {
     name: I18n.t('nav_menu.sign_in'),
     // component: SigninPage
   },
+  signout: {
+    path: '/signout',
+    name: I18n.t('nav_menu.sign_out'),
+    // component: SignOut
+  },
   signup: {
     path: '/signup',
     name: I18n.t('nav_menu.sign_up'),
@@ -27,6 +32,18 @@ const urls = {
     path: '/pricing',
     name: I18n.t('nav_menu.pricing'),
     // component: PricingPage
+  },
+  features: {
+    path: '/#features',
+    name: I18n.t('nav_menu.features'),
+    isHashLink: true,
+    // component: Features
+  },
+  downloads: {
+    path: '/#downloads',
+    name: I18n.t('nav_menu.apps'),
+    isHashLink: true,
+    // component: AppDownloads
   },
   forgot: {
     path: '/forgot',
