@@ -26,6 +26,7 @@ class Paginator extends React.Component {
 
   render() {
     const { pageCurrent = 1, pageTotal = 1 } = this.props
+    console.log('paginator pageCurrent:', pageCurrent, 'pageTotal', pageTotal)
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
@@ -55,13 +56,15 @@ class Paginator extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { page: pageCurrent, pages: pageTotal } = state.tickets;
-  return {
-    pageCurrent,
-    pageTotal,
-  };
-}
+export { Paginator }
 
-const connectedTicketsPage = connect(mapStateToProps)(Paginator);
-export { connectedTicketsPage as Paginator };
+// function mapStateToProps(state) {
+//   const { page: pageCurrent, pages: pageTotal } = state.tickets;
+//   return {
+//     pageCurrent,
+//     pageTotal,
+//   };
+// }
+
+// const connectedTicketsPage = connect(mapStateToProps)(Paginator);
+// export { connectedTicketsPage as Paginator };
