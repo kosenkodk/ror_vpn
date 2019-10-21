@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { urls } from 'config';
 import { connect } from 'react-redux';
 
 class Paginator extends React.Component {
@@ -27,13 +25,13 @@ class Paginator extends React.Component {
   }
 
   render() {
-    const { pageCurrent, pageTotal } = this.props
+    const { pageCurrent = 1, pageTotal = 1 } = this.props
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
           <li className={`page-item ${pageCurrent > 1 ? '' : 'disabled'}`}>
-            <Link className="page-link" tabIndex="-1"
-              onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</Link>
+            <a className="page-link" tabIndex="-1"
+              onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</a>
           </li>
           {Array(pageTotal).fill().map((v, i) => i + 1).map((item, index) =>
             <li key={`page${item}`} className={`page-item ${pageCurrent === item ? 'active' : ''}`}>
@@ -42,14 +40,14 @@ class Paginator extends React.Component {
                   <span className="sr-only">(current)</span>
                 </span>
                 :
-                <Link className="page-link"
-                  onClick={(e) => this.onPageChange(e, item)}>{item}</Link>
+                <a className="page-link"
+                  onClick={(e) => this.onPageChange(e, item)}>{item}</a>
               }
             </li>
           )}
           <li className={`page-item ${pageCurrent >= pageTotal ? 'disabled' : ''}`}>
-            <Link className="page-link"
-              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))}>Next</Link>
+            <a className="page-link"
+              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))}>Next</a>
           </li>
         </ul>
       </nav>
