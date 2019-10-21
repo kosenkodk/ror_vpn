@@ -1,8 +1,6 @@
 import React from 'react'
 import logoImage from 'images/logo.png'
-import I18n from 'i18n-js/index.js.erb'
-import { Link } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link'
+import { NavHashLink } from 'react-router-hash-link'
 import { urls, config } from 'config'
 
 import { userActions } from '../_actions';
@@ -21,9 +19,9 @@ class HeaderNavBar extends React.Component {
     const { loggedIn } = this.props;
     return (
       <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent">
-        <Link to="/">
+        <NavHashLink smooth to={urls.home.path}>
           <img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img>
-        </Link>
+        </NavHashLink>
 
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
           <span className="navbar-toggler-icon"></span>
@@ -33,45 +31,21 @@ class HeaderNavBar extends React.Component {
             loggedIn ?
               <ul className="navbar-nav ml-auto">
                 {[urls.features, urls.downloads, urls.contact_us, urls.help, urls.tickets].map((item, index) =>
-                  <li key={`navbar-nav${index}`} className="nav-item">
-                    {
-                      item.isHashLink ?
-                        <HashLink smooth to={item.path} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</HashLink>
-                        :
-                        <Link to={item.path} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</Link>
-                    }
+                  <li key={`nav-private${index}`} className="nav-item">
+                    <NavHashLink smooth to={item.path} activeClassName="active" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</NavHashLink>
                   </li>
                 )}
                 <li className="nav-item">
-                  <Link to={urls.signout.path} onClick={this.signOut} className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{urls.signout.name}</Link>
+                  <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="active" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{urls.signout.name}</NavHashLink>
                 </li>
               </ul>
               :
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <HashLink smooth to="/#features" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.features')}</HashLink>
-                </li>
-                <li className="nav-item">
-                  <Link to="/pricing" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.pricing')}</Link>
-                </li>
-                <li className="nav-item">
-                  <HashLink smooth to="/#downloads" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.apps')}</HashLink>
-                </li>
-                <li className="nav-item">
-                  <Link to="/contact_us" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.contact_us')}</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/coming_soon" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.help')}</Link>
-                </li>
-                <li className="nav-item d-block d-sm-none">
-                  <a className="nav-link"></a>
-                </li>
-                <li className="nav-item">
-                  <Link to="/signin" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.sign_in')}</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/signup" className="nav-link active pl-3 pr-3 text-left btn btn-outline-pink">{I18n.t('nav_menu.sign_up')}</Link>
-                </li>
+                {[urls.features, urls.pricing, urls.downloads, urls.contact_us, urls.help, urls.signin, urls.signup].map((item, index) =>
+                  <li key={`nav-pubic${index}`} className="nav-item">
+                    <NavHashLink smooth to={item.path} activeClassName="active" className={`nav-link pl-3 pr-3 text-left btn btn-outline-pink ${item.isActive ? 'active' : ''}`}>{item.name}</NavHashLink>
+                  </li>
+                )}
               </ul>
           }
         </div>
