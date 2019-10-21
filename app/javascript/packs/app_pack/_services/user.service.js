@@ -152,7 +152,9 @@ function refreshTokenAndRetryResponse(response, url, method, data_orig) {
 
       // network error
       if (!response.ok) {
-        if (response.status === 401) {
+        if ((response.status === 401)
+          || (response.status === 403)
+        ) {
           return handle401Status(url, method, data_orig)
         }
 
