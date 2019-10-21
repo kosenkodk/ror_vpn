@@ -1,20 +1,12 @@
 import React from 'react';
-// import { HashLink as Link } from 'react-router-hash-link';
-import { Link } from 'react-router-dom';
-import { urls } from 'config';
 
 class Paginator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pageCurrent: this.props.pageCurrent || 1,
-      pageTotal: this.props.pageTotal || 2,
-    }
     this.onPageChange = this.onPageChange.bind(this);
   }
 
   onPageChange(e, pageNumber) {
-    this.setState({ pageCurrent: pageNumber });
     this.props.onPageChange(e, pageNumber);
     e.preventDefault();
   }
@@ -27,18 +19,18 @@ class Paginator extends React.Component {
 
   pageNext(pageCurrent) {
     pageCurrent += 1
-    if (pageCurrent > this.state.pageTotal) pageCurrent = this.state.pageTotal
+    if (pageCurrent > this.props.pageTotal) pageCurrent = this.props.pageTotal
     return pageCurrent
   }
 
   render() {
-    const { pageCurrent, pageTotal } = this.state
+    const { pageCurrent = 1, pageTotal = 1 } = this.props
     return (
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
           <li className={`page-item ${pageCurrent > 1 ? '' : 'disabled'}`}>
-            <Link to={`${urls.tickets.path}?page=${this.pagePrev(pageCurrent)}`} className="page-link" tabIndex="-1"
-              onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</Link>
+            <a className="page-link" tabIndex="-1"
+              onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</a>
           </li>
           {Array(pageTotal).fill().map((v, i) => i + 1).map((item, index) =>
             <li key={`page${item}`} className={`page-item ${pageCurrent === item ? 'active' : ''}`}>
@@ -47,14 +39,14 @@ class Paginator extends React.Component {
                   <span className="sr-only">(current)</span>
                 </span>
                 :
-                <Link to={`${urls.tickets.path}?page=${item}`} className="page-link"
-                  onClick={(e) => this.onPageChange(e, item)}>{item}</Link>
+                <a className="page-link"
+                  onClick={(e) => this.onPageChange(e, item)}>{item}</a>
               }
             </li>
           )}
           <li className={`page-item ${pageCurrent >= pageTotal ? 'disabled' : ''}`}>
-            <Link to={`${urls.tickets.path}?page=${this.pageNext(pageCurrent)}`}
-              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))} className="page-link">Next</Link>
+            <a className="page-link"
+              onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))}>Next</a>
           </li>
         </ul>
       </nav>

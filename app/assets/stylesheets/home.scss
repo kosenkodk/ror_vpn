@@ -592,3 +592,20 @@ footer {
   // position: unset !important;
   // z-index: -1;
 }
+
+// pagination
+ul.pagination {
+  li.page-item {
+    &.active {
+      background: $pink_gradient;
+    }
+    &.disabled {
+      opacity: $opacity;
+    }
+    .page-link {
+      @extend .btn-outline-pink;
+      border-color: unset;
+      cursor: pointer;
+    }
+  }
+}
