@@ -26,7 +26,7 @@ class TicketsViewPage extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-6 mr-auto">
-              <h2 className="mt-2">Tickets</h2>
+              <h2 className="mt-2">View Ticket</h2>
             </div>
             <div className="col-xs-6 ml-auto align-self-center">
               <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
