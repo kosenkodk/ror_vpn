@@ -82,9 +82,9 @@ class App extends React.Component {
                 <LayoutWithSidebar>
                   <Switch>
                     <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+                    <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
                     <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />
-                    <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     {/* TODO: user or admin namespace
                     <PrivateRoute exact path={`${url='/admin'}/`} component={ComingSoonPage} />
                     <PrivateRoute exact path={`${url}${urls.tickets_new.path}`} component={TicketsNewPage} />
