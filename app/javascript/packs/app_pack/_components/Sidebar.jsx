@@ -12,25 +12,25 @@ class Sidebar extends React.Component {
     return (
       <ul className="sidebar list-group shadow-vega bg-vega mb-4">
         {/* <li className="list-group-item">SETTINGS</li> */}
-        <Link smooth to={urls.coming_soon.path} activeClassName="active">
-          <li className="list-group-item">Dashboard</li>
+        <Link smooth to={urls.user_dashboard.path} activeClassName="active">
+          <li className="list-group-item">{urls.user_dashboard.name}</li>
         </Link>
-        <Link smooth to={urls.coming_soon.path} activeClassName="active">
+        <Link smooth to={urls.user_account.path} activeClassName="active">
           <li className="list-group-item">
-            Account
+            {urls.user_account.name}
           </li>
         </Link>
         <Link smooth to={urls.tickets.path} activeClassName="active">
           <li className="list-group-item">{urls.tickets.name}</li>
         </Link>
-        <Link smooth to={urls.coming_soon.path} activeClassName="active">
-          <li className="list-group-item">Payment</li>
+        <Link smooth to={urls.user_payment.path} activeClassName="active">
+          <li className="list-group-item">{urls.user_payment.name}</li>
         </Link>
-        <Link smooth to={urls.coming_soon.path} activeClassName="active">
-          <li className="list-group-item">Downloads</li>
+        <Link smooth to={urls.user_downloads.path} activeClassName="active">
+          <li className="list-group-item">{urls.user_downloads.name}</li>
         </Link>
-        <Link smooth to={urls.coming_soon.path} activeClassName="active">
-          <li className="list-group-item">Refer Friends</li>
+        <Link smooth to={urls.user_invite_friend.path} activeClassName="active">
+          <li className="list-group-item">{urls.user_invite_friend.name}</li>
         </Link>
 
         {/* <!--
