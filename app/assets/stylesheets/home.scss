@@ -561,20 +561,24 @@ footer {
 }
 
 .sidebar {
+
   li {
     @extend .btn-outline-pink;
     cursor: pointer;
     &.list-group-item.active {
       border: unset;
-    }
-    a {
-      color: $white;
-      &:hover {
-        text-decoration: none;
-      }
-    }
+    } 
   }
-  
+
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+    &.active li.list-group-item {
+      background: $pink_gradient;
+    }
+  }  
 }
 
 .tickets {

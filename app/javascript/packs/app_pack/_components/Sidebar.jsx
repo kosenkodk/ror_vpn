@@ -12,12 +12,26 @@ class Sidebar extends React.Component {
     return (
       <ul className="sidebar list-group shadow-vega bg-vega mb-4">
         {/* <li className="list-group-item">SETTINGS</li> */}
-        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Dashboard</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Account</Link></li>
-        <li className={`list-group-item ${this.getNavLinkClass(urls.tickets.path)}`}><Link to={urls.tickets.path} activeClassName="active" >{urls.tickets.name}</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Payment</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Downloads</Link></li>
-        <li className="list-group-item"><Link to={urls.coming_soon.path} activeClassName="active" >Refer Friends</Link></li>
+        <Link smooth to={urls.coming_soon.path} activeClassName="active">
+          <li className="list-group-item">Dashboard</li>
+        </Link>
+        <Link smooth to={urls.coming_soon.path} activeClassName="active">
+          <li className="list-group-item">
+            Account
+          </li>
+        </Link>
+        <Link smooth to={urls.tickets.path} activeClassName="active">
+          <li className="list-group-item">{urls.tickets.name}</li>
+        </Link>
+        <Link smooth to={urls.coming_soon.path} activeClassName="active">
+          <li className="list-group-item">Payment</li>
+        </Link>
+        <Link smooth to={urls.coming_soon.path} activeClassName="active">
+          <li className="list-group-item">Downloads</li>
+        </Link>
+        <Link smooth to={urls.coming_soon.path} activeClassName="active">
+          <li className="list-group-item">Refer Friends</li>
+        </Link>
 
         {/* <!--
         <li className="list-group-item">Invoices</li>
@@ -32,7 +46,7 @@ class Sidebar extends React.Component {
         <li className="list-group-item"><Link to="#">Support Tickets</Link></li>
         <li className="list-group-item"><Link to="#">Invoice History</Link></li>
         <li className="list-group-item"><Link to="#">Delete Account</Link></li> --> */}
-      </ul>
+      </ul >
     )
   }
 }
