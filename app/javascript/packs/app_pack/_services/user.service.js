@@ -5,6 +5,7 @@ const autoRefreshToken = true;
 export const userService = {
   login,
   logout,
+  signup,
   getAll,
   getTickets,
   addTicket,
@@ -52,6 +53,30 @@ function logout() {
   localStorage.removeItem('user');
   localStorage.removeItem('csrf');
   // history.push(config.urlAfterSignout)
+}
+
+function signup(data) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  };
+
+  return fetch(`${config.apiUrl}/signup`, requestOptions)
+    .then(handleResponse)
+    .then(response => {
+
+      if (!response.csrf) {
+        // auto logout if empty csrf returned from api
+        logout()
+        const error = (response && response.error) || response.statusText;
+        return Promise.reject(error);
+      }
+
+      localStorage.setItem('csrf', JSON.stringify(response.csrf));
+
+      return getUser()
+    });
 }
 
 function getAll() {

@@ -13,6 +13,8 @@ import PaymentMethods from './PaymentMethods'
 import imgStep1 from 'images/signup/step1'
 import imgStep2 from 'images/signup/step2'
 import imgStep3 from 'images/signup/step3'
+import { connect } from 'react-redux';
+import { userActions } from '../_actions';
 
 class SignupPage extends React.Component {
 
@@ -80,16 +82,17 @@ class SignupPage extends React.Component {
 
   onFormSubmit(e) {
     // console.log('onFormSubmit', this.state)
+    this.props.dispatch(userActions.signup(this.state));
+    e.preventDefault();
+    return
 
     this.setState({ notice: '', error: '' })
-
     const data = this.state
 
     fetch(postCsrfRequest(`${config.apiUrl}/signup`, 'POST', data))
       .then(handleErrors)
       .then((item) => this.responseSuccessful(item))
       .catch((error) => this.responseFailed(error));
-
     e.preventDefault()
   }
 
@@ -230,4 +233,13 @@ SignupPage.propTypes = {
   password_confirmation: PropTypes.string,
 };
 
-export { SignupPage }
+
+function mapStateToProps(state) {
+  const { loggingIn } = state.authentication;
+  return {
+    loggingIn
+  };
+}
+
+const connectedPage = connect(mapStateToProps)(SignupPage);
+export { connectedPage as SignupPage }; 

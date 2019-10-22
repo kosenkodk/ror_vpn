@@ -7,6 +7,7 @@ import { config } from 'config';
 export const userActions = {
   login,
   logout,
+  signup,
   getAll,
   contactUs,
 };
@@ -57,6 +58,28 @@ function logout() {
   userService.logout();
   history.push(config.urlAfterSignout);
   return { type: userConstants.LOGOUT };
+}
+
+function signup(data) {
+  return dispatch => {
+    dispatch(request({ data }));
+
+    userService.signup(data)
+      .then(
+        user => {
+          dispatch(success(user));
+          history.push(config.userUrlAfterSignin);
+        },
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request(user) { return { type: userConstants.SIGNUP_REQUEST, user } }
+  function success(user) { return { type: userConstants.SIGNUP_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.SIGNUP_FAILURE, error } }
 }
 
 function getAll() {
