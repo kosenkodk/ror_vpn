@@ -79,6 +79,8 @@ Rails.application.configure do
   config.action_mailer.default_options = { from: 'no-reply@dev.vega.isit.su' }
   config.action_mailer.default_url_options = { host: "dev.vega.isit.su" }
 
+  # config.action_mailer.asset_host = 'dev.vega.isit.su/packs/media/images/'
+
   # 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

@@ -11,9 +11,9 @@
     <div class="card">
       <div class="card-header" style="background-color: #eee">
         <%= email_inline_image_tag 'logo_mail_black.png', class: 'pl-3', style:"height:50px;" %>
-        <%= email_image_tag 'logo_mail_black.png', class: 'pl-3', style:"height:50px;" %>
-        <%= image_tag attachments['logo_mail_black.png'].url %><br>
-        <%= image_tag attachments.inline['logo_mail_black.png'].url %><br>
+        <%#= email_image_tag 'logo_mail_black.png', class: 'pl-3', style:"height:50px;" #%>
+        <%#= image_tag attachments['logo_mail_black.png'].url, class: 'pl-3', style:"height:50px;" #%>
+        <%#= image_tag attachments.inline['logo_mail_black.png'].url, class: 'pl-3', style:"height:50px;" #%>
       </div>
       <div class="card-body">
         <%= yield %>
