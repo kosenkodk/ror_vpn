@@ -2,12 +2,16 @@ import I18n from 'i18n-js/index.js.erb'
 
 const config = {
   apiUrl: '/api/v1',
-  userUrlAfterSignin: '/tickets',
+  userUrlAfterSignin: '/user/tickets',
   urlAfterSignout: '/signin',
   isDebug: true
 };
 
 const urls = {
+  user: {
+    path: '/user',
+    name: 'User Panel',
+  },
   home: {
     path: '/',
     name: I18n.t('nav_menu.home'),
@@ -70,24 +74,44 @@ const urls = {
     // component: ContactusPage
   },
   tickets: {
-    path: '/tickets',
+    path: '/user/tickets',
     name: I18n.t('nav_menu.tickets'),
     // component: TicketsPage
   },
   tickets_view: {
-    path: '/tickets/:id',
+    path: '/user/tickets/:id',
     name: 'View Ticket',
     // component: TicketViewPage
   },
   tickets_edit: {
-    path: '/tickets/:id/edit',
+    path: '/user/tickets/:id/edit',
     name: 'Edit Ticket',
     // component: TicketEditPage
   },
   tickets_new: {
-    path: '/tickets/new',
+    path: '/user/tickets/new',
     name: 'New Ticket',
     // component: TicketNewPage
+  },
+  user_dashboard: {
+    path: '/user/dashboard',
+    name: 'Dashboard',
+  },
+  user_payment: {
+    path: '/user/payments',
+    name: 'Payments',
+  },
+  user_downloads: {
+    path: '/user/downloads',
+    name: 'Downloads',
+  },
+  user_invite_friend: {
+    path: '/user/invite_friend',
+    name: 'Refer Friends',
+  },
+  user_account: {
+    path: '/user/account',
+    name: 'Account',
   },
   success: {
     path: '/200',

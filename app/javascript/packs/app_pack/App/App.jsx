@@ -44,6 +44,7 @@ class App extends React.Component {
       if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
       this.isFooterVisible()
+
     });
   }
 
@@ -78,20 +79,14 @@ class App extends React.Component {
           <div className={`${history.location.pathname === urls.home.path ? '' : 'container'}`}>
             <Switch>
               {/* private user's pages */}
-              <Route path={[urls.tickets.path]}>
+              <Route path={urls.user.path}>
                 <LayoutWithSidebar>
                   <Switch>
                     <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
                     <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                    <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />
-                    {/* TODO: user or admin namespace
-                    <PrivateRoute exact path={`${url='/admin'}/`} component={ComingSoonPage} />
-                    <PrivateRoute exact path={`${url}${urls.tickets_new.path}`} component={TicketsNewPage} />
-                    <PrivateRoute exact path={`${url}${urls.tickets_edit.path}`} component={TicketsEditPage} />
-                    <PrivateRoute exact path={`${url}${urls.tickets_view.path}`} component={TicketsViewPage} />
-                    <PrivateRoute exact path={`${url}${urls.tickets.path}`} component={TicketsPage} />
-                    */}
+                    <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
+                    <PrivateRoute path={urls.user.path} component={ComingSoonPage} />
                   </Switch>
                 </LayoutWithSidebar>
               </Route>
