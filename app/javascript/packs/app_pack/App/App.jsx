@@ -78,12 +78,21 @@ class App extends React.Component {
           <div className={`${history.location.pathname === urls.home.path ? '' : 'container'}`}>
             <Switch>
               {/* private user's pages */}
-              <Route path={[urls.tickets.path, urls.tickets_new.path, urls.tickets_edit.path, urls.tickets_view.path]}>
+              <Route path={[urls.tickets.path]}>
                 <LayoutWithSidebar>
-                  <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
-                  <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
-                  <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                  <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />
+                  <Switch>
+                    <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+                    <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+                    <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />
+                    <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
+                    {/* TODO: user or admin namespace
+                    <PrivateRoute exact path={`${url='/admin'}/`} component={ComingSoonPage} />
+                    <PrivateRoute exact path={`${url}${urls.tickets_new.path}`} component={TicketsNewPage} />
+                    <PrivateRoute exact path={`${url}${urls.tickets_edit.path}`} component={TicketsEditPage} />
+                    <PrivateRoute exact path={`${url}${urls.tickets_view.path}`} component={TicketsViewPage} />
+                    <PrivateRoute exact path={`${url}${urls.tickets.path}`} component={TicketsPage} />
+                    */}
+                  </Switch>
                 </LayoutWithSidebar>
               </Route>
               {/* public pages */}
