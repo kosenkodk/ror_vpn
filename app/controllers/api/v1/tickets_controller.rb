@@ -27,25 +27,33 @@ class Api::V1::TicketsController < Api::V1::ApiController
   def create
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment, :attachment2))
     department_id = params[:ticket][:department]
+
+    if params[:ticket][:attachment2].present? && params[:ticket][:attachment2][:file].present?
     attachment_error = ''
     begin
       attachmentUrl = params[:ticket][:attachment2][:file] # data:application/octet-stream;base64,FILE
       attachmentFileName =  params[:ticket][:attachment2][:name]
+      attachmentContentType =  params[:ticket][:attachment2][:type]
       start = attachmentUrl.index(',') + 1
       attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
       
-      file_name = 'attachment.png'
-      File.open(file_name, 'wb') do|f|
+      file_name = "attachment_#{Time.zone.now.to_s}.png"
+      file_dir = "#{Rails.root}/tmp/images/#{file_name}"
+      file_path = "#{Rails.root}/#{file_name}"
+      FileUtils.mkdir_p(file_dir) unless File.exists?(file_dir)
+      File.open(file_path, 'wb') do |f|
         f.write(attachment_base64_decoded)
       end
 
-      @ticket.attachment.attach(io: File.open(file_name, 'rb'), filename: attachmentFileName)
+      @ticket.attachment.attach(io: File.open(file_path, 'rb'), filename: attachmentFileName, content_type: attachmentContentType)
       # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
-    
+      
+      FileUtils.rm(file_path)
     rescue => exception
-      # render json: {error: "can't upload your attachments", status: 404}
-      # return
-      attachment_error = "can't upload your attachments"
+      attachment_error = I18n.t('api.errors.attachment_upload')
+      render json: { error: attachment_error, status: 400 }
+      return
+    end
     end
 
     if (Department.exists?(department_id))
