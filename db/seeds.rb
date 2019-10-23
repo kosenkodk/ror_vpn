@@ -67,9 +67,9 @@ users << User.find_or_create_by(email:'user@ex.com', password:'123', role:0)
 users << User.find_or_create_by(email:'manager@ex.com', password:'123', role:1)
 users << User.find_or_create_by(email:'admin@ex.com', password:'123', role:2)
 departments = []
-departments << Department.find_or_create_by(order:10, title:'Accountancy(Billing)', email:"billing@#{Rails.application.config.host}")
-departments << Department.find_or_create_by(order:20, title:'Sales', email:"sales@#{Rails.application.config.host}")
-departments << Department.find_or_create_by(order:30, title:'Technical Support', email:"support@#{Rails.application.config.host}")
+departments << Department.find_or_create_by(order:10, title:'Accountancy(Billing)', email:"VegaVPN <billing@#{Rails.application.config.host}>")
+departments << Department.find_or_create_by(order:20, title:'Sales', email:"VegaVPN <sales@#{Rails.application.config.host}>")
+departments << Department.find_or_create_by(order:30, title:'Technical Support', email:"VegaVPN <support@#{Rails.application.config.host}>")
 tickets = [
   {title: 'Ticket 1'}, 
   {title: 'Ticket 2'}, 
