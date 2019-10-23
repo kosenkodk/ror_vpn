@@ -15,6 +15,11 @@ class Ticket < ApplicationRecord
     # Rails.application.routes.url_helpers.rails_blob_path(self.icon, only_path: true) if self.try(:icon).try(:attached?)# && self.try(:icon).try(:image).try(:blob?)
   end
 
+  def url
+    url = root_url(host: Rails.application.config.host)
+    "#{url}user/tickets/#{self.id}"
+  end
+  
   def attachment_url
     rails_blob_url(self.attachment, host: Rails.application.config.host) if self.attachment.attached?
   end
@@ -22,7 +27,7 @@ class Ticket < ApplicationRecord
   def attachment_name
     self.attachment.blob.filename if self.attachment.attached?
   end
-  
+
   def file_urls
     self.files.map { |item| rails_blob_path(item, only_path: true) }
   end

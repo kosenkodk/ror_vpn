@@ -11,8 +11,8 @@
 <% if @ticket.try(:id)%>
 <p>
   You can follow your ticket at
-  <a href="<%=api_v1_ticket_url(@ticket.try(:id))%>" class="">
-    <%=api_v1_ticket_url(@ticket.try(:id))%>.
+  <a href="<%=@ticket.url%>" class="">
+    <%=@ticket.url%>.
   </a>
 
   <!-- <a href="<%=api_v1_ticket_url(@ticket.try(:id))%>" class="btn btn-outline-secondary">
