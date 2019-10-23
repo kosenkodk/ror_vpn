@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { ticketActions } from '../_actions'
-import TicketForm from './TicketForm'
+import { TicketForm } from './TicketForm'
 import { urls } from 'config'
 import { fileToBase64 } from '../_helpers'
 
