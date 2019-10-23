@@ -1,6 +1,7 @@
-<h5 class="card-title"><%=@ticket.try(:user).try(:email)%></h5>
-<p class="card-text">Account: <%=@ticket.user.email%></p>
-
+<h5 class="card-title">Account: <%=@ticket.try(:user).try(:email)%></h5>
+<p>
+  Department: <%=@ticket.try(:department).try(:title)%>
+</p>
 <p class="card-text">Subject : Ticket number <%=@ticket.id%> - new reply - <%=@ticket.title%></p>
 
 Dear Sir or Madam,
@@ -16,12 +17,7 @@ You can read it on our website at
 <p class="card-text">
   If you have any questions, please contact us
   <%=link_to root_url+'contact_us', root_url+'contact_us', class: '' %> |
-
-
   Best regards,
-
-
-  <%=@ticket.try(:department).try(:title)%>
 </p>
 <!-- <p class="card-text">
   <%=@ticket.title%>
@@ -34,6 +30,6 @@ You can read it on our website at
   <a href="<%=@ticket.attachment_url%>"><%=@ticket.attachment_name%></a>
 </p> -->
 
-<!-- <a href="<%=api_v1_ticket_url(@ticket.id)%>" class="btn btn-outline-secondary">
+<!-- <a href="<%=api_v1_ticket_url(@ticket.try(:id))%>" class="btn btn-outline-secondary">
   view more details
 </a> -->
