@@ -11,7 +11,12 @@
 
 <p class="card-text">
   <%#=@ticket.attachment#%>
-  <%= image_tag attachments['attachment'].url if attachments['attachment'].present? && attachments['attachment'].url.present? %>
+  <a href="<%=@attachment_url%>">attachment url !</a>
+  <a href="<%=@ticket.attachment_url%>">attachment url</a>
+  <a
+    href="<%=attachments['attachment'].url if attachments['attachment'].present? && attachments['attachment'].url.present? %>">
+    attachment link
+  </a>
 </p>
 
 <!-- <a href="<%#=api_v1_ticket_url(@ticket.id)#%>" class="btn btn-outline-secondary">

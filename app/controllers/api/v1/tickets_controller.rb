@@ -47,7 +47,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
       department = Department.find(department_id)
       @ticket.department = department
       TicketsMailer.notify_user_from(department.email, @ticket.user.email, @ticket, file).deliver_now
-      TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket, file).deliver_now
+      TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket, file, @ticket.attachment_url).deliver_now
     end
     @ticket.save!
     render json: @ticket, status: :created, error: attachment_error, notice: I18n.t('api.notices.item_added'), location: api_v1_ticket_url(@ticket)
