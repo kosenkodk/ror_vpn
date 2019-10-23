@@ -57,7 +57,10 @@ class TicketsPage extends React.Component {
             </thead>
             <tbody>
               {items && items.length > 0 ?
-                items.map((item, index) => <TicketTableItem key={item.id} no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} {...item} />)
+                items.map((item, index) => <TicketTableItem key={item.id}
+                  // no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} 
+                  no={item.id}
+                  {...item} />)
                 :
                 <tr>
                   <td colSpan="7" scope="row">
