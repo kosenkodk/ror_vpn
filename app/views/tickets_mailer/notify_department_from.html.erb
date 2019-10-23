@@ -15,8 +15,8 @@
 <% if @ticket.try(:id)%>
 <p>
   Ticket url:
-  <a href="<%=api_v1_ticket_url(@ticket.try(:id))%>" class="btn btn-outline-secondary">
-    <%=api_v1_ticket_url(@ticket.try(:id))%>
+  <a href="<%=@ticket.url%>" class="btn btn-outline-secondary">
+    <%=@ticket.url%>
   </a>
 </p>
 <% end %>
