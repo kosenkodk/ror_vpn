@@ -29,9 +29,13 @@ class Api::V1::TicketsController < Api::V1::ApiController
     department_id = params[:ticket][:department]
 
     attachment_error = ''
+    file = ''
     begin
       file_params = get_attachment_base64(params[:ticket][:attachment2])
-      @ticket.attachment.attach(file_params) if file_params.present?
+      if file_params.present?
+        @ticket.attachment.attach(file_params)
+        file = file_params[:file]
+      end
       # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
     rescue => exception
       attachment_error = I18n.t('api.errors.attachment_upload')
@@ -42,8 +46,8 @@ class Api::V1::TicketsController < Api::V1::ApiController
     if (Department.exists?(department_id))
       department = Department.find(department_id)
       @ticket.department = department
-      TicketsMailer.notify_user_from(department.email, @ticket.user.email, @ticket).deliver_now
-      TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket).deliver_now
+      TicketsMailer.notify_user_from(department.email, @ticket.user.email, @ticket, file).deliver_now
+      TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket, file).deliver_now
     end
     @ticket.save!
     render json: @ticket, status: :created, error: attachment_error, notice: I18n.t('api.notices.item_added'), location: api_v1_ticket_url(@ticket)
