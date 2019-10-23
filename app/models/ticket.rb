@@ -10,13 +10,19 @@ class Ticket < ApplicationRecord
   has_one_attached :attachment
   has_many_attached :files
   
-  def attachment_url
+  def attachment_path
     rails_blob_path(self.attachment, only_path: true) if self.attachment.attached?
     # Rails.application.routes.url_helpers.rails_blob_path(self.icon, only_path: true) if self.try(:icon).try(:attached?)# && self.try(:icon).try(:image).try(:blob?)
   end
+
+  def attachment_url
+    rails_blob_url(self.attachment, host: Rails.application.config.host) if self.attachment.attached?
+  end
+
   def attachment_name
     self.attachment.blob.filename if self.attachment.attached?
   end
+  
   def file_urls
     self.files.map { |item| rails_blob_path(item, only_path: true) }
   end

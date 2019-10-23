@@ -1,18 +1,23 @@
-<h5 class="card-title"><%=@ticket.try(:user).try(:email)%></h5>
-<p class="card-text">
-  <%=@ticket.try(:department).try(:title)%>
+<h5 class="card-title">Account: <%=@ticket.try(:user).try(:email)%></h5>
+<p>
+  Department: <%=@ticket.try(:department).try(:title)%>
+</p>
+<p>
+  Subject: Ticket no <%=@ticket.id%> - <%=@ticket.title%>
 </p>
 <p class="card-text">
-  <%=@ticket.title%>
-</p>
-<p class="card-text">
-  <%=@ticket.text%>
-</p>
-
-<p class="card-text">
-  <%#=@ticket.attachment#%>
+  Message: <%=@ticket.text%>
 </p>
 
-<!-- <a href="<%#=api_v1_ticket_url(@ticket.id)#%>" class="btn btn-outline-secondary">
-  view more details
-</a> -->
+<!-- <p class="card-text">
+  <%=@ticket.attachment_url%>
+</p> -->
+
+<p>
+  Ticket url:
+  <a href="<%=api_v1_ticket_url(@ticket.id)%>" class="btn btn-outline-secondary">
+    <%=api_v1_ticket_url(@ticket.id)%>
+  </a>
+</p>
+
+<!-- <button class="btn btn-outline-secondary">view more details</button> -->
