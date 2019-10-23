@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import I18n from 'i18n-js/index.js.erb';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
+import { connect } from 'react-redux';
 
 class TicketForm extends React.Component {
   constructor(props) {
@@ -57,7 +58,20 @@ class TicketForm extends React.Component {
           </div>
           <div className="col-sm-8">
             <br />
-            <button id="contact_submit" className="btn btn-outline-primary btn-block">{I18n.t('pages.tickets.form.submit')}</button>
+
+            <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={this.props.loading ? true : false}>
+              {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+              {' ' + I18n.t('pages.tickets.form.submit')}
+            </button>
+
+            {/* {
+              this.props.loading &&
+              <div className="text-center mt-3">
+                <div className="spinner-border text-center" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            } */}
           </div>
         </div>
       </form>
@@ -73,4 +87,11 @@ TicketForm.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
 }
-export default TicketForm
+
+function mapStateToProps(state) {
+  const { loading } = state.tickets;
+  return { loading }
+}
+
+const connectedApp = connect(mapStateToProps)(TicketForm);
+export { connectedApp as TicketForm };

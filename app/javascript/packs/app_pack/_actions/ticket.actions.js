@@ -39,7 +39,10 @@ function add(item) {
           dispatch(success(item))
           dispatch(alertActions.success(item.notice))
         },
-        error => dispatch(alertActions.error(error))
+        error => {
+          dispatch(failure(item))
+          dispatch(alertActions.error(error))
+        }
       )
   }
   function request() { return { type: ticketConstants.ADD_REQUEST } }
@@ -47,7 +50,7 @@ function add(item) {
     history.push(urls.tickets.path)
     return { type: ticketConstants.ADD_SUCCESS, item }
   }
-  // function failure(error) { return { type: ticketConstants.ADD_FAILURE, error } }
+  function failure(error) { return { type: ticketConstants.ADD_FAILURE, error } }
 }
 
 

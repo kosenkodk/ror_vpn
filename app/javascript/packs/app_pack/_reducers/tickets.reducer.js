@@ -8,7 +8,13 @@ export function tickets(state = {}, action) {
       };
     case ticketConstants.ADD_SUCCESS:
       return {
-        item: action.item
+        item: action.item,
+        loading: false
+      };
+    case ticketConstants.ADD_FAILURE:
+      return {
+        error: action.error,
+        loading: false
       };
     case ticketConstants.VIEW_REQUEST:
       return {
