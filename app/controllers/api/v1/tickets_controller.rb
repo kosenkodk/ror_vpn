@@ -38,7 +38,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
       attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
       
       file_name = "attachment_#{Time.zone.now.to_s}.png"
-      file_dir = "#{Rails.root}/tmp/images/#{file_name}"
+      file_dir = "#{Rails.root}/tmp/images"
       file_path = "#{Rails.root}/#{file_name}"
       FileUtils.mkdir_p(file_dir) unless File.exists?(file_dir)
       File.open(file_path, 'wb') do |f|
