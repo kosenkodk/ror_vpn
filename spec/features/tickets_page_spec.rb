@@ -48,7 +48,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # click_on('ticket with attachment', match: :first)
         expect(page).to have_content('ticket with attachment')
         expect(page).to have_content('logo.png')
-        click_on('logo.png')
+        # click_on('logo.png')
         ## visit page.find('img#myimage')[:src]
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end

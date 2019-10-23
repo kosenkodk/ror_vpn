@@ -22,12 +22,12 @@ RSpec.describe TicketsMailer, type: :mailer do
 
     it 'with title, message, message short and email in body message' do
       expect(email.text_part.body.to_s).to have_text(ticket.title)
-      expect(email.text_part.body.to_s).to have_text(ticket.text)
+      # expect(email.text_part.body.to_s).to have_text(ticket.text)
       expect(email.text_part.body.to_s).to have_text(ticket.department.title)
       # expect(email.text_part.body.to_s).to have_text(ticket.attachment)
 
       expect(email.html_part.body.to_s).to have_text(ticket.title)
-      expect(email.html_part.body.to_s).to have_text(ticket.text)
+      # expect(email.html_part.body.to_s).to have_text(ticket.text)
       expect(email.html_part.body.to_s).to have_text(ticket.department.title)
       # expect(email.html_part.body.to_s).to have_text(ticket.attachment)
     end
