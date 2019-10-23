@@ -1,4 +1,6 @@
 class Api::V1::ApiController < ActionController::API
+  include ApplicationHelper
+
   include JWTSessions::RailsAuthorization
   rescue_from ActionController::ParameterMissing, with: :bad_request
   rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity
