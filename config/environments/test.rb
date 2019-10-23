@@ -40,8 +40,9 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.default_options = { from: 'VegaVPN <no-reply@dev.vega.isit.su>' }
+  config.host = 'localhost'
+  config.action_mailer.default_url_options = { host: config.host, port: 3000 }
+  config.action_mailer.default_options = { from: "VegaVPN <no-reply@#{config.host}>" }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
