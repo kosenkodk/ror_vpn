@@ -76,7 +76,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'no-reply@dev.vega.isit.su' }
+  config.action_mailer.default_options = { from: 'VegaVPN <no-reply@dev.vega.isit.su>' }
   config.action_mailer.default_url_options = { host: "dev.vega.isit.su" }
 
   # config.action_mailer.asset_host = 'dev.vega.isit.su/packs/media/images/'
