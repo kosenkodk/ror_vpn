@@ -12,9 +12,7 @@ module VegaVPN
     config.load_defaults 6.0
     config.exceptions_app = self.routes
     config.hosts << 'vega.isit.su'
-    config.hosts << 'dev.vega.isit.su'
     config.hosts << 'localhost'
-    config.hosts << 'www.example.com'
     config.hosts << '127.0.0.1'
     WillPaginate.per_page = 4
 
