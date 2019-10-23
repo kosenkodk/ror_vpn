@@ -11,9 +11,9 @@
 #if you are using the API key
 ActionMailer::Base.smtp_settings = {
   address:        'smtp.sendgrid.net',
-  domain:         Rails.application.config.host, #'vega.isit.su',
+  domain:         Rails.application.config.host,
   port:            587,
   authentication: :plain,
-  user_name:      Rails.application.credentials.sendgrid_api_key_name, #'apikey',
-  password:       Rails.application.credentials.sendgrid_api_key, #ENV['SENDGRID_API_KEY']
+  user_name:      'apikey',
+  password:       Rails.application.credentials.sendgrid_api_key,
 }
