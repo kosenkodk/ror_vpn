@@ -1,0 +1,39 @@
+<h5 class="card-title"><%=@ticket.try(:user).try(:email)%></h5>
+<p class="card-text">Account: <%=@ticket.user.email%></p>
+
+<p class="card-text">Subject : Ticket number <%=@ticket.id%> - new reply - <%=@ticket.title%></p>
+
+Dear Sir or Madam,
+
+You've got a reply to your assistance request number <%=@ticket.id%>.
+
+You can read it on our website at
+<a href="<%=api_v1_ticket_url(@ticket.id)%>" class="">
+  <%=api_v1_ticket_url(@ticket.id)%>.
+</a>
+
+<!-- Without activiy in three days, your assistance request will be closed. -->
+<p class="card-text">
+  If you have any questions, please contact us
+  <%=link_to root_url+'contact_us', root_url+'contact_us', class: '' %> |
+
+
+  Best regards,
+
+
+  <%=@ticket.try(:department).try(:title)%>
+</p>
+<!-- <p class="card-text">
+  <%=@ticket.title%>
+</p>
+<p class="card-text">
+  <%=@ticket.text%>
+</p> -->
+
+<!-- <p class="card-text">
+  <a href="<%=@ticket.attachment_url%>"><%=@ticket.attachment_name%></a>
+</p> -->
+
+<!-- <a href="<%=api_v1_ticket_url(@ticket.id)%>" class="btn btn-outline-secondary">
+  view more details
+</a> -->
