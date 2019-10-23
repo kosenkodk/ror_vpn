@@ -1,14 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import I18n from 'i18n-js/index.js.erb'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import PropTypes from 'prop-types';
+import I18n from 'i18n-js/index.js.erb';
+import { Link } from 'react-router-dom';
 import { userActions } from '../_actions';
 import { connect } from 'react-redux';
 
 class SigninForm extends React.Component {
 
   constructor(props) {
-
     super(props);
 
     // reset login status
@@ -89,24 +88,24 @@ class SigninForm extends React.Component {
         <div className="form-group row">
           <div className="col-sm-6 offset-sm-3">
             <br />
-            <button className="btn btn-outline-primary btn-block">{I18n.t('pages.login.form.login')}</button>
 
-            {loggingIn &&
+            <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={loggingIn ? true : false}>
+              {loggingIn && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+              {' ' + I18n.t('pages.login.form.login')}
+            </button>
+
+            {/* {loggingIn &&
               <div className="text-center">
                 <div className="spinner-border text-center" role="status">
                   <span className="sr-only">Loading...</span>
                 </div>
               </div>
-            }
+            } */}
           </div>
         </div>
       </form >
     );
   }
-
-  componentDidMount() {
-  }
-
 }
 
 SigninForm.propTypes = {
