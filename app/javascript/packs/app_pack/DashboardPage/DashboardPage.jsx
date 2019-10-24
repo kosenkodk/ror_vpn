@@ -14,10 +14,8 @@ class DashboardPage extends React.Component {
   render() {
     const { loggingIn } = this.props;
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <div id="plans">plans
+      <div className="">
         <Plans />
-        </div>
         <div id="subscriptions">subscription</div>
         <div id="billing">billing</div>
 
