@@ -98,15 +98,15 @@ const urls = {
     name: 'Dashboard',
     urls: {
       user_plans: {
-        path: '/user/dashboard#plans',
+        path: '/user/dashboard/#plans',
         name: 'Plans',
       },
       user_subscriptions: {
-        path: '/user/dashboard#subscriptions',
+        path: '/user/dashboard/#subscriptions',
         name: 'Subscriptions',
       },
       user_billing: {
-        path: '/user/dashboard#billing',
+        path: '/user/dashboard/#billing',
         name: 'Billing',
       },
     }
@@ -116,11 +116,11 @@ const urls = {
     name: 'Payments',
     urls: {
       payment_methods: {
-        path: '/user/payments#payment_methods',
+        path: '/user/payments/#payment_methods',
         name: 'Payment methods',
       },
       invoices: {
-        path: '/user/payments#invoices',
+        path: '/user/payments/#invoices',
         name: 'Invoices',
       },
     }
@@ -130,11 +130,11 @@ const urls = {
     name: 'Downloads',
     urls: {
       openvpn_configs: {
-        path: '/user/downloads',
+        path: '/user/downloads#configs',
         name: 'OpenVPN configs',
       },
       apps: {
-        path: '/user/downloads#apps',
+        path: '/user/downloads/#apps',
         name: 'Applications',
       },
     }
@@ -148,19 +148,19 @@ const urls = {
     name: 'Account',
     urls: {
       user_change_email: {
-        path: '/user/account#email',
+        path: '/user/account/#email',
         name: 'Change email',
       },
       user_change_password: {
-        path: '/user/account#password',
+        path: '/user/account/#password',
         name: 'Change password',
       },
       twofaAuth: {
-        path: '/user/account#twofaAuth',
+        path: '/user/account/#twofaAuth',
         name: 'Two-factor authentication',
       },
       delete: {
-        path: '/user/account#delete',
+        path: '/user/account/#delete',
         name: 'Delete Account',
       },
     }
