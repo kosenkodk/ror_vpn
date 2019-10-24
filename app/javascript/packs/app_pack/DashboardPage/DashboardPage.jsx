@@ -15,10 +15,18 @@ class DashboardPage extends React.Component {
     const { loggingIn } = this.props;
     return (
       <div className="">
-        <Plans />
-        <div id="subscriptions">subscription</div>
-        <div id="billing">billing</div>
-
+        <div id="plans">
+          <h3>{I18n.t('pages.dashboard.plans.title')}</h3>
+          <Plans />
+        </div>
+        <div id="subscriptions">
+          <h3>{I18n.t('pages.dashboard.subscriptions.title')}</h3>
+          <p>No any subscription found</p>
+        </div>
+        <div id="billing">
+          <h3>{I18n.t('pages.dashboard.billing.title')}</h3>
+          <p>No any billing details found</p>
+        </div>
       </div>
     );
   }
