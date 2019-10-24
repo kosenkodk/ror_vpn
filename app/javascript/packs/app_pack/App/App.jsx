@@ -5,6 +5,7 @@ import smoothscroll from 'smoothscroll-polyfill'
 
 import { history } from '../_helpers'
 import { alertActions, bgClassActions, departmentActions } from '../_actions'
+import { urls } from 'config'
 
 // components
 import { Header, PrivateRoute, PrivateRouteWithRightSidebar } from '../_components'
@@ -21,7 +22,8 @@ import { SignupPage } from '../SignupPage'
 import { ComingSoonPage, SuccessPage, NotFoundPage } from '../StatusPages'
 import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
-import { urls } from 'config'
+import { DashboardPage } from '../DashboardPage'
+
 // layouts
 import { Layout, LayoutWithSidebar } from '../App'
 
@@ -86,7 +88,7 @@ class App extends React.Component {
                     <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
                     <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
-                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={ComingSoonPage}
+                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
                       // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
                       sidebarUrls={Object.values(urls.user_dashboard.urls)}
                     />

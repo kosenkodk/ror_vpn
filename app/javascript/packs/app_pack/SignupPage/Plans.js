@@ -37,7 +37,7 @@ class Plans extends React.Component {
   }
 
   componentDidMount() {
-    const url = "api/v1/tariff_plans";
+    const url = "/api/v1/tariff_plans";
     fetch(url)
       .then(response => {
         if (response.ok) {
