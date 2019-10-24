@@ -4,34 +4,45 @@ import { urls } from 'config'
 import { history } from '../_helpers'
 
 class Sidebar extends React.Component {
+
   getNavLinkClass = (path) => {
     return history.location.pathname === path ? 'active' : '';
   }
 
   render() {
+    console.log(this.props.items)
+    const { items } = this.props
     return (
       <ul className="sidebar list-group shadow-vega bg-vega mb-4">
-        {/* <li className="list-group-item">SETTINGS</li> */}
-        <Link smooth to={urls.user_dashboard.path} activeClassName="active">
-          <li className="list-group-item">{urls.user_dashboard.name}</li>
-        </Link>
-        <Link smooth to={urls.user_account.path} activeClassName="active">
-          <li className="list-group-item">
-            {urls.user_account.name}
-          </li>
-        </Link>
-        <Link smooth to={urls.tickets.path} activeClassName="active">
-          <li className="list-group-item">{urls.tickets.name}</li>
-        </Link>
-        <Link smooth to={urls.user_payment.path} activeClassName="active">
-          <li className="list-group-item">{urls.user_payment.name}</li>
-        </Link>
-        <Link smooth to={urls.user_downloads.path} activeClassName="active">
-          <li className="list-group-item">{urls.user_downloads.name}</li>
-        </Link>
-        <Link smooth to={urls.user_invite_friend.path} activeClassName="active">
-          <li className="list-group-item">{urls.user_invite_friend.name}</li>
-        </Link>
+        {items ? items.map(item =>
+          <Link key={item.path} smooth to={item.path} activeClassName="active">
+            <li className="list-group-item">{item.name}</li>
+          </Link>
+        )
+          :
+          <React.Fragment>
+            <Link smooth to={urls.user_dashboard.path} activeClassName="active">
+              <li className="list-group-item">{urls.user_dashboard.name}</li>
+            </Link>
+            <Link smooth to={urls.user_account.path} activeClassName="active">
+              <li className="list-group-item">
+                {urls.user_account.name}
+              </li>
+            </Link>
+            <Link smooth to={urls.tickets.path} activeClassName="active">
+              <li className="list-group-item">{urls.tickets.name}</li>
+            </Link>
+            <Link smooth to={urls.user_payment.path} activeClassName="active">
+              <li className="list-group-item">{urls.user_payment.name}</li>
+            </Link>
+            <Link smooth to={urls.user_downloads.path} activeClassName="active">
+              <li className="list-group-item">{urls.user_downloads.name}</li>
+            </Link>
+            <Link smooth to={urls.user_invite_friend.path} activeClassName="active">
+              <li className="list-group-item">{urls.user_invite_friend.name}</li>
+            </Link>
+          </React.Fragment>
+        }
 
         {/* <!--
         <li className="list-group-item">Invoices</li>

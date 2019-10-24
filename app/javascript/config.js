@@ -97,6 +97,18 @@ const urls = {
     path: '/user/dashboard',
     name: 'Dashboard',
   },
+  user_plans: {
+    path: '/user/dashboard/plans',
+    name: 'Plans',
+  },
+  user_subscriptions: {
+    path: '/user/dashboard/subscriptions',
+    name: 'Subscriptions',
+  },
+  user_billing: {
+    path: '/user/dashboard/billing',
+    name: 'Billing',
+  },
   user_payment: {
     path: '/user/payments',
     name: 'Payments',
