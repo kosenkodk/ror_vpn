@@ -89,7 +89,7 @@ const urls = {
     // component: TicketEditPage
   },
   tickets_new: {
-    path: '/user/tickets/new',
+    path: '/user/tickets_new',
     name: 'New Ticket',
     // component: TicketNewPage
   },

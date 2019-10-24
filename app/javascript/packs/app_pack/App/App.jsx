@@ -23,7 +23,7 @@ import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
 import { urls } from 'config'
 // layouts
-import { Layout, LayoutWithSidebar } from '../App'
+import { Layout, LayoutWithSidebar, LayoutWith2Sidebars } from '../App'
 
 class App extends React.Component {
   constructor(props) {
@@ -79,23 +79,60 @@ class App extends React.Component {
           <div className={`${history.location.pathname === urls.home.path ? '' : 'container'}`}>
             <Switch>
               {/* private user's pages */}
-              <Route path={urls.user.path}>
-                <LayoutWithSidebar>
-                  <Switch>
+              <Route exact path={[urls.tickets.path, urls.tickets_new.path, urls.tickets_edit.path, urls.tickets_view.path]}>
+                <Switch>
+                  <LayoutWithSidebar>
                     <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
                     <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                    <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
-                    <PrivateRoute path={urls.user_dashboard.path} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_payment.path} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_downloads.path} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_account.path} component={ComingSoonPage} />
-                    {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
-                    <PrivateRoute component={NotFoundPage} />
-                  </Switch>
-                </LayoutWithSidebar>
+                    <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />
+                  </LayoutWithSidebar>
+                </Switch>
               </Route>
+              <Route exact path={urls.user_dashboard.path}>
+                <Switch>
+                  <LayoutWith2Sidebars>
+                    <PrivateRoute exact path={urls.user_dashboard.path} component={ComingSoonPage} />
+                  </LayoutWith2Sidebars>
+                </Switch>
+              </Route>
+              <Route exact path={urls.user_payment.path}>
+                <Switch>
+                  <LayoutWith2Sidebars>
+                    <PrivateRoute exact path={urls.user_payment.path} component={ComingSoonPage} />
+                  </LayoutWith2Sidebars>
+                </Switch>
+              </Route>
+              <Route exact path={urls.user_downloads.path}>
+                <Switch>
+                  <LayoutWith2Sidebars>
+                    <PrivateRoute exact path={urls.user_downloads.path} component={ComingSoonPage} />
+                  </LayoutWith2Sidebars>
+                </Switch>
+              </Route>
+              <Route exact path={urls.user_invite_friend.path}>
+                <Switch>
+                  <LayoutWith2Sidebars>
+                    <PrivateRoute exact path={urls.user_invite_friend.path} component={ComingSoonPage} />
+                  </LayoutWith2Sidebars>
+                </Switch>
+              </Route>
+              <Route exact path={urls.user_account.path}>
+                <Switch>
+                  <LayoutWith2Sidebars>
+                    <PrivateRoute exact path={urls.user_account.path} component={ComingSoonPage} />
+                  </LayoutWith2Sidebars>
+                </Switch>
+              </Route>
+              <Route path={urls.user.path}>
+                <Switch>
+                  <LayoutWithSidebar>
+                    <PrivateRoute component={NotFoundPage} />
+                  </LayoutWithSidebar>
+                </Switch>
+              </Route>
+              {/* end private user's pages */}
+
               {/* public pages */}
               <Route path={[urls.home.path,
               urls.signin.path,
