@@ -1,7 +1,8 @@
-import React from 'react'
-import { NavHashLink as Link } from 'react-router-hash-link'
-import { urls } from 'config'
-import { history } from '../_helpers'
+import React from 'react';
+import { NavHashLink as Link } from 'react-router-hash-link';
+import { urls } from 'config';
+import { history } from '../_helpers';
+import PropTypes from 'prop-types';
 
 class Sidebar extends React.Component {
 
@@ -10,8 +11,7 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    console.log(this.props.items)
-    const { items } = this.props
+    let items = this.props.items
     return (
       <ul className="sidebar list-group shadow-vega bg-vega mb-4">
         {items ? items.map(item =>
@@ -20,28 +20,7 @@ class Sidebar extends React.Component {
           </Link>
         )
           :
-          <React.Fragment>
-            <Link smooth to={urls.user_dashboard.path} activeClassName="active">
-              <li className="list-group-item">{urls.user_dashboard.name}</li>
-            </Link>
-            <Link smooth to={urls.user_account.path} activeClassName="active">
-              <li className="list-group-item">
-                {urls.user_account.name}
-              </li>
-            </Link>
-            <Link smooth to={urls.tickets.path} activeClassName="active">
-              <li className="list-group-item">{urls.tickets.name}</li>
-            </Link>
-            <Link smooth to={urls.user_payment.path} activeClassName="active">
-              <li className="list-group-item">{urls.user_payment.name}</li>
-            </Link>
-            <Link smooth to={urls.user_downloads.path} activeClassName="active">
-              <li className="list-group-item">{urls.user_downloads.name}</li>
-            </Link>
-            <Link smooth to={urls.user_invite_friend.path} activeClassName="active">
-              <li className="list-group-item">{urls.user_invite_friend.name}</li>
-            </Link>
-          </React.Fragment>
+          <li className="list-group-item">no items</li>
         }
 
         {/* <!--
@@ -60,6 +39,21 @@ class Sidebar extends React.Component {
       </ul >
     )
   }
+}
+
+Sidebar.defaultProps = {
+  items: [
+    urls.user_dashboard,
+    urls.user_account,
+    urls.tickets,
+    urls.user_payment,
+    urls.user_downloads,
+    urls.user_invite_friend,
+  ]
+}
+
+Sidebar.propTypes = {
+  items: PropTypes.array,
 }
 
 export default Sidebar
