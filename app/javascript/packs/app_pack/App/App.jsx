@@ -86,7 +86,7 @@ class App extends React.Component {
                     <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
                     <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
-                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} sidebarItems={[urls.user_plans, urls.user_subscriptions, urls.user_billing]} component={ComingSoonPage} />
+                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} sidebarUrls={[urls.user_plans, urls.user_subscriptions, urls.user_billing]} component={ComingSoonPage} />
                     <PrivateRoute path={urls.user_payment.path} component={ComingSoonPage} />
                     <PrivateRoute path={urls.user_downloads.path} component={ComingSoonPage} />
                     <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
