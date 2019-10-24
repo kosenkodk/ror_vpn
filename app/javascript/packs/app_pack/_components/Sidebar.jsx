@@ -53,7 +53,7 @@ Sidebar.defaultProps = {
 }
 
 Sidebar.propTypes = {
-  items: PropTypes.array,
+  // items: PropTypes.array,
 }
 
 export default Sidebar

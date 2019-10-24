@@ -8,10 +8,6 @@ const config = {
 };
 
 const urls = {
-  user: {
-    path: '/user',
-    name: 'User Panel',
-  },
   home: {
     path: '/',
     name: I18n.t('nav_menu.home'),
@@ -78,6 +74,10 @@ const urls = {
     name: I18n.t('nav_menu.tickets'),
     // component: TicketsPage
   },
+  user: {
+    path: '/user',
+    name: 'User Panel',
+  },
   tickets_view: {
     path: '/user/tickets/:id',
     name: 'View Ticket',
@@ -96,26 +96,48 @@ const urls = {
   user_dashboard: {
     path: '/user/dashboard',
     name: 'Dashboard',
-  },
-  user_plans: {
-    path: '/user/dashboard/plans',
-    name: 'Plans',
-  },
-  user_subscriptions: {
-    path: '/user/dashboard/subscriptions',
-    name: 'Subscriptions',
-  },
-  user_billing: {
-    path: '/user/dashboard/billing',
-    name: 'Billing',
+    urls: {
+      user_plans: {
+        path: '/user/dashboard#plans',
+        name: 'Plans',
+      },
+      user_subscriptions: {
+        path: '/user/dashboard#subscriptions',
+        name: 'Subscriptions',
+      },
+      user_billing: {
+        path: '/user/dashboard#billing',
+        name: 'Billing',
+      },
+    }
   },
   user_payment: {
     path: '/user/payments',
     name: 'Payments',
+    urls: {
+      payment_methods: {
+        path: '/user/payments#payment_methods',
+        name: 'Payment methods',
+      },
+      invoices: {
+        path: '/user/payments#invoices',
+        name: 'Invoices',
+      },
+    }
   },
   user_downloads: {
     path: '/user/downloads',
     name: 'Downloads',
+    urls: {
+      openvpn_configs: {
+        path: '/user/downloads',
+        name: 'OpenVPN configs',
+      },
+      apps: {
+        path: '/user/downloads#apps',
+        name: 'Applications',
+      },
+    }
   },
   user_invite_friend: {
     path: '/user/invite_friend',
@@ -124,6 +146,24 @@ const urls = {
   user_account: {
     path: '/user/account',
     name: 'Account',
+    urls: {
+      user_change_email: {
+        path: '/user/account#email',
+        name: 'Change email',
+      },
+      user_change_password: {
+        path: '/user/account#password',
+        name: 'Change password',
+      },
+      twofaAuth: {
+        path: '/user/account#twofaAuth',
+        name: 'Two-factor authentication',
+      },
+      delete: {
+        path: '/user/account#delete',
+        name: 'Delete Account',
+      },
+    }
   },
   success: {
     path: '/200',

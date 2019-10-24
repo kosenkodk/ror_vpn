@@ -86,11 +86,21 @@ class App extends React.Component {
                     <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
                     <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
                     <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
-                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} sidebarUrls={[urls.user_plans, urls.user_subscriptions, urls.user_billing]} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_payment.path} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_downloads.path} component={ComingSoonPage} />
+                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={ComingSoonPage}
+                      // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
+                      sidebarUrls={Object.values(urls.user_dashboard.urls)}
+                    />
+                    <PrivateRouteWithRightSidebar path={urls.user_account.path} component={ComingSoonPage}
+                      sidebarUrls={Object.values(urls.user_account.urls)}
+                    />
+                    <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
+                      sidebarUrls={Object.values(urls.user_payment.urls)}
+                    />
+                    <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
+                      sidebarUrls={Object.values(urls.user_downloads.urls)}
+                    />
                     <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
-                    <PrivateRoute path={urls.user_account.path} component={ComingSoonPage} />
+
                     {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
                     <PrivateRoute component={NotFoundPage} />
                   </Switch>
