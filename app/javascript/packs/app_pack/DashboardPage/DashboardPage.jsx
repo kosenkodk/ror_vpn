@@ -14,20 +14,21 @@ class DashboardPage extends React.Component {
   render() {
     const { loggingIn } = this.props;
     return (
-      <div className="">
-        <div id="plans">
+      <React.Fragment>
+        {/* <div className="shadow-vega bg-vega"> */}
+        <div id="plans" className="">
           <h3>{I18n.t('pages.dashboard.plans.title')}</h3>
           <Plans />
         </div>
-        <div id="subscriptions">
+        <div id="subscriptions" className="">
           <h3>{I18n.t('pages.dashboard.subscriptions.title')}</h3>
           <p>No any subscription found</p>
         </div>
-        <div id="billing">
+        <div id="billing" className="">
           <h3>{I18n.t('pages.dashboard.billing.title')}</h3>
           <p>No any billing details found</p>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

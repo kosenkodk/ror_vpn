@@ -14,14 +14,14 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
 export const PrivateRouteWithRightSidebar = ({ sidebarUrls: arrayUrls, component: Component, ...rest }) => (
   <React.Fragment>
     <div className="row">
-      <div className="col-sm-10">
+      <div className="col-sm-9 col-md-10">
         <Route {...rest} render={props => (
           localStorage.getItem('user')
             ? <Component {...props} />
             : <Redirect to={{ pathname: config.urlAfterSignout, state: { from: props.location } }} />
         )} />
       </div>
-      <div className="col-sm-2">
+      <div className="col-sm-3 col-md-2 d-none d-sm-block">
         <Sidebar items={arrayUrls} />
       </div>
     </div>
@@ -31,10 +31,10 @@ export const PrivateRouteWithRightSidebar = ({ sidebarUrls: arrayUrls, component
 export const PrivateRouteWithSidebar = ({ sidebarUrls: arrayUrls, component: Component, ...rest }) => (
   <React.Fragment>
     <div className="row">
-      <div className="col-sm-2">
+      <div className="col-sm-3 col-md-2">
         <Sidebar items={arrayUrls} />
       </div>
-      <div className="col-sm-10">
+      <div className="col-sm-9 col-md-10">
         <Route {...rest} render={props => (
           localStorage.getItem('user')
             ? <Component {...props} />
