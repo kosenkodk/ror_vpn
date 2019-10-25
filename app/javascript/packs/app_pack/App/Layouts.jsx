@@ -9,10 +9,10 @@ const Layout = (props) => (
 
 const LayoutWithSidebar = (props) => (
   <div className="row">
-    <div className="col-sm-4 col-md-2 d-none d-sm-block">
+    <div className="col-md-3 col-lg-2 d-none d-md-block">
       <Sidebar />
     </div>
-    <div className="col-sm-8 col-md-10">
+    <div className="col-md-9 col-lg-10">
       {props.children}
     </div>
   </div>
