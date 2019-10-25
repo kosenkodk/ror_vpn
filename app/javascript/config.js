@@ -2,7 +2,7 @@ import I18n from 'i18n-js/index.js.erb'
 
 const config = {
   apiUrl: '/api/v1',
-  userUrlAfterSignin: '/user/tickets',
+  userUrlAfterSignin: '/user/dashboard/#plans',
   urlAfterSignout: '/signin',
   isDebug: true
 };
