@@ -12,7 +12,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
   before(:each) do
     fsign_in_as(user)
-    # visit('/tickets')
+    visit('/user/tickets')
   end
 
   describe 'GET #index - view all tickets' do
