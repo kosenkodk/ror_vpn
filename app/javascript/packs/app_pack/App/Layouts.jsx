@@ -9,7 +9,7 @@ const Layout = (props) => (
 
 const LayoutWithSidebar = (props) => (
   <div className="row">
-    <div className="col-sm-4 col-md-2">
+    <div className="col-sm-4 col-md-2 d-none d-sm-block">
       <Sidebar />
     </div>
     <div className="col-sm-8 col-md-10">

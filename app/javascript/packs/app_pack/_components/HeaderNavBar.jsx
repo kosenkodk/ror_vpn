@@ -30,7 +30,9 @@ class HeaderNavBar extends React.Component {
           {
             loggedIn ?
               <ul className="navbar-nav ml-auto">
-                {[urls.features, urls.downloads, urls.contact_us, urls.help, urls.tickets].map((item, index) =>
+                {[urls.help, urls.user_dashboard, urls.user_account, urls.tickets,
+                urls.user_payment, urls.user_downloads, urls.user_invite_friend
+                ].map((item, index) =>
                   <li key={`nav-private${index}`} className="nav-item">
                     <NavHashLink smooth to={item.path} activeClassName="active" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</NavHashLink>
                   </li>
