@@ -9,9 +9,10 @@
   Message: <%=@ticket.text%>
 </p>
 
-<!-- <p class="card-text">
-  <%=@ticket.attachment_url%>
-</p> -->
+<p class="card-text">
+  Attachment url: <a href="<%=@ticket.attachment_url%>"><%=@ticket.attachment_name%></a>
+</p>
+
 <% if @ticket.try(:id)%>
 <p>
   Ticket url:
