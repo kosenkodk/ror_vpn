@@ -52,7 +52,7 @@ export function tickets(state = {}, action) {
       };
     case ticketConstants.UPDATE_REQUEST:
       return {
-        // ...state,
+        ...state,
         loading: true,
         page: state.page,
         pages: state.pages,
@@ -62,7 +62,7 @@ export function tickets(state = {}, action) {
       return {
         // ...state,
         // item: action.item,
-        items: state.items.map(itemPrev => itemPrev.id === action.item.id ? action.item : itemPrev),
+        items: state.items && state.items.map(itemPrev => itemPrev.id === action.item.id ? action.item : itemPrev),
         page: state.page,
         pages: state.pages,
         status: state.status,
