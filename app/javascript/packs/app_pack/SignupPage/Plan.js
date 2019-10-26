@@ -73,7 +73,7 @@ class Plan extends React.Component {
             </ul>
           </div>
           <div className="card-footer p-0 m-0 mt-n2">
-            <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${active_class || hover_class ? '' : 'd-none'}`}>Best
+            <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${this.props.index === 0 && (active_class || hover_class) ? '' : 'd-none'}`}>Best
         offer</button>
           </div>
         </div>
