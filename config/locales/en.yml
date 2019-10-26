@@ -156,6 +156,7 @@ en:
         title: "Subject"
         select_the_department: "Select the department"
         department: "Department"
+        status: "Status"
         text: "Message"
         attachment: "Attachment"
         attachment_url: "Visit Attachment Url"

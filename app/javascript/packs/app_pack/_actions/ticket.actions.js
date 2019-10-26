@@ -9,6 +9,7 @@ export const ticketActions = {
   getAll,
   add,
   view,
+  update,
 }
 
 function getAll(page) {
@@ -53,6 +54,28 @@ function add(item) {
   function failure(error) { return { type: ticketConstants.ADD_FAILURE, error } }
 }
 
+function update(item) {
+  return dispatch => {
+    dispatch(request({ item }))
+    userService.updateTicket(item)
+      .then(
+        item => {
+          dispatch(success(item))
+          dispatch(alertActions.success(item.notice))
+        },
+        error => {
+          dispatch(failure(item))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+  function request() { return { type: ticketConstants.UPDATE_REQUEST } }
+  function success(item) {
+    // history.push(urls.tickets.path)
+    return { type: ticketConstants.UPDATE_SUCCESS, item }
+  }
+  function failure(error) { return { type: ticketConstants.UPDATE_FAILURE, error } }
+}
 
 function view(id) {
   return dispatch => {
