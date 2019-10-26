@@ -12,6 +12,12 @@ class TicketsPage extends React.Component {
   constructor(props) {
     super(props);
     this.onPageChange = this.onPageChange.bind(this);
+    this.onClose = this.onClose.bind(this);
+  }
+
+  onClose(e, id) {
+    this.props.dispatch(ticketActions.update(id));
+    e.preventDefault();
   }
 
   onPageChange(e, page) {
@@ -59,6 +65,7 @@ class TicketsPage extends React.Component {
               {items && items.length > 0 ?
                 items.map((item, index) => <TicketTableItem key={item.id}
                   // no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} 
+                  onClose={this.onClose}
                   no={item.id}
                   {...item} />)
                 :

@@ -10,6 +10,7 @@ export const userService = {
   getTickets,
   addTicket,
   viewTicket,
+  updateTicket,
   getDepartments,
   contactUs,
 };
@@ -102,6 +103,18 @@ function contactUs(contact) {
     // body: JSON.stringify({ contact })
   }
   return fetch(`${config.apiUrl}/contacts`, requestOptions).then(handleResponse);
+}
+
+function updateTicket(ticket) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/tickets/${ticket.id}`, 'PATCH', { ticket: { id: ticket.id, status: 'closed' } })
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader(),
+    body: JSON.stringify({ ticket })
+  }
+  return fetch(`${config.apiUrl}/tickets/${ticket.id}`, requestOptions).then(handleResponse);
 }
 
 function addTicket(ticket) {

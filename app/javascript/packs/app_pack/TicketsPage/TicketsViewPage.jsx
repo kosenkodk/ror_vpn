@@ -34,7 +34,12 @@ class TicketsViewPage extends React.Component {
           </div>
         </div>
 
-        {/* TODO: display status <p>{item && item.status}</p> */}
+        <div className="form-group row">
+          <label className="col-sm-4">{I18n.t('pages.tickets.form.status')}</label>
+          <div className="col-sm-8 ">
+            {item && item.status}
+          </div>
+        </div>
 
         <div className="form-group row">
           <label className="col-sm-4">{I18n.t('pages.tickets.form.department')}</label>

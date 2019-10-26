@@ -32,6 +32,23 @@ export function tickets(state = {}, action) {
         ...state,
         error: action.error,
       };
+    case ticketConstants.UPDATE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ticketConstants.UPDATE_SUCCESS:
+      return {
+        // item: action.item,
+        items: state.items.map(itemPrev => itemPrev.id === action.item.id ? action.item : itemPrev),
+        page: state.page,
+        pages: state.pages,
+      }
+    case ticketConstants.UPDATE_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+      }
     case ticketConstants.GETALL_REQUEST:
       return {
         loading: true
