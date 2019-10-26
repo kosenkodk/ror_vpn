@@ -60,6 +60,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     it 'returns a success response' do
       get :show, params: { id: ticket.id }
       expect(response).to be_successful
+      expect(response_json.keys).to include ['department']
     end
   end
 
