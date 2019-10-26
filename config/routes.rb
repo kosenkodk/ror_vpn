@@ -35,7 +35,11 @@ Rails.application.routes.draw do
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
 
-      resources :tickets
+      resources :tickets do
+        collection do
+          get '/filter', action: :filter, as: :filter
+        end
+      end
       resources :todos
       resources :password_resets, only: [:create] do
         collection do

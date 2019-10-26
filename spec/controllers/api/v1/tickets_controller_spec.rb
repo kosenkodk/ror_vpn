@@ -13,6 +13,28 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
   before { sign_in_as(user) }
 
+  describe 'GET #filter' do
+    let!(:ticket_closed) { create(:ticket, status: 'closed', user: user)}
+    let!(:ticket_opened) { create(:ticket, status: 'opened', user: user)}
+
+    it 'returns closed tickets' do
+      get :filter, params: {status: 'closed'}
+      expect(response_json['tickets'].size).to eq 1
+      expect(response_json['tickets'].first['status']).to eq 'closed'
+    end
+    it 'returns opened tickets' do
+      get :filter, params: {status: 'opened'}
+      expect(response_json['tickets'].size).to eq 1
+      expect(response_json['tickets'].first['status']).to eq 'opened'
+    end
+    it 'returns all tickets' do
+      get :filter, params: {status: ''}
+      expect(response_json['tickets'].size).to eq 2
+      expect(response_json['tickets'].first['status']).to eq 'opened'
+      expect(response_json['tickets'].second['status']).to eq 'closed'
+    end
+  end
+
   describe 'GET #index' do
     let!(:ticket) { create(:ticket, user: user) }
 

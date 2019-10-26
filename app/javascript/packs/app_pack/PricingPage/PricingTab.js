@@ -37,7 +37,7 @@ class PricingTab extends React.Component {
             ))
           }
         </div>
-      </React.Fragment >
+      </React.Fragment>
     )
   }
 
