@@ -18,7 +18,7 @@ class TicketTableItem extends React.Component {
           {/* <Link to="#" className='btn btn-sm btn-outline-warning'>Edit</Link> */}
         </td>
         <td>
-          <button onClick={(e) => this.props.onClose(e, this.props)} className='btn btn-sm btn-outline-danger'>Close</button>
+          {/* <button onClick={(e) => this.props.onClose(e, this.props)} className='btn btn-sm btn-outline-danger'>Close</button> */}
           {/* <button onClick={(e) => this.props.onDeleteItem(e, this.props)} className='btn btn-sm btn-outline-danger'>Delete</button> */}
           {/* <Link to="#" className='btn btn-sm btn-outline-danger'>Delete</Link> */}
         </td>
