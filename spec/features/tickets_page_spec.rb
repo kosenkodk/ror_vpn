@@ -60,7 +60,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         ## visit page.find('img#myimage')[:src]
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
-      it 'close ticket' do
+      xit 'close ticket' do
         click_on(I18n.t('buttons.close'), match: :first)
         click_on(I18n.t('buttons.view'), match: :first)
         expect(page).to have_content('closed')
