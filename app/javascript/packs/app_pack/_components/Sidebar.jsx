@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
     return (
       <ul className="sidebar list-group shadow-vega bg-vega mb-4">
         {items ? items.map(item =>
-          <Link key={item.path} smooth to={item.path} activeClassName="active"
+          <Link key={item.path} smooth to={item.path} activeClassName=""
             location={{ pathname: document.location.pathname + document.location.hash }}
           >
             <li className="list-group-item">{item.name}</li>
