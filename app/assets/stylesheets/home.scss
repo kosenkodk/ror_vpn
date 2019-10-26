@@ -17,6 +17,11 @@ body {
   min-height: 40rem;
 }
 
+.header {
+  .nav-link:focus {
+    box-shadow: none;
+  }
+}
 /* start backgrounds */
 
 .bg-color-black {
