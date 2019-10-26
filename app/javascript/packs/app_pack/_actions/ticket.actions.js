@@ -63,10 +63,13 @@ function view(id) {
           dispatch(success(item))
           dispatch(alertActions.success(item.notice))
         },
-        error => dispatch(alertActions.error(error))
+        error => {
+          dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
       )
   }
   function request() { return { type: ticketConstants.VIEW_REQUEST } }
   function success(item) { return { type: ticketConstants.VIEW_SUCCESS, item } }
-  // function failure(error) { return { type: ticketConstants.VIEW_FAILURE, error } }
+  function failure(error) { return { type: ticketConstants.VIEW_FAILURE, error } }
 }

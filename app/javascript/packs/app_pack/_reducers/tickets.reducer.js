@@ -4,25 +4,33 @@ export function tickets(state = {}, action) {
   switch (action.type) {
     case ticketConstants.ADD_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case ticketConstants.ADD_SUCCESS:
       return {
+        ...state,
         item: action.item,
-        loading: false
       };
     case ticketConstants.ADD_FAILURE:
       return {
+        ...state,
         error: action.error,
-        loading: false
       };
     case ticketConstants.VIEW_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case ticketConstants.VIEW_SUCCESS:
       return {
+        ...state,
         item: action.item
+      };
+    case ticketConstants.VIEW_FAILURE:
+      return {
+        ...state,
+        error: action.error,
       };
     case ticketConstants.GETALL_REQUEST:
       return {

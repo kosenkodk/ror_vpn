@@ -21,7 +21,7 @@ class TicketsPage extends React.Component {
 
   componentDidMount() {
     if (this.props.loggedIn)
-      this.props.dispatch(ticketActions.getAll());
+      this.props.dispatch(ticketActions.getAll({ page: this.props.page }));
     else {
       // this.props.history.push(urls.signin.path);
       this.props.dispatch(alertActions.error(I18n.t('api.errors.unauthorized')));
