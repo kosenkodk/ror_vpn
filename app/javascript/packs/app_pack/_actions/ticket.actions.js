@@ -98,6 +98,6 @@ function view(id) {
   function failure(error) { return { type: ticketConstants.VIEW_FAILURE, error } }
 }
 
-function filterBy({ status = "opened" } = {}) {
+function filterBy({ status = "" } = {}) {
   return { type: ticketConstants.FILTER_BY, status }
 }
