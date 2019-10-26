@@ -50,7 +50,7 @@ class PricingTabItemFree extends React.Component {
           {/* <!-- <div className="card-footer">
           </div> --> */}
         </div>
-      </React.Fragment >
+      </React.Fragment>
     )
   }
 

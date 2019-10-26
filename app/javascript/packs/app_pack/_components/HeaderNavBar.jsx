@@ -38,7 +38,7 @@ class HeaderNavBar extends React.Component {
                   </li>
                 )}
                 <li className="nav-item">
-                  <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{urls.signout.name}</NavHashLink>
+                  <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink active">{urls.signout.name}</NavHashLink>
                 </li>
               </ul>
               :
