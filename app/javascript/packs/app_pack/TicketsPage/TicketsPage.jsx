@@ -42,13 +42,13 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { error, status, items, loading, pages, page } = this.props
+    const { error, status, items, loading, pages, page, loggedIn } = this.props
     return (
       <div className="row">
         <div className="col-md-9 col-lg-10">
 
-          <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
-            <div className="container">
+          <div id="tickets" className={`tickets bg-vega shadow-vega mb-4 ${loggedIn ? 'container-fluid' : 'container'}`}>
+            <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
               <div className="row">
                 <div className="col-xs-6 mr-auto">
                   <h2 className="mt-2">Tickets</h2>
