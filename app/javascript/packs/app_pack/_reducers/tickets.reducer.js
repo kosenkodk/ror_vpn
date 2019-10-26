@@ -39,6 +39,8 @@ export function tickets(state = {}, action) {
       };
     case ticketConstants.UPDATE_SUCCESS:
       return {
+        ...state,
+
         // item: action.item,
         items: state.items.map(itemPrev => itemPrev.id === action.item.id ? action.item : itemPrev),
         page: state.page,
@@ -51,22 +53,31 @@ export function tickets(state = {}, action) {
       }
     case ticketConstants.GETALL_REQUEST:
       return {
-        loading: true
+        ...state,
+
+        loading: true,
+        // status: state.status,
       };
     case ticketConstants.GETALL_SUCCESS:
       return {
+        ...state,
+
         items: action.tickets.tickets,
         page: action.tickets.page,
         pages: action.tickets.pages,
+        status: state.status,
       };
     case ticketConstants.GETALL_FAILURE:
       return {
-        error: action.error
+        ...state,
+
+        error: action.error,
+        // status: state.status,
       };
     case ticketConstants.FILTER_BY:
       return {
         ...state,
-        status: action.status
+        status: action.status,
       };
     default:
       return state

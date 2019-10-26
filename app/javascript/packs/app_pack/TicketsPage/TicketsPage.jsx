@@ -21,7 +21,7 @@ class TicketsPage extends React.Component {
   }
 
   onPageChange(e, page) {
-    this.props.dispatch(ticketActions.getAll({ page: page }));
+    this.props.dispatch(ticketActions.getAll({ page: page, status: this.props.status }));
     e.preventDefault();
   }
 
@@ -35,16 +35,16 @@ class TicketsPage extends React.Component {
   }
 
   filterByStatus(e, status) {
+    this.props.dispatch(ticketActions.filterBy({ page: this.props.page, status: status }));
     this.props.dispatch(ticketActions.getAll({ page: this.props.page, status: status }));
-    // this.props.dispatch(ticketActions.filterBy({ page: this.props.page, status: status }));
+
     e.preventDefault();
   }
 
   render() {
-    const { error, items, loading, pages, page } = this.props
+    const { error, status, items, loading, pages, page } = this.props
     return (
       <div className="row">
-
         <div className="col-md-9 col-lg-10">
 
           <div id="tickets" className="container tickets bg-vega shadow-vega mb-4">
@@ -99,9 +99,9 @@ class TicketsPage extends React.Component {
               <li className="list-group-item">opened</li>
             </Link>
           </ul> */}
-          <button onClick={(e) => this.filterByStatus(e, "")} className="btn btn-outline-pink btn-block">All</button>
-          <button onClick={(e) => this.filterByStatus(e, "opened")} className="btn btn-outline-pink btn-block">Opened</button>
-          <button onClick={(e) => this.filterByStatus(e, "closed")} className="btn btn-outline-pink btn-block">Closed</button>
+          <button onClick={(e) => this.filterByStatus(e, "")} className={`btn btn-outline-pink btn-block ${status === '' ? 'active' : ''}`} > All</button>
+          <button onClick={(e) => this.filterByStatus(e, "opened")} className={`btn btn-outline-pink btn-block ${status === 'opened' ? 'active' : ''}`}>Opened</button>
+          <button onClick={(e) => this.filterByStatus(e, "closed")} className={`btn btn-outline-pink btn-block ${status === 'closed' ? 'active' : ''}`} > Closed</button>
         </div>
       </div>
     );
