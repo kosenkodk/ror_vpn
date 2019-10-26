@@ -10,6 +10,7 @@ export const ticketActions = {
   add,
   view,
   update,
+  filterBy,
 }
 
 function getAll(page) {
@@ -95,4 +96,8 @@ function view(id) {
   function request() { return { type: ticketConstants.VIEW_REQUEST } }
   function success(item) { return { type: ticketConstants.VIEW_SUCCESS, item } }
   function failure(error) { return { type: ticketConstants.VIEW_FAILURE, error } }
+}
+
+function filterBy({ status = "opened" } = {}) {
+  return { type: ticketConstants.FILTER_BY, status }
 }

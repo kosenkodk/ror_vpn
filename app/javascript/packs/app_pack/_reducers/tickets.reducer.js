@@ -63,6 +63,11 @@ export function tickets(state = {}, action) {
       return {
         error: action.error
       };
+    case ticketConstants.FILTER_BY:
+      return {
+        ...state,
+        status: action.status
+      };
     default:
       return state
   }

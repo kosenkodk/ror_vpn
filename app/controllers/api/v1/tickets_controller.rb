@@ -2,9 +2,29 @@ class Api::V1::TicketsController < Api::V1::ApiController
   before_action :authorize_access_request!
   before_action :set_item, only: [:show, :update, :destroy]
 
+  # GET /filter
+  def filter
+    if (params[:status].present?)
+      @tickets = current_user.tickets.where(status: params[:status]).paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
+    else
+      @tickets = current_user.tickets.paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
+    end
+    render json: { 
+      tickets: @tickets.as_json(
+        include: {department: {only: [:id, :title]} },
+      ),
+      pages: @tickets.try(:total_pages),
+      page: @tickets.try(:current_page),
+    }
+  end
+
   # GET /tickets
   def index
-    @tickets = current_user.tickets.paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
+    if (params[:status].present?)
+      @tickets = current_user.tickets.where(status: params[:status]).paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
+    else
+      @tickets = current_user.tickets.paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
+    end
     render json: { 
       tickets: @tickets.as_json(
         include: {department: {only: [:id, :title]} },
