@@ -21,6 +21,7 @@ class Footer extends React.Component {
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.server_status')}</Link></li>
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.server_locations')}</Link></li>
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.what_is_a_vpn_tunnel')}</Link></li>
+              {/*
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.vpn_performance')}</Link></li>
               <li><Link to="/coming_soon" className="text-light">{I18n.t('vegaVPN')}
                 {I18n.t('footer.product.vpn_dns_server')}</Link></li>
@@ -29,7 +30,8 @@ class Footer extends React.Component {
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.protocol_comparison')}</Link></li>
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.privacy_laws')}</Link></li>
               <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.comparison')}</Link></li>
-              <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.wireguard')}</Link></li>
+              <li><Link to="/coming_soon" className="text-light">{I18n.t('footer.product.wireguard')}</Link></li> 
+              */}
             </ul>
           </div>
           <div className="col-sm-4 col-md-2">
