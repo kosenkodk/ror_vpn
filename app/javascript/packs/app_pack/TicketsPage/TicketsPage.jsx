@@ -99,9 +99,9 @@ class TicketsPage extends React.Component {
               <li className="list-group-item">opened</li>
             </Link>
           </ul> */}
-          <button onClick={(e) => this.filterByStatus(e, "")} className={`btn btn-outline-pink btn-block ${status === '' ? 'active' : ''}`} > All</button>
-          <button onClick={(e) => this.filterByStatus(e, "opened")} className={`btn btn-outline-pink btn-block ${status === 'opened' ? 'active' : ''}`}>Opened</button>
-          <button onClick={(e) => this.filterByStatus(e, "closed")} className={`btn btn-outline-pink btn-block ${status === 'closed' ? 'active' : ''}`} > Closed</button>
+          <button onClick={(e) => this.filterByStatus(e, "")} className={`btn btn-outline-pink btn-block text-left ${status === '' ? this.props.activeClass : ''}`} > All</button>
+          <button onClick={(e) => this.filterByStatus(e, "opened")} className={`btn btn-outline-pink btn-block text-left ${status === 'opened' ? this.props.activeClass : ''}`}>Opened</button>
+          <button onClick={(e) => this.filterByStatus(e, "closed")} className={`btn btn-outline-pink btn-block text-left ${status === 'closed' ? this.props.activeClass : ''}`} > Closed</button>
         </div>
       </div>
     );
@@ -123,7 +123,8 @@ function mapStateToProps(state) {
 }
 
 TicketsPage.defaultProps = {
-  status: ''
+  status: '',
+  activeClass: '', // 'active'
 }
 
 const connectedTicketsPage = connect(mapStateToProps)(TicketsPage);
