@@ -60,15 +60,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { alert, bgClass } = this.props;
+    const { alert, bgClass, loggedIn } = this.props;
     return (
       <Router history={history}>
         <div className={`container-fluid ${bgClass.value}`}>
-          <div className="container">
+          <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
             <Header />
           </div>
 
-          <div className="container">
+          <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
             <div className="row">
               <div className="col">
                 {alert.message &&
@@ -78,7 +78,7 @@ class App extends React.Component {
             </div>
           </div>
 
-          <div className={`${history.location.pathname === urls.home.path ? '' : 'container'}`}>
+          <div className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
             <Switch>
               {/* private user's pages */}
               <Route path={urls.user.path}>
@@ -161,9 +161,10 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { loggedIn } = state.authentication
   const { alert, bgClass, departments } = state;
   return {
-    alert, bgClass, departments
+    alert, bgClass, departments, loggedIn
   };
 }
 
