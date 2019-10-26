@@ -3,6 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   let!(:user) {create(:user, role: 0)}
   let!(:ticket) {create(:ticket, user: user)}
+  let!(:ticket_on_page2) {create(:ticket, title: 'ticket on page 2', user: user)}
+  let!(:ticket3_on_page2) {create(:ticket, title: 'ticket on page 2', user: user)}
+  let!(:ticket4_on_page2) {create(:ticket, title: 'ticket on page 2', user: user)}
+  let!(:ticket_on_page) {create(:ticket, title: 'ticket on page 1', user: user)}
+  let!(:ticket2_on_page) {create(:ticket, title: 'ticket on page 1', user: user)}
+  let!(:ticket3_on_page) {create(:ticket, title: 'ticket on page 1', user: user)}
+  let!(:ticket4_on_page) {create(:ticket, title: 'ticket on page 1', user: user)}
+
   let!(:department_billing) {create(:department, title: 'Billing')}
   let!(:department_sales) {create(:department, title: 'Sales')}
   let!(:department_tech) {create(:department, title: 'Technical Support')}
@@ -175,10 +183,42 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   describe 'pagination' do
     context 'success' do
       it 'pagination click on next page button' do
+        expect(page).to have_content(ticket_on_page.title)
         # click_on('Next')
+        find('#next').click
+        expect(page).to have_content(ticket_on_page2.title)
       end
       it 'pagination click on prev page button' do
+        # click_on('Next')
+        find('#next').click
+        expect(page).to have_content(ticket_on_page2.title)
+
         # click_on('Previous')
+        find('#prev').click
+        expect(page).to have_content(ticket_on_page.title)
+      end
+      it 'stay on the same page after click on view item' do
+        find('#next').click
+        expect(page).to have_content(ticket_on_page2.title)
+
+        click_on(I18n.t('buttons.view'), match: :first)
+        expect(page).to have_content(ticket_on_page2.title)
+        click_on(I18n.t('buttons.back'))
+        expect(page).to have_content(ticket_on_page2.title)
+      end
+
+      it 'stay on the same page after click on new/add item' do
+        find('#next').click
+        expect(page).to have_content(ticket_on_page2.title)
+
+        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.back'))
+        expect(page).to have_content(ticket_on_page2.title)
+
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket'
+        click_on(I18n.t('buttons.submit'))
+        expect(page).to have_content(ticket_on_page2.title)
       end
     end
   end

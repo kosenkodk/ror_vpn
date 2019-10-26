@@ -27,7 +27,7 @@ class TicketsPage extends React.Component {
 
   componentDidMount() {
     if (this.props.loggedIn)
-      this.props.dispatch(ticketActions.getAll({ page: this.props.page }));
+      this.props.dispatch(ticketActions.getAll({ page: this.props.page, status: this.props.status }));
     else {
       // this.props.history.push(urls.signin.path);
       this.props.dispatch(alertActions.error(I18n.t('api.errors.unauthorized')));
@@ -120,6 +120,10 @@ function mapStateToProps(state) {
     error,
     status
   };
+}
+
+TicketsPage.defaultProps = {
+  status: ''
 }
 
 const connectedTicketsPage = connect(mapStateToProps)(TicketsPage);

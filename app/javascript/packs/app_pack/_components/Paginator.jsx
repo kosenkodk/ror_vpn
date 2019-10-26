@@ -29,7 +29,7 @@ class Paginator extends React.Component {
       <nav aria-label="Paginator">
         <ul className="pagination justify-content-end">
           <li className={`page-item ${pageCurrent > 1 ? '' : 'disabled'}`}>
-            <a className="page-link" tabIndex="-1"
+            <a id="prev" className="page-link" tabIndex="-1"
               onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</a>
           </li>
           {Array(pageTotal).fill().map((v, i) => i + 1).map((item, index) =>
@@ -45,7 +45,7 @@ class Paginator extends React.Component {
             </li>
           )}
           <li className={`page-item ${pageCurrent >= pageTotal ? 'disabled' : ''}`}>
-            <a className="page-link"
+            <a id="next" className="page-link"
               onClick={(e) => this.onPageChange(e, this.pageNext(pageCurrent))}>Next</a>
           </li>
         </ul>
