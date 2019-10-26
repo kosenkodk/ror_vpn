@@ -10,6 +10,7 @@ class Plan extends React.Component {
   }
 
   handleMouseEnter(e) {
+    return;
     this.setState({
       hover_class: 'active',
     })
@@ -17,6 +18,7 @@ class Plan extends React.Component {
   }
 
   handleMouseLeave(e) {
+    return;
     this.setState({
       hover_class: ''
     })
