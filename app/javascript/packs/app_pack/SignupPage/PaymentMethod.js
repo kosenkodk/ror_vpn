@@ -11,6 +11,7 @@ class PaymentMethod extends React.Component {
   }
 
   handleMouseEnter(e) {
+    return;
     this.setState({
       hover_class: 'active',
     })
@@ -18,6 +19,7 @@ class PaymentMethod extends React.Component {
   }
 
   handleMouseLeave(e) {
+    return;
     this.setState({
       hover_class: ''
     })
