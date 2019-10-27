@@ -10,7 +10,7 @@ class Reviews extends React.Component {
         <div className="col-md-10 offset-md-1 text-center">
           <div className="card-header">
             Why the Media loves VPN
-    </div>
+          </div>
           <div className="tab-content" id="pills-tabContent">
             <div className="tab-pane fade show active" id="pills-review1" role="tabpanel" aria-labelledby="pills-review1-tab">
               1 <ReviewSummary />
