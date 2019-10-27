@@ -18,7 +18,8 @@ class ChatRoom extends React.Component {
     let formData = new FormData(e.target)
     let jsonData = {}
     formData.forEach((value, key) => { jsonData[key] = value });
-    consumer.subscriptions.subscriptions[0].reply({ message_text: jsonData.message_text });
+    consumer.subscriptions.subscriptions[0].reply(jsonData);
+    // consumer.subscriptions.subscriptions[0].reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text });
   }
 
   componentDidMount() {
@@ -38,8 +39,6 @@ class ChatRoom extends React.Component {
               break
           }
         },
-        // reply: (data) => this.perform('reply', data),
-        // load: () => this.perform('load'),
         reply: function (data) { return this.perform("reply", data) },
         load: function () { return this.perform("load") },
       }
