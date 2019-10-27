@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import { SigninForm } from './SigninForm'
 // import FlashMessages from './_components/FlashMessages'
 

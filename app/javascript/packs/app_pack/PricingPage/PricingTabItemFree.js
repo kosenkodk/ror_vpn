@@ -1,5 +1,5 @@
 import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import icon from 'images/icons/icon_checkbox_on'
 
 class PricingTabItemFree extends React.Component {

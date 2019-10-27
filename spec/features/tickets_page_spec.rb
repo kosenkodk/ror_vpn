@@ -82,7 +82,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket.text)
         expect(page).to have_content(ticket.department)
       end
-      it 'check reply message' do
+      it 'check reply and load messages' do
         click_on(I18n.t('buttons.view'), match: :first)
         fill_in :message_text, with: 'reply'
         click_on(I18n.t('buttons.submit'))

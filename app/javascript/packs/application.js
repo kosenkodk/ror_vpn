@@ -23,7 +23,3 @@ require("packs/home")
 // var componentRequireContext = require.context("components", true);
 // var ReactRailsUJS = require("react_ujs");
 // ReactRailsUJS.useContext(componentRequireContext);
-
-// I18n support
-// import I18n from 'i18n-js/index.js.erb'
-// console.log(I18n.t('hello'))

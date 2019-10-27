@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SigninForm from './SigninForm'
 import { withRouter } from "react-router-dom";
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import FlashMessages from './sections/FlashMessages'
 import { postCsrfRequest, httpPlainRequest, handleErrors, errorMessage } from 'helpers/http'
 import { config } from 'config';

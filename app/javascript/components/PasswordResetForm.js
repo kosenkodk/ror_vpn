@@ -1,5 +1,5 @@
 import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import FlashMessages from './sections/FlashMessages'
 
 class PasswordResetForm extends React.Component {

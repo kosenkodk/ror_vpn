@@ -1,5 +1,5 @@
 import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import PasswordForgotForm from './PasswordForgotForm'
 import FlashMessages from './sections/FlashMessages'
 import { withRouter } from "react-router-dom";

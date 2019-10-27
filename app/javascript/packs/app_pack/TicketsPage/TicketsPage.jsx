@@ -5,7 +5,7 @@ import { ticketActions, alertActions } from '../_actions';
 import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
 import { Paginator } from '../_components';
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 
 class TicketsPage extends React.Component {
 

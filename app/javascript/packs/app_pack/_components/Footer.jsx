@@ -1,6 +1,6 @@
 import React from 'react'
 import FooterSocialLinks from '../_sections/FooterSocialLinks'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link';
 

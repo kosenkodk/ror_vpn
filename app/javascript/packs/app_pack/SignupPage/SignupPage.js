@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
 import { config } from 'config';
 import FlashMessages from '../_sections/FlashMessages'

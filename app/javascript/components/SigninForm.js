@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import { Link } from 'react-router-dom'
 
 class SigninForm extends React.Component {

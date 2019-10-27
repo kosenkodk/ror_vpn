@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { I18n } from '../_helpers'
+import { I18n } from 'helpers'
 
 class MessageForm extends React.Component {
   render() {

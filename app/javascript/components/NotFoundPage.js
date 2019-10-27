@@ -1,5 +1,5 @@
 import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import astronautImage from 'images/coming_soon/astronaut'
 import starImage from 'images/star'
 import bg2WithMarsImage from 'images/bg2_with_mars'
