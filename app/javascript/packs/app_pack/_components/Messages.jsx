@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 
 class Messages extends React.Component {
 
-  getNameFrom(message) {
+  getUserNameOrEmailFromMessage(message) {
     let name = ''
     try {
       const current_user = this.props.user
       const user = message.user
       name = current_user.id === user.id ? 'You' : user.email
+      // name = current_user.email === user.email ? 'You' : user.email
     } catch (e) { }
     return name
   }
@@ -18,8 +19,8 @@ class Messages extends React.Component {
     const { items, user } = this.props
     // const { items } = this.state
     const messageList = items.map((item, index) =>
-      <div key={`msg${item.id}${index}`}>
-        from {this.getNameFrom(item)} at {item.created_at}
+      <div key={`msg${item.id}#${index}`}>
+        from {this.getUserNameOrEmailFromMessage(item)} at {item.created_at}
         <p>message: {item.text}</p>
       </div>
     )
