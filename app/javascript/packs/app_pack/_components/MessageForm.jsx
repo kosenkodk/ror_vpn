@@ -5,7 +5,7 @@ import { I18n } from '../_helpers'
 class MessageForm extends React.Component {
   render() {
     return (
-      <form onSubmit={(e) => this.props.onMessageFormSubmit(e)}>
+      <form onSubmit={(e) => this.props.onMessageFormSubmit(e, this.props)}>
 
         {/* <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
