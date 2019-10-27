@@ -108,6 +108,7 @@ body {
     border-radius: $pricing_border_radius;
     &:hover {
       cursor: pointer;
+      box-shadow: -15px 15px 100px $shadow-vega;
     }
   }
 
