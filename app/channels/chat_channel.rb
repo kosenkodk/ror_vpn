@@ -7,7 +7,7 @@ class ChatChannel < ApplicationCable::Channel
   def reply(data)
     # user = User.find(data['message_user_id'])
     message = Message.create(text: data['message_text'], user_id: data['message_user_id'])
-    socket = {type: 'message', message: message}
+    socket = {type: 'message', message: message.as_json(include: :user)}
     ChatChannel.broadcast_to('ticket_channel', socket)
   end
 
