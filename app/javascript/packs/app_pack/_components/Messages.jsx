@@ -5,10 +5,13 @@ import { connect } from 'react-redux'
 class Messages extends React.Component {
 
   getNameFrom(message) {
-    const current_user = this.props.user
-    const user = message && message.user
-
-    return current_user.id === user.id ? 'You' : user.email
+    let name = ''
+    try {
+      const current_user = this.props.user
+      const user = message.user
+      name = current_user.id === user.id ? 'You' : user.email
+    } catch (e) { }
+    return name
   }
 
   render() {

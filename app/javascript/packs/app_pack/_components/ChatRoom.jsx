@@ -32,7 +32,9 @@ class ChatRoom extends React.Component {
         received: data => {
           switch (data.type) {
             case 'message':
-              this.setState({ messages: this.state.messages.concat(data.message) })
+              const messages = [data.message, ...this.state.messages]
+              // this.setState({ messages: this.state.messages.concat(data.message) })
+              this.setState({ messages: messages })
               break
             case 'messages':
               this.setState({ messages: data.messages })
