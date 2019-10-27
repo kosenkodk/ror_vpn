@@ -3,10 +3,13 @@ import { connect } from 'react-redux'
 // import { I18n } from '../_helpers'
 
 class Messages extends React.Component {
+
   render() {
     const { items } = this.props
-    const messageList = items.map(item =>
-      <div key={`msg${item.id}`}>
+    // const { items } = this.state
+    const messageList = items.map((item, index) =>
+      <div key={`msg${item.id}${index}`}>
+        {item.id}
         {item.text}
       </div>
     )
@@ -20,6 +23,7 @@ class Messages extends React.Component {
     )
   }
 }
+
 
 function mapStateToProps(state) {
   const { loading } = state.tickets
