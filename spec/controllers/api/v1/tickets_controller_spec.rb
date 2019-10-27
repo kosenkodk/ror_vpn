@@ -55,12 +55,17 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
   describe 'GET #show' do
     let!(:ticket) { create(:ticket, user: user) }
+    let!(:ticket_with_department) { create(:ticket, user: user, department: create(:department)) }
     before { sign_in_as(user) }
 
     it 'returns a success response' do
       get :show, params: { id: ticket.id }
       expect(response).to be_successful
-      expect(response_json.keys).to include ['department']
+    end
+    it 'returns a success response' do
+      get :show, params: { id: ticket_with_department.id }
+      expect(response).to be_successful
+      expect(response_json.keys).to include 'department'
     end
   end
 
