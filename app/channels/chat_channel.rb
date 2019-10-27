@@ -5,14 +5,15 @@ class ChatChannel < ApplicationCable::Channel
   end
   
   def reply(data)
-    message = Message.create(text: data['message_text'], user: data['message_user_id'])
-    socket = {type:'message', message: message, text: message.text, user: message.user}
+    # user = User.find(data['message_user_id'])
+    message = Message.create(text: data['message_text'], user_id: data['message_user_id'])
+    socket = {type: 'message', message: message}
     ChatChannel.broadcast_to('ticket_channel', socket)
   end
 
   def load
-    messages = Messages.all
-    socket = {messages: messages, type:'messages'}
+    messages = Message.order(created_at: :desc).as_json(include: :user)
+    socket = {type: 'messages', messages: messages}
     ChatChannel.broadcast_to('ticket_channel', socket)
   end
 

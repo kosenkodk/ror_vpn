@@ -87,6 +87,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         fill_in :message_text, with: 'reply'
         click_on(I18n.t('buttons.submit'))
         expect(page).to have_content('reply')
+        expect(page).to have_content('You')
       end
     end
     context 'fail' do

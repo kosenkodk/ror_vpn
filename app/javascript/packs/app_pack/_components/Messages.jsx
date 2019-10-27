@@ -4,13 +4,20 @@ import { connect } from 'react-redux'
 
 class Messages extends React.Component {
 
+  getNameFrom(message) {
+    const current_user = this.props.user
+    const user = message && message.user
+
+    return current_user.id === user.id ? 'You' : user.email
+  }
+
   render() {
-    const { items } = this.props
+    const { items, user } = this.props
     // const { items } = this.state
     const messageList = items.map((item, index) =>
       <div key={`msg${item.id}${index}`}>
-        {item.id}
-        {item.text}
+        from {this.getNameFrom(item)} at {item.created_at}
+        <p>message: {item.text}</p>
       </div>
     )
     const emptyList = <div>No data</div>
@@ -26,8 +33,10 @@ class Messages extends React.Component {
 
 
 function mapStateToProps(state) {
+  const { user } = state.authentication
   const { loading } = state.tickets
   return {
+    user,
     loading
   }
 }
