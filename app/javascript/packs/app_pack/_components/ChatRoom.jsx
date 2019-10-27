@@ -26,7 +26,7 @@ class ChatRoom extends React.Component {
     consumer.subscriptions.create(
       {
         channel: 'ChatChannel',
-        // room: 'Room 1'
+        room: `Room ${this.props.id}`
       },
       {
         received: data => {
