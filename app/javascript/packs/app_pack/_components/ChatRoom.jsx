@@ -23,10 +23,11 @@ class ChatRoom extends React.Component {
   }
 
   componentDidMount() {
+    const ticket_id = this.props.id || this.props.item && this.props.item.id
     consumer.subscriptions.create(
       {
         channel: 'ChatChannel',
-        room: `Room ${this.props.id}`
+        room: `Room${ticket_id}`
       },
       {
         received: data => {
@@ -42,7 +43,8 @@ class ChatRoom extends React.Component {
           }
         },
         reply: function (data) { return this.perform("reply", data) },
-        load: function () { return this.perform("load") },
+        load: function () { return this.perform("load", { ticket_id: ticket_id }) },
+        // load: function () { return this.perform("load") },
       }
     )
   }
@@ -68,9 +70,9 @@ class ChatRoom extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loading } = state.tickets
+  const { loading, item } = state.tickets
   return {
-    loading
+    loading, item
   }
 }
 

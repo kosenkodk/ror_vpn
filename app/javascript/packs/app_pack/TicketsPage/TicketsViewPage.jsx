@@ -25,7 +25,7 @@ class TicketsViewPage extends React.Component {
     return (
       <React.Fragment>
         <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
-          <ChatRoom id={item && item.id} />
+          <ChatRoom id={this.state.id} />
         </div>
         <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
           <div className="container">

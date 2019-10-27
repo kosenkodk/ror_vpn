@@ -12,12 +12,17 @@ class ChatChannel < ApplicationCable::Channel
 
   def load(data)
     # get all messages by ticket id (user and support users)
-    user_id = data['message_user_id']
-    user_ids = data['message_user_ids'] # [1,2,3]
+    ticket_id = data['ticket_id']
+    ticket = Ticket.find(ticket_id)
+    # TODO: get department user
+    # user_id = data['message_user_id']
+    # user_ids = data['message_user_ids'] # [1,2,3]
+    user_id = ticket.try(:user).try(:id)
+    user_ids = [user_id]
     if User.exists?(user_id)
       messages = Message.where(user_id: user_ids).order(created_at: :desc).as_json(include: :user)
     else
-      messages = Message.order(created_at: :desc).as_json(include: :user)
+      # messages = Message.order(created_at: :desc).as_json(include: :user)
     end
     socket = {type: 'messages', messages: messages}
     ChatChannel.broadcast_to('ticket_channel', socket)
