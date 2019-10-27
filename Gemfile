@@ -65,6 +65,7 @@ group :development, :test do
 
   gem 'ruby-debug-ide'
   gem 'debase'
+  gem 'action-cable-testing'
 end
 
 # gem 'exception_handler', '~> 0.8.0.0'
