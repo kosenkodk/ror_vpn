@@ -1,5 +1,5 @@
 import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import Reviews from '../_sections/Reviews'
 import PricingTab from './PricingTab'
 import iconCheckboxOn from 'images/icons/icon_checkbox_on'

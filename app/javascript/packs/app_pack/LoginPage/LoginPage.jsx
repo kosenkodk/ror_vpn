@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../_actions';
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 
 class LoginPage extends React.Component {
   constructor(props) {

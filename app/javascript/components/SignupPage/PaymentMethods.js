@@ -2,7 +2,7 @@ import React from 'react'
 import PaymentMethod from './PaymentMethod'
 import PaymentMethodDetails from './PaymentMethodDetails'
 import PaymentMethodCreditCardForm from './PaymentMethodCreditCardForm'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 
 class PaymentMethods extends React.Component {
 

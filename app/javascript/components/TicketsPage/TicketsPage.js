@@ -8,7 +8,7 @@ import { HashLink as Link } from 'react-router-hash-link'
 import FlashMessages from '../sections/FlashMessages'
 import { httpRequestAndRefreshToken, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import { httpPlainRequest } from 'helpers/http'
 import TicketAddModal from './TicketAddModal'
 

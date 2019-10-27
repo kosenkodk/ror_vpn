@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // import { Link } from 'react-router-dom'
 // import { HashLink } from 'react-router-hash-link';
 import TicketForm from './TicketForm'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 
 class TicketAddModal extends React.Component {
 

@@ -1,4 +1,4 @@
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 
 const config = {
   apiUrl: '/api/v1',

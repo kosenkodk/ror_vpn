@@ -3,7 +3,7 @@ import React from 'react'
 // import { withRouter } from "react-router-dom";
 // import { Link } from 'react-router-dom'
 // import { HashLink } from 'react-router-hash-link';
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 
 class TicketForm extends React.Component {
 

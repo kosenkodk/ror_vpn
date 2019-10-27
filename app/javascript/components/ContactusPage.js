@@ -1,5 +1,5 @@
 import React from 'react'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 import ContactusForm from './ContactusForm'
 import FlashMessages from './sections/FlashMessages'

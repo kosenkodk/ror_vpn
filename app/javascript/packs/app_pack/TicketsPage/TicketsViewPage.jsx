@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { ticketActions } from '../_actions'
 import { urls } from 'config'
-import I18n from 'i18n-js/index.js.erb'
+import { I18n } from 'helpers'
 import { ChatRoom } from '../_components'
 
 class TicketsViewPage extends React.Component {
