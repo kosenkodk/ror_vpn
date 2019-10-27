@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
       mount ActionCable.server, at: '/cable'
 
+      resources :messages
+      # resources :message
+      
       resources :tickets do
         collection do
           get '/filter', action: :filter, as: :filter
