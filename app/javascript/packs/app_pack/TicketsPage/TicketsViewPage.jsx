@@ -5,20 +5,14 @@ import { connect } from 'react-redux'
 import { ticketActions } from '../_actions'
 import { urls } from 'config'
 import I18n from 'i18n-js/index.js.erb'
-import { Messages, MessageForm } from '../_components'
+import { ChatRoom } from '../_components'
 
 class TicketsViewPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       id: props.match.params.id,
-      messages: [],
     }
-    this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
-  }
-
-  onMessageFormSubmit(e) {
-    e.preventDefault();
   }
 
   componentDidMount() {
@@ -31,8 +25,7 @@ class TicketsViewPage extends React.Component {
     return (
       <React.Fragment>
         <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
-          <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
-          <Messages items={this.state.messages} />
+          <ChatRoom />
         </div>
         <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
           <div className="container">

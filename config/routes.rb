@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
 
+      mount ActionCable.server, at: '/cable'
+
       resources :tickets do
         collection do
           get '/filter', action: :filter, as: :filter
