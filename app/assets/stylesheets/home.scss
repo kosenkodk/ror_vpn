@@ -17,6 +17,12 @@ body {
   min-height: 40rem;
 }
 
+.btn {
+  &:focus{
+    box-shadow: unset;
+  }
+}
+
 .header {
   .nav-link:focus {
     box-shadow: none;

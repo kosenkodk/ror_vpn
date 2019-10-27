@@ -10,6 +10,12 @@ RSpec.describe Message, type: :model do
     expect(message.text).to eq('text')
     expect(message.user).to eq(nil)
   end
+  
+  it 'create a message with text only' do
+    message = Message.create(text: 'text')
+    expect(message.text).to eq('text')
+  end
+
   it 'create message with user' do
     message = create(:message, user: user)
     expect(message.user.email).to eq(email)
