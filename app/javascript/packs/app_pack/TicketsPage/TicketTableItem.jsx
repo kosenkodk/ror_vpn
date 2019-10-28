@@ -23,11 +23,17 @@ class TicketTableItem extends React.Component {
           {/* <Link to="#" className='btn btn-sm btn-outline-danger'>Delete</Link> */}
         </td>
 
-        <th scope="row">{this.props.no}</th>
+        <td>{this.props.department && this.props.department.title}</td>
+        <td>
+          {this.props.status === 'closed' ? <span class="badge badge-success">{this.props.status}</span>
+            : <span class="badge badge-secondary">{this.props.status}</span>
+
+          }</td>
         <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.title}</Link></td>
         {/* <td>{this.props.text}</td> */}
-        <td>{this.props.department && this.props.department.title}</td>
-        <td>{this.props.status}</td>
+        <td>{this.props.created_at}</td>
+        <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.no}</Link></th>
+
       </tr>
     );
   }
