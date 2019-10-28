@@ -25,8 +25,8 @@ class TicketTableItem extends React.Component {
 
         <td>{this.props.department && this.props.department.title}</td>
         <td>
-          {this.props.status === 'closed' ? <span class="btn btn-sm btn-outline-success">{this.props.status}</span>
-            : <span class="btn btn-sm btn-outline-secondary">{this.props.status}</span>
+          {this.props.status === 'closed' ? <span className="btn btn-sm btn-outline-success">{this.props.status}</span>
+            : <span className="btn btn-sm btn-outline-secondary">{this.props.status}</span>
 
           }</td>
         <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.title}</Link></td>

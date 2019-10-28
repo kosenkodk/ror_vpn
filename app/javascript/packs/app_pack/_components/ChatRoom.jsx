@@ -9,7 +9,7 @@ class ChatRoom extends React.Component {
   constructor(props) {
     super(props)
     this.state = { messages: [], message_text: '' }
-
+    this.chatChannel = ''
     this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
   }
 
@@ -18,13 +18,15 @@ class ChatRoom extends React.Component {
     let formData = new FormData(e.target)
     let jsonData = {}
     formData.forEach((value, key) => { jsonData[key] = value });
-    consumer.subscriptions.subscriptions[0].reply(jsonData);
-    // consumer.subscriptions.subscriptions[0].reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text });
+    this.chatChannel.reply(jsonData);
+    // this.chatChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text });
   }
 
   componentDidMount() {
-    const ticket_id = this.props.id || this.props.item && this.props.item.id
-    consumer.subscriptions.create(
+    const ticket_id = this.props.id
+    // const ticket_id = this.props.item && this.props.item.id
+
+    this.chatChannel = consumer.subscriptions.create(
       {
         channel: 'ChatChannel',
         room: `Room${ticket_id}`
@@ -42,18 +44,20 @@ class ChatRoom extends React.Component {
               break
           }
         },
-        reply: function (data) { return this.perform("reply", data) },
-        load: function () { return this.perform("load", { ticket_id: ticket_id }) },
-        // load: function () { return this.perform("load") },
+        reply: function (data) {
+          return this.perform("reply", data)
+        },
+        load: function () {
+          return this.perform("load", { ticket_id: ticket_id })
+        },
       }
     );
-
-    consumer.subscriptions.subscriptions[0].load(); // doesn't work when after reload page but in loadChat(e) it works
+    this.chatChannel.load();
   }
 
   loadChat(e) {
     e.preventDefault();
-    consumer.subscriptions.subscriptions[0].load();
+    this.chatChannel.load();
   }
 
   render() {
