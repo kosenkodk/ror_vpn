@@ -27,7 +27,7 @@ class Messages extends React.Component {
           items.map((item, index) =>
 
             <div key={`msg${item && item.id}_${index}`} className={`card ticket_message ${index % 2 ? 'active' : ''}`}>
-              <h5 class="card-header text-right">
+              <h5 class="card-header">
                 From {this.getUserNameOrEmailFromMessage(item)} at {item && item.created_at}
                 {/* {item.user && item.user.email} */}
               </h5>
