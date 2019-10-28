@@ -36,13 +36,6 @@ class TicketsViewPage extends React.Component {
               </div>
             </div>
           </div>
-          {/* 
-          <div className="form-group row">
-            <label className="col-sm-4">{I18n.t('pages.tickets.ticket')} #</label>
-            <div className="col-sm-8">
-              {item && item.id}
-            </div>
-          </div> */}
 
           <div className="form-group row">
             <label className="col-sm-4">{I18n.t('pages.tickets.form.title')}</label>
