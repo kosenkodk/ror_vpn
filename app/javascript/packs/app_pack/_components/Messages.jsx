@@ -19,8 +19,8 @@ class Messages extends React.Component {
     const { items, user } = this.props
     // const { items } = this.state
     const messageList = items.map((item, index) =>
-      <div className="ticket_message">
-        <div key={`msg${item.id}#${index}`} className="form-group row">
+      <div key={`msg${item.id}_${index}`} className="ticket_message">
+        <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
             From:
           </label>
@@ -29,7 +29,7 @@ class Messages extends React.Component {
           </div>
         </div>
 
-        <div key={`msg${item.id}#${index}`} className="form-group row">
+        <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
             Message:
           </label>
@@ -39,7 +39,7 @@ class Messages extends React.Component {
         </div>
       </div>
     )
-    const emptyList = ''
+    const emptyList = <p>no previous messages found</p>
 
     return (
       <React.Fragment>
