@@ -64,11 +64,12 @@ class TicketsPage extends React.Component {
                 <thead>
                   <tr>
                     <th colSpan="3" scope="col" className="w-5"></th>
-                    <th scope="col" className="w-10">#</th>
-                    <th scope="col" className="w-50">Title</th>
                     <th scope="col" className="w-20">Department</th>
-                    {/* <th>Text</th> */}
                     <th scope="col" className="w-15">Status</th>
+                    <th scope="col" className="w-35">Subject</th>
+                    <th scope="col" className="w-15">Date</th>
+                    <th scope="col" className="w-10">#</th>
+                    {/* <th>Text</th> */}
                   </tr>
                 </thead>
                 <tbody>
