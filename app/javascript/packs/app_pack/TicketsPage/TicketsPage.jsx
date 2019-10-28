@@ -60,7 +60,7 @@ class TicketsPage extends React.Component {
             </div>
 
             <div className="table-responsive">
-              <table className="table text-white table-striped">
+              <table className="table table-striped table-dark">
                 <thead>
                   <tr>
                     <th colSpan="3" scope="col" className="w-5"></th>
