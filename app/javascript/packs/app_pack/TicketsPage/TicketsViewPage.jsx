@@ -54,7 +54,7 @@ class TicketsViewPage extends React.Component {
           <ChatRoom id={this.state.id} />
 
           {/* initial ticket message with attachment */}
-          {item && item.text &&
+          {/* {item && item.text &&
             <div className="ticket_message">
               <div className="form-group row">
                 <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">From:</label>
@@ -79,7 +79,7 @@ class TicketsViewPage extends React.Component {
                 </div>
               }
             </div>
-          }
+          } */}
         </div>
         {/* // View Ticket
         <div className="col-lg-6">

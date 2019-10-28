@@ -47,7 +47,6 @@ class Api::V1::TicketsController < Api::V1::ApiController
   def create
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment, :attachment2))
     department_id = params[:ticket][:department]
-
     attachment_error = ''
     begin
       file_params = get_attachment_base64(params[:ticket][:attachment2])
@@ -60,6 +59,16 @@ class Api::V1::TicketsController < Api::V1::ApiController
     end
 
     @ticket.save!
+
+    begin
+      file_params = get_attachment_base64(params[:ticket][:attachment2])
+      message = Message.new(title: @ticket.title, text: @ticket.text, user_id: @ticket.user.id, ticket_id: @ticket.id)
+      message.attachment.attach(file_params)
+      message.save
+    rescue => exception
+      render json: { error: "can't create a message", status: 400 }
+      return
+    end
 
     if (Department.exists?(department_id))
       department = Department.find(department_id)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { I18n } from 'helpers'
+import { I18n } from 'helpers'
 
 class Messages extends React.Component {
 
@@ -37,6 +37,15 @@ class Messages extends React.Component {
             {item.text}
           </div>
         </div>
+
+        {item && item.attachment_url &&
+          <div className="form-group row">
+            <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
+            <div className="col-sm-8">
+              <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
+            </div>
+          </div>
+        }
       </div>
     )
     const emptyList = <p>no previous messages found</p>
