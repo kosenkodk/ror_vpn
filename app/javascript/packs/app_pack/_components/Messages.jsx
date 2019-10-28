@@ -27,23 +27,23 @@ class Messages extends React.Component {
           items.map((item, index) =>
 
             <div key={`msg${item && item.id}_${index}`} className={`card ticket_message ${index % 2 ? 'active' : ''}`}>
-              <h5 class="card-header">
-                {item.user && item.user.email}
-                {/* {this.getUserNameOrEmailFromMessage(item)} */}
+              <h5 class="card-header text-right">
+                From {this.getUserNameOrEmailFromMessage(item)} at {item && item.created_at}
+                {/* {item.user && item.user.email} */}
               </h5>
               <div class="card-body">
                 {/* <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a> */}
 
-                <div className="form-group row">
+                {/* <div className="form-group row">
                   <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
                     Date:
                   </label>
                   <div className="col-sm-8 align-self-center">
                     {item && item.created_at}
                   </div>
-                </div>
+                </div> */}
 
                 <div className="form-group row">
                   <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
