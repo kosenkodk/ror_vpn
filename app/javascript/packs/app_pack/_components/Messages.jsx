@@ -25,34 +25,45 @@ class Messages extends React.Component {
         {/* <h3>Messages</h3> */}
         {items && items.length > 0 ?
           items.map((item, index) =>
-            <div key={`msg${item && item.id}_${index}`} className={`ticket_message ${index % 2 ? 'active' : ''}`}>
 
-              <div className="form-group row">
-                <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
-                  From:
-              </label>
-                <div className="col-sm-8 align-self-center">
-                  {this.getUserNameOrEmailFromMessage(item)} at {item && item.created_at}
-                </div>
-              </div>
+            <div key={`msg${item && item.id}_${index}`} className={`card ticket_message ${index % 2 ? 'active' : ''}`}>
+              <h5 class="card-header">
+                {item.user && item.user.email}
+                {/* {this.getUserNameOrEmailFromMessage(item)} */}
+              </h5>
+              <div class="card-body">
+                {/* <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a> */}
 
-              <div className="form-group row">
-                <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
-                  Message:
-              </label>
-                <div className="col-sm-8 align-self-center">
-                  {item && item.text}
-                </div>
-              </div>
-
-              {item && item.attachment_url &&
                 <div className="form-group row">
-                  <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
-                  <div className="col-sm-8">
-                    <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
+                  <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
+                    Date:
+                  </label>
+                  <div className="col-sm-8 align-self-center">
+                    {item && item.created_at}
                   </div>
                 </div>
-              }
+
+                <div className="form-group row">
+                  <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
+                    Message:
+              </label>
+                  <div className="col-sm-8 align-self-center">
+                    {item && item.text}
+                  </div>
+                </div>
+
+                {item && item.attachment_url &&
+                  <div className="form-group row">
+                    <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
+                    <div className="col-sm-8">
+                      <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
+                    </div>
+                  </div>
+                }
+
+              </div>
             </div>
           )
           : emptyList
