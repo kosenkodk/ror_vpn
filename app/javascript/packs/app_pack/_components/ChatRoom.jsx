@@ -48,7 +48,7 @@ class ChatRoom extends React.Component {
       }
     );
 
-    // consumer.subscriptions.subscriptions[0].load(); // doesn't work but in loadChat(e) it works
+    consumer.subscriptions.subscriptions[0].load(); // doesn't work when after reload page but in loadChat(e) it works
   }
 
   loadChat(e) {
