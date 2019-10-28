@@ -29,20 +29,20 @@ class TicketsViewPage extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-xs-6">
-                <h2 className="mt-2">View Ticket</h2>
+                <h2 className="mt-2">Ticket #{item && item.id}</h2>
               </div>
               <div className="col-xs-6 ml-auto align-self-center">
                 <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
               </div>
             </div>
           </div>
-
+          {/* 
           <div className="form-group row">
             <label className="col-sm-4">{I18n.t('pages.tickets.ticket')} #</label>
             <div className="col-sm-8">
               {item && item.id}
             </div>
-          </div>
+          </div> */}
 
           <div className="form-group row">
             <label className="col-sm-4">{I18n.t('pages.tickets.form.title')}</label>
