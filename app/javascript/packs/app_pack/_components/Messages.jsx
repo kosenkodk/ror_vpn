@@ -19,18 +19,33 @@ class Messages extends React.Component {
     const { items, user } = this.props
     // const { items } = this.state
     const messageList = items.map((item, index) =>
-      <div key={`msg${item.id}#${index}`}>
-        from {this.getUserNameOrEmailFromMessage(item)} at {item.created_at}
-        <p>message: {item.text}</p>
+      <div className="ticket_message">
+        <div key={`msg${item.id}#${index}`} className="form-group row">
+          <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
+            From:
+          </label>
+          <div className="col-sm-8 align-self-center">
+            {this.getUserNameOrEmailFromMessage(item)} at {item.created_at}
+          </div>
+        </div>
+
+        <div key={`msg${item.id}#${index}`} className="form-group row">
+          <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
+            Message:
+          </label>
+          <div className="col-sm-8 align-self-center">
+            {item.text}
+          </div>
+        </div>
       </div>
     )
-    const emptyList = <div>No data</div>
+    const emptyList = ''
 
     return (
-      <div>
-        <h3>Messages</h3>
+      <React.Fragment>
+        {/* <h3>Messages</h3> */}
         {items.length > 0 ? messageList : emptyList}
-      </div>
+      </React.Fragment>
     )
   }
 }
