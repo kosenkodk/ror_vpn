@@ -46,7 +46,9 @@ class ChatRoom extends React.Component {
         load: function () { return this.perform("load", { ticket_id: ticket_id }) },
         // load: function () { return this.perform("load") },
       }
-    )
+    );
+
+    // consumer.subscriptions.subscriptions[0].load(); // doesn't work but in loadChat(e) it works
   }
 
   loadChat(e) {
@@ -57,14 +59,16 @@ class ChatRoom extends React.Component {
   render() {
     const { messages } = this.state
     return (
-      <div>
+      <React.Fragment>
         <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
-        <button className="load-button"
+        <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
           Load Chat History
         </button>
-        <Messages items={messages} />
-      </div>
+        <div className="mt-3">
+          <Messages items={messages} />
+        </div>
+      </React.Fragment>
     )
   }
 }

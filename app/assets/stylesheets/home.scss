@@ -606,6 +606,13 @@ footer {
   }
 }
 
+.ticket_message {
+  border: 1px solid $pink2;
+  border-radius: $pricing_border_radius;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
 // unblock buttons of modal popup window
 .modal-backdrop {
   // position: unset !important;

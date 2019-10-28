@@ -23,14 +23,12 @@ class TicketsViewPage extends React.Component {
     const { item, loggedIn } = this.props
 
     return (
-      <React.Fragment>
-        <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
-          <ChatRoom id={this.state.id} />
-        </div>
-        <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
-          <div className="container">
+      <div id="tickets_new" className="row mb-4">
+
+        <div className="col-12 bg-vega shadow-vega">
+          <div className="container-fluid">
             <div className="row">
-              <div className="col-xs-6 mr-auto">
+              <div className="col-xs-6">
                 <h2 className="mt-2">View Ticket</h2>
               </div>
               <div className="col-xs-6 ml-auto align-self-center">
@@ -40,26 +38,9 @@ class TicketsViewPage extends React.Component {
           </div>
 
           <div className="form-group row">
-            <label className="col-sm-4">{I18n.t('pages.tickets.form.status')}</label>
-            <div className="col-sm-8 ">
-              {item && item.status}
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label className="col-sm-4">{I18n.t('pages.tickets.form.department')}</label>
-            <div className="col-sm-8 ">
-              {/* <select className="form-control" id="departmentSelectBox">
-              {[
-                { name: I18n.t('pages.tickets.form.help.select_the_department1'), value: 1 },
-                { name: I18n.t('pages.tickets.form.help.select_the_department2'), value: 2 },
-                { name: I18n.t('pages.tickets.form.help.select_the_department3'), value: 3 },
-              ].map(item => <option key={item.id} value={item.value}
-                selected={item.value === item && item.department ? true : false}>
-                {item.name}</option>
-              )}
-            </select> */}
-              {item && item.department && item.department.title}
+            <label className="col-sm-4">{I18n.t('pages.tickets.ticket')} #</label>
+            <div className="col-sm-8">
+              {item && item.id}
             </div>
           </div>
 
@@ -70,22 +51,90 @@ class TicketsViewPage extends React.Component {
             </div>
           </div>
 
-          <div className="form-group row">
-            <label className="col-sm-4">{I18n.t('pages.tickets.form.text')}</label>
-            <div className="col-sm-8">
-              {item && item.text}
-            </div>
-          </div>
+          <ChatRoom id={this.state.id} />
 
-          <div className="form-group row">
-            <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}</label>
-            <div className="col-sm-8">
-              {item && item.attachment_url && <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>}
-            </div>
-          </div>
+          {/* initial ticket message with attachment */}
+          {item && item.text &&
+            <div className="ticket_message">
+              <div className="form-group row">
+                <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">From:</label>
+                <div className="col-sm-8 align-self-center">
+                  You at {item && item.created_at}
+                </div>
+              </div>
 
+              <div className="form-group row">
+                <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">Message:</label>
+                <div className="col-sm-8 align-self-center">
+                  {item && item.text}
+                </div>
+              </div>
+
+              {item && item.attachment_url &&
+                <div className="form-group row">
+                  <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
+                  <div className="col-sm-8">
+                    <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
+                  </div>
+                </div>
+              }
+            </div>
+          }
         </div>
-      </React.Fragment>
+        {/* // View Ticket
+        <div className="col-lg-6">
+          <div className="row">
+            <div className="col bg-vega shadow-vega">
+
+              <div className="row">
+                <div className="col-xs-6 mr-auto">
+                  <h2 className="mt-2">View Ticket</h2>
+                </div>
+                <div className="col-xs-6 ml-auto align-self-center">
+                  <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-4">{I18n.t('pages.tickets.form.status')}</label>
+                <div className="col-sm-8 ">
+                  {item && item.status}
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-4">{I18n.t('pages.tickets.form.department')}</label>
+                <div className="col-sm-8 ">
+                  {item && item.department && item.department.title}
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-4">{I18n.t('pages.tickets.form.title')}</label>
+                <div className="col-sm-8">
+                  {item && item.title}
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-4">{I18n.t('pages.tickets.form.text')}</label>
+                <div className="col-sm-8">
+                  {item && item.text}
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}</label>
+                <div className="col-sm-8">
+                  {item && item.attachment_url && <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      */}
+      </div>
     )
   }
 }
