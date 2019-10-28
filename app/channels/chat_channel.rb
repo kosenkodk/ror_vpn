@@ -1,6 +1,6 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    # stream_from "ticket_channel#{params[:room]}"
     stream_for "ticket_channel#{params[:room]}"
   end
   
@@ -12,7 +12,6 @@ class ChatChannel < ApplicationCable::Channel
 
   def load(data)
     ticket_id = data['ticket_id']
-    
     messages = Message.where(ticket_id: ticket_id).order(created_at: :desc).as_json(
       include: :user, methods: [:attachment_url, :attachment_name]
     ) if ticket_id.present?
