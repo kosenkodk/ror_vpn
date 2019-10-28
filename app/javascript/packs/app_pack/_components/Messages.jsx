@@ -25,7 +25,8 @@ class Messages extends React.Component {
         {/* <h3>Messages</h3> */}
         {items && items.length > 0 ?
           items.map((item, index) =>
-            <div key={`msg${item && item.id}_${index}`} className="ticket_message">
+            <div key={`msg${item && item.id}_${index}`} className={`ticket_message ${index % 2 ? 'active' : ''}`}>
+
               <div className="form-group row">
                 <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
                   From:
@@ -54,7 +55,8 @@ class Messages extends React.Component {
               }
             </div>
           )
-          : emptyList}
+          : emptyList
+        }
       </React.Fragment>
     )
   }

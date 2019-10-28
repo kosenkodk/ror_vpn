@@ -611,6 +611,12 @@ footer {
   border-radius: $pricing_border_radius;
   padding: 20px;
   margin-bottom: 20px;
+  background: $bg_color_black2;
+  color: #925b6d;
+  &.active {
+    background: $bg_color_black3;
+    color: #8C5362;
+  }
 }
 
 // unblock buttons of modal popup window
