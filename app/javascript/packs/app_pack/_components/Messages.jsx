@@ -9,7 +9,7 @@ class Messages extends React.Component {
     try {
       const current_user = this.props.user
       const user = message.user
-      name = current_user.id === user.id ? 'You' : user.email
+      name = current_user.id === user.id ? 'You' : 'Vega VPN Support' // message.department.title
       // name = current_user.email === user.email ? 'You' : user.email
     } catch (e) { }
     return name
