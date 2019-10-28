@@ -1,14 +1,14 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    stream_for 'ticket_channel'
+    stream_for "ticket_channel#{params[:room]}"
   end
   
   def reply(data)
     # Ticket.messages << message
     message = Message.create(text: data['message_text'], user_id: data['message_user_id'], ticket_id: data['message_ticket_id'])
     socket = {type: 'message', message: message.as_json(include: :user)}
-    ChatChannel.broadcast_to('ticket_channel', socket)
+    ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
 
   def load(data)
@@ -29,7 +29,7 @@ class ChatChannel < ApplicationCable::Channel
       # messages = Message.order(created_at: :desc).as_json(include: :user)
     end
     socket = {type: 'messages', messages: messages}
-    ChatChannel.broadcast_to('ticket_channel', socket)
+    ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
 
   def unsubscribed
