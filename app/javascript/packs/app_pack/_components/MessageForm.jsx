@@ -7,6 +7,7 @@ class MessageForm extends React.Component {
     return (
       <form onSubmit={(e) => this.props.onMessageFormSubmit(e, this.props)}>
         <input type="hidden" name="message_user_id" value={this.props.user_id} />
+        <input type="hidden" name="message_ticket_id" value={this.props.ticket_id} />
         {/* <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
           <div className="col-sm-8">
@@ -47,10 +48,12 @@ class MessageForm extends React.Component {
 function mapStateToProps(state) {
   const { user } = state.authentication
   const user_id = user.id
-  const { loading } = state.tickets
+  const { loading, item } = state.tickets
+  const ticket_id = item && item.id
   return {
     user_id,
-    loading
+    loading,
+    ticket_id,
   }
 }
 
