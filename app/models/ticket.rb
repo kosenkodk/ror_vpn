@@ -15,6 +15,7 @@ class Ticket < ApplicationRecord
     # Rails.application.routes.url_helpers.rails_blob_path(self.icon, only_path: true) if self.try(:icon).try(:attached?)# && self.try(:icon).try(:image).try(:blob?)
   end
 
+  # for email
   def url
     url = root_url(host: Rails.application.config.host)
     "#{url}user/tickets/#{self.id}"
