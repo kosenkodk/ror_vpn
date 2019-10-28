@@ -12,9 +12,10 @@ class ChatChannel < ApplicationCable::Channel
 
   def load(data)
     ticket_id = data['ticket_id']
+    
     messages = Message.where(ticket_id: ticket_id).order(created_at: :desc).as_json(
       include: :user, methods: [:attachment_url, :attachment_name]
-    )
+    ) if ticket_id.present?
     
     # messages = Message.order(created_at: :desc).as_json(include: :user)
     socket = {type: 'messages', messages: messages}

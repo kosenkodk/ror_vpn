@@ -18,7 +18,7 @@ class Messages extends React.Component {
   render() {
     const { items, user } = this.props
     // const { items } = this.state
-    const messageList = items.map((item, index) =>
+    const messageList = items && items.map((item, index) =>
       <div key={`msg${item.id}_${index}`} className="ticket_message">
         <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
@@ -53,7 +53,7 @@ class Messages extends React.Component {
     return (
       <React.Fragment>
         {/* <h3>Messages</h3> */}
-        {items.length > 0 ? messageList : emptyList}
+        {items && items.length > 0 ? messageList : emptyList}
       </React.Fragment>
     )
   }
