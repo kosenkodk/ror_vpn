@@ -166,10 +166,7 @@ class SignupPage extends React.Component {
             </h1>
 
             <p className="">
-              <a href="#step2" id="step1">
-                <img src={imgStep1} className="img-fluid" />
-              </a>
-              {/* <%= link_to image_tag('signup/step1.png', class:'img-fluid'), '#step2', {id: 'step1'} %> */}
+              <img src={imgStep1} className="img-fluid" />
             </p>
           </div>
 
@@ -188,14 +185,10 @@ class SignupPage extends React.Component {
               {I18n.t('pages.signup.steps.title2')}
             </h1>
             <p className="mb-4">
-              <a href="#step3" id="step2">
-                <img src={imgStep2} className="img-fluid" />
-              </a>
-              {/* <%= link_to image_tag('signup/step2.png', class:'img-fluid'), '#step3', {id: 'step2'} %> */}
+              <img src={imgStep2} className="img-fluid" />
             </p>
             <div className="container">
               <Plans onPlanChange={this.onPlanChange.bind(this)} />
-              {/* <%= render partial: 'auth/step2_plans', locals: {items: @plans } %> */}
             </div>
           </div>
 
@@ -204,10 +197,7 @@ class SignupPage extends React.Component {
               {I18n.t('pages.signup.steps.title3')}
             </h1>
             <p className="mb-4">
-              <a href="#" id="step3">
-                <img src={imgStep3} className="img-fluid" />
-              </a>
-              {/* <%= link_to image_tag('signup/step3.png', class:'img-fluid'), '#', {id: 'step3'} %> */}
+              <img src={imgStep3} className="img-fluid" />
             </p>
           </div>
 
