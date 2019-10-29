@@ -68,13 +68,14 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp # enable when we will use the sendgrid
 
-  # config.action_mailer.delivery_method = :sendmail
-  # config.action_mailer.sendmail_settings = {
-  #     :location => '/usr/sbin/sendmail',
-  #     :arguments => '-i'
-  # }
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
+      :location => '/usr/sbin/sendmail',
+      :arguments => '-i'
+  }
+
   config.host = 'vega.isit.su'
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
