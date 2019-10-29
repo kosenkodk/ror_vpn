@@ -14,7 +14,11 @@ html, body {
 body {
   color: $white;
   background-color: $bg_color_black;
-  min-height: 40rem;
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex: 1;
 }
 
 .btn {
