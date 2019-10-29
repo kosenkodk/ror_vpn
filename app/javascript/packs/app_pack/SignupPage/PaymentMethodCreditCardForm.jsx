@@ -26,7 +26,7 @@ class PaymentMethodCreditCardForm extends React.Component {
         </div>
 
         <div className="col-sm-8">
-          <input type="number" required={false} className="form-control"
+          <input type="text" required={false} className="form-control"
             onChange={this.onChange} ref={(input) => { this.card_number = input }} placeholder={I18n.t('bank_card.help.number')} />
         </div>
 
