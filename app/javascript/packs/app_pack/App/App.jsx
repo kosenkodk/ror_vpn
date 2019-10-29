@@ -63,92 +63,95 @@ class App extends React.Component {
     const { alert, bgClass, loggedIn } = this.props;
     return (
       <Router history={history}>
-        <div className={`container-fluid ${bgClass.value}`}>
-          <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-            <Header />
-          </div>
+        <body class="d-flex flex-column">
 
-          <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-            <div className="row">
-              <div className="col">
-                {alert.message &&
-                  <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
-                }
+          <div className={`container-fluid flex-grow ${bgClass.value}`}>
+            <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
+              <Header />
+            </div>
+
+            <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
+              <div className="row">
+                <div className="col">
+                  {alert.message &&
+                    <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
+                  }
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
-            <Switch>
-              {/* private user's pages */}
-              <Route path={urls.user.path}>
-                <LayoutWithSidebar>
-                  <Switch>
-                    <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
-                    <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
-                    <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                    <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
+            <section className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
+              <Switch>
+                {/* private user's pages */}
+                <Route path={urls.user.path}>
+                  <LayoutWithSidebar>
+                    <Switch>
+                      <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+                      <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
+                      <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+                      <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
                     <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
-                      // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
-                      sidebarUrls={Object.values(urls.user_dashboard.urls)}
-                    />
-                    <PrivateRouteWithRightSidebar path={urls.user_account.path} component={ComingSoonPage}
-                      sidebarUrls={Object.values(urls.user_account.urls)}
-                    />
-                    <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
-                      sidebarUrls={Object.values(urls.user_payment.urls)}
-                    />
-                    <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
-                      sidebarUrls={Object.values(urls.user_downloads.urls)}
-                    />
-                    <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
+                        // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
+                        sidebarUrls={Object.values(urls.user_dashboard.urls)}
+                      />
+                      <PrivateRouteWithRightSidebar path={urls.user_account.path} component={ComingSoonPage}
+                        sidebarUrls={Object.values(urls.user_account.urls)}
+                      />
+                      <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
+                        sidebarUrls={Object.values(urls.user_payment.urls)}
+                      />
+                      <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
+                        sidebarUrls={Object.values(urls.user_downloads.urls)}
+                      />
+                      <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
 
-                    {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
-                    <PrivateRoute component={NotFoundPage} />
-                  </Switch>
-                </LayoutWithSidebar>
-              </Route>
-              {/* public pages */}
-              <Route path={[urls.home.path,
-              urls.signin.path,
-              urls.signup.path,
-              urls.pricing.path,
-              urls.forgot.path,
-              urls.reset.path,
-              urls.reset_ok.path,
-              urls.help.path,
-              urls.contact_us.path,
-              urls.success.path,
-              urls.not_found.path,
-              urls.coming_soon.path,
-              urls.http204.path,
-              ]} >
-                <Layout>
-                  <Route exact path={urls.home.path} component={HomePage} />
+                      {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
+                      <PrivateRoute component={NotFoundPage} />
+                    </Switch>
+                  </LayoutWithSidebar>
+                </Route>
+                {/* public pages */}
+                <Route path={[urls.home.path,
+                urls.signin.path,
+                urls.signup.path,
+                urls.pricing.path,
+                urls.forgot.path,
+                urls.reset.path,
+                urls.reset_ok.path,
+                urls.help.path,
+                urls.contact_us.path,
+                urls.success.path,
+                urls.not_found.path,
+                urls.coming_soon.path,
+                urls.http204.path,
+                ]} >
+                  <Layout>
+                    <Route exact path={urls.home.path} component={HomePage} />
 
-                  <Route exact path={urls.signin.path} component={SigninPage} />
-                  <Route exact path={urls.signup.path} component={SignupPage} />
-                  <Route exact path={urls.pricing.path} component={PricingPage} />
-                  <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
-                  <Route exact path={urls.reset.path} component={PasswordResetPage} />
-                  <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
+                    <Route exact path={urls.signin.path} component={SigninPage} />
+                    <Route exact path={urls.signup.path} component={SignupPage} />
+                    <Route exact path={urls.pricing.path} component={PricingPage} />
+                    <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
+                    <Route exact path={urls.reset.path} component={PasswordResetPage} />
+                    <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
 
-                  <Route exact path={urls.help.path} component={ComingSoonPage} />
-                  <Route exact path={urls.contact_us.path} component={ContactusPage} />
+                    <Route exact path={urls.help.path} component={ComingSoonPage} />
+                    <Route exact path={urls.contact_us.path} component={ContactusPage} />
 
-                  {/* status pages */}
-                  <Route exact path={urls.success.path} component={SuccessPage} />
-                  <Route exact path={urls.not_found.path} component={NotFoundPage} />
-                  <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
-                  <Route exact path={urls.http204.path} component={ComingSoonPage} />
-                  {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-                </Layout>
-              </Route>
-              <Route component={NotFoundPage} />
-            </Switch>
+                    {/* status pages */}
+                    <Route exact path={urls.success.path} component={SuccessPage} />
+                    <Route exact path={urls.not_found.path} component={NotFoundPage} />
+                    <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
+                    <Route exact path={urls.http204.path} component={ComingSoonPage} />
+                    {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+                  </Layout>
+                </Route>
+                <Route component={NotFoundPage} />
+              </Switch>
+            </section>
           </div>
-        </div>
-        {this.state.isFooterVisible && <FooterSection />}
+          {this.state.isFooterVisible && <FooterSection />}
+        </body>
       </Router>
     );
   }
