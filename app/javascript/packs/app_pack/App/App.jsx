@@ -63,7 +63,7 @@ class App extends React.Component {
     const { alert, bgClass, loggedIn } = this.props;
     return (
       <Router history={history}>
-        <body class="d-flex flex-column">
+        <body className="d-flex flex-column">
 
           <div className={`container-fluid flex-grow ${bgClass.value}`}>
             <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>

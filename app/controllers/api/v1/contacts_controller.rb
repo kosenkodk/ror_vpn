@@ -8,7 +8,7 @@ class Api::V1::ContactsController < Api::V1::ApiController
     @contact = Contact.new(contact_params)
     # @contact.department = department # TODO: will implement
     if @contact.save
-      while Department.exists?(@contact.department) do
+      if Department.exists?(@contact.department)
         department = Department.find(@contact.department)
         ContactUsMailer.notify_user_from(department.email, @contact.email, @contact).deliver_now
         ContactUsMailer.notify_department_from(@contact.email, department.email, @contact).deliver_now
