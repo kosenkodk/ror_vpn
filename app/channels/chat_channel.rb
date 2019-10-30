@@ -1,26 +1,24 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
-    stream_for 'ticket_channel'
+    # stream_from "ticket_channel#{params[:room]}"
+    stream_for "ticket_channel#{params[:room]}"
   end
   
   def reply(data)
-    message = Message.create(text: data['message_text'], user_id: data['message_user_id'])
-    socket = {type: 'message', message: message.as_json(include: :user)}
-    ChatChannel.broadcast_to('ticket_channel', socket)
+    message = Message.create(text: data['message_text'], user_id: data['message_user_id'], ticket_id: data['message_ticket_id'])
+    # item = message.to_json# rescue {}
+    item = message.as_json(include: :user, methods: [:attachment_url, :attachment_name])
+    socket = {type: 'message', message: item}
+    ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
 
   def load(data)
-    # get all messages by ticket id (user and support users)
-    user_id = data['message_user_id']
-    user_ids = data['message_user_ids'] # [1,2,3]
-    if User.exists?(user_id)
-      messages = Message.where(user_id: user_ids).order(created_at: :desc).as_json(include: :user)
-    else
-      messages = Message.order(created_at: :desc).as_json(include: :user)
-    end
-    socket = {type: 'messages', messages: messages}
-    ChatChannel.broadcast_to('ticket_channel', socket)
+    ticket_id = data['ticket_id']
+    messages = Message.where(ticket_id: ticket_id).order(created_at: :desc) if ticket_id.present?
+    # items = messages.to_json# rescue {}
+    items = messages.as_json(include: :user, methods: [:attachment_url, :attachment_name])
+    socket = {type: 'messages', messages: items }
+    ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
 
   def unsubscribed

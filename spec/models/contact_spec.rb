@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
+  let(:department) {create(:department)}
 
   describe 'GET :new' do
     
@@ -14,11 +15,15 @@ RSpec.describe Contact, type: :model do
         expect(contact.valid?).to be_truthy
       end
       it 'with the same email' do
-        contact = Contact.create(email: 'test@example.com')
-        contact2 = Contact.create(email: 'test@example.com')
+        contact = Contact.create(email: 'test@example.com', message_short: 'title')
+        contact2 = Contact.create(email: 'test@example.com', message_short: 'title')
         expect(contact2.valid?).to be_truthy
       end
-      it "with department"
+      it "with department" do
+        contact = Contact.create(email: 'test@example.com', message_short: 'title', department: department)
+        contact2 = Contact.create(email: 'test@example.com', message_short: 'title', department: department)
+        expect(contact2.valid?).to be_truthy
+      end
     end
   
     context 'invalid data' do
