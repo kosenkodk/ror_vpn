@@ -73,9 +73,14 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
     end
   end
 
+  # feature "Cables!" do
+  #   # here we have "action_cable:async" context included automatically!
+  # end
+
   describe 'view ticket' do
     context 'success' do
       it 'when admin click on close ticket button'
+      
       it 'display title, text, department' do
         # ticket = build(:ticket, title:'ticket with title, text', text: 'text')
         click_on(I18n.t('buttons.view'), match: :first)
@@ -84,7 +89,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # click_on(I18n.t('buttons.submit'))
 
         click_on(I18n.t('pages.tickets.chat.load'))
-        # expect(page).to have_content(ticket_last.text) # problem with action cable ?
+        expect(page).to have_content(ticket_last.text) # problem with action cable ?
         # expect(page).to have_content(ticket_last.department)
       end
       it 'check reply and load messages' do
