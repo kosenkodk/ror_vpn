@@ -16,4 +16,12 @@ class Message < ApplicationRecord
   def attachment_name
     self.attachment.blob.filename if self.attachment.attached?
   end
+
+  def created_at_humanize
+    self.created_at.strftime("%d %B %Y at %H:%M")
+  end
+
+  def as_json(options = nil)
+    super(include: :user, methods: [:attachment_url, :attachment_name, :created_at_humanize]).merge(options || {})
+  end
 end

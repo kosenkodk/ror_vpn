@@ -10,9 +10,10 @@ class Api::V1::TicketsController < Api::V1::ApiController
       @tickets = current_user.tickets.paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
     end
     render json: { 
-      tickets: @tickets.as_json(
-        include: {department: {only: [:id, :title]} },
-      ),
+      tickets: @tickets,
+      #.as_json(
+      #  include: {department: {only: [:id, :title]} },
+      #),
       pages: @tickets.try(:total_pages),
       page: @tickets.try(:current_page),
     }
@@ -38,9 +39,10 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # GET /tickets/1
   def show
-    render json: @ticket.as_json(
-      methods: [:attachment_url, :attachment_name],
-      include: {department: {only: [:id, :title]}})
+    render json: @ticket
+    # .as_json(
+    #   methods: [:attachment_url, :attachment_name],
+    #   include: {department: {only: [:id, :title]}})
   end
 
   # POST /tickets

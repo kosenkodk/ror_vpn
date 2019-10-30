@@ -32,4 +32,16 @@ class Ticket < ApplicationRecord
   def file_urls
     self.files.map { |item| rails_blob_path(item, only_path: true) }
   end
+
+  def created_at_humanize
+    self.created_at.strftime("%d %B %Y at %H:%M") #to_formatted_s(:short) #strftime("%Y-%m-%d %H:%M:%S %Z")
+  end
+
+  def as_json(options = nil)
+    super(
+      # only: [{created_at: self.created_at_humanize}, :id, :title, :text, :status, :department ],
+      include: {department: {only: [:id, :title]} }, 
+      methods: [:created_at_humanize, :attachment_url, :attachment_name],
+    ).merge(options || {})
+  end
 end

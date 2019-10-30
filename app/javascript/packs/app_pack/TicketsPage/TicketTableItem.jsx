@@ -31,7 +31,7 @@ class TicketTableItem extends React.Component {
           }</td>
         <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.title}</Link></td>
         {/* <td>{this.props.text}</td> */}
-        <td>{this.props.created_at}</td>
+        <td>{this.props.created_at_humanize}</td>
         <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.no}</Link></th>
 
       </tr>
