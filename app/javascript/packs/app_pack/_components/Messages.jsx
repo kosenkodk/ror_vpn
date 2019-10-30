@@ -28,7 +28,7 @@ class Messages extends React.Component {
 
             <div key={`msg${item && item.id}_${index}`} className={`card ticket_message ${index % 2 ? 'active' : ''}`}>
               <h5 className="card-header">
-                From {this.getUserNameOrEmailFromMessage(item)} at {item && item.created_at}
+                From {this.getUserNameOrEmailFromMessage(item)} at {item && item.created_at_humanize}
                 {/* {item.user && item.user.email} */}
               </h5>
               <div className="card-body">
@@ -41,7 +41,7 @@ class Messages extends React.Component {
                     Date:
                   </label>
                   <div className="col-sm-8 align-self-center">
-                    {item && item.created_at}
+                    {item && item.created_at_humanize}
                   </div>
                 </div> */}
 
