@@ -20,7 +20,7 @@ RSpec.describe ChatChannel, type: :channel do
     expect(subscription).not_to have_streams
   end
 
-  xit "subscribes to a stream when room id is provided" do
+  it "subscribes to a stream when room id is provided" do
     # subscribe room: room
     # subscribe(channel: chat_channel)
     subscribe(channel: chat_channel, room: room)
@@ -39,5 +39,18 @@ RSpec.describe ChatChannel, type: :channel do
     # expect(transmissions.last).to eq({'message': data})
     perform :reply, data
     expect(transmissions.last).to eq({'message': data})
+  end
+
+  it "successfully subscribes" do
+    subscribe chat_channel
+    perform :echo, foo: 'bar'
+    expect(transmissions.last).to eq('foo' => 'bar')
+  end
+end
+
+RSpec.describe ApplicationCable::Connection, :type => :channel do
+  it "successfully connects" do
+    # connect "/cable?current_user=#{create(:user)}"
+    # expect(connection.current_user).to eq "323"
   end
 end

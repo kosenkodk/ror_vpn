@@ -2,6 +2,12 @@ class ChatChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "ticket_channel#{params[:room]}"
     stream_for "ticket_channel#{params[:room]}"
+    stream_for "#{params[:room]}"
+  end
+
+  def echo
+    socket = {foo: 'bar'}
+    ChatChannel.broadcast_to("#{params[:room]}", socket)
   end
   
   def reply(data)
