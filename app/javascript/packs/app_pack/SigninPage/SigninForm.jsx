@@ -69,13 +69,13 @@ class SigninForm extends React.Component {
           <div className="col-sm-6">
             <div className="input-group">
               <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} placeholder='Enter the password' />
-              <div className="input-group-append">
+              {/* <div className="input-group-append">
                 <span className="input-group-text" id="forgot-pwd-addon">
                   <Link to="/forgot">
                     {I18n.t('pages.login.form.forgot_pwd')}
                   </Link>
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-sm-3 align-self-center">
@@ -87,7 +87,6 @@ class SigninForm extends React.Component {
 
         <div className="form-group row">
           <div className="col-sm-6 offset-sm-3">
-            <br />
 
             <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={loggingIn ? true : false}>
               {loggingIn && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
