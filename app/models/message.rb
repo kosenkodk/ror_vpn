@@ -18,7 +18,7 @@ class Message < ApplicationRecord
   end
 
   def created_at_humanize
-    self.created_at.strftime("%d %B %Y at %H:%M")
+    self.created_at.try(:strftime,"%d %B %Y at %H:%M")
   end
 
   def as_json(options = nil)
