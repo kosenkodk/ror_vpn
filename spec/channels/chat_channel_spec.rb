@@ -10,8 +10,8 @@ RSpec.describe ChatChannel, type: :channel do
   
   before do
     # initialize connection with identifiers
-    stub_connection current_user: user
-    # stub_connection channel: chat_channel
+    # stub_connection current_user: user
+    stub_connection channel: chat_channel
   end
 
   xit "rejects when no room id" do
