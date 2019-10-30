@@ -49,7 +49,7 @@ function add(item) {
   }
   function request() { return { type: ticketConstants.ADD_REQUEST } }
   function success(item) {
-    history.push(urls.tickets.path)
+    history.push(urls.tickets.path + '/' + item.id)
     return { type: ticketConstants.ADD_SUCCESS, item }
   }
   function failure(error) { return { type: ticketConstants.ADD_FAILURE, error } }

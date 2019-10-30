@@ -14,7 +14,11 @@ html, body {
 body {
   color: $white;
   background-color: $bg_color_black;
-  min-height: 40rem;
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex: 1;
 }
 
 .btn {
@@ -603,6 +607,44 @@ footer {
         color: $pink3;
       }
     }
+  }
+  .table-dark {
+    background-color: $bg_color_black2;
+  }
+}
+
+// .ticket_message {
+  
+//   border: 1px solid $pink2;
+//   border-radius: $pricing_border_radius;
+//   padding: 20px;
+//   margin-bottom: 20px;
+//   background: $bg_color_black2;
+//   color: #925b6d;
+//   &.active {
+//     background: $bg_color_black3;
+//     color: #8C5362;
+//   }
+// }
+
+.ticket_message.card.active {
+  .card-header {
+    background: $bg_color_black_gradient23; //#582b53
+  }
+  .card-body {
+    background-color: $bg_color_black3;
+  }
+}
+
+.ticket_message.card {
+  margin-bottom: 15px;
+  border: 1px solid $pink2;
+  .card-header {
+    // background: $pink_gradient;
+    background: $bg_color_black_gradient32; //#582b53
+  }
+  .card-body {
+    background: $bg_color_black2;
   }
 }
 

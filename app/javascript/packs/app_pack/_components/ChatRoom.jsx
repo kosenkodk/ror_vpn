@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { I18n } from 'helpers'
+import { I18n } from 'helpers'
 import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
 
@@ -9,7 +9,7 @@ class ChatRoom extends React.Component {
   constructor(props) {
     super(props)
     this.state = { messages: [], message_text: '' }
-
+    this.chatChannel = ''
     this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
   }
 
@@ -18,15 +18,18 @@ class ChatRoom extends React.Component {
     let formData = new FormData(e.target)
     let jsonData = {}
     formData.forEach((value, key) => { jsonData[key] = value });
-    consumer.subscriptions.subscriptions[0].reply(jsonData);
-    // consumer.subscriptions.subscriptions[0].reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text });
+    this.chatChannel.reply(jsonData);
+    // this.chatChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text });
   }
 
   componentDidMount() {
-    consumer.subscriptions.create(
+    const ticket_id = this.props.id
+    // const ticket_id = this.props.item && this.props.item.id
+
+    this.chatChannel = consumer.subscriptions.create(
       {
         channel: 'ChatChannel',
-        room: `Room ${this.props.id}`
+        room: `Room${ticket_id}`
       },
       {
         received: data => {
@@ -41,36 +44,43 @@ class ChatRoom extends React.Component {
               break
           }
         },
-        reply: function (data) { return this.perform("reply", data) },
-        load: function () { return this.perform("load") },
+        reply: function (data) {
+          return this.perform("reply", data)
+        },
+        load: function () {
+          return this.perform("load", { ticket_id: ticket_id })
+        },
       }
-    )
+    );
+    this.chatChannel.load();
   }
 
   loadChat(e) {
     e.preventDefault();
-    consumer.subscriptions.subscriptions[0].load();
+    this.chatChannel.load();
   }
 
   render() {
     const { messages } = this.state
     return (
-      <div>
+      <React.Fragment>
         <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
-        <button className="load-button"
+        <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
-          Load Chat History
+          {I18n.t('pages.tickets.chat.load')}
         </button>
-        <Messages items={messages} />
-      </div>
+        <div className="mt-3">
+          <Messages items={messages} />
+        </div>
+      </React.Fragment>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { loading } = state.tickets
+  const { loading, item } = state.tickets
   return {
-    loading
+    loading, item
   }
 }
 

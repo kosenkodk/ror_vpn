@@ -36,6 +36,7 @@ function login(email, password) {
 
 function contactUs(data) {
   return dispatch => {
+    dispatch(alertActions.clear())
     dispatch(request({ data }));
 
     userService.contactUs(data)
