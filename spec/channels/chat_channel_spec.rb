@@ -20,7 +20,7 @@ RSpec.describe ChatChannel, type: :channel do
     expect(subscription).not_to have_streams
   end
 
-  it "subscribes to a stream when room id is provided" do
+  xit "subscribes to a stream when room id is provided" do
     # subscribe room: room
     # subscribe(channel: chat_channel)
     subscribe(channel: chat_channel, room: room)
