@@ -34,7 +34,7 @@ class Ticket < ApplicationRecord
   end
 
   def created_at_humanize
-    self.created_at.strftime("%d %B %Y at %H:%M") #to_formatted_s(:short) #strftime("%Y-%m-%d %H:%M:%S %Z")
+    self.created_at.try(:strftime,"%d %B %Y at %H:%M") #to_formatted_s(:short) #strftime("%Y-%m-%d %H:%M:%S %Z")
   end
 
   def as_json(options = nil)
