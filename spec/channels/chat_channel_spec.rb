@@ -42,7 +42,7 @@ RSpec.describe ChatChannel, type: :channel do
   end
 
   it "successfully subscribes" do
-    subscribe chat_channel
+    subscribe room:1
     perform :echo, foo: 'bar'
     expect(transmissions.last).to eq('foo' => 'bar')
   end

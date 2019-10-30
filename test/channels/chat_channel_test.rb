@@ -4,16 +4,21 @@ require "test_helper"
 class ChatChannelTest < ActionCable::Channel::TestCase
   include ActionCable::TestHelper
   
-  def setup
-    @room = Room.find 1
+  # def setup
+  #   @room = Room.find 1
 
-    stub_connection(user: users[:user])
-    subscribe room_number: room.id
-  end
+  #   stub_connection(user: users[:user])
+  #   subscribe room_number: room.id
+  # end
 
   def test_broadcasting
+    @room = 1
+    subscribe room:@room
     assert_broadcasts(@room, 1) do
-      perform :reply, message: "I'm here!"
+      perform :echo, message: "I'm here!"
+    end
+    assert_broadcast_on("chat:#{@room}", {message:'message'} ) do
+      perform :echo, message: "I'm here!"
     end
   end
 
@@ -27,7 +32,9 @@ class ChatChannelTest < ActionCable::Channel::TestCase
     # subscribe channel: @chat_channel, room: @room
     assert subscription.confirmed?
 
-    assert_broadcast_on("#{@ticket_channel}#{@room}", {type: 'message', message: {message_text: "I'm here!",}}) do
+    # data = message: {message_text: "I'm here!",}
+    data = {message_text:'text'}
+    assert_broadcast_on("chat:#{@ticket_channel}#{@room}", {message_text: 'message' }) do
       perform :reply, { message_text: "I'm here!" }
     end
   end
@@ -41,11 +48,11 @@ class ChatChannelTest < ActionCable::Channel::TestCase
     # Simulate a subscription creation by calling `subscribe`
     
     # subscribe channel: @chat_channel, room: @room
-    subscribe room_id: @room
+    subscribe room: @room
     # You can access the Channel object via `subscription` in tests
     assert subscription.confirmed?
     # assert_has_stream "#{@ticket_channel}#{@room}"
-    assert_has_stream "chat_#{@room}"
+    assert_has_stream "chat:#{@room}"
   end
 end
 
