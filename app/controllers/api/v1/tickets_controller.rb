@@ -63,7 +63,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
     begin
       file_params = get_attachment_base64(params[:ticket][:attachment2])
       message = Message.new(title: @ticket.title, text: @ticket.text, user_id: @ticket.user.id, ticket_id: @ticket.id)
-      message.attachment.attach(file_params)
+      message.attachment.attach(file_params) if file_params.present?
       message.save
     rescue => exception
       render json: { error: "can't create a message", status: 400 }

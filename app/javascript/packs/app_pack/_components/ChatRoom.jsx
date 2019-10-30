@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { I18n } from 'helpers'
+import { I18n } from 'helpers'
 import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
 
@@ -67,7 +67,7 @@ class ChatRoom extends React.Component {
         <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
         <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
-          Load Chat History
+          {I18n.t('pages.tickets.chat.load')}
         </button>
         <div className="mt-3">
           <Messages items={messages} />
