@@ -11,8 +11,7 @@ RSpec.describe ChatChannel, type: :channel do
   before do
     # initialize connection with identifiers
     # stub_connection current_user: user
-    stub_connection 
-    #channel: chat_channel
+    stub_connection #channel: chat_channel
   end
 
   xit "rejects when no room id" do
@@ -23,14 +22,11 @@ RSpec.describe ChatChannel, type: :channel do
 
   it "subscribes to a stream when room id is provided" do
     # subscribe room: room
-    # subscribe(channel: chat_channel)
     subscribe(channel: chat_channel, room: room)
-    # subscribe(channel: ticket_channel, room: room)
-
     expect(subscription).to be_confirmed
 
     # check particular stream by name
-    expect(subscription).to have_stream_from('chat:'+ticket_channel)
+    expect(subscription).to have_stream_from("chat:#{ticket_channel}")
 
     # or directly by model if you create streams with `stream_for`
     # expect(subscription).to have_stream_for(Room.find(42))
@@ -42,26 +38,32 @@ RSpec.describe ChatChannel, type: :channel do
     expect(subscription).to be_confirmed
     expect(subscription).to have_stream_from('chat:'+ticket_channel)
 
-    data = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
-    # perform :reply, {message: data}
-    # expect(transmissions.last).to eq({'message': data})
-    perform :reply, data
-    expect(transmissions.last).to eq({'message': data})
+    request_params = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
+    perform :reply, request_params
+    expect(transmissions.last).to eq({'message': request_params}) # transmissions is always nil
   end
 
   it "successfully subscribes" do
-    subscribe room:1
-    perform :echo, foo: 'bar'
-    expect(transmissions.last).to eq('foo' => 'bar')
+    subscribe room: room
+    # perform :speak, message: 'message'
+    # expect(transmissions.last).to eq('text' => 'message') # transmissions is always nil
+    expect {
+      # perform :ticket_reply, message: 'Cool!' 
+      perform :speak, message: 'Cool!'
+    }.to have_broadcasted_to("chat:#{room}").with(text: 'Cool!')
   end
 end
 
 RSpec.describe ApplicationCable::Connection, :type => :channel do
-  it "successfully connects" do
-    # connect "/cable?current_user=#{create(:user)}"
-    # expect(connection.current_user).to eq "323"
+  let(:user) { create(:user)}
+  let(:ticket) { create(:ticket, user:user)}
+  xit "successfully connects" do
+    connection.current_user = user
+    connect "/cable?room=#{ticket.id}"
+    expect(connection.current_user).to eq ticket.user
+    # expect(connection.access_token).to eq access_token
   end
-  it "rejects connection" do
+  xit "rejects connection" do
     expect { connect "/cable" }.to have_rejected_connection
   end
 end
