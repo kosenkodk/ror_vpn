@@ -37,15 +37,14 @@ RSpec.describe ChatChannel, type: :channel do
     
     expect(subscription).to be_confirmed
     expect(subscription).to have_stream_from("chat:#{ticket_channel}")
-
-    item = message.as_json(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
-    # item = JSON.parse(item)
+    
+    item = message.as_json#(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
     request_params = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
     # perform :reply, request_params
     # expect(transmissions.last).to eq({'message': request_params}) # transmissions is always nil
     expect {
       perform :reply, request_params
-    }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: item}.to_json)
+    }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: item})
   end
 
   it "subscribe and speak" do

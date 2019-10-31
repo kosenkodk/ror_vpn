@@ -26,7 +26,7 @@ class ChatChannel < ApplicationCable::Channel
   def reply(data)
     message = Message.create(text: data['message_text'], user_id: data['message_user_id'], ticket_id: data['message_ticket_id'])
     # item = message.to_json# rescue {}
-    item = message.as_json(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
+    item = message.as_json#(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
     socket = {type: 'message', message: item}
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
@@ -35,7 +35,7 @@ class ChatChannel < ApplicationCable::Channel
     ticket_id = data['ticket_id']
     messages = Message.where(ticket_id: ticket_id).order(created_at: :desc) if ticket_id.present?
     # items = messages.to_json# rescue {}
-    items = messages.as_json(include: :user, methods: [:attachment_url, :attachment_name])
+    items = messages.as_json#(include: :user, methods: [:attachment_url, :attachment_name])
     socket = {type: 'messages', messages: items }
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
