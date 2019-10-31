@@ -34,20 +34,19 @@ class ChatChannelTest < ActionCable::Channel::TestCase
     # assert_equal "Hello, Rails!", transmissions.last["text"] # transmissions.last is always nil
   end
 
-  def test_identifiers
+  def test_ticket_reply
     @chat_channel = 'ChatChannel' #'ticket_channel' #'ChatChannel'
     @ticket_channel = 'ticket_channel'
     @room = 1
 
-    #stub_connection #(user: users[:user])
-    subscribe channel: @chat_channel, room: @room
-    # subscribe channel: @chat_channel, room: @room
+    # stub_connection #(user: users[:user]) # stub_connection is optional
+    subscribe room: @room #, channel: @chat_channel # channel is optional
     assert subscription.confirmed?
 
-    # data = message: {message_text: "I'm here!",}
-    data = {message_text:'text'}
-    assert_broadcast_on("chat:#{@ticket_channel}#{@room}", {message_text: 'message' }) do
-      perform :reply, { message_text: "I'm here!" }
+    request_params = {message: "reply"}
+    response = { type: 'message', message: 'reply' }
+    assert_broadcast_on("chat:#{@ticket_channel}#{@room}", response) do
+      perform :ticket_reply, request_params
     end
   end
 
