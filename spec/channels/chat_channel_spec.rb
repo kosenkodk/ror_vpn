@@ -11,7 +11,8 @@ RSpec.describe ChatChannel, type: :channel do
   before do
     # initialize connection with identifiers
     # stub_connection current_user: user
-    stub_connection channel: chat_channel
+    stub_connection 
+    #channel: chat_channel
   end
 
   xit "rejects when no room id" do
@@ -33,7 +34,14 @@ RSpec.describe ChatChannel, type: :channel do
 
     # or directly by model if you create streams with `stream_for`
     # expect(subscription).to have_stream_for(Room.find(42))
+  end
+
+  it "send reply from ticket page" do
+    subscribe(channel: chat_channel, room: room)
     
+    expect(subscription).to be_confirmed
+    expect(subscription).to have_stream_from('chat:'+ticket_channel)
+
     data = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
     # perform :reply, {message: data}
     # expect(transmissions.last).to eq({'message': data})
@@ -52,5 +60,8 @@ RSpec.describe ApplicationCable::Connection, :type => :channel do
   it "successfully connects" do
     # connect "/cable?current_user=#{create(:user)}"
     # expect(connection.current_user).to eq "323"
+  end
+  it "rejects connection" do
+    expect { connect "/cable" }.to have_rejected_connection
   end
 end
