@@ -5,6 +5,10 @@ class ChatChannel < ApplicationCable::Channel
     stream_for "#{params[:room]}"
   end
 
+  def speak(data)
+    broadcast_to params[:room], text: data["message"]
+  end
+
   def echo(data)
     socket = {foo: 'bar'} # data
     ChatChannel.broadcast_to("#{params[:room]}", data)

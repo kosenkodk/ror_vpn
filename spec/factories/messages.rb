@@ -3,5 +3,6 @@ FactoryBot.define do
     title { "MyString" }
     text { "MyText" }
     user { nil }
+    ticket_id {nil}
   end
 end
