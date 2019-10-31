@@ -26,7 +26,7 @@ class ChatChannel < ApplicationCable::Channel
   def reply(data)
     message = Message.create(text: data['message_text'], user_id: data['message_user_id'], ticket_id: data['message_ticket_id'])
     # item = message.to_json# rescue {}
-    item = message.as_json(include: :user, methods: [:attachment_url, :attachment_name])
+    item = message.as_json(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
     socket = {type: 'message', message: item}
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
