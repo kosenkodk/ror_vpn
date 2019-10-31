@@ -10,8 +10,11 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def echo(data)
-    socket = {foo: 'bar'} # data
-    ChatChannel.broadcast_to("#{params[:room]}", data)
+    socket = {text: data['message']}
+    ChatChannel.broadcast_to("#{params[:room]}", 
+      socket,
+      # text: data['message'],
+    )
   end
   
   def reply(data)

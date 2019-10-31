@@ -11,38 +11,27 @@ class ChatChannelTest < ActionCable::Channel::TestCase
   #   subscribe room_number: room.id
   # end
 
-  # def speak(data)
-  #   broadcast_to room, text: data["message"]
-  # end
-
   def test_speak
     room = 1
     subscribe room: room #room_id: rooms(:chat).id
   
     assert_broadcast_on(
       room, # rooms(:chat), 
-      text: "Hello, Rails!") do
+      text: "Hello, Rails!"
+    ) do
       perform :speak, message: "Hello, Rails!"
     end
   end  
   
-  # def test_perform_speak
-  #   subscribe room_id: 1
+  def test_echo_broadcasting
+    room = 1
+    subscribe room: room
   
-  #   perform :echo, {message: "Hello, Rails!"}
-  
-  #   assert_equal "Hello, Rails!", transmissions.last#["text"]
-  # end
-
-  def test_broadcasting
-    @room = 1
-    subscribe room:@room
-    assert_broadcasts(@room, 1) do
-      perform :echo, message: "I'm here!"
+    assert_broadcast_on(room, {text: "Hello, Rails!"}) do
+      perform :echo, {message: "Hello, Rails!"}
     end
-    # assert_broadcast_on("chat:#{@room}", {message:'message'} ) do
-    #   perform :echo, message: "I'm here!"
-    # end
+    # perform :echo, message: "Hello, Rails!"
+    # assert_equal "Hello, Rails!", transmissions.last["text"] # transmissions.last is always nil
   end
 
   def test_identifiers
@@ -50,14 +39,14 @@ class ChatChannelTest < ActionCable::Channel::TestCase
     @ticket_channel = 'ticket_channel'
     @room = 1
 
-    stub_connection #(user: users[:user])
+    #stub_connection #(user: users[:user])
     subscribe channel: @chat_channel, room: @room
     # subscribe channel: @chat_channel, room: @room
     assert subscription.confirmed?
 
     # data = message: {message_text: "I'm here!",}
     data = {message_text:'text'}
-    assert_broadcast_on("chat:#{@ticket_channel}#{@room}", {type: 'message' }) do
+    assert_broadcast_on("chat:#{@ticket_channel}#{@room}", {message_text: 'message' }) do
       perform :reply, { message_text: "I'm here!" }
     end
   end
