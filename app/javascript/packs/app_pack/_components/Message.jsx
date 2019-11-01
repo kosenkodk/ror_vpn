@@ -1,5 +1,5 @@
 import React from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 
 class Message extends React.Component {
@@ -60,15 +60,12 @@ class Message extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   const { user } = state.authentication
-//   const { loading } = state.tickets
-//   return {
-//     user,
-//     loading
-//   }
-// }
+function mapStateToProps(state) {
+  const { user } = state.authentication
+  return {
+    user
+  }
+}
 
-// const connectedForm = connect(mapStateToProps)(Message)
-// export { connectedForm as Message }
-export default Message
+const connectedForm = connect(mapStateToProps)(Message)
+export { connectedForm as Message }

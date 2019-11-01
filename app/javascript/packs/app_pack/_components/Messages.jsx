@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
-import Message from './Message'
+import { Message } from './Message'
 
 class Messages extends React.Component {
   render() {
     const { items, user } = this.props
     // const { items } = this.state
-    const emptyList = <p>no previous messages found</p>
+    const emptyList = ''//<p>no previous messages found</p>
 
     return (
       <React.Fragment>
