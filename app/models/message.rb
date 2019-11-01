@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
+  default_scope { order('created_at DESC') }
   include Rails.application.routes.url_helpers
   
   belongs_to :messageable, polymorphic: true, optional: true
