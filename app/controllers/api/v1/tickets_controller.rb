@@ -11,9 +11,6 @@ class Api::V1::TicketsController < Api::V1::ApiController
     end
     render json: { 
       tickets: @tickets,
-      #.as_json(
-      #  include: {department: {only: [:id, :title]} },
-      #),
       pages: @tickets.try(:total_pages),
       page: @tickets.try(:current_page),
     }
@@ -28,13 +25,6 @@ class Api::V1::TicketsController < Api::V1::ApiController
     end
     render json: { 
       tickets: @tickets,
-      # .as_json(
-      #   include: {
-      #     department: {only: [:id, :title]},
-      #     messages: {only: [:id, :title], methods: [:created_at_humanize]},
-      #   },
-      #   # except: [:text, :created_at, :updated_at]
-      # ),
       pages: @tickets.total_pages,
       page: @tickets.current_page,
       # , status: 401
@@ -43,10 +33,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # GET /tickets/1
   def show
-    render json: @ticket.as_json
-    # .as_json(
-    #   methods: [:attachment_url, :attachment_name],
-    #   include: {department: {only: [:id, :title]}})
+    render json: @ticket
   end
 
   # POST /tickets
