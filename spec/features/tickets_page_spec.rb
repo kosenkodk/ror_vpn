@@ -53,8 +53,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         
         # all('.btn-outline-info').last.click # click on last view item
         # click_on(I18n.t('buttons.view'), match: :first)
-        click_on(I18n.t('pages.tickets.chat.load'))
-        expect(page).to have_content('ticket with attachment')
+        # click_on(I18n.t('pages.tickets.chat.load'))
+        # expect(page).to have_content('ticket with attachment')
         expect(page).to have_content('logo.png')
         # click_on('logo.png')
         ## visit page.find('img#myimage')[:src]
@@ -88,8 +88,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket_last.title)
         # click_on(I18n.t('buttons.submit'))
 
-        click_on(I18n.t('pages.tickets.chat.load'))
-        # expect(page).to have_content(ticket_last.text) # problem with action cable ?
+        # click_on(I18n.t('pages.tickets.chat.load'))
+        expect(page).to have_content(ticket_last.text) # problem with action cable ?
         # expect(page).to have_content(ticket_last.department)
       end
       it 'check reply and load messages' do

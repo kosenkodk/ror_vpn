@@ -81,8 +81,13 @@ class Api::V1::TicketsController < Api::V1::ApiController
     if (Department.exists?(department_id))
       department = Department.find(department_id)
       @ticket.update(department: department)
-      TicketsMailer.notify_user_from(department.email, @ticket.user.email, @ticket).deliver_now
-      TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket).deliver_now
+      begin
+        TicketsMailer.notify_user_from(department.email, @ticket.user.email, @ticket).deliver_now
+        TicketsMailer.notify_department_from(@ticket.user.email, department.email, @ticket).deliver_now
+      rescue => exception
+        render json: { error: "can't send an email", status: 400 }
+        return
+      end
     end
     render json: @ticket, status: :created, error: attachment_error, notice: I18n.t('api.notices.item_added'), location: api_v1_ticket_url(@ticket)
   end
