@@ -63,7 +63,7 @@ class TicketsPage extends React.Component {
               <table className="table table-striped table-dark">
                 <thead>
                   <tr>
-                    <th colSpan="3" scope="col" className="w-5"></th>
+                    <th colSpan="1" scope="col" className="w-5"></th>
                     <th scope="col" className="w-20">Department</th>
                     <th scope="col" className="w-15">Status</th>
                     <th scope="col" className="w-35">Subject</th>
