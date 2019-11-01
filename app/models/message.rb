@@ -25,9 +25,15 @@ class Message < ApplicationRecord
   end
 
   def as_json(options = nil)
-    super(only:[:text],
-      include: :user, 
-      methods: [:attachment_url, :attachment_name, :created_at_humanize]
-    ).merge(options || {})
+    if self.user.present?
+      super(only: [:text],
+        include: :user,
+        methods: [:attachment_url, :attachment_name, :created_at_humanize]
+      )#.merge(options || {})
+    else
+      super(only: [:text],
+        methods: [:attachment_url, :attachment_name, :created_at_humanize]
+      )
+    end
   end
 end
