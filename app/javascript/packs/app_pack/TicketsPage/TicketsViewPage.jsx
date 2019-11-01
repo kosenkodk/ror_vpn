@@ -38,9 +38,9 @@ class TicketsViewPage extends React.Component {
           </div>
 
           <div className="form-group row">
-            <label className="col-sm-4">{I18n.t('pages.tickets.form.title')}</label>
+            <h4 className="col-sm-4">{I18n.t('pages.tickets.form.title')}</h4>
             <div className="col-sm-8">
-              {item && item.title}
+              <h4>{item && item.title}</h4>
             </div>
           </div>
 
