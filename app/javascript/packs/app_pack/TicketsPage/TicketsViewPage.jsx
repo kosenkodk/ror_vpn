@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { ticketActions } from '../_actions'
 import { urls } from 'config'
 import { I18n } from 'helpers'
-import { ChatRoom } from '../_components'
+import { ChatRoom, Messages } from '../_components'
 
 class TicketsViewPage extends React.Component {
   constructor(props) {
@@ -44,9 +44,14 @@ class TicketsViewPage extends React.Component {
             </div>
           </div>
 
-          <ChatRoom id={this.state.id} />
+          <ChatRoom id={this.state.id} messages={item && item.messages} />
 
           {/* initial ticket message with attachment */}
+
+          {item && item.messages && item.messages.length > 0 &&
+            <Messages items={item.messages} />
+          }
+
           {/* {item && item.text &&
             <div className="ticket_message">
               <div className="form-group row">

@@ -31,12 +31,24 @@ RSpec.describe Ticket, type: :model do
 
   it 'get messages' do
     ticket = create(:ticket, user: user)
-    message = create(:message, user:user)
-    ticket.messages << message
-    ticket.save
+    message = create(:message, user: user, ticket_id: ticket)
+    # message = create(:message, user:user)
+    # ticket.messages << message
+    # ticket.save
     expect(ticket.messages.count).to eq 1
     expect(ticket.messages.last).to eq message
     expect(ticket.as_json).to include 'messages'
-    # expect(ticket.as_json['messages']).to eq ticket.messages.as_json
+    expect(ticket.as_json['messages']).to eq ticket.messages.as_json
+  end
+  
+  it 'create message' do
+    ticket = Ticket.create!(title: 'ticket', user: user)
+    message = Message.create!(text: 'message', ticket: ticket, user: user, messageable: ticket)
+    # message.update_attribute(:messageable, ticket)
+
+    expect(message.ticket).to eq ticket
+    expect(ticket.messages.count).to eq 1
+    ticket_last = Ticket.find(ticket.id)
+    expect(ticket_last.messages.count).to eq 1
   end
 end

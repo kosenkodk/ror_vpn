@@ -2,7 +2,8 @@ class Message < ApplicationRecord
   include Rails.application.routes.url_helpers
   
   belongs_to :messageable, polymorphic: true, optional: true
-  belongs_to :user
+  belongs_to :user, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :ticket, class_name: 'Ticket', foreign_key: 'ticket_id'
   has_one_attached :attachment
 
   def attachment_path
@@ -23,6 +24,9 @@ class Message < ApplicationRecord
   end
 
   def as_json(options = nil)
-    super(only:[:text],include: :user, methods: [:attachment_url, :attachment_name, :created_at_humanize]).merge(options || {})
+    super(only:[:text],
+      include: :user, 
+      methods: [:attachment_url, :attachment_name, :created_at_humanize]
+    ).merge(options || {})
   end
 end
