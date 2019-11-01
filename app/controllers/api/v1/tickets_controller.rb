@@ -27,10 +27,14 @@ class Api::V1::TicketsController < Api::V1::ApiController
       @tickets = current_user.tickets.paginate(page: params[:page] || 1, per_page: params[:per_page]).order(id: :desc)
     end
     render json: { 
-      tickets: @tickets.as_json(
-        include: {department: {only: [:id, :title]} },
-        # except: [:text, :created_at, :updated_at]
-      ),
+      tickets: @tickets,
+      # .as_json(
+      #   include: {
+      #     department: {only: [:id, :title]},
+      #     messages: {only: [:id, :title], methods: [:created_at_humanize]},
+      #   },
+      #   # except: [:text, :created_at, :updated_at]
+      # ),
       pages: @tickets.total_pages,
       page: @tickets.current_page,
       # , status: 401
@@ -39,7 +43,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # GET /tickets/1
   def show
-    render json: @ticket
+    render json: @ticket.as_json
     # .as_json(
     #   methods: [:attachment_url, :attachment_name],
     #   include: {department: {only: [:id, :title]}})
@@ -63,10 +67,12 @@ class Api::V1::TicketsController < Api::V1::ApiController
     @ticket.save!
 
     begin
+      # @ticket.messages << Message.create(title: @ticket.title, text: @ticket.text, user_id: @ticket.user.id, ticket_id: @ticket.id)
       file_params = get_attachment_base64(params[:ticket][:attachment2])
       message = Message.new(title: @ticket.title, text: @ticket.text, user_id: @ticket.user.id, ticket_id: @ticket.id)
       message.attachment.attach(file_params) if file_params.present?
       message.save
+      @ticket.messages << message
     rescue => exception
       render json: { error: "can't create a message", status: 400 }
       return

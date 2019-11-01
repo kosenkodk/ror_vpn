@@ -24,7 +24,10 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def reply(data)
+    ticket = Ticket.find(data['message_ticket_id'])
     message = Message.create(text: data['message_text'], user_id: data['message_user_id'], ticket_id: data['message_ticket_id'])
+    ticket.messages << message
+
     # item = message.to_json# rescue {}
     item = message.as_json#(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
     socket = {type: 'message', message: item}

@@ -10,7 +10,7 @@ class Ticket < ApplicationRecord
   has_one_attached :attachment
   has_many_attached :files
   
-  has_many :messages, as: :messageable
+  has_many :messages, as: :messageable, inverse_of: 'ticket'
   
   def attachment_path
     rails_blob_path(self.attachment, only_path: true) if self.attachment.attached?
@@ -44,8 +44,9 @@ class Ticket < ApplicationRecord
       # only: [{created_at: self.created_at_humanize}, :id, :title, :text, :status, :department ],
       include: {
         department: {only: [:id, :title]},
-        messages: {only: [:id, :title], methods: [:created_at_humanize]},
-      }, 
+        messages: {include: :user, methods: [:created_at_humanize]}
+        # messages: {only: [:id, :title], methods: [:created_at_humanize]},
+      },
       methods: [:created_at_humanize, :attachment_url, :attachment_name],
     ).merge(options || {})
   end

@@ -52,7 +52,7 @@ class ChatRoom extends React.Component {
         },
       }
     );
-    this.chatChannel.load();
+    // this.chatChannel.load();
   }
 
   loadChat(e) {
@@ -62,14 +62,16 @@ class ChatRoom extends React.Component {
 
   render() {
     const { messages } = this.state
+    // const { item } = this.props
     return (
       <React.Fragment>
         <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
-        <button className="btn btn-outline-info"
+        {/* <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
           {I18n.t('pages.tickets.chat.load')}
-        </button>
+        </button> */}
         <div className="mt-3">
+          {/* <Messages items={item && item.messages} /> */}
           <Messages items={messages} />
         </div>
       </React.Fragment>
