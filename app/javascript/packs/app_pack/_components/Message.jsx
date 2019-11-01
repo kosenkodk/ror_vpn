@@ -50,7 +50,7 @@ class Message extends React.Component {
             <div className="form-group row">
               <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
               <div className="col-sm-8">
-                <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
+                <a className="text-white" href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
               </div>
             </div>
           }
