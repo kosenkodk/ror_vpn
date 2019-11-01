@@ -56,5 +56,9 @@ function mapStateToProps(state) {
   }
 }
 
+MessageForm.defaultProps = {
+  ticket_id: -1
+}
+
 const connectedForm = connect(mapStateToProps)(MessageForm)
 export { connectedForm as MessageForm }
