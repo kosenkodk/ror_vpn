@@ -24,12 +24,17 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def reply(data)
-    ticket = Ticket.find(data['message_ticket_id'])
-    message = Message.create(text: data['message_text'], user_id: data['message_user_id'], ticket_id: data['message_ticket_id'])
-    ticket.messages << message
+    if Ticket.exists?(data['message_ticket_id'])
+      # message = Message.create(text: data['message_text']) if data['message_text']
+      # message.update(user_id: data['message_user_id']) if data['message_user_id']
+      # message.update(ticket_id: data['message_ticket_id'])
+      message = Message.create(text: data['message_text'], ticket_id: data['message_ticket_id'], user_id: data['message_user_id']) if data['message_user_id']
+      ticket = Ticket.find(data['message_ticket_id'])
+      ticket.messages << message if message
+    else
+    end
 
-    # item = message.to_json# rescue {}
-    item = message.as_json#(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
+    item = message.as_json
     socket = {type: 'message', message: item}
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
@@ -37,9 +42,8 @@ class ChatChannel < ApplicationCable::Channel
   def load(data)
     ticket_id = data['ticket_id']
     messages = Message.where(ticket_id: ticket_id).order(created_at: :desc) if ticket_id.present?
-    # items = messages.to_json# rescue {}
-    items = messages.as_json#(include: :user, methods: [:attachment_url, :attachment_name])
-    socket = {type: 'messages', messages: items }
+    items = messages.as_json
+    socket = {type: 'messages', messages: items}
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
   end
 

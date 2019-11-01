@@ -32,19 +32,52 @@ RSpec.describe ChatChannel, type: :channel do
     # expect(subscription).to have_stream_for(Room.find(42))
   end
 
-  it "send reply from ticket page" do
-    subscribe(channel: chat_channel, room: room)
+  context 'ticket reply' do
+
+    let(:message_json) {
+      message.as_json#(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
+    }
     
-    expect(subscription).to be_confirmed
-    expect(subscription).to have_stream_from("chat:#{ticket_channel}")
-    
-    item = message.as_json#(only: [:text], include: :user, methods: [:attachment_url, :attachment_name])
-    request_params = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
-    # perform :reply, request_params
-    # expect(transmissions.last).to eq({'message': request_params}) # transmissions is always nil
-    expect {
-      perform :reply, request_params
-    }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: item})
+    let(:message_json_without_user) {
+      message.as_json({only: [:text], methods: [:attachment_url, :attachment_name]})
+    }
+
+    before(:each) {
+      subscribe(channel: chat_channel, room: room)
+      
+      expect(subscription).to be_confirmed
+      expect(subscription).to have_stream_from("chat:#{ticket_channel}")
+    }
+
+    it "return message when send all params" do
+      request_params = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
+      # perform :reply, request_params
+      # expect(transmissions.last).to eq({'message': request_params}) # transmissions is always nil
+      expect {
+        perform :reply, request_params
+      }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: message_json})
+    end
+
+    it "return empty message without ticket id param" do
+      request_params = {message_text: message.text, message_user_id: message.user_id}
+      expect {
+        perform :reply, request_params
+      }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: nil})
+    end
+
+    it "return empty message without user id param" do
+      request_params = {message_text: message.text}
+      expect {
+        perform :reply, request_params
+      }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: nil})
+    end
+
+    it "return empty message with ticket id and without user id params" do
+      request_params = {message_text: message.text, message_ticket_id: message.ticket_id}
+      expect {
+        perform :reply, request_params
+      }.to have_broadcasted_to("chat:#{ticket_channel}").with({type: 'message', message: nil})
+    end
   end
 
   it "subscribe and speak" do
