@@ -21,7 +21,7 @@ class Message extends React.Component {
     return (
       <React.Fragment>
         <h5 className="card-header">
-          From {this.getUserNameOrEmailFromMessage(item)} at {item && item.created_at_humanize}
+          From <b>{this.getUserNameOrEmailFromMessage(item)}</b> at {item && item.created_at_humanize}
           {/* {item.user && item.user.email} */}
         </h5>
         <div className="card-body">
