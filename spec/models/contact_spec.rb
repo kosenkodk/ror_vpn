@@ -47,4 +47,14 @@ RSpec.describe Contact, type: :model do
       end
     end
   end
+
+  it 'get messages' do
+    contact = create(:contact)
+    message = create(:message, user: create(:user))
+    contact.messages << message
+    contact.save
+    expect(contact.messages.count).to eq 1
+    expect(contact.messages.last).to eq message
+    expect(contact.as_json).to include 'messages'
+  end
 end

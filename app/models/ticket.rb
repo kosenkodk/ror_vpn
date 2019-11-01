@@ -10,6 +10,8 @@ class Ticket < ApplicationRecord
   has_one_attached :attachment
   has_many_attached :files
   
+  has_many :messages, as: :messageable
+  
   def attachment_path
     rails_blob_path(self.attachment, only_path: true) if self.attachment.attached?
     # Rails.application.routes.url_helpers.rails_blob_path(self.icon, only_path: true) if self.try(:icon).try(:attached?)# && self.try(:icon).try(:image).try(:blob?)
@@ -40,7 +42,10 @@ class Ticket < ApplicationRecord
   def as_json(options = nil)
     super(
       # only: [{created_at: self.created_at_humanize}, :id, :title, :text, :status, :department ],
-      include: {department: {only: [:id, :title]} }, 
+      include: {
+        department: {only: [:id, :title]},
+        messages: {only: [:id, :title], methods: [:created_at_humanize]},
+      }, 
       methods: [:created_at_humanize, :attachment_url, :attachment_name],
     ).merge(options || {})
   end
