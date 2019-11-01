@@ -24,7 +24,6 @@ class TicketsViewPage extends React.Component {
 
     return (
       <div id="tickets_new" className="row mb-4">
-
         <div className="col-12 bg-vega shadow-vega">
           <div className="container-fluid">
             <div className="row">
@@ -45,93 +44,9 @@ class TicketsViewPage extends React.Component {
           </div>
 
           <ChatRoom id={this.state.id} messages={item && item.messages} />
-
           {/* initial ticket message with attachment */}
-
-          {item && item.messages && item.messages.length > 0 &&
-            <Messages items={item.messages} />
-          }
-
-          {/* {item && item.text &&
-            <div className="ticket_message">
-              <div className="form-group row">
-                <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">From:</label>
-                <div className="col-sm-8 align-self-center">
-                  You at {item && item.created_at}
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">Message:</label>
-                <div className="col-sm-8 align-self-center">
-                  {item && item.text}
-                </div>
-              </div>
-
-              {item && item.attachment_url &&
-                <div className="form-group row">
-                  <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
-                  <div className="col-sm-8">
-                    <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
-                  </div>
-                </div>
-              }
-            </div>
-          } */}
+          {item && item.messages && <Messages items={item.messages} />}
         </div>
-        {/* // View Ticket
-        <div className="col-lg-6">
-          <div className="row">
-            <div className="col bg-vega shadow-vega">
-
-              <div className="row">
-                <div className="col-xs-6 mr-auto">
-                  <h2 className="mt-2">View Ticket</h2>
-                </div>
-                <div className="col-xs-6 ml-auto align-self-center">
-                  <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-sm-4">{I18n.t('pages.tickets.form.status')}</label>
-                <div className="col-sm-8 ">
-                  {item && item.status}
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-sm-4">{I18n.t('pages.tickets.form.department')}</label>
-                <div className="col-sm-8 ">
-                  {item && item.department && item.department.title}
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-sm-4">{I18n.t('pages.tickets.form.title')}</label>
-                <div className="col-sm-8">
-                  {item && item.title}
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-sm-4">{I18n.t('pages.tickets.form.text')}</label>
-                <div className="col-sm-8">
-                  {item && item.text}
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}</label>
-                <div className="col-sm-8">
-                  {item && item.attachment_url && <a href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      */}
       </div>
     )
   }

@@ -44,8 +44,10 @@ class Ticket < ApplicationRecord
       # only: [{created_at: self.created_at_humanize}, :id, :title, :text, :status, :department ],
       include: {
         department: {only: [:id, :title]},
-        messages: {include: :user, methods: [:created_at_humanize, :attachment_url, :attachment_name]}
-        # messages: {only: [:id, :title], methods: [:created_at_humanize]},
+        messages: {
+          only: [:id, :text],
+          include: :user, 
+          methods: [:created_at_humanize, :attachment_url, :attachment_name]}
       },
       methods: [:created_at_humanize, :attachment_url, :attachment_name],
     ).merge(options || {})
