@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   include Rails.application.routes.url_helpers
-
+  
+  belongs_to :messageable, polymorphic: true, optional: true
   belongs_to :user
   has_one_attached :attachment
 

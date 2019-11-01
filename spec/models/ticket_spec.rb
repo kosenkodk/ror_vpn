@@ -28,4 +28,15 @@ RSpec.describe Ticket, type: :model do
     expect(ticket_json.keys).to include 'created_at_humanize'
     expect(ticket_json.values).to include created_at_short
   end
+
+  it 'get messages' do
+    ticket = create(:ticket, user: user)
+    message = create(:message, user:user)
+    ticket.messages << message
+    ticket.save
+    expect(ticket.messages.count).to eq 1
+    expect(ticket.messages.last).to eq message
+    expect(ticket.as_json).to include 'messages'
+    # expect(ticket.as_json['messages']).to eq ticket.messages.as_json
+  end
 end
