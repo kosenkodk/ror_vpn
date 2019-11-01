@@ -87,10 +87,17 @@ class App extends React.Component {
                   <LayoutWithSidebar>
                     <Switch>
                       <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
-                      <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
+                      {/* <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} /> */}
+                      <PrivateRouteWithRightSidebar exact path={urls.tickets_new.path} component={TicketsNewPage}
+                        sidebarUrls={[urls.tickets]}
+                      />
                       <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                      <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />s
-                    <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
+                      {/* <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} /> */}
+                      <PrivateRouteWithRightSidebar exact path={urls.tickets_view.path} component={TicketsViewPage}
+                        sidebarUrls={[urls.tickets, urls.tickets_new]}
+                      />
+
+                      <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
                         // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
                         sidebarUrls={Object.values(urls.user_dashboard.urls)}
                       />
