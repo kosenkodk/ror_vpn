@@ -60,12 +60,6 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         ## visit page.find('img#myimage')[:src]
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
-      xit 'admin close ticket' do
-        click_on(I18n.t('buttons.close'), match: :first)
-        click_on(I18n.t('buttons.view'), match: :first)
-        expect(page).to have_content('closed')
-        expect(page).to have_content(I18n.t('pages.tickets.form.status'))
-      end
       it "searching tickets by id/no, title or text"
       it "guests can't see the user's tickets"
     end
@@ -81,7 +75,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
     context 'success' do
       it 'when admin click on close ticket button'
       
-      it 'display title, text, department' do
+      it 'display title, text' do
         # ticket = build(:ticket, title:'ticket with title, text', text: 'text')
         click_on(I18n.t('buttons.view'), match: :first)
         expect(page).to have_content(ticket_last.id)
@@ -98,6 +92,12 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
         expect(page).to have_content('reply')
         expect(page).to have_content('You')
+      end
+      it 'click on close button' do
+        click_on(I18n.t('buttons.view'), match: :first)
+        click_on(I18n.t('buttons.close'), match: :first)
+        expect(page).to have_content('closed')
+        expect(page).to have_content(I18n.t('pages.tickets.form.status'))
       end
     end
     context 'fail' do

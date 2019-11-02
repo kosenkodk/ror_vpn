@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
+import { ticketActions } from '../_actions';
 
 class TicketForm extends React.Component {
   constructor(props) {
@@ -18,6 +19,11 @@ class TicketForm extends React.Component {
     console.log('onFileChange', e.target.files);
     // if (e.target && e.target.files && e.target.files.length > 0)
     this.setState({ file: e.target.files[0] });
+  }
+
+  onTicketClose(e, id) {
+    this.props.dispatch(ticketActions.update(id));
+    e.preventDefault();
   }
 
   render() {
@@ -89,8 +95,8 @@ TicketForm.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { loading } = state.tickets;
-  return { loading }
+  const { loading, item } = state.tickets;
+  return { loading, item }
 }
 
 const connectedApp = connect(mapStateToProps)(TicketForm);

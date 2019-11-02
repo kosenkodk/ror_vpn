@@ -72,7 +72,7 @@ function update(item) {
   }
   function request() { return { type: ticketConstants.UPDATE_REQUEST } }
   function success(item) {
-    // history.push(urls.tickets.path)
+    history.push(urls.tickets.path)
     return { type: ticketConstants.UPDATE_SUCCESS, item }
   }
   function failure(error) { return { type: ticketConstants.UPDATE_FAILURE, error } }
