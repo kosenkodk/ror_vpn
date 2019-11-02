@@ -10,7 +10,7 @@ class TicketTableItem extends React.Component {
       <tr>
         <td>
           {/* <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={false} {...this.props} /> */}
-          <Link to={`${urls.tickets.path}/${this.props.id}`} className='btn btn-sm btn-outline-info'>View</Link>
+          <Link to={`${urls.tickets.path}/${this.props.id}`} className='btn btn-sm btn-outline-info btn-block'>View</Link>
         </td>
         {/*
         <td>
