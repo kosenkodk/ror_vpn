@@ -33,5 +33,7 @@ $(jQuery).on('ready turbolinks:load', function () {
   })
 
   // fix for modal popup
-  $('.modal').insertAfter($('body'));
+  $(document).on('show.bs.modal', '.modal', function () {
+    $(this).appendTo('body');
+  });
 });
