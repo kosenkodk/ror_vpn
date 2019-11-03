@@ -23,6 +23,7 @@ import { ComingSoonPage, SuccessPage, NotFoundPage } from '../StatusPages'
 import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
 import { DashboardPage } from '../DashboardPage'
+import { AccountPage } from '../AccountPage'
 
 // layouts
 import { Layout, LayoutWithSidebar } from '../App'
@@ -101,7 +102,7 @@ class App extends React.Component {
                         // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
                         sidebarUrls={Object.values(urls.user_dashboard.urls)}
                       />
-                      <PrivateRouteWithRightSidebar path={urls.user_account.path} component={ComingSoonPage}
+                      <PrivateRouteWithRightSidebar path={urls.user_account.path} component={AccountPage}
                         sidebarUrls={Object.values(urls.user_account.urls)}
                       />
                       <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
