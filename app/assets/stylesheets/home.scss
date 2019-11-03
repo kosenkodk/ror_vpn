@@ -597,7 +597,7 @@ footer {
   }  
 }
 
-.tickets {
+// .tickets {
   .modal-content {
     @extend .shadow-vega;
     background: $bg_color_black;
@@ -607,11 +607,19 @@ footer {
         color: $pink3;
       }
     }
+    .modal-header {
+      border-bottom: 1px solid $pink !important;
+      border-image: $pink_gradient;
+    }
+    .modal-footer {
+      border-top: 1px solid $pink !important;
+      border-image: $pink_gradient;
+    }
   }
   .table-dark {
     background-color: $bg_color_black2;
   }
-}
+// }
 
 // .ticket_message {
   
