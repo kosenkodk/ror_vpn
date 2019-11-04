@@ -10,9 +10,12 @@ class AccountPage extends React.Component {
   render() {
     const { loggingIn } = this.props;
     return (
-      <React.Fragment>
-        <ChangePassword idModal='changePassword' />
-      </React.Fragment>
+      <div className="col shadow-vega bg-vega p-4">
+        <div className="container-section">
+          <h2>Account</h2>
+          <ChangePassword idModal='changePassword' />
+        </div>
+      </div>
     );
   }
 }
