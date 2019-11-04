@@ -608,11 +608,11 @@ footer {
       }
     }
     .modal-header {
-      border-bottom: 1px solid $pink !important;
+      border-bottom: 1px solid $pink;
       border-image: $pink_gradient;
     }
     .modal-footer {
-      border-top: 1px solid $pink !important;
+      border-top: 1px solid $pink;
       border-image: $pink_gradient;
     }
   }
