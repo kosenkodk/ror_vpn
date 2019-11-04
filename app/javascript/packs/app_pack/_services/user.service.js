@@ -125,7 +125,7 @@ function changeLoginPassword(data) {
   const requestOptions = {
     method: 'PATCH',
     headers: authHeader(),
-    body: JSON.stringify({ data })
+    body: JSON.stringify(data)
   }
   return fetch(`${config.apiUrl}/change_password`, requestOptions).then(handleResponse);
 }
