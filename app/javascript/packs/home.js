@@ -34,15 +34,18 @@ $(jQuery).on('ready turbolinks:load', function () {
 
   // fix for modal popup
   $(document).on('show.bs.modal', '.modal', function () {
-    $(this).appendTo('body');
+    $(document.body).append($(this).detach());
   });
-  // $('.modal').insertAfter($('body'));
-  // $('.modal').on('shown.bs.modal', function () {
-  //   //To relate the z-index make sure backdrop and modal are siblings
-  //   $(this).before($('.modal-backdrop'));
-  //   //Now set z-index of modal greater than backdrop
-  //   $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
-  //   $('.footer').css("z-index", parseInt($('.modal-backdrop').css('z-index')) - 1);
-  // });
 
+  // $('.modal').on('shown.bs.modal', function () {
+  // //To relate the z-index make sure backdrop and modal are siblings
+  //$(this).before($('.modal-backdrop'));
+  // $(this).after($('.modal-backdrop'));
+  // console.log('.modal zindex', $('.modal').css('z-index'))
+  // console.log('modal backdrop zindex', $('.modal-backdrop').css('z-index'))
+  // console.log('footer zindex', $('.footer').css('z-index'))
+  // // Now set z-index of modal greater than backdrop
+  // $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+  // $('.footer').css("z-index", parseInt($('.modal-backdrop').css('z-index')) - 1);
+  // });
 });
