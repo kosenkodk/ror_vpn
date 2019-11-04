@@ -25,27 +25,29 @@ class TicketsViewPage extends React.Component {
     return (
       <div id="tickets_new" className="row mb-4">
         <div className="col-12 bg-vega shadow-vega">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-xs-6">
-                <h2 className="mt-2">Ticket #{item && item.id}</h2>
-              </div>
-              <div className="col-xs-6 ml-auto align-self-center">
-                <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
+          <div className="container-section">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-xs-6">
+                  <h2 className="mt-2">Ticket #{item && item.id}</h2>
+                </div>
+                <div className="col-xs-6 ml-auto align-self-center">
+                  <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="form-group row">
-            <h4 className="col-sm-4">{I18n.t('pages.tickets.form.title')}</h4>
-            <div className="col-sm-8">
-              <h4>{item && item.title}</h4>
+            <div className="form-group row">
+              <h4 className="col-sm-4">{I18n.t('pages.tickets.form.title')}</h4>
+              <div className="col-sm-8">
+                <h4>{item && item.title}</h4>
+              </div>
             </div>
-          </div>
 
-          <ChatRoom id={this.state.id} messages={item && item.messages} />
-          {/* initial ticket message with attachment */}
-          {item && item.messages && <Messages items={item.messages} />}
+            <ChatRoom id={this.state.id} messages={item && item.messages} />
+            {/* initial ticket message with attachment */}
+            {item && item.messages && <Messages items={item.messages} />}
+          </div>
         </div>
       </div>
     )
