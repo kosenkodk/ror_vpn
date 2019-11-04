@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
-import { userActions } from '../_actions';
+import { accountActions } from '../_actions';
+import FlashMessages from '../_sections/FlashMessages';
 
 class ChangePassword extends React.Component {
   constructor(props) {
@@ -14,13 +15,15 @@ class ChangePassword extends React.Component {
       password_confirmation: '',
     }
     this.handleChange = this.handleChange.bind(this);
+    this.onChangeLoginPassword = this.onChangeLoginPassword.bind(this);
   }
 
   onChangeLoginPassword(e) {
-    const data = FormDataAsJsonFromEvent(e);
-    console.log('onChangeLoginPassword()', data, e.target);
-    // userActions.changeLoginPasword(data);
     e.preventDefault();
+    const data = FormDataAsJsonFromEvent(e);
+    data['id'] = this.props.id;
+    // console.log(data);
+    this.props.dispatch(accountActions.changePassword(data));
   }
 
   handleChange(e) {
@@ -29,8 +32,8 @@ class ChangePassword extends React.Component {
   }
 
   render() {
-    const { passwordOld, password, password_confirmation } = this.state;
-    const { loggingIn, idModal } = this.props;
+    const { password_old, password, password_confirmation } = this.state;
+    const { loading, idModal, error, notice } = this.props;
     return (
       <React.Fragment>
         <h4 id="password">Passwords</h4>
@@ -56,6 +59,7 @@ class ChangePassword extends React.Component {
               </div>
               <form onSubmit={this.onChangeLoginPassword}>
                 <div className="modal-body">
+                  <FlashMessages error={error && error} notice={notice && notice} />
                   <div className="col">
                     <div className="form-group row">
                       <label htmlFor="password_old" className="col-sm-6 col-form-label">Old login password:</label>
@@ -73,8 +77,10 @@ class ChangePassword extends React.Component {
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
-                  <button type="submit" className="btn btn-outline-pink active">
-                    {I18n.t('buttons.save')}
+
+                  <button type="submit" className="btn btn-outline-pink active" disabled={loading ? true : false}>
+                    {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                    {' ' + I18n.t('buttons.save')}
                   </button>
                 </div>
               </form>
@@ -90,10 +96,22 @@ ChangePassword.propTypes = {
   idModal: PropTypes.string
 }
 
+ChangePassword.defaultProps = {
+  id: '',
+  error: '',
+  notice: '',
+}
+
 function mapStateToProps(state) {
-  const { loggingIn } = state.authentication;
+  const { loading, error, notice } = state.account;
+  const { loggingIn, user } = state.authentication;
+  const { id } = user;
   return {
-    loggingIn
+    loggingIn,
+    id,
+    loading,
+    error,
+    notice,
   };
 }
 

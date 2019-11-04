@@ -13,6 +13,7 @@ export const userService = {
   updateTicket,
   getDepartments,
   contactUs,
+  changeLoginPassword,
 };
 
 function login(email, password) {
@@ -115,6 +116,18 @@ function updateTicket(ticket) {
     body: JSON.stringify({ ticket })
   }
   return fetch(`${config.apiUrl}/tickets/${ticket.id}`, requestOptions).then(handleResponse);
+}
+
+function changeLoginPassword(data) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_password`, 'PATCH', data)
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader(),
+    body: JSON.stringify({ data })
+  }
+  return fetch(`${config.apiUrl}/change_password`, requestOptions).then(handleResponse);
 }
 
 function addTicket(ticket) {

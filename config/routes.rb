@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       delete '/signin', to: 'signin#destroy'
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
-      post '/change_password', to: 'account#change_password'
+      patch '/change_password', to: 'account#change_password'
       
       mount ActionCable.server, at: '/cable'
 
