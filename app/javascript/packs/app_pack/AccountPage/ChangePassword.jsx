@@ -48,21 +48,21 @@ class ChangePassword extends React.Component {
                   </button>
                 </div>
                 <form onSubmit={this.onChangeLoginPassword}>
-
                   <div className="modal-body">
-                    <div className="form-group">
-                      <label htmlFor="passwordOld" className="col-form-label">Old login password:</label>
-                      <input type="password" name="passwordOld" className="form-control" id="passwordOld" value={passwordOld} onChange={this.handleChange} />
+                    <div className="col">
+                      <div className="form-group row">
+                        <label htmlFor="passwordOld" className="col-md-6 col-form-label">Old login password:</label>
+                        <input type="password" name="passwordOld" className="col-md-6 form-control" id="passwordOld" value={passwordOld} onChange={this.handleChange} placeholder='Password' />
+                      </div>
+                      <div className="form-group row">
+                        <label htmlFor="passwordNew" className="col-md-6 col-form-label">New login password:</label>
+                        <input type="password" name="passwordNew" className="col-md-6 form-control" id="passwordNew" value={passwordNew} onChange={this.handleChange} placeholder='Password' />
+                      </div>
+                      <div className="form-group row">
+                        <label htmlFor="passwordConfirm" className="col-md-6 col-form-label">Confirm login password:</label>
+                        <input type="password" name="passwordConfirm" className="col-md-6 form-control" id="passwordConfirm" value={passwordConfirm} onChange={this.handleChange} placeholder='Confirm' />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="passwordNew" className="col-form-label">New login password:</label>
-                      <input type="password" name="passwordNew" className="form-control" id="passwordNew" value={passwordNew} onChange={this.handleChange} />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="passwordConfirm" className="col-form-label">Confirm login password:</label>
-                      <input type="password" name="passwordConfirm" className="form-control" id="passwordConfirm" value={passwordConfirm} onChange={this.handleChange} />
-                    </div>
-
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
