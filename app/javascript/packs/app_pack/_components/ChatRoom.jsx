@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
+import { FormDataAsJsonFromEvent } from '../_helpers';
 
 class ChatRoom extends React.Component {
 
@@ -14,11 +15,8 @@ class ChatRoom extends React.Component {
   }
 
   onMessageFormSubmit(e, item) {
-    e.preventDefault()
-    let formData = new FormData(e.target)
-    let jsonData = {}
-    formData.forEach((value, key) => { jsonData[key] = value });
-    this.chatChannel.reply(jsonData);
+    e.preventDefault();
+    this.chatChannel.reply(FormDataAsJsonFromEvent(e));
     // this.chatChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text });
   }
 

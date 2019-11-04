@@ -3,4 +3,4 @@ export * from './history';
 export * from './store';
 export * from './auth-header';
 export * from './fileToBase64';
-export * from './FormDataToJson';
+export * from './FormDataAsJsonFromEvent';

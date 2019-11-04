@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { ticketActions } from '../_actions'
 import { TicketForm } from './TicketForm'
 import { urls } from 'config'
-import { fileToBase64 } from '../_helpers'
+import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
@@ -18,10 +18,7 @@ class TicketsNewPage extends React.Component {
   }
 
   onFormSubmit(e) {
-    let formData = new FormData(e.target)
-    let jsonData = {}
-    formData.forEach((value, key) => { jsonData[key] = value });
-
+    let jsonData = FormDataAsJsonFromEvent(e)
     // prepare attachment for json api
     if (this.state.file) {
       fileToBase64(this.state.file, this.state.file.name).then(result => {

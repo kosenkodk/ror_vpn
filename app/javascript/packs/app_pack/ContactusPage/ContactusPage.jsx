@@ -5,6 +5,7 @@ import ContactusForm from './ContactusForm';
 import FlashMessages from '../_sections/FlashMessages';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
+import { FormDataAsJsonFromEvent } from '../_helpers';
 
 class ContactusPage extends React.Component {
   constructor(props) {
@@ -13,15 +14,12 @@ class ContactusPage extends React.Component {
     this.state = {
       error: '',
       notice: '',
-    }
+    };
   }
 
   handleFormSubmit(e) {
-    e.preventDefault()
-    let formData = new FormData(e.target)
-    let data = {}
-    formData.forEach((value, key) => { data[key] = value });
-    this.props.dispatch(userActions.contactUs(data))
+    e.preventDefault();
+    this.props.dispatch(userActions.contactUs(FormDataAsJsonFromEvent(e)));
   }
 
   render() {
@@ -64,7 +62,7 @@ class ContactusPage extends React.Component {
 
 function mapStateToProps(state) {
   const { loading, items } = state.departments;
-  return { loading, items }
+  return { loading, items };
 }
 
 const connectedApp = connect(mapStateToProps)(ContactusPage);
