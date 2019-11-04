@@ -48,48 +48,51 @@ class TicketsPage extends React.Component {
         <div className="col-md-9 col-lg-10">
 
           <div id="tickets" className={`tickets bg-vega shadow-vega mb-4 ${loggedIn ? 'container-fluid' : 'container'}`}>
-            <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-              <div className="row">
-                <div className="col-xs-6 mr-auto">
-                  <h2 className="mt-2">Tickets</h2>
-                </div>
-                <div className="col-xs-6 ml-auto align-self-center">
-                  <Link to={urls.tickets_new.path} className="btn btn-outline-success">New</Link>
+
+            <div className="container-section">
+              <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
+                <div className="row">
+                  <div className="col-xs-6 mr-auto">
+                    <h2 className="mt-2">Tickets</h2>
+                  </div>
+                  <div className="col-xs-6 ml-auto align-self-center">
+                    <Link to={urls.tickets_new.path} className="btn btn-outline-success">New</Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="table-responsive">
-              <table className="table table-striped table-dark">
-                <thead>
-                  <tr>
-                    <th colSpan="1" scope="col" className="w-5"></th>
-                    <th scope="col" className="w-20">Department</th>
-                    <th scope="col" className="w-15">Status</th>
-                    <th scope="col" className="w-35">Subject</th>
-                    <th scope="col" className="w-15">Date</th>
-                    <th scope="col" className="w-10">#</th>
-                    {/* <th>Text</th> */}
-                  </tr>
-                </thead>
-                <tbody>
-                  {items && items.length > 0 ?
-                    items.map((item, index) => <TicketTableItem key={item.id}
-                      // no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} 
-                      onClose={this.onClose}
-                      no={item.id}
-                      {...item} />)
-                    :
+              <div className="table-responsive">
+                <table className="table table-striped table-dark">
+                  <thead>
                     <tr>
-                      <td colSpan="7" scope="row">
-                        {loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
-                        {/* {error && <span className="text-danger">ERROR: {error}</span>} */}
-                      </td>
+                      <th colSpan="1" scope="col" className="w-5"></th>
+                      <th scope="col" className="w-20">Department</th>
+                      <th scope="col" className="w-15">Status</th>
+                      <th scope="col" className="w-35">Subject</th>
+                      <th scope="col" className="w-15">Date</th>
+                      <th scope="col" className="w-10">#</th>
+                      {/* <th>Text</th> */}
                     </tr>
-                  }
-                </tbody>
-              </table>
-              <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
+                  </thead>
+                  <tbody>
+                    {items && items.length > 0 ?
+                      items.map((item, index) => <TicketTableItem key={item.id}
+                        // no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} 
+                        onClose={this.onClose}
+                        no={item.id}
+                        {...item} />)
+                      :
+                      <tr>
+                        <td colSpan="7" scope="row">
+                          {loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
+                          {/* {error && <span className="text-danger">ERROR: {error}</span>} */}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+                <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
+              </div>
             </div>
           </div>
         </div>
