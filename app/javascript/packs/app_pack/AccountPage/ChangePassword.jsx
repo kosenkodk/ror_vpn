@@ -46,7 +46,7 @@ class ChangePassword extends React.Component {
         </div>
 
         <div className="modal fade" data-backdrop={true} id={idModal} tabIndex="-1" role="dialog" aria-labelledby={`${idModal}Title`} aria-hidden="true">
-          <div className="modal-dialog" role="document">
+          <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id={`${idModal}Title`}>{this.props.title || 'Change login password'}</h5>
