@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormDataToJson } from '../_helpers';
+import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { userActions } from '../_actions';
 
@@ -17,7 +17,7 @@ class ChangePassword extends React.Component {
   }
 
   onChangeLoginPassword(e) {
-    const data = FormDataToJson(e);
+    const data = FormDataAsJsonFromEvent(e);
     console.log('onChangeLoginPassword()', data, e.target);
     // userActions.changeLoginPasword(data);
     e.preventDefault();

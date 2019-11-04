@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { ticketActions } from '../_actions'
 import { TicketForm } from './TicketForm'
 import { urls } from 'config'
+import { FormDataAsJsonFromEvent } from '../_helpers'
 
 class TicketsEditPage extends React.Component {
   constructor(props) {
@@ -14,10 +15,7 @@ class TicketsEditPage extends React.Component {
 
   onFormSubmit(e) {
     e.preventDefault()
-    let formData = new FormData(e.target)
-    let data = {}
-    formData.forEach((value, key) => { data[key] = value });
-    this.props.dispatch(ticketActions.add(data))
+    this.props.dispatch(ticketActions.add(FormDataAsJsonFromEvent(e)))
   }
 
   render() {
