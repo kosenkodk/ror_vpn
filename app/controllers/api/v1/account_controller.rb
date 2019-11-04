@@ -1,5 +1,5 @@
-class Api::V1::AccountController < ApplicationController
-  # before_action :authorize_access_request!
+class Api::V1::AccountController < Api::V1::ApiController
+  before_action :authorize_access_request!
   before_action :find_user, only: [:change_password]
   KEYS = [:id, :password, :password_confirmation, :password_old].freeze
 
