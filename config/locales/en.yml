@@ -140,6 +140,9 @@ en:
       twitter: "Twitter"
       contact_us: "Contact Us"
   pages:
+    account:
+      change_password:
+        success: "Your password has been changed successfully"
     dashboard:
       billing:
         title: "Billing"

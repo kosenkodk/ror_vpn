@@ -9,9 +9,9 @@ class ChangePassword extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      passwordOld: '',
-      passwordNew: '',
-      passwordConfirm: '',
+      password_old: '',
+      password: '',
+      password_confirmation: '',
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -29,7 +29,7 @@ class ChangePassword extends React.Component {
   }
 
   render() {
-    const { passwordOld, passwordNew, passwordConfirm } = this.state;
+    const { passwordOld, password, password_confirmation } = this.state;
     const { loggingIn, idModal } = this.props;
     return (
       <React.Fragment>
@@ -58,16 +58,16 @@ class ChangePassword extends React.Component {
                 <div className="modal-body">
                   <div className="col">
                     <div className="form-group row">
-                      <label htmlFor="passwordOld" className="col-sm-6 col-form-label">Old login password:</label>
-                      <input type="password" name="passwordOld" className="col-sm-6 form-control" id="passwordOld" value={passwordOld} onChange={this.handleChange} placeholder='Password' />
+                      <label htmlFor="password_old" className="col-sm-6 col-form-label">Old login password:</label>
+                      <input type="password" name="password_old" className="col-sm-6 form-control" id="password_old" value={password_old} onChange={this.handleChange} placeholder='Password' />
                     </div>
                     <div className="form-group row">
-                      <label htmlFor="passwordNew" className="col-sm-6 col-form-label">New login password:</label>
-                      <input type="password" name="passwordNew" className="col-sm-6 form-control" id="passwordNew" value={passwordNew} onChange={this.handleChange} placeholder='Password' />
+                      <label htmlFor="password" className="col-sm-6 col-form-label">New login password:</label>
+                      <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
                     </div>
                     <div className="form-group row">
-                      <label htmlFor="passwordConfirm" className="col-sm-6 col-form-label">Confirm login password:</label>
-                      <input type="password" name="passwordConfirm" className="col-sm-6 form-control" id="passwordConfirm" value={passwordConfirm} onChange={this.handleChange} placeholder='Confirm' />
+                      <label htmlFor="password_confirmation" className="col-sm-6 col-form-label">Confirm login password:</label>
+                      <input type="password" name="password_confirmation" className="col-sm-6 form-control" id="password_confirmation" value={password_confirmation} onChange={this.handleChange} placeholder='Confirm' />
                     </div>
                   </div>
                 </div>
