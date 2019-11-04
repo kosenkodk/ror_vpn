@@ -36,4 +36,13 @@ $(jQuery).on('ready turbolinks:load', function () {
   $(document).on('show.bs.modal', '.modal', function () {
     $(this).appendTo('body');
   });
+  // $('.modal').insertAfter($('body'));
+  // $('.modal').on('shown.bs.modal', function () {
+  //   //To relate the z-index make sure backdrop and modal are siblings
+  //   $(this).before($('.modal-backdrop'));
+  //   //Now set z-index of modal greater than backdrop
+  //   $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+  //   $('.footer').css("z-index", parseInt($('.modal-backdrop').css('z-index')) - 1);
+  // });
+
 });
