@@ -6,10 +6,12 @@ export function account(state = {}, action) {
       return {
         ...state,
         loading: true,
+        error: '',
+        notice: ''
       };
     case accountConstants.UPDATE_SUCCESS:
       return {
-        notice: action.notice
+        notice: action.notice,
       }
     case accountConstants.UPDATE_FAILURE:
       return {

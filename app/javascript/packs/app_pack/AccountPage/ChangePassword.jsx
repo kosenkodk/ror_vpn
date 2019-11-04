@@ -19,11 +19,10 @@ class ChangePassword extends React.Component {
   }
 
   onChangeLoginPassword(e) {
-    e.preventDefault();
     const data = FormDataAsJsonFromEvent(e);
     data['id'] = this.props.id;
-    // console.log(data);
     this.props.dispatch(accountActions.changePassword(data));
+    e.preventDefault();
   }
 
   handleChange(e) {
