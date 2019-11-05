@@ -37,12 +37,15 @@ class Api::V1::AccountController < Api::V1::ApiController
   end
 
   private
+  
   def is_old_pwd_ok
     BCrypt::Password.new(@user.password_digest) == params[:password_old]
   end
+  
   def email_params
     params.tap { |p| p.require(EMAIL_KEYS) }.permit(*EMAIL_KEYS)
   end
+
   def password_params
     params.tap { |p| p.require(KEYS) }.permit(*KEYS)
   end

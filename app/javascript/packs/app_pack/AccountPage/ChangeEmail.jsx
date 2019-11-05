@@ -6,22 +6,20 @@ import { I18n } from 'helpers';
 import { accountActions } from '../_actions';
 import FlashMessages from '../_sections/FlashMessages';
 
-class ChangePassword extends React.Component {
+class ChangeEmail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      password_old: '',
-      password: '',
-      password_confirmation: '',
+      email: '',
     }
     this.handleChange = this.handleChange.bind(this);
-    this.onChangeLoginPassword = this.onChangeLoginPassword.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  onChangeLoginPassword(e) {
+  onFormSubmit(e) {
     const data = FormDataAsJsonFromEvent(e);
     data['id'] = this.props.id;
-    this.props.dispatch(accountActions.changePassword(data));
+    this.props.dispatch(accountActions.changeEmail(data));
     e.preventDefault();
   }
 
@@ -31,18 +29,18 @@ class ChangePassword extends React.Component {
   }
 
   render() {
-    const { password_old, password, password_confirmation } = this.state;
-    const { loading, idModal, error, notice } = this.props;
+    const { email } = this.state;
+    const { loading, idModal, error, notice, user } = this.props;
     return (
       <React.Fragment>
-        <h4 id="password">Passwords</h4>
+        <h4 id="email">Email</h4>
         <div className="row">
           <div className="col-sm-6 align-self-center">
-            <label className="col-form-label">Login password</label>
+            <label className="col-form-label">Login email address: {user && user.email}</label>
           </div>
           <div className="col-sm-6">
             <button type="button" className={`btn btn-outline-pink active`} data-toggle="modal" data-target={`#${idModal}`}>
-              {I18n.t('pages.account.change_password.button')}
+              {I18n.t('pages.account.change_email.button')}
             </button>
           </div>
         </div>
@@ -51,26 +49,18 @@ class ChangePassword extends React.Component {
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id={`${idModal}Title`}>{this.props.title || 'Change login password'}</h5>
+                <h5 className="modal-title" id={`${idModal}Title`}>{this.props.title || 'Change login email'}</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form onSubmit={this.onChangeLoginPassword}>
+              <form onSubmit={this.onFormSubmit}>
                 <div className="modal-body">
                   <FlashMessages error={error && error} notice={notice && notice} />
                   <div className="col">
                     <div className="form-group row">
-                      <label htmlFor="password_old" className="col-sm-6 col-form-label">Old login password:</label>
-                      <input type="password" name="password_old" className="col-sm-6 form-control" id="password_old" value={password_old} onChange={this.handleChange} placeholder='Password' />
-                    </div>
-                    <div className="form-group row">
-                      <label htmlFor="password" className="col-sm-6 col-form-label">New login password:</label>
-                      <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
-                    </div>
-                    <div className="form-group row">
-                      <label htmlFor="password_confirmation" className="col-sm-6 col-form-label">Confirm login password:</label>
-                      <input type="password" name="password_confirmation" className="col-sm-6 form-control" id="password_confirmation" value={password_confirmation} onChange={this.handleChange} placeholder='Confirm' />
+                      <label htmlFor="email" className="col-sm-6 col-form-label">Email login:</label>
+                      <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
                     </div>
                   </div>
                 </div>
@@ -91,11 +81,11 @@ class ChangePassword extends React.Component {
   }
 }
 
-ChangePassword.propTypes = {
+ChangeEmail.propTypes = {
   idModal: PropTypes.string
 }
 
-ChangePassword.defaultProps = {
+ChangeEmail.defaultProps = {
   id: '',
   error: '',
   notice: '',
@@ -108,11 +98,12 @@ function mapStateToProps(state) {
   return {
     loggingIn,
     id,
+    user,
     loading,
     error,
     notice,
   };
 }
 
-const connectedPage = connect(mapStateToProps)(ChangePassword);
-export { connectedPage as ChangePassword }; 
+const connectedPage = connect(mapStateToProps)(ChangeEmail);
+export { connectedPage as ChangeEmail }; 
