@@ -142,7 +142,12 @@ en:
   pages:
     account:
       change_password:
+        button: "Change login password"
         success: "Your password has been changed successfully"
+        errors:
+          use_another_password: "Please use another password"
+          password_invalid: "Password is incorrect"
+          passwords_does_not_match: "Password confirmation doesn't match Password" #"Password and confirmation password does not match"
     dashboard:
       billing:
         title: "Billing"
