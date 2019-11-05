@@ -25,8 +25,8 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         request.headers[JWTSessions.csrf_header] = csrf_token
 
         patch :change_password, params: {id: user.id, password_old: password, password: password_new, password_confirmation: password_new}
-        expect(response_json.values).to eq([I18n.t('pages.account.change_password.success')])
-        expect(response_json.keys).to eq(['notice'])
+        expect(response_json['notice']).to eq(I18n.t('pages.account.change_password.success'))
+        expect(response_json.keys).to eq(['csrf', 'notice'])
         expect(response).to have_http_status(:success)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end

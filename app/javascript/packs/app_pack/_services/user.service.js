@@ -119,15 +119,25 @@ function updateTicket(ticket) {
 }
 
 function changeLoginPassword(data) {
-  if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_password`, 'PATCH', data)
+  // if (autoRefreshToken)
+  //   return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_password`, 'PATCH', data)
 
   const requestOptions = {
     method: 'PATCH',
     headers: authHeader(),
     body: JSON.stringify(data)
   }
-  return fetch(`${config.apiUrl}/change_password`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/change_password`, requestOptions).then(handleResponse)
+    .then(response => {
+      if (!response.csrf) {
+        // auto logout if empty csrf returned from api
+        logout()
+        const error = (response && response.error) || response.statusText;
+        return Promise.reject(error);
+      }
+      localStorage.setItem('csrf', JSON.stringify(response.csrf));
+      return response
+    });
 }
 
 function addTicket(ticket) {
