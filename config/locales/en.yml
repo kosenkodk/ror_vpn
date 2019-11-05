@@ -142,7 +142,7 @@ en:
   pages:
     account:
       change_email:
-        button: "Change email"
+        button: "Change login email"
         success: "Your email has been changed successfully"
       change_password:
         button: "Change login password"

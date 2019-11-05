@@ -5,6 +5,7 @@ import { alertActions } from './'
 
 export const accountActions = {
   changePassword,
+  changeEmail,
 }
 
 function changePassword(data) {
@@ -25,4 +26,23 @@ function changePassword(data) {
   function request() { return { type: accountConstants.UPDATE_REQUEST } }
   function success(notice) { return { type: accountConstants.UPDATE_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.UPDATE_FAILURE, error } }
+}
+
+
+function changeEmail(data) {
+  return dispatch => {
+    dispatch(request({ data }))
+    userService.changeLoginEmail(data)
+      .then(
+        response => {
+          dispatch(success(response.notice))
+        },
+        error => {
+          dispatch(failure(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.UPDATE_EMAIL_REQUEST } }
+  function success(notice) { return { type: accountConstants.UPDATE_EMAIL_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.UPDATE_EMAIL_FAILURE, error } }
 }

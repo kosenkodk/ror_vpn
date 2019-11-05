@@ -14,6 +14,7 @@ export const userService = {
   getDepartments,
   contactUs,
   changeLoginPassword,
+  changeLoginEmail,
 };
 
 function login(email, password) {
@@ -138,6 +139,18 @@ function changeLoginPassword(data) {
       localStorage.setItem('csrf', JSON.stringify(response.csrf));
       return response
     });
+}
+
+function changeLoginEmail(data) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_email`, 'PATCH', data)
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  }
+  return fetch(`${config.apiUrl}/change_email`, requestOptions).then(handleResponse);
 }
 
 function addTicket(ticket) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ChangePassword } from './';
+import { ChangePassword, ChangeEmail } from './';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class AccountPage extends React.Component {
       <div className="col shadow-vega bg-vega p-4" > {/* d-flex justify-content-lg-center"> */}
         <div className="container-section">
           <h2>Account</h2>
+          <ChangeEmail idModal='changeEmail' />
           <ChangePassword idModal='changePassword' />
         </div>
       </div>
