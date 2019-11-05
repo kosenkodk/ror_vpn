@@ -31,13 +31,21 @@ RSpec.describe 'User Account', type: :feature, js: true do
         expect(page).to have_content(I18n.t('pages.account.change_password.button'))
         expect(page).to have_selector('.modal.fade.show')
         click_on('Save')
-        expect(
-          find('.alert')
-          # page
-      ).to have_text(I18n.t('pages.account.change_password.success'))
+        expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
       end
-      it 'relogin with a new password' do # it 'logout because it can not handle 401 error because it clear password token and recreate a session after change password'
-        # User's account section. Relogin in background after change password.
+      it 'relogin in background after change password' do
+        click_on(I18n.t('pages.account.change_password.button'))
+        fill_in :password_old, with: password
+        fill_in :password, with: password_new
+        fill_in :password_confirmation, with: password_new
+        click_on('Save')
+        expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
+
+        fill_in :password_old, with: password_new
+        fill_in :password, with: password
+        fill_in :password_confirmation, with: password
+        click_on('Save')
+        expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
       end
     end
     context 'fail' do
