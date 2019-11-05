@@ -37,10 +37,10 @@ class ChangePassword extends React.Component {
       <React.Fragment>
         <h4 id="password">Passwords</h4>
         <div className="row">
-          <div className="col-sm-6 align-self-center">
+          <div className="col-sm-4 align-self-center">
             <label className="col-form-label">Login password</label>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-8">
             <button type="button" className={`btn btn-outline-pink active`} data-toggle="modal" data-target={`#${idModal}`}>
               {I18n.t('pages.account.change_password.button')}
             </button>
