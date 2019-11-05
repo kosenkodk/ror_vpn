@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { config } from 'config';
 import { history, authHeader } from '../_helpers';
 const autoRefreshToken = true;
@@ -165,6 +166,8 @@ function getTickets({ page = 1, status = '' } = {}) {
 }
 
 function getDepartments() {
+  return axios.get(`${config.apiUrl}/departments`).then(res => { return res.data; })
+  return
   if (autoRefreshToken)
     return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/departments`, 'GET', {})
 
