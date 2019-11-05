@@ -34,7 +34,7 @@ class ChangePassword extends React.Component {
     const { password_old, password, password_confirmation } = this.state;
     const { loading, idModal, error, notice } = this.props;
     return (
-      <React.Fragment>
+      <div className="mb-5">
         <h4 id="password">Passwords</h4>
         <div className="row">
           <div className="col-sm-4 align-self-center">
@@ -86,7 +86,7 @@ class ChangePassword extends React.Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

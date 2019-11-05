@@ -10,9 +10,9 @@ class AccountPage extends React.Component {
   render() {
     const { loggingIn } = this.props;
     return (
-      <div className="col shadow-vega bg-vega p-4" > {/* d-flex justify-content-lg-center"> */}
+      <div className="col shadow-vega bg-vega p-4 mb-5"> {/* d-flex justify-content-lg-center"> */}
         <div className="container-section">
-          <h2>Account</h2>
+          <h2 className="pb-4">Account</h2>
           <ChangeEmail idModal='changeEmail' />
           <ChangePassword idModal='changePassword' />
         </div>
