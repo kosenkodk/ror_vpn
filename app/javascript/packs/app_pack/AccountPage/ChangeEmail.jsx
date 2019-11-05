@@ -35,10 +35,10 @@ class ChangeEmail extends React.Component {
       <React.Fragment>
         <h4 id="email">Email</h4>
         <div className="row">
-          <div className="col-sm-6 align-self-center">
+          <div className="col-sm-4 align-self-center">
             <label className="col-form-label">Login email address: {user && user.email}</label>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-8">
             <button type="button" className={`btn btn-outline-pink active`} data-toggle="modal" data-target={`#${idModal}`}>
               {I18n.t('pages.account.change_email.button')}
             </button>
