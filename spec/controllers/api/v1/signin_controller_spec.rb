@@ -21,7 +21,7 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true, namespace: "user_#{user.id}")
         session.login
 
-         session2 = JWTSessions::Session.new(payload: session.payload, refresh_by_access_allowed: true, namespace: "user_#{user.id}")
+        session2 = JWTSessions::Session.new(payload: session.payload, refresh_by_access_allowed: true, namespace: "user_#{user.id}")
         tokens = session2.refresh_by_access_payload
 
         request.cookies[JWTSessions.access_cookie] = tokens[:access]
