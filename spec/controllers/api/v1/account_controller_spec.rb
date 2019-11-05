@@ -22,14 +22,39 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     context 'success' do
       let(:email) { 'new@email.com' }
 
-      it 'with old, new and confirm passwords' do
+      it 'with valid email' do
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
-        
+
         patch :change_email, params: {id: user.id, email: email}
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_email.success'))
         expect(response_json.keys).to eq(['notice'])
         expect(response).to have_http_status(:success)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+    end
+    context 'failure' do
+      let(:email_invalid) { 'new@email.' }
+
+      it 'with invalid email' do
+        request.cookies[JWTSessions.access_cookie] = access_cookie
+        request.headers[JWTSessions.csrf_header] = csrf_token
+
+        patch :change_email, params: {id: user.id, email: email_invalid}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq('Email is invalid')
+        expect(response).to have_http_status(422)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+
+      it 'with empty email' do
+        request.cookies[JWTSessions.access_cookie] = access_cookie
+        request.headers[JWTSessions.csrf_header] = csrf_token
+
+        patch :change_email, params: {id: user.id, email: ''}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq('Bad request')
+        expect(response).to have_http_status(400)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
