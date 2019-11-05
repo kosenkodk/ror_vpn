@@ -37,7 +37,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
       ).to have_text(I18n.t('pages.account.change_password.success'))
       end
       it 'relogin with a new password' do # it 'logout because it can not handle 401 error because it clear password token and recreate a session after change password'
-
+        # User's account section. Relogin in background after change password.
       end
     end
     context 'fail' do

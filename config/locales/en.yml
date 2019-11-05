@@ -145,7 +145,7 @@ en:
         button: "Change login password"
         success: "Your password has been changed successfully"
         errors:
-          use_another_password: "Please use another password"
+          use_another_password: "Please use another new password"
           password_invalid: "Password is incorrect"
           passwords_does_not_match: "Password confirmation doesn't match Password" #"Password and confirmation password does not match"
     dashboard:

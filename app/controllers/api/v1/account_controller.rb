@@ -11,8 +11,19 @@ class Api::V1::AccountController < Api::V1::ApiController
       else
         @user.update!(password_params.except(:password_old))
         @user.clear_password_token!
-        JWTSessions::Session.new(namespace: "user_#{@user.id}").flush_namespaced
-        render json: {notice: I18n.t('pages.account.change_password.success') }
+
+        payload = { user_id: @user.id, aud: [@user.role] }
+        # session = JWTSessions::Session.new(namespace: "user_#{@user.id}").flush_namespaced
+        session = JWTSessions::Session.new(payload: payload, #claimless_payload,
+                                           refresh_by_access_allowed: true,
+                                           namespace: "user_#{@user.id}")
+        tokens = session.login
+
+        response.set_cookie(JWTSessions.access_cookie,
+          value: tokens[:access],
+          httponly: true,
+          secure: Rails.env.production?)
+        render json: {csrf: tokens[:csrf], notice: I18n.t('pages.account.change_password.success') }
         return
       end
     end
