@@ -35,7 +35,8 @@ Rails.application.routes.draw do
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
       patch '/change_password', to: 'account#change_password'
-      
+      patch '/change_email', to: 'account#change_email'
+
       mount ActionCable.server, at: '/cable'
 
       resources :tickets do

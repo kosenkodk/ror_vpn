@@ -141,6 +141,9 @@ en:
       contact_us: "Contact Us"
   pages:
     account:
+      change_email:
+        button: "Change email"
+        success: "Your email has been changed successfully"
       change_password:
         button: "Change login password"
         success: "Your password has been changed successfully"

@@ -8,18 +8,35 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
  
-  describe 'change password' do
-    before {
-      # JWTSessions.access_exp_time = 3600
-      payload = { user_id: user.id }
-      session = JWTSessions::Session.new(payload: payload, 
-        refresh_by_access_allowed: true, 
-        namespace: "user_#{user.id}"
-      )
-      @tokens = session.login
-    }
+  before {
+    # JWTSessions.access_exp_time = 3600
+    payload = { user_id: user.id }
+    session = JWTSessions::Session.new(payload: payload, 
+      refresh_by_access_allowed: true, 
+      namespace: "user_#{user.id}"
+    )
+    @tokens = session.login
+  }
 
-    context 'success' do  
+  describe 'change email' do
+    context 'success' do
+      let(:email) { 'new@email.com' }
+
+      it 'with old, new and confirm passwords' do
+        request.cookies[JWTSessions.access_cookie] = access_cookie
+        request.headers[JWTSessions.csrf_header] = csrf_token
+        
+        patch :change_email, params: {id: user.id, email: email}
+        expect(response_json['notice']).to eq(I18n.t('pages.account.change_email.success'))
+        expect(response_json.keys).to eq(['notice'])
+        expect(response).to have_http_status(:success)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+    end
+  end
+
+  describe 'change password' do
+    context 'success' do
       it 'with old, new and confirm passwords' do
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
