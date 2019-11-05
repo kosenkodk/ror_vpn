@@ -1,7 +1,13 @@
 class Api::V1::AccountController < Api::V1::ApiController
   before_action :authorize_access_request!
-  before_action :find_user, only: [:change_password]
+  before_action :find_user, only: [:change_password, :change_email]
   KEYS = [:id, :password, :password_confirmation, :password_old].freeze
+  EMAIL_KEYS = [:email].freeze
+
+  def change_email
+    @user.update!(email_params)
+    render json: { notice: I18n.t('pages.account.change_email.success') }
+  end
 
   def change_password
     if is_old_pwd_ok
@@ -34,7 +40,9 @@ class Api::V1::AccountController < Api::V1::ApiController
   def is_old_pwd_ok
     BCrypt::Password.new(@user.password_digest) == params[:password_old]
   end
-
+  def email_params
+    params.tap { |p| p.require(EMAIL_KEYS) }.permit(*EMAIL_KEYS)
+  end
   def password_params
     params.tap { |p| p.require(KEYS) }.permit(*KEYS)
   end
