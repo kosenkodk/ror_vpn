@@ -20,7 +20,12 @@ class Api::V1::PasswordResetsController < Api::V1::ApiController
   def update
     @user.update!(password_params)
     @user.clear_password_token!
-    JWTSessions::Session.new(namespace: "user_#{@user.id}").flush_namespaced
+    payload = { user_id: @user.id, aud: [@user.role] }
+    JWTSessions::Session.new(payload: payload,
+      # refresh_by_access_allowed: true,
+      namespace: "user_#{@user.id}"
+    )
+    # JWTSessions::Session.new(namespace: "user_#{@user.id}").flush_namespaced
     render json: :ok
   end
 
