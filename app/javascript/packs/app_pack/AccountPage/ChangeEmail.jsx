@@ -32,7 +32,7 @@ class ChangeEmail extends React.Component {
     const { email } = this.state;
     const { loading, idModal, error, notice, user } = this.props;
     return (
-      <React.Fragment>
+      <div className="mb-5">
         <h4 id="email">Email</h4>
         <div className="row">
           <div className="col-sm-4 align-self-center">
@@ -76,7 +76,7 @@ class ChangeEmail extends React.Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
