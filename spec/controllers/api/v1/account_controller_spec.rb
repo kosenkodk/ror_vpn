@@ -34,10 +34,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       end
     end
     context 'failure' do
-      let(:email_invalid) { 'new@email.' }
-      let(:email_invalid2) { 'new@email' }
-      let(:email_invalid3) { 'new@gmailcom' }
-      let(:error) {I18n.t('pages.account.change_email.errors.email_invalid')}
+      let(:error) { I18n.t('pages.account.change_email.errors.email_invalid') }
       
       before {
         request.cookies[JWTSessions.access_cookie] = access_cookie
@@ -45,18 +42,10 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       }
 
       it 'with invalid email' do
-        patch :change_email, params: {id: user.id, email: email_invalid}
-        change_email_check_error
-      end
-
-      it 'with invalid email 2' do
-        patch :change_email, params: {id: user.id, email: email_invalid2}
-        change_email_check_error
-      end
-
-      it 'with invalid email 3' do
-        patch :change_email, params: {id: user.id, email: email_invalid3}
-        change_email_check_error
+        ['new@gmailcom', 'new@gmail.c', 'new@gmail', 'new@gmail.', 'new@.com', 'new@ex.c'].each do |email_invalid|
+          patch :change_email, params: {id: user.id, email: email_invalid}
+          change_email_check_error
+        end
       end
 
       it 'with empty email' do
