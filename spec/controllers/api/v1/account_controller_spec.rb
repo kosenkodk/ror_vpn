@@ -35,22 +35,31 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     end
     context 'failure' do
       let(:email_invalid) { 'new@email.' }
-
-      it 'with invalid email' do
+      let(:email_invalid2) { 'new@email' }
+      let(:email_invalid3) { 'new@gmailcom' }
+      let(:error) {I18n.t('pages.account.change_email.errors.email_invalid')}
+      
+      before {
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
+      }
 
+      it 'with invalid email' do
         patch :change_email, params: {id: user.id, email: email_invalid}
-        expect(response_json.keys).to eq(['error'])
-        expect(response_json['error']).to eq('Email is invalid')
-        expect(response).to have_http_status(422)
-        expect(response.content_type).to eq('application/json; charset=utf-8')
+        change_email_check_error
+      end
+
+      it 'with invalid email 2' do
+        patch :change_email, params: {id: user.id, email: email_invalid2}
+        change_email_check_error
+      end
+
+      it 'with invalid email 3' do
+        patch :change_email, params: {id: user.id, email: email_invalid3}
+        change_email_check_error
       end
 
       it 'with empty email' do
-        request.cookies[JWTSessions.access_cookie] = access_cookie
-        request.headers[JWTSessions.csrf_header] = csrf_token
-
         patch :change_email, params: {id: user.id, email: ''}
         expect(response_json.keys).to eq(['error'])
         expect(response_json['error']).to eq('Bad request')
