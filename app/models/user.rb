@@ -10,8 +10,8 @@ end
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
   has_secure_password
-  has_many :tickets
-  has_many :todos
+  has_many :tickets, dependent: :destroy
+  has_many :todos, dependent: :destroy
 
   enum role: %i[user manager admin].freeze
 

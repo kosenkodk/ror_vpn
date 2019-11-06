@@ -7,10 +7,10 @@ class Ticket < ApplicationRecord
 
   enum status: { opened: 0, closed: 1 }
 
-  has_one_attached :attachment
-  has_many_attached :files
+  has_one_attached :attachment, dependent: :destroy
+  has_many_attached :files, dependent: :destroy
   
-  has_many :messages, as: :messageable, inverse_of: 'ticket'
+  has_many :messages, as: :messageable, inverse_of: 'ticket', dependent: :destroy
   
   def attachment_path
     rails_blob_path(self.attachment, only_path: true) if self.attachment.attached?
