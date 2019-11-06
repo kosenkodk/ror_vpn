@@ -36,6 +36,7 @@ class App extends React.Component {
       csrf: '',
       user: [],
       isSignedIn: false,
+      isAdminPanel: false,
     }
     const { dispatch } = this.props;
     history.listen((location, action) => {
@@ -47,7 +48,7 @@ class App extends React.Component {
       if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
       this.isFooterVisible()
-
+      this.isAdminPanel()
     });
   }
 
@@ -60,13 +61,19 @@ class App extends React.Component {
       this.setState({ isFooterVisible: false })
   }
 
+  isAdminPanel() {
+    const isAdminPanel = history.location.pathname.startsWith(urls.user.path)
+    this.setState({ isAdminPanel: isAdminPanel })
+    return isAdminPanel
+  }
+
   render() {
     const { alert, bgClass, loggedIn } = this.props;
     return (
       <Router history={history}>
         <body className="d-flex flex-column">
 
-          <div className={`container-fluid flex-grow ${bgClass.value}`}>
+          <div className={`${this.state.isAdminPanel ? 'fixed-top' : ''} container-fluid flex-grow ${bgClass.value}`}>
             <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
               <Header />
             </div>
@@ -168,6 +175,7 @@ class App extends React.Component {
     this.props.dispatch(departmentActions.getAll())
     this.props.dispatch(bgClassActions.set('bg1'))
     this.isFooterVisible()
+    this.isAdminPanel()
   }
 }
 
