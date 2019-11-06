@@ -12,6 +12,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
   
   describe 'Change email' do
     let(:email_new) { 'email_new@ex.com' }
+    let(:email_invalid) { 'email_new@ex.' }
     context 'success' do
       it 'with valid new email' do
         click_on(I18n.t('pages.account.change_email.button'))
@@ -26,8 +27,18 @@ RSpec.describe 'User Account', type: :feature, js: true do
       end
     end
     context 'failure' do
-      it 'with invalid email'
-      it 'with empty email'
+      it 'with invalid email' do
+        click_on(I18n.t('pages.account.change_email.button'))
+        fill_in :email, with: email_invalid
+        click_on(I18n.t('buttons.save'))
+        expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
+      end
+      it 'with empty email' do
+        click_on(I18n.t('pages.account.change_email.button'))
+        fill_in :email, with: ''
+        click_on(I18n.t('buttons.save'))
+        expect(find('.alert')).to have_text('Bad request')
+      end
     end
   end
 
