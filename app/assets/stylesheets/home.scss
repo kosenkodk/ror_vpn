@@ -447,6 +447,13 @@ body {
   box-shadow: 10px 10px 100px $shadow-vega;
 }
 
+.shadow-vega-bottom {
+  // -webkit-box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  // -moz-box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  // box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  box-shadow: 0 25px 25px $shadow-vega;
+}
+
 .a-color-pink {
   color: $pink;
   opacity: $opacity;
@@ -682,4 +689,10 @@ ul.pagination {
 .container-section {
   // max-width: 55em;
   // min-width: 30em;
+}
+
+.section-scrollable {
+  max-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
