@@ -144,6 +144,8 @@ en:
       change_email:
         button: "Change login email"
         success: "Your email has been changed successfully"
+        errors:
+          email_invalid: "Email is not an email"
       change_password:
         button: "Change login password"
         success: "Your password has been changed successfully"

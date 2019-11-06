@@ -1,3 +1,12 @@
+
+class EmailValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+      record.errors[attribute] << (options[:message] || "is not an email")
+    end
+  end
+end
+
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
   has_secure_password
@@ -6,10 +15,8 @@ class User < ApplicationRecord
 
   enum role: %i[user manager admin].freeze
 
-  validates :email,
-            format: { with: URI::MailTo::EMAIL_REGEXP },
-            presence: true,
-            uniqueness: { case_sensitive: false }
+  # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
 
   def attributes
     { id: id, email: email, role: role }
@@ -29,3 +36,4 @@ class User < ApplicationRecord
     save!
   end
 end
+
