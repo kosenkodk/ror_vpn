@@ -9,6 +9,12 @@ RSpec.describe 'User Account', type: :feature, js: true do
     fsign_in_as(user)
     visit '/user/account'
   }
+
+  describe 'Delete' do
+    context 'failure' do
+      it 'when delete another user'
+    end
+  end
   
   describe 'Change email' do
     let(:email_new) { 'email_new@ex.com' }

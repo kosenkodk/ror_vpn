@@ -4,6 +4,16 @@ class Api::V1::AccountController < Api::V1::ApiController
   KEYS = [:id, :password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
+  def delete
+    if User.exists?(params[:id]) && current_user.id == params[:id].to_i
+      # TODO: add user.email to blacklist and check it during sign up
+      User.find(params[:id]).destroy
+      render json: { notice: I18n.t('pages.account.delete.success') }
+    else
+      render json: { error: I18n.t('pages.account.delete.error') }
+    end
+  end
+
   def change_email
     @user.update!(email_params)
     render json: { notice: I18n.t('pages.account.change_email.success') }

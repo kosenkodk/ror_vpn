@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       delete '/signin', to: 'signin#destroy'
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
+
+      delete '/delete', to: 'account#delete'
       patch '/change_password', to: 'account#change_password'
       patch '/change_email', to: 'account#change_email'
 

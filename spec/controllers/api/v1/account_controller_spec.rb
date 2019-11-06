@@ -19,13 +19,15 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   }
 
   describe 'change email' do
-    context 'success' do
-      let(:email) { 'new@email.com' }
+    let(:email) { 'new@email.com' }
 
-      it 'with valid email' do
+    context 'success' do
+      before {
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
+      }
 
+      it 'with valid email' do
         patch :change_email, params: {id: user.id, email: email}
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_email.success'))
         expect(response_json.keys).to eq(['notice'])
@@ -33,9 +35,9 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
+
     context 'failure' do
       let(:error) { I18n.t('pages.account.change_email.errors.email_invalid') }
-      
       before {
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
@@ -56,9 +58,23 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
+
+    context 'failure for unauth user' do
+      it 'with valid email' do
+        patch :change_email, params: {id: user.id, email: email}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq('Unauthorized')
+        expect(response).to have_http_status(401)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+    end
   end
 
   describe 'change password' do
+    before {
+      request.cookies[JWTSessions.access_cookie] = access_cookie
+      request.headers[JWTSessions.csrf_header] = csrf_token
+    }
     context 'success' do
       it 'with old, new and confirm passwords' do
         request.cookies[JWTSessions.access_cookie] = access_cookie
@@ -71,11 +87,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
-    context 'failure (for authorized users)' do
-      before {
-        request.cookies[JWTSessions.access_cookie] = access_cookie
-        request.headers[JWTSessions.csrf_header] = csrf_token
-      }
+    context 'failure' do
       it 'with invalid old password' do
         patch :change_password, params: {id: user.id, password_old: password_invalid, password: password_new, password_confirmation: password_new}
         expect(response_json.values).to eq([I18n.t('pages.account.change_password.errors.password_invalid')])        
@@ -105,13 +117,54 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response_json['error']).to eq(I18n.t('pages.account.change_password.errors.use_another_password'))
       end
     end
-    context 'failure (for unauth users)' do
-      it 'without access and csrf tokens' do
-        patch :change_password, params: {id: user.id, password_old: password, password: password_new, password_confirmation: password_new}
-        expect(response_json.values).to eq(['Unauthorized'])
-        expect(response_json.keys).to eq(['error'])
-        expect(response).to have_http_status(:unauthorized)
+  end
+
+  describe 'failure (for unauth users)' do
+    it 'without access and csrf tokens' do
+      patch :change_password, params: {id: user.id, password_old: password, password: password_new, password_confirmation: password_new}
+      expect(response_json.values).to eq(['Unauthorized'])
+      expect(response_json.keys).to eq(['error'])
+      expect(response).to have_http_status(:unauthorized)
+    end
+  end
+
+  describe 'delete account' do
+    before {
+      # sign_in_as(user)
+      request.cookies[JWTSessions.access_cookie] = access_cookie
+      request.headers[JWTSessions.csrf_header] = csrf_token
+    }
+
+    context 'success' do
+      it 'with user id' do
+        delete :delete, params: {id: user.id}
+        expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
+        expect(response_json.keys).to eq(['notice'])
       end
+    end
+
+    context 'failure' do
+      it 'without user id' do
+        delete :delete, params: {id: ''}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json.values).to eq([I18n.t('pages.account.delete.error')])
+      end
+      
+      it 'when delete account for other user' do
+        user2 = create(:user)
+        sign_in_as(user)
+        delete :delete, params: {id: user2.id}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json.values).to eq([I18n.t('pages.account.delete.error')])
+      end
+    end
+  end
+
+  describe 'delete account for unauthorized user' do
+    it 'failure with valid params' do
+      delete :delete, params: {id: user.id}
+      expect(response_json.keys).to eq(['error'])
+      expect(response_json.values).to eq(['Unauthorized'])
     end
   end
 end
