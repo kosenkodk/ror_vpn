@@ -141,6 +141,9 @@ en:
       contact_us: "Contact Us"
   pages:
     account:
+      delete:
+        success: "You account has been deleted successfully"
+        error: "Error. Please try again later"
       change_email:
         button: "Change login email"
         success: "Your email has been changed successfully"
