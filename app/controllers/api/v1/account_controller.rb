@@ -5,7 +5,7 @@ class Api::V1::AccountController < Api::V1::ApiController
   EMAIL_KEYS = [:email].freeze
 
   def delete
-    if current_user.id == params[:id].to_i
+    if current_user.present?
       # TODO: add user.email to blacklist and check it during sign up
       current_user.destroy
       render json: { notice: I18n.t('pages.account.delete.success') }
@@ -61,6 +61,6 @@ class Api::V1::AccountController < Api::V1::ApiController
   end
 
   def find_user
-    @user = current_user #User.find(params[:id])
+    @user = current_user
   end
 end
