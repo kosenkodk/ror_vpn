@@ -10,12 +10,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
     visit '/user/account'
   }
 
-  describe 'Delete' do
-    context 'failure' do
-      it 'when delete another user'
-    end
-  end
-  
   describe 'Change email' do
     let(:email_new) { 'email_new@ex.com' }
     let(:email_invalid) { 'email_new@ex.' }
@@ -112,4 +106,27 @@ RSpec.describe 'User Account', type: :feature, js: true do
       end
     end
   end
+
+  describe 'Delete' do
+
+    context 'success' do
+      it do
+        user_for_delete = create(:user)
+        fsign_in_as(user_for_delete)
+        visit('/user/account/')
+        click_on(I18n.t('pages.account.delete.button'))
+        click_on(I18n.t('buttons.yes'))
+        expect(find('.alert')).to have_text(I18n.t('pages.account.delete.success'))
+        fsign_in_as(user_for_delete)
+        expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
+      end
+    end
+
+    context 'failure' do
+      xit do
+        expect(find('.alert')).to have_text(I18n.t('pages.account.delete.error'))
+      end
+    end
+  end
+  
 end

@@ -66,7 +66,7 @@ class AccountPage extends React.Component {
           </div>
 
           <h4 id="delete">Delete Account</h4>
-          <ModalPopup onSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText='Delete your account' btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
+          <ModalPopup onSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
             Are you sure ?
           </ModalPopup>
         </div>

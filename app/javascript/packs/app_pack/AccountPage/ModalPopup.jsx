@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
+import FlashMessages from '../_sections/FlashMessages';
 
 class ModalPopup extends React.Component {
 
   render() {
-    const { id, title, btnText, btnCloseText, btnSaveText } = this.props;
+    const { error, notice, loading, id, title, btnText, btnCloseText, btnSaveText } = this.props;
     return (
       <React.Fragment>
         <button type="button" className="btn btn-outline-pink active" data-toggle="modal" data-target={`#${id}`}>
@@ -25,12 +26,15 @@ class ModalPopup extends React.Component {
                 this.props.children :
                 <div>
                   <div className="modal-body">
+                    <FlashMessages error={error && error} notice={notice && notice} />
                     {this.props.children}
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{btnCloseText}</button>
                     <br />
-                    <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active">
+                    <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active" disabled={loading ? true : false}>
+                      {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                      {/* <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active"> */}
                       {' ' + btnSaveText}
                     </button>
                   </div>
@@ -61,7 +65,8 @@ ModalPopup.defaultProps = {
 }
 
 function mapStateToProps(state) {
-  return state
+  const { error, notice, loading } = state.account
+  return { loading, error, notice }
 }
 
 const connectedPage = connect(mapStateToProps)(ModalPopup);
