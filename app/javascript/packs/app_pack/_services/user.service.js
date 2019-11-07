@@ -1,6 +1,7 @@
 import { config } from 'config';
 import { history, authHeader } from '../_helpers';
 const autoRefreshToken = true;
+const credentials = 'same-origin'
 
 export const userService = {
   login,
@@ -20,6 +21,7 @@ export const userService = {
 function login(email, password) {
   const requestOptions = {
     method: 'POST',
+    credentials: credentials,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   };
@@ -42,7 +44,11 @@ function login(email, password) {
 }
 
 function getUser() {
-  return fetch(`${config.apiUrl}/me`, { method: 'GET', headers: authHeader() })
+  return fetch(`${config.apiUrl}/me`, {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  })
     .then(handleResponse)
     .then(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -61,6 +67,7 @@ function logout() {
 function signup(data) {
   const requestOptions = {
     method: 'POST',
+    credentials: credentials,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   };
@@ -88,6 +95,7 @@ function getAll() {
 
   const requestOptions = {
     method: 'GET',
+    credentials: credentials,
     headers: authHeader()
   };
 
@@ -100,6 +108,7 @@ function contactUs(contact) {
 
   const requestOptions = {
     method: 'POST',
+    credentials: credentials,
     headers: authHeader(),
     body: JSON.stringify({ contact: contact }),
     // body: JSON.stringify({ contact })
@@ -113,6 +122,7 @@ function updateTicket(ticket) {
 
   const requestOptions = {
     method: 'PATCH',
+    credentials: credentials,
     headers: authHeader(),
     body: JSON.stringify({ ticket })
   }
@@ -125,6 +135,7 @@ function changeLoginPassword(data) {
 
   const requestOptions = {
     method: 'PATCH',
+    credentials: credentials,
     headers: authHeader(),
     body: JSON.stringify(data)
   }
@@ -147,6 +158,7 @@ function changeLoginEmail(data) {
 
   const requestOptions = {
     method: 'PATCH',
+    credentials: credentials,
     headers: authHeader(),
     body: JSON.stringify(data)
   }
@@ -159,6 +171,7 @@ function addTicket(ticket) {
 
   const requestOptions = {
     method: 'POST',
+    credentials: credentials,
     headers: authHeader(),
     body: JSON.stringify({ ticket })
   }
@@ -171,6 +184,7 @@ function viewTicket(id) {
 
   const requestOptions = {
     method: 'GET',
+    credentials: credentials,
     headers: authHeader(),
   }
   return fetch(`${config.apiUrl}/tickets/${id}`, requestOptions).then(handleResponse);
@@ -182,6 +196,7 @@ function getTickets({ page = 1, status = '' } = {}) {
 
   const requestOptions = {
     method: 'GET',
+    credentials: credentials,
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/tickets`, requestOptions).then(handleResponse);
@@ -193,6 +208,7 @@ function getDepartments() {
 
   const requestOptions = {
     method: 'GET',
+    credentials: credentials,
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/departments`, requestOptions).then(handleResponse);
@@ -202,10 +218,12 @@ function getRequestOptions(method, data) {
   if (method === 'GET')
     return {
       method: method,
+      credentials: credentials,
       headers: authHeader(),
     }
   return {
     method: method,
+    credentials: credentials,
     headers: authHeader(),
     body: JSON.stringify(data),
   }
@@ -247,6 +265,7 @@ function refreshTokenAndRetryResponse(response, url, method, data_orig) {
 function handle401Status(url, method, data) {
   const requestOptions = {
     method: 'POST',
+    credentials: credentials,
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/refresh`, requestOptions).then(handleResponse)

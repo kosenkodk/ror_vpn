@@ -9,6 +9,10 @@ require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
 
+import 'babel-polyfill'
+// import "core-js/modules/es6.symbol.js"
+// import "core-js/modules/es6.promise.js"
+
 require("packs/home")
 // require("packs/hello_react")
 
