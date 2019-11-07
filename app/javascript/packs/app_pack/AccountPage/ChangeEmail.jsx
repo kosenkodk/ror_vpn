@@ -17,10 +17,10 @@ class ChangeEmail extends React.Component {
   }
 
   onFormSubmit(e) {
+    e.preventDefault();
     const data = FormDataAsJsonFromEvent(e);
     data['id'] = this.props.id;
     this.props.dispatch(accountActions.changeEmail(data));
-    e.preventDefault();
   }
 
   handleChange(e) {
