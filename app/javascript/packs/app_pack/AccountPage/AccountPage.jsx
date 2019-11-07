@@ -15,6 +15,8 @@ class AccountPage extends React.Component {
           <h2 className="pb-4">Account</h2>
           <ChangeEmail idModal='changeEmail' />
           <ChangePassword idModal='changePassword' />
+          <h4 id="delete">Delete Account</h4>
+          <button className="btn btn-outline-pink active mb-5">Delete your account</button>
         </div>
       </div>
     );
