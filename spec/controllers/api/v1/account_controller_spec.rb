@@ -29,7 +29,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       }
 
       it 'with valid email' do
-        patch :change_email, params: {id: user.id, email: email}
+        patch :change_email, params: {email: email}
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_email.success'))
         expect(response_json.keys).to eq(['notice'])
         expect(response).to have_http_status(:success)
@@ -81,7 +81,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
 
-        patch :change_password, params: {id: user.id, password_old: password, password: password_new, password_confirmation: password_new}
+        patch :change_password, params: {password_old: password, password: password_new, password_confirmation: password_new}
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_password.success'))
         expect(response_json.keys).to eq(['csrf', 'notice'])
         expect(response).to have_http_status(:success)
@@ -90,27 +90,27 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     end
     context 'failure' do
       it 'with invalid old password' do
-        patch :change_password, params: {id: user.id, password_old: password_invalid, password: password_new, password_confirmation: password_new}
+        patch :change_password, params: {password_old: password_invalid, password: password_new, password_confirmation: password_new}
         expect(response_json.values).to eq([I18n.t('pages.account.change_password.errors.password_invalid')])        
       end
       it 'with invalid new password' do
-        patch :change_password, params: {id: user.id, password_old: password, password: password_invalid, password_confirmation: password_new}
+        patch :change_password, params: {password_old: password, password: password_invalid, password_confirmation: password_new}
         expect(response_json.values).to eq([I18n.t('pages.account.change_password.errors.passwords_does_not_match')])        
       end
       it 'with invalid confirmation password' do
-        patch :change_password, params: {id: user.id, password_old: password, password: password_new, password_confirmation: password_invalid}
+        patch :change_password, params: {password_old: password, password: password_new, password_confirmation: password_invalid}
         expect(response_json.values).to eq([I18n.t('pages.account.change_password.errors.passwords_does_not_match')])
       end
       it 'with empty passwords' do
-        patch :change_password, params: {id: user.id, password_old: '', password: '', password_confirmation: ''}
+        patch :change_password, params: {password_old: '', password: '', password_confirmation: ''}
         expect(response_json.values).to eq([I18n.t('pages.account.change_password.errors.password_invalid')])
       end
       it 'with empty new or confirmation password' do
-        patch :change_password, params: {id: user.id, password_old: password, password: '', password_confirmation: ''}
+        patch :change_password, params: {password_old: password, password: '', password_confirmation: ''}
         expect(response_json.values).to eq(['Bad request'])
       end
       it 'if new password the same as old password' do
-        patch :change_password, params: {id: user.id, password_old: password, password: password, password_confirmation: password}
+        patch :change_password, params: {password_old: password, password: password, password_confirmation: password}
         expect(response_json['error']).to eq(I18n.t('pages.account.change_password.errors.use_another_password'))
       end
     end
@@ -118,7 +118,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
   describe 'failure (for unauth users)' do
     it 'without access and csrf tokens' do
-      patch :change_password, params: {id: user.id, password_old: password, password: password_new, password_confirmation: password_new}
+      patch :change_password, params: {password_old: password, password: password_new, password_confirmation: password_new}
       expect(response_json.values).to eq(['Unauthorized'])
       expect(response_json.keys).to eq(['error'])
       expect(response).to have_http_status(:unauthorized)
@@ -134,7 +134,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
     context 'success' do
       it 'with user id' do
-        delete :delete, params: {id: user.id}
+        delete :delete
         expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
         expect(response_json.keys).to eq(['notice'])
       end
@@ -143,7 +143,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
   describe 'delete account for unauthorized user' do
     it 'failure with valid params' do
-      delete :delete, params: {id: user.id}
+      delete :delete
       expect(response_json.keys).to eq(['error'])
       expect(response_json.values).to eq(['Unauthorized'])
     end
