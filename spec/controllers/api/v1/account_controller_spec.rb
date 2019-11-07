@@ -5,6 +5,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:password_invalid) { 'password_invalid' }
   let(:password_new) { 'newpassword' }
   let(:user) { create(:user, password: password, password_confirmation: password) }
+  let(:user2) { create(:user, password: password, password_confirmation: password) }
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
  
@@ -56,6 +57,13 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response_json['error']).to eq('Bad request')
         expect(response).to have_http_status(400)
         expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+
+      it 'when trying to change email of another user' do
+        # sign_in_as(user)
+        patch :change_email, params: {id: user2.id, email: email}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq(I18n.t('pages.account.change_email.errors.email_invalid'))
       end
     end
 
@@ -114,6 +122,12 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       end
       it 'if new password the same as old password' do
         patch :change_password, params: {id: user.id, password_old: password, password: password, password_confirmation: password}
+        expect(response_json['error']).to eq(I18n.t('pages.account.change_password.errors.use_another_password'))
+      end
+      it 'when trying to change password of another user' do
+        # sign_in_as(user)
+        patch :change_password, params: {id: user2.id, password_old: password, password: password_new, password_confirmation: password_new}
+        expect(response_json.keys).to eq(['error'])
         expect(response_json['error']).to eq(I18n.t('pages.account.change_password.errors.use_another_password'))
       end
     end
