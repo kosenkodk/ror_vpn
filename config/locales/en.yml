@@ -142,6 +142,7 @@ en:
   pages:
     account:
       delete:
+        button: "Delete your account"
         success: "You account has been deleted successfully"
         error: "Error. Please try again later"
       change_email:

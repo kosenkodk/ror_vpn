@@ -16,7 +16,24 @@ export const userService = {
   contactUs,
   changeLoginPassword,
   changeLoginEmail,
+  deleteAccount,
 };
+
+function deleteAccount() {
+  return fetch(`${config.apiUrl}/account/delete`, {
+    method: 'DELETE',
+    credentials: credentials,
+    headers: authHeader()
+  })
+    .then(handleResponse)
+    .then(response => {
+      logout();
+      return response;
+    })
+    .catch(error => {
+      return Promise.reject(error);
+    });
+}
 
 function login(email, password) {
   const requestOptions = {
@@ -131,7 +148,7 @@ function updateTicket(ticket) {
 
 function changeLoginPassword(data) {
   // if (autoRefreshToken)
-  //   return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_password`, 'PATCH', data)
+  //   return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/account/change_password`, 'PATCH', data)
 
   const requestOptions = {
     method: 'PATCH',
@@ -139,7 +156,7 @@ function changeLoginPassword(data) {
     headers: authHeader(),
     body: JSON.stringify(data)
   }
-  return fetch(`${config.apiUrl}/change_password`, requestOptions).then(handleResponse)
+  return fetch(`${config.apiUrl}/account/change_password`, requestOptions).then(handleResponse)
     .then(response => {
       if (!response.csrf) {
         // auto logout if empty csrf returned from api
@@ -154,7 +171,7 @@ function changeLoginPassword(data) {
 
 function changeLoginEmail(data) {
   if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_email`, 'PATCH', data)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/account/change_email`, 'PATCH', data)
 
   const requestOptions = {
     method: 'PATCH',

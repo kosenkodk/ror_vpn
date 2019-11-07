@@ -6,6 +6,7 @@ import { alertActions } from './'
 export const accountActions = {
   changePassword,
   changeEmail,
+  deleteAccount,
 }
 
 function changePassword(data) {
@@ -45,4 +46,22 @@ function changeEmail(data) {
   function request() { return { type: accountConstants.UPDATE_EMAIL_REQUEST } }
   function success(notice) { return { type: accountConstants.UPDATE_EMAIL_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.UPDATE_EMAIL_FAILURE, error } }
+}
+
+function deleteAccount() {
+  return dispatch => {
+    dispatch(request())
+    userService.deleteAccount()
+      .then(
+        response => {
+          dispatch(success(response.notice))
+        },
+        error => {
+          dispatch(failure(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.DELETE_ACCOUNT_REQUEST } }
+  function success(notice) { return { type: accountConstants.DELETE_ACCOUNT_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.DELETE_ACCOUNT_FAILURE, error } }
 }
