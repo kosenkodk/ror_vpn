@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ChangePassword, ChangePasswordForm, ChangeEmail, ChangeEmailForm, ModalPopup, DeleteForm } from './';
+import { ChangePasswordForm, ChangeEmailForm, ModalPopup } from './';
 import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
@@ -27,7 +27,7 @@ class AccountPage extends React.Component {
 
   onAccountDelete(e) {
     e.preventDefault();
-    // this.props.dispatch(accountActions.deleteAccount());
+    this.props.dispatch(accountActions.deleteAccount());
   }
 
   render() {
@@ -37,7 +37,6 @@ class AccountPage extends React.Component {
         <div className="container-section">
           <h2 className="pb-4">Account</h2>
 
-          {/* <ChangeEmail idModal='changeEmail' /> */}
           <div className="mb-5">
             <h4 id="email">Email</h4>
             <div className="row">
@@ -52,7 +51,6 @@ class AccountPage extends React.Component {
             </div>
           </div>
 
-          {/* <ChangePassword idModal='changePassword' /> */}
           <div className="mb-5">
             <h4 id="email">Passwords</h4>
             <div className="row">
@@ -68,21 +66,13 @@ class AccountPage extends React.Component {
           </div>
 
           <h4 id="delete">Delete Account</h4>
-          {/* <button type="button" className="btn btn-outline-pink active" onClick={this.onAccountDelete}>
-            Delete your account
-          </button> */}
           <ModalPopup onSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText='Delete your account' btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
-            {/* <DeleteForm onFormSubmit={this.onAccountDelete} /> */}
             Are you sure ?
           </ModalPopup>
         </div>
       </div>
     );
   }
-}
-
-AccountPage.defaultProps = {
-  idModal: 'modal'
 }
 
 function mapStateToProps(state) {
