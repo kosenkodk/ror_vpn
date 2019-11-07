@@ -179,7 +179,7 @@ function changeLoginEmail(data) {
     headers: authHeader(),
     body: JSON.stringify(data)
   }
-  return fetch(`${config.apiUrl}/change_email`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/account/change_email`, requestOptions).then(handleResponse);
 }
 
 function addTicket(ticket) {
