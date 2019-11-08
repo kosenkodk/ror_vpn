@@ -52,7 +52,7 @@ class AccountPage extends React.Component {
           </div>
 
           <div className="mb-5">
-            <h4 id="email">Passwords</h4>
+            <h4 id="password">Passwords</h4>
             <div className="row">
               <div className="col-sm-4 align-self-center">
                 <label className="col-form-label">Login password</label>
