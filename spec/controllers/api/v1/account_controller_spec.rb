@@ -133,7 +133,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     }
 
     context 'success' do
-      it 'with user id' do
+      it 'if user is signed in' do
         delete :delete
         expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
         expect(response_json.keys).to eq(['notice'])

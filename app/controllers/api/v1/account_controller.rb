@@ -7,6 +7,7 @@ class Api::V1::AccountController < Api::V1::ApiController
   def delete
     if current_user.present?
       # TODO: add user.email to blacklist and check it during sign up
+      BlackListEmail.create(email: current_user.email)
       current_user.destroy
       render json: { notice: I18n.t('pages.account.delete.success') }
     else
