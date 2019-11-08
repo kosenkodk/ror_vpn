@@ -11,6 +11,7 @@ class AccountPage extends React.Component {
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.clearModalAlerts = this.clearModalAlerts.bind(this);
   }
 
   onChangePassword(e) {
@@ -30,6 +31,11 @@ class AccountPage extends React.Component {
     this.props.dispatch(accountActions.deleteAccount());
   }
 
+  clearModalAlerts(e) { // clearModalAlerts = (e) => {
+    e.preventDefault();
+    this.props.dispatch(accountActions.clearAlerts());
+  }
+
   render() {
     const { loggingIn, user } = this.props;
     return (
@@ -44,8 +50,8 @@ class AccountPage extends React.Component {
                 <label className="col-form-label">Login email address: {user && user.email}</label>
               </div>
               <div className="col-sm-8">
-                <ModalPopup id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('pages.account.change_email.button')}>
-                  <ChangeEmailForm onFormSubmit={this.onChangeEmail} />
+                <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('pages.account.change_email.button')}>
+                  <ChangeEmailForm onClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
                 </ModalPopup>
               </div>
             </div>
@@ -58,15 +64,15 @@ class AccountPage extends React.Component {
                 <label className="col-form-label">Login password</label>
               </div>
               <div className="col-sm-8">
-                <ModalPopup id='changePasswordModal' isForm={true} title='Change login password' btnText={I18n.t('pages.account.change_password.button')}>
-                  <ChangePasswordForm onFormSubmit={this.onChangePassword} />
+                <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title='Change login password' btnText={I18n.t('pages.account.change_password.button')}>
+                  <ChangePasswordForm onClose={this.clearModalAlerts} onFormSubmit={this.onChangePassword} />
                 </ModalPopup>
               </div>
             </div>
           </div>
 
           <h4 id="delete">Delete Account</h4>
-          <ModalPopup onSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
+          <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
             Are you sure ?
           </ModalPopup>
         </div>

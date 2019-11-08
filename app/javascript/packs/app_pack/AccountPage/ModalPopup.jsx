@@ -5,6 +5,9 @@ import { I18n } from 'helpers';
 import FlashMessages from '../_sections/FlashMessages';
 
 class ModalPopup extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     const { error, notice, loading, id, title, btnText, btnCloseText, btnSaveText } = this.props;
@@ -13,12 +16,12 @@ class ModalPopup extends React.Component {
         <button type="button" className="btn btn-outline-pink active" data-toggle="modal" data-target={`#${id}`}>
           {btnText}
         </button>
-        <div className="modal fade" data-backdrop={true} id={id} tabIndex="-1" role="dialog" aria-labelledby={`${id}Title`} aria-hidden="true">
+        <div className="modal fade" onToggle={this.onToggle} data-backdrop={true} id={id} tabIndex="-1" role="dialog" aria-labelledby={`${id}Title`} aria-hidden="true">
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id={`${id}Title`}>{title}</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" onClick={this.props.onClose} className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -30,9 +33,9 @@ class ModalPopup extends React.Component {
                     {this.props.children}
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-pink-dark" data-dismiss="modal">{btnCloseText}</button>
+                    <button type="button" onClick={this.props.onClose} className="btn btn-pink-dark" data-dismiss="modal">{btnCloseText}</button>
                     <br />
-                    <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active" disabled={loading ? true : false}>
+                    <button type="submit" onClick={this.props.onBtnSave} className="btn btn-outline-pink active" disabled={loading ? true : false}>
                       {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                       {/* <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active"> */}
                       {' ' + btnSaveText}
