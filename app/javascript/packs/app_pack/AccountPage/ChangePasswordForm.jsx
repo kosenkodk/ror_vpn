@@ -44,7 +44,7 @@ class ChangePasswordForm extends React.Component {
           </div>
         </div>
         <div className="modal-footer">
-          <button type="button" onClick={this.props.onClose} className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
+          <button type="button" onClick={this.props.onModalClose} className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
 
           <button type="submit" className="btn btn-outline-pink active" disabled={loading ? true : false}>
             {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}

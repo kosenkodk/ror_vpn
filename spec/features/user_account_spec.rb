@@ -13,6 +13,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
   describe 'Change email' do
     let(:email_new) { 'email_new@ex.com' }
     let(:email_invalid) { 'email_new@ex.' }
+
     context 'success' do
       it 'with valid new email' do
         click_on(I18n.t('pages.account.change_email.button'))
@@ -24,6 +25,9 @@ RSpec.describe 'User Account', type: :feature, js: true do
         visit('/user/account')
         expect(page).to have_content('Account')
         expect(page).to have_content(email_new)
+      end
+      it 'clear alert on modal close event' do
+        check_clear_alerts_on_modal_close I18n.t('pages.account.change_email.button'), I18n.t('buttons.save'), I18n.t('buttons.close')
       end
     end
     context 'failure' do
@@ -52,8 +56,8 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('pages.account.change_password.button'))
         expect(page).to have_content(I18n.t('pages.account.change_password.button'))
         expect(page).to have_selector('.modal.fade.show')
-        click_on('Close')
-        expect(page).not_to have_content('Close')
+        click_on(I18n.t('buttons.close'))
+        expect(page).not_to have_content(I18n.t('buttons.close'))
         # expect(page).to have_selector('.modal.fade')
       end
       it 'click on save button of the popup window' do
@@ -80,6 +84,9 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :password_confirmation, with: password
         click_on(I18n.t('buttons.save'))
         expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
+      end
+      it 'clear alerts on modal close event' do
+        check_clear_alerts_on_modal_close I18n.t('pages.account.change_password.button'), I18n.t('buttons.save'), I18n.t('buttons.close')
       end
     end
     context 'fail' do
@@ -110,14 +117,16 @@ RSpec.describe 'User Account', type: :feature, js: true do
   describe 'Delete' do
 
     context 'success' do
+      it 'clear alert on modal close event' do
+        check_clear_alerts_on_modal_close I18n.t('pages.account.delete.button'), I18n.t('buttons.yes'), I18n.t('buttons.no')
+      end
+
       it do
-        user_for_delete = create(:user)
-        fsign_in_as(user_for_delete)
-        visit('/user/account/')
         click_on(I18n.t('pages.account.delete.button'))
         click_on(I18n.t('buttons.yes'))
         expect(find('.alert')).to have_text(I18n.t('pages.account.delete.success'))
-        fsign_in_as(user_for_delete)
+        
+        fsign_in_as(user)
         expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
       end
     end
