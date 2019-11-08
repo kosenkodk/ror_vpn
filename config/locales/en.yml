@@ -50,6 +50,7 @@ en:
       not_authorized: "Not authorized"
       invalid_credentials: "Invalid email or password"  
       attachment_upload: "Error. Can't upload your attachment"
+      deleted_account: "Error. Account with this email is deleted"
   email: "E-Mail"
   vegaVPN: "VEGA"
   nav_menu:

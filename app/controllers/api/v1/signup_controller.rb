@@ -3,7 +3,13 @@ class Api::V1::SignupController < Api::V1::ApiController
 
   def create
     # endpoint for web client — we’ll be renewing a new access with the old expired one
+    
     user = User.new(user_params)
+    if BlackListEmail.where(email: user.email).count > 0
+      render json: { error: I18n.t('api.errors.signup.deleted_account'), status: :error}
+      return
+    end
+
     if user.save
       begin
         UserMailer.signup(user).deliver_now
