@@ -44,6 +44,11 @@ export function account(state = {}, action) {
       return {
         error: action.error,
       }
+    case accountConstants.CLEAR_ALERTS:
+      return {
+        error: '',
+        notice: ''
+      }
     default:
       return state
   }
