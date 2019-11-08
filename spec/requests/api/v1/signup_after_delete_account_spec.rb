@@ -45,7 +45,7 @@ RSpec.describe "Sign up after delete account", type: :request do
         expect(response.status).to eq(200)
 
         post '/api/v1/signup', params: user_params, headers: @headers
-        expect(response.body).to include(I18n.t('api.errors.signup.deleted_account'))
+        expect(response.body).to include(I18n.t('api.errors.deleted_account'))
         expect(response_json.keys).to include('error')
         expect(response_json.keys).not_to include(['csrf'])
         expect(response.cookies[JWTSessions.access_cookie]).not_to be_present
