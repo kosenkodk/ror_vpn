@@ -7,6 +7,11 @@ export const accountActions = {
   changePassword,
   changeEmail,
   deleteAccount,
+  clearAlerts,
+}
+
+function clearAlerts() {
+  return dispatch => dispatch({ type: accountConstants.CLEAR_ALERTS })
 }
 
 function changePassword(data) {
