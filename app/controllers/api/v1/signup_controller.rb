@@ -6,7 +6,7 @@ class Api::V1::SignupController < Api::V1::ApiController
     
     user = User.new(user_params)
     if BlackListEmail.where(email: user.email).count > 0
-      render json: { error: I18n.t('api.errors.signup.deleted_account'), status: :error}
+      render json: { error: I18n.t('api.errors.deleted_account'), status: :error}
       return
     end
 
