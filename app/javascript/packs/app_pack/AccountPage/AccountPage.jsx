@@ -51,7 +51,7 @@ class AccountPage extends React.Component {
               </div>
               <div className="col-sm-8">
                 <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('pages.account.change_email.button')}>
-                  <ChangeEmailForm onClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
+                  <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
                 </ModalPopup>
               </div>
             </div>
@@ -65,7 +65,7 @@ class AccountPage extends React.Component {
               </div>
               <div className="col-sm-8">
                 <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title='Change login password' btnText={I18n.t('pages.account.change_password.button')}>
-                  <ChangePasswordForm onClose={this.clearModalAlerts} onFormSubmit={this.onChangePassword} />
+                  <ChangePasswordForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangePassword} />
                 </ModalPopup>
               </div>
             </div>
