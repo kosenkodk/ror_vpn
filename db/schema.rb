@@ -143,4 +143,5 @@ ActiveRecord::Schema.define(version: 2019_11_11_112324) do
   add_foreign_key "tickets", "users"
   add_foreign_key "todos", "users"
   add_foreign_key "users", "payment_methods"
+  add_foreign_key "users", "tariff_plans"
 end

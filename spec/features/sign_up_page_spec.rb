@@ -49,7 +49,9 @@ RSpec.describe AuthController, type: :feature, js: true do
 
     it "signup" do
       fsign_up_as(User.new(email:'user@email.com', password:'password', password_confirmation:'password'))
-      expect(page).to have_content('Tickets')
+      expect(page).to have_content('Plans')
+      expect(page).to have_content('Subscriptions')
+      expect(page).to have_content('Billing')
       expect(page).not_to have_selector('.alert')
       expect(page).not_to have_content('Unauthorized')
     end

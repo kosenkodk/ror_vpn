@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { I18n } from 'helpers'
-import FlashMessages from '../_sections/FlashMessages'
+// import FlashMessages from '../_sections/FlashMessages'
 
 class SignupForm extends React.Component {
 
@@ -15,12 +15,13 @@ class SignupForm extends React.Component {
   render() {
     return (
       <React.Fragment>
+        {/*
         <div className="row">
           <div className="col-sm-8 text-center offset-sm-2">
             <FlashMessages />
-            {/* <%= render 'shared/flash_messages' %> */}
           </div>
         </div>
+        */}
 
         <div className="form-group row">
           <label className="col-sm-3 col-form-label">{I18n.t('pages.signup.form.email_address')}</label>
