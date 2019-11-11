@@ -2,16 +2,19 @@ class Api::V1::SignupController < Api::V1::ApiController
 
   def create
     # endpoint for web client — we’ll be renewing a new access with the old expired one
-    user = User.new(user_params_all)
+    params_total = user_params_all
+    user = User.new params_total
+
     if PaymentMethod.exists?(params[:payment_method_id]) && params[:payment_method_id].present?
       user.payment_method = PaymentMethod.find(params[:payment_method_id])
     else
-      user = User.new(user_params_all.except(:payment_method_id))
+      params_total = params_total.except(:payment_method_id)
     end
+
     if TariffPlan.exists?(params.permit(:tariff_plan_id)[:tariff_plan_id]) && params[:tariff_plan_id].present?
       user.tariff_plan = TariffPlan.find(params[:tariff_plan_id])
     else
-      user = User.new(user_params_all.except(:tariff_plan_id))
+      params_total = params_total.except(:tariff_plan_id)
     end
 
     if BlackListEmail.where(email: user.email).count > 0
@@ -19,6 +22,7 @@ class Api::V1::SignupController < Api::V1::ApiController
       return
     end
 
+    user = User.new(params_total)
     if user.save
       begin
         UserMailer.signup(user).deliver_now
