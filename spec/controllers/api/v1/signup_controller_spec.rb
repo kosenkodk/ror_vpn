@@ -11,13 +11,12 @@ RSpec.describe Api::V1::SignupController, type: :controller do
     let(:user_params_invalid2) { { email: email, password: 'password', password_confirmation: 'password', tariff_plan_id: nil, payment_method_id: nil } }
 
     context 'success' do
-      it 'without ids oftariff plan and payment method' do
+      it 'without ids of tariff plan and payment method' do
         post :create, params: user_params
         # expect(response_json.values).to eq([''])
-
+        expect(response_json.keys).to eq(['csrf'])
         expect(response.status).to eq(200)
         expect(response).to be_successful
-        expect(response_json.keys).to eq(['csrf'])
         expect(response.cookies[JWTSessions.access_cookie]).to be_present
       end
 

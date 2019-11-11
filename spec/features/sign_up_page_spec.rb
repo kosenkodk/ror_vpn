@@ -2,6 +2,7 @@ require 'rails_helper'
   
 RSpec.describe AuthController, type: :feature, js: true do
   describe 'GET :signup' do
+    let(:user) { build(:user) }
     let!(:plan_free) { FactoryBot.create :tariff_plan }
     let!(:plan) { FactoryBot.create :tariff_plan, price: 1 }
     let!(:payment_method1) { FactoryBot.create :payment_method, title: I18n.t('payment_method.cryptocurrencies') }
@@ -48,7 +49,7 @@ RSpec.describe AuthController, type: :feature, js: true do
     end
 
     it "signup is ok" do
-      fsign_up_as(User.new(email:'user@email.com', password:'password', password_confirmation:'password'))
+      fsign_up_as(user)
       # expect(find('.alert', match: :first)).to have_text('')
       expect(page).to have_content('Plans')
       expect(page).to have_content('Subscriptions')
