@@ -29,7 +29,6 @@ class SignupForm extends React.Component {
           <div className="col-sm-6">
             <input type="email" name="email" onChange={this.props.onEmailChange} value={this.props.email} required={true} className="form-control" placeholder={I18n.t('pages.login.form.help.email')} />
             {/* <input type="email" onChange={this.props.onValueChange} value={this.props.email} required={true} className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.login.form.help.email')} /> */}
-            {/* <%= f.text_field :email, required: false, type: :email, class: "form-control", placeholder: t('pages.login.form.help.email') %> */}
           </div>
           <div className="col-sm-3"></div>
         </div>
@@ -40,7 +39,6 @@ class SignupForm extends React.Component {
           <div className="col-sm-6">
             <input type="password" name="password" onChange={this.props.onPasswordChange} value={this.props.password} required={false} className="form-control" placeholder={I18n.t('pages.login.form.help.password')} />
             {/* <input type="password" required={false} className="form-control" ref={(input) => { this.password = input }} placeholder={I18n.t('pages.login.form.help.password')} /> */}
-            {/* <%= f.text_field :password, required: false, type: :password, class: "form-control", placeholder: t('pages.login.form.help.password') %> */}
           </div>
           <div className="col-sm-3"></div>
         </div>
@@ -51,7 +49,6 @@ class SignupForm extends React.Component {
           <div className="col-sm-6">
             <input type="password" name="password_confirmation" onChange={this.props.onPasswordConfirmChange} value={this.props.password_confirmation} required={false} className="form-control" placeholder={I18n.t('pages.login.form.help.password')} />
             {/* <input type="password" required={false} className="form-control" ref={(input) => { this.password_confirmation = input }} placeholder={I18n.t('pages.login.form.help.password')} /> */}
-            {/* <%= f.text_field :password_confirmation, required: false, type: :password, class: "form-control", placeholder: t('pages.login.form.help.password') %> */}
           </div>
           <div className="col-sm-3"></div>
         </div>
