@@ -29,7 +29,6 @@ class SignupPage extends React.Component {
       password_confirmation: '',
 
       plan: 0,
-
       payment_method: 0,
 
       card_number: 0,
@@ -151,14 +150,14 @@ class SignupPage extends React.Component {
   }
 
   render() {
-
+    const { error } = this.props
     return (
       <form className="container">
-        <div className="row">
+        {/* <div className="row">
           <div className="col-md-12">
-            <FlashMessages error={this.state.error && this.state.error} notice={this.state.notice && this.state.notice} />
+            <FlashMessages error={error || this.state.error && this.state.error} notice={this.state.notice && this.state.notice} />
           </div>
-        </div>
+        </div> */}
         <div className="row signup text-center">
           <div className="col-md-8 offset-md-2">
             <h1 className="m-0">
@@ -208,7 +207,7 @@ class SignupPage extends React.Component {
             />
           </div>
           <div className="col-md-12 pt-4">
-            <FlashMessages error={this.state.error && this.state.error} notice={this.state.notice && this.state.notice} />
+            <FlashMessages error={error || this.state.error && this.state.error} notice={this.state.notice && this.state.notice} />
           </div>
         </div>
       </form>
@@ -225,9 +224,9 @@ SignupPage.propTypes = {
 
 
 function mapStateToProps(state) {
-  const { loggingIn } = state.authentication;
+  const { loggingIn, error } = state.authentication;
   return {
-    loggingIn
+    loggingIn, error
   };
 }
 
