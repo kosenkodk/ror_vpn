@@ -1,25 +1,24 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { withRouter } from "react-router-dom";
-import { I18n } from 'helpers'
-import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { I18n } from 'helpers';
+import { postCsrfRequest, handleErrors, errorMessage } from 'helpers/http';
 import { config } from 'config';
-import FlashMessages from '../_sections/FlashMessages'
+import FlashMessages from '../_sections/FlashMessages';
 
-import SignupForm from './SignupForm'
-import Plans from './Plans'
-import PaymentMethods from './PaymentMethods'
+import SignupForm from './SignupForm';
+import Plans from './Plans';
+import PaymentMethods from './PaymentMethods';
 
-import imgStep1 from 'images/signup/step1'
-import imgStep2 from 'images/signup/step2'
-import imgStep3 from 'images/signup/step3'
+import imgStep1 from 'images/signup/step1';
+import imgStep2 from 'images/signup/step2';
+import imgStep3 from 'images/signup/step3';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 
 class SignupPage extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       notice: '',
       error: '',
@@ -37,22 +36,19 @@ class SignupPage extends React.Component {
       year: 0,
       cvc: 0
     }
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onEmailChange(key, event) {
-    // console.log('onEmailChange', key, event.target.value)
-    this.setState({ [key]: event.target.value })
+    this.setState({ [key]: event.target.value });
   }
 
   onPasswordChange(key, event) {
-    // console.log('onPasswordChange', key, event.target.value)
-    this.setState({ [key]: event.target.value })
+    this.setState({ [key]: event.target.value });
   }
 
   onPasswordConfirmChange(key, event) {
-    // console.log('onPasswordConfirmChange', key, event.target.value)
-    this.setState({ [key]: event.target.value })
+    this.setState({ [key]: event.target.value });
   }
 
   onSignupChange() {
@@ -60,11 +56,8 @@ class SignupPage extends React.Component {
   }
 
   onPlanChange(e, id) {
-    // console.log('onPlanChange', id)
-    this.setState({
-      plan: id
-    })
-    e.preventDefault()
+    this.setState({ plan: id });
+    e.preventDefault();
   }
 
   onPaymentMethodChange(id, card_number, holder_name, month, year, cvc) {
@@ -76,45 +69,37 @@ class SignupPage extends React.Component {
       month: month,
       year: year,
       cvc: cvc
-    })
+    });
   }
 
   onFormSubmit(e) {
-    // console.log('onFormSubmit', this.state)
     this.props.dispatch(userActions.signup(this.state));
     e.preventDefault();
-    return
+    return;
 
-    this.setState({ notice: '', error: '' })
-    const data = this.state
+    this.setState({ notice: '', error: '' });
+    const data = this.state;
 
     fetch(postCsrfRequest(`${config.apiUrl}/signup`, 'POST', data))
       .then(handleErrors)
       .then((item) => this.responseSuccessful(item))
       .catch((error) => this.responseFailed(error));
-    e.preventDefault()
+    e.preventDefault();
   }
 
   responseSuccessful(response) {
-    // console.log('responseSuccessful', response)
-
-    this.setState({ notice: response.notice })
-    this.setState({ error: response.error })
-
+    this.setState({ notice: response.notice, error: response.error });
 
     if (!response.csrf) {
-      return this.responseFailed(response)
+      return this.responseFailed(response);
     }
 
     localStorage.setItem('csrf', JSON.stringify(response.csrf));
 
     fetch(`${config.apiUrl}/me`)
       .then(handleErrors)
-      // .then((response) => response.json())
       .then((meResponse) => {
-        // console.log('/me', meResponse)
         this.setState({ error: meResponse.message || '' })
-        // set data 
         localStorage.setItem('user', JSON.stringify(meResponse));
         // this.props.setCurrentUser(meResponse, response.csrf)
         this.props.history.push(config.userUrlAfterSignin)
@@ -125,32 +110,29 @@ class SignupPage extends React.Component {
   }
 
   responseFailed(error) {
-    this.setState({ error: errorMessage(error) })
-    //unset current user
+    this.setState({ error: errorMessage(error) });
+    // unset current user
     localStorage.removeItem('csrf');
     localStorage.removeItem('user');
     // this.props.unsetCurrentUser()
   }
 
   componentDidMount() {
-    // console.log('componentDidMount')
-    this.isSignedIn()
+    this.isSignedIn();
   }
 
   componentDidUpdate() {
-    // console.log('componentDidUpdate')
-    this.isSignedIn()
+    this.isSignedIn();
   }
 
   isSignedIn() {
-    // console.log('isSignedIn', this.props.isSignedIn)
     if (this.props.isSignedIn) {
-      this.props.history.push('/features')
+      this.props.history.push(config.userUrlAfterSignin);
     }
   }
 
   render() {
-    const { error } = this.props
+    const { error } = this.props;
     return (
       <form className="container">
         {/* <div className="row">
@@ -163,7 +145,6 @@ class SignupPage extends React.Component {
             <h1 className="m-0">
               {I18n.t('pages.signup.steps.title1')}
             </h1>
-
             <p className="">
               <img src={imgStep1} className="img-fluid" />
             </p>
@@ -213,7 +194,6 @@ class SignupPage extends React.Component {
       </form>
     );
   }
-
 }
 
 SignupPage.propTypes = {
