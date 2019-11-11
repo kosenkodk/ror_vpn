@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
 
+  belongs_to :payment_method, required: false#, inverse_of: :user
+  belongs_to :tariff_plan, required: false#, inverse_of: :user
+
   enum role: %i[user manager admin].freeze
 
   # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: { case_sensitive: false }

@@ -1,5 +1,5 @@
 class Api::V1::SignupController < Api::V1::ApiController
-  KEYS = [:email, :password, :password_confirmation].freeze
+  KEYS = [ :email, :password, :password_confirmation, :payment_method_id, :tariff_plan_id ].freeze
 
   def create
     # endpoint for web client — we’ll be renewing a new access with the old expired one
