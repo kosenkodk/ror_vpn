@@ -27,9 +27,9 @@ class SignupPage extends React.Component {
       password: '',
       password_confirmation: '',
 
-      plan: 0,
-      payment_method: 0,
+      tariff_plan_id: '',
 
+      payment_method_id: '',
       card_number: 0,
       holder_name: '',
       month: 0,
@@ -56,14 +56,15 @@ class SignupPage extends React.Component {
   }
 
   onPlanChange(e, id) {
-    this.setState({ plan: id });
-    e.preventDefault();
+    // console.log('onPlanChange id:', id)
+    this.setState({ tariff_plan_id: id });
+    if (e) e.preventDefault();
   }
 
   onPaymentMethodChange(id, card_number, holder_name, month, year, cvc) {
     // console.log('onPaymentMethodChange', id, card_number, holder_name, month, year, cvc)
     this.setState({
-      payment_method: id,
+      payment_method_id: id,
       card_number: card_number,
       holder_name: holder_name,
       month: month,

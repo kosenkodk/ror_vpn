@@ -47,8 +47,9 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(page).to have_css('footer')
     end
 
-    it "signup" do
+    it "signup is ok" do
       fsign_up_as(User.new(email:'user@email.com', password:'password', password_confirmation:'password'))
+      # expect(find('.alert', match: :first)).to have_text('')
       expect(page).to have_content('Plans')
       expect(page).to have_content('Subscriptions')
       expect(page).to have_content('Billing')

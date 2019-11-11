@@ -46,6 +46,7 @@ class Plans extends React.Component {
         throw new Error("Network response was not ok.");
       }).then(response => {
         this.selectItemInCollectionByIndex(response, this.state.preselectedIndex)
+        this.props.onPlanChange(null, this.state.items[this.state.preselectedIndex])
       }).catch((err) => {
         console.log(err)
       });

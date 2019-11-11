@@ -1,6 +1,6 @@
 class PaymentMethod < ApplicationRecord
   include Rails.application.routes.url_helpers
-
+  
   has_one :user
   has_many_attached :icons
   

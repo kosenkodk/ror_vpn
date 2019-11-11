@@ -85,6 +85,7 @@ class PaymentMethods extends React.Component {
       })
       .then(response => {
         this.selectItemInCollectionByIndex(response, this.state.preselectedIndex)
+        this.props.onPaymentMethodChange(this.state.preselectedIndex)
       })
       .catch((err) => {
         console.log(err)
