@@ -21,6 +21,8 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('buttons.save'))
         expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.success'))
         user.email = email_new
+        click_on(I18n.t('buttons.close'))
+        click_on(I18n.t('nav_menu.sign_out'))
         fsign_in_as(user)
         visit('/user/account')
         expect(page).to have_content('Account')
