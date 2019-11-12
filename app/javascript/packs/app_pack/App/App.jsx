@@ -24,7 +24,7 @@ import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
 import { DashboardPage } from '../DashboardPage'
 import { AccountPage } from '../AccountPage'
-import { User } from '../user/User'
+import { User } from '../user'
 // layouts
 import { Layout, LayoutWithSidebar } from '../App'
 
@@ -62,7 +62,41 @@ class App extends React.Component {
 
   render() {
     const { alert, bgClass, loggedIn } = this.props;
-    const publicPages =
+    const privateRoutes = <Route path={urls.user.path}>
+      <LayoutWithSidebar>
+        <Switch>
+          <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+          {/* <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} /> */}
+          <PrivateRouteWithRightSidebar exact path={urls.tickets_new.path} component={TicketsNewPage}
+            sidebarUrls={[urls.tickets]}
+          />
+          <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+          {/* <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} /> */}
+          <PrivateRouteWithRightSidebar exact path={urls.tickets_view.path} component={TicketsViewPage}
+            sidebarUrls={[urls.tickets, urls.tickets_new]}
+          />
+
+          <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
+            // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
+            sidebarUrls={Object.values(urls.user_dashboard.urls)}
+          />
+          <PrivateRouteWithRightSidebar path={urls.user_account.path} component={AccountPage}
+            sidebarUrls={Object.values(urls.user_account.urls)}
+          />
+          <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
+            sidebarUrls={Object.values(urls.user_payment.urls)}
+          />
+          <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
+            sidebarUrls={Object.values(urls.user_downloads.urls)}
+          />
+          <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
+
+          {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
+          <PrivateRoute component={NotFoundPage} />
+        </Switch>
+      </LayoutWithSidebar>
+    </Route>
+    const publicRoutes =
       <Route path={[urls.home.path,
       urls.signin.path,
       urls.signup.path,
@@ -99,40 +133,46 @@ class App extends React.Component {
         </Layout>
       </Route>
 
+    const publicPages = <body className="d-flex flex-column bg_star">
+      <div className={`container-fluid flex-grow ${bgClass.value}`}>
+        <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
+          <Header />
+        </div>
+
+        <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
+          <div className="row">
+            <div className="col">
+              {alert.message &&
+                <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <section className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
+          <Router history={history}>
+            <Switch>
+              {privateRoutes}
+              {publicRoutes}
+              <Route component={NotFoundPage} />
+            </Switch>
+          </Router>
+
+        </section>
+      </div>
+      {this.state.isFooterVisible && <FooterSection />}
+    </body>
+
     return (
       <Router history={history}>
         {
           loggedIn ?
-            <User publicPages={publicPages} />
+            <User privateRoutes={privateRoutes} />
+            // <User privateRoutes={publicRoutes} privateRoutes={privateRoutes} />
             :
-            <body className="d-flex flex-column bg_star">
-              <div className={`container-fluid flex-grow ${bgClass.value}`}>
-                <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-                  <Header />
-                </div>
-
-                <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-                  <div className="row">
-                    <div className="col">
-                      {alert.message &&
-                        <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
-                      }
-                    </div>
-                  </div>
-                </div>
-
-                <section className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
-                  <Switch>
-                    {publicPages}
-                    <Route component={NotFoundPage} />
-                  </Switch>
-                </section>
-              </div>
-              {this.state.isFooterVisible && <FooterSection />}
-            </body>
+            publicPages
         }
       </Router>
-
     );
   }
   componentDidMount() {
