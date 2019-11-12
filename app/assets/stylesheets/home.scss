@@ -45,7 +45,7 @@ body {
 }
 
 .bg1 {
-  background: $bg_color_black asset-url('bg1.svg') no-repeat top;
+  background: transparent asset-url('bg1.svg') no-repeat top;
   @media (min-width: 0) and (max-width: $xl-width) {
     background-size: contain;
   }
