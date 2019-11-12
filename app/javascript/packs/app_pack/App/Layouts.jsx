@@ -7,6 +7,17 @@ const Layout = (props) => (
   </React.Fragment>
 )
 
+const AdminLayout = (props) => (
+  <div className="row">
+    <div className="col-md-3 col-lg-2 d-none d-md-block">
+      <Sidebar />
+    </div>
+    <div className="col-md-9 col-lg-10">
+      {props.children}
+    </div>
+  </div>
+)
+
 const LayoutWithSidebar = (props) => (
   <div className="row">
     <div className="col-md-3 col-lg-2 d-none d-md-block">
@@ -18,4 +29,4 @@ const LayoutWithSidebar = (props) => (
   </div>
 )
 
-export { Layout, LayoutWithSidebar }
+export { AdminLayout, Layout, LayoutWithSidebar }

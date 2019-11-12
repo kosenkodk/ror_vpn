@@ -96,6 +96,7 @@ class App extends React.Component {
         </Switch>
       </LayoutWithSidebar>
     </Route>
+
     const publicRoutes =
       <Route path={[urls.home.path,
       urls.signin.path,
@@ -150,13 +151,11 @@ class App extends React.Component {
         </div>
 
         <section className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
-          <Router history={history}>
-            <Switch>
-              {privateRoutes}
-              {publicRoutes}
-              <Route component={NotFoundPage} />
-            </Switch>
-          </Router>
+          <Switch>
+            {privateRoutes}
+            {publicRoutes}
+            <Route component={NotFoundPage} />
+          </Switch>
 
         </section>
       </div>
@@ -168,7 +167,7 @@ class App extends React.Component {
         {
           loggedIn ?
             <User privateRoutes={privateRoutes} />
-            // <User privateRoutes={publicRoutes} privateRoutes={privateRoutes} />
+            // <User publicRoutes={publicRoutes} privateRoutes={privateRoutes} />
             :
             publicPages
         }
