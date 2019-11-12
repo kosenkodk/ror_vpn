@@ -23,11 +23,11 @@ import { Layout, LayoutWithSidebar } from '../App'
 class User extends React.Component {
   constructor(props) {
     super(props)
-    const { dispatch } = this.props;
-    history.listen((location, action) => {
-      // clear alert on location change
-      dispatch(alertActions.clear())
-    });
+    // const { dispatch } = this.props;
+    // history.listen((location, action) => {
+    // clear alert on location change
+    // dispatch(alertActions.clear())
+    // });
   }
 
   render() {
@@ -48,18 +48,14 @@ class User extends React.Component {
         </div>
 
         <section className='container-fluid'>
-          <Switch>
-            {this.props.privateRoutes}
-            {this.props.publicRoutes}
-            <Route component={NotFoundPage} />
-          </Switch>
+          {this.props.children}
         </section>
       </div>
     );
   }
   componentDidMount() {
-    smoothscroll.polyfill(); // native smooth scrolling
-    this.props.dispatch(departmentActions.getAll())
+    // smoothscroll.polyfill(); // native smooth scrolling
+    // this.props.dispatch(departmentActions.getAll())
   }
 }
 

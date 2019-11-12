@@ -27,6 +27,7 @@ import { AccountPage } from '../AccountPage'
 import { User } from '../user'
 // layouts
 import { Layout, LayoutWithSidebar } from '../App'
+import { AdminLayout, PublicLayout } from './Layouts'
 
 class App extends React.Component {
   constructor(props) {
@@ -112,68 +113,46 @@ class App extends React.Component {
       urls.coming_soon.path,
       urls.http204.path,
       ]} >
-        <Layout>
-          <Route exact path={urls.home.path} component={HomePage} />
+        <PublicLayout>
+          <Switch>
+            <Route exact path={urls.home.path} component={HomePage} />
 
-          <Route exact path={urls.signin.path} component={SigninPage} />
-          <Route exact path={urls.signup.path} component={SignupPage} />
-          <Route exact path={urls.pricing.path} component={PricingPage} />
-          <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
-          <Route exact path={urls.reset.path} component={PasswordResetPage} />
-          <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
+            <Route exact path={urls.signin.path} component={SigninPage} />
+            <Route exact path={urls.signup.path} component={SignupPage} />
+            <Route exact path={urls.pricing.path} component={PricingPage} />
+            <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
+            <Route exact path={urls.reset.path} component={PasswordResetPage} />
+            <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
 
-          <Route exact path={urls.help.path} component={ComingSoonPage} />
-          <Route exact path={urls.contact_us.path} component={ContactusPage} />
+            <Route exact path={urls.help.path} component={ComingSoonPage} />
+            <Route exact path={urls.contact_us.path} component={ContactusPage} />
 
-          {/* status pages */}
-          <Route exact path={urls.success.path} component={SuccessPage} />
-          <Route exact path={urls.not_found.path} component={NotFoundPage} />
-          <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
-          <Route exact path={urls.http204.path} component={ComingSoonPage} />
-          {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-        </Layout>
+            {/* status pages */}
+            <Route exact path={urls.success.path} component={SuccessPage} />
+            <Route exact path={urls.not_found.path} component={NotFoundPage} />
+            <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
+            <Route exact path={urls.http204.path} component={ComingSoonPage} />
+            {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+          </Switch>
+        </PublicLayout>
       </Route>
 
-    const publicPages = <body className="d-flex flex-column bg_star">
-      <div className={`container-fluid flex-grow ${bgClass.value}`}>
-        <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-          <Header />
-        </div>
-
-        <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-          <div className="row">
-            <div className="col">
-              {alert.message &&
-                <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
-              }
-            </div>
-          </div>
-        </div>
-
-        <section className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
-          <Switch>
-            {privateRoutes}
-            {publicRoutes}
-            <Route component={NotFoundPage} />
-          </Switch>
-
-        </section>
-      </div>
-      {this.state.isFooterVisible && <FooterSection />}
-    </body>
 
     return (
       <Router history={history}>
-        {
-          loggedIn ?
-            <User privateRoutes={privateRoutes} />
-            // <User publicRoutes={publicRoutes} privateRoutes={privateRoutes} />
-            :
-            publicPages
-        }
+        <Switch>
+          <User>
+            <Switch>
+              {privateRoutes}
+            </Switch>
+          </User>
+          {publicRoutes}
+          <Route component={NotFoundPage} />
+        </Switch>
       </Router>
     );
   }
+
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
     this.props.dispatch(departmentActions.getAll())
