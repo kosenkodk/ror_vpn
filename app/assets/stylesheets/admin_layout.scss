@@ -1,0 +1,22 @@
+
+$admin_border_radius: 15px;
+$admin_pink: #6E2251;
+$white: white;
+
+#admin_layout {
+  .background-pink {
+    background-color: $admin_pink;
+  }
+  .background-white {
+    background-color: $white;
+  }
+  .background-black {
+    background-color: $black;
+  }
+
+  .bg-lite {
+    color: $black;
+    background: $white;
+    border-radius: $admin_border_radius;
+  }
+}

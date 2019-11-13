@@ -1,0 +1,685 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html {
+  color: $white;
+  font-family: "Montserrat";
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: $white;
+  background-color: $bg_color_black;
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+.btn {
+  &:focus{
+    box-shadow: unset;
+  }
+}
+
+.header {
+  .nav-link:focus {
+    box-shadow: none;
+  }
+}
+/* start backgrounds */
+
+.bg-color-black {
+  background-color: $bg_color_black;
+}
+
+.bg-vega {
+  background-color: $bg_color_black;
+  opacity: 0.85;
+  border-radius: $pricing_border_radius;
+}
+
+.bg1 {
+  background: transparent asset-url('bg1.svg') no-repeat top;
+  @media (min-width: 0) and (max-width: $xl-width) {
+    background-size: contain;
+  }
+  @media (min-width: $xl-width) {
+  }
+  @media (min-width: $fullhd-width) {
+    background-size: cover;
+  }
+}
+
+.bg1_contain {
+  background: $bg_color_black asset-url('bg1.svg') no-repeat top;
+  background-size: contain;
+}
+
+.bg1_cover {
+  background: $bg_color_black asset-url('bg1.svg') no-repeat top;
+  background-size: cover;
+}
+
+.bg2 {
+  background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
+  background-size: cover;
+}
+
+.bg2_contain {
+  background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
+  background-size: contain;
+}
+
+.bg2_mars {
+  background: $bg_color_black asset-url('bg2_with_mars') no-repeat bottom;
+  background-size: cover;
+}
+
+.bg_astronaut {
+  background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
+}
+
+.bg_star {
+  background: transparent asset-url('star_2');
+}
+
+/* end background images */
+
+.text-opacity {
+  opacity: $opacity;
+}
+
+.icon-checkbox {
+  background: transparent asset-url('signup/off.png') no-repeat center;
+  background-size: contain;
+  margin: 0 auto;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  &.active, &:hover {
+    background: transparent asset-url('signup/on.png') no-repeat center;
+  }
+}
+
+.plans {
+  h1 {
+    padding: 0;
+  }
+  .card.active {
+    @extend .border_1_pink;
+  }
+  .card {
+    border-radius: $pricing_border_radius;
+    &:hover {
+      cursor: pointer;
+      box-shadow: -15px 15px 100px $shadow-vega;
+    }
+  }
+
+  .icon-checkbox {
+    margin-top: -2rem !important;
+  }
+}
+
+.credit_card {
+  @media (min-width: $xs-width) {
+    .cvc {
+      label {
+        color: $white;
+      }
+    }
+  }
+  @media (min-width: $sm-width) {
+    .cvc {
+      label {
+        color: $bg_color_black;
+      }
+    }
+  }
+
+  &.credit_card_bg {
+    @media (min-width: $xs-width) {
+      background: none;
+    }
+    @media (min-width: $sm-width) {
+      background: asset-url('signup/payment_methods/card_all') no-repeat center;
+      background-size: contain;
+    }
+  }
+}
+
+.payment_methods {
+  @extend .plans;
+  .nav-link {
+    padding: 0;
+    &.active, &:hover {
+      border: unset;
+    }
+  }
+  .table {
+    border-top: 2px solid gray !important;
+    border-bottom: 2px solid gray;
+    td {
+      border: unset;
+    }
+  }
+  .icon-checkbox {
+    margin-top: -1.8rem !important;
+  }
+}
+
+.pricing {
+  .pricing-card-title {  
+    @media (min-width: $xs-width) {
+      font-size: 3.2rem;
+      .text-sm-1 {
+        font-size: 1rem;
+      }
+    }
+    @media (min-width: $sm-width) {
+      font-size: 3.9rem;
+    }
+    @media (min-width: 576px) {
+      font-size: 8rem;
+      .text-sm-1 {
+        font-size: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+    }
+  }
+}
+
+@media (min-width: $xs-width) {
+  .credit_card_mt_n {
+    margin-top: -($spacer * 5) !important;
+  }
+}
+@media (min-width: $sm-width) {
+  .credit_card_mt_n {
+    margin-top: -($spacer * 14) !important;
+  }
+}
+@media (min-width: $md-width) { 
+  .credit_card_mt_n {
+    margin-top: -($spacer * 13) !important;
+  }
+  
+}
+@media (min-width: $lg-width) {
+  .credit_card_mt_n {
+    margin-top: -($spacer * 18) !important;
+  }
+}
+@media (min-width: $xl-width) {
+  .credit_card_mt_n {
+    margin-top: -($spacer * 20) !important;
+  }
+}
+
+.text-sm-1 {
+  font-size: 1rem;
+}
+
+.mb-n6 {
+  margin-bottom: -($spacer * 3.25) !important;
+}
+.mb-n7 {
+  margin-bottom: -($spacer * 3.5) !important;
+}
+.mb-n8 {
+  margin-bottom: -($spacer * 3.75) !important;
+}
+.mb-n9 {
+  margin-bottom: -($spacer * 4) !important;
+}
+
+.btn-blue {
+  background-color: rgb(44,176,181);
+  &.active, &:hover {
+    opacity: $opacity;
+  }
+}
+
+.btn-pink-dark-blue {
+  background: rgb(38,8,48) !important;
+  &.active {
+    background:rgb(44,176,181) !important;
+  }
+  &:hover {
+    opacity: $opacity;
+  }
+}
+
+.btn-outline-pink {
+  background: transparent;
+  color: $white !important;
+  &.active, &:hover {
+    background: $pink_button_gradient !important;
+    color: $white;
+  }
+  &.active:hover {
+    opacity: $opacity;
+  }
+}
+
+.btn-pink-dark {
+  @extend .btn-outline-pink;
+  background: rgb(38,8,48) !important;
+}
+
+.reset_pwd, .forgot_pwd {
+  margin-top: 5rem;
+  margin-bottom: 15rem;
+}
+
+.border_1_pink {
+  border-radius: $pricing_border_radius;
+  border-top: $pricing_border_width solid $pink;
+  border-bottom: $pricing_border_width solid $pink2;
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($pink), to($pink2));
+  background-image: -webkit-linear-gradient($pink, $pink2);
+  background-image:
+      -moz-linear-gradient($pink, $pink2),
+      -moz-linear-gradient($pink, $pink2);
+  background-image:
+      -o-linear-gradient($pink, $pink2),
+      -o-linear-gradient($pink, $pink2);
+  background-image: 
+    linear-gradient($pink, $pink2),
+    linear-gradient($pink, $pink2);
+  -moz-background-size: $pricing_border_width 100%;
+  background-size: $pricing_border_width 100%;
+  background-position: 0 0, 100% 0;
+  background-repeat: no-repeat; 
+}
+
+.signup {
+  margin-bottom: 10rem;
+  .input-group-text {
+    background: $white;
+    border-left: unset;
+  }
+  #forgot-pwd-addon {
+    border-right: unset;
+    a {
+      font-size: 1rem;
+      color: #949599;
+      &:hover {
+        color: #495057;
+        text-decoration: none;
+      }
+    }
+  } 
+  a {
+    color: $pink3;
+    font-size: 1.15rem;
+    font-weight: lighter;
+    &:hover {
+      color: $pink2;  
+    }
+    &.trouble {
+      color: $white;
+      text-decoration: none;
+      &:hover {
+      opacity: $opacity;
+      }
+    }
+  }
+}
+
+.login {
+  @extend .signup;
+}
+
+.status_page {
+  h1 {
+    padding-bottom: unset;
+    font-size: 5rem;
+  }
+  h2 {
+    font-size: 3rem;
+  }
+}
+
+.features {
+  font-size:1rem;
+  p {
+    &.card-text {
+      font-weight: 100;
+      opacity: $opacity;
+    }
+  }
+  .card-body {
+    padding-top: unset;
+  }
+  .card-header {
+    img {
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      background: $pink_gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-width: 2px;
+      border-style: solid;
+      border-left: none; 
+      border-right: none; 
+      border-top: none;
+      border-image: $pink_gradient;
+    }
+  }
+}
+
+.reviews {
+  .card-header {
+    opacity: $opacity;
+  }
+  p {
+    padding-bottom: unset;
+    &.mb-0 {
+      opacity: $opacity;
+      font-weight: 100;
+    }
+    &.card-text {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .card-footer {
+    .review-owner-container {
+      opacity: 0.5;
+      z-index: 10;
+      &.active {
+        opacity: 1;
+        z-index: 30;
+      }
+    }
+  }
+
+  .media {
+    cursor: pointer;
+    padding-bottom: 1rem;
+  }
+
+  #summary {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  #summary p.collapse:not(.show) {
+    height: 110px !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
+    
+    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255, $opacity));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  #summary p.collapsing {
+    min-height: 110px !important;
+  }
+  
+  #summary a.collapsed:after  {
+    content: '+ read more';
+  }
+  
+  #summary a:not(.collapsed):after {
+    content: '- read less';
+  }
+}
+
+.nav {
+  border: unset !important;
+}
+
+.shadow-vega {
+  box-shadow: 10px 10px 100px $shadow-vega;
+}
+
+.a-color-pink {
+  color: $pink;
+  opacity: $opacity;
+
+  &:hover {
+    opacity: 1;
+    color: $pink;
+  }
+}
+
+@media (min-width: 992px) { 
+  
+  h1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 3.45rem;
+    font-weight: bold;
+    line-height: 3rem;
+  }
+
+  p {
+    padding-bottom: 20px;
+    &.lead {
+      font-size: 1.15rem;
+      font-weight: 100;
+      opacity: 0.8;
+    }
+  }
+  .btn.btn-outline-primary {
+    color: rgba(252, 252, 252, 0.85);
+    font-weight: lighter;
+    // font-size: 1.2rem;
+    letter-spacing: 0.02rem;
+    padding: 8px 20px;
+  }
+}
+
+.btn.btn-outline-light {
+  border: unset;
+  &:hover {
+    background: $pink_button_gradient;
+    opacity: $opacity;
+    color: $white;
+  }
+}
+
+.btn.btn-outline-primary {
+  background: $pink_button_gradient;
+  color: $white;
+  border: unset;
+
+  &:hover {
+    border: unset;
+    opacity: $opacity;
+  }
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.card {
+  background-color: $bg_color_black;
+  color: $white;
+}
+
+#downloads {
+  height: 950px;
+  padding-top: 115px;
+  &.card {
+    background-color: transparent !important;
+  }
+  .card-text {
+    opacity: 0.8;
+    font-weight: 100;
+    img {
+    opacity: 0.6;
+    }
+  }
+  h5 {
+  font-size:2.5rem;
+  }
+}
+
+#security_and_trust {
+  background: $bg_color_black asset-url('bg_security_and_trust') left no-repeat;
+  background-size: contain;
+  h1 {
+    text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
+    letter-spacing: 0.04em;
+    margin-top: 7rem;
+    padding-bottom: 0rem;
+    margin-bottom: 0rem;
+  }
+  .card-text {
+    font-weight: 100;
+  }
+}
+
+.footer {
+  background-color: $footer_bg_color;
+  
+  .accordion .card-header:after {
+    font-family: 'FontAwesome';
+    content: "\f068";
+    float: right;
+  }
+  
+  .accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067";
+  }
+}
+
+footer {
+  font-family: "Montserrat";
+}
+
+.sidebar {
+
+  li {
+    @extend .btn-outline-pink;
+    cursor: pointer;
+    &.list-group-item.active {
+      border: unset;
+    } 
+  }
+
+  a {
+    color: $white;
+    &:hover {
+      text-decoration: none;
+    }
+    &.active li.list-group-item {
+      background: $pink_gradient;
+    }
+  }  
+}
+
+// .tickets {
+  .modal-content {
+    @extend .shadow-vega;
+    background: $bg_color_black;
+    .close {
+      color: $pink2;
+      &:hover {
+        color: $pink3;
+      }
+    }
+    .modal-header {
+      border-bottom: 1px solid $pink;
+      border-image: $pink_gradient;
+    }
+    .modal-footer {
+      border-top: 1px solid $pink;
+      border-image: $pink_gradient;
+    }
+  }
+  .table-dark {
+    background-color: $bg_color_black2;
+  }
+// }
+
+// .ticket_message {
+  
+//   border: 1px solid $pink2;
+//   border-radius: $pricing_border_radius;
+//   padding: 20px;
+//   margin-bottom: 20px;
+//   background: $bg_color_black2;
+//   color: #925b6d;
+//   &.active {
+//     background: $bg_color_black3;
+//     color: #8C5362;
+//   }
+// }
+
+.ticket_message.card.active {
+  .card-header {
+    background: $bg_color_black_gradient23; //#582b53
+  }
+  .card-body {
+    background-color: $bg_color_black3;
+  }
+}
+
+.ticket_message.card {
+  margin-bottom: 15px;
+  border: 1px solid $pink2;
+  .card-header {
+    // background: $pink_gradient;
+    background: $bg_color_black_gradient32; //#582b53
+  }
+  .card-body {
+    background: $bg_color_black2;
+  }
+}
+
+// unblock buttons of modal popup window
+.modal-backdrop {
+  // position: unset !important;
+  // z-index: -1;
+}
+
+// pagination
+ul.pagination {
+  li.page-item {
+    &.active {
+      background: $pink_gradient;
+    }
+    &.disabled {
+      opacity: $opacity;
+    }
+    .page-link {
+      @extend .btn-outline-pink;
+      border-color: unset;
+      cursor: pointer;
+    }
+  }
+}
+
+.container-section {
+  // max-width: 55em;
+  // min-width: 30em;
+}
