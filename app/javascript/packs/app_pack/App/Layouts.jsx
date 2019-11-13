@@ -1,6 +1,10 @@
 import React from 'react'
 import { Sidebar } from '../_components'
-import { Alert } from '../_components'
+import { Alert, Header } from '../_components'
+import { history } from '../_helpers'
+import { urls } from 'config'
+import { connect } from 'react-redux'
+import { FooterSection } from '../_sections'
 
 const AdminLayout = (props) => (
   <div className='container-fluid bg1'>
@@ -21,8 +25,31 @@ const AdminLayout = (props) => (
       {props.children}
     </section>
   </div>
-
 )
+
+const GuestLayout = (props) => (
+  <body className="d-flex flex-column bg_star">
+
+    <div className={`container-fluid flex-grow ${props.bgClass.value}`}>
+      <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
+        <Header />
+      </div>
+
+      <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
+        <div className="row">
+          <div className="col">
+            <Alert />
+          </div>
+        </div>
+      </div>
+
+      <section className={`${history.location.pathname === urls.home.path ? '' : `${props.loggedIn ? 'container-fluid' : 'container'}`}`}>
+        {props.children}
+      </section>
+    </div>
+    {props.isFooterVisible && <FooterSection />}
+  </body>
+);
 
 const Layout = (props) => (
   <React.Fragment>
@@ -41,4 +68,14 @@ const LayoutWithSidebar = (props) => (
   </div>
 )
 
-export { Layout, LayoutWithSidebar, AdminLayout }
+function mapStateToProps(state) {
+  const { loggedIn } = state.authentication
+  const { alert, bgClass } = state;
+  return {
+    alert, bgClass, loggedIn
+  };
+}
+
+const connectedLayout = connect(mapStateToProps)(GuestLayout);
+export { Layout, LayoutWithSidebar, AdminLayout, connectedLayout as GuestLayout }
+
