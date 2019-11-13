@@ -54,9 +54,6 @@ class App extends React.Component {
   setPageTitle(location) {
     let pageTitle = Object.values(urls).reduce((prevItem, curItem, index) => {
       return curItem.path.startsWith(location.pathname) ? curItem.name : prevItem.name || prevItem
-      let item = curItem.path.startsWith(location.pathname) ? curItem.name : ''
-      if (item) return item
-      else return prevItem
     });
     this.props.dispatch(pageActions.setTitle(pageTitle))
   }
