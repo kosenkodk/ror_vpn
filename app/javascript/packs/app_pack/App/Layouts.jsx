@@ -1,5 +1,28 @@
 import React from 'react'
-import Sidebar from '../_components/Sidebar';
+import { Sidebar } from '../_components'
+import { Alert } from '../_components'
+
+const AdminLayout = (props) => (
+  <div className='container-fluid bg1'>
+
+    <div className='container-fluid'>
+      <Header />
+    </div>
+
+    <div className='container-fluid'>
+      <div className='row'>
+        <div className='col'>
+          <Alert />
+        </div>
+      </div>
+    </div>
+
+    <section className='container-fluid'>
+      {props.children}
+    </section>
+  </div>
+
+)
 
 const Layout = (props) => (
   <React.Fragment>
@@ -18,4 +41,4 @@ const LayoutWithSidebar = (props) => (
   </div>
 )
 
-export { Layout, LayoutWithSidebar }
+export { Layout, LayoutWithSidebar, AdminLayout }
