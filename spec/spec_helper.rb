@@ -19,13 +19,15 @@ Capybara.default_max_wait_time = 20
 
 require_relative 'support/auth_helper'
 require_relative 'support/response_helper'
+require_relative 'support/feature_helper'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # helpers
   config.include ResponseHelper
   config.include AuthHelper
-  
+  config.include FeatureHelper
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

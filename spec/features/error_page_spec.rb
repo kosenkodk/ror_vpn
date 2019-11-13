@@ -6,11 +6,7 @@ RSpec.describe ErrorsController, type: :feature, js: true do
       visit('/404')
     end
     it 'renders not_found template' do
-      expect(page).to have_content('404')
-      expect(page).to have_content('Oh no!!!')
-      expect(page).to have_content('You’re either misspelling the URL or requesting a page that’s no longer here.')
-      expect(page).to have_css('footer')
-      expect(page).to have_css('.row.header')
+      is_page_error true
     end
     it 'redirect to home page after click on "Back to previous page" button'
     it 'redirect to home page after click on "Back to home page" button' do

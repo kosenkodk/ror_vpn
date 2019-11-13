@@ -25,19 +25,4 @@ module AuthHelper
     click_on(I18n.t('buttons.continue'))
   end
 
-  def is_coming_soon_page
-    expect(page).to have_content(I18n.t('pages.coming_soon.subtitle'))
-    expect(page).to have_content(I18n.t('pages.coming_soon.text'))
-    expect(page).to have_css('.row.header')
-    expect(page).to have_css('footer')
-  end
-
-  def check_clear_alerts_on_modal_close(button_open, button_save, button_close)
-    click_on(button_open)
-    click_on(button_save)
-    expect(page).to have_selector('.alert')
-    click_on(button_close)
-    click_on(button_open)
-    expect(page).not_to have_selector('.alert')
-  end
 end
