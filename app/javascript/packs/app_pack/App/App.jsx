@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import { history } from '../_helpers'
-import { alertActions, bgClassActions, departmentActions } from '../_actions'
+import { pageActions, alertActions, bgClassActions, departmentActions } from '../_actions'
 import { urls } from 'config'
 
 // components
@@ -41,12 +41,24 @@ class App extends React.Component {
       // clear alert on location change
       dispatch(alertActions.clear())
 
+      this.setPageTitle(location)
+
       // set background image
       dispatch(bgClassActions.set('bg1'))
       if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
       this.isFooterVisible()
     });
+  }
+
+  setPageTitle(location) {
+    // set title for admin panel
+    let filteredUrls = Object.values(urls).filter(item => {
+      // console.log('URL', item, 'curr path', location.pathname)
+      return item.path.startsWith(location.pathname) ? item : ''
+    });
+    // console.log('current url Name: ', filteredUrls[0].name)
+    this.props.dispatch(pageActions.setTitle(filteredUrls[0].name))
   }
 
   isFooterVisible() {
@@ -145,6 +157,7 @@ class App extends React.Component {
     this.props.dispatch(departmentActions.getAll())
     this.props.dispatch(bgClassActions.set('bg1'))
     this.isFooterVisible()
+    this.setPageTitle(history.location)
   }
 }
 

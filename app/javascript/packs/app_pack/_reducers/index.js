@@ -7,6 +7,7 @@ import { departments } from './department.reducer'
 import { alert } from './alert.reducer';
 import { bgClass } from './bgClass.reducer';
 import { account } from './account.reducer';
+import { page } from './page.reducer';
 
 const rootReducer = combineReducers({
   account,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   departments,
   alert,
   bgClass,
+  page,
 });
 
 export default rootReducer;

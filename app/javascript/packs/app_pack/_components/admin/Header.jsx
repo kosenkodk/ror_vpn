@@ -12,11 +12,14 @@ class Header extends React.Component {
   }
 
   render() {
-    const { loggedIn, user } = this.props;
+    const { loggedIn, user, title } = this.props;
 
     return (
-      <nav class="nav justify-content-end d-flex align-items-center">
-        <li class="nav-item">
+      <nav className="nav justify-content-end d-flex align-items-center">
+        <li className="nav-item mr-auto">
+          <h4 className="nav-link p-0 m-0">{title}</h4>
+        </li>
+        <li className="nav-item">
           <a className="nav-link text-white">{user && user.email}</a>
         </li>
         <li className="nav-item">
@@ -38,9 +41,10 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { title } = state.page
   const { loggedIn, user } = state.authentication;
   return {
-    loggedIn, user
+    loggedIn, user, title
   };
 }
 
