@@ -52,13 +52,13 @@ class App extends React.Component {
   }
 
   setPageTitle(location) {
-    // set title for admin panel
-    let filteredUrls = Object.values(urls).filter(item => {
-      // console.log('URL', item, 'curr path', location.pathname)
-      return item.path.startsWith(location.pathname) ? item : ''
+    let pageTitle = Object.values(urls).reduce((prevItem, curItem, index) => {
+      return curItem.path.startsWith(location.pathname) ? curItem.name : prevItem.name || prevItem
+      let item = curItem.path.startsWith(location.pathname) ? curItem.name : ''
+      if (item) return item
+      else return prevItem
     });
-    // console.log('current url Name: ', filteredUrls[0].name)
-    this.props.dispatch(pageActions.setTitle(filteredUrls.length > 0 && filteredUrls[0].name || ''))
+    this.props.dispatch(pageActions.setTitle(pageTitle))
   }
 
   isFooterVisible() {
