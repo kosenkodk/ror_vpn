@@ -24,4 +24,4 @@ function mapStateToProps(state) {
 }
 
 const connectedPage = connect(mapStateToProps)(Header);
-export { connectedPage as Header }; 
+export { connectedPage as Header };
