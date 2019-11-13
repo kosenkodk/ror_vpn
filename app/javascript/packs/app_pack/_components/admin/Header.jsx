@@ -15,13 +15,12 @@ class Header extends React.Component {
     const { loggedIn, user } = this.props;
 
     return (
-      <nav class="nav justify-content-end">
-
+      <nav class="nav justify-content-end d-flex align-items-center">
         <li class="nav-item">
           <a className="nav-link text-white">{user && user.email}</a>
         </li>
         <li className="nav-item">
-          <NavHashLink to={urls.user_account.path} activeClassName="" className="nav-link">
+          <NavHashLink to={urls.user_account.path} activeClassName="" className="">
             <img src={urls.user_account.imgSrc} className="img-fluid" alt="User's Profile" />
           </NavHashLink>
         </li>
@@ -33,7 +32,6 @@ class Header extends React.Component {
         <li className="nav-item">
           <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link pl-3 pr-3 btn btn-pink-dark">{urls.signout.name}</NavHashLink>
         </li>
-
       </nav>
     );
   }
