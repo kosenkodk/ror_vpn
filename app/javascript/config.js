@@ -7,6 +7,9 @@ const config = {
   isDebug: true
 };
 
+import icProfile from 'images/admin/profile.svg';
+import notificationSrc from 'images/admin/notification.svg';
+
 const urls = {
   home: {
     path: '/',
@@ -93,6 +96,11 @@ const urls = {
     name: 'New Ticket',
     // component: TicketNewPage
   },
+  notifications: {
+    path: '/user/notifications',
+    name: 'Notifactions',
+    imgSrc: notificationSrc,
+  },
   user_dashboard: {
     path: '/user/dashboard',
     name: 'Dashboard',
@@ -146,6 +154,7 @@ const urls = {
   user_account: {
     path: '/user/account',
     name: 'Account',
+    imgSrc: icProfile,
     urls: {
       user_change_email: {
         path: '/user/account/#email',
