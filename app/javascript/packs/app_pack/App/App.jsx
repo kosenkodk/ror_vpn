@@ -25,7 +25,7 @@ import { DashboardPage } from '../DashboardPage'
 import { AccountPage } from '../AccountPage'
 
 // layouts
-import { GuestLayout, AdminLayout, Layout, LayoutWithSidebar } from '../App'
+import { GuestLayout, AdminLayout, LayoutWithSidebar } from '../App'
 
 class App extends React.Component {
   constructor(props) {
@@ -115,31 +115,28 @@ class App extends React.Component {
           urls.http204.path,
           ]} >
             <GuestLayout isFooterVisible={this.state.isFooterVisible}>
-              <Layout>
-                <Route exact path={urls.home.path} component={HomePage} />
+              <Route exact path={urls.home.path} component={HomePage} />
 
-                <Route exact path={urls.signin.path} component={SigninPage} />
-                <Route exact path={urls.signup.path} component={SignupPage} />
-                <Route exact path={urls.pricing.path} component={PricingPage} />
-                <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
-                <Route exact path={urls.reset.path} component={PasswordResetPage} />
-                <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
+              <Route exact path={urls.signin.path} component={SigninPage} />
+              <Route exact path={urls.signup.path} component={SignupPage} />
+              <Route exact path={urls.pricing.path} component={PricingPage} />
+              <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
+              <Route exact path={urls.reset.path} component={PasswordResetPage} />
+              <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
 
-                <Route exact path={urls.help.path} component={ComingSoonPage} />
-                <Route exact path={urls.contact_us.path} component={ContactusPage} />
+              <Route exact path={urls.help.path} component={ComingSoonPage} />
+              <Route exact path={urls.contact_us.path} component={ContactusPage} />
 
-                {/* status pages */}
-                <Route exact path={urls.success.path} component={SuccessPage} />
-                <Route exact path={urls.not_found.path} component={NotFoundPage} />
-                <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
-                <Route exact path={urls.http204.path} component={ComingSoonPage} />
-                {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-              </Layout>
+              {/* status pages */}
+              <Route exact path={urls.success.path} component={SuccessPage} />
+              <Route exact path={urls.not_found.path} component={NotFoundPage} />
+              <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
+              <Route exact path={urls.http204.path} component={ComingSoonPage} />
+              {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
             </GuestLayout>
           </Route>
           <Route component={NotFoundPage} />
         </Switch>
-
       </Router>
     );
   }
