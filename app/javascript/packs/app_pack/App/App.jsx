@@ -8,8 +8,7 @@ import { alertActions, bgClassActions, departmentActions } from '../_actions'
 import { urls } from 'config'
 
 // components
-import { Header, PrivateRoute, PrivateRouteWithRightSidebar } from '../_components'
-import { FooterSection } from '../_sections'
+import { PrivateRoute, PrivateRouteWithRightSidebar } from '../_components'
 
 // pages
 import { HomePage } from '../HomePage'
@@ -26,7 +25,7 @@ import { DashboardPage } from '../DashboardPage'
 import { AccountPage } from '../AccountPage'
 
 // layouts
-import { Layout, LayoutWithSidebar } from '../App'
+import { GuestLayout, AdminLayout, Layout, LayoutWithSidebar } from '../App'
 
 class App extends React.Component {
   constructor(props) {
@@ -47,7 +46,6 @@ class App extends React.Component {
       if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
         dispatch(bgClassActions.set('bg_star'))
       this.isFooterVisible()
-
     });
   }
 
@@ -61,105 +59,87 @@ class App extends React.Component {
   }
 
   render() {
-    const { alert, bgClass, loggedIn } = this.props;
     return (
       <Router history={history}>
-        <body className="d-flex flex-column bg_star">
+        <Switch>
+          {/* private user's pages */}
+          <Route path={urls.user.path}>
+            <AdminLayout>
+              <LayoutWithSidebar>
+                <Switch>
+                  <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+                  {/* <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} /> */}
+                  <PrivateRouteWithRightSidebar exact path={urls.tickets_new.path} component={TicketsNewPage}
+                    sidebarUrls={[urls.tickets]}
+                  />
+                  <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+                  {/* <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} /> */}
+                  <PrivateRouteWithRightSidebar exact path={urls.tickets_view.path} component={TicketsViewPage}
+                    sidebarUrls={[urls.tickets, urls.tickets_new]}
+                  />
 
-          <div className={`container-fluid flex-grow ${bgClass.value}`}>
-            <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-              <Header />
-            </div>
+                  <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
+                    // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
+                    sidebarUrls={Object.values(urls.user_dashboard.urls)}
+                  />
+                  <PrivateRouteWithRightSidebar path={urls.user_account.path} component={AccountPage}
+                    sidebarUrls={Object.values(urls.user_account.urls)}
+                  />
+                  <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
+                    sidebarUrls={Object.values(urls.user_payment.urls)}
+                  />
+                  <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
+                    sidebarUrls={Object.values(urls.user_downloads.urls)}
+                  />
+                  <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
 
-            <div className={`${loggedIn ? 'container-fluid' : 'container'}`}>
-              <div className="row">
-                <div className="col">
-                  {alert.message &&
-                    <div id="alert" className={`alert ${alert.type} text-center`}>{alert.message}</div>
-                  }
-                </div>
-              </div>
-            </div>
+                  {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
+                  <PrivateRoute component={NotFoundPage} />
+                </Switch>
+              </LayoutWithSidebar>
+            </AdminLayout>
+          </Route>
+          {/* public pages */}
+          <Route path={[urls.home.path,
+          urls.signin.path,
+          urls.signup.path,
+          urls.pricing.path,
+          urls.forgot.path,
+          urls.reset.path,
+          urls.reset_ok.path,
+          urls.help.path,
+          urls.contact_us.path,
+          urls.success.path,
+          urls.not_found.path,
+          urls.coming_soon.path,
+          urls.http204.path,
+          ]} >
+            <GuestLayout isFooterVisible={this.state.isFooterVisible}>
+              <Layout>
+                <Route exact path={urls.home.path} component={HomePage} />
 
-            <section className={`${history.location.pathname === urls.home.path ? '' : `${loggedIn ? 'container-fluid' : 'container'}`}`}>
-              <Switch>
-                {/* private user's pages */}
-                <Route path={urls.user.path}>
-                  <LayoutWithSidebar>
-                    <Switch>
-                      <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
-                      {/* <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} /> */}
-                      <PrivateRouteWithRightSidebar exact path={urls.tickets_new.path} component={TicketsNewPage}
-                        sidebarUrls={[urls.tickets]}
-                      />
-                      <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                      {/* <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} /> */}
-                      <PrivateRouteWithRightSidebar exact path={urls.tickets_view.path} component={TicketsViewPage}
-                        sidebarUrls={[urls.tickets, urls.tickets_new]}
-                      />
+                <Route exact path={urls.signin.path} component={SigninPage} />
+                <Route exact path={urls.signup.path} component={SignupPage} />
+                <Route exact path={urls.pricing.path} component={PricingPage} />
+                <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
+                <Route exact path={urls.reset.path} component={PasswordResetPage} />
+                <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
 
-                      <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
-                        // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
-                        sidebarUrls={Object.values(urls.user_dashboard.urls)}
-                      />
-                      <PrivateRouteWithRightSidebar path={urls.user_account.path} component={AccountPage}
-                        sidebarUrls={Object.values(urls.user_account.urls)}
-                      />
-                      <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
-                        sidebarUrls={Object.values(urls.user_payment.urls)}
-                      />
-                      <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
-                        sidebarUrls={Object.values(urls.user_downloads.urls)}
-                      />
-                      <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
+                <Route exact path={urls.help.path} component={ComingSoonPage} />
+                <Route exact path={urls.contact_us.path} component={ContactusPage} />
 
-                      {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
-                      <PrivateRoute component={NotFoundPage} />
-                    </Switch>
-                  </LayoutWithSidebar>
-                </Route>
-                {/* public pages */}
-                <Route path={[urls.home.path,
-                urls.signin.path,
-                urls.signup.path,
-                urls.pricing.path,
-                urls.forgot.path,
-                urls.reset.path,
-                urls.reset_ok.path,
-                urls.help.path,
-                urls.contact_us.path,
-                urls.success.path,
-                urls.not_found.path,
-                urls.coming_soon.path,
-                urls.http204.path,
-                ]} >
-                  <Layout>
-                    <Route exact path={urls.home.path} component={HomePage} />
+                {/* status pages */}
+                <Route exact path={urls.success.path} component={SuccessPage} />
+                <Route exact path={urls.not_found.path} component={NotFoundPage} />
+                <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
+                <Route exact path={urls.http204.path} component={ComingSoonPage} />
+                {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
+              </Layout>
+            </GuestLayout>
+          </Route>
+          <Route component={NotFoundPage} />
+        </Switch>
 
-                    <Route exact path={urls.signin.path} component={SigninPage} />
-                    <Route exact path={urls.signup.path} component={SignupPage} />
-                    <Route exact path={urls.pricing.path} component={PricingPage} />
-                    <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
-                    <Route exact path={urls.reset.path} component={PasswordResetPage} />
-                    <Route exact path={urls.reset_ok.path} component={PasswordResetPageOk} />
-
-                    <Route exact path={urls.help.path} component={ComingSoonPage} />
-                    <Route exact path={urls.contact_us.path} component={ContactusPage} />
-
-                    {/* status pages */}
-                    <Route exact path={urls.success.path} component={SuccessPage} />
-                    <Route exact path={urls.not_found.path} component={NotFoundPage} />
-                    <Route exact path={urls.coming_soon.path} component={ComingSoonPage} />
-                    <Route exact path={urls.http204.path} component={ComingSoonPage} />
-                    {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-                  </Layout>
-                </Route>
-                <Route component={NotFoundPage} />
-              </Switch>
-            </section>
-          </div>
-          {this.state.isFooterVisible && <FooterSection />}
-        </body>
       </Router>
     );
   }
@@ -172,10 +152,9 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loggedIn } = state.authentication
-  const { alert, bgClass, departments } = state;
+  const { departments } = state;
   return {
-    alert, bgClass, departments, loggedIn
+    departments
   };
 }
 
