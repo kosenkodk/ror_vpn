@@ -2,7 +2,7 @@ import { I18n } from 'helpers'
 
 const config = {
   apiUrl: '/api/v1',
-  userUrlAfterSignin: '/user/dashboard/#plans',
+  userUrlAfterSignin: '/user/dashboard',
   urlAfterSignout: '/signin',
   isDebug: true
 };

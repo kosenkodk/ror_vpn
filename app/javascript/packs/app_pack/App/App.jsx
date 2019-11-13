@@ -58,7 +58,7 @@ class App extends React.Component {
       return item.path.startsWith(location.pathname) ? item : ''
     });
     // console.log('current url Name: ', filteredUrls[0].name)
-    this.props.dispatch(pageActions.setTitle(filteredUrls[0].name))
+    this.props.dispatch(pageActions.setTitle(filteredUrls.length > 0 && filteredUrls[0].name || ''))
   }
 
   isFooterVisible() {
