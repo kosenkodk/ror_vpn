@@ -1,31 +1,25 @@
-import React from 'react'
-import { Sidebar } from '../_components'
-import { Alert, Header } from '../_components'
-import { history } from '../_helpers'
-import { urls } from 'config'
-import { connect } from 'react-redux'
-import { FooterSection } from '../_sections'
+import React from 'react';
+import { history } from '../_helpers';
+import { urls } from 'config';
+import { connect } from 'react-redux';
+import { FooterSection } from '../_sections';
+import { Sidebar, Alert, Header } from '../_components';
+import { Header as HeaderAdmin } from '../_components/admin';
 
 const AdminLayout = (props) => (
-  <div className='container-fluid bg1'>
-
-    <div className='container-fluid'>
-      <Header />
-    </div>
-
-    <div className='container-fluid'>
-      <div className='row'>
-        <div className='col'>
-          <Alert />
-        </div>
+  <div id="admin_layout" className='container-fluid'>
+    <div className='row'>
+      <div className='col-md-2 background-black'>
+        <Sidebar />
+      </div>
+      <div className='col-md-10 background-pink'>
+        <HeaderAdmin />
+        <Alert />
+        {props.children}
       </div>
     </div>
-
-    <section className='container-fluid'>
-      {props.children}
-    </section>
   </div>
-)
+);
 
 const GuestLayout = (props) => (
   <body className="d-flex flex-column bg_star">
@@ -55,7 +49,7 @@ const Layout = (props) => (
   <React.Fragment>
     {props.children}
   </React.Fragment>
-)
+);
 
 const LayoutWithSidebar = (props) => (
   <div className="row">
@@ -66,10 +60,10 @@ const LayoutWithSidebar = (props) => (
       {props.children}
     </div>
   </div>
-)
+);
 
 function mapStateToProps(state) {
-  const { loggedIn } = state.authentication
+  const { loggedIn } = state.authentication;
   const { alert, bgClass } = state;
   return {
     alert, bgClass, loggedIn
@@ -77,5 +71,5 @@ function mapStateToProps(state) {
 }
 
 const connectedLayout = connect(mapStateToProps)(GuestLayout);
-export { Layout, LayoutWithSidebar, AdminLayout, connectedLayout as GuestLayout }
+export { Layout, LayoutWithSidebar, AdminLayout, connectedLayout as GuestLayout };
 

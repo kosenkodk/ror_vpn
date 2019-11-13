@@ -65,38 +65,38 @@ class App extends React.Component {
           {/* private user's pages */}
           <Route path={urls.user.path}>
             <AdminLayout>
-              <LayoutWithSidebar>
-                <Switch>
-                  <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
-                  {/* <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} /> */}
-                  <PrivateRouteWithRightSidebar exact path={urls.tickets_new.path} component={TicketsNewPage}
-                    sidebarUrls={[urls.tickets]}
-                  />
-                  <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
-                  {/* <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} /> */}
-                  <PrivateRouteWithRightSidebar exact path={urls.tickets_view.path} component={TicketsViewPage}
-                    sidebarUrls={[urls.tickets, urls.tickets_new]}
-                  />
+              <Switch>
+                <PrivateRoute exact path={urls.tickets.path} component={TicketsPage} />
+                <PrivateRoute exact path={urls.tickets_new.path} component={TicketsNewPage} />
+                {/* <PrivateRouteWithRightSidebar exact path={urls.tickets_new.path} component={TicketsNewPage}
+                  sidebarUrls={[urls.tickets]} /> */}
 
-                  <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
-                    // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])}
-                    sidebarUrls={Object.values(urls.user_dashboard.urls)}
-                  />
-                  <PrivateRouteWithRightSidebar path={urls.user_account.path} component={AccountPage}
-                    sidebarUrls={Object.values(urls.user_account.urls)}
-                  />
-                  <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
-                    sidebarUrls={Object.values(urls.user_payment.urls)}
-                  />
-                  <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
-                    sidebarUrls={Object.values(urls.user_downloads.urls)}
-                  />
-                  <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
+                <PrivateRoute exact path={urls.tickets_edit.path} component={TicketsEditPage} />
+                <PrivateRoute exact path={urls.tickets_view.path} component={TicketsViewPage} />
+                {/* <PrivateRouteWithRightSidebar exact path={urls.tickets_view.path} component={TicketsViewPage}
+                  sidebarUrls={[urls.tickets, urls.tickets_new]} /> */}
 
-                  {/* <PrivateRoute path={urls.user.path} component={ComingSoonPage} /> */}
-                  <PrivateRoute component={NotFoundPage} />
-                </Switch>
-              </LayoutWithSidebar>
+                <PrivateRoute exact path={urls.user_dashboard.path} component={DashboardPage} />
+                {/* <PrivateRouteWithRightSidebar path={urls.user_dashboard.path} component={DashboardPage}
+                  // sidebarUrls={urls.user_dashboard.urls.keys(item).map(index => item[index])} />
+                  sidebarUrls={Object.values(urls.user_dashboard.urls)} /> */}
+
+                <PrivateRoute exact path={urls.user_account.path} component={AccountPage} />
+                {/* <PrivateRouteWithRightSidebar path={urls.user_account.path} component={AccountPage}
+                  sidebarUrls={Object.values(urls.user_account.urls)} /> */}
+
+                <PrivateRoute exact path={urls.user_payment.path} component={ComingSoonPage} />
+                {/* <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
+                  sidebarUrls={Object.values(urls.user_payment.urls)} /> */}
+
+                <PrivateRoute exact path={urls.user_downloads.path} component={ComingSoonPage} />
+                {/* <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
+                  sidebarUrls={Object.values(urls.user_downloads.urls)} /> */}
+
+                <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
+
+                <PrivateRoute component={NotFoundPage} />
+              </Switch>
             </AdminLayout>
           </Route>
           {/* public pages */}
