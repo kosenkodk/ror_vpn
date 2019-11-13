@@ -15,7 +15,9 @@ const AdminLayout = (props) => (
       <div className='col-md-10 background-pink'>
         <HeaderAdmin />
         <Alert />
-        {props.children}
+        <div className="col shadow-vega bg-lite p-4 mb-5"> {/* d-flex justify-content-lg-center"> */}
+          {props.children}
+        </div>
       </div>
     </div>
   </div>
