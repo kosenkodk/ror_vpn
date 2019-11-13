@@ -40,8 +40,7 @@ class AccountPage extends React.Component {
     const { loggingIn, user } = this.props;
     return (
       <div className="container-section">
-        <h2 className="pb-4">Account</h2>
-
+        {/* <h2 className="pb-4">Account</h2> */}
         <div className="mb-5">
           <h4 id="email">Email</h4>
           <div className="row">
