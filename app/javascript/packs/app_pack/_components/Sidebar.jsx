@@ -23,7 +23,7 @@ class Sidebar extends React.Component {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="navbar-collapse collapse justify-content-stretch" id="navbarForAdminLeftSidebar">
-              <ul className="sidebar list-group shadow-vega bg-vega mb-4">
+              <ul className="sidebar list-group bg-vega mb-4">
                 <NavHashLink smooth to={urls.home.path}>
                   <img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img>
                 </NavHashLink>
