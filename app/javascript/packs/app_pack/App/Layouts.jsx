@@ -26,7 +26,7 @@ const AdminLayout = (props) => (
 );
 
 const GuestLayout = (props) => (
-  <body className={`d-flex flex-column bg_stars`}>
+  <div className={`d-flex flex-column bg_stars`} style={{ minHeight: '100vh' }}>
 
     <div className={`container-fluid flex-grow-1 ${props.bgClass.value}`}>
       <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
@@ -46,7 +46,7 @@ const GuestLayout = (props) => (
       </section>
     </div>
     {props.isFooterVisible && <FooterSection />}
-  </body>
+  </div>
 );
 
 const Layout = (props) => (
