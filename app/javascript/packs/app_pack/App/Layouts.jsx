@@ -7,16 +7,18 @@ import { Sidebar, Alert, Header } from '../_components';
 import { Header as HeaderAdmin } from '../_components/admin';
 
 const AdminLayout = (props) => (
-  <div id="admin_layout" className='container-fluid'>
+  <div id="admin_layout" className='container-fluid '>
     <div className='row'>
       <div className='col-md-2 background-black'>
         <Sidebar />
       </div>
-      <div className='col-md-10 background-pink'>
-        <HeaderAdmin />
-        <Alert />
-        <div className="col bg-lite p-4 mb-5">
-          {props.children}
+      <div style={{ minHeight: '100vh' }} className='col-md-10 background-pink d-flex flex-column align-items-stretch'>
+        <div className='flex-grow-1'>
+          <HeaderAdmin />
+          <Alert />
+          <div className="col bg-lite p-4 mb-5">
+            {props.children}
+          </div>
         </div>
       </div>
     </div>

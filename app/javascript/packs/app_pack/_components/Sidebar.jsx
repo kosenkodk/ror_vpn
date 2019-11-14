@@ -16,30 +16,28 @@ class Sidebar extends React.Component {
     let items = this.props.items;
 
     return (
-      <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent justify-content-end">
-        <div className="header row justify-content-end">
-          <div className="col">
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="navbar-collapse collapse justify-content-stretch" id="navbarForAdminLeftSidebar">
-              <ul className="sidebar list-group bg-vega mb-4">
-                <NavHashLink smooth to={urls.home.path}>
-                  <img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img>
-                </NavHashLink>
-                <br />
-                {items ? items.map(item =>
-                  <Link key={item.path} smooth to={item.path} activeClassName=""
-                    location={{ pathname: document.location.pathname + document.location.hash }}
-                  >
-                    <li className="list-group-item">{item.name}</li>
-                  </Link>
-                )
-                  :
-                  <li className="list-group-item">no items</li>
-                }
-              </ul>
-            </div>
+      <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent justify-content-md-center">
+        <div className="header">
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="navbar-collapse collapse justify-content-center" id="navbarForAdminLeftSidebar">
+            <ul className="sidebar list-group">
+              <NavHashLink smooth to={urls.home.path}>
+                <img src={logoImage} className='navbar-brand mr-auto ml-2 d-none d-md-block' alt='Vega VPN'></img>
+              </NavHashLink>
+              <br />
+              {items ? items.map(item =>
+                <Link key={item.path} smooth to={item.path} activeClassName=""
+                  location={{ pathname: document.location.pathname + document.location.hash }}
+                >
+                  <li className="list-group-item">{item.name}</li>
+                </Link>
+              )
+                :
+                <li className="list-group-item">no items</li>
+              }
+            </ul>
           </div>
         </div>
       </nav>
