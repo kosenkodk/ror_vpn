@@ -11,7 +11,7 @@ import { bgClassActions } from '../_actions'
 class SuccessPage extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch(bgClassActions.set('bg_star'));
+    // this.props.dispatch(bgClassActions.set('bg_star'));
   }
 
   render() {

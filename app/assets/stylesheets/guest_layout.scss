@@ -89,6 +89,11 @@ body {
   background: transparent asset-url('star_2');
 }
 
+.bg_stars {
+  background: transparent asset-url('bg_stars');
+  background-size: contain;
+}
+
 /* end background images */
 
 .text-opacity {
