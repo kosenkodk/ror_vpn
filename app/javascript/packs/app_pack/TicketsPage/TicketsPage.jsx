@@ -54,7 +54,7 @@ class TicketsPage extends React.Component {
     const { error, status, items, loading, pages, page, loggedIn } = this.props
     return (
       <div className="row">
-        <div className="ticket_statuses col-12 mb-3 mt-3">
+        <div className="ticket_statuses col-12 mb-3">
           <ul className="nav">
             <li className="nav-item">
               <a onClick={(e) => this.filterByStatus(e, "")} className={`nav-link ${status === '' ? this.props.activeClass : ''}`} > All</a>

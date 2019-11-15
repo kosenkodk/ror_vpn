@@ -19,7 +19,7 @@ const AdminLayout = (props) => (
         <div className='flex-grow-1'>
           <HeaderAdmin />
           <Alert />
-          <div className='col bg-lite pt-2 mb-5' style={{ minHeight: '85vh' }}>
+          <div className='col bg-lite pt-3 mb-5' style={{ minHeight: '85vh' }}>
             {props.children}
           </div>
         </div>
