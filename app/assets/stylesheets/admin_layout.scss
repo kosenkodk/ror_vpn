@@ -32,11 +32,11 @@ $pink: #7D2864;
   }
   
   .form-control {
-    background-color: #EDEEEF;
+    border: 1px solid #EDEEEF;
   }
-  
+
   textarea.form-control, input.form-control {
-    border: 0px solid #ced4da;
+    background-color: #EDEEEF;
   }
 
   .bg-lite {
