@@ -5,7 +5,7 @@ import { pageActions, ticketActions, alertActions } from '../_actions';
 import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
 import { Paginator } from '../_components';
-import { I18n } from 'helpers'l
+import { I18n } from 'helpers';
 
 class TicketsPage extends React.Component {
 
@@ -51,7 +51,7 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { error, status, items, loading, pages, page, loggedIn } = this.props;
+    const { error, status, items, loading, pages, page, loggedIn } = this.props
     return (
       <div className="row">
         <div className="ticket_statuses col-12 mb-3 mt-3">
