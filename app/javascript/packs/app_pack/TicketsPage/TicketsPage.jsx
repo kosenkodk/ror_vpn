@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ticketActions, alertActions } from '../_actions';
+import { pageActions, ticketActions, alertActions } from '../_actions';
 import TicketTableItem from './TicketTableItem';
 import { urls } from 'config';
 import { Paginator } from '../_components';
-import { I18n } from 'helpers'
+import { I18n } from 'helpers'l
 
 class TicketsPage extends React.Component {
 
@@ -25,7 +25,16 @@ class TicketsPage extends React.Component {
     e.preventDefault();
   }
 
+  setTitle() {
+    this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
+  }
+
+  componentWillUpdate() {
+    this.setTitle();
+  }
+
   componentDidMount() {
+    // this.setTitle();
     if (this.props.loggedIn)
       this.props.dispatch(ticketActions.getAll({ page: this.props.page, status: this.props.status }));
     else {
@@ -42,7 +51,7 @@ class TicketsPage extends React.Component {
   }
 
   render() {
-    const { error, status, items, loading, pages, page, loggedIn } = this.props
+    const { error, status, items, loading, pages, page, loggedIn } = this.props;
     return (
       <div className="row">
         <div className="ticket_statuses col-12 mb-3 mt-3">
