@@ -66,7 +66,7 @@ class TicketsPage extends React.Component {
               <a onClick={(e) => this.filterByStatus(e, "closed")} className={`nav-link ${status === 'closed' ? this.props.activeClass : ''}`} > Closed</a>
             </li>
             <li className="nav-item ml-auto">
-              <Link to={urls.tickets_new.path} className="btn btn-outline-primary">New Ticket</Link>
+              <Link to={urls.tickets_new.path} className="btn btn-sm btn-outline-primary">New Ticket</Link>
             </li>
             {/* <li className="nav-item">
               <a className="nav-link disabled" href="#">Disabled</a>
