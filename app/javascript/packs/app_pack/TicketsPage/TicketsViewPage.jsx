@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { ticketActions } from '../_actions'
+import { pageActions, ticketActions } from '../_actions'
 import { urls } from 'config'
 import { I18n } from 'helpers'
 import { ChatRoom, Messages } from '../_components'
@@ -17,30 +17,32 @@ class TicketsViewPage extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(ticketActions.view(this.state.id))
+    this.props.dispatch(pageActions.setTitle(this.getTitle()))
+  }
+
+  componentWillUpdate() {
+    this.props.dispatch(pageActions.setTitle(this.getTitle()))
+  }
+
+  getTitle() {
+    return `Ticket #${this.state.id}`
   }
 
   render() {
     const { item, loggedIn } = this.props
 
     return (
-      <div id="tickets_new" className="row mb-4">
-        <div className="col-12 bg-vega shadow-vega">
+      <div id="tickets_new" className="row mb-4 pb-1">
+        <div className="col-12">
           <div className="container-section">
             <div className="container-fluid">
               <div className="row">
                 <div className="col-xs-6">
-                  <h2 className="mt-2">Ticket #{item && item.id}</h2>
+                  <h5 className="mt-2">{I18n.t('pages.tickets.form.title')}: {item && item.title}</h5>
                 </div>
-                <div className="col-xs-6 ml-auto align-self-center">
-                  <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
+                <div className="col-xs-6 ml-auto">
+                  <Link to={urls.tickets.path} className="btn btn-sm btn-outline-primary">Back</Link>
                 </div>
-              </div>
-            </div>
-
-            <div className="form-group row">
-              <h4 className="col-sm-4">{I18n.t('pages.tickets.form.title')}</h4>
-              <div className="col-sm-8">
-                <h4>{item && item.title}</h4>
               </div>
             </div>
 
