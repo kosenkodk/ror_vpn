@@ -17,6 +17,7 @@ class MessageForm extends React.Component {
           <form onSubmit={(e) => this.props.onMessageFormSubmit(e, this.props)}>
             <input type="hidden" name="message_user_id" value={this.props.user_id} />
             <input type="hidden" name="message_ticket_id" value={this.props.ticket_id} />
+
             {/* <div className="form-group row">
               <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.title')}</label>
               <div className="col-sm-8">
@@ -25,10 +26,11 @@ class MessageForm extends React.Component {
               </div>
             </div>
             */}
-            <div className="form-group row">
-              <label className="col-sm-4 col-form-label">You Answer</label>
 
-              <div className="col-sm-8">
+            <div className="form-group row">
+              <label className="col-sm-12 col-form-label">You Answer</label>
+
+              <div className="col-sm-12">
                 <textarea type="text" name="message_text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="6" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
               </div>
             </div>
@@ -42,20 +44,19 @@ class MessageForm extends React.Component {
             */}
 
             <div className="form-group row">
-              <div className="col-sm-4"></div>
-              <div className="col-sm-4 align-self-center">
-                {this.props.item &&
-                  <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-block btn-outline-danger'
-                    disabled={this.props.loading ? true : false}>
-                    {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                    Close</button>
-                }
-              </div>
-              <div className="col-sm-4 ml-auto">
+              <div className="col-sm-3">
                 <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={this.props.loading ? true : false}>
                   {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                   {' ' + I18n.t('pages.tickets.form.submit')}
                 </button>
+              </div>
+              <div className="col-sm-3 ml-auto">
+                {this.props.item &&
+                  <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-block btn-outline-danger'
+                    disabled={this.props.loading ? true : false}>
+                    {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                    Close my ticket</button>
+                }
               </div>
             </div>
           </form>
