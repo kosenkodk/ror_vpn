@@ -8,10 +8,8 @@ class TicketTableItem extends React.Component {
   render() {
     return (
       <tr>
-        <td>
-          {/* <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={false} {...this.props} /> */}
-          <Link to={`${urls.tickets.path}/${this.props.id}`} className='btn btn-sm btn-outline-info btn-block'>View</Link>
-        </td>
+        <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-black'>{this.props.no}</Link></th>
+
         {/*
         <td>
           <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={true} {...this.props} />
@@ -24,16 +22,18 @@ class TicketTableItem extends React.Component {
         */}
 
         <td>{this.props.department && this.props.department.title}</td>
-        <td>
-          {this.props.status === 'closed' ? <span className="btn btn-sm btn-outline-success btn-block">{this.props.status}</span>
-            : <span className="btn btn-sm btn-outline-secondary btn-block">{this.props.status}</span>
+        <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-black'>{this.props.title}</Link></td>
 
-          }</td>
-        <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.title}</Link></td>
-        {/* <td>{this.props.text}</td> */}
         <td>{this.props.created_at_humanize}</td>
-        <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-white'>{this.props.no}</Link></th>
-
+        <td>
+          {this.props.status === 'closed' ? <span className="text-red">{this.props.status}</span>
+            : <span className="text-blue">{this.props.status}</span>
+          }
+        </td>
+        <td>
+          {/* <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={false} {...this.props} /> */}
+          <Link to={`${urls.tickets.path}/${this.props.id}`} className='text-pink'>view</Link>
+        </td>
       </tr>
     );
   }
