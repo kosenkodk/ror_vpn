@@ -4,8 +4,23 @@ $admin_pink: #6E2251;
 $white: white;
 $black: #0F0216;
 $borderColor: #E1E0E1;
+$red: #9A2121;
+$blue: #2CB0B5;
+$pink: #7D2864;
 
 #admin_layout {
+  .text-black {
+    color: $black;
+  }
+  .text-red {
+    color: $red;
+  }
+  .text-blue {
+    color: $blue;
+  }
+  .text-pink {
+    color: $pink;
+  }
   .background-pink {
     background-color: $admin_pink;
   }
