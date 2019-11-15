@@ -2,6 +2,8 @@
 $admin_border_radius: 15px;
 $admin_pink: #6E2251;
 $white: white;
+$black: #0F0216;
+$borderColor: #E1E0E1;
 
 #admin_layout {
   .background-pink {
@@ -18,5 +20,45 @@ $white: white;
     color: $black;
     background: $white;
     border-radius: $admin_border_radius;
+    // .ticket_statuses {
+    a.nav-link {
+      cursor: pointer;
+      text-decoration: underline dashed;
+      &:hover, &.active {
+        text-decoration: none;
+        font-weight: bolder;
+      }
+    // }
+  }
+
+    // pagination
+    ul.pagination {
+      li.page-item {
+        
+        span.page-link {
+          color: $white !important; 
+        }
+        
+        .page-link {
+          border-color: $borderColor !important;
+          color: $black !important;
+          cursor: pointer;
+        }
+
+        &:hover, &.active {
+          background: $pink_gradient;
+          color: $white !important;
+          &:hover {
+            color: $white !important;
+          }
+        }
+
+        &.disabled {
+          opacity: $opacity;
+        }
+        
+      }
+    }
+    
   }
 }
