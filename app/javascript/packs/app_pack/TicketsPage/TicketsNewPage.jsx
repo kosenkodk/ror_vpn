@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { ticketActions } from '../_actions'
+import { pageActions, ticketActions } from '../_actions'
 import { TicketForm } from './TicketForm'
 import { urls } from 'config'
 import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
+import { I18n } from 'helpers'
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class TicketsNewPage extends React.Component {
     }
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onFileChange = this.onFileChange.bind(this)
+  }
+
+  componentWillUpdate() {
+    this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 
   onFormSubmit(e) {
@@ -49,20 +54,25 @@ class TicketsNewPage extends React.Component {
     const { items } = this.props
     return (
       <div id="tickets_new" className="row mb-4 pb-1">
-        <div className="col-12 bg-vega shadow-vega">
+        <div className="col-12">
           <div className="container-section">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-xs-6 mr-auto">
-                  <h2 className="mt-2">New Ticket</h2>
+                <div className="col-xs-6">
+                  <h5 className="mt-2">New Ticket</h5>
                 </div>
-                <div className="col-xs-6 ml-auto align-self-center">
-                  <Link to={urls.tickets.path} className="btn btn-outline-success">Back</Link>
+                <div className="col-xs-6 ml-auto">
+                  {/* <Link to={urls.tickets.path} className="btn btn-outline-default"><h5>Back</h5></Link> */}
                 </div>
               </div>
             </div>
-            <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
-            {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
+            <div className="row">
+              <div className="col-sm-6">
+
+                <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
+                {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
+              </div>
+            </div>
           </div>
         </div>
       </div>
