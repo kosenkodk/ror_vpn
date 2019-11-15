@@ -66,13 +66,12 @@ class TicketsNewPage extends React.Component {
                   <h5 className="mt-2">New Ticket</h5>
                 </div>
                 <div className="col-xs-6 ml-auto">
-                  {/* <Link to={urls.tickets.path} className="btn btn-outline-default"><h5>Back</h5></Link> */}
+                  <Link to={urls.tickets.path} className="btn btn-sm btn-outline-primary">Back</Link>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-6">
-
+              <div className="col-md-6 col-lg-5">
                 <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
                 {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
               </div>
