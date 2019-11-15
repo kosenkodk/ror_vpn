@@ -22,6 +22,10 @@ class TicketsNewPage extends React.Component {
     this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 
+  componentDidMount() {
+    this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
+  }
+
   onFormSubmit(e) {
     let jsonData = FormDataAsJsonFromEvent(e)
     // prepare attachment for json api
