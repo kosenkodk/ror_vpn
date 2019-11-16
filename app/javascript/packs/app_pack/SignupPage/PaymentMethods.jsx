@@ -51,7 +51,7 @@ class PaymentMethods extends React.Component {
         </ul>
 
         <div className="container payment_methods border_1_pink">
-          <div className="row shadow-vega pb-5">
+          <div className="row shadow-vega pb-5 bg-vega">
             <div className="col-lg-8 offset-lg-2 text-left">
               <div className="tab-content">
                 {this.state.items.map((item, index) => (
