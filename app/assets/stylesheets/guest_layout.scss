@@ -445,7 +445,11 @@ body {
 }
 
 .nav {
-  border: unset !important;
+  border: unset !important;  
+}
+
+.navbar {
+  background-color: $bg_color_black;
 }
 
 .shadow-vega {
