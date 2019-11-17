@@ -84,11 +84,11 @@ body {
   background-size: cover;
 }
 
+
 .bg_astronaut {
-  @media (min-width: $xs-width) {
+  background: unset;
+  @media (min-width: $md-width) {
     background: unset;
-  }
-  @media (min-width: $sm-width) {
     background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
   }
 }
