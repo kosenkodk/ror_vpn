@@ -15,7 +15,7 @@ class PricingPage extends React.Component {
                 {I18n.t("pages.pricing.title")}
               </h1>
             </div>
-            <div className="offset-2 col-8 pt-4 mb-4 border_1_pink text-center shadow-vega bg-color-black">
+            <div className="offset-md-2 col-md-8 pt-4 mb-4 border_1_pink text-center shadow-vega bg-color-black">
               <PricingTab />
             </div>
 
