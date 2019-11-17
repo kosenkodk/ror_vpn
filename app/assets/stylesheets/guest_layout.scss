@@ -13,10 +13,11 @@ html, body {
 }
 
 #app_pack {
-  margin-top: $header_navbar_height;
 }
 
-// #guest {
+#guest {
+  margin-top: $header_navbar_height;
+}
 
 body {
   color: $white;
