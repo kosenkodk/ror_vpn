@@ -39,7 +39,7 @@ class PaymentMethods extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <ul className="payment_methods card-deck mb-3 text-dark text-center nav nav-tabs" id="pmTab" role="tablist">
+        <ul className="payment_methods row card-deck mb-3 text-dark text-center nav nav-tabs" id="pmTab" role="tablist">
           {this.state.items.map((item, index) => (
             <li key={`pm-key${index}`} className="nav-item col-sm-6 col-md-4">
               <a className="nav-link bg-transparent p-0" id={`pm${index}-tab`} data-toggle="tab" href={`#pm${index}`}
