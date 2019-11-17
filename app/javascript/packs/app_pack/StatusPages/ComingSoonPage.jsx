@@ -32,7 +32,7 @@ class ComingSoonPage extends React.Component {
               {/* <img src={spaceshipImage} className="img-fluid" /> */}
             </div>
             <div className="col-md-12">
-              <img src={marsWithSpaceshipImage} className="img-fluid" alt="" />
+              {/* <img src={marsWithSpaceshipImage} className="img-fluid" alt="" /> */}
             </div>
           </div>
         </div>
