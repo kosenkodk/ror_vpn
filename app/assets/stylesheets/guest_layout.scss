@@ -51,7 +51,6 @@ body {
   background: transparent asset-url('bg1.svg') no-repeat top;
   // background-attachment: fixed;
   background-size: 100% auto !important;
-
   // background-attachment: contain;
   // max-height: 100vh;
 
@@ -77,12 +76,7 @@ body {
 
 .bg2 {
   background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
-  background-size: cover;
-}
-
-.bg2_contain {
-  background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 .bg2_mars {
