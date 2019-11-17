@@ -49,18 +49,19 @@ body {
 
 .bg1 {
   background: transparent asset-url('bg1.svg') no-repeat top;
-  background-attachment: fixed;
+  // background-attachment: fixed;
+  background-size: 100% auto !important;
 
   // background-attachment: contain;
   // max-height: 100vh;
 
   @media (min-width: 0) and (max-width: $xl-width) {
-    background-size: contain;
+    // background-size: contain;
   }
   @media (min-width: $xl-width) {
   }
   @media (min-width: $fullhd-width) {
-    background-size: cover;
+    // background-size: cover;
   }
 }
 
@@ -281,7 +282,7 @@ body {
   @media (hover: none) and (pointer: coarse) {
     /* Smartphones and touchscreens */
     &:hover {
-      
+
     }
   }
 
