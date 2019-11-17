@@ -85,7 +85,12 @@ body {
 }
 
 .bg_astronaut {
-  background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
+  @media (min-width: $xs-width) {
+    background: unset;
+  }
+  @media (min-width: $sm-width) {
+    background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
+  }
 }
 
 .bg_star {
