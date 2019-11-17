@@ -272,10 +272,30 @@ body {
 .btn-outline-pink {
   background: transparent;
   color: $white !important;
-  &.active, &:hover {
+  &.active {
     background: $pink_button_gradient !important;
     color: $white;
   }
+
+   
+@media (hover: none) and (pointer: coarse) {
+  /* Smartphones and touchscreens */
+
+  &:hover {
+    
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Desktops with mouse */
+  &:hover {
+    // @extend .btn-outline-pink.active;
+    background: $pink_button_gradient !important;
+    color: $white;
+  }
+}
+
+
   &.active:hover {
     opacity: $opacity;
   }
