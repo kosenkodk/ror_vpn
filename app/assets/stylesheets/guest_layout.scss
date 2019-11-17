@@ -277,24 +277,20 @@ body {
     color: $white;
   }
 
-   
-@media (hover: none) and (pointer: coarse) {
-  /* Smartphones and touchscreens */
-
-  &:hover {
-    
+  @media (hover: none) and (pointer: coarse) {
+    /* Smartphones and touchscreens */
+    &:hover {
+      
+    }
   }
-}
 
-@media (hover: hover) and (pointer: fine) {
-  /* Desktops with mouse */
-  &:hover {
-    // @extend .btn-outline-pink.active;
-    background: $pink_button_gradient !important;
-    color: $white;
+  @media (hover: hover) and (pointer: fine) {
+    /* Desktops with mouse */
+    &:hover {
+      background: $pink_button_gradient !important;
+      color: $white;
+    }
   }
-}
-
 
   &.active:hover {
     opacity: $opacity;
