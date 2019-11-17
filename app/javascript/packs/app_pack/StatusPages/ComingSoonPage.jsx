@@ -12,7 +12,7 @@ class ComingSoonPage extends React.Component {
         <div className="featurette text-center">
           <div className="row">
             <div className="col-md-4">
-              <img src={astronautImage} className="img-fluid" alt="" />
+              {/* <img src={astronautImage} className="img-fluid" alt="" /> */}
             </div>
             <div className="col-md-4">
               <h1 className="featurette-heading">
