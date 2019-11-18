@@ -49,10 +49,7 @@ body {
 
 .bg1 {
   background: transparent asset-url('bg1.svg') no-repeat top;
-  // background-attachment: fixed;
-  background-size: 100% auto !important;
-  // background-attachment: contain;
-  // max-height: 100vh;
+  background-size: 100% auto;
 
   @media (min-width: 0) and (max-width: $xl-width) {
     // background-size: contain;
@@ -75,9 +72,8 @@ body {
 }
 
 .bg2 {
-  // background: $bg_color_black asset-url('bg2_with_vega') no-repeat bottom;
   background: $bg_color_black asset-url('bg2') no-repeat bottom;
-  background-repeat: repeat-x;
+  // background-repeat: repeat-x;
 
   @media (min-width: $xs-width) {
     background-size: cover;  
