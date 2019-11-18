@@ -1,5 +1,7 @@
 import React from 'react'
 import { I18n } from 'helpers'
+import Vega from 'images/vega_vertical.png'
+import VegaForExtraSmallScreens from 'images/vega_horizontal.png'
 
 import Apple from 'images/downloads/Apple'
 import Android from 'images/downloads/Android'
@@ -12,9 +14,11 @@ class AppDownloads extends React.Component {
       <div id="downloads" className="card mb-3">
         <div className="row no-gutters">
           <div className="col-md-6">
+            <img src={VegaForExtraSmallScreens} className="ml-auto img-fluid d-block d-md-none" alt="" />
+            <img src={Vega} className="ml-auto img-fluid d-none d-md-block" alt="" />
             {/* <%#=image_tag 'downloads', { class:'card-img', alt:''} #%> */}
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 d-flex align-content-center flex-wrap">
             <div className="card-body">
               <p className="card-text">
                 <img src={Apple} className="mr-3 img-fluid" alt="" />
