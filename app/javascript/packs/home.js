@@ -48,4 +48,9 @@ $(jQuery).on('ready turbolinks:load', function () {
   // $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
   // $('.footer').css("z-index", parseInt($('.modal-backdrop').css('z-index')) - 1);
   // });
+
+  // close navbar after click on nav link
+  $('.navbar-nav>li>a').on('click', function () {
+    $('.navbar-collapse').collapse('hide');
+  });
 });
