@@ -15,8 +15,8 @@ class FooterAccordion extends React.Component {
                     {I18n.t('footer.product.title')}
                   </a>
                 </div>
-                <div id="collapseProduct" className="card-body collapse" data-parent="#accordion">
-                  <ul className="list-unstyled text-small">
+                <div id="collapseProduct" className="collapse" data-parent="#accordion">
+                  <ul className="list-unstyled p-3">
                     <li><a className="text-light" href="/coming_soon">{I18n.t('footer.product.how_it_works')}</a></li>
                     <li><a className="text-light" href="/coming_soon">{I18n.t('footer.product.why')} {I18n.t('vegaVPN')}
                       {I18n.t('footer.product.vpn')}</a>
@@ -45,8 +45,8 @@ class FooterAccordion extends React.Component {
                     {I18n.t('footer.company.title')}
                   </a>
                 </div>
-                <div id="collapseCompany" className="card-body collapse" data-parent="#accordion">
-                  <ul className="list-unstyled text-small">
+                <div id="collapseCompany" className="collapse" data-parent="#accordion">
+                  <ul className="list-unstyled p-3">
                     <li><a className="text-light" href="/coming_soon">{I18n.t('footer.company.about_us')}</a></li>
                     <li><a className="text-light" href="/coming_soon">{I18n.t('footer.company.customer_reviews')}</a>
                     </li>
@@ -64,8 +64,8 @@ class FooterAccordion extends React.Component {
                     {I18n.t('footer.security.title')}
                   </a>
                 </div>
-                <div id="collapseSecurity" className="card-body collapse" data-parent="#accordion">
-                  <ul className="list-unstyled text-small">
+                <div id="collapseSecurity" className="collapse" data-parent="#accordion">
+                  <ul className="list-unstyled p-3">
                     <li><a className="text-light" href="/coming_soon">{I18n.t('footer.security.terms_of_service')}</a>
                     </li>
                     <li><a className="text-light" href="/coming_soon">{I18n.t('footer.security.privacy_policy')}
@@ -87,8 +87,8 @@ class FooterAccordion extends React.Component {
                   {I18n.t('footer.download.title')}
                 </a>
               </div>
-              <div id="collapseDownload" className="card-body collapse" data-parent="#accordion">
-                <ul className="list-unstyled text-small">
+              <div id="collapseDownload" className="collapse" data-parent="#accordion">
+                <ul className="list-unstyled p-3">
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.download.windows_app')}</a></li>
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.download.macos_app')}</a></li>
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.download.ios_app')}</a></li>
@@ -104,8 +104,8 @@ class FooterAccordion extends React.Component {
                   {I18n.t('footer.contact.title')}
                 </a>
               </div>
-              <div id="collapseContact" className="card-body collapse" data-parent="#accordion">
-                <ul className="list-unstyled text-small">
+              <div id="collapseContact" className="collapse" data-parent="#accordion">
+                <ul className="list-unstyled p-3">
                   <li><a className="text-light" href="/contact_us">{I18n.t('footer.contact.contact_us')}</a></li>
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.contact.twitter')}</a></li>
                 </ul>
@@ -116,8 +116,8 @@ class FooterAccordion extends React.Component {
                   {I18n.t('footer.support.title')}
                 </a>
               </div>
-              <div id="collapseSupport" className="card-body collapse" data-parent="#accordion">
-                <ul className="list-unstyled text-small">
+              <div id="collapseSupport" className="collapse" data-parent="#accordion">
+                <ul className="list-unstyled p-3">
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.support.help_center')}</a></li>
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.support.setup_guides')}</a></li>
                   <li><a className="text-light" href="/coming_soon">{I18n.t('footer.support.privacy_guides')}</a></li>
