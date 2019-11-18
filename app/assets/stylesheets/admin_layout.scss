@@ -1,4 +1,4 @@
-
+$admin_layout_max_width: 1400px;
 $admin_border_radius: 15px;
 $admin_pink: #6E2251;
 $white: white;
@@ -9,6 +9,8 @@ $blue: #2CB0B5;
 $pink: #7D2864;
 
 #admin_layout {
+  max-width: $admin_layout_max_width;
+
   .text-black {
     color: $black;
   }
