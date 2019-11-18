@@ -73,25 +73,22 @@ body {
 
 .bg2 {
   background: $bg_color_black asset-url('bg2') no-repeat bottom;
-  // background-repeat: repeat-x;
 
   @media (min-width: $xs-width) {
     background-size: cover;  
   }
   @media (min-width: $sm-width) {
-    // background-size: 100vw auto;
+    background-size: auto 100vh;
   }
   @media  (min-width: $fullhd-width) {
-    background-size: 100% 100%;
+    background-size: 100vw 100vh;
   }
-  
 }
 
 .bg2_mars {
   background: $bg_color_black asset-url('bg2_with_mars') no-repeat bottom;
   background-size: cover;
 }
-
 
 .bg_astronaut {
   background: unset;
