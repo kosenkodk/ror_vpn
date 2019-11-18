@@ -8,7 +8,7 @@ import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 class ComingSoonPage extends React.Component {
   render() {
     return (
-      <div className="container status_page ">
+      <div className="container status_page mt-5 mb-5">
         <div className="featurette text-center">
           <div className="row">
             <div className="col-md-4">
@@ -18,7 +18,7 @@ class ComingSoonPage extends React.Component {
               <h1 className="featurette-heading">
                 {I18n.t('pages.coming_soon.title')}
               </h1>
-              <br /><br /><br />
+              {/* <br /><br /><br /> */}
               <h2 className="featurette-heading">
                 {I18n.t('pages.coming_soon.subtitle')}
               </h2>
