@@ -57,10 +57,13 @@ class App extends React.Component {
       dispatch(bgClassActions.set('bg1', 'bg_star'))
       // dispatch(bgClassActions.set('bg1', ''))
     }
-    // set second background image
+
+    // set second background image (with stars)
     if (
       location.pathname.startsWith(this.pathWithoutParams(urls.reset.path)) ||
-      [urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
+      [
+        urls.home.path,
+        urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
     ) {
       dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
     }
