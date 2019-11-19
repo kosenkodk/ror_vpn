@@ -73,13 +73,12 @@ body {
 
 .bg2 {
   background: $bg_color_black asset-url('bg2') no-repeat bottom;
-  max-height: 760px;
   @media (min-width: $xs-width) {
     background-size: cover;  
   }
   @media (min-width: $sm-width) {
     background-size: 100% 100%;
-    // background-size: auto 100%;//100vh;
+    // background-size: auto 100%;
   }
   @media  (min-width: $fullhd-width) {
     // background-size: 100vw 100vh;
@@ -569,7 +568,6 @@ body {
 
 #downloads {
   min-height: 100vh;//950px;
-  // padding-top: 115px;
   &.card {
     background-color: transparent !important;
   }
