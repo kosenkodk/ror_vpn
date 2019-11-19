@@ -11,9 +11,9 @@ import Linux from 'images/downloads/Linux'
 class AppDownloads extends React.Component {
   render() {
     return (
-      <div id="downloads" className="card mb-3">
-        <div className="row no-gutters">
-          <div className="col-md-6">
+      <div id="downloads" className="card">
+        <div id="downloads_section" className="row no-gutters">
+          <div className="col-md-6 d-flex align-content-center flex-wrap">
             <img src={VegaForExtraSmallScreens} className="ml-auto img-fluid d-block d-md-none" alt="" />
             <img src={Vega} className="ml-auto img-fluid d-none d-md-block" alt="" />
             {/* <%#=image_tag 'downloads', { class:'card-img', alt:''} #%> */}
