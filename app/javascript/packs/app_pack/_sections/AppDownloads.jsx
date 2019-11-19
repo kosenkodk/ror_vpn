@@ -20,7 +20,7 @@ class AppDownloads extends React.Component {
           </div>
           <div className="col-md-6 d-flex align-content-center flex-wrap">
             <div className="card-body">
-              <p className="card-text">
+              <p className="card-text pb-0 mb-0">
                 <img src={Apple} className="mr-3 img-fluid" alt="" />
                 <img src={Android} className="mr-3 img-fluid" alt="" />
                 <img src={WP} className="mr-3 img-fluid" alt="" />
