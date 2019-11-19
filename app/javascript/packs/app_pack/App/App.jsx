@@ -58,7 +58,10 @@ class App extends React.Component {
       // dispatch(bgClassActions.set('bg1', ''))
     }
     // set second background image
-    if ([urls.signin.path, urls.forgot.path, urls.reset.path, urls.reset_ok.path].includes(location.pathname)) {
+    if (
+      location.pathname.startsWith(this.pathWithoutParams(urls.reset.path)) ||
+      [urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
+    ) {
       dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
     }
   }
@@ -70,9 +73,16 @@ class App extends React.Component {
     this.props.dispatch(pageActions.setTitle(pageTitle))
   }
 
+  pathWithoutParams(fullPath) {
+    // password_resets/:token
+    // return /password_resets
+    const path = '/' + fullPath.split('/')[1]
+    return path
+  }
+
   isFooterVisible() {
-    let currentUrl = history.location.pathname
-    let resetUrl = '/' + urls.reset.path.split('/')[1]
+    const currentUrl = history.location.pathname
+    const resetUrl = this.pathWithoutParams(urls.reset.path)
     this.setState({ isFooterVisible: true })
     if (currentUrl.startsWith(resetUrl) ||
       [urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(currentUrl))
