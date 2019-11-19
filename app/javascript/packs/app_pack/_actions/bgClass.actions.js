@@ -5,8 +5,10 @@ export const bgClassActions = {
   clear
 };
 
-function set(value) {
-  return { type: bgClassConstants.SET, value };
+function set(key, value) {
+  return {
+    type: bgClassConstants.SET, item: { key: key, value: value }
+  };
 }
 function clear() {
   return { type: bgClassConstants.CLEAR };

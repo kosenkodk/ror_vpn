@@ -4,11 +4,11 @@ export function bgClass(state = {}, action) {
   switch (action.type) {
     case bgClassConstants.SET:
       return {
-        value: action.value
+        ...state,
+        [action.item.key]: action.item
       };
     case bgClassConstants.CLEAR:
       return {
-        value: ''
       };
     default:
       return state
