@@ -17,7 +17,7 @@ class Features extends React.Component {
   render() {
     const { features } = this.state;
     return (
-      <div id="features" className="features row">
+      <div id="features" className="features row bg-vega">
         {
           features.map(item => (
             <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
