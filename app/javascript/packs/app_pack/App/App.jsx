@@ -43,12 +43,24 @@ class App extends React.Component {
 
       this.setPageTitle(location)
 
-      // set background image
-      dispatch(bgClassActions.set('bg1'))
-      if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname))
-        dispatch(bgClassActions.set('bg_star'))
+      this.setBackgroundImages(location)
       this.isFooterVisible()
     });
+  }
+
+  setBackgroundImages() {
+    // set background image
+    const { dispatch } = this.props
+    dispatch(bgClassActions.set('bg1', 'bg1'))
+    dispatch(bgClassActions.set('bg_stars', ''))
+    if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname)) {
+      dispatch(bgClassActions.set('bg1', 'bg_star'))
+      // dispatch(bgClassActions.set('bg1', ''))
+    }
+    // set second background image
+    if ([urls.signin.path, urls.forgot.path, urls.reset.path, urls.reset_ok.path].includes(location.pathname)) {
+      dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
+    }
   }
 
   setPageTitle(location) {
@@ -152,9 +164,10 @@ class App extends React.Component {
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
     this.props.dispatch(departmentActions.getAll())
-    this.props.dispatch(bgClassActions.set('bg1'))
+    this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
     this.isFooterVisible()
     this.setPageTitle(history.location)
+    this.setBackgroundImages(history.location)
   }
 }
 

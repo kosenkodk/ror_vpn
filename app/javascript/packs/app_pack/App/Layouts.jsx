@@ -29,9 +29,9 @@ const AdminLayout = (props) => (
 );
 
 const GuestLayout = (props) => (
-  <div id='guest' className={` d-flex flex-column bg_stars`} style={{ minHeight: '100vh' }}>
+  <div id='guest' className={` d-flex flex-column ${props.bgClass.bg_stars && props.bgClass.bg_stars.value}`} style={{ minHeight: '100vh' }}>
 
-    <div className={`container-fluid flex-grow-1 ${props.bgClass.value}`}>
+    <div className={`container-fluid flex-grow-1 ${props.bgClass.bg1 && props.bgClass.bg1.value}`}>
       <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
         <Header />
       </div>
