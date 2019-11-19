@@ -6,7 +6,7 @@ import ReviewOwner from './ReviewOwner'
 class Reviews extends React.Component {
   render() {
     return (
-      <div className="row reviews card shadow-vega mr-0 ml-0 mt-4 mb-4">
+      <div className="row reviews card shadow-vega">
         <div className="col-md-10 offset-md-1 text-center">
           <div className="card-header">
             Why the Media loves VPN
