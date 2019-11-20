@@ -3,7 +3,7 @@ import React from 'react'
 class SecurityAndTrust extends React.Component {
   render() {
     return (
-      <div id="security_and_trust" className="card">
+      <div id="security_and_trust" className="row card">
         <div className="row no-gutters">
           <div className="col-md-4 offset-md-4">
             <div className="card-body">
@@ -21,7 +21,7 @@ class SecurityAndTrust extends React.Component {
               <h5 className="card-title">Private</h5>
               <p className="card-text">Keep your real location and Unique IP address hidden, prevent Anyone from viewing your
                 Internet activity.
-        </p>
+              </p>
               {/* <!-- <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> --> */}
             </div>
           </div>
