@@ -11,7 +11,7 @@ import ic_telegram from 'images/icons/ic_telegram.png'
 class FooterSocialLinks extends React.Component {
   render() {
     return (
-      <div className="row">
+      <div id="social_links" className="social_links row">
         <div className="col-12 text-center">
           <HashLink to="#"><img src={ic_facebook} className="mb-2" alt="Icon Facebook" /></HashLink>
           <HashLink to="#"><img src={ic_twitter} className="mb-2" alt="Icon Twitter" /></HashLink>
