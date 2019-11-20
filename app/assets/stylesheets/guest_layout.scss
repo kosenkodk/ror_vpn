@@ -72,7 +72,7 @@ body {
 }
 
 .bg2 {
-  background: $bg_color_black asset-url('bg2_x1') no-repeat bottom;
+  background: $bg_color_black asset-url('bg2_x1.png') no-repeat bottom;
   @media (min-width: $xs-width) {
     background-size: cover;
   }
@@ -607,7 +607,7 @@ p {
     background-image: unset;
   }
   @media (min-width: $md-width) {
-    background: $bg_color_black asset-url('bg_security_and_trust') left no-repeat;
+    background: $bg_color_black asset-url('bg_security_and_trust3.png') left no-repeat;
   }
 
   h1 {
