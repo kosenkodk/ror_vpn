@@ -3,15 +3,15 @@ import React from 'react'
 class SecurityAndTrust extends React.Component {
   render() {
     return (
-      <div id="security_and_trust" className="row card">
-        <div className="row no-gutters">
+      <div id="security_and_trust" className="row card d-flex flex-column">
+        <div className="row no-gutters d-flex align-items-center">
           <div className="col-md-4 offset-md-4">
             <div className="card-body">
               <h1 className="card-title">Built for security and trust</h1>
             </div>
           </div>
-        </div>
-        <div className="row no-gutters">
+          <div className="col-md-4">
+          </div>
           <div className="col-md-4">
             <div className="card-body">
             </div>
@@ -30,7 +30,7 @@ class SecurityAndTrust extends React.Component {
               <h5 className="card-title">Secure</h5>
               <p className="card-text">Use WiFi Hotspots Safe From cyber criminals, block incoming threats and DDoS Attacks With
                 Our Firewall.
-        </p>
+            </p>
             </div>
           </div>
         </div>
