@@ -3,7 +3,7 @@ import { NavHashLink as Link } from 'react-router-hash-link';
 import { urls } from 'config';
 import { history } from '../_helpers';
 import PropTypes from 'prop-types';
-import logoImage from 'images/logo.png';
+import logoImage from 'images/logo.svg';
 import { NavHashLink } from 'react-router-hash-link';
 
 class Sidebar extends React.Component {

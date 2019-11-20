@@ -9,9 +9,9 @@ import SignupForm from './SignupForm';
 import Plans from './Plans';
 import PaymentMethods from './PaymentMethods';
 
-import imgStep1 from 'images/signup/step1';
-import imgStep2 from 'images/signup/step2';
-import imgStep3 from 'images/signup/step3';
+import imgStep1 from 'images/signup/step1.svg';
+import imgStep2 from 'images/signup/step2.svg';
+import imgStep3 from 'images/signup/step3.svg';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 
