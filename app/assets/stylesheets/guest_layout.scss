@@ -568,7 +568,12 @@ body {
 }
 
 #downloads {
-  min-height: 100vh;//950px;
+  @media (min-width: $xs-width) {
+    min-height: 100vh;//950px;
+  }
+  @media (min-width: $k4-width) {
+    min-height: 40vh;
+  }
   &.card {
     background-color: transparent !important;
   }
