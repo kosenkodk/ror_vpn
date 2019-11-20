@@ -10,11 +10,9 @@ class SecurityAndTrust extends React.Component {
               <h1 className="card-title">Built for security and trust</h1>
             </div>
           </div>
+          <div className="col-md-4"></div>
           <div className="col-md-4">
-          </div>
-          <div className="col-md-4">
-            <div className="card-body">
-            </div>
+            <div className="card-body d-none d-md-block"></div>
           </div>
           <div className="col-md-4">
             <div className="card-body">

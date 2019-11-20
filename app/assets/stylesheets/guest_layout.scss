@@ -21,7 +21,7 @@ html, body {
 
 body {
   color: $white;
-  background-color: $bg_color_black;
+  // background-color: $bg_color_black;
 }
 
 .btn {
@@ -580,19 +580,40 @@ body {
     }
   }
   h5 {
-  font-size:2.5rem;
+    font-size:2.5rem;
   }
 }
 
 #security_and_trust {
-  background: $bg_color_black asset-url('bg_security_and_trust') left no-repeat;
   background-size: contain;
   margin-bottom: $home_padding_bottom;
+  // min-height: 450px;
+
+  @media (min-width: $xs-width) {
+    background-image: unset;
+  }
+  @media (min-width: $md-width) {
+    background: $bg_color_black asset-url('bg_security_and_trust') left no-repeat;
+  }
 
   h1 {
     text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
     letter-spacing: 0.04em;
-    margin-top: 7rem;
+    @media (min-width: $xs-width) {
+      margin-top: 0rem;
+    }
+    @media (min-width: $sm-width) {
+      margin-top: 2rem;
+    }
+    @media (min-width: $md-width) {
+      margin-top: 4rem;
+    }
+    @media (min-width: $lg-width) {
+      margin-top: 6rem;
+    }
+    @media (min-width: $xl-width) {
+      margin-top: 7rem;
+    }
     padding-bottom: 0rem;
     margin-bottom: 0rem;
   }
