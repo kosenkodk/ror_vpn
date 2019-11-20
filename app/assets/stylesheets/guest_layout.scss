@@ -584,6 +584,12 @@ body {
   }
 }
 
+#product_with_pricing {
+  h1 {
+    letter-spacing: 0.15rem;
+  }
+}
+
 #security_and_trust {
   background-size: contain;
   margin-bottom: $home_padding_bottom;
