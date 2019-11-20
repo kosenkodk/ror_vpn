@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link';
 
-import ic_facebook from 'images/icons/ic_facebook.png'
-import ic_twitter from 'images/icons/ic_twitter.png'
-import ic_instagram from 'images/icons/ic_instagram.png'
-import ic_pinterest from 'images/icons/ic_pinterest.png'
-import ic_telegram from 'images/icons/ic_telegram.png'
+import ic_facebook from 'images/icons/ic_facebook.svg'
+import ic_twitter from 'images/icons/ic_twitter.svg'
+import ic_instagram from 'images/icons/ic_instagram.svg'
+import ic_pinterest from 'images/icons/ic_pinterest.svg'
+import ic_telegram from 'images/icons/ic_telegram.svg'
 
 class FooterSocialLinks extends React.Component {
   render() {

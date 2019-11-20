@@ -351,7 +351,7 @@ body {
         text-decoration: none;
       }
     }
-  } 
+  }
   a {
     color: $pink3;
     font-size: 1.15rem;
@@ -580,7 +580,7 @@ body {
     }
   }
   h5 {
-    font-size:2.5rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -588,6 +588,9 @@ body {
   h1 {
     letter-spacing: 0.15rem;
   }
+}
+p {
+  letter-spacing: 0.08rem;
 }
 
 #security_and_trust {
