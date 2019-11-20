@@ -384,7 +384,8 @@ body {
 }
 
 .features {
-  font-size:1rem;
+  font-size: 1rem;
+  margin-bottom: $home_padding_bottom;
   p {
     &.card-text {
       font-weight: 100;
@@ -413,8 +414,8 @@ body {
 }
 
 .reviews {
-  margin-top: 5rem;
-  margin-bottom: 10rem;
+  margin-top: $home_padding_bottom;
+  margin-bottom: $home_padding_bottom;
 
   .card-header {
     opacity: $opacity;
@@ -586,6 +587,8 @@ body {
 #security_and_trust {
   background: $bg_color_black asset-url('bg_security_and_trust') left no-repeat;
   background-size: contain;
+  margin-bottom: $home_padding_bottom;
+
   h1 {
     text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
     letter-spacing: 0.04em;
@@ -602,7 +605,7 @@ body {
   background-color: $footer_bg_color;
   
   .accordion .card-header:after {
-    font-family: 'FontAwesome';
+    font-family: 'Montserrat';
     content: "\f068";
     float: right;
   }

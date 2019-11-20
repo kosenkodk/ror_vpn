@@ -3,7 +3,7 @@ import React from 'react'
 class SecurityAndTrust extends React.Component {
   render() {
     return (
-      <div id="security_and_trust" className="card mb-3">
+      <div id="security_and_trust" className="card">
         <div className="row no-gutters">
           <div className="col-md-4 offset-md-4">
             <div className="card-body">
