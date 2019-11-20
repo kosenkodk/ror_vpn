@@ -603,21 +603,33 @@ body {
 
 .footer {
   background-color: $footer_bg_color;
-  
+  margin-bottom: $home_padding_bottom;
+
   .accordion .card-header:after {
-    font-family: 'Montserrat';
+    font-family: 'FontAwesome';
     content: "\f068";
     float: right;
   }
   
   .accordion .card-header.collapsed:after {
     /* symbol for "collapsed" panels */
+    font-family: 'FontAwesome';
     content: "\f067";
+  }
+
+  font-family: "Montserrat";
+  h5 {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
   }
 }
 
-footer {
-  font-family: "Montserrat";
+.social_links {
+  margin: 2rem auto;
+  a {
+    padding-left: 1rem;
+  }
+  opacity: 0.5;
 }
 
 .sidebar {
