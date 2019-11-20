@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom'
 class ProductWithPricingBtn extends React.Component {
   render() {
     return (
-      <div className="row">
+      <div className="row d-flex align-items-center mt-5">
         <div className="col-xs-6 col-xs-offset-3 col-sm-5 col-md-5 d-block d-md-none">
           <img src={PhoneImage} className="img-fluid" alt="" />
         </div>
-        <div className="col-xs-12 col-sm-7 col-md-6">
+        <div className="col-xs-12 col-sm-7 col-md-6 align-items-start">
           <h1 className="featurette-heading">
             Take control of who has access to your private data
-    </h1>
+          </h1>
           <p className="lead">{I18n.t('vegaVPN')} encrypts your internet activity, shielding you from hackers, ISP's and everyone
             else who has
       no business recording what you haven't chosen to share.</p>
