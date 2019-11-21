@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Feature from './Feature'
 import { withRouter } from "react-router-dom";
+// import imgFeaturesSrc from 'images/compare/features.png';
 
 class Features extends React.Component {
 
@@ -18,6 +19,7 @@ class Features extends React.Component {
     const { features } = this.state;
     return (
       <div id="features" className="features row bg-vega">
+        {/* <div className="row"><img src={imgFeaturesSrc} className="col img-fluid" /></div> */}
         {
           features.map(item => (
             <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
