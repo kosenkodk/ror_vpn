@@ -228,6 +228,21 @@ h1 {
 }
 
 .pricing {
+  h2 {
+    font-weight: 600;
+  }
+  p {
+    @media (min-width: $xl-width) {
+      font-size: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+  }
+  ul {
+    font-weight: bold;
+  }
+  .nav-item button {
+    font-size: 0.88rem;
+  }
   .pricing-card-title {  
     @media (min-width: $xs-width) {
       font-size: 3.2rem;
@@ -554,7 +569,6 @@ h1 {
   }
 
   p {
-    padding-bottom: 4rem;
     &.lead {
       @include mfp;
       // font-size: 1.15rem;
@@ -636,15 +650,15 @@ h1 {
 #product_with_pricing {
   h1 {
     // letter-spacing: 0.15rem;
+  } 
+  p {
+    // letter-spacing: 0.08rem;
+    padding-bottom: 4rem;
   }
-}
-p {
-  // letter-spacing: 0.08rem;
 }
 
 #security_and_trust {
   // font-family: "Montserrat";
-
   background-size: contain;
   margin-bottom: $home_padding_bottom;
   // min-height: 450px;
