@@ -674,7 +674,9 @@ p {
 
 .footer {
   background-color: $footer_bg_color;
-
+  a {
+    opacity: $opacity;
+  }
   .accordion .card-header:after {
     font-family: 'FontAwesome';
     content: "\f068";
@@ -699,7 +701,7 @@ p {
   a {
     padding-left: 1rem;
   }
-  opacity: 0.5;
+  opacity: $opacity;
 }
 
 .sidebar {

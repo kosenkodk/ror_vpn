@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { FooterSection } from '../_sections';
 import { Sidebar, Alert, Header } from '../_components';
 import { Header as HeaderAdmin } from '../_components/admin';
+// import imgHeaderSrc from 'images/compare/header_with_first_section.png';
+// import imgFooterSrc from 'images/compare/footer.png';
 
 const AdminLayout = (props) => (
   <div id='admin_layout' className='container-fluid '>
@@ -30,8 +32,10 @@ const AdminLayout = (props) => (
 
 const GuestLayout = (props) => (
   <div id='guest' className={` d-flex flex-column ${props.bgClass.bg_stars && props.bgClass.bg_stars.value}`} style={{ minHeight: '100vh' }}>
+    {/* <div className="container"><div className="row"><img src={imgHeaderSrc} className="col align-self-center img-fluid" /></div></div> */}
 
     <div className={`container-fluid flex-grow-1 ${props.bgClass.bg1 && props.bgClass.bg1.value}`}>
+
       <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
         <Header />
       </div>
@@ -48,6 +52,7 @@ const GuestLayout = (props) => (
         {props.children}
       </section>
     </div>
+    {/* <div className="row"><img src={imgFooterSrc} className="col align-self-center img-fluid" /></div> */}
     {props.isFooterVisible && <FooterSection />}
   </div>
 );
