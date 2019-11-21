@@ -4,11 +4,10 @@
 
 html {
   color: $white;
-  font-family: "Montserrat";
-  // font-family: 'Montserrat', sans-serif;
 }
 
 html, body {
+  font-family: "Montserrat" !important;
   height: 100%;
 }
 
@@ -24,17 +23,20 @@ body {
   background-color: $bg_color_black;
 }
 
-h1 {
+
+h1, h2, h3, h4, h5 {
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: bold;
+}
+
+h1 {
   font-size: 62px;
   line-height: 67px;
-  
   /* or 111% */
   // display: flex;
   // align-items: center;
-  letter-spacing: 0.0120588em;  
+  letter-spacing: 0.0220588em;  
   margin-bottom: 2rem;
 }
 
@@ -637,6 +639,8 @@ p {
 }
 
 #security_and_trust {
+  // font-family: "Montserrat";
+
   background-size: contain;
   margin-bottom: $home_padding_bottom;
   // min-height: 450px;
@@ -648,8 +652,9 @@ p {
     background: $bg_color_black asset-url('bg_security_and_trust3.png') left no-repeat;
   }
 
-  // h1 {
-  //   text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
+  h1 {
+    text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
+    margin-bottom: 0px;
   //   letter-spacing: 0.04em;
   //   @media (min-width: $xs-width) {
   //     margin-top: 0rem;
@@ -668,9 +673,14 @@ p {
   //   }
   //   padding-bottom: 0rem;
   //   margin-bottom: 0rem;
-  // }
+  }
   .card-text {
     font-weight: 100;
+    opacity: $opacity;
+    font-size: 1.15rem;
+  }
+  .card-body {
+    padding-bottom:0rem;
   }
 }
 

@@ -1,9 +1,12 @@
 import React from 'react'
+// import imgSecuritySrc from 'images/compare/security_and_trust_img_with_text'
 
 class SecurityAndTrust extends React.Component {
   render() {
     return (
       <div id="security_and_trust" className="row card d-flex flex-column">
+        {/* <img src={imgSecuritySrc} className=" img-fluid" /> */}
+
         <div className="row no-gutters d-flex align-items-center">
           <div className="col-md-4 offset-md-4">
             <div className="card-body">
