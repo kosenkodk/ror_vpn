@@ -30,15 +30,15 @@ class PricingTabItem extends React.Component {
                 </ul>
               </div>
               <div className="col-md-6 offset-0 text-right">
-                <p className="pb-0">
+                <p className="pb-1 mb-1 pb-0">
                   <a className="btn btn-blue active rounded-pill text-white">{`Save $ ${item.price_duration_sale} `} </a>
                 </p>
-                <h5 className="card-title text-info"><strike>$ {item.price_duration}</strike></h5>
-                <h5 className="card-title">{item.price_comment}</h5>
+                <h5 className="card-title text-info mb-1 pb-0"><strike>$ {item.price_duration}</strike></h5>
+                <h5 className="card-title mb-1 pb-0">{item.price_comment}</h5>
               </div>
               <div className="col-md-12 pt-2">
                 {/* <!-- <button type="button" className="btn btn-outline-primary rounded-pill mb-n9">Best offer</button> --> */}
-                <a className="btn btn-outline-primary">
+                <a className="btn btn-lg btn-outline-primary">
                   Start my free trial
                 </a>
               </div>

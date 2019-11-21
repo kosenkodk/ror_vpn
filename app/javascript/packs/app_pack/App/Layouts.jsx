@@ -36,11 +36,11 @@ const GuestLayout = (props) => (
 
     <div className={`container-fluid flex-grow-1 ${props.bgClass.bg1 && props.bgClass.bg1.value}`}>
 
-      <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
+      <div className={`${props.loggedIn ? 'container' : 'container'}`}>
         <Header />
       </div>
 
-      <div className={`${props.loggedIn ? 'container-fluid' : 'container'}`}>
+      <div className={`${props.loggedIn ? 'container' : 'container'}`}>
         <div className="row">
           <div className="col">
             <Alert />
@@ -48,7 +48,7 @@ const GuestLayout = (props) => (
         </div>
       </div>
 
-      <section className={`${history.location.pathname === urls.home.path ? '' : `${props.loggedIn ? 'container-fluid' : 'container'}`}`}>
+      <section className={`${history.location.pathname === urls.home.path ? '' : `${props.loggedIn ? 'container' : 'container'}`}`}>
         {props.children}
       </section>
     </div>
