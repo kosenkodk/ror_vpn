@@ -11,7 +11,7 @@ class Reviews extends React.Component {
         {/* <img src={imgSecuritySrc} className=" img-fluid" /> */}
 
         <div className="col-md-10 offset-md-1 text-center">
-          <div className="card-header mt-4">
+          <div className="card-header mt-xl-4">
             Why the Media loves VPN
           </div>
           <div className="tab-content" id="pills-tabContent">
@@ -26,7 +26,7 @@ class Reviews extends React.Component {
             </div>
           </div>
           <div className="card-footer text-left">
-            <ul className="nav nav-pills mt-3 mb-2" id="pills-tab" role="tablist">
+            <ul className="nav nav-pills mt-xl-3 mb-xl-2" id="pills-tab" role="tablist">
               <li className="nav-item col-sm-6 col-md-4">
                 <div className="review-owner-container" id="pills-review1-tab" data-toggle="pill" href="#pills-review1" role="tab"
                   aria-controls="pills-review1" aria-selected="true">
