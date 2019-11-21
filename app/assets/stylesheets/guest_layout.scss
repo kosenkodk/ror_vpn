@@ -419,12 +419,14 @@ h1 {
 }
 
 .features {
-  font-size: 1rem;
+  font-family: 'Montserrat';
+  font-style: normal;
   margin-bottom: $home_padding_bottom;
   p {
     &.card-text {
-      font-weight: 100;
-      opacity: $opacity;
+      // font-weight: 100;
+      opacity: 0.5;
+      font-size: 1.2rem;
     }
   }
   .card-body {
