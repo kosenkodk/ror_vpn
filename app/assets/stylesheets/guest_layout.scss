@@ -23,7 +23,6 @@ body {
   background-color: $bg_color_black;
 }
 
-
 h1, h2, h3, h4, h5 {
   font-family: 'Montserrat';
   font-style: normal;
@@ -41,16 +40,14 @@ h1 {
 }
 
 @mixin mfp {
-    /* Montserrat/Regular/18 px */
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px; //18px;
-    line-height: 28px; //20px;
-  
-    /* or 133% */
-    // display: flex;
-    // align-items: center;
+  /* or 133% */
+  // display: flex;
+  // align-items: center;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
 }
 
 %mfp {
@@ -427,7 +424,7 @@ h1 {
   p {
     &.card-text {
       // font-weight: 100;
-      opacity: 0.5;
+      opacity: $opacity05;
       font-size: 1.2rem;
     }
   }
@@ -455,24 +452,28 @@ h1 {
 .reviews {
   margin-top: $home_padding_bottom;
   margin-bottom: $home_padding_bottom;
-
+  padding: $home_padding_bottom auto;
   .card-header {
-    opacity: $opacity;
+    opacity: $opacity05;
+    font-size: 0.85rem;
   }
   p {
     padding-bottom: unset;
     &.mb-0 {
       opacity: $opacity;
-      font-weight: 100;
+      font-weight: normal;
+      font-size: 0.9rem;
+      padding-bottom: 0.4rem;
     }
     &.card-text {
-      font-size: 1.5rem;
+      font-weight: 600;
+      font-size: 1.66rem;
     }
   }
   
   .card-footer {
     .review-owner-container {
-      opacity: 0.5;
+      opacity: $opacity03;
       z-index: 10;
       &.active {
         opacity: 1;
@@ -487,18 +488,18 @@ h1 {
   }
 
   #summary {
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1.5;
   }
   
   #summary p.collapse:not(.show) {
-    height: 110px !important;
+    height: 8.9rem !important;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
     
-    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255, $opacity));
+    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255, $opacity01));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -555,7 +556,7 @@ h1 {
       @include mfp;
       // font-size: 1.15rem;
       // font-weight: 100;
-      opacity: 0.8;
+      opacity: $opacity08;
     }
   }
   .btn.btn-outline-primary {
@@ -618,10 +619,10 @@ h1 {
     background-color: transparent !important;
   }
   .card-text {
-    opacity: 0.8;
+    opacity: $opacity08;
     font-weight: 100;
     img {
-    opacity: 0.6;
+    opacity: $opacity06;
     }
   }
   h5 {
