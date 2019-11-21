@@ -6,20 +6,6 @@ html {
   color: $white;
   font-family: "Montserrat";
   // font-family: 'Montserrat', sans-serif;
-  // letter-spacing: 0.08rem;
-}
-
-h1 {
-  /* Montserrat/Bold/56 px */
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: bold;
-  font-size: 62px;
-  line-height: 62px;
-  /* or 111% */
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.0120588em;
 }
 
 html, body {
@@ -36,6 +22,41 @@ html, body {
 body {
   color: $white;
   background-color: $bg_color_black;
+}
+
+h1 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 62px;
+  line-height: 67px;
+  
+  /* or 111% */
+  // display: flex;
+  // align-items: center;
+  letter-spacing: 0.0120588em;  
+  margin-bottom: 2rem;
+}
+
+@mixin mfp {
+    /* Montserrat/Regular/18 px */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px; //18px;
+    line-height: 28px; //20px;
+  
+    /* or 133% */
+    // display: flex;
+    // align-items: center;
+}
+
+%mfp {
+  @include mfp;
+}
+
+.mfp {
+  @extend %mfp;
 }
 
 .btn {
@@ -517,18 +538,19 @@ body {
 @media (min-width: 992px) { 
   
   h1 {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 3.45rem;
-    font-weight: bold;
-    line-height: 3rem;
+    // padding-top: 30px;
+    // padding-bottom: 30px;
+    // font-size: 3.45rem;
+    // font-weight: bold;
+    // line-height: 3rem;
   }
 
   p {
-    padding-bottom: 20px;
+    padding-bottom: 4rem;
     &.lead {
-      font-size: 1.15rem;
-      font-weight: 100;
+      @include mfp;
+      // font-size: 1.15rem;
+      // font-weight: 100;
       opacity: 0.8;
     }
   }
@@ -605,11 +627,11 @@ body {
 
 #product_with_pricing {
   h1 {
-    letter-spacing: 0.15rem;
+    // letter-spacing: 0.15rem;
   }
 }
 p {
-  letter-spacing: 0.08rem;
+  // letter-spacing: 0.08rem;
 }
 
 #security_and_trust {
@@ -624,27 +646,27 @@ p {
     background: $bg_color_black asset-url('bg_security_and_trust3.png') left no-repeat;
   }
 
-  h1 {
-    text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
-    letter-spacing: 0.04em;
-    @media (min-width: $xs-width) {
-      margin-top: 0rem;
-    }
-    @media (min-width: $sm-width) {
-      margin-top: 2rem;
-    }
-    @media (min-width: $md-width) {
-      margin-top: 4rem;
-    }
-    @media (min-width: $lg-width) {
-      margin-top: 6rem;
-    }
-    @media (min-width: $xl-width) {
-      margin-top: 7rem;
-    }
-    padding-bottom: 0rem;
-    margin-bottom: 0rem;
-  }
+  // h1 {
+  //   text-shadow: 1px 4px #743c7c, 4px 1px #8d5460;
+  //   letter-spacing: 0.04em;
+  //   @media (min-width: $xs-width) {
+  //     margin-top: 0rem;
+  //   }
+  //   @media (min-width: $sm-width) {
+  //     margin-top: 2rem;
+  //   }
+  //   @media (min-width: $md-width) {
+  //     margin-top: 4rem;
+  //   }
+  //   @media (min-width: $lg-width) {
+  //     margin-top: 6rem;
+  //   }
+  //   @media (min-width: $xl-width) {
+  //     margin-top: 7rem;
+  //   }
+  //   padding-bottom: 0rem;
+  //   margin-bottom: 0rem;
+  // }
   .card-text {
     font-weight: 100;
   }
