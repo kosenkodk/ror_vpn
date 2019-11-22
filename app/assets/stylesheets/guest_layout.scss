@@ -72,6 +72,11 @@ h1 {
 }
 /* start backgrounds */
 
+.bg-transparent {
+  background-color: transparent;
+  border: unset;
+}
+
 .bg-color-black {
   background-color: $bg_color_black;
 }
@@ -689,12 +694,12 @@ h1 {
   background-size: contain;
   margin-bottom: $home_padding_bottom;
   // min-height: 450px;
-
+  border: unset;
   @media (min-width: $xs-width) {
     background-image: unset;
   }
   @media (min-width: $md-width) {
-    background: $bg_color_black asset-url('bg_security_and_trust3.png') left no-repeat;
+    background: transparent asset-url('bg_security_and_trust3.png') left no-repeat;
   }
 
   h1 {
