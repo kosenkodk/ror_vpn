@@ -162,7 +162,7 @@ class SignupPage extends React.Component {
           </div>
 
           <div className="col-md-12">
-            <h1 className="m-0 pt-0">
+            <h1 className="m-0 pt-4">
               {I18n.t('pages.signup.steps.title2')}
             </h1>
             <p className="mb-4">
@@ -174,7 +174,7 @@ class SignupPage extends React.Component {
           </div>
 
           <div className="col-md-12">
-            <h1 className="m-0">
+            <h1 className="m-0 pt-4">
               {I18n.t('pages.signup.steps.title3')}
             </h1>
             <p className="mb-4">
