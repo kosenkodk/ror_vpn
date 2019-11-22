@@ -15,7 +15,7 @@ class PricingTabItem extends React.Component {
           <div className="card-body d-flex flex-column">
             <div className="d-flex flex-row align-items-start justify-content-center">
               <div>
-                <h2 className=" align-self-center">$</h2>
+                <h2 className="align-self-center">$</h2>
               </div>
               <div>
                 <h1 className="card-title pricing-card-title">
@@ -26,7 +26,7 @@ class PricingTabItem extends React.Component {
 
             <h5 className="align-self-center text-sm-1">Per month</h5>
 
-            <div className="d-flex flex-row align-items-between">
+            <div className="row d-flex flex-row align-items-between">
               <div className="col-md-6 offset-0">
                 <ul className="text-left list-unstyled">
                   {

@@ -20,11 +20,11 @@ class PricingTabItemFree extends React.Component {
           <div className="card-body">
 
             <h1 className="card-title pricing-card-title">Free</h1>
-            <span className="text-sm-1 align-text-top pt-n5">Per month</span>
+            <h5 className="text-sm-1 align-text-top pt-n5">Per month</h5>
             <h5 className="card-title"></h5>
             <div className="row">
-
-              <div className="col-md-4 offset-0">
+              {/* <div className="d-xl-flex flex-row justify-content-around "> */}
+              <div className="col-xl-4 offset-0">
                 <ul className="text-left list-unstyled">
                   {
                     featureList.map((feature, index) => (
@@ -33,8 +33,7 @@ class PricingTabItemFree extends React.Component {
                   }
                 </ul>
               </div>
-              <div className="col-md-4"></div>
-              <div className="col-md-4 offset-0">
+              <div className="col-xl-4 ml-auto">
                 <ul className="text-left list-unstyled">
                   {
                     featureList2.map((feature, index) => (
