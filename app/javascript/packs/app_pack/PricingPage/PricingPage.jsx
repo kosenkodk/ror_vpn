@@ -15,7 +15,8 @@ class PricingPage extends React.Component {
                 {I18n.t("pages.pricing.title")}
               </h1>
             </div>
-            <div className="offset-md-2 col-md-8 pt-4 mb-4 text-center shadow-vega bg-color-black">
+
+            <div className="offset-md-2 col-md-8 pt-4 mb-4 text-center shadow-vega border-rounded bg-color-black">
               <PricingTab />
             </div>
 
@@ -41,36 +42,16 @@ class PricingPage extends React.Component {
             <div className="col-sm-4">
               <ul className="list-group bg-transparent text-opacity">
                 <li className="list-group-item bg-transparent">
-                  All plans include:</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  7-day unconditional guarantee
-                  </li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  Protection for all your
-            devices</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  24/7
-            Support</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  Audited no-logs service</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  Access to all servers</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  Apps
-            for Windows, macOS, iOS, Android</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  Unlimited bandwidth</li>
-                <li className="list-group-item bg-transparent">
-                  <img src={iconCheckboxOn} className="img-fluid" alt="" />
-                  Instant Account Activation
+                  All plans include:
                 </li>
+                {['7-day unconditional guarantee', 'Protection for all your', '24/7 Support', 'Audited no-logs service',
+                  'Access to all servers', 'Apps for Windows, macOS, iOS, Android', 'Unlimited bandwidth', 'Instant Account Activation'
+                ].map((item, index) =>
+                  <li key={`pricingPlanFeature${index}`} className="list-group-item bg-transparent">
+                    <img src={iconCheckboxOn} className="mr-xl-2 img-fluid" alt="" />
+                    {item}
+                  </li>
+                )}
               </ul>
             </div>
             <Reviews />
