@@ -229,38 +229,59 @@ h1 {
 
 .pricing {
   h2 {
-    font-weight: 600;
+    font-weight: 500;
   }
-  p {
-    @media (min-width: $xl-width) {
-      font-size: 1.25rem;
-      padding-bottom: 1.25rem;
+  @media (min-width: $xl-width) {
+    h5 {
+      font-size: 1rem;
+    }
+    p {
+        font-size: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+    a, a.btn {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    a.btn-blue {
+      // font-weight: normal;
     }
   }
   ul {
+    font-size: 1.25rem;
+  }
+  .tab-pane ul {
+    font-size: 1rem;
     font-weight: bold;
+    &.nav {
+      opacity: $opacity;
+    }
   }
   .nav-item button {
     font-size: 0.88rem;
   }
-  .pricing-card-title {  
-    @media (min-width: $xs-width) {
-      font-size: 3.2rem;
-      .text-sm-1 {
-        font-size: 1rem;
-      }
-    }
-    @media (min-width: $sm-width) {
-      font-size: 3.9rem;
-    }
-    @media (min-width: 576px) {
+  .pricing-card-title {
+    @media (min-width: $xl-width) {
       font-size: 8rem;
-      .text-sm-1 {
-        font-size: 2rem;
-      }
+      margin: 1.1rem;
     }
-    @media (min-width: 768px) {
-    }
+    // @media (min-width: $xs-width) {
+    //   font-size: 3.2rem;
+    //   .text-sm-1 {
+    //     font-size: 1rem;
+    //   }
+    // }
+    // @media (min-width: $sm-width) {
+    //   font-size: 3.9rem;
+    // }
+    // @media (min-width: 576px) {
+    //   font-size: 8rem;
+    //   .text-sm-1 {
+    //     font-size: 1.1rem;
+    //   }
+    // }
+    // @media (min-width: 768px) {
+    // }
   }
 }
 
@@ -361,6 +382,10 @@ h1 {
 .reset_pwd, .forgot_pwd {
   margin-top: 5rem;
   margin-bottom: 15rem;
+}
+
+.border-rounded {
+  border-radius: $border_rounded;
 }
 
 .border_1_pink {
