@@ -5,7 +5,7 @@ class Feature extends React.Component {
 
   render() {
     return (
-      <div key={this.props.id} className="card">
+      <div key={this.props.id} className="card bg-transparent">
         <div className="card-header">
           {/* <img src={this.props.icon_url} className="card-img-top" alt="" /> */}
           <img src={this.props.icon_url} className="img-fluid" alt="" />
