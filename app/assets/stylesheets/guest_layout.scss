@@ -101,6 +101,11 @@ h1 {
   }
 }
 
+.bg_vega_with_stars {
+  @extend .bg1;
+  background-image: asset-url('bg_vega_with_stars.svg');
+}
+
 .bg1_contain {
   background: $bg_color_black asset-url('bg1.svg') no-repeat top;
   background-size: contain;

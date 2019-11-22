@@ -52,7 +52,7 @@ class App extends React.Component {
     // set background image
     const { dispatch } = this.props
     dispatch(bgClassActions.set('bg1', 'bg1'))
-    dispatch(bgClassActions.set('bg_stars', ''))
+    // dispatch(bgClassActions.set('bg_stars', ''))
     if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname)) {
       dispatch(bgClassActions.set('bg1', 'bg_star'))
       // dispatch(bgClassActions.set('bg1', ''))
@@ -65,7 +65,8 @@ class App extends React.Component {
         // urls.home.path,
         urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
     ) {
-      dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
+      // dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
+      dispatch(bgClassActions.set('bg1', 'bg_vega_with_stars'))
     }
   }
 
