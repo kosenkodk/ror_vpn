@@ -236,8 +236,8 @@ h1 {
       font-size: 1rem;
     }
     p {
-        font-size: 1.25rem;
-        padding-bottom: 1.25rem;
+      font-size: 1.25rem;
+      padding-bottom: 1.25rem;
     }
     a, a.btn {
       font-size: 1rem;
@@ -252,8 +252,9 @@ h1 {
   }
   .tab-pane ul {
     font-size: 1rem;
-    font-weight: bold;
-    &.nav {
+    // font-weight: bold;
+    font-weight: 600;
+    &.nav .btn {
       opacity: $opacity;
     }
   }
@@ -262,8 +263,9 @@ h1 {
   }
   .pricing-card-title {
     @media (min-width: $xl-width) {
-      font-size: 8rem;
+      font-size: 7rem;
       margin: 1.1rem;
+      font-weight: 600;
     }
     // @media (min-width: $xs-width) {
     //   font-size: 3.2rem;
