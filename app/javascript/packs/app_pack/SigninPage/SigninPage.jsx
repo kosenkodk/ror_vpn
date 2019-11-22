@@ -15,9 +15,9 @@ class SigninPage extends React.Component {
     return (
       <div className="container login">
         <div className="featurette text-center">
-          <div className="row">
+          <div className="row vh-100">
 
-            <div className="col-md-8 offset-md-2 text-center">
+            <div className="col-md-12 align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.login.title')}
               </h1>
@@ -27,11 +27,11 @@ class SigninPage extends React.Component {
               </p>
             </div>
 
-            <div className="col-md-4 offset-md-4 text-center">
-              {/* <FlashMessages error={this.state.error} notice={this.state.notice} /> */}
-            </div>
+            {/* <div className="col-md-4 offset-md-4 text-center">
+              <FlashMessages error={this.state.error} notice={this.state.notice} />
+            </div> */}
 
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-8 offset-md-2 align-self-start">
               <div className="text-right">
                 <SigninForm />
               </div>
