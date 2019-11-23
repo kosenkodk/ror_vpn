@@ -6,7 +6,7 @@ import starImage from 'images/star'
 // import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
 import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 import { connect } from 'react-redux'
-import { bgClassActions } from '../_actions'
+// import { bgClassActions } from '../_actions'
 
 class SuccessPage extends React.Component {
 
