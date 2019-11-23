@@ -12,7 +12,7 @@ class ComingSoonPage extends React.Component {
       <div className="container status_page">
         <div className="featurette text-center">
           {/* <div className="row"> */}
-          <div className="row align-items-center" style={{ minHeight: this.props.height }}>
+          <div className="row align-items-center" style={{ minHeight: this.props.loggedIn ? this.props.height : '50vh' }}>
             <div className="col-md-3">
               {/* <img src={astronautImage} className="img-fluid" alt="" /> */}
             </div>
@@ -44,8 +44,9 @@ class ComingSoonPage extends React.Component {
 
 // export { ComingSoonPage }
 function mapStateToProps(state) {
-  const { page } = state;
-  const { height } = page;
+  const { loggedIn } = state.authentication;
+
+  const { height } = state.page;
   return {
     height
   };
