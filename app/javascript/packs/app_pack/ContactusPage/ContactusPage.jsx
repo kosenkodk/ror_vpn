@@ -6,6 +6,8 @@ import FlashMessages from '../_sections/FlashMessages';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
+// import imgAstronautSrc from 'images/coming_soon/astronaut';
+// import imgCompareSrc from 'images/compare/contactusForm';
 
 class ContactusPage extends React.Component {
   constructor(props) {
@@ -24,35 +26,33 @@ class ContactusPage extends React.Component {
 
   render() {
     return (
-      <div className="contact_us mt-lg-5 pt-lg-5">
-        <div className="featurette text-center bg_astronaut">
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              {/* <!-- <h1 className="featurette-heading">
-                <%= t('pages.contact_us.title') %>
-        </h1> --> */}
-              <div className="row">
-                <div className="col-md-4"></div>
-                <div className="col-md-8 text-left">
-                  <h1 className="featurette-heading mb-0 pb-2">
-                    {I18n.t('pages.contact_us.title')}
-                  </h1>
-                  <p className="lead">{I18n.t('pages.contact_us.subtitle')}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="row">
-                  <div className="col-sm-4"></div>
-                  <div className="col-sm-8 text-center">
-                    <FlashMessages error={this.state.error} notice={this.state.notice} />
-                  </div>
-                </div>
-                <ContactusForm handleFormSubmit={this.handleFormSubmit} departments={this.props && this.props.items} />
+      <div className="contact_us row">
+        <div className="col">
+
+          {/* <div className="row">
+            <img src={imgCompareSrc} className="col img-fluid" />
+          </div> */}
+
+          <div className="row text-left bg_astronaut" style={{ minHeight: this.props.height }}>
+            <div className="offset-xl-3 col-xl-9">
+              <h1 className="">
+                {I18n.t('pages.contact_us.title')}
+              </h1>
+              <p className="lead">{I18n.t('pages.contact_us.subtitle')}</p>
+            </div>
+
+            {/* <div className="row">
+              <div className="col-sm-4"></div>
+              <div className="col-sm-8 text-center">
+                <FlashMessages error={this.state.error} notice={this.state.notice} />
               </div>
             </div>
-            <div className="col-md-12">
-              <img src={marsWithSpaceshipImage} className="img-fluid" />
-            </div>
+             */}
+            <ContactusForm handleFormSubmit={this.handleFormSubmit} departments={this.props && this.props.items} />
+          </div>
+
+          <div className="col-md-12 align-self-end">
+            <img src={marsWithSpaceshipImage} className="img-fluid" />
           </div>
         </div>
       </div>
@@ -61,8 +61,9 @@ class ContactusPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { height } = state.page;
   const { loading, items } = state.departments;
-  return { loading, items };
+  return { loading, items, height };
 }
 
 const connectedApp = connect(mapStateToProps)(ContactusPage);

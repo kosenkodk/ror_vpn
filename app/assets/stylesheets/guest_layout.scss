@@ -138,8 +138,11 @@ h1 {
 .bg_astronaut {
   background: unset;
   @media (min-width: $md-width) {
-    background: unset;
-    background: transparent asset-url('coming_soon/astronaut') no-repeat top left;
+    background: transparent asset-url('coming_soon/astronaut') no-repeat center left;
+  // }
+  // @media (min-width: $xl-width) {
+    background: transparent asset-url('coming_soon/astronaut') no-repeat center right;
+    background-size: 30vw auto;
   }
 }
 
