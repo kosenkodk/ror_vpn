@@ -2,9 +2,10 @@ import React from 'react'
 import { I18n } from 'helpers'
 import PasswordForgotForm from './PasswordForgotForm'
 import FlashMessages from '../_sections/FlashMessages'
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import { postCsrfRequest, httpPlainRequest, httpSecuredRequest, handleErrors } from 'helpers/http'
 import { config } from 'config';
+import { connect } from 'react-redux'
 
 class PasswordForgotPage extends React.Component {
 
@@ -42,8 +43,9 @@ class PasswordForgotPage extends React.Component {
     return (
       <div className="container forgot_pwd">
         <div className="featurette text-center">
-          <div className="row">
-            <div className="col-md-8 offset-md-2 text-center">
+
+          <div className="row status_page align-items-center" style={{ minHeight: this.props.height }}>
+            <div className="col text-center align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.forgot_pwd.title')}
               </h1>
@@ -52,11 +54,13 @@ class PasswordForgotPage extends React.Component {
               </p>
             </div>
 
-            <div className="col-sm-4 offset-md-4 text-center">
-              <FlashMessages error={this.state && this.state.error && this.state.error} notice={this.state && this.state.notice && this.state.notice} />
-            </div>
+            {((this.state && this.state.error) || (this.state && this.state.notice)) &&
+              <div className="col-sm-4 offset-md-4 text-center">
+                <FlashMessages error={this.state && this.state.error && this.state.error} notice={this.state && this.state.notice && this.state.notice} />
+              </div>
+            }
 
-            <div className="col-md-8 offset-md-2 ">
+            <div className="col-md-8 offset-md-2 align-self-start">
               <div className="text-right">
                 <PasswordForgotForm handleFormSubmit={this.handleFormSubmit} />
               </div>
@@ -79,4 +83,14 @@ class PasswordForgotPage extends React.Component {
   }
 }
 
-export { PasswordForgotPage }
+// export { PasswordForgotPage }
+function mapStateToProps(state) {
+  const { page } = state;
+  const { height } = page;
+  return {
+    height
+  };
+}
+
+const connectedPage = connect(mapStateToProps)(PasswordForgotPage);
+export { connectedPage as PasswordForgotPage };
