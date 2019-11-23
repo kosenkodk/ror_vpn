@@ -14,7 +14,7 @@ class ComingSoonPage extends React.Component {
           {/* <div className="row"> */}
           <div className="row align-items-center" style={{ minHeight: this.props.height }}>
             <div className="col-md-3">
-              <img src={astronautImage} className="img-fluid" alt="" />
+              {/* <img src={astronautImage} className="img-fluid" alt="" /> */}
             </div>
             <div className="col-md-6 align-self-end">
               <h1 className="featurette-heading">
@@ -29,11 +29,11 @@ class ComingSoonPage extends React.Component {
               </a> --> */}
             </div>
             <div className="col-md-3 justify-content-center align-self-center">
-              <img src={starImage} className="img-fluid" alt="" />
+              {/* <img src={starImage} className="img-fluid" alt="" /> */}
               {/* <img src={spaceshipImage} className="img-fluid" /> */}
             </div>
             <div className="col-md-12 align-self-end">
-              <img src={marsWithSpaceshipImage} className="img-fluid" alt="" />
+              {/* <img src={marsWithSpaceshipImage} className="img-fluid" alt="" /> */}
             </div>
           </div>
         </div>
