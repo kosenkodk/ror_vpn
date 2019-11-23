@@ -3,7 +3,8 @@ import { I18n } from 'helpers'
 import PasswordResetForm from './PasswordResetForm'
 import { httpPlainRequest, handleErrors } from 'helpers/http'
 import FlashMessages from '../_sections/FlashMessages'
-import { config } from 'config';
+import { config } from 'config'
+import { connect } from 'react-redux'
 
 class PasswordResetPage extends React.Component {
 
@@ -56,8 +57,10 @@ class PasswordResetPage extends React.Component {
     return (
       <div className="container reset_pwd ">
         <div className="featurette text-center">
-          <div className="row">
-            <div className="col-md-8 offset-md-2 text-center">
+          {/* <div className="row"> */}
+          <div className="row align-items-center" style={{ minHeight: this.props.height }}>
+
+            <div className="col-md-8 offset-md-2 text-center align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.reset_pwd.title')}
               </h1>
@@ -65,12 +68,14 @@ class PasswordResetPage extends React.Component {
                 {I18n.t('pages.reset_pwd.subtitle')}
               </p>
             </div>
+            {
+              (this.state.error || this.state.notice) &&
+              <div className="col-sm-4 offset-md-4 text-center">
+                <FlashMessages error={this.state.error} notice={this.state.notice} />
+              </div>
+            }
 
-            <div className="col-sm-4 offset-md-4 text-center">
-              <FlashMessages error={this.state.error} notice={this.state.notice} />
-            </div>
-
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-8 offset-md-2 align-self-start">
               <div className="text-right">
                 <PasswordResetForm handleFormSubmit={this.handleFormSubmit} />
               </div>
@@ -91,4 +96,14 @@ class PasswordResetPage extends React.Component {
 
 }
 
-export { PasswordResetPage }
+// export { PasswordResetPage }
+function mapStateToProps(state) {
+  const { page } = state;
+  const { height } = page;
+  return {
+    height
+  };
+}
+
+const connectedPage = connect(mapStateToProps)(PasswordResetPage);
+export { connectedPage as PasswordResetPage };
