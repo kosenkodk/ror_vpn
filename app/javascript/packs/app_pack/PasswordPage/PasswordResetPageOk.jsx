@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { I18n } from 'helpers'
+import { connect } from 'react-redux'
 
 class PasswordResetPageOk extends React.Component {
 
@@ -19,7 +20,7 @@ class PasswordResetPageOk extends React.Component {
     return (
       <div className="container reset_pwd">
         <div className="featurette text-center">
-          <div className="row">
+          <div className="row align-items-center" style={{ minHeight: this.props.height }}>
             <div className="col-md-4 offset-md-4 text-center">
               <h1 className="featurette-heading">
                 {I18n.t('pages.reset_pwd.success.title')}
@@ -43,4 +44,14 @@ class PasswordResetPageOk extends React.Component {
   }
 }
 
-export { PasswordResetPageOk }
+// export { PasswordResetPageOk }
+function mapStateToProps(state) {
+  const { page } = state;
+  const { height } = page;
+  return {
+    height
+  };
+}
+
+const connectedPage = connect(mapStateToProps)(PasswordResetPageOk);
+export { connectedPage as PasswordResetPageOk };

@@ -4,7 +4,7 @@ import PasswordForgotForm from './PasswordForgotForm'
 import FlashMessages from '../_sections/FlashMessages'
 // import { withRouter } from "react-router-dom";
 import { postCsrfRequest, httpPlainRequest, httpSecuredRequest, handleErrors } from 'helpers/http'
-import { config } from 'config';
+import { config } from 'config'
 import { connect } from 'react-redux'
 
 class PasswordForgotPage extends React.Component {
