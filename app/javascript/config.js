@@ -98,7 +98,7 @@ const urls = {
   },
   notifications: {
     path: '/user/notifications',
-    name: 'Notifactions',
+    name: 'Notifications',
     imgSrc: notificationSrc,
   },
   user_dashboard: {
