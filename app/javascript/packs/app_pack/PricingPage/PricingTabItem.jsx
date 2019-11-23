@@ -36,7 +36,7 @@ class PricingTabItem extends React.Component {
                   }
                 </ul>
               </div>
-              <div className="col-md-6 offset-0 text-right">
+              <div className="col-md-6 offset-0 text-center text-sm-right">
                 <p className="pb-1 mb-1 pb-0">
                   <a className="btn btn-blue active rounded-pill text-white">{`Save $ ${item.price_duration_sale} `} </a>
                 </p>
