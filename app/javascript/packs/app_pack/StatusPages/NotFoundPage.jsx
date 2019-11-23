@@ -4,14 +4,15 @@ import { I18n } from 'helpers'
 import astronautImage from 'images/coming_soon/astronaut'
 import starImage from 'images/star'
 import bg2WithMarsImage from 'images/bg2_with_mars'
+import { connect } from 'react-redux'
 
 class NotFoundPage extends React.Component {
   render() {
     return (
       <div className="container status_page">
         <div className="featurette text-center">
-          <div className="row">
-            <div className="col-md-4">
+          <div className="row align-items-end" style={{ minHeight: this.props.height }}>
+            <div className="col-md-4 align-self-center">
               <img src={astronautImage} className="img-fluid" />
             </div>
             <div className="col-md-4">
@@ -26,7 +27,7 @@ class NotFoundPage extends React.Component {
                 <span className="glyphicon glyphicon-circle-arrow-right">{I18n.t('buttons.back_to_home_page')}</span>
               </Link>
             </div>
-            <div className="col-md-4 justify-content-center align-self-center">
+            <div className="col-md-4 align-self-center">
               <img src={starImage} className="img-fluid" />
             </div>
             <div className="col-md-12">
@@ -39,4 +40,13 @@ class NotFoundPage extends React.Component {
   }
 }
 
-export { NotFoundPage }
+function mapStateToProps(state) {
+  const { page } = state;
+  const { height } = page;
+  return {
+    height
+  };
+}
+
+const connectedPage = connect(mapStateToProps)(NotFoundPage);
+export { connectedPage as NotFoundPage };
