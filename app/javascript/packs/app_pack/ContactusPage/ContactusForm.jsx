@@ -15,14 +15,14 @@ class ContactusForm extends React.Component {
     return (
       <form onSubmit={(e) => { this.props.handleFormSubmit(e); }} className="col">
         <div className="form-group row">
-          <label className="col-sm-4 col-xl-3 col-form-label text-right">{I18n.t('pages.contact_us.form.email')}</label>
-          <div className="col-sm-8 col-xl-4">
+          <label className="col-sm-3 col-form-label text-right">{I18n.t('pages.contact_us.form.email')}</label>
+          <div className="col-sm-4">
             <input type="email" name="email" required={false} className="form-control" ref={(input) => { this.email = input }} placeholder={I18n.t('pages.contact_us.form.help.email')} />
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-4 col-xl-3 col-form-label text-right">{I18n.t('pages.contact_us.form.select_the_department')}</label>
-          <div className="col-sm-8 col-xl-4">
+          <label className="col-sm-3 col-form-label text-right">{I18n.t('pages.contact_us.form.select_the_department')}</label>
+          <div className="col-sm-4">
             <SelectBoxDepartment departments={this.props.departments && this.props.departments} />
             {/* <select className="form-control" id="departmentSelectBox">
               <option>{I18n.t('pages.contact_us.form.help.select_the_department1')}</option>
@@ -32,22 +32,20 @@ class ContactusForm extends React.Component {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-4 col-xl-3 col-form-label text-right">{I18n.t('pages.contact_us.form.message_short')}</label>
-          <div className="col-sm-8 col-xl-4 text-right">
+          <label className="col-sm-3 col-form-label text-right">{I18n.t('pages.contact_us.form.message_short')}</label>
+          <div className="col-sm-4 text-right">
             <input type="text" name="message_short" required={true} className="form-control" ref={(input) => { this.message_short = input }} placeholder={I18n.t('pages.contact_us.form.help.message_short')} />
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-4 col-xl-3 col-form-label text-right">{I18n.t('pages.contact_us.form.message')}</label>
-          <div className="col-sm-8 col-xl-6">
+          <label className="col-sm-3 col-form-label text-right">{I18n.t('pages.contact_us.form.message')}</label>
+          <div className="col-sm-6">
             <textarea type="text" name="message" className="form-control" required={false} rows="5" ref={(input) => { this.message = input }} placeholder={I18n.t('pages.contact_us.form.help.message')}></textarea>
           </div>
         </div>
 
         <div className="form-group row">
-          <div className="col-sm-4 col-xl-3">
-          </div>
-          <div className="col-sm-8 col-xl-6">
+          <div className="offset-sm-3 col-sm-6">
             <br />
             <button id="contact_submit" className="btn btn-lg btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button>
             {/* <button id="contact_submit" onClick={(e) => { this.props.handleFormSubmit(e, this.email.value, this.message.value, this.message_short.value); }} className="btn btn-outline-primary btn-block">{I18n.t('pages.contact_us.form.submit')}</button> */}
