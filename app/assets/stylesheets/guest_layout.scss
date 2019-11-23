@@ -103,7 +103,8 @@ h1 {
 
 .bg_vega_with_stars {
   @extend .bg1;
-  background-image: asset-url('bg_vega_with_stars.svg');
+  // background-image: asset-url('bg_vega_with_stars.svg');
+  background-image: asset-url('bg_vega_with_stars.png');
 }
 
 .bg1_contain {
