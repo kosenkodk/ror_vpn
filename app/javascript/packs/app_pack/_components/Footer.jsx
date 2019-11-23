@@ -7,7 +7,7 @@ import { HashLink } from 'react-router-hash-link';
 class Footer extends React.Component {
   render() {
     return (
-      <footer className="footer">
+      <footer id="footer" className="footer">
         <div className="row">
           <div className="col-sm-4 col-md-2">
             <h5>{I18n.t('footer.product.title')}</h5>

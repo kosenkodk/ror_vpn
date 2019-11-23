@@ -45,7 +45,22 @@ class App extends React.Component {
 
       this.setBackgroundImages(location)
       this.isFooterVisible()
+      this.calculateHeight()
     });
+  }
+
+  calculateHeight() {
+    // const heightFooter = document.getElementsByClassName('footer')[0].clientHeight
+    let heightSection = '100vh'
+    try {
+      const totalHeight = document.body.clientHeight || 0
+      const heightNavBar = document.getElementById('navbar').clientHeight && document.getElementById('navbar').clientHeight || 0
+      const heightFooter = document.getElementById('footer').clientHeight && document.getElementById('footer').clientHeight || 0
+      const height = totalHeight - heightFooter - heightNavBar
+      if (height > 0) heightSection = height
+      // console.log('total height', totalHeight, 'navbar', heightNavBar, 'footer', heightFooter, 'main content height', height)
+    } catch (e) { }
+    this.props.dispatch(pageActions.setSectionHeight(heightSection))
   }
 
   setBackgroundImages() {
@@ -182,6 +197,7 @@ class App extends React.Component {
     this.isFooterVisible()
     this.setPageTitle(history.location)
     this.setBackgroundImages(history.location)
+    this.calculateHeight()
   }
 }
 
