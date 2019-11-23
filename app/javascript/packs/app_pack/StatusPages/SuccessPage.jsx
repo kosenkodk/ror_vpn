@@ -18,7 +18,7 @@ class SuccessPage extends React.Component {
     return (
       <div className="container">
         <div className="featurette">
-          <div className="row status_page text-center">
+          <div className="row status_page text-center align-items-end" style={{ minHeight: this.props.height }}>
             <div className="col-md-4">
               <img src={astronautImage} className="img-fluid" alt="" />
             </div>
@@ -39,7 +39,7 @@ class SuccessPage extends React.Component {
                 <span className="glyphicon glyphicon-circle-arrow-right ">{I18n.t('buttons.ok')}</span>
               </Link>
             </div>
-            <div className="col-md-4 justify-content-center align-self-center">
+            <div className="col-md-4">
               <img src={starImage} className="img-fluid" alt="" />
             </div>
             <div className="col-md-12">
@@ -67,13 +67,18 @@ class SuccessPage extends React.Component {
   }
 }
 
+// SuccessPage.defaultProps = {
+//   height: '100vh'
+// }
 
 function mapStateToProps(state) {
-  const { tickets, authentication } = state;
+  const { tickets, authentication, page } = state;
   const { user } = authentication;
+  const { height } = page
   return {
     user,
-    tickets
+    tickets,
+    height
   };
 }
 
