@@ -35,7 +35,7 @@ class ContactusPage extends React.Component {
 
           <div className="row text-left bg_astronaut" style={{ minHeight: this.props.height }}>
             <div className="offset-xl-3 col-xl-9">
-              <h1 className="">
+              <h1 className="mb-0">
                 {I18n.t('pages.contact_us.title')}
               </h1>
               <p className="lead">{I18n.t('pages.contact_us.subtitle')}</p>
