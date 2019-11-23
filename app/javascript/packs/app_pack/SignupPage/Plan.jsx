@@ -41,11 +41,17 @@ class Plan extends React.Component {
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
           </div>
           <div className="card-body pt-0 pb-0">
-
             {item.price > 0 ?
-              <h1 className="card-title pricing-card-title mt-0 mb-0">
-                <span className="text-sm-1 align-text-top">$</span> {item.price}
-              </h1>
+              <div className="d-flex flex-row align-items-start justify-content-center">
+                <div className="m-xl-1">
+                  <span className="text-sm-1 font-weight-bold align-text-top">$</span>
+                </div>
+                <div>
+                  <h1 className="card-title pricing-card-title">
+                    {item.price}
+                  </h1>
+                </div>
+              </div>
               :
               <h1 className="card-title pricing-card-title mt-0 mb-0">Free</h1>
             }
@@ -77,7 +83,7 @@ class Plan extends React.Component {
         offer</button>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }
