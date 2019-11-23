@@ -749,19 +749,23 @@ h1 {
   a {
     opacity: $opacity;
   }
+  .accordion .card-header {
+    font-weight: bold;
+  }
   .accordion .card-header:after {
     font-family: 'FontAwesome';
     content: "\f068";
     float: right;
+    opacity: $opacity;
   }
   
   .accordion .card-header.collapsed:after {
     /* symbol for "collapsed" panels */
     font-family: 'FontAwesome';
     content: "\f067";
+    opacity: $opacity;
   }
 
-  font-family: "Montserrat";
   h5 {
     margin-top: 4rem;
     margin-bottom: 2rem;
