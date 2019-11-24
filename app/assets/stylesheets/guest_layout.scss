@@ -66,6 +66,9 @@ h1 {
 }
 
 .header {
+  .nav-link {
+    font-weight: bold;
+  }
   .nav-link:focus {
     box-shadow: none;
   }
@@ -585,6 +588,7 @@ h1 {
 .navbar {
   background-color: $bg_color_black;
   min-height: $header_navbar_height;
+  font-weight: bold;
 }
 
 .shadow-vega {
