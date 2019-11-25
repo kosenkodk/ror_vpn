@@ -50,12 +50,10 @@ $(jQuery).on('ready turbolinks:load', function () {
   // });
 
   // close navbar after click on nav link
-  $('.navbar-nav>li>a').on('click', function () {
-    $('.navbar-collapse').collapse('hide');
+  $(document).on('show.bs.collapse', '.navbar', function () {
+    $('.navbar-nav>li>a').on('click', function () {
+      $('.navbar-collapse').collapse('hide');
+    });
   });
 
-  $('#navbar').bind('change load', function () {
-  });
-  $('#navbar').trigger('change');
-  $('#navbar').trigger('load');
 });

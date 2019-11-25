@@ -24,7 +24,7 @@ class Sidebar extends React.Component {
           <div className="navbar-collapse collapse justify-content-center" id="navbarForAdminLeftSidebar">
             <ul className="sidebar list-group">
               <NavHashLink smooth to={urls.home.path}>
-                <img src={logoImage} className='navbar-brand mr-auto ml-2 d-none d-md-block' alt='Vega VPN'></img>
+                <img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img>
               </NavHashLink>
               <br />
               {items ? items.map(item =>
