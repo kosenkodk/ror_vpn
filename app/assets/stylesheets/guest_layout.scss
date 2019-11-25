@@ -615,6 +615,12 @@ h1 {
   }
 }
 
+button:focus {
+  // outline: 1px dotted;
+  // outline: 5px auto -webkit-focus-ring-color;
+  outline-color: $pink;
+}
+
 .v-divider{
   // margin-left: 5px;
   // margin-right: 5px;
