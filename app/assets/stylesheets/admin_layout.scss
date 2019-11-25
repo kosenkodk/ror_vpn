@@ -7,10 +7,19 @@ $borderColor: #E1E0E1;
 $red: #9A2121;
 $blue: #2CB0B5;
 $pink: #7D2864;
+$padding: 15;
 
 #admin_layout {
+  section {
+    padding: 0 $padding*2+0px;
+  }
+  article {
+    padding: $padding+0px;
+  }
+  nav {
+    // padding: $padding 0;
+  }
   max-width: $admin_layout_max_width;
-
   .text-black {
     color: $black;
   }
