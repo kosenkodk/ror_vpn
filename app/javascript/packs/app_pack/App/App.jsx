@@ -197,12 +197,24 @@ class App extends React.Component {
     // if (this.props.location !== prevProps.location) {
     //   window.scrollTo(0, 0);
     // }
+    this.calculateHeight()
+    this.onScrollNavbar()
+  }
 
+  componentDidMount() {
+    smoothscroll.polyfill(); // native smooth scrolling
+    this.props.dispatch(departmentActions.getAll())
+    this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
+    this.isFooterVisible()
+    this.setPageTitle(history.location)
+    this.setBackgroundImages(history.location)
+    this.calculateHeight()
+  }
+
+  onScrollNavbar() {
     // Navbar - change transparent bg color on black during scroll
     // grabbing the class names from the data attributes
-    let navBar = $('#navbar'),
-      data = navBar.data();
-
+    const navBar = $('#navbar');
     // booleans used to tame the scroll event listening a little..
     let scrolling = false,
       scrolledPast = false;
@@ -214,10 +226,6 @@ class App extends React.Component {
       // add/remove CSS classes
       navBar.addClass('bg-color-black');
       navBar.addClass('shadow-vega');
-      // navBar.removeClass(data.startcolor);
-      // navBar.removeClass(data.startsize);
-      // navBar.addClass(data.intocolor);
-      // navBar.addClass(data.intosize);
       // console.log('into transition triggered!', navbar.id)
     };
 
@@ -228,10 +236,6 @@ class App extends React.Component {
       // add/remove CSS classes
       navBar.removeClass('bg-color-black');
       navBar.removeClass('shadow-vega');
-      // navBar.addClass(data.startcolor);
-      // navBar.addClass(data.startsize);
-      // navBar.removeClass(data.intocolor);
-      // navBar.removeClass(data.intosize);
       // console.log('start transition triggered!', navbar.id)
     }
 
@@ -258,17 +262,6 @@ class App extends React.Component {
       }
       // take a breath.. hold event listener from firing for 100ms
     }, 100);
-
-  }
-
-  componentDidMount() {
-    smoothscroll.polyfill(); // native smooth scrolling
-    this.props.dispatch(departmentActions.getAll())
-    this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
-    this.isFooterVisible()
-    this.setPageTitle(history.location)
-    this.setBackgroundImages(history.location)
-    this.calculateHeight()
   }
 }
 
