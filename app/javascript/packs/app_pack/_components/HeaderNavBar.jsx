@@ -48,7 +48,7 @@ class HeaderNavBar extends React.Component {
                     urls.features, urls.pricing, urls.downloads, urls.contact_us, urls.help, urls.signin, urls.signup
                   ].map((item, index) =>
                     <li key={`nav-pubic${index}`} className="nav-item pr-1 pl-1">
-                      <NavHashLink smooth to={item.path} activeClassName="" className={`nav-link pl-3 pr-3 text-left btn btn-outline-pink ${item.isActive ? 'active' : ''}`}>{item.name}</NavHashLink>
+                      <NavHashLink smooth to={item.path} activeClassName="" className={`nav-link pl-3 pr-3 text-left btn btn-outline-pink ${item.className || ''}`}>{item.name}</NavHashLink>
                     </li>
                   )}
                 </ul>

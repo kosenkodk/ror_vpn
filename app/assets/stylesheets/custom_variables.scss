@@ -6,6 +6,7 @@ $bg_color_black_gradient23: linear-gradient(90deg, $bg_color_black2 20%, $bg_col
 $pink: #8C5362;
 $pink2: #713980;
 $pink3: #792761;
+$pink4: #7D2864;
 $pink_gradient: linear-gradient(to right, $pink, $pink2 ) 47% 0%; //linear-gradient(90deg, $pink2 0%, $pink 100%);
 $pink_button_gradient: linear-gradient(90deg, $pink 0%, $pink2 100%);
 $opacity: 0.7;
@@ -20,7 +21,7 @@ $pricing_border_radius: 15px;
 $pricing_border_width: 3px;
 
 $shadow-vega: #5C1D49;
-$footer_bg_color: #7D2864;
+$footer_bg_color: $pink4;
 
 $xs-width: 320px;
 $sm-width: 576px; //540px; by default
