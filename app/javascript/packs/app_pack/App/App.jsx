@@ -40,14 +40,7 @@ class App extends React.Component {
     history.listen((location, action) => {
       // clear alert on location change
       dispatch(alertActions.clear())
-
-      this.setPageTitle(location)
-
-      this.setBackgroundImages(location)
       this.isFooterVisible()
-      this.calculateHeight()
-
-      window.scrollTo(0, 0); // move scroll to top on new page 
     });
   }
 
@@ -195,8 +188,11 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps) {
     // if (this.props.location !== prevProps.location) {
-    //   window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // move scroll to top on new page 
     // }
+
+    this.setPageTitle(history.location)
+    this.setBackgroundImages(history.location)
     this.calculateHeight()
     this.onScrollNavbar()
   }
@@ -206,9 +202,6 @@ class App extends React.Component {
     this.props.dispatch(departmentActions.getAll())
     this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
     this.isFooterVisible()
-    this.setPageTitle(history.location)
-    this.setBackgroundImages(history.location)
-    this.calculateHeight()
   }
 
   onScrollNavbar() {
