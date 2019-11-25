@@ -10,6 +10,14 @@ $pink: #7D2864;
 $padding: 15;
 
 #admin_layout {
+
+  .btn {
+    font-weight: bold;
+  }
+  .btn-black {
+    @extend .btn-pink-dark;
+    background-color: $black !important;
+  }
   section {
     padding: 0 $padding*2+0px;
   }
