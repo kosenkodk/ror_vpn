@@ -46,6 +46,8 @@ class App extends React.Component {
       this.setBackgroundImages(location)
       this.isFooterVisible()
       this.calculateHeight()
+
+      window.scrollTo(0, 0); // move scroll to top on new page 
     });
   }
 
@@ -190,6 +192,7 @@ class App extends React.Component {
       </Router>
     );
   }
+
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
     this.props.dispatch(departmentActions.getAll())
