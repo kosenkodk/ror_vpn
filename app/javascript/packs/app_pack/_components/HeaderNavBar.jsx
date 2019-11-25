@@ -16,7 +16,7 @@ class HeaderNavBar extends React.Component {
   render() {
     const { loggedIn } = this.props;
     return (
-      <nav id="navbar" className="nav navbar navbar-expand-md navbar-dark fixed-top shadow-vega">
+      <nav id="navbar" className="nav navbar navbar-expand-md navbar-dark fixed-top">
         <div className="container">
           <NavHashLink smooth to={urls.home.path}>
             <img src={logoImage} className='navbar-brand mr-auto ml-2' alt='Vega VPN'></img>

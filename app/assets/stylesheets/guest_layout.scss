@@ -11,11 +11,14 @@ html, body {
   height: 100%;
 }
 
+.wrapper {
+  padding-top: $header_navbar_height + $padding + unquote("px");
+}
+
 #app_pack {
 }
 
 #guest {
-  margin-top: $header_navbar_height;
 }
 
 body {
@@ -586,8 +589,7 @@ h1 {
 }
 
 .navbar {
-  background-color: $bg_color_black;
-  min-height: $header_navbar_height;
+  min-height: $header_navbar_height + unquote("px");
   font-weight: bold;
 }
 
