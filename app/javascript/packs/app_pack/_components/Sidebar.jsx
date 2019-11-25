@@ -28,11 +28,28 @@ class Sidebar extends React.Component {
               </NavHashLink>
 
               {items ? items.map(item =>
-                <Link key={item.path} smooth to={item.path} activeClassName="active"
-                  location={{ pathname: document.location.pathname + document.location.hash }}
-                >
-                  <li className="list-group-item">{item.name}</li>
-                </Link>
+                <div key={item.path}>
+                  <div className="card-header collapsed" data-toggle="collapse" href="#collapseProduct1">
+
+                    <li className="list-group-item">{item.name}</li>
+
+                  </div>
+                  <div id="collapseProduct1" className="collapse" data-parent="#adminNavbar">
+                    <ul className="list-unstyled p-3">
+                      {item.urls && Object.values(item.urls).map(subItem =>
+                        <li key={subItem.path}>
+                          <NavHashLink smooth className="text-light" to={subItem.path}>{subItem.name}</NavHashLink>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                  {/*
+                // <Link key={item.path} smooth to={item.path} activeClassName="active"
+                //   location={{ pathname: document.location.pathname + document.location.hash }}
+                // >
+
+              // </Link> */}
+                </div>
               )
                 :
                 <li className="list-group-item">no items</li>

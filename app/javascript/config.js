@@ -77,6 +77,16 @@ const urls = {
   tickets: {
     path: '/user/tickets',
     name: I18n.t('nav_menu.tickets'),
+    urls: {
+      all: {
+        path: '/user/tickets#all',
+        name: 'All',
+      },
+      new: {
+        path: '/user/tickets/new#',
+        name: 'New ticket',
+      },
+    },
     // component: TicketsPage
   },
   user: {
