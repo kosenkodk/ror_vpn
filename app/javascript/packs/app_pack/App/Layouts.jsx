@@ -9,7 +9,7 @@ import { Header as HeaderAdmin } from '../_components/admin';
 // import imgFooterSrc from 'images/compare/footer.png';
 
 const AdminLayout = (props) => (
-  <div id='admin_layout' className='container-fluid '>
+  <div id='admin_layout' className='container-fluid shadow-vega'>
     <div className='row'>
       <div className='d-flex flex-column col-md-2 background-black'>
         <div className='flex-grow-1'>
