@@ -13,6 +13,7 @@ $padding: 15;
   .sidebar {
     li {
       cursor: pointer;
+      background: unset !important;
       &.list-group-item.active {
         border: unset;
       }
@@ -24,10 +25,9 @@ $padding: 15;
       &:hover, &.active {
         text-decoration: none;
         opacity: 1;
-        background: unset;
       }
-      &.active li.list-group-item {
-        background: unset;
+      &.active:hover {
+        opacity: $opacity;
       }
     }
   }
