@@ -200,17 +200,23 @@ class App extends React.Component {
 
 
   calculateHeight() {
-    // const heightFooter = document.getElementsByClassName('footer')[0].clientHeight
-    let heightSection = '100vh'
+    let heightSection = 0, heightFooter = 0, heightNavBar = 0, totalHeight = 0;
     try {
-      const totalHeight = document.body.clientHeight || 0
-      const heightNavBar = document.getElementById('navbar').clientHeight && document.getElementById('navbar').clientHeight || 0
-      const heightFooter = document.getElementById('footer').clientHeight && document.getElementById('footer').clientHeight || 0
-      const height = totalHeight - heightFooter - heightNavBar
-      if (height > 0) heightSection = height
-      // console.log('total height', totalHeight, 'navbar', heightNavBar, 'footer', heightFooter, 'main content height', height)
-    } catch (e) { }
-    this.props.dispatch(pageActions.setSectionHeight(heightSection))
+      totalHeight = document.body.clientHeight
+
+      if (document.getElementById('navbar') != null) {
+        heightNavBar = document.getElementById('navbar').clientHeight
+        heightSection = totalHeight - heightNavBar
+      }
+      if (document.getElementById('footer') != null) {
+        heightFooter = document.getElementById('footer').clientHeight
+        heightSection -= heightFooter
+      }
+      // console.log('total height', totalHeight, 'navbar', heightNavBar, 'footer', heightFooter, 'main content height', heightSection)
+    } catch (e) {
+      // console.log('calculateHeight exception', e.message)
+    }
+    this.props.dispatch(pageActions.setSectionHeight(heightSection || '100vh'))
   }
 
   setBackgroundImages() {
