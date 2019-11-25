@@ -605,6 +605,14 @@ h1 {
 .navbar {
   min-height: $header_navbar_height + unquote("px");
   font-weight: bold;
+  .navbar-collapse {
+    @media (min-width: $xs-width) {
+      background-color: $bg_color_black;
+    }
+    @media (min-width: $md-width) {
+      background-color: unset;
+    }
+  }
 }
 
 .v-divider{
