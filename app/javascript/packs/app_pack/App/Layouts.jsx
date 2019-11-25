@@ -34,7 +34,7 @@ const GuestLayout = (props) => (
   <div id='guest' className={` d-flex flex-column ${props.bgClass.bg_stars && props.bgClass.bg_stars.value}`} style={{ minHeight: '100vh' }}>
     {/* <div className="container"><div className="row"><img src={imgHeaderSrc} className="col align-self-center img-fluid" /></div></div> */}
 
-    <div className={`container-fluid flex-grow-1 ${props.bgClass.bg1 && props.bgClass.bg1.value}`}>
+    <div className={`wrapper container-fluid flex-grow-1 ${props.bgClass.bg1 && props.bgClass.bg1.value}`}>
 
       <div className={`${props.loggedIn ? 'container' : 'container'}`}>
         <Header />
