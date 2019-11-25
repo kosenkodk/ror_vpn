@@ -200,7 +200,7 @@ class App extends React.Component {
 
     // Navbar - change transparent bg color on black during scroll
     // grabbing the class names from the data attributes
-    let navBar = $('.navbar'),
+    let navBar = $('#navbar'),
       data = navBar.data();
 
     // booleans used to tame the scroll event listening a little..
