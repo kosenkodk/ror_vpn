@@ -8,10 +8,11 @@ $red: #9A2121;
 $blue: #2CB0B5;
 $pink: #7D2864;
 $padding: 15;
+$font-weight: 500;
 
 #admin_layout {
   h1, h2, h3, h4, h5 {
-    font-weight: 500;
+    font-weight: $font-weight;
   }
   section {
     padding: 0 $padding*2+0px;
@@ -21,6 +22,9 @@ $padding: 15;
   }
   nav {
     padding: $padding+0px 0;
+    .nav-link {
+      font-weight: $font-weight;
+    }
   }
   .sidebar {
     li {
