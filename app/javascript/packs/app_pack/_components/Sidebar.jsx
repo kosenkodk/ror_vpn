@@ -27,14 +27,12 @@ class Sidebar extends React.Component {
                 <img src={logoImage} className='navbar-brand' alt='Vega VPN'></img>
               </NavHashLink>
 
-              {items ? items.map(item =>
+              {items ? items.map((item, index) =>
                 <div key={item.path}>
-                  <div className="card-header collapsed" data-toggle="collapse" href="#collapseProduct1">
-
+                  <div className="card-header collapsed" data-toggle="collapse" href={`#collapse${index}`}>
                     <li className="list-group-item">{item.name}</li>
-
                   </div>
-                  <div id="collapseProduct1" className="collapse" data-parent="#adminNavbar">
+                  <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
                     <ul className="list-unstyled p-3">
                       {item.urls && Object.values(item.urls).map(subItem =>
                         <li key={subItem.path}>
@@ -43,16 +41,12 @@ class Sidebar extends React.Component {
                       )}
                     </ul>
                   </div>
-                  {/*
-                // <Link key={item.path} smooth to={item.path} activeClassName="active"
-                //   location={{ pathname: document.location.pathname + document.location.hash }}
-                // >
-
-              // </Link> */}
+                  {/* <Link key={item.path} smooth to={item.path} activeClassName="active"
+                    location={{ pathname: document.location.pathname + document.location.hash }}>
+                      <li className="list-group-item">{item.name}</li>
+                  </Link> */}
                 </div>
-              )
-                :
-                <li className="list-group-item">no items</li>
+              ) : <li className="list-group-item">no items</li>
               }
             </ul>
           </div>
