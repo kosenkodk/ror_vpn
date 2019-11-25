@@ -7,10 +7,14 @@ import { Sidebar, Alert, Header } from '../_components';
 import { Header as HeaderAdmin } from '../_components/admin';
 // import imgHeaderSrc from 'images/compare/header_with_first_section.png';
 // import imgFooterSrc from 'images/compare/footer.png';
+// import tickets from 'images/compare/admin/tickets';
 
 const AdminLayout = (props) => (
   <div id='admin_layout' className='container-fluid shadow-vega'>
     <div className='row'>
+
+      {/* <img src={tickets} className='img-fluid' /> */}
+
       <aside className='d-flex flex-column col-md-2 background-black'>
         <div className='flex-grow-1'>
           <Sidebar />
