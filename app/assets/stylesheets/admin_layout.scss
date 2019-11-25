@@ -10,6 +10,18 @@ $pink: #7D2864;
 $padding: 15;
 
 #admin_layout {
+  h1, h2, h3, h4, h5 {
+    font-weight: 500;
+  }
+  section {
+    padding: 0 $padding*2+0px;
+  }
+  article {
+    padding: $padding+0px;
+  }
+  nav {
+    padding: $padding+0px 0;
+  }
   .sidebar {
     li {
       cursor: pointer;
@@ -38,15 +50,6 @@ $padding: 15;
   .btn-black {
     @extend .btn-pink-dark;
     background-color: $black !important;
-  }
-  section {
-    padding: 0 $padding*2+0px;
-  }
-  article {
-    padding: $padding+0px;
-  }
-  nav {
-    // padding: $padding 0;
   }
   max-width: $admin_layout_max_width;
   .text-black {
