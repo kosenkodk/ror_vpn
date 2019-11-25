@@ -54,7 +54,7 @@ $(jQuery).on('ready turbolinks:load', function () {
     $('.navbar-collapse').collapse('hide');
   });
 
-
+  // Navbar - change transparent bg color on black during scroll
   // grabbing the class names from the data attributes
   const navBar = $('.navbar'),
     data = navBar.data();
