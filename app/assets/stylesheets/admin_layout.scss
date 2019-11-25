@@ -26,6 +26,9 @@ $font-weight: 500;
       font-weight: $font-weight;
     }
   }
+  footer {
+    opacity: $opacity05;
+  }
   .sidebar {
     li {
       cursor: pointer;
