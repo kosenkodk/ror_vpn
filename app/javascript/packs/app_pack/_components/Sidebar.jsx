@@ -23,12 +23,12 @@ class Sidebar extends React.Component {
           </button>
           <div className="navbar-collapse collapse justify-content-center" id="navbarForAdminLeftSidebar">
             <ul className="sidebar list-group">
-              <NavHashLink smooth to={urls.home.path} className="border-secondary border-bottom ml-auto">
+              <NavHashLink smooth to={urls.home.path} className="border-secondary border-bottom ml-auto active">
                 <img src={logoImage} className='navbar-brand' alt='Vega VPN'></img>
               </NavHashLink>
 
               {items ? items.map(item =>
-                <Link key={item.path} smooth to={item.path} activeClassName=""
+                <Link key={item.path} smooth to={item.path} activeClassName="active"
                   location={{ pathname: document.location.pathname + document.location.hash }}
                 >
                   <li className="list-group-item">{item.name}</li>
