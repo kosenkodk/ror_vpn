@@ -19,6 +19,7 @@ const urls = {
   signin: {
     path: '/signin',
     name: I18n.t('nav_menu.sign_in'),
+    className: 'pink v-divider ml-xl-5',
     // component: SigninPage
   },
   signout: {
@@ -29,6 +30,7 @@ const urls = {
   signup: {
     path: '/signup',
     name: I18n.t('nav_menu.sign_up'),
+    className: 'active',
     isActive: true,
     // component: SignupPage
   },

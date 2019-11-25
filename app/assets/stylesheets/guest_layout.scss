@@ -370,6 +370,11 @@ h1 {
   }
 }
 
+.btn-pink {
+  background: $pink_button_gradient;
+  color: $white;
+}
+
 .btn-outline-pink {
   background: transparent;
   color: $white !important;
@@ -395,6 +400,15 @@ h1 {
 
   &.active:hover {
     opacity: $opacity;
+  }
+
+  &.pink {
+    color: $pink !important;
+    background: unset !important;
+    &:hover {
+      background: unset !important;
+      opacity: $opacity;
+    }
   }
 }
 
@@ -591,6 +605,14 @@ h1 {
 .navbar {
   min-height: $header_navbar_height + unquote("px");
   font-weight: bold;
+}
+
+.v-divider{
+  // margin-left: 5px;
+  // margin-right: 5px;
+  // width: 1px;
+  height: 100%;
+  border-left: 1px solid gray;
 }
 
 .shadow-vega {
