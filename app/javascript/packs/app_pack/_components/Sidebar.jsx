@@ -29,24 +29,29 @@ class Sidebar extends React.Component {
 
               {items ? items.map((item, index) =>
                 <div key={item.path}>
-                  <div className="card-header collapsed" data-toggle="collapse" href={`#collapse${index}`}>
-                    <li className="list-group-item">{item.name}</li>
-                  </div>
-                  <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
-                    <ul className="list-unstyled p-3">
-                      {item.urls ? Object.values(item.urls).map(subItem =>
-                        <li key={subItem.path}>
-                          <NavHashLink smooth className="text-light" to={subItem.path}>{subItem.name}</NavHashLink>
-                        </li>
-                      )
-                        :
-                        <Link key={item.path} smooth to={item.path} activeClassName="active"
-                          location={{ pathname: document.location.pathname + document.location.hash }}>
-                          <li className="list-group-item">{item.name}</li>
-                        </Link>
-                      }
-                    </ul>
-                  </div>
+                  {item.urls ?
+                    <React.Fragment>
+                      <div className="card-header collapsed" data-toggle="collapse" href={`#collapse${index}`}>
+                        <li className="list-group-item">{item.name}</li>
+                      </div>
+                      <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
+                        <ul className="list-unstyled p-3">
+                          {item.urls && Object.values(item.urls).map(subItem =>
+                            <li key={subItem.path}>
+                              <NavHashLink smooth className="text-light" to={subItem.path}>{subItem.name}</NavHashLink>
+                            </li>
+                          )
+
+                          }
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                    :
+                    <Link key={item.path} smooth to={item.path} activeClassName="active"
+                      location={{ pathname: document.location.pathname + document.location.hash }}>
+                      <li className="list-group-item">{item.name}</li>
+                    </Link>
+                  }
                 </div>
               )
                 : <li className="list-group-item">no items</li>
