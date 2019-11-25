@@ -198,10 +198,9 @@ class App extends React.Component {
     //   window.scrollTo(0, 0);
     // }
 
-
     // Navbar - change transparent bg color on black during scroll
     // grabbing the class names from the data attributes
-    let navBar = $('#navbar'),
+    let navBar = $('.navbar'),
       data = navBar.data();
 
     // booleans used to tame the scroll event listening a little..
@@ -219,7 +218,7 @@ class App extends React.Component {
       // navBar.removeClass(data.startsize);
       // navBar.addClass(data.intocolor);
       // navBar.addClass(data.intosize);
-      console.log('into transition triggered!', navbar.id)
+      // console.log('into transition triggered!', navbar.id)
     };
 
     // transition Start
@@ -233,7 +232,7 @@ class App extends React.Component {
       // navBar.addClass(data.startsize);
       // navBar.removeClass(data.intocolor);
       // navBar.removeClass(data.intosize);
-      console.log('start transition triggered!', navbar.id)
+      // console.log('start transition triggered!', navbar.id)
     }
 
     // set `scrolling` to true when user scrolls
