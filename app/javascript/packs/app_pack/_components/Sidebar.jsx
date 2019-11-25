@@ -16,7 +16,7 @@ class Sidebar extends React.Component {
     let items = this.props.items;
 
     return (
-      <nav className="nav navbar navbar-expand-md navbar-dark bg-transparent justify-content-md-center">
+      <nav id="adminNavbar" className="nav navbar navbar-expand-md navbar-dark bg-transparent justify-content-md-center">
         <div className="header">
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
             <span className="navbar-toggler-icon"></span>
