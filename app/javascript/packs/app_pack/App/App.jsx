@@ -44,63 +44,22 @@ class App extends React.Component {
     });
   }
 
-  calculateHeight() {
-    // const heightFooter = document.getElementsByClassName('footer')[0].clientHeight
-    let heightSection = '100vh'
-    try {
-      const totalHeight = document.body.clientHeight || 0
-      const heightNavBar = document.getElementById('navbar').clientHeight && document.getElementById('navbar').clientHeight || 0
-      const heightFooter = document.getElementById('footer').clientHeight && document.getElementById('footer').clientHeight || 0
-      const height = totalHeight - heightFooter - heightNavBar
-      if (height > 0) heightSection = height
-      // console.log('total height', totalHeight, 'navbar', heightNavBar, 'footer', heightFooter, 'main content height', height)
-    } catch (e) { }
-    this.props.dispatch(pageActions.setSectionHeight(heightSection))
+  componentDidUpdate(prevProps) {
+    // if (this.props.location !== prevProps.location) {
+    window.scrollTo(0, 0); // move scroll to top on new page 
+    // }
+
+    this.setPageTitle(history.location)
+    this.setBackgroundImages(history.location)
+    this.calculateHeight()
+    this.onScrollNavbar()
   }
 
-  setBackgroundImages() {
-    // set background image
-    const { dispatch } = this.props
-    dispatch(bgClassActions.set('bg1', 'bg1'))
-    // dispatch(bgClassActions.set('bg_stars', ''))
-    if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname)) {
-      dispatch(bgClassActions.set('bg1', 'bg_star'))
-      // dispatch(bgClassActions.set('bg1', ''))
-    }
-
-    // set second background image (with stars)
-    if (
-      location.pathname.startsWith(this.pathWithoutParams(urls.reset.path)) ||
-      [
-        // urls.home.path,
-        urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
-    ) {
-      // dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
-      dispatch(bgClassActions.set('bg1', 'bg_vega_with_stars'))
-    }
-  }
-
-  setPageTitle(location) {
-    let pageTitle = Object.values(urls).reduce((prevItem, curItem, index) => {
-      return curItem.path.startsWith(location.pathname) ? curItem.name : prevItem.name || prevItem
-    });
-    this.props.dispatch(pageActions.setTitle(pageTitle))
-  }
-
-  pathWithoutParams(fullPath) {
-    // password_resets/:token
-    // return /password_resets
-    const path = '/' + fullPath.split('/')[1]
-    return path
-  }
-
-  isFooterVisible() {
-    const currentUrl = history.location.pathname
-    const resetUrl = this.pathWithoutParams(urls.reset.path)
-    this.setState({ isFooterVisible: true })
-    if (currentUrl.startsWith(resetUrl) ||
-      [urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(currentUrl))
-      this.setState({ isFooterVisible: false })
+  componentDidMount() {
+    smoothscroll.polyfill(); // native smooth scrolling
+    this.props.dispatch(departmentActions.getAll())
+    this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
+    this.isFooterVisible()
   }
 
   render() {
@@ -186,24 +145,6 @@ class App extends React.Component {
     );
   }
 
-  componentDidUpdate(prevProps) {
-    // if (this.props.location !== prevProps.location) {
-    window.scrollTo(0, 0); // move scroll to top on new page 
-    // }
-
-    this.setPageTitle(history.location)
-    this.setBackgroundImages(history.location)
-    this.calculateHeight()
-    this.onScrollNavbar()
-  }
-
-  componentDidMount() {
-    smoothscroll.polyfill(); // native smooth scrolling
-    this.props.dispatch(departmentActions.getAll())
-    this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
-    this.isFooterVisible()
-  }
-
   onScrollNavbar() {
     // Navbar - change transparent bg color on black during scroll
     // grabbing the class names from the data attributes
@@ -256,6 +197,67 @@ class App extends React.Component {
       // take a breath.. hold event listener from firing for 100ms
     }, 100);
   }
+
+
+  calculateHeight() {
+    // const heightFooter = document.getElementsByClassName('footer')[0].clientHeight
+    let heightSection = '100vh'
+    try {
+      const totalHeight = document.body.clientHeight || 0
+      const heightNavBar = document.getElementById('navbar').clientHeight && document.getElementById('navbar').clientHeight || 0
+      const heightFooter = document.getElementById('footer').clientHeight && document.getElementById('footer').clientHeight || 0
+      const height = totalHeight - heightFooter - heightNavBar
+      if (height > 0) heightSection = height
+      // console.log('total height', totalHeight, 'navbar', heightNavBar, 'footer', heightFooter, 'main content height', height)
+    } catch (e) { }
+    this.props.dispatch(pageActions.setSectionHeight(heightSection))
+  }
+
+  setBackgroundImages() {
+    // set background image
+    const { dispatch } = this.props
+    dispatch(bgClassActions.set('bg1', 'bg1'))
+    // dispatch(bgClassActions.set('bg_stars', ''))
+    if ([urls.http204.path, urls.not_found.path, urls.success.path, urls.coming_soon.path, urls.contact_us.path].includes(location.pathname)) {
+      dispatch(bgClassActions.set('bg1', 'bg_star'))
+      // dispatch(bgClassActions.set('bg1', ''))
+    }
+
+    // set second background image (with stars)
+    if (
+      location.pathname.startsWith(this.pathWithoutParams(urls.reset.path)) ||
+      [
+        // urls.home.path,
+        urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
+    ) {
+      // dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
+      dispatch(bgClassActions.set('bg1', 'bg_vega_with_stars'))
+    }
+  }
+
+  setPageTitle(location) {
+    let pageTitle = Object.values(urls).reduce((prevItem, curItem, index) => {
+      return curItem.path.startsWith(location.pathname) ? curItem.name : prevItem.name || prevItem
+    });
+    this.props.dispatch(pageActions.setTitle(pageTitle))
+  }
+
+  pathWithoutParams(fullPath) {
+    // password_resets/:token
+    // return /password_resets
+    const path = '/' + fullPath.split('/')[1]
+    return path
+  }
+
+  isFooterVisible() {
+    const currentUrl = history.location.pathname
+    const resetUrl = this.pathWithoutParams(urls.reset.path)
+    this.setState({ isFooterVisible: true })
+    if (currentUrl.startsWith(resetUrl) ||
+      [urls.forgot.path, urls.reset_ok.path, urls.signin.path].includes(currentUrl))
+      this.setState({ isFooterVisible: false })
+  }
+
 }
 
 function mapStateToProps(state) {
