@@ -39,7 +39,7 @@ class ContactusForm extends React.Component {
         </div>
         <div className="form-group row">
           <label className="col-sm-3 col-form-label col-form-label-lg text-right">{I18n.t('pages.contact_us.form.message')}</label>
-          <div className="col-sm-6 mr-sm-5">
+          <div className="col-sm-6">
             <textarea type="text" name="message" className="form-control form-control-lg" required={false} rows="4" ref={(input) => { this.message = input }} placeholder={I18n.t('pages.contact_us.form.help.message')}></textarea>
           </div>
         </div>
