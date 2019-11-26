@@ -13,7 +13,7 @@ import { Header as HeaderAdmin } from '../_components/admin';
 // import imgAppDownloadsSrc from 'images/compare/app_downloads'
 
 const AdminLayout = (props) => (
-  <div id='admin_layout' className='container-fluid shadow-vega'>
+  <div id='admin_layout' className='container-fluid shadow-vega position-fixed'>
     <div className='row'>
 
       {/* <img src={tickets} className='img-fluid' /> */}
@@ -24,11 +24,11 @@ const AdminLayout = (props) => (
         </div>
         <footer className='align-self-center mb-2'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
-      <section style={{ minHeight: '100vh' }} className='col-md-10 background-pink d-flex flex-column align-items-stretch'>
+      <section className='col-md-10 background-pink d-flex flex-column align-items-stretch'>
         <div className='flex-grow-1'>
           <HeaderAdmin />
           <Alert />
-          <article className='col bg-lite pt-3 mb-5' style={{ minHeight: '85vh' }}>
+          <article className='col bg-lite pt-3 mb-5'>
             {props.children}
           </article>
         </div>
