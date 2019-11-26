@@ -15,10 +15,14 @@ $font-weight: 500;
     font-weight: $font-weight;
   }
   section {
+    min-height: 100vh;
     padding: 0 $padding*2+0px;
   }
   article {
     padding: $padding+0px;
+    min-height: 85vh;
+    max-height: 85vh;
+    overflow-y: scroll;
   }
   nav {
     padding: $padding+0px 0;
