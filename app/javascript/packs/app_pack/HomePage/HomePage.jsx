@@ -21,7 +21,7 @@ class HomePage extends React.Component {
       <div id="home" className="row home">
         <div className="container">
           <ProductWithPricingBtn />
-          <Reviews />
+          {/* <Reviews /> */}
           <SecurityAndTrust />
           {/* {features && features.items &&
             <Features features={features.items} />

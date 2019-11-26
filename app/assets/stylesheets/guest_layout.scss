@@ -29,18 +29,20 @@ body {
 h1, h2, h3, h4, h5 {
   font-family: 'Montserrat';
   font-style: normal;
-  font-weight: bold;
+  font-weight: $font-bold;
 }
 
 h1 {
   @media (min-width: $xl-width) 
-  // && (max-width: $fullhd-width) 
   {
-    // font-size: 62px;
-    line-height: 67px;  
-    font-size: 3.836rem;
-    letter-spacing: 0.0220588em;  
+    // font-size: 3.836rem;
+    // line-height: 67px;
+    // letter-spacing: 0.0220588em;
     margin-bottom: 2rem;
+
+    font-size: 56px;
+    line-height: 62px;
+    letter-spacing: 0.0120588em;
   }
 }
 
@@ -70,7 +72,9 @@ h1 {
 
 .header {
   .nav-link {
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
   }
   .nav-link:focus {
     box-shadow: none;
@@ -145,14 +149,21 @@ h1 {
 .bg_astronaut {
   background: unset;
   @media (min-width: $sm-width) {
-    background: transparent asset-url('coming_soon/astronaut') no-repeat center right;
+    background: transparent asset-url('astronaut/astronaut.svg') no-repeat center right;
     background-size: 40vw auto;
   }
   @media (min-width: $xl-width) {
-    background: transparent asset-url('coming_soon/astronaut') no-repeat center right;
-    background-size: 380px auto;
+    background: transparent asset-url('astronaut/astronaut.svg') no-repeat center right;
+    background-size: 405px auto;
   }
-  
+}
+
+.bg_astronaut_with_cometa {
+  @extend .bg_astronaut;
+  background-image: unset;
+  @media (min-width: $sm-width) {
+    background-image: asset-url('astronaut/astronaut_with_cometa.svg');
+  }
 }
 
 .bg_star {
@@ -274,8 +285,7 @@ h1 {
   }
   .tab-pane ul {
     font-size: 1rem;
-    // font-weight: bold;
-    font-weight: 600;
+    font-weight: $font-bold;
     &.nav .btn {
       opacity: $opacity;
     }
@@ -287,7 +297,7 @@ h1 {
     @media (min-width: $xl-width) {
       font-size: 7rem;
       margin: 1.1rem;
-      font-weight: 600;
+      font-weight: $font-bold;
     }
     // @media (min-width: $xs-width) {
     //   font-size: 3.2rem;
@@ -546,7 +556,7 @@ h1 {
     }
     &.card-text {
       @media (min-width: $xl-width) {
-        font-weight: 600;
+        font-weight: $font-bold;
         font-size: 1.66rem;
       }
     }
@@ -604,7 +614,8 @@ h1 {
 
 .navbar {
   min-height: $header_navbar_height + unquote("px");
-  font-weight: bold;
+  font-weight: $font-bold;
+
   .navbar-collapse {
     @media (min-width: $xs-width) {
       background-color: $bg_color_black;
@@ -720,6 +731,12 @@ button:focus {
 }
 
 #downloads {
+  h1 {
+    font-size: 56px;
+    line-height: 62px;
+    letter-spacing: 0.0120588em;
+    font-weight: $font-bold;
+  }
   @media (min-width: $xs-width) {
     min-height: 100vh;//950px;
   }
@@ -729,11 +746,16 @@ button:focus {
   &.card {
     background-color: transparent !important;
   }
+  .card-body {
+    padding-top: 12rem;
+  }
   .card-text {
+    font-size: 16px;
+    line-height: 24px;
     opacity: $opacity08;
     font-weight: 100;
     img {
-    opacity: $opacity06;
+      opacity: $opacity06;
     }
   }
   h5 {
@@ -742,6 +764,7 @@ button:focus {
 }
 
 #product_with_pricing {
+  margin-bottom: 15rem;
   h1 {
     // letter-spacing: 0.15rem;
   } 
@@ -754,7 +777,7 @@ button:focus {
 #security_and_trust {
   // font-family: "Montserrat";
   background-size: contain;
-  margin-bottom: $home_padding_bottom;
+  margin-bottom: 8rem;
   // min-height: 450px;
   border: unset;
   @media (min-width: $xs-width) {
@@ -799,23 +822,23 @@ button:focus {
 .footer {
   background-color: $footer_bg_color;
   a {
-    opacity: $opacity;
+    // opacity: $opacity;
   }
   .accordion .card-header {
-    font-weight: bold;
+    font-weight: $font-bold;
   }
   .accordion .card-header:after {
     font-family: 'FontAwesome';
     content: "\f068";
     float: right;
-    opacity: $opacity;
+    // opacity: $opacity;
   }
   
   .accordion .card-header.collapsed:after {
     /* symbol for "collapsed" panels */
     font-family: 'FontAwesome';
     content: "\f067";
-    opacity: $opacity;
+    // opacity: $opacity;
   }
 
   h5 {
@@ -937,5 +960,19 @@ ul.pagination {
 .container-section {
   // max-width: 55em;
   // min-width: 30em;
+}
+
+.contact_us {
+  margin-top: 0;
+  @media (min-width: $sm-width) {
+    margin-top: $home_padding_bottom+0rem;
+  }
+  .form-control-lg, .col-form-label-lg {
+    // font-size: 14px;
+    font-size: 1rem;
+  }
+  p {
+    opacity: 1;
+  }
 }
 // }
