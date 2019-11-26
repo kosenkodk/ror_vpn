@@ -722,6 +722,12 @@ button:focus {
 }
 
 #downloads {
+  h1 {
+    font-size: 56px;
+    line-height: 62px;
+    letter-spacing: 0.0120588em;
+    font-weight: 600;
+  }
   @media (min-width: $xs-width) {
     min-height: 100vh;//950px;
   }
@@ -731,11 +737,16 @@ button:focus {
   &.card {
     background-color: transparent !important;
   }
+  .card-body {
+    padding-top: 12rem;
+  }
   .card-text {
+    font-size: 16px;
+    line-height: 24px;
     opacity: $opacity08;
     font-weight: 100;
     img {
-    opacity: $opacity06;
+      opacity: $opacity06;
     }
   }
   h5 {
