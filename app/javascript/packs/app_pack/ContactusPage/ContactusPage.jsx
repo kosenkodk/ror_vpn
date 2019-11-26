@@ -34,7 +34,7 @@ class ContactusPage extends React.Component {
             <img src={imgCompareSrc} className="col img-fluid" />
           </div> */}
 
-          <div className="row text-left bg_astronaut_with_cometa" style={{ minHeight: this.props.height }}>
+          <div className="row text-left bg_astronaut_with_cometa pt-sm-5" style={{ minHeight: this.props.height }}>
             <div className="offset-sm-3 col-sm-9 align-self-end">
               <h1 className="mb-3">
                 {I18n.t('pages.contact_us.title')}
