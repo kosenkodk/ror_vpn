@@ -146,18 +146,18 @@ h1 {
 .bg_astronaut {
   background: unset;
   @media (min-width: $sm-width) {
-    background: transparent asset-url('astronaut/astronaut3x.png') no-repeat center right;
+    background: transparent asset-url('astronaut/astronaut.svg') no-repeat center right;
     background-size: 40vw auto;
   }
   @media (min-width: $xl-width) {
-    background: transparent asset-url('astronaut/astronaut3x.png') no-repeat center right;
+    background: transparent asset-url('astronaut/astronaut.svg') no-repeat center right;
     background-size: 436px auto;
   }
 }
 
 .bg_astronaut_with_cometa {
   @extend .bg_astronaut;
-  background: transparent asset-url('astronaut/astronaut_with_cometa3x.png') no-repeat center right;
+  background: transparent asset-url('astronaut/astronaut_with_cometa.svg') no-repeat center right;
 }
 
 .bg_star {
