@@ -34,12 +34,12 @@ class ContactusPage extends React.Component {
             <img src={imgCompareSrc} className="col img-fluid" />
           </div> */}
 
-          <div className="row text-left bg_astronaut" style={{ minHeight: this.props.height }}>
-            <div className="offset-xl-3 col-xl-9 align-self-end">
+          <div className="row text-left bg_astronaut_with_cometa" style={{ minHeight: this.props.height }}>
+            <div className="offset-sm-3 col-sm-9 align-self-end">
               <h1 className="mb-3">
                 {I18n.t('pages.contact_us.title')}
               </h1>
-              <p className="lead mb-5 pb-4">{I18n.t('pages.contact_us.subtitle')}</p>
+              <p className="lead mb-md-5 pb-md-4">{I18n.t('pages.contact_us.subtitle')}</p>
             </div>
 
             {/* <div className="row">
