@@ -31,7 +31,7 @@ class Sidebar extends React.Component {
                 <div key={item.path}>
                   {item.urls ?
                     <React.Fragment>
-                      <div className="card-header collapsed" data-toggle="collapse" href={`#collapse${index}`}>
+                      <div className="collapsed" data-toggle="collapse" href={`#collapse${index}`}>
                         <li className="list-group-item">{item.name}</li>
                       </div>
                       <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
@@ -40,9 +40,7 @@ class Sidebar extends React.Component {
                             <li key={subItem.path}>
                               <NavHashLink smooth className="text-light" to={subItem.path}>{subItem.name}</NavHashLink>
                             </li>
-                          )
-
-                          }
+                          )}
                         </ul>
                       </div>
                     </React.Fragment>
