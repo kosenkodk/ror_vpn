@@ -34,13 +34,15 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   @media (min-width: $xl-width) 
-  // && (max-width: $fullhd-width) 
   {
-    // font-size: 62px;
-    line-height: 67px;  
-    font-size: 3.836rem;
-    letter-spacing: 0.0220588em;  
+    // font-size: 3.836rem;
+    // line-height: 67px;
+    // letter-spacing: 0.0220588em;
     margin-bottom: 2rem;
+
+    font-size: 56px;
+    line-height: 62px;
+    letter-spacing: 0.0120588em;
   }
 }
 
