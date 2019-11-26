@@ -960,6 +960,10 @@ ul.pagination {
 }
 
 .contact_us {
+  margin-top: 0;
+  @media (min-width: $sm-width) {
+    margin-top: $home_padding_bottom+0rem;
+  }
   .form-control-lg, .col-form-label-lg {
     // font-size: 14px;
     font-size: 1rem;
