@@ -27,7 +27,7 @@ class AppDownloads extends React.Component {
                 <img src={Linux} className="mr-3 img-fluid" alt="" />
               </p>
               <h1 className="card-title">One account for all your devices</h1>
-              <p className="card-text">With your {I18n.t('vegaVPN')} VPN account you will gain unlimited access on all of our
+              <p className="card-text col-xl-8 p-0">With your {I18n.t('vegaVPN')} VPN account you will gain unlimited access on all of our
                 supported
                 platforms,
                 allowing you to protect all
