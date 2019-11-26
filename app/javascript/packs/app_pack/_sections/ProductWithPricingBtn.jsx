@@ -21,7 +21,7 @@ class ProductWithPricingBtn extends React.Component {
             {I18n.t('buttons.view_pricing')} <span className="glyphicon glyphicon-circle-arrow-right">&#8594;</span>
           </Link>
         </div>
-        <div className="col col-auto d-none d-md-block">
+        <div className="col-auto d-none d-md-block">
           <img src={PhoneImage} className="img-fluid" alt="" />
         </div>
       </div>
