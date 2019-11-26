@@ -58,6 +58,10 @@ const GuestLayout = (props) => (
         {props.children}
       </section>
     </div>
+
+    {/* <div className="row">
+      <img src={imgAppDownloadsSrc} className="col img-fluid" />
+    </div> */}
     {/* <div className="row"><img src={imgFooterSrc} className="col align-self-center img-fluid" /></div> */}
     {props.isFooterVisible && <FooterSection />}
   </div>

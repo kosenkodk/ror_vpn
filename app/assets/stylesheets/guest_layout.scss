@@ -29,7 +29,7 @@ body {
 h1, h2, h3, h4, h5 {
   font-family: 'Montserrat';
   font-style: normal;
-  font-weight: bold;
+  font-weight: $font-bold;
 }
 
 h1 {
@@ -275,8 +275,7 @@ h1 {
   }
   .tab-pane ul {
     font-size: 1rem;
-    // font-weight: bold;
-    font-weight: 600;
+    font-weight: $font-bold;
     &.nav .btn {
       opacity: $opacity;
     }
@@ -288,7 +287,7 @@ h1 {
     @media (min-width: $xl-width) {
       font-size: 7rem;
       margin: 1.1rem;
-      font-weight: 600;
+      font-weight: $font-bold;
     }
     // @media (min-width: $xs-width) {
     //   font-size: 3.2rem;
@@ -547,7 +546,7 @@ h1 {
     }
     &.card-text {
       @media (min-width: $xl-width) {
-        font-weight: 600;
+        font-weight: $font-bold;
         font-size: 1.66rem;
       }
     }
@@ -605,7 +604,7 @@ h1 {
 
 .navbar {
   min-height: $header_navbar_height + unquote("px");
-  font-weight: bold;
+  font-weight: $font-bold;
 
   .navbar-collapse {
     @media (min-width: $xs-width) {
@@ -726,7 +725,7 @@ button:focus {
     font-size: 56px;
     line-height: 62px;
     letter-spacing: 0.0120588em;
-    font-weight: 600;
+    font-weight: $font-bold;
   }
   @media (min-width: $xs-width) {
     min-height: 100vh;//950px;
@@ -816,7 +815,7 @@ button:focus {
     // opacity: $opacity;
   }
   .accordion .card-header {
-    font-weight: bold;
+    font-weight: $font-bold;
   }
   .accordion .card-header:after {
     font-family: 'FontAwesome';
