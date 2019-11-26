@@ -813,7 +813,7 @@ button:focus {
 .footer {
   background-color: $footer_bg_color;
   a {
-    opacity: $opacity;
+    // opacity: $opacity;
   }
   .accordion .card-header {
     font-weight: bold;
@@ -822,14 +822,14 @@ button:focus {
     font-family: 'FontAwesome';
     content: "\f068";
     float: right;
-    opacity: $opacity;
+    // opacity: $opacity;
   }
   
   .accordion .card-header.collapsed:after {
     /* symbol for "collapsed" panels */
     font-family: 'FontAwesome';
     content: "\f067";
-    opacity: $opacity;
+    // opacity: $opacity;
   }
 
   h5 {
