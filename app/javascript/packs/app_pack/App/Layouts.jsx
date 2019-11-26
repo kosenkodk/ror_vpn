@@ -10,7 +10,7 @@ import { Header as HeaderAdmin } from '../_components/admin';
 // import tickets from 'images/compare/admin/tickets';
 // import homeNoRewiewsSrc from 'images/compare/home_no_reviews'
 // import homePageSrc from 'images/compare/home_page'
-import imgAppDownloadsSrc from 'images/compare/app_downloads'
+// import imgAppDownloadsSrc from 'images/compare/app_downloads'
 
 const AdminLayout = (props) => (
   <div id='admin_layout' className='container-fluid shadow-vega'>
