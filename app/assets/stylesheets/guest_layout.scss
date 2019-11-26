@@ -744,6 +744,7 @@ button:focus {
 }
 
 #product_with_pricing {
+  margin-bottom: 15rem;
   h1 {
     // letter-spacing: 0.15rem;
   } 
@@ -756,7 +757,7 @@ button:focus {
 #security_and_trust {
   // font-family: "Montserrat";
   background-size: contain;
-  margin-bottom: $home_padding_bottom;
+  margin-bottom: 8rem;
   // min-height: 450px;
   border: unset;
   @media (min-width: $xs-width) {
