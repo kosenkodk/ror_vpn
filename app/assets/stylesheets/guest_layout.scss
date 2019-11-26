@@ -157,7 +157,7 @@ h1 {
 
 .bg_astronaut_with_cometa {
   @extend .bg_astronaut;
-  background: transparent asset-url('astronaut/astronaut_with_cometa.svg') no-repeat center right;
+  background-image: asset-url('astronaut/astronaut_with_cometa.svg');
 }
 
 .bg_star {
