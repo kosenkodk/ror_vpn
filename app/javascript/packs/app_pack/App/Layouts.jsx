@@ -8,6 +8,9 @@ import { Header as HeaderAdmin } from '../_components/admin';
 // import imgHeaderSrc from 'images/compare/header_with_first_section.png';
 // import imgFooterSrc from 'images/compare/footer.png';
 // import tickets from 'images/compare/admin/tickets';
+// import homeNoRewiewsSrc from 'images/compare/home_no_reviews'
+// import homePageSrc from 'images/compare/home_page'
+// import imgAppDownloadsSrc from 'images/compare/app_downloads'
 
 const AdminLayout = (props) => (
   <div id='admin_layout' className='container-fluid shadow-vega'>
@@ -37,6 +40,8 @@ const AdminLayout = (props) => (
 const GuestLayout = (props) => (
   <div id='guest' className={` d-flex flex-column ${props.bgClass.bg_stars && props.bgClass.bg_stars.value}`} style={{ minHeight: '100vh' }}>
     {/* <div className="container"><div className="row"><img src={imgHeaderSrc} className="col align-self-center img-fluid" /></div></div> */}
+    {/* <div className="container"><div className="row"><img src={homeNoRewiewsSrc} className="col align-self-center img-fluid" /></div></div> */}
+    {/* <div className="container-fluid"><div className="row"><img src={homePageSrc} className="row align-self-center img-fluid" /></div></div> */}
 
     <div className={`wrapper container-fluid flex-grow-1 ${props.bgClass.bg1 && props.bgClass.bg1.value}`}>
 
@@ -56,6 +61,10 @@ const GuestLayout = (props) => (
         {props.children}
       </section>
     </div>
+
+    {/* <div className="row">
+      <img src={imgAppDownloadsSrc} className="col img-fluid" />
+    </div> */}
     {/* <div className="row"><img src={imgFooterSrc} className="col align-self-center img-fluid" /></div> */}
     {props.isFooterVisible && <FooterSection />}
   </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { I18n } from 'helpers'
-import astronautImage from 'images/coming_soon/astronaut'
+import astronautImage from 'images/coming_soon/astronaut_error'
 import starImage from 'images/star'
 import bg2WithMarsImage from 'images/bg2_with_mars'
 import { connect } from 'react-redux'

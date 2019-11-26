@@ -1,12 +1,13 @@
 import React from 'react';
 import { I18n } from 'helpers';
-import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship';
 import ContactusForm from './ContactusForm';
 import FlashMessages from '../_sections/FlashMessages';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 // import imgAstronautSrc from 'images/coming_soon/astronaut';
+// import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship';
+import imgMarsSrc from 'images/coming_soon/mars';
 // import imgCompareSrc from 'images/compare/contactusForm';
 
 class ContactusPage extends React.Component {
@@ -33,12 +34,12 @@ class ContactusPage extends React.Component {
             <img src={imgCompareSrc} className="col img-fluid" />
           </div> */}
 
-          <div className="row text-left bg_astronaut" style={{ minHeight: this.props.height }}>
-            <div className="offset-xl-3 col-xl-9 align-self-end">
-              <h1 className="mb-0">
+          <div className="row text-left bg_astronaut_with_cometa" style={{ minHeight: this.props.height }}>
+            <div className="offset-sm-3 col-sm-9 align-self-end">
+              <h1 className="mb-3">
                 {I18n.t('pages.contact_us.title')}
               </h1>
-              <p className="lead">{I18n.t('pages.contact_us.subtitle')}</p>
+              <p className="lead mb-md-5 pb-md-4">{I18n.t('pages.contact_us.subtitle')}</p>
             </div>
 
             {/* <div className="row">
@@ -52,7 +53,7 @@ class ContactusPage extends React.Component {
           </div>
 
           <div className="col-md-12 align-self-end">
-            <img src={marsWithSpaceshipImage} className="img-fluid" />
+            <img src={imgMarsSrc} className="img-fluid" />
           </div>
         </div>
       </div>
