@@ -25,7 +25,7 @@ class Sidebar extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="border-secondary border-top navbar-collapse collapse" id="navbarForAdminLeftSidebar">
+          <div className="border-secondary border-top navbar navbar-full navbar-collapse collapse" id="navbarForAdminLeftSidebar">
             <ul className="col-12 sidebar accordion_menu list-group">
               {items ? items.map((item, index) =>
                 <div key={item.path}>
