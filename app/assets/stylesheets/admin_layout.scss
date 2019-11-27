@@ -33,7 +33,24 @@ $font-weight: 500;
   footer {
     opacity: $opacity05;
   }
+
+  .accordion_menu {
+    .accordion_menu-title {
+      font-weight: $font-bold;
+    }
+    .accordion_menu-title:after {
+      font-family: 'FontAwesome';
+      content: "\f107";
+      float: right;
+    }
+    .collapsed .accordion_menu-title:after {
+      font-family: 'FontAwesome';
+      content: "\f105";
+    }
+  }
+
   .sidebar {
+
     ul.submenu {
       padding: 0 2rem;
       list-style: none !important;
