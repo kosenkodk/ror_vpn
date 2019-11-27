@@ -13,7 +13,7 @@ import { Header as HeaderAdmin } from '../_components/admin';
 // import imgAppDownloadsSrc from 'images/compare/app_downloads'
 
 const AdminLayout = (props) => (
-  <div id='admin_layout' className='container-fluid shadow-vega position-fixed'>
+  <div id='admin_layout' className='container-fluid shadow-vega position-sticky'>
     <div className='row'>
 
       {/* <img src={tickets} className='img-fluid' /> */}
