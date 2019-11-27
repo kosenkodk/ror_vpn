@@ -159,6 +159,7 @@ h1 {
 }
 
 .bg_astronaut_with_cometa {
+  background-position: right 6% bottom 52%;
   @extend .bg_astronaut;
   background-image: unset;
   @media (min-width: $sm-width) {
