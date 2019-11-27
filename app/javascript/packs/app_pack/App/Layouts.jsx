@@ -11,6 +11,7 @@ import { Header as HeaderAdmin } from '../_components/admin';
 // import homeNoRewiewsSrc from 'images/compare/home_no_reviews'
 // import homePageSrc from 'images/compare/home_page'
 // import imgAppDownloadsSrc from 'images/compare/app_downloads'
+// import FooterAccordion from '../_components/FooterAccordion';
 
 const AdminLayout = (props) => (
   <div id='admin_layout' className='container-fluid shadow-vega position-sticky'>
@@ -18,11 +19,12 @@ const AdminLayout = (props) => (
 
       {/* <img src={tickets} className='img-fluid' /> */}
 
-      <aside className='d-flex flex-column col-md-2 background-black align-items-start'>
-        <div className='row flex-grow-1'>
+      <aside className='col-md-2 d-flex flex-column background-black'>
+        <div className='row'>
           <Sidebar />
+          {/* <FooterAccordion /> */}
         </div>
-        <footer className='align-self-center mb-2 d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <footer className='align-self-center mt-auto d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
       <section className='col-md-10 background-pink d-flex flex-column align-items-stretch'>
         <div className='flex-grow-1'>
