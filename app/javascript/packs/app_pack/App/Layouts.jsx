@@ -18,8 +18,8 @@ const AdminLayout = (props) => (
 
       {/* <img src={tickets} className='img-fluid' /> */}
 
-      <aside className='d-flex flex-column col-md-2 background-black'>
-        <div className='flex-grow-1'>
+      <aside className='d-flex flex-column col-md-2 background-black align-items-start'>
+        <div className='row flex-grow-1'>
           <Sidebar />
         </div>
         <footer className='align-self-center mb-2 d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
