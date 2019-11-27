@@ -26,13 +26,13 @@ class Sidebar extends React.Component {
           </button>
 
           <div className="border-secondary border-top navbar-collapse collapse" id="navbarForAdminLeftSidebar">
-            <ul className="col sidebar list-group">
+            <ul className="col-12 sidebar accordion_menu list-group">
               {items ? items.map((item, index) =>
                 <div key={item.path}>
                   {item.urls ?
                     <React.Fragment>
                       <div className="collapsed" data-toggle="collapse" href={`#collapse${index}`}>
-                        <li className="list-group-item">{item.name}</li>
+                        <li className="accordion_menu-title list-group-item">{item.name}</li>
                       </div>
                       <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
                         <ul className="submenu">
