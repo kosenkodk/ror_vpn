@@ -22,7 +22,7 @@ const AdminLayout = (props) => (
         <div className='flex-grow-1'>
           <Sidebar />
         </div>
-        <footer className='align-self-center mb-2 d-none d-sm-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <footer className='align-self-center mb-2 d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
       <section className='col-md-10 background-pink d-flex flex-column align-items-stretch'>
         <div className='flex-grow-1'>
