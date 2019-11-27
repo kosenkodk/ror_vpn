@@ -974,5 +974,11 @@ ul.pagination {
   p {
     opacity: 1;
   }
+  .bg_astronaut_with_cometa {
+    margin-right: 0rem;
+    @media (min-width: $sm-width) {
+      margin-right: $home_padding_bottom+0rem;
+    }
+  }
 }
 // }
