@@ -38,7 +38,10 @@ class Sidebar extends React.Component {
                         <ul className="submenu">
                           {item.urls && Object.values(item.urls).map(subItem =>
                             <li key={subItem.path}>
-                              <Link smooth className="text-light" to={subItem.path}>{subItem.name}</Link>
+                              <Link smooth className="text-light" activeClassName="active" to={subItem.path}
+                                location={{ pathname: document.location.pathname + document.location.hash }}>
+                                {subItem.name}
+                              </Link>
                             </li>
                           )}
                         </ul>
