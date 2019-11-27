@@ -4,7 +4,6 @@ import { urls } from 'config';
 import { history } from '../_helpers';
 import PropTypes from 'prop-types';
 import logoImage from 'images/logo.svg';
-import { NavHashLink } from 'react-router-hash-link';
 
 class Sidebar extends React.Component {
 
@@ -35,10 +34,10 @@ class Sidebar extends React.Component {
                         <li className="list-group-item">{item.name}</li>
                       </div>
                       <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
-                        <ul className="list-unstyled p-3">
+                        <ul className="submenu">
                           {item.urls && Object.values(item.urls).map(subItem =>
                             <li key={subItem.path}>
-                              <NavHashLink smooth className="text-light" to={subItem.path}>{subItem.name}</NavHashLink>
+                              <Link smooth className="text-light" to={subItem.path}>{subItem.name}</Link>
                             </li>
                           )}
                         </ul>

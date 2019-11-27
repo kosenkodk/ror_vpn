@@ -34,6 +34,11 @@ $font-weight: 500;
     opacity: $opacity05;
   }
   .sidebar {
+    ul.submenu {
+      padding: 0 2rem;
+      list-style: none !important;
+    }
+
     li {
       cursor: pointer;
       background: unset !important;
