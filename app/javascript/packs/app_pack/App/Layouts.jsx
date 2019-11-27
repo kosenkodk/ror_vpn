@@ -19,8 +19,8 @@ const AdminLayout = (props) => (
 
       {/* <img src={tickets} className='img-fluid' /> */}
 
-      <aside className='col-md-2 d-flex flex-column background-black'>
-        <div className='row'>
+      <aside className='col-sm-4 col-md-3 col-lg-2 background-black'>
+        <div className='row d-flex flex-column'>
           <div classname='col'>
             <AccordionMenuVertical />
             <Sidebar />
