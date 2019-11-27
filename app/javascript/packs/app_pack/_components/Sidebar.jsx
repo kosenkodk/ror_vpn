@@ -15,17 +15,18 @@ class Sidebar extends React.Component {
     let items = this.props.items;
 
     return (
-      <nav id="adminNavbar" className="nav navbar navbar-expand-md navbar-dark bg-transparent justify-content-md-center">
-        <div className="header">
+      <div className="header col">
+        <nav id="adminNavbar" className="d-flex flex-sm-column nav navbar navbar-expand-md navbar-dark bg-transparent justify-content-md-center">
+          <Link smooth to={urls.home.path} className="navbar-brand">
+            <img src={logoImage} className='' alt='Vega VPN'></img>
+          </Link>
+
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="navbar-collapse collapse justify-content-center" id="navbarForAdminLeftSidebar">
-            <ul className="sidebar list-group">
-              <NavHashLink smooth to={urls.home.path} className="border-secondary border-bottom ml-auto active">
-                <img src={logoImage} className='navbar-brand' alt='Vega VPN'></img>
-              </NavHashLink>
 
+          <div className="border-secondary border-top navbar-collapse collapse" id="navbarForAdminLeftSidebar">
+            <ul className="col sidebar list-group">
               {items ? items.map((item, index) =>
                 <div key={item.path}>
                   {item.urls ?
@@ -55,8 +56,8 @@ class Sidebar extends React.Component {
               }
             </ul>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     );
   }
 }
