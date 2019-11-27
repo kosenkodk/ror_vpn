@@ -4,7 +4,7 @@ import { urls } from 'config';
 import { connect } from 'react-redux';
 import { FooterSection } from '../_sections';
 import { Sidebar, Alert, Header } from '../_components';
-import { Header as HeaderAdmin } from '../_components/admin';
+import { Header as HeaderAdmin, AccordionMenuVertical } from '../_components/admin';
 // import imgHeaderSrc from 'images/compare/header_with_first_section.png';
 // import imgFooterSrc from 'images/compare/footer.png';
 // import tickets from 'images/compare/admin/tickets';
@@ -21,7 +21,10 @@ const AdminLayout = (props) => (
 
       <aside className='col-md-2 d-flex flex-column background-black'>
         <div className='row'>
-          <Sidebar />
+          <div classname='col'>
+            <AccordionMenuVertical />
+            <Sidebar />
+          </div>
           {/* <FooterAccordion /> */}
         </div>
         <footer className='align-self-center mt-auto d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
