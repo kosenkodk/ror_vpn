@@ -37,12 +37,12 @@ $font-weight: 500;
   h1, h2, h3, h4, h5 {
     font-weight: $font-weight;
   }
-  aside {
-    min-height: unset;
-    @media (min-width: $sm-width) {
-      min-height: 100vh;
-    }
-  }
+  // aside {
+  //   min-height: unset;
+  //   @media (min-width: $sm-width) {
+  //     min-height: 100vh;
+  //   }
+  // }
   section {
     min-height: 100vh;
     padding: 0 $padding*2+0px;
