@@ -11,13 +11,13 @@ class ProductWithPricingBtn extends React.Component {
           <img src={PhoneImage} className="img-fluid" alt="" />
         </div>
         <div className="col align-items-start">
-          <h1 className="featurette-heading">
+          <h1 className="mt-4 pt-4 featurette-heading">
             Take control of who has access to your private data
           </h1>
           <p className="lead pl-0 col-xl-11">{I18n.t('vegaVPN')} encrypts your internet activity, shielding you from hackers, ISP's and everyone
             else who has
       no business recording what you haven't chosen to share.</p>
-          <Link to="/pricing" className="col-xl-3 btn btn-outline-primary">
+          <Link to="/pricing" className="col-auto btn btn-outline-primary">
             {I18n.t('buttons.view_pricing')} <span className="glyphicon glyphicon-circle-arrow-right">&#8594;</span>
           </Link>
         </div>
