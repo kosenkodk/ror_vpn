@@ -16,7 +16,7 @@ class Sidebar extends React.Component {
 
     return (
       <nav id="adminNavbar" className="d-flex flex-column navbar-expand-sm navbar-dark bg-transparent">
-        <div className="row px-2">
+        <div className="row mx-2">
           <div className="col text-sm-center">
             <Link smooth to={urls.home.path} className="navbar-brand">
               <img src={logoImage} className='' alt='Vega VPN'></img>
