@@ -19,7 +19,7 @@ const urls = {
   signin: {
     path: '/signin',
     name: I18n.t('nav_menu.sign_in'),
-    className: 'pink v-divider ml-xl-5',
+    className: 'ml-xl-5',
     // component: SigninPage
   },
   signout: {
