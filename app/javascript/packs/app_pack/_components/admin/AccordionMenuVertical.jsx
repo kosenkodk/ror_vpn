@@ -28,6 +28,7 @@ class AccordionMenuVertical extends React.Component {
 
           <div class="card">
             <div class="card-header" id="headingTwo">
+
               <h5 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Item #2
@@ -65,11 +66,21 @@ class AccordionMenuVertical extends React.Component {
           {item.urls ?
             <React.Fragment>
               <div class="card-header" id={`heading${accordionId}${index}`}>
-                {/* <h5 class="mb-0"> */}
-                <a class={`btn btn-link ${index == collapsedItemIndex ? '' : 'collapsed'}`} type="button" data-toggle="collapse" data-target={`#collapse${accordionId}${index}`} aria-expanded="true" aria-controls={`collapse${accordionId}${index}`}>
+                <a class={`card-title ${index == collapsedItemIndex ? '' : 'collapsed'}`} type="button" data-toggle="collapse" data-target={`#collapse${accordionId}${index}`} aria-expanded="true" aria-controls={`collapse${accordionId}${index}`}>
                   {item.name}
                 </a>
+                {/* <h5 class="mb-0"> */}
+
                 {/* </h5> */}
+
+                {/* <div className="row">
+                  <div className="col">
+                    
+                  </div>
+                  <div className="arrow col-shrink-1 align-self-center">
+
+                  </div>
+                </div> */}
               </div>
 
               <div id={`collapse${accordionId}${index}`} class={`collapse ${index == collapsedItemIndex ? 'show' : ''}`} aria-labelledby={`heading${accordionId}${index}`} data-parent={`#${accordionId}`}>
@@ -88,14 +99,16 @@ class AccordionMenuVertical extends React.Component {
               </div>
             </React.Fragment>
             :
-            <Link key={item.path} smooth to={item.path} className="btn btn-link" activeClassName="active"
-              location={{ pathname: document.location.pathname + document.location.hash }}>
-              {item.name}
-            </Link>
+            <div class="card-header" id={`heading${accordionId}${index}`}>
+              <Link key={item.path} smooth to={item.path} className="text-white" activeClassName="active"
+                location={{ pathname: document.location.pathname + document.location.hash }}>
+                {item.name}
+              </Link>
+            </div>
           }
         </div>
-      )};
-   </div>
+      )}
+    </div>
     return (
       <React.Fragment>
         {/* {content_static} */}

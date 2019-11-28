@@ -15,14 +15,15 @@ $font-weight: 500;
   .accordion .card-header {
     font-weight: $font-bold;
   }
-  .accordion .card-header a:after {
+  
+  .accordion .card-header .card-title:after {
     font-family: 'FontAwesome';
     content: "\f068";
     float: right;
     // opacity: $opacity;
   }
   
-  .accordion .card-header a.collapsed:after {
+  .accordion .card-header .card-title.collapsed:after {
     /* symbol for "collapsed" panels */
     font-family: 'FontAwesome';
     content: "\f067";
