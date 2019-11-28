@@ -22,7 +22,7 @@ const AdminLayout = (props) => (
       <aside className='col-sm-4 col-md-3 col-lg-2 background-black'>
         <div className='row d-flex flex-column'>
           <div classname='col'>
-            <AccordionMenuVertical />
+            {/* <AccordionMenuVertical /> */}
             <Sidebar />
           </div>
           {/* <FooterAccordion /> */}
