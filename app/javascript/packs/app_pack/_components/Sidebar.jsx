@@ -15,15 +15,19 @@ class Sidebar extends React.Component {
     let items = this.props.items;
 
     return (
-      <nav id="adminNavbar" className="d-flex flex-sm-column navbar-expand-sm navbar-dark bg-transparent justify-content-md-center">
-        <Link smooth to={urls.home.path} className="navbar-brand">
-          <img src={logoImage} className='' alt='Vega VPN'></img>
-        </Link>
-
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
+      <nav id="adminNavbar" className="d-flex flex-column navbar-expand-sm navbar-dark bg-transparent">
+        <div className="row px-2">
+          <div className="col">
+            <Link smooth to={urls.home.path} className="navbar-brand">
+              <img src={logoImage} className='' alt='Vega VPN'></img>
+            </Link>
+          </div>
+          <div className="col-shrink align-self-center">
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
         <div className="border-secondary border-top navbar navbar-full navbar-collapse collapse" id="navbarForAdminLeftSidebar">
           <ul className="col-12 sidebar accordion_menu list-group">
             {items ? items.map((item, index) =>
