@@ -29,7 +29,7 @@ class Sidebar extends React.Component {
             {items ? items.map((item, index) =>
               <div key={item.path}>
                 {item.urls ?
-                  <div className="row d-flex flex-column flex-wrap">
+                  <div className="">
                     <div className="collapsed" data-toggle="collapse" href={`#collapse${index}`}>
                       <li className="accordion_menu-title list-group-item">{item.name}</li>
                     </div>
