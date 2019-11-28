@@ -20,14 +20,14 @@ const AdminLayout = (props) => (
       {/* <img src={tickets} className='img-fluid' /> */}
 
       <aside className='col-sm-4 col-md-3 col-lg-2 background-black'>
-        <div className='row d-flex flex-column'>
-          <div classname='col'>
+        <div className='row d-flex flex-column' style={{ minHeight: '100vh' }}>
+          <div classname=''>
             {/* <AccordionMenuVertical /> */}
             <Sidebar />
           </div>
           {/* <FooterAccordion /> */}
+          <footer className='mt-auto text-center pb-4 d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
         </div>
-        <footer className='align-self-center mt-auto d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
       <section className='col background-pink d-flex flex-column align-items-stretch'>
         <div className='flex-grow-1'>
