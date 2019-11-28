@@ -23,14 +23,14 @@ $font-weight: 500;
   
    .card-header .card-title:after {
     font-family: 'FontAwesome';
-    content: "\f068";
+    content: "\f107";
     float: right;
   }
   
   .card-header .card-title.collapsed:after {
     /* symbol for "collapsed" panels */
     font-family: 'FontAwesome';
-    content: "\f067";
+    content: "\f105";
   }
 }
 

@@ -66,7 +66,7 @@ class AccordionMenuVertical extends React.Component {
           {item.urls ?
             <React.Fragment>
               <div class="card-header" id={`heading${accordionId}${index}`}>
-                <a class={`card-title ${index == collapsedItemIndex ? '' : 'collapsed'}`} type="button" data-toggle="collapse" data-target={`#collapse${accordionId}${index}`} aria-expanded="true" aria-controls={`collapse${accordionId}${index}`}>
+                <a class={`card-title ${index == collapsedItemIndex ? '' : 'collapsed'}`} type="" data-toggle="collapse" data-target={`#collapse${accordionId}${index}`} aria-expanded="true" aria-controls={`collapse${accordionId}${index}`}>
                   {item.name}
                 </a>
               </div>
