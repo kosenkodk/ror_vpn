@@ -32,9 +32,9 @@ h1, h2, h3, h4, h5 {
   font-weight: $font-bold;
 }
 
-h1 {
-  @media (min-width: $xl-width) 
-  {
+@media (min-width: $xl-width) 
+{
+  h1 {
     // font-size: 3.836rem;
     // line-height: 67px;
     // letter-spacing: 0.0220588em;
@@ -44,6 +44,16 @@ h1 {
     line-height: 62px;
     letter-spacing: 0.0120588em;
   }
+
+  h5 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .btn {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 @mixin mfp {
@@ -51,8 +61,10 @@ h1 {
   font-style: normal;
   font-weight: normal;
   @media (min-width: $xl-width) {
-    font-size: 20px;
-    line-height: 28px;
+    // font-size: 20px;
+    // line-height: 28px;
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 
@@ -759,7 +771,6 @@ button:focus {
   .card-text {
     font-size: 16px;
     line-height: 24px;
-    opacity: $opacity08;
     font-weight: 100;
     img {
       opacity: $opacity06;
@@ -818,13 +829,11 @@ button:focus {
   }
   .card-text {
     font-weight: normal;
-    opacity: $opacity;
-    // font-size: 1.15rem;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
   }
   .card-body {
-    padding-bottom:0rem;
+    padding-bottom: 0rem;
   }
 }
 
@@ -848,11 +857,6 @@ button:focus {
     font-family: 'FontAwesome';
     content: "\f067";
     // opacity: $opacity;
-  }
-
-  h5 {
-    margin-top: 4rem;
-    margin-bottom: 2rem;
   }
 }
 
