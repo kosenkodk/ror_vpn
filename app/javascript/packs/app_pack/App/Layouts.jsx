@@ -27,8 +27,8 @@ const AdminLayout = (props) => (
           </div>
           {/* <FooterAccordion /> */}
         </div>
-        <div className='row mt-auto'>
-          <footer className='col self-align-end text-center pb-4 d-none d-md-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <div className='row'>
+          <footer className='col self-align-end text-center pb-4 d-none d-sm-block'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
         </div>
       </aside>
       <section className='col background-pink d-flex flex-column align-items-stretch'>
