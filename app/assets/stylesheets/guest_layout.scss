@@ -510,11 +510,18 @@ h1 {
   font-family: 'Montserrat';
   font-style: normal;
   margin-bottom: $home_padding_bottom;
+  h5 {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+  }
   p {
     &.card-text {
-      // font-weight: 100;
       opacity: $opacity05;
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 24px;
     }
   }
   .card-body {
@@ -810,9 +817,11 @@ button:focus {
   //   margin-bottom: 0rem;
   }
   .card-text {
-    font-weight: 100;
+    font-weight: normal;
     opacity: $opacity;
-    font-size: 1.15rem;
+    // font-size: 1.15rem;
+    font-size: 18px;
+    line-height: 24px;
   }
   .card-body {
     padding-bottom:0rem;
