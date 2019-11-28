@@ -11,6 +11,24 @@ $padding: 15;
 $font-weight: 500;
 
 #admin_layout {
+
+  .accordion .card-header {
+    font-weight: $font-bold;
+  }
+  .accordion .card-header a:after {
+    font-family: 'FontAwesome';
+    content: "\f068";
+    float: right;
+    // opacity: $opacity;
+  }
+  
+  .accordion .card-header a.collapsed:after {
+    /* symbol for "collapsed" panels */
+    font-family: 'FontAwesome';
+    content: "\f067";
+    // opacity: $opacity;
+  }
+
   h1, h2, h3, h4, h5 {
     font-weight: $font-weight;
   }

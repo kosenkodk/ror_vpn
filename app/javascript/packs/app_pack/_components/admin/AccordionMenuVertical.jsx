@@ -58,7 +58,7 @@ class AccordionMenuVertical extends React.Component {
           </div>
         </div>
       </div>
-    const accordionId = 'accordionMenuVertical'
+    const { accordionId, collapsedItemIndex } = this.props
     const content = <div class="accordion" id={accordionId}>
       {items.map((item, index) =>
         <div key={item.path} class="card">
@@ -66,15 +66,15 @@ class AccordionMenuVertical extends React.Component {
             <React.Fragment>
               <div class="card-header" id={`heading${accordionId}${index}`}>
                 {/* <h5 class="mb-0"> */}
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target={`#collapse${accordionId}${index}`} aria-expanded="true" aria-controls={`collapse${accordionId}${index}`}>
+                <a class={`btn btn-link ${index == collapsedItemIndex ? '' : 'collapsed'}`} type="button" data-toggle="collapse" data-target={`#collapse${accordionId}${index}`} aria-expanded="true" aria-controls={`collapse${accordionId}${index}`}>
                   {item.name}
-                </button>
+                </a>
                 {/* </h5> */}
               </div>
 
-              <div id={`collapse${accordionId}${index}`} class="collapse" aria-labelledby={`heading${accordionId}${index}`} data-parent={`#${accordionId}`}>
+              <div id={`collapse${accordionId}${index}`} class={`collapse ${index == collapsedItemIndex ? 'show' : ''}`} aria-labelledby={`heading${accordionId}${index}`} data-parent={`#${accordionId}`}>
                 <div class="card-body border">
-                  <ul className="submenu border">
+                  <ul className="submenu list-unstyled ml-sm-4 border">
                     {item.urls && Object.values(item.urls).map(subItem =>
                       <li key={subItem.path}>
                         <Link smooth className="text-light" activeClassName="active" to={subItem.path}
@@ -88,19 +88,17 @@ class AccordionMenuVertical extends React.Component {
               </div>
             </React.Fragment>
             :
-            <div className="card-header collapsed" data-toggle="collapse">
-              <Link key={item.path} smooth to={item.path} activeClassName="active"
-                location={{ pathname: document.location.pathname + document.location.hash }}>
-                {item.name}
-              </Link>
-            </div>
+            <Link key={item.path} smooth to={item.path} className="btn btn-link" activeClassName="active"
+              location={{ pathname: document.location.pathname + document.location.hash }}>
+              {item.name}
+            </Link>
           }
         </div>
       )};
    </div>
     return (
       <React.Fragment>
-        {content_static}
+        {/* {content_static} */}
         {content}
       </React.Fragment>
     );
@@ -115,7 +113,9 @@ AccordionMenuVertical.defaultProps = {
     urls.user_payment,
     urls.user_downloads,
     urls.user_invite_friend,
-  ]
+  ],
+  accordionId: 'accordionMenuVertical',
+  collapsedItemIndex: 0
 }
 
 function mapStateToProps(state) {
