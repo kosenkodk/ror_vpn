@@ -841,6 +841,8 @@ button:focus {
   background-color: $footer_bg_color;
   a {
     // opacity: $opacity;
+    font-size: 14px;
+    line-height: 25px;
   }
   .accordion .card-header {
     font-weight: $font-bold;
@@ -857,6 +859,11 @@ button:focus {
     font-family: 'FontAwesome';
     content: "\f067";
     // opacity: $opacity;
+  }
+
+  h5 {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
   }
 }
 
