@@ -22,7 +22,7 @@ class Features extends React.Component {
         {/* <div className="row"><img src={imgFeaturesSrc} className="col img-fluid" /></div> */}
         {
           features.map(item => (
-            <div key={item.id} className="col-xs-12 col-sm-6 col-md-4">
+            <div key={item.id} className="p-0 mb-4 col-xs-12 col-sm-6 col-md-4">
               <Feature {...item} />
               {/* <Feature title={item.title} /> */}
             </div>
