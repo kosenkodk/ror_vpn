@@ -18,16 +18,16 @@ class AppDownloads extends React.Component {
             <img src={Vega} className="ml-auto img-fluid d-none d-md-block" alt="" />
             {/* <%#=image_tag 'downloads', { class:'card-img', alt:''} #%> */}
           </div>
-          <div className="col-md-6 col-xl-5 d-flex align-content-center flex-wrap">
+          <div className="ml-xl-3 col d-flex align-content-center flex-wrap">
             <div className="card-body">
               <p className="card-text pb-0 mb-0 mb-xl-3">
-                <img src={Apple} className="mr-4 img-fluid" alt="" />
-                <img src={Android} className="mr-4 img-fluid" alt="" />
-                <img src={WP} className="mr-4 img-fluid" alt="" />
+                <img src={Apple} className="mr-3 pr-3 img-fluid" alt="" />
+                <img src={Android} className="mr-3 pr-3 img-fluid" alt="" />
+                <img src={WP} className="mr-3 pr-3 img-fluid" alt="" />
                 <img src={Linux} className="img-fluid" alt="" />
               </p>
               <h1 className="card-title">One account for all your devices</h1>
-              <p className="card-text col-xl-10 p-0 mt-xl-4">With your {I18n.t('vegaVPN')} VPN account you will gain unlimited access on all of our
+              <p className="card-text col-xl-9 p-0 mt-xl-4">With your {I18n.t('vegaVPN')} VPN account you will gain unlimited access on all of our
                 supported
                 platforms,
                 allowing you to protect all
