@@ -32,9 +32,9 @@ h1, h2, h3, h4, h5 {
   font-weight: $font-bold;
 }
 
-h1 {
-  @media (min-width: $xl-width) 
-  {
+@media (min-width: $xl-width) 
+{
+  h1 {
     // font-size: 3.836rem;
     // line-height: 67px;
     // letter-spacing: 0.0220588em;
@@ -44,6 +44,16 @@ h1 {
     line-height: 62px;
     letter-spacing: 0.0120588em;
   }
+
+  h5 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .btn {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 @mixin mfp {
@@ -51,8 +61,10 @@ h1 {
   font-style: normal;
   font-weight: normal;
   @media (min-width: $xl-width) {
-    font-size: 20px;
-    line-height: 28px;
+    // font-size: 20px;
+    // line-height: 28px;
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 
@@ -495,6 +507,10 @@ h1 {
 
 .login {
   @extend .signup;
+  p {
+    // font-size: 16px;
+    // line-height: 24px;
+  }
 }
 
 .status_page {
@@ -511,11 +527,18 @@ h1 {
   font-family: 'Montserrat';
   font-style: normal;
   margin-bottom: $home_padding_bottom;
+  h5 {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+  }
   p {
     &.card-text {
-      // font-weight: 100;
       opacity: $opacity05;
-      font-size: 1.2rem;
+      // font-size: 1.2rem;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 24px;
     }
   }
   .card-body {
@@ -664,22 +687,13 @@ button:focus {
   }
 }
 
-@media (min-width: 992px) { 
-  
-  h1 {
-    // padding-top: 30px;
-    // padding-bottom: 30px;
-    // font-size: 3.45rem;
-    // font-weight: bold;
-    // line-height: 3rem;
-  }
+@media (min-width: $lg-width) { 
 
   p {
     &.lead {
       @include mfp;
       // font-size: 1.15rem;
       // font-weight: 100;
-      opacity: $opacity08;
     }
   }
   .btn.btn-outline-primary {
@@ -748,24 +762,23 @@ button:focus {
     background-color: transparent !important;
   }
   .card-body {
-    padding-top: 12rem;
+    padding-top: 7rem;
   }
   .card-text {
     font-size: 16px;
     line-height: 24px;
-    opacity: $opacity08;
     font-weight: 100;
     img {
       opacity: $opacity06;
     }
   }
   h5 {
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
   }
 }
 
 #product_with_pricing {
-  margin-bottom: 15rem;
+  margin-bottom: 13rem;
   h1 {
     // letter-spacing: 0.15rem;
   } 
@@ -811,12 +824,12 @@ button:focus {
   //   margin-bottom: 0rem;
   }
   .card-text {
-    font-weight: 100;
-    opacity: $opacity;
-    font-size: 1.15rem;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
   }
   .card-body {
-    padding-bottom:0rem;
+    padding-bottom: 0rem;
   }
 }
 
@@ -824,6 +837,8 @@ button:focus {
   background-color: $footer_bg_color;
   a {
     // opacity: $opacity;
+    font-size: 14px;
+    line-height: 25px;
   }
   .accordion .card-header {
     font-weight: $font-bold;
