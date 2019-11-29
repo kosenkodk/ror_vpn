@@ -7,7 +7,7 @@ class ProductWithPricingBtn extends React.Component {
   render() {
     return (
       <div id="product_with_pricing" className="product_with_pricing row d-flex flex-column flex-md-row align-items-center mt-5">
-        <div className="col d-block d-md-none">
+        <div className="col text-center d-block d-md-none">
           <img src={PhoneImage} className="img-fluid" alt="" />
         </div>
         <div className="col align-items-start">
