@@ -686,22 +686,13 @@ button:focus {
   }
 }
 
-@media (min-width: 992px) { 
-  
-  h1 {
-    // padding-top: 30px;
-    // padding-bottom: 30px;
-    // font-size: 3.45rem;
-    // font-weight: bold;
-    // line-height: 3rem;
-  }
+@media (min-width: $lg-width) { 
 
   p {
     &.lead {
       @include mfp;
       // font-size: 1.15rem;
       // font-weight: 100;
-      opacity: $opacity08;
     }
   }
   .btn.btn-outline-primary {
