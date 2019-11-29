@@ -13,7 +13,52 @@ import { Header as HeaderAdmin, AccordionMenuVertical } from '../_components/adm
 // import imgAppDownloadsSrc from 'images/compare/app_downloads'
 // import FooterAccordion from '../_components/FooterAccordion';
 
+
 const AdminLayout = (props) => (
+  <div id="admin_layout" className="container-fluid position-sticky">
+    <div className='row'>
+
+      <aside className="col border border-light">
+
+        <div class="d-flex flex-column bd-highlight mb-3">
+          <div class="p-2 bd-highlight">Flex item 1</div>
+          <div class="p-2 bd-highlight">Flex item 2</div>
+          <div class="p-2 bd-highlight">Flex item 3</div>
+        </div>
+
+        <div class="d-flex align-items-stretch mb-3">
+          <div class="p-2 bd-highlight">Flex item 1</div>
+          <div class="p-2 bd-highlight">Flex item 2</div>
+          <div class="p-2 bd-highlight">Flex item 3</div>
+        </div>
+
+        <div class="d-flex flex-column align-items-stretch mb-3">
+          <div class="p-2 bd-highlight">Flex item 1</div>
+          <div class="p-2 bd-highlight">Flex item 2</div>
+          <div class="p-2 bd-highlight">Flex item 3</div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between align-items-stretch mb-3 vh-100">
+          <div class="p-2 bd-highlight align-self-start h-25">Flex item 1</div>
+          <div class="p-2 bd-highlight align-self-center h-50">Flex item 2</div>
+          <div class="p-2 bd-highlight align-self-end h-75">Flex item 3</div>
+          <div class="p-2 bd-highlight align-self-end h-100">Flex item 4</div>
+        </div>
+
+        <Sidebar />
+        <footer className='botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+      </aside>
+
+      <section className="col border border-warning  background-pink">
+        <article className="border border-danger bg-lite">
+          article
+        </article>
+      </section>
+    </div>
+  </div>
+);
+
+const AdminLayout2 = (props) => (
   <div id='admin_layout' className='container-fluid shadow-vega position-sticky'>
     <div className='row'>
 

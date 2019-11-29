@@ -10,6 +10,12 @@ $pink: #7D2864;
 $padding: 15;
 $font-weight: 500;
 
+.bd-highlight {
+  background-color: lightblue;
+  border: 1px solid $blue;
+  color: black;
+}
+
 #admin_layout {
 
   .accordion { 
