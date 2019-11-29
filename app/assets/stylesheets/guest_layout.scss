@@ -43,6 +43,8 @@ h1, h2, h3, h4, h5 {
     font-size: 56px;
     line-height: 62px;
     letter-spacing: 0.0120588em;
+    // letter-spacing: 0.02em;
+
   }
 
   h5 {
@@ -527,7 +529,7 @@ h1, h2, h3, h4, h5 {
   font-style: normal;
   margin-bottom: $home_padding_bottom;
   h5 {
-    font-weight: bold;
+    // font-weight: bold;
     font-size: 18px;
     line-height: 22px;
   }
@@ -789,6 +791,7 @@ button:focus {
   margin-bottom: 13rem;
   h1 {
     // letter-spacing: 0.15rem;
+    letter-spacing: unset;
   } 
   p {
     // letter-spacing: 0.08rem;
