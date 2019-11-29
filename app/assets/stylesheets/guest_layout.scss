@@ -506,6 +506,10 @@ h1, h2, h3, h4, h5 {
 
 .login {
   @extend .signup;
+  p {
+    // font-size: 16px;
+    // line-height: 24px;
+  }
 }
 
 .status_page {
@@ -766,7 +770,7 @@ button:focus {
     background-color: transparent !important;
   }
   .card-body {
-    padding-top: 12rem;
+    padding-top: 7rem;
   }
   .card-text {
     font-size: 16px;
@@ -777,12 +781,12 @@ button:focus {
     }
   }
   h5 {
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
   }
 }
 
 #product_with_pricing {
-  margin-bottom: 15rem;
+  margin-bottom: 13rem;
   h1 {
     // letter-spacing: 0.15rem;
   } 
