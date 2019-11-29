@@ -14,7 +14,7 @@ class ProductWithPricingBtn extends React.Component {
           <h1 className="mt-4 pt-4 featurette-heading">
             Take control of who has access to your private data
           </h1>
-          <p className="lead pl-0 col-xl-11">{I18n.t('vegaVPN')} encrypts your internet activity, shielding you from hackers, ISP's and everyone
+          <p className="lead pl-0">{I18n.t('vegaVPN')} encrypts your internet activity, shielding you from hackers, ISP's and everyone
             else who has
       no business recording what you haven't chosen to share.</p>
           <Link to="/pricing" className="col-auto btn btn-outline-primary">
