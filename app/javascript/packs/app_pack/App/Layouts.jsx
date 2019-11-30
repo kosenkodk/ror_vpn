@@ -16,34 +16,91 @@ import { Header as HeaderAdmin, AccordionMenuVertical } from '../_components/adm
 
 const AdminLayout = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
+    <div className="row d-flex vh-100">
+      <div className="w-15 d-flex flex-column background-black">
+        <div className="flex-fill">
+          <Sidebar />
+        </div>
+        <div className="p-2 bd-highlight">footer</div>
+      </div>
+      <div className="flex-fill bd-highlight background-pink">
+        <div className="p-2 bd-highlight">header</div>
+        <div className="p-2 bd-highlight">alerts</div>
+        <div className="mx-4 my-2 p-2 bd-highlight background-white h-75">content</div>
+
+      </div>
+    </div>
+
+    <div className="d-flex bd-highlight mt-3 mb-3">
+      <div className="w-25 p-2 bd-highlight">Flex item 1</div>
+      <div className="w-0 p-2 bd-highlight">Flex item 2</div>
+      <div className="w-75 p-2 bd-highlight">Flex item 3</div>
+    </div>
+    <div className="d-flex flex-column bd-highlight mb-3">
+      <div className="p-2 bd-highlight">Flex item 1</div>
+      <div className="p-2 bd-highlight">Flex item 2</div>
+      <div className="p-2 bd-highlight">Flex item 3</div>
+    </div>
+
+    <div className="d-flex align-items-stretch mb-3">
+      <div className="p-2 bd-highlight">Flex item 1</div>
+      <div className="p-2 bd-highlight">Flex item 2</div>
+      <div className="p-2 bd-highlight">Flex item 3</div>
+    </div>
+
+    <div className="d-flex flex-column align-items-stretch mb-3">
+      <div className="p-2 bd-highlight">Flex item 1</div>
+      <div className="p-2 bd-highlight">Flex item 2</div>
+      <div className="p-2 bd-highlight">Flex item 3</div>
+    </div>
+
+    <div className="d-flex flex-row justify-content-between align-items-stretch mb-3 vh-100">
+      <div className="p-2 bd-highlight align-self-start h-25">Flex item 1</div>
+      <div className="p-2 bd-highlight align-self-center h-50">Flex item 2</div>
+      <div className="p-2 bd-highlight align-self-end h-75">Flex item 3</div>
+      <div className="p-2 bd-highlight align-self-end h-100">Flex item 4</div>
+    </div>
+
+    <div className="d-flex bd-highlight mb-3">
+      <div className="p-2 flex-fill bd-highlight">Flex item with a lot of content</div>
+      <div className="p-2 flex-fill bd-highlight">Flex item</div>
+      <div className="p-2 flex-fill bd-highlight">Flex item</div>
+    </div>
+
+    <div className="d-flex flex-column bd-highlight mb-3 vh-100">
+      <div className="p-2 flex-fill bd-highlight ">Flex fill item with a lot of content</div>
+      <div className="p-2 bd-highlight">Flex fill item</div>
+      <div className="p-2 flex-fill bd-highlight">Flex fill item</div>
+    </div>
+
+    <div className="d-flex bd-highlight mb-3">
+      <div className="p-2 flex-grow-1 bd-highlight">flex-grow-1 item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Third flex item</div>
+    </div>
+
+    <div className="d-flex flex-column flex-align-items-stretch vh-100 bd-highlight mb-3">
+      <div className="p-2 flex-grow-1 bd-highlight">flex-grow-1 item</div>
+      <div className="p-2 bd-highlight">Flex item</div>
+      <div className="p-2 bd-highlight">Third flex item</div>
+    </div>
+
+    <div className="d-flex flex-wrap align-items-end align-items-lg-center" style={{ height: '300px' }}>
+      <div className="col-4 bd-highlight" style={{ height: '100px' }}>1</div>
+      <div className="col-4 bd-highlight" style={{ height: '150px' }}>2</div>
+      <div className="col-4 bd-highlight" style={{ height: '75px' }}>3</div>
+      <div className="col-4 bd-highlight" style={{ height: '150px' }}>4</div>
+      <div className="col-4 bd-highlight" style={{ height: '100px' }}>5</div>
+      <div className="col-4 bd-highlight" style={{ height: '75px' }}>6</div>
+    </div>
+  </div>
+);
+
+const AdminLayoutEmpty = (props) => (
+  <div id="admin_layout" className="container-fluid position-sticky">
     <div className='row'>
 
       <aside className="col border border-light">
-
-        <div class="d-flex flex-column bd-highlight mb-3">
-          <div class="p-2 bd-highlight">Flex item 1</div>
-          <div class="p-2 bd-highlight">Flex item 2</div>
-          <div class="p-2 bd-highlight">Flex item 3</div>
-        </div>
-
-        <div class="d-flex align-items-stretch mb-3">
-          <div class="p-2 bd-highlight">Flex item 1</div>
-          <div class="p-2 bd-highlight">Flex item 2</div>
-          <div class="p-2 bd-highlight">Flex item 3</div>
-        </div>
-
-        <div class="d-flex flex-column align-items-stretch mb-3">
-          <div class="p-2 bd-highlight">Flex item 1</div>
-          <div class="p-2 bd-highlight">Flex item 2</div>
-          <div class="p-2 bd-highlight">Flex item 3</div>
-        </div>
-
-        <div class="d-flex flex-row justify-content-between align-items-stretch mb-3 vh-100">
-          <div class="p-2 bd-highlight align-self-start h-25">Flex item 1</div>
-          <div class="p-2 bd-highlight align-self-center h-50">Flex item 2</div>
-          <div class="p-2 bd-highlight align-self-end h-75">Flex item 3</div>
-          <div class="p-2 bd-highlight align-self-end h-100">Flex item 4</div>
-        </div>
 
         <Sidebar />
         <footer className='botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>

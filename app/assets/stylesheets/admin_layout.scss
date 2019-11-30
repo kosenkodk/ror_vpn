@@ -15,7 +15,9 @@ $font-weight: 500;
   border: 1px solid $blue;
   color: black;
 }
-
+.w-15 {
+  width: 15% !important;
+}
 #admin_layout {
 
   .accordion { 
