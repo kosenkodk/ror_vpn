@@ -33,7 +33,7 @@ class Sidebar extends React.Component {
             {items ? items.map((item, index) =>
               <div key={item.path}>
                 {item.urls ?
-                  <div className="">
+                  <React.Fragment>
                     <div className="collapsed" data-toggle="collapse" href={`#collapse${index}`}>
                       <li className="accordion_menu-title list-group-item opacity-05">{item.name}</li>
                     </div>
@@ -49,7 +49,7 @@ class Sidebar extends React.Component {
                         )}
                       </ul>
                     </div>
-                  </div>
+                  </React.Fragment>
                   :
                   <Link key={item.path} smooth to={item.path} activeClassName="active"
                     location={{ pathname: document.location.pathname + document.location.hash }}>
