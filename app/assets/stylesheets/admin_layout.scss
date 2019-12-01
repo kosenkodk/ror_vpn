@@ -160,17 +160,27 @@ $font34: 34px;
   }
 
   .sidebar {
-
+    
     ul.submenu {
       padding: 0 2rem;
       list-style: none !important;
+    }
+    a li.list-group-item {
+      opacity: $opacity05;
+    }
+    a.active li.list-group-item {
+      opacity: 1;
     }
 
     li {
       cursor: pointer;
       background: unset !important;
+      &.list-group-item {
+        opacity: $opacity05;
+      }
       &.list-group-item.active {
         border: unset;
+        opacity: 1;
       }
     }
   

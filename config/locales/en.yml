@@ -54,6 +54,7 @@ en:
   email: "E-Mail"
   vegaVPN: "VEGA"
   nav_menu:
+    home: ""
     features: "Features"
     pricing: "Pricing"
     apps: "Apps"
