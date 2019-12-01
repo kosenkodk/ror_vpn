@@ -114,12 +114,12 @@ const AdminLayout = (props) => (
         <div id='alert' className="mt-n3 mb-n3 text-center">
           <div className={`m-0 alert alert-danger alert-inline`}>error error error error error</div>
         </div>
-        <article className="border border-danger background-white">
-          <div>
+        <div className="main-content background-white">
+        <article className="border border-danger">
           {props.children}
           {Array.from(new Array(1500)).map(item => "article ")}
-          </div>
         </article>
+        </div>
       </section>
     </div>
   </div>
