@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
                 {item.urls ?
                   <div className="">
                     <div className="collapsed" data-toggle="collapse" href={`#collapse${index}`}>
-                      <li className="accordion_menu-title list-group-item">{item.name}</li>
+                      <li className="accordion_menu-title list-group-item opacity-05">{item.name}</li>
                     </div>
                     <div id={`collapse${index}`} className="collapse" data-parent="#adminNavbar">
                       <ul className="submenu">
@@ -53,12 +53,12 @@ class Sidebar extends React.Component {
                   :
                   <Link key={item.path} smooth to={item.path} activeClassName="active"
                     location={{ pathname: document.location.pathname + document.location.hash }}>
-                    <li className="list-group-item">{item.name}</li>
+                    <li className="list-group-item opacity-05">{item.name}</li>
                   </Link>
                 }
               </div>
             )
-              : <li className="list-group-item">no items</li>
+              : <li className="list-group-item opacity-05">no items</li>
             }
           </ul>
         </div>

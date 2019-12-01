@@ -22,10 +22,12 @@ $font34: 34px;
 .w-15 {
   width: 15% !important;
 }
-
+.opacity-05 {
+  opacity: $opacity05;
+}
 #admin_layout {
   font-size: $font14;
-  line-height: $font-size18lh;
+  line-height: $font18;
   
   .navbar-brand {
     img {
@@ -89,7 +91,9 @@ $font34: 34px;
     font-size: $font18;
     line-height: $font34;
   }
-  
+  #adminNavbar {
+
+  }
   aside {
     @include media-breakpoint-only(xs) {
       // width: unset;
@@ -100,7 +104,6 @@ $font34: 34px;
       // max-width: 22rem;
       max-width: 12rem;
     }
-
   //   min-height: unset;
   //   @media (min-width: $sm-width) {
   //     min-height: 100vh;
