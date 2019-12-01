@@ -23,8 +23,13 @@ $font-weight: 500;
 }
 
 #admin_layout {
+  font-size: 14px;
+  line-height: 18px;
+  
   .alert {
     // top:1rem;
+    font-size: 18px;
+    line-height: 24px;
   }
   .alert-danger {
     background-color: $red;
@@ -36,6 +41,7 @@ $font-weight: 500;
     border-color: $blue;
     color: $white;
   }
+
   .accordion { 
     .card-title {
       width: 100%;
@@ -46,20 +52,27 @@ $font-weight: 500;
     }
   
    .card-header .card-title:after {
-    font-family: 'FontAwesome';
-    content: "\f107";
-    float: right;
+      font-family: 'FontAwesome';
+      content: "\f107";
+      float: right;
+    }
+    
+    .card-header .card-title.collapsed:after {
+      /* symbol for "collapsed" panels */
+      font-family: 'FontAwesome';
+      content: "\f105";
+    }
   }
-  
-  .card-header .card-title.collapsed:after {
-    /* symbol for "collapsed" panels */
-    font-family: 'FontAwesome';
-    content: "\f105";
-  }
-}
 
   h1, h2, h3, h4, h5 {
     font-weight: $font-weight;
+  }
+
+  h1 {
+    // @include media-breakpoint-only(xs) {
+
+    font-size: 24px;
+    line-height: 34px;
   }
   
   aside {
@@ -85,8 +98,7 @@ $font-weight: 500;
   }
   .header {
     // min-height: 5rem;
-    // padding: 1rem 0;
-    margin-top: 0.75rem;
+    padding: .75rem 0;
   }
   article {
     padding: $padding+0px;
