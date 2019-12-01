@@ -26,6 +26,13 @@ $font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   
+  .navbar-brand {
+    img {
+      max-height: 2rem;
+      margin-top: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+  }
   .alert {
     // top:1rem;
     font-size: 18px;
