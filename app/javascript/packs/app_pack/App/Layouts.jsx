@@ -107,7 +107,11 @@ const AdminLayout = (props) => (
         <footer className='py-2 mt-auto align-self-center botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
-      <section className="col border border-warning  background-pink">
+      <section className="col border border-warning background-pink">
+        <div className="header">
+          <HeaderAdmin />
+          <Alert />
+        </div>
         <article className="border border-danger bg-lite">
           <div>
           {Array.from(new Array(500 )).map(item=>item+="article ")}
