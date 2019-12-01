@@ -28,7 +28,7 @@ class Sidebar extends React.Component {
             </button>
           </div>
         </div>
-        <div className="border-secondary border-top navbar navbar-full navbar-collapse collapse" id="navbarForAdminLeftSidebar">
+        <div className="p-0 border-secondary border-top navbar navbar-full navbar-collapse collapse" id="navbarForAdminLeftSidebar">
           <ul className="col-12 sidebar accordion_menu list-group">
             {items ? items.map((item, index) =>
               <div key={item.path}>
