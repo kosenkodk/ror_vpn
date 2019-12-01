@@ -4,7 +4,7 @@ import { urls } from 'config';
 import { connect } from 'react-redux';
 import { FooterSection } from '../_sections';
 import { Sidebar, Alert, Header } from '../_components';
-import { Header as HeaderAdmin, AccordionMenuVertical } from '../_components/admin';
+import { Alert as AlertAdmin, Header as HeaderAdmin, AccordionMenuVertical } from '../_components/admin';
 // import imgHeaderSrc from 'images/compare/header_with_first_section.png';
 // import imgFooterSrc from 'images/compare/footer.png';
 // import tickets from 'images/compare/admin/tickets';
@@ -109,9 +109,7 @@ const AdminLayout = (props) => (
         <div className="header text-center">
           <HeaderAdmin />
         </div>
-        <div id='alert' className="mt-n3 mb-n3 text-center">
-          <div className={`m-0 alert alert-danger alert-inline`}>error error error error error</div>
-        </div>
+        <AlertAdmin/>
         <div className="main-content background-white">
         <article className="">
           {props.children}
