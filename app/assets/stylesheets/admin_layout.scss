@@ -45,15 +45,31 @@ $font-weight: 500;
   h1, h2, h3, h4, h5 {
     font-weight: $font-weight;
   }
-  // aside {
+  
+  aside {
+    @include media-breakpoint-only(xs) {
+      // width: unset;
+      // max-width: unset;
+    }
+    @include media-breakpoint-between(sm, xl) {
+      width: 19rem;
+      max-width: 22rem;
+    }
+
+    
   //   min-height: unset;
   //   @media (min-width: $sm-width) {
   //     min-height: 100vh;
   //   }
-  // }
+  }
+
   section {
     min-height: 100vh;
     padding: 0 $padding*2+0px;
+  }
+  .header {
+    // min-height: 5rem;
+    padding: 1rem 0;
   }
   article {
     padding: $padding+0px;
