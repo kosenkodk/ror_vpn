@@ -21,8 +21,21 @@ $font-weight: 500;
 .alert-inline {
   display:inline-block;
 }
-#admin_layout {
 
+#admin_layout {
+  .alert {
+    // top:1rem;
+  }
+  .alert-danger {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+  .alert-success {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+  }
   .accordion { 
     .card-title {
       width: 100%;
@@ -72,7 +85,8 @@ $font-weight: 500;
   }
   .header {
     // min-height: 5rem;
-    padding: 1rem 0;
+    // padding: 1rem 0;
+    margin-top: 0.75rem;
   }
   article {
     padding: $padding+0px;
