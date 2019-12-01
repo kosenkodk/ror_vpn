@@ -108,9 +108,11 @@ const AdminLayout = (props) => (
       </aside>
 
       <section className="col border border-warning background-pink">
-        <div className="header">
+        <div className="header text-center">
           <HeaderAdmin />
-          <Alert />
+        </div>
+        <div id='alert' className="mb-n5 text-center">
+          <div className={`alert alert-danger alert-inline`}>error error error error error</div>
         </div>
         <article className="border border-danger bg-lite">
           <div>
