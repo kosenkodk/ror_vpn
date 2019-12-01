@@ -236,13 +236,15 @@ $font-weight: 500;
       li.page-item {
         
         span.page-link {
-          color: $white !important; 
+          color: $white !important;
         }
         
         .page-link {
           border-color: $borderColor !important;
           color: $black !important;
           cursor: pointer;
+          padding-bottom: 0.75rem;
+          padding-top: 0.75rem;
         }
 
         &:hover, &.active {
