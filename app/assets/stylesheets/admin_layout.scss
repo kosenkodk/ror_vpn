@@ -30,6 +30,7 @@ $font-weight: 500;
     // top:1rem;
     font-size: 18px;
     line-height: 24px;
+    z-index: 1000;
   }
   .alert-danger {
     background-color: $red;
@@ -102,13 +103,21 @@ $font-weight: 500;
     // padding: .75rem 0;
     margin-top: .75rem;
   }
-  article {
+
+  .main-content {
     border-radius: $admin_border_radius;
     padding: $padding+0px;
     min-height: 85vh;
     max-height: 85vh;
     overflow-y: scroll;
   }
+    
+  article {
+    max-width: 55vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   nav {
     // padding: $padding+0px 0;
     .nav-link {
