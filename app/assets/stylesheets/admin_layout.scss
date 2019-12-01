@@ -19,7 +19,7 @@ $font-weight: 500;
   width: 15% !important;
 }
 .alert-inline {
-  display:inline-block;
+  display: inline-block;
 }
 
 #admin_layout {
@@ -103,6 +103,7 @@ $font-weight: 500;
     margin-top: .75rem;
   }
   article {
+    border-radius: $admin_border_radius;
     padding: $padding+0px;
     min-height: 85vh;
     max-height: 85vh;
@@ -186,6 +187,7 @@ $font-weight: 500;
   }
   .background-white {
     background-color: $white;
+    color: $black;
   }
   .background-black {
     background-color: $black;
@@ -199,20 +201,14 @@ $font-weight: 500;
     background-color: #EDEEEF;
   }
 
-  .bg-lite {
-    color: $black;
-    background: $white;
-    border-radius: $admin_border_radius;
-    // .ticket_statuses {
-    a.nav-link {
+    .ticket_statuses a.nav-link {
       cursor: pointer;
       text-decoration: underline dashed;
       &:hover, &.active {
         text-decoration: none;
         font-weight: bolder;
       }
-    // }
-  }
+
 
     // pagination
     ul.pagination {
