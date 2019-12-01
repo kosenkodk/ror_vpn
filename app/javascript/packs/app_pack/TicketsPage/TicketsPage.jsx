@@ -89,12 +89,12 @@ class TicketsPage extends React.Component {
                 <table className="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col" className="w-10">#</th>
-                      <th scope="col" className="w-20">Department</th>
-                      <th scope="col" className="w-35">Subject</th>
-                      <th scope="col" className="w-15">Date</th>
-                      <th scope="col" className="w-15">Status</th>
-                      <th colSpan="1" scope="col" className="w-5">Action</th>
+                      <th scope="col" className="">#</th>
+                      <th scope="col" className="">Department</th>
+                      <th scope="col" className="">Subject</th>
+                      <th scope="col" className="">Date</th>
+                      <th scope="col" className="">Status</th>
+                      <th colSpan="1" scope="col" className="">Action</th>
                     </tr>
                   </thead>
                   <tbody>
