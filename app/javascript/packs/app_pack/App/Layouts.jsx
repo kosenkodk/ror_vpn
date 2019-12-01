@@ -104,7 +104,7 @@ const AdminLayout = (props) => (
        d-flex flex-column">
         
         <Sidebar />
-        <footer className='mb-4 mt-auto align-self-center botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <footer className='d-none d-sm-block mb-4 mt-auto align-self-center botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
       <section className="col border border-warning background-pink">
