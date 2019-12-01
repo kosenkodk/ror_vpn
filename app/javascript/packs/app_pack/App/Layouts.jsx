@@ -100,6 +100,32 @@ const AdminLayout = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
     <div className='row'>
 
+      <aside className="col-xl-2 col-lg-3 col-sm-4 d-flex flex-column">
+        <Sidebar />
+        <footer className='d-none d-sm-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+      </aside>
+
+      <section className="col background-pink">
+        <div className="header text-center">
+          <HeaderAdmin />
+        </div>
+        <div id='alert' className="mt-n3 mb-n3 text-center">
+          <div className={`m-0 alert alert-danger alert-inline`}>error error error error error</div>
+        </div>
+        <div className="main-content background-white">
+        <article className="">
+          {props.children}
+        </article>
+        </div>
+      </section>
+    </div>
+  </div>
+);
+
+const AdminLayoutDebug = (props) => (
+  <div id="admin_layout" className="container-fluid position-sticky">
+    <div className='row'>
+
       <aside className="col-xl-2 col-lg-3 col-sm-4 border border-light
        d-flex flex-column">
         
@@ -125,7 +151,7 @@ const AdminLayout = (props) => (
   </div>
 );
 
-const AdminLayout2 = (props) => (
+const AdminLayout1 = (props) => (
   <div id='admin_layout' className='container-fluid shadow-vega position-sticky'>
     <div className='row'>
 
