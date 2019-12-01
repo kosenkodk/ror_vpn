@@ -27,7 +27,7 @@ class Paginator extends React.Component {
     const { pageCurrent = 1, pageTotal = 1 } = this.props
     return (
       <nav aria-label="Paginator">
-        <ul className="pagination justify-content-end">
+        <ul className="pagination pagination-md justify-content-end">
           <li className={`page-item ${pageCurrent > 1 ? '' : 'disabled'}`}>
             <a id="prev" className="page-link" tabIndex="-1"
               onClick={(e) => this.onPageChange(e, this.pagePrev(pageCurrent))}>Previous</a>
