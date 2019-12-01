@@ -115,8 +115,8 @@ const AdminLayout = (props) => (
           <div className={`alert alert-danger alert-inline`}>alert message</div>
         </div> */}
 
-        <div className="main-content background-white">
-        <article className="">
+        <div className="row main-content background-white">
+        <article className="col">
           {props.children}
         </article>
         </div>
