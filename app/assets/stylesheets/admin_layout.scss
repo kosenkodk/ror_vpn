@@ -9,6 +9,10 @@ $blue: #2CB0B5;
 $pink: #7D2864;
 $padding: 15;
 $font-weight: 500;
+$font14: 14px;
+$font18: 18px;
+$font24: 24px;
+$font34: 34px;
 
 .bd-highlight {
   background-color: lightblue;
@@ -20,8 +24,8 @@ $font-weight: 500;
 }
 
 #admin_layout {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: $font14;
+  line-height: $font-size18lh;
   
   .navbar-brand {
     img {
@@ -36,7 +40,7 @@ $font-weight: 500;
     margin: -2rem 0;
   }
   .alert {
-    font-size: 18px;
+    font-size: $font18;
     line-height: 24px;
     z-index: 1000;
   }
@@ -82,9 +86,8 @@ $font-weight: 500;
 
   h2 {
     // @include media-breakpoint-only(xs) {
-
-    font-size: 24px;
-    line-height: 34px;
+    font-size: $font18;
+    line-height: $font34;
   }
   
   aside {
@@ -98,7 +101,6 @@ $font-weight: 500;
       max-width: 12rem;
     }
 
-    
   //   min-height: unset;
   //   @media (min-width: $sm-width) {
   //     min-height: 100vh;
@@ -183,7 +185,9 @@ $font-weight: 500;
   }
 
   .btn {
-    font-weight: bold;
+    font-weight: $font-bold;
+    font-size: $font14;
+    line-height: $font18;
   }
   .btn-black {
     @extend .btn-pink-dark;
@@ -221,45 +225,44 @@ $font-weight: 500;
     background-color: #EDEEEF;
   }
 
-    .ticket_statuses a.nav-link {
-      cursor: pointer;
-      text-decoration: underline dashed;
+  .ticket_statuses a.nav-link {
+    cursor: pointer;
+    text-decoration: underline dashed;
+    &:hover, &.active {
+      text-decoration: none;
+      font-weight: bolder;
+    }
+  }
+
+  // pagination
+  ul.pagination {
+    li.page-item {
+      
+      span.page-link {
+        color: $white !important;
+      }
+      
+      .page-link {
+        border-color: $borderColor !important;
+        color: $black !important;
+        cursor: pointer;
+        padding-bottom: 0.75rem;
+        padding-top: 0.75rem;
+      }
+
       &:hover, &.active {
-        text-decoration: none;
-        font-weight: bolder;
-      }
-    }
-
-
-    // pagination
-    ul.pagination {
-      li.page-item {
-        
-        span.page-link {
+        background: $pink_gradient;
+        color: $white !important;
+        &:hover {
           color: $white !important;
         }
-        
-        .page-link {
-          border-color: $borderColor !important;
-          color: $black !important;
-          cursor: pointer;
-          padding-bottom: 0.75rem;
-          padding-top: 0.75rem;
-        }
-
-        &:hover, &.active {
-          background: $pink_gradient;
-          color: $white !important;
-          &:hover {
-            color: $white !important;
-          }
-        }
-
-        &.disabled {
-          opacity: $opacity;
-        }
-        
       }
+
+      &.disabled {
+        opacity: $opacity;
+      }
+      
     }
+  }
 
 }
