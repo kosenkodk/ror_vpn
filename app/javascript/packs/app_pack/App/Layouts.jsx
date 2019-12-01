@@ -14,7 +14,7 @@ import { Header as HeaderAdmin, AccordionMenuVertical } from '../_components/adm
 // import FooterAccordion from '../_components/FooterAccordion';
 
 
-const AdminLayout = (props) => (
+const AdminLayout1420px = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
     <div className="row d-flex vh-100">
       <div className="w-15 d-flex flex-column background-black">
@@ -96,19 +96,22 @@ const AdminLayout = (props) => (
   </div>
 );
 
-const AdminLayoutEmpty = (props) => (
+const AdminLayout = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
     <div className='row'>
 
-      <aside className="col border border-light">
-
+      <aside className="col-xl-2 col-lg-3 col-sm-4 border border-light
+       d-flex flex-column">
+        
         <Sidebar />
-        <footer className='botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <footer className='mt-auto botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
       <section className="col border border-warning  background-pink">
         <article className="border border-danger bg-lite">
-          article
+          <div>
+          {Array.from(new Array(500 )).map(item=>item+="article ")}
+          </div>
         </article>
       </section>
     </div>
