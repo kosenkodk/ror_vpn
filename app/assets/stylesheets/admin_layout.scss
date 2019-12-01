@@ -82,7 +82,8 @@ $font-weight: 500;
     }
     @include media-breakpoint-between(sm, xl) {
       width: 19rem;
-      max-width: 22rem;
+      // max-width: 22rem;
+      max-width: 12rem;
     }
 
     
