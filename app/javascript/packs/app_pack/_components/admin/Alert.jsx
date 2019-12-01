@@ -6,9 +6,11 @@ class Alert extends React.Component {
     const { alert } = this.props;
     return (
       <React.Fragment>
-        {alert.message &&
-          <div id='alert' className="mt-n3 mb-n3 text-center">
-            <div className={`m-0 alert ${alert.type} alert-inline`}>{alert.message}</div>
+        {alert.type &&
+          <div id='alert' className="text-center header__alert">
+            <div className={`alert ${alert.type} alert-inline`}>
+              {alert.message && alert.message}
+            </div>
           </div>
         }
       </React.Fragment>

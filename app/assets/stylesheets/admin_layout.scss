@@ -18,9 +18,6 @@ $font-weight: 500;
 .w-15 {
   width: 15% !important;
 }
-.alert-inline {
-  display: inline-block;
-}
 
 #admin_layout {
   font-size: 14px;
@@ -33,11 +30,18 @@ $font-weight: 500;
       margin-bottom: 0.5rem;
     }
   }
+  .header__alert {
+    // margin-top: -2rem;
+    // margin-bottom: -2rem;
+    margin: -2rem 0;
+  }
   .alert {
-    // top:1rem;
     font-size: 18px;
     line-height: 24px;
     z-index: 1000;
+  }
+  .alert-inline {
+    display: inline-block;
   }
   .alert-danger {
     background-color: $red;
@@ -107,8 +111,7 @@ $font-weight: 500;
   }
   .header {
     // min-height: 5rem;
-    // padding: .75rem 0;
-    margin-top: .75rem;
+    margin: .75rem 0;
   }
 
   .main-content {
