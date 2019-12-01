@@ -109,7 +109,12 @@ const AdminLayout = (props) => (
         <div className="header text-center">
           <HeaderAdmin />
         </div>
+        
         <AlertAdmin/>
+        {/* <div id='alert' className="text-center header__alert">
+          <div className={`alert alert-danger alert-inline`}>alert message</div>
+        </div> */}
+
         <div className="main-content background-white">
         <article className="">
           {props.children}
