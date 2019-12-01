@@ -104,7 +104,7 @@ const AdminLayout = (props) => (
        d-flex flex-column">
         
         <Sidebar />
-        <footer className='py-2 mt-auto align-self-center botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <footer className='mb-4 mt-auto align-self-center botder border-success'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
       <section className="col border border-warning background-pink">
@@ -116,7 +116,7 @@ const AdminLayout = (props) => (
         </div>
         <article className="border border-danger bg-lite">
           <div>
-          {Array.from(new Array(500)).map(item => "article ")}
+          {Array.from(new Array(1500)).map(item => "article ")}
           </div>
         </article>
       </section>
