@@ -7,6 +7,7 @@ import { TicketForm } from './TicketForm'
 import { urls } from 'config'
 import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
 import { I18n } from 'helpers'
+import icArrowLeftSrc from 'images/accordion_menu/arrow_left.svg'
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
@@ -62,11 +63,13 @@ class TicketsNewPage extends React.Component {
           <div className="container-section">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-xs-6">
-                  <h5 className="mt-2">New Ticket</h5>
+                <div className="col-shrink-0 align-self-center">
+                  <Link to={urls.tickets.path} className="">
+                    <img src={icArrowLeftSrc} className="img-fluid" />
+                  </Link>
                 </div>
-                <div className="col-xs-6 ml-auto">
-                  <Link to={urls.tickets.path} className="btn btn-sm btn-outline-primary">Back</Link>
+                <div className="col">
+                  <h5 className="mt-2">New Ticket</h5>
                 </div>
               </div>
             </div>
