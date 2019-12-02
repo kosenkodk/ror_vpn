@@ -25,7 +25,10 @@ $font34: 34px;
 .opacity-05 {
   opacity: $opacity05;
 }
+
 #admin_layout {
+
+
   font-size: $font14;
   line-height: $font18;
   
@@ -195,7 +198,12 @@ $font34: 34px;
     font-weight: $font-bold;
     font-size: $font14;
     line-height: $font18;
+    // padding: 14px 27px;
+    // min-width: 170px;
+    padding: 0.65rem 1.65rem;
+    min-width: 10.5rem;
   }
+
   .btn-black {
     @extend .btn-pink-dark;
     background-color: $black !important;
