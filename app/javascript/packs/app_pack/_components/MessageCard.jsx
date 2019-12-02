@@ -19,15 +19,32 @@ class Message extends React.Component {
     const { item } = this.props
 
     return (
-      <React.Fragment>
-        <h5 className="mb-0">
-          <b>{this.getUserNameOrEmailFromMessage(item)}</b>
+      <div className="card">
+        <h5 className="card-header">
+          From <b>{this.getUserNameOrEmailFromMessage(item)}</b> at {item && item.created_at_humanize}
+          {/* {item.user && item.user.email} */}
         </h5>
-        <p><small>{item && item.created_at_humanize}</small></p>
+        <div className="card-body">
+          {/* <h5 className="card-title">Special title treatment</h5>
+          <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" className="btn btn-primary">Go somewhere</a> */}
 
+          {/* <div className="form-group row">
+            <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
+              Date:
+            </label>
+            <div className="col-sm-8 align-self-center">
+              {item && item.created_at_humanize}
+            </div>
+          </div> */}
 
-        <div className="border border-radius border-gray p-3">
-          {item && item.text}
+          <div className="form-group row">
+            <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">
+              Message:</label>
+            <div className="col-sm-8 align-self-center">
+              {item && item.text}
+            </div>
+          </div>
 
           {item && item.attachment_url &&
             <div className="form-group row">
@@ -38,7 +55,7 @@ class Message extends React.Component {
             </div>
           }
         </div>
-      </React.Fragment>
+      </div>
     )
   }
 }

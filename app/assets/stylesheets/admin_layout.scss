@@ -28,8 +28,12 @@ $font34: 34px;
   opacity: $opacity05;
 }
   
-border-gray {
-  color: #EDEEEF;
+.border-gray {
+  border-color: #EDEEEF;
+}
+
+.border-radius {
+  border-radius: $admin_border_radius;
 }
 
 #admin_layout {
@@ -269,8 +273,11 @@ border-gray {
     }
   }
 
-  .ticket_message {
-
+  .ticket__message {
+    @extend .border-gray;
+    @extend .border-radius;
+    padding: 2rem 1rem;
+    margin-bottom: 1rem;
   }
 
   .card {
