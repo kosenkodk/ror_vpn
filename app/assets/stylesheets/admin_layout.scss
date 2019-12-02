@@ -30,12 +30,15 @@ $font34: 34px;
   line-height: $font18;
   
   .navbar-brand {
-    img {
+    @include media-breakpoint-up(sm) {
+      img {
       max-height: 2rem;
       margin-top: 1.3rem;
       margin-bottom: 0.5rem;
+      }
     }
   }
+
   .header__alert {
     // margin-top: -2rem;
     // margin-bottom: -2rem;
@@ -95,19 +98,10 @@ $font34: 34px;
 
   }
   aside {
-    @include media-breakpoint-only(xs) {
-      // width: unset;
-      // max-width: unset;
-    }
     @include media-breakpoint-between(sm, xl) {
-      width: 19rem;
-      // max-width: 22rem;
+      width: 12rem;
       max-width: 12rem;
     }
-  //   min-height: unset;
-  //   @media (min-width: $sm-width) {
-  //     min-height: 100vh;
-  //   }
   }
 
   section {
