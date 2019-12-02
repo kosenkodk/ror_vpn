@@ -27,6 +27,10 @@ $font34: 34px;
 .opacity-05 {
   opacity: $opacity05;
 }
+  
+border-gray {
+  color: #EDEEEF;
+}
 
 #admin_layout {
   font-size: $font14;
@@ -254,6 +258,23 @@ $font34: 34px;
       text-decoration: none;
       font-weight: bolder;
     }
+  }
+
+  .ticket_message {
+
+  }
+
+  .card {
+    background: $white;
+    color: $black;
+    .card-title {
+      border: unset;
+      background-color: unset;
+    }
+    .card-body {
+      border: #EDEEEF;
+    }
+    margin-bottom: 1rem;
   }
 
   // pagination
