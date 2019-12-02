@@ -19,19 +19,24 @@ $font34: 34px;
   border: 1px solid $blue;
   color: black;
 }
+
 .w-15 {
   width: 15% !important;
 }
+
 .opacity-05 {
   opacity: $opacity05;
 }
 
 #admin_layout {
-
-
   font-size: $font14;
   line-height: $font18;
   
+  .btn-outline-danger {
+    color: $red;
+    border-color: $red;
+  }
+
   .navbar-brand {
     @include media-breakpoint-up(sm) {
       img {
