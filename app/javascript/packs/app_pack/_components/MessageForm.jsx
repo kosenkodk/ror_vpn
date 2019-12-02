@@ -50,7 +50,7 @@ class MessageForm extends React.Component {
                   {' ' + I18n.t('pages.tickets.form.submit')}
                 </button>
               </div>
-              <div className="col-sm-3 ml-auto">
+              <div className="col-sm-3 ml-auto text-right">
                 {this.props.item &&
                   <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
                     disabled={this.props.loading ? true : false}>
