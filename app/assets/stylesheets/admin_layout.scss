@@ -41,6 +41,11 @@ border-gray {
     border-color: $red;
   }
 
+  textarea {
+    font-size: $font14;
+    line-height: $font24;
+  }
+
   .navbar-brand {
     @include media-breakpoint-up(sm) {
       img {
@@ -106,9 +111,11 @@ border-gray {
     font-size: $font18;
     line-height: $font34;
   }
+
   #adminNavbar {
 
   }
+
   aside {
     @include media-breakpoint-between(sm, xl) {
       width: 12rem;
@@ -120,6 +127,7 @@ border-gray {
     min-height: 100vh;
     padding: 0 $padding*2+0px;
   }
+
   .header {
     // min-height: 5rem;
     margin: .75rem 0;
@@ -152,6 +160,7 @@ border-gray {
       font-weight: $font-weight;
     }
   }
+
   footer {
     opacity: $opacity05;
   }
