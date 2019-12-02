@@ -74,7 +74,7 @@ class TicketsNewPage extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6 col-lg-5">
+              <div className="col-md-8 col-xl-7">
                 <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
                 {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
               </div>
