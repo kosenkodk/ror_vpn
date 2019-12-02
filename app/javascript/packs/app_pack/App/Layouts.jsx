@@ -100,7 +100,7 @@ const AdminLayout = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
     <div className='row'>
 
-      <aside className="col d-flex flex-column">
+      <aside className="col-sm-2 d-flex flex-column">
         <Sidebar />
         <footer className='d-none d-sm-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
