@@ -45,14 +45,14 @@ class MessageForm extends React.Component {
 
             <div className="form-group row">
               <div className="col-sm-3">
-                <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={this.props.loading ? true : false}>
+                <button id="contact_submit" className="btn btn-outline-primary" disabled={this.props.loading ? true : false}>
                   {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                   {' ' + I18n.t('pages.tickets.form.submit')}
                 </button>
               </div>
               <div className="col-sm-3 ml-auto">
                 {this.props.item &&
-                  <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-block btn-outline-danger'
+                  <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
                     disabled={this.props.loading ? true : false}>
                     {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                     Close my ticket</button>
