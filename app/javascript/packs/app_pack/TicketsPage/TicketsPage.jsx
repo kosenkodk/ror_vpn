@@ -86,7 +86,8 @@ class TicketsPage extends React.Component {
 
             <div className="container-section">
               <div className="table-responsive">
-                <table className="table table-striped">
+                {/* <table className="table table-striped"> */}
+                <table className="table">
                   <thead>
                     <tr>
                       <th scope="col" className="">#</th>
