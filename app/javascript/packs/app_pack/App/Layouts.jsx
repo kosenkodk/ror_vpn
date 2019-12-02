@@ -100,27 +100,35 @@ const AdminLayout = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
     <div className='row'>
 
-      <aside className="col-xl-2 col-lg-3 col-sm-4 d-flex flex-column">
+      <aside className="col d-flex flex-column">
         <Sidebar />
         <footer className='d-none d-sm-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
       <section className="col background-pink">
-        <div className="header text-center">
-          <HeaderAdmin />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="header text-center w-100">
+            <HeaderAdmin />
+          </div>
         </div>
         
-        <AlertAdmin/>
-        {/* <div id='alert' className="text-center header__alert">
-          <div className={`alert alert-danger alert-inline`}>alert message</div>
-        </div> */}
+        <div className="row">
+          <AlertAdmin/>
+          {/* <div id='alert' className="text-center header__alert">
+            <div className={`alert alert-danger alert-inline`}>alert message</div>
+          </div> */}
+        </div>
 
         <div className="row main-content background-white">
-        <article className="col">
-          {props.children}
-        </article>
+          <article className="col">
+            {props.children}
+            {/* {Array.from(new Array(1500)).map(item => "article ")} */}
+          </article>
+        </div>
         </div>
       </section>
+      <div className='col-flex-lg-shrink-0'></div>
     </div>
   </div>
 );
