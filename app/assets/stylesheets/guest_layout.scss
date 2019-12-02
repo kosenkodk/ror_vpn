@@ -931,24 +931,26 @@ button:focus {
 //   }
 // }
 
-.ticket_message.card.active {
-  .card-header {
-    background: $bg_color_black_gradient23; //#582b53
+.ticket_message_dark {
+  &.card.active {
+    .card-header {
+      background: $bg_color_black_gradient23; //#582b53
+    }
+    .card-body {
+      background-color: $bg_color_black3;
+    }
   }
-  .card-body {
-    background-color: $bg_color_black3;
-  }
-}
 
-.ticket_message.card {
-  margin-bottom: 15px;
-  border: 1px solid $pink2;
-  .card-header {
-    // background: $pink_gradient;
-    background: $bg_color_black_gradient32; //#582b53
-  }
-  .card-body {
-    background: $bg_color_black2;
+  &.card {
+    margin-bottom: 15px;
+    border: 1px solid $pink2;
+    .card-header {
+      // background: $pink_gradient;
+      background: $bg_color_black_gradient32; //#582b53
+    }
+    .card-body {
+      background: $bg_color_black2;
+    }
   }
 }
 

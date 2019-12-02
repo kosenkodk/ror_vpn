@@ -68,7 +68,8 @@ class ChatRoom extends React.Component {
           onClick={this.loadChat.bind(this)}>
           {I18n.t('pages.tickets.chat.load')}
         </button> */}
-        <div className="mt-3">
+        <div className="mt-3 mb-3">
+          <div className="border border-gray" />
           {/* <Messages items={item && item.messages} /> */}
           <Messages items={messages} />
         </div>
