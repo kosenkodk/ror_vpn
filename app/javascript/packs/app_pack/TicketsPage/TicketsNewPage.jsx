@@ -58,7 +58,7 @@ class TicketsNewPage extends React.Component {
   render() {
     const { items } = this.props
     return (
-      <div id="tickets_new" className="row mb-4 pb-1">
+      <div id="tickets_new" className="tickets row mb-4 pb-1">
         <div className="col-12">
           <div className="container-section">
             <div className="container-fluid">
@@ -69,11 +69,11 @@ class TicketsNewPage extends React.Component {
                   </Link>
                 </div>
                 <div className="col">
-                  <h5 className="mt-2">New Ticket</h5>
+                  <h5 className="mt-2">{I18n.t('pages.tickets.new')}</h5>
                 </div>
               </div>
             </div>
-            <div className="row">
+            <div className="row mt-xl-3">
               <div className="col-md-8 col-xl-7">
                 <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
                 {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}

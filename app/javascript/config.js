@@ -105,7 +105,7 @@ const urls = {
   },
   tickets_new: {
     path: '/user/tickets/new',
-    name: 'New Ticket',
+    name: 'New ticket',
     // component: TicketNewPage
   },
   notifications: {
