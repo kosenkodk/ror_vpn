@@ -1,6 +1,6 @@
 import React from 'react'
 import { I18n } from 'helpers'
-import Vega from 'images/vega_vertical.png'
+import Vega from 'images/vega_vertical_orig.png'
 import VegaForExtraSmallScreens from 'images/vega_horizontal.png'
 
 import Apple from 'images/downloads/svg/Apple'
