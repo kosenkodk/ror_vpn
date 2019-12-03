@@ -131,13 +131,15 @@ $font34: 34px;
   aside {
     @include media-breakpoint-between(sm, xl) {
       width: 12rem;
-      max-width: 12rem;
+      max-width: 13.5rem;
+      // max-width: 15.5vw;
     }
   }
 
   section {
     min-height: 100vh;
-    padding: 0 $padding*2+0px;
+    // padding: 0 $padding*2+0px;
+    padding: 0 2.14vw 6.17vh 1.5vw;
   }
 
   .header {
@@ -147,11 +149,11 @@ $font34: 34px;
 
   .main-content {
     border-radius: $admin_border_radius;
-    padding: $padding+0px;
-    min-height: 85vh;
-    max-height: 85vh;
+    // padding: $padding+0px;
+    height: 85.5vh;
+    max-height: 85.5vh;
     overflow-y: scroll;
-    
+    padding: 2.5vh 2vw;
   }
     
   article {
@@ -175,6 +177,7 @@ $font34: 34px;
   .accordion_menu {
     .accordion_menu-title {
       font-weight: $font-bold;
+      // padding: 6px 12px 5px 14px;
     }
     .accordion_menu-title:after {
       font-family: 'FontAwesome';
