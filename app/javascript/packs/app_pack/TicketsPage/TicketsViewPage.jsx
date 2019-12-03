@@ -33,7 +33,7 @@ class TicketsViewPage extends React.Component {
     const { item, loggedIn } = this.props
 
     return (
-      <div id="tickets_new" className="row mb-4 pb-1">
+      <div id="tickets_new" className="tickets row mb-4 pb-1">
         <div className="col-12">
           <div className="container-section">
             <div className="container-fluid">
