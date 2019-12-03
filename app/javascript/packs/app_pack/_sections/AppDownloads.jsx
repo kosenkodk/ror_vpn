@@ -1,6 +1,7 @@
 import React from 'react'
 import { I18n } from 'helpers'
-import Vega from 'images/vega_vertical_orig.png'
+// import Vega from 'images/vega_vertical2x.png'
+import Vega from 'images/vega_vertical_drop_shadow_2x.png'
 import VegaForExtraSmallScreens from 'images/vega_horizontal.png'
 
 import Apple from 'images/downloads/svg/Apple'
@@ -15,7 +16,7 @@ class AppDownloads extends React.Component {
         <div id="downloads_section" className="row no-gutters">
           <div className="col-md-6 d-flex align-content-center flex-wrap">
             <img src={VegaForExtraSmallScreens} className="ml-auto img-fluid d-block d-md-none" alt="" />
-            <img src={Vega} className="ml-auto img-fluid d-none d-md-block" alt="" />
+            <img src={Vega} className="ml-auto img-fluid d-none d-md-block" alt="" style={{ maxHeight: '454px' }} />
             {/* <%#=image_tag 'downloads', { class:'card-img', alt:''} #%> */}
           </div>
           <div className="col-md-6 col-xl-5 d-flex align-content-center flex-wrap">
