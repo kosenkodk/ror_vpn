@@ -47,7 +47,7 @@ class TicketForm extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.text')}</label>
           <div className="col-sm-8">
-            <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
+            <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="6" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
           </div>
         </div>
 
