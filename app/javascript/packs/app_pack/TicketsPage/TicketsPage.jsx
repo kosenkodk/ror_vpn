@@ -81,41 +81,43 @@ class TicketsPage extends React.Component {
           </ul> */}
         </div>
 
-        <div className="col-12">
-          <div id="tickets" className={`tickets mb-4 ${loggedIn ? 'container-fluid' : 'container'}`}>
+        <div className="col">
+          <div className="row">
+            <div id="tickets" className={`tickets mb-4 ${loggedIn ? 'container-fluid' : 'container'}`}>
 
-            <div className="container-section">
-              <div className="table-responsive">
-                {/* <table className="table table-striped"> */}
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th scope="col" className="">#</th>
-                      <th scope="col" className="">Department</th>
-                      <th scope="col" className="">Subject</th>
-                      <th scope="col" className="">Date</th>
-                      <th scope="col" className="">Status</th>
-                      <th colSpan="1" scope="col" className="">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {items && items.length > 0 ?
-                      items.map((item, index) => <TicketTableItem key={item.id}
-                        // no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} 
-                        onClose={this.onClose}
-                        no={item.id}
-                        {...item} />)
-                      :
+              <div className="container-section">
+                <div className="table-responsive">
+                  {/* <table className="table table-striped"> */}
+                  <table className="table">
+                    <thead>
                       <tr>
-                        <td colSpan="7" scope="row">
-                          {loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
-                          {/* {error && <span className="text-danger">ERROR: {error}</span>} */}
-                        </td>
+                        <th scope="col" className="">#</th>
+                        <th scope="col" className="">Department</th>
+                        <th scope="col" className="">Subject</th>
+                        <th scope="col" className="">Date</th>
+                        <th scope="col" className="">Status</th>
+                        <th colSpan="1" scope="col" className="">Action</th>
                       </tr>
-                    }
-                  </tbody>
-                </table>
-                <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
+                    </thead>
+                    <tbody>
+                      {items && items.length > 0 ?
+                        items.map((item, index) => <TicketTableItem key={item.id}
+                          // no={page > 1 ? (page * items.length - items.length) + index + 1 : index + 1} 
+                          onClose={this.onClose}
+                          no={item.id}
+                          {...item} />)
+                        :
+                        <tr>
+                          <td colSpan="7" scope="row">
+                            {loading ? <em>Loading tickets...</em> : <em>No items to display</em>}
+                            {/* {error && <span className="text-danger">ERROR: {error}</span>} */}
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
+                </div>
               </div>
             </div>
           </div>
