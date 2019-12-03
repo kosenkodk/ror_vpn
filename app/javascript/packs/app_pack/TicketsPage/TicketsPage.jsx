@@ -83,7 +83,7 @@ class TicketsPage extends React.Component {
 
         <div className="col">
           <div className="row">
-            <div id="tickets" className={`tickets mb-4 ${loggedIn ? 'container-fluid' : 'container'}`}>
+            <div id="tickets" className={`tickets mt-xl-2 mb-xl-4 ${loggedIn ? 'container-fluid' : 'container'}`}>
 
               <div className="container-section">
                 <div className="table-responsive">
