@@ -55,6 +55,8 @@ $font34: 34px;
   }
 
   .navbar-brand {
+    margin-right: 0;
+
     @include media-breakpoint-up(sm) {
       img {
       max-height: 2rem;
