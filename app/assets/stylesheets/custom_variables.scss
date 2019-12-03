@@ -35,6 +35,7 @@ $header_navbar_height: 70; // 70px +  unquote("px");
 $padding: 15;
 $home_padding_bottom: 5rem;
 
+$enable-responsive-font-sizes: true;
 $font-bold: 600;
 //TODO: make mixin like thid: gradient-linear: rgba(#8C5362 0%, #713980 100%);
 
