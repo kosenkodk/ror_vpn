@@ -36,3 +36,4 @@ yarn-debug.log*
 .yarn-integrity
 db/test.sqlite3-0
 db/test.sqlite3-1
+app/assets/images/compare

@@ -43,6 +43,10 @@ $font34: 34px;
   .btn-outline-danger {
     color: $red;
     border-color: $red;
+    &:hover, &:active {
+      color: $white;
+      background-color: $red;
+    }
   }
 
   textarea {
@@ -109,7 +113,11 @@ $font34: 34px;
   h1, h2, h3, h4, h5 {
     font-weight: $font-weight;
   }
-
+  h1 {
+    font-size: $font24;
+    line-height: $font34;
+    font-weight: normal;
+  }
   h2 {
     // @include media-breakpoint-only(xs) {
     font-size: $font18;
@@ -143,12 +151,7 @@ $font34: 34px;
     min-height: 85vh;
     max-height: 85vh;
     overflow-y: scroll;
-    .btn {
-      // padding: 14px 27px;
-      // min-width: 170px;
-      padding: 0.65rem 1.65rem;
-      min-width: 10.5rem;
-    }
+    
   }
     
   article {
@@ -262,6 +265,15 @@ $font34: 34px;
 
   textarea.form-control, input.form-control {
     background-color: #EDEEEF;
+  }
+
+  .tickets {
+    .btn {
+      // padding: 14px 27px;
+      // min-width: 170px;
+      padding: 0.65rem 1.65rem;
+      min-width: 10.5rem;
+    }
   }
 
   .ticket_statuses a.nav-link {

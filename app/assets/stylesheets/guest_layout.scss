@@ -398,6 +398,9 @@ h1, h2, h3, h4, h5 {
   background: $pink_button_gradient;
   color: $white;
   border: unset;
+  &:hover {
+    opacity: $opacity;
+  }
 }
 
 .btn-outline-pink {
