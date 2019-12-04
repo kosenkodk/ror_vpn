@@ -69,7 +69,7 @@ class TicketsNewPage extends React.Component {
                   </Link>
                 </div>
                 <div className="col">
-                  <h5 className="mt-2">{I18n.t('pages.tickets.new')}</h5>
+                  <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.new')}</h4>
                 </div>
               </div>
             </div>

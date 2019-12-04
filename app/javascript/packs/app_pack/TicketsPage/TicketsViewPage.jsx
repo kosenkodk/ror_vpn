@@ -44,7 +44,7 @@ class TicketsViewPage extends React.Component {
                   </Link>
                 </div>
                 <div className="col">
-                  <h5 className="mt-2">{I18n.t('pages.tickets.form.title')}: {item && item.title}</h5>
+                  <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.form.title')}: {item && item.title}</h4>
                 </div>
               </div>
             </div>
