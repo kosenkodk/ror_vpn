@@ -54,7 +54,7 @@ class TicketsPage extends React.Component {
     const { error, status, items, loading, pages, page, loggedIn } = this.props
     return (
       <div className="row">
-        <div className="ticket_statuses col-12 mb-3">
+        <div className="col-12 ticket_statuses mb-3">
           <ul className="nav">
             <li className="nav-item">
               <a onClick={(e) => this.filterByStatus(e, "")} className={`nav-link ${status === '' ? this.props.activeClass : ''}`} > All</a>
@@ -81,7 +81,7 @@ class TicketsPage extends React.Component {
           </ul> */}
         </div>
 
-        <div id="tickets" className="tickets mt-xl-2 mb-xl-4 col">
+        <div id="tickets" className="col tickets mt-xl-2 mb-xl-4">
           <div className="table-responsive">
             {/* <table className="table table-striped"> */}
             <table className="table">
