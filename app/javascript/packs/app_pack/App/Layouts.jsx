@@ -105,7 +105,7 @@ const AdminLayout = (props) => (
         <footer className='d-none d-md-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
-      <section className="col background-pink">
+      <section className="col-md-9 col-lg background-pink">
       <div className="container-fluid">
         <div className="row">
           <div className="header text-center w-100">
@@ -114,7 +114,9 @@ const AdminLayout = (props) => (
         </div>
         
         <div className="row">
+          <div className="col">
           <AlertAdmin/>
+          </div>
           {/* <div id='alert' className="col text-center header__alert">
             <div className={`alert alert-danger alert-inline`}>alert message</div>
           </div> */}
