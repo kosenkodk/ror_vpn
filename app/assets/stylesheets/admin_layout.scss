@@ -42,12 +42,12 @@ $font34: 34px;
   line-height: $font18;
   
   h1, h2, h3, h4, h5 {
-    font-weight: $font-weight;
+    font-weight: $font-bold;
   }
   h1 {
     font-size: $font24;
     line-height: $font34;
-    font-weight: normal;
+    // font-weight: normal;
   }
   h2 {
     line-height: 22px;

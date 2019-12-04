@@ -42,7 +42,7 @@ class AccountPage extends React.Component {
       <div className="container-section">
         {/* <h2 className="pb-4">Account</h2> */}
         <div className="mb-5">
-          <h4 id="email">Email</h4>
+          <h1 id="email">Email</h1>
           <div className="row">
             <div className="col-sm-4 align-self-center">
               <label className="col-form-label">Login email address: {user && user.email}</label>
@@ -56,7 +56,7 @@ class AccountPage extends React.Component {
         </div>
 
         <div className="mb-5">
-          <h4 id="password">Passwords</h4>
+          <h1 id="password">Passwords</h1>
           <div className="row">
             <div className="col-sm-4 align-self-center">
               <label className="col-form-label">Login password</label>
@@ -69,7 +69,7 @@ class AccountPage extends React.Component {
           </div>
         </div>
 
-        <h4 id="delete">Delete Account</h4>
+        <h1 id="delete">Delete Account</h1>
         <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
           Are you sure ?
         </ModalPopup>
