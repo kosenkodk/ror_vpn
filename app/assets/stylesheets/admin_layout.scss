@@ -174,7 +174,7 @@ $font34: 34px;
     max-height: 85.5vh;
     overflow-y: scroll;
     // padding-top: 2.25vh;
-    padding: 2.5vh 2vw;
+    // padding: 2.5vh 2vw;
   }
     
   article {
@@ -182,6 +182,7 @@ $font34: 34px;
     max-width: 1130px;//1400px;
     margin-left: auto;
     margin-right: auto;
+    padding: 2.5vh 2vw;
   }
 
   nav {
