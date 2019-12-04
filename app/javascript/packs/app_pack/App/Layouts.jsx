@@ -100,9 +100,9 @@ const AdminLayout = (props) => (
   <div id="admin_layout" className="container-fluid position-sticky">
     <div className='row'>
 
-      <aside className="col-sm-2 d-flex flex-column">
+      <aside className="col-md-3 d-flex flex-column">
         <Sidebar />
-        <footer className='d-none d-sm-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+        <footer className='d-none d-md-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
       <section className="col background-pink">
@@ -128,7 +128,7 @@ const AdminLayout = (props) => (
         </div>
         </div>
       </section>
-      <div className='col-flex-lg-shrink-0'></div>
+      {/* <div className='col-flex-lg-shrink-0'></div> */}
     </div>
   </div>
 );

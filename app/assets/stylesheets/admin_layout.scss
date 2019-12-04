@@ -57,7 +57,7 @@ $font34: 34px;
   .navbar-brand {
     margin-right: 0;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
       img {
       max-height: 2rem;
       margin-top: 1.3rem;
@@ -127,12 +127,14 @@ $font34: 34px;
   #adminNavbar {
 
   }
-
+  
   aside {
-    @include media-breakpoint-between(sm, xl) {
-      width: 12rem;
-      max-width: 13.5rem;
+    @media (min-width: $md-width) {
+    // @media (min-width: 1010px) {
+    // @include media-breakpoint-between(sm, xl) {
       // max-width: 15.5vw;
+      // width: 12rem;
+      max-width: 13.5rem;
     }
   }
 
