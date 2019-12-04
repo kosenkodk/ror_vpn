@@ -9,6 +9,7 @@ $blue: #2CB0B5;
 $pink: #7D2864;
 $padding: 15;
 $font-weight: 500;
+$font-bold: 600;
 $font14: 14px;
 $font18: 18px;
 $font24: 24px;
@@ -40,6 +41,35 @@ $font34: 34px;
   font-size: $font14;
   line-height: $font18;
   
+  h1, h2, h3, h4, h5 {
+    font-weight: $font-weight;
+  }
+  h1 {
+    font-size: $font24;
+    line-height: $font34;
+    font-weight: normal;
+  }
+  h2 {
+    line-height: 22px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+
+  .col-form-label {
+    font-weight: bold;
+  }
+
   .btn-outline-danger {
     color: $red;
     border-color: $red;
@@ -110,27 +140,12 @@ $font34: 34px;
     }
   }
 
-  h1, h2, h3, h4, h5 {
-    font-weight: $font-weight;
-  }
-  h1 {
-    font-size: $font24;
-    line-height: $font34;
-    font-weight: normal;
-  }
-  h2 {
-    // @include media-breakpoint-only(xs) {
-    font-size: $font18;
-    line-height: $font34;
-  }
-
   #adminNavbar {
 
   }
 
   aside {
     @media (min-width: $lg-width) {
-    // @media (min-width: 1010px) {
     // @include media-breakpoint-between(sm, xl) {
       // max-width: 15.5vw;
       // width: 12rem;
