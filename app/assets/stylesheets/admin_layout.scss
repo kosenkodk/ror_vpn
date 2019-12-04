@@ -127,9 +127,9 @@ $font34: 34px;
   #adminNavbar {
 
   }
-  
+
   aside {
-    @media (min-width: $md-width) {
+    @media (min-width: $lg-width) {
     // @media (min-width: 1010px) {
     // @include media-breakpoint-between(sm, xl) {
       // max-width: 15.5vw;
