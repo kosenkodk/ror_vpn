@@ -58,27 +58,21 @@ class TicketsNewPage extends React.Component {
   render() {
     const { items } = this.props
     return (
-      <div id="tickets_new" className="tickets row mb-4 pb-1">
-        <div className="col-12">
-          <div className="container-section">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-shrink-0 align-self-center">
-                  <Link to={urls.tickets.path} className="">
-                    <img src={icArrowLeftSrc} className="img-fluid" />
-                  </Link>
-                </div>
-                <div className="col">
-                  <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.new')}</h4>
-                </div>
-              </div>
-            </div>
-            <div className="row mt-xl-3">
-              <div className="col-md-8 col-xl-7">
-                <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
-                {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
-              </div>
-            </div>
+      <div id="tickets_new" className="tickets container-fluid mb-4 pb-1">
+        <div className="d-flex justify-content-start">
+          <div className="align-self-center">
+            <Link to={urls.tickets.path} className="">
+              <img src={icArrowLeftSrc} className="img-fluid" />
+            </Link>
+          </div>
+          <div className="ml-2">
+            <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.new')}</h4>
+          </div>
+        </div>
+        <div className="row mt-xl-3">
+          <div className="col-md-8 col-xl-7">
+            <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
+            {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
           </div>
         </div>
       </div>
