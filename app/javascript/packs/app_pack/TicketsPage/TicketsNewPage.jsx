@@ -59,7 +59,7 @@ class TicketsNewPage extends React.Component {
     const { items } = this.props
     return (
       <div id="tickets_new" className="tickets container-fluid mb-4 pb-1">
-        <div className="d-flex justify-content-start">
+        <div className="d-flex">
           <div className="align-self-center">
             <Link to={urls.tickets.path} className="">
               <img src={icArrowLeftSrc} className="img-fluid" />
