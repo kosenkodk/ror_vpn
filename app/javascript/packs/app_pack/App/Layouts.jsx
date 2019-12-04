@@ -115,7 +115,7 @@ const AdminLayout = (props) => (
         
         <div className="row">
           <AlertAdmin/>
-          {/* <div id='alert' className="text-center header__alert">
+          {/* <div id='alert' className="col text-center header__alert">
             <div className={`alert alert-danger alert-inline`}>alert message</div>
           </div> */}
         </div>
@@ -128,7 +128,6 @@ const AdminLayout = (props) => (
         </div>
         </div>
       </section>
-      {/* <div className='col-flex-lg-shrink-0'></div> */}
     </div>
   </div>
 );
