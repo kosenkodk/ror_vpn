@@ -72,6 +72,19 @@ $font34: 34px;
   }
 }
 
+.bd-callout-warning {
+  border-left-color: #f0ad4e;
+}
+.bd-callout {
+  background-color: $bgInputColor;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid $admin_pink;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+}
+
 #admin_layout {
   font-size: $font14;
   line-height: $font18;

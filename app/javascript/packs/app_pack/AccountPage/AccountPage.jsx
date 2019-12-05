@@ -70,8 +70,11 @@ class AccountPage extends React.Component {
         </div>
 
         <h1 id="delete">Delete Account</h1>
-        <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.no')} btnSaveText={I18n.t('buttons.yes')}>
-          Are you sure ?
+        <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+          <div class="bd-callout bd-callout-warning">
+            <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
+            <p>If you wish to delete this account in order to combine it with another one, do NOT delete it. <a>Learn more</a></p>
+          </div>
         </ModalPopup>
       </div>
     );
