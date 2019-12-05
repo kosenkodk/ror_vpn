@@ -33,13 +33,14 @@ class ModalPopup extends React.Component {
                     {this.props.children}
                   </div>
                   <div className="modal-footer">
-                    <button type="button" onClick={this.props.onClose} className="btn btn-pink-dark" data-dismiss="modal">{btnCloseText}</button>
-                    <br />
-                    <button type="submit" onClick={this.props.onBtnSave} className="btn btn-outline-pink active" disabled={loading ? true : false}>
-                      {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                      {/* <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active"> */}
-                      {' ' + btnSaveText}
-                    </button>
+                    <div className="d-flex w-100">
+                      <button type="button" onClick={this.props.onClose} className="btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
+                      <button type="submit" onClick={this.props.onBtnSave} className="ml-auto btn btn-pink active" disabled={loading ? true : false}>
+                        {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                        {/* <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active"> */}
+                        {' ' + btnSaveText}
+                      </button>
+                    </div>
                   </div>
                 </div>
               }
