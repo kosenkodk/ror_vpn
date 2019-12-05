@@ -195,12 +195,12 @@ $font34: 34px;
   section {
     min-height: 100vh;
     // padding: 0 $padding*2+0px;
-    padding: 0 2.14vw 6.17vh 1.5vw;
+    padding: 0 2.14vw 5.17vh 1.5vw;
   }
 
   .header {
     // min-height: 5rem;
-    margin: .75rem 0;
+    margin: 1rem 0 0.65rem;
   }
 
   .main-content {
@@ -210,7 +210,9 @@ $font34: 34px;
     max-height: 85.5vh;
     overflow-y: scroll;
     // padding-top: 2.25vh;
-    padding: 2.5vh 2vw;
+    // @include media-breakpoint-up(md) {
+      padding: 2.5vh 2vw;
+    // }
   }
     
   article {
@@ -218,7 +220,6 @@ $font34: 34px;
     max-width: 1130px;//1400px;
     margin-left: auto;
     margin-right: auto;
-    // padding: 2.5vh 2vw;
   }
 
   nav {
