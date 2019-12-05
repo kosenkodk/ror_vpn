@@ -20,7 +20,7 @@ class ModalPopup extends React.Component {
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id={`${id}Title`}>{title}</h5>
+                <h1 className="modal-title" id={`${id}Title`}>{title}</h1>
                 <button type="button" onClick={this.props.onClose} className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
