@@ -32,12 +32,13 @@ class ChangeEmailForm extends React.Component {
           </div>
         </div>
         <div className="modal-footer">
-          <button type="button" onClick={this.props.onModalClose} className="btn btn-pink-dark" data-dismiss="modal">{I18n.t('buttons.close')}</button>
-          <br />
-          <button type="submit" className="btn btn-outline-pink active" disabled={loading ? true : false}>
-            {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-            {' ' + I18n.t('buttons.save')}
-          </button>
+          <div className="d-flex w-100">
+            <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{I18n.t('buttons.close')}</button>
+            <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
+              {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+              {' ' + I18n.t('buttons.save')}
+            </button>
+          </div>
         </div>
       </form>
     );

@@ -34,8 +34,8 @@ class ModalPopup extends React.Component {
                   </div>
                   <div className="modal-footer">
                     <div className="d-flex w-100">
-                      <button type="button" onClick={this.props.onClose} className="btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
-                      <button type="submit" onClick={this.props.onBtnSave} className="ml-auto btn btn-pink active" disabled={loading ? true : false}>
+                      <button type="button" onClick={this.props.onClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
+                      <button type="submit" onClick={this.props.onBtnSave} className="btn btn-pink active" disabled={loading ? true : false}>
                         {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         {/* <button type="submit" onClick={this.props.onSave} className="btn btn-outline-pink active"> */}
                         {' ' + btnSaveText}
