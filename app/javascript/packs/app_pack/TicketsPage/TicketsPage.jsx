@@ -53,7 +53,7 @@ class TicketsPage extends React.Component {
   render() {
     const { error, status, items, loading, pages, page, loggedIn } = this.props
     return (
-      <div className="row">
+      <div className="row mx-xl-n5">
         <div className="col-12 ticket_statuses mb-3">
           <ul className="nav">
             <li className="nav-item">

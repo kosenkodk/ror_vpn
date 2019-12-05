@@ -106,26 +106,27 @@ const AdminLayout = (props) => (
       </aside>
 
       <section className="col-md-9 col-lg background-pink">
-      <div className="container-fluid">
         <div className="row">
-          <div className="header text-center w-100">
+          <div className="col header text-center w-100">
             <HeaderAdmin />
           </div>
         </div>
         
+        <div className="container-fluid">
+
         <div className="row">
           <div className="col">
-          <AlertAdmin/>
+            <AlertAdmin/>
+            <div id='alert' className="text-center header__alert">
+              <div className={`alert alert-danger alert-inline`}>alert message</div>
+            </div>
           </div>
-          {/* <div id='alert' className="col text-center header__alert">
-            <div className={`alert alert-danger alert-inline`}>alert message</div>
-          </div> */}
         </div>
 
         <div className="row main-content background-white">
           <article className="col">
             {props.children}
-            {/* {Array.from(new Array(1500)).map(item => "article ")} */}
+            {/* <p>{Array.from(new Array(1500)).map(item => "article ")}</p> */}
           </article>
         </div>
         </div>
