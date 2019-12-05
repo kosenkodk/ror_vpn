@@ -4,6 +4,8 @@ $admin_pink: #6E2251;
 $white: white;
 $black: #0F0216;
 $borderColor: #E1E0E1;
+$borderColor2: #EDEEEF;
+$bgInputColor: #EDEEEF;
 $red: #9A2121;
 $blue: #2CB0B5;
 $pink: #7D2864;
@@ -30,11 +32,44 @@ $font34: 34px;
 }
   
 .border-gray {
-  border-color: #EDEEEF;
+  border-color: $borderColor2;
 }
 
 .border-radius {
   border-radius: $admin_border_radius;
+}
+
+.modal-content {
+  background: $white;
+  color: $black;
+  h1 {
+    font-size: $font24;
+    line-height: $font34;
+  }
+  .form-control {
+    font-size: $font14;
+    line-height: $font24;
+  }
+  .col-form-label {
+    font-weight: bold;
+  }
+  input, textarea {
+    background-color: $bgInputColor;
+    border: unset;
+  }
+
+  .close {
+    color: $black;
+    &:hover {
+      color: $pink3;
+    }
+  }
+  .modal-header {
+    border: unset;
+  }
+  .modal-footer {
+    border: unset;
+  }
 }
 
 #admin_layout {
@@ -69,9 +104,6 @@ $font34: 34px;
     font-size: 9px;
     line-height: 15px;
   }
-  .col-form-label {
-    font-weight: bold;
-  }
 
   .btn-outline-danger {
     color: $red;
@@ -80,6 +112,10 @@ $font34: 34px;
       color: $white;
       background-color: $red;
     }
+  }
+
+  .col-form-label {
+    font-weight: bold;
   }
 
   .form-control {
@@ -287,11 +323,11 @@ $font34: 34px;
   }
   
   .form-control {
-    border: 1px solid #EDEEEF;
+    border: 1px solid $borderColor2;
   }
 
   textarea.form-control, input.form-control {
-    background-color: #EDEEEF;
+    background-color: bgInputColor;
   }
 
   .tickets {
@@ -301,6 +337,7 @@ $font34: 34px;
       padding: 0.65rem 1.65rem;
       min-width: 10.5rem;
     }
+    
   }
 
   .ticket_statuses a.nav-link {
@@ -327,7 +364,7 @@ $font34: 34px;
       background-color: unset;
     }
     .card-body {
-      border: #EDEEEF;
+      border: $borderColor2;
     }
     margin-bottom: 1rem;
   }

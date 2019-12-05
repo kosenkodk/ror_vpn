@@ -896,7 +896,8 @@ button:focus {
   }
 }
 
-// .tickets {
+// dark modal popup window
+.modal-dark {
   .modal-content {
     @extend .shadow-vega;
     background: $bg_color_black;
@@ -918,7 +919,7 @@ button:focus {
   .table-dark {
     background-color: $bg_color_black2;
   }
-// }
+}
 
 // .ticket_message {
   
