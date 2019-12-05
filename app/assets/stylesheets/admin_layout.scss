@@ -195,7 +195,7 @@ $font34: 34px;
   section {
     min-height: 100vh;
     // padding: 0 $padding*2+0px;
-    @media (min-width: $lg-width) {
+    @media (min-width: $md-width) {
       padding: 0 2.14vw 5.17vh 1.5vw;
     }
   }
