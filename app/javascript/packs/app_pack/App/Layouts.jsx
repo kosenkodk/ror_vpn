@@ -117,9 +117,9 @@ const AdminLayout = (props) => (
         <div className="row">
           <div className="col">
             <AlertAdmin/>
-            <div id='alert' className="text-center header__alert">
+            {/* <div id='alert' className="text-center header__alert">
               <div className={`alert alert-danger alert-inline`}>alert message</div>
-            </div>
+            </div> */}
           </div>
         </div>
 
