@@ -128,6 +128,11 @@ $font34: 34px;
     line-height: 15px;
   }
 
+  .modal-lg {
+    // max-width: 800px;
+    max-width: 754px;
+  }
+
   .btn-outline-danger {
     color: $red;
     border-color: $red;
