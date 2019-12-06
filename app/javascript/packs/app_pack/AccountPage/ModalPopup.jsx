@@ -13,7 +13,7 @@ class ModalPopup extends React.Component {
     const { error, notice, loading, id, title, btnText, btnCloseText, btnSaveText } = this.props;
     return (
       <React.Fragment>
-        <button type="button" className="btn btn-outline-pink active" data-toggle="modal" data-target={`#${id}`}>
+        <button type="button" className={`btn btn-pink ${this.props.btnClasses}`} data-toggle="modal" data-target={`#${id}`}>
           {btnText}
         </button>
         <div className="modal fade" onToggle={this.onToggle} data-backdrop={true} id={id} tabIndex="-1" role="dialog" aria-labelledby={`${id}Title`} aria-hidden="true">
@@ -66,6 +66,7 @@ ModalPopup.defaultProps = {
   isForm: false,
   btnSaveText: I18n.t('buttons.save'),
   btnCloseText: I18n.t('buttons.close'),
+  btnClasses: ''
 }
 
 function mapStateToProps(state) {
