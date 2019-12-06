@@ -46,13 +46,11 @@ class AccountPage extends React.Component {
 
   allowPasswordReset(e) {
     this.setState({ isAllowPasswordReset: e.target.checked });
-    console.log(e.target.checked);
     // this.props.dispatch(accountActions.allowPasswordReset(e.target.checked)); //todo:
   }
 
   enable2FA(e) {
     this.setState({ is2faEnabled: e.target.checked });
-    console.log(e.target.checked);
     // this.props.dispatch(accountActions.enable2FA(e.target.checked)); //todo:
   }
 
