@@ -11,6 +11,7 @@ class AccountPage extends React.Component {
     super(props);
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
+      is2faEnabled: this.props.is2faEnabled,
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -18,6 +19,7 @@ class AccountPage extends React.Component {
     this.clearModalAlerts = this.clearModalAlerts.bind(this);
 
     this.allowPasswordReset = this.allowPasswordReset.bind(this);
+    this.enable2Fa = this.enable2Fa.bind(this);
   }
 
   onChangePassword(e) {
@@ -44,7 +46,13 @@ class AccountPage extends React.Component {
 
   allowPasswordReset(e) {
     this.setState({ isAllowPasswordReset: e.target.checked });
-    // this.props.dispatch(accountActions.allowPasswordReset(e.target.checked));
+    // this.props.dispatch(accountActions.allowPasswordReset(e.target.checked)); //todo:
+    e.preventDefault();
+  }
+
+  enable2Fa(e) {
+    this.setState({ is2faEnabled: e.target.checked });
+    // this.props.dispatch(accountActions.enable2Fa(e.target.checked)); //todo:
     e.preventDefault();
   }
 
@@ -108,7 +116,7 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col-auto">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch1" checked={this.props.is2faEnabled} />
+                    <input type="checkbox" className="custom-control-input" id="customSwitch1" onChange={this.enable2Fa} checked={this.state.is2faEnabled} />
                     <label className="custom-control-label" htmlFor="customSwitch1"></label>
                   </div>
                 </div>
