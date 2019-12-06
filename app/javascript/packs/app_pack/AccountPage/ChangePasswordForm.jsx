@@ -27,6 +27,14 @@ class ChangePasswordForm extends React.Component {
     return (
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
+
+          <div class="mt-0 border-left-pink col">
+            {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+            <p>
+              Do NOT forget this password. If you forget it, you will not be able to login or decrypt your message.  Save your password somewhere safe. Click on the icon to confirm you that have typed your password correctly.  We recommend adding a recovery email address first. Otherwise, you cannot recover your account if something goes wrong.
+            </p>
+          </div>
+
           <FlashMessages error={error && error} notice={notice && notice} />
           <div className="col">
             <div className="form-group row">
