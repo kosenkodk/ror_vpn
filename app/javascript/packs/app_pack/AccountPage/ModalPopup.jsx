@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 import FlashMessages from '../_sections/FlashMessages';
+import imgCloseSrc from 'images/admin/ic_close';
 
 class ModalPopup extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class ModalPopup extends React.Component {
               <div className="modal-header">
                 <h1 className="modal-title" id={`${id}Title`}>{title}</h1>
                 <button type="button" onClick={this.props.onClose} className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  {/* <span aria-hidden="true">&times;</span> */}
+                  <img src={imgCloseSrc} className="img-fluid" />
                 </button>
               </div>
               {this.props.isForm ?
