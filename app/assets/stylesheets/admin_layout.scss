@@ -17,6 +17,8 @@ $font18: 18px;
 $font24: 24px;
 $font34: 34px;
 
+@import "checkbox_as_switcher";
+
 .bd-highlight {
   background-color: lightblue;
   border: 1px solid $blue;
@@ -352,7 +354,7 @@ $font34: 34px;
   }
 
   textarea.form-control, input.form-control {
-    background-color: bgInputColor;
+    background-color: $bgInputColor;
   }
 
   .tickets {
