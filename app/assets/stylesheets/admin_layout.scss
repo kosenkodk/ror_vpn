@@ -75,6 +75,7 @@ $font34: 34px;
 .bd-callout-warning {
   border-left-color: #f0ad4e;
 }
+
 .bd-callout {
   background-color: $bgInputColor;
   padding: 1.25rem;
@@ -83,6 +84,13 @@ $font34: 34px;
   border: 1px solid $admin_pink;
   border-left-width: .25rem;
   border-radius: .25rem;
+}
+
+.border-left-pink {
+  @extend .bd-callout;
+  border-right: unset;
+  border-top: unset;
+  border-bottom: unset;
 }
 
 #admin_layout {
