@@ -41,7 +41,7 @@ class AccountPage extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-7">
+          <div className="col-lg-7 mb-5">
             {/* <h2 className="pb-4">Account</h2> */}
             {/* <div className="mb-5">
               <h1 id="email">Email</h1>
@@ -76,7 +76,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login password</label>
                 </div>
                 <div className="col">
-                  <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title='Change login password' btnClasses={'btn-block'} btnText={I18n.t('pages.account.change_password.button')}>
+                  <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title='Change login password' btnClasses={'btn-lg btn-block'} btnText={I18n.t('pages.account.change_password.button')}>
                     <ChangePasswordForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangePassword} />
                   </ModalPopup>
                 </div>
@@ -100,7 +100,7 @@ class AccountPage extends React.Component {
                   <input type="string" name="email" className="form-control" id="email" value={user && user.email} onChange={this.handleChange} placeholder='Email' />
                 </div>
                 <div className="col-auto">
-                  <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')}>
+                  <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={'btn-lg'}>
                     <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
                   </ModalPopup>
                 </div>
@@ -132,7 +132,7 @@ class AccountPage extends React.Component {
                 Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
               </p>
             </div>
-            <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+            <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnClasses={'btn-lg'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
               <div class="bd-callout bd-callout-warning">
                 <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
                 <p>If you wish to delete this account in order to combine it with another one, do NOT delete it.
