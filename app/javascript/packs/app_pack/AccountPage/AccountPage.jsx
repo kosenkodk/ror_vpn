@@ -4,14 +4,20 @@ import { ChangePasswordForm, ChangeEmailForm, ModalPopup } from './';
 import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
+import { account } from '../_reducers/account.reducer';
 
 class AccountPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isAllowPasswordReset: this.props.isAllowPasswordReset,
+    }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.clearModalAlerts = this.clearModalAlerts.bind(this);
+
+    this.allowPasswordReset = this.allowPasswordReset.bind(this);
   }
 
   onChangePassword(e) {
@@ -34,6 +40,16 @@ class AccountPage extends React.Component {
   clearModalAlerts(e) { // clearModalAlerts = (e) => {
     e.preventDefault();
     this.props.dispatch(accountActions.clearAlerts());
+  }
+
+  allowPasswordReset(e) {
+    this.setState({ isAllowPasswordReset: e.target.checked });
+    // this.props.dispatch(accountActions.allowPasswordReset(e.target.checked));
+    e.preventDefault();
+  }
+
+  componentDidMount() {
+
   }
 
   render() {
@@ -64,7 +80,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Email</label>
                 </div>
                 <div className="col">
-                  <input type="string" name="email" className="form-control" id="email" value={user && user.email} onChange={this.handleChange} placeholder='Email' />
+                  <input type="string" name="email" className="form-control" id="email" value={user && user.email} placeholder='Email' />
                 </div>
               </div>
             </div>
@@ -91,9 +107,9 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Two-factor authentication</label>
                 </div>
                 <div className="col-auto">
-                  <div class="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1" checked={this.props.is2faEnabled} />
-                    <label class="custom-control-label" for="customSwitch1"></label>
+                  <div className="mt-n1 custom-control custom-switch">
+                    <input type="checkbox" className="custom-control-input" id="customSwitch1" checked={this.props.is2faEnabled} />
+                    <label className="custom-control-label" htmlFor="customSwitch1"></label>
                   </div>
                 </div>
               </div>
@@ -101,7 +117,7 @@ class AccountPage extends React.Component {
 
             <div className="mb-5">
               <h1 id="password">Recovery & notification</h1>
-              <div class="border-left-pink">
+              <div className="border-left-pink">
                 {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
                 <p>
                   The selected method can be used to recover an account in the event your forget your password and to be notified about missed emails.
@@ -113,7 +129,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login email address</label>
                 </div>
                 <div className="col">
-                  <input type="string" name="email" className="form-control" id="email" value={user && user.email} onChange={this.handleChange} placeholder='Email' />
+                  <input type="string" name="email" className="form-control" id="email" value={user && user.email} placeholder='Email' />
                 </div>
                 <div className="col-auto">
                   <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={'btn-lg'}>
@@ -127,13 +143,13 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Allow password reset</label>
                 </div>
 
-                <div class="col">
-                  <div class="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch2" checked={this.props.isPasswordReset} />
-                    <label class="custom-control-label" for="customSwitch2"></label>
-                    {/* <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" disabled id="customSwitch2" />
-                      <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+                <div className="col">
+                  <div className="mt-n1 custom-control custom-switch">
+                    <input type="checkbox" className="custom-control-input" id="customSwitch2" onChange={this.allowPasswordReset} checked={this.state.isAllowPasswordReset} />
+                    <label className="custom-control-label" htmlFor="customSwitch2"></label>
+                    {/* <div className="custom-control custom-switch">
+                      <input type="checkbox" className="custom-control-input" disabled id="customSwitch2" />
+                      <label className="custom-control-label" htmlFor="customSwitch2">Disabled switch element</label>
                     </div> */}
                   </div>
                 </div>
@@ -141,14 +157,14 @@ class AccountPage extends React.Component {
             </div>
 
             <h1 id="delete">Delete Account</h1>
-            <div class="border-left-pink col">
+            <div className="border-left-pink col">
               {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
               <p>
                 Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
               </p>
             </div>
             <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnClasses={'btn-lg'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
-              <div class="border-left-pink">
+              <div className="border-left-pink">
                 <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
                 <p>If you wish to delete this account in order to combine it with another one, do NOT delete it.
                   {/* <a>Learn more</a> */}
@@ -170,7 +186,7 @@ function mapStateToProps(state) {
 }
 
 AccountPage.defaultProps = {
-  isPasswordReset: true,
+  isAllowPasswordReset: true,
   is2faEnabled: false,
 }
 
