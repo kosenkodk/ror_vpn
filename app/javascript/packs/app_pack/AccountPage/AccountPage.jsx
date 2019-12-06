@@ -133,7 +133,7 @@ class AccountPage extends React.Component {
               </p>
             </div>
             <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnClasses={'btn-lg'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
-              <div class="bd-callout bd-callout-warning">
+              <div class="border-left-pink">
                 <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
                 <p>If you wish to delete this account in order to combine it with another one, do NOT delete it.
                   {/* <a>Learn more</a> */}
