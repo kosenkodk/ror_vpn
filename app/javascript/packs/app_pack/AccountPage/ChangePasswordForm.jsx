@@ -28,7 +28,7 @@ class ChangePasswordForm extends React.Component {
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
 
-          <div class="mt-0 border-left-pink col">
+          <div className="mt-0 border-left-pink col">
             {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
             <p>Do NOT forget this password. If you forget it, you will not be able to login or decrypt your message.
             </p>
@@ -39,14 +39,14 @@ class ChangePasswordForm extends React.Component {
           </div>
 
           <FlashMessages error={error && error} notice={notice && notice} />
-          
+
           <div className="col">
             <div className="form-group row">
               <label htmlFor="password_old" className="col-sm-4 col-form-label">Old login password:</label>
               <input type="password" name="password_old" className="col-sm-6 form-control" id="password_old" value={password_old} onChange={this.handleChange} placeholder='Password' />
               <div className="col"></div>
             </div>
-               <div className="form-group row">
+            <div className="form-group row">
               <label htmlFor="password" className="col-sm-4 col-form-label">New login password:</label>
               <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
             </div>
@@ -54,35 +54,35 @@ class ChangePasswordForm extends React.Component {
               <label htmlFor="password_confirmation" className="col-sm-4 col-form-label">Confirm login password:</label>
               <input type="password" name="password_confirmation" className="col-sm-6 form-control" id="password_confirmation" value={password_confirmation} onChange={this.handleChange} placeholder='Confirm' />
             </div>
-            </div>
           </div>
-            <div className="modal-footer d-flex w-100">
+        </div>
+        <div className="modal-footer d-flex w-100">
           <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{I18n.t('buttons.cancel')}</button>
-            
-              <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
-                {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+
+          <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
+            {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
             {' ' + I18n.t('buttons.submit')}
           </button>
         </div>
-            </form>
-          );
-        }
-      }
+      </form>
+    );
+  }
+}
 
-            ChangePasswordForm.propTypes = {
-            id: PropTypes.string,
-            error: PropTypes.string,
-            notice: PropTypes.string,
-          }
+ChangePasswordForm.propTypes = {
+  id: PropTypes.string,
+  error: PropTypes.string,
+  notice: PropTypes.string,
+}
 
 function mapStateToProps(state) {
   const { loading, error, notice } = state.account;
-            return {
-            loading,
-            error,
+  return {
+    loading,
+    error,
     notice,
-          };
-        }
-        
+  };
+}
+
 const connectedForm = connect(mapStateToProps)(ChangePasswordForm);
 export { connectedForm as ChangePasswordForm }; 
