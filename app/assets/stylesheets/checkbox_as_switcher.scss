@@ -55,9 +55,11 @@
   .custom-control-label {
     &::before {
       border-color: $admin_pink;
+      background-color: $black;
     }
     &::after {
-      background-color: $pink;
+      background-color: $white;
+      border-color: $black;
     }
   }
 }
