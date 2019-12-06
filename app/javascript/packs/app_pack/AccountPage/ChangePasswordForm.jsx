@@ -56,7 +56,7 @@ class ChangePasswordForm extends React.Component {
 
           <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
             {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-            {' ' + I18n.t('buttons.save')}
+            {' ' + I18n.t('buttons.submit')}
           </button>
         </div>
       </form>
