@@ -92,7 +92,7 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col-auto">
                   <div class="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1" />
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1" checked={this.props.is2faEnabled} />
                     <label class="custom-control-label" for="customSwitch1"></label>
                   </div>
                 </div>
@@ -129,9 +129,8 @@ class AccountPage extends React.Component {
 
                 <div class="col">
                   <div class="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1" />
-                    <label class="custom-control-label" for="customSwitch1"></label>
-
+                    <input type="checkbox" class="custom-control-input" id="customSwitch2" checked={this.props.isPasswordReset} />
+                    <label class="custom-control-label" for="customSwitch2"></label>
                     {/* <div class="custom-control custom-switch">
                       <input type="checkbox" class="custom-control-input" disabled id="customSwitch2" />
                       <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
@@ -168,6 +167,11 @@ function mapStateToProps(state) {
   return {
     loggingIn, user
   };
+}
+
+AccountPage.defaultProps = {
+  isPasswordReset: true,
+  is2faEnabled: false,
 }
 
 const connectedPage = connect(mapStateToProps)(AccountPage);
