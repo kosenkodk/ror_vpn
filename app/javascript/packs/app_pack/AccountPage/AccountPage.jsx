@@ -84,6 +84,22 @@ class AccountPage extends React.Component {
             </div>
 
             <div className="mb-5">
+              <h1 id="password">Two-factor authentication</h1>
+
+              <div className="row">
+                <div className="col-sm-5 align-self-center">
+                  <label className="col-form-label">Two-factor authentication</label>
+                </div>
+                <div className="col-auto">
+                  <div class="mt-n1 custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1" />
+                    <label class="custom-control-label" for="customSwitch1"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-5">
               <h1 id="password">Recovery & notification</h1>
               <div class="border-left-pink">
                 {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
