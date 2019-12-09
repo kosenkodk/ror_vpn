@@ -17,6 +17,7 @@ $font18: 18px;
 $font24: 24px;
 $font34: 34px;
 
+
 .bd-highlight {
   background-color: lightblue;
   border: 1px solid $blue;
@@ -40,6 +41,7 @@ $font34: 34px;
 }
 
 .modal-content {
+  padding: 15px 5px;
   background: $white;
   color: $black;
   h1 {
@@ -75,6 +77,7 @@ $font34: 34px;
 .bd-callout-warning {
   border-left-color: #f0ad4e;
 }
+
 .bd-callout {
   background-color: $bgInputColor;
   padding: 1.25rem;
@@ -83,6 +86,13 @@ $font34: 34px;
   border: 1px solid $admin_pink;
   border-left-width: .25rem;
   border-radius: .25rem;
+}
+
+.border-left-pink {
+  @extend .bd-callout;
+  border-right: unset;
+  border-top: unset;
+  border-bottom: unset;
 }
 
 #admin_layout {
@@ -116,6 +126,11 @@ $font34: 34px;
   small {
     font-size: 9px;
     line-height: 15px;
+  }
+
+  .modal-lg {
+    // max-width: 800px;
+    max-width: 754px;
   }
 
   .btn-outline-danger {
@@ -344,7 +359,7 @@ $font34: 34px;
   }
 
   textarea.form-control, input.form-control {
-    background-color: bgInputColor;
+    background-color: $bgInputColor;
   }
 
   .tickets {
@@ -418,3 +433,5 @@ $font34: 34px;
   }
 
 }
+
+@import "checkbox_as_switcher";
