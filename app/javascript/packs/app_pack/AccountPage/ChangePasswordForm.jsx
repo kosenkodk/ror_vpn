@@ -27,18 +27,31 @@ class ChangePasswordForm extends React.Component {
     return (
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
+
+          <div className="mt-0 border-left-pink col">
+            {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+            <p>Do NOT forget this password. If you forget it, you will not be able to login or decrypt your message.
+            </p>
+            <p>Save your password somewhere safe. Click on the icon to confirm you that have typed your password correctly.
+            </p>
+            <p>We recommend adding a recovery email address first. Otherwise, you cannot recover your account if something goes wrong.
+            </p>
+          </div>
+
           <FlashMessages error={error && error} notice={notice && notice} />
+
           <div className="col">
             <div className="form-group row">
-              <label htmlFor="password_old" className="col-sm-6 col-form-label">Old login password:</label>
+              <label htmlFor="password_old" className="col-sm-4 col-form-label">Old login password:</label>
               <input type="password" name="password_old" className="col-sm-6 form-control" id="password_old" value={password_old} onChange={this.handleChange} placeholder='Password' />
+              <div className="col"></div>
             </div>
             <div className="form-group row">
-              <label htmlFor="password" className="col-sm-6 col-form-label">New login password:</label>
+              <label htmlFor="password" className="col-sm-4 col-form-label">New login password:</label>
               <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
             </div>
             <div className="form-group row">
-              <label htmlFor="password_confirmation" className="col-sm-6 col-form-label">Confirm login password:</label>
+              <label htmlFor="password_confirmation" className="col-sm-4 col-form-label">Confirm login password:</label>
               <input type="password" name="password_confirmation" className="col-sm-6 form-control" id="password_confirmation" value={password_confirmation} onChange={this.handleChange} placeholder='Confirm' />
             </div>
           </div>
@@ -48,7 +61,7 @@ class ChangePasswordForm extends React.Component {
 
           <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
             {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-            {' ' + I18n.t('buttons.save')}
+            {' ' + I18n.t('buttons.submit')}
           </button>
         </div>
       </form>
