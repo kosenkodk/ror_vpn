@@ -105,7 +105,7 @@ class AccountPage extends React.Component {
               </div>
             </div>
 
-            <div className="mb-5">
+            {/* <div className="mb-5">
               <h1 id="password">Two-factor authentication</h1>
 
               <div className="row">
@@ -119,7 +119,7 @@ class AccountPage extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="mb-5">
               <h1 id="password">Recovery & notification</h1>
@@ -144,6 +144,7 @@ class AccountPage extends React.Component {
                 </div>
               </div>
 
+              {/*
               <div className="row mt-2">
                 <div className="col-sm-5 align-self-center">
                   <label className="col-form-label">Allow password reset</label>
@@ -151,15 +152,13 @@ class AccountPage extends React.Component {
 
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch2" onChange={this.allowPasswordReset} checked={this.state.isAllowPasswordReset} />
+                    <input type="checkbox" className="custom-control-input" id="customSwitch2" onChange={this.allowPasswordReset} disabled={false} checked={this.state.isAllowPasswordReset} />
                     <label className="custom-control-label" htmlFor="customSwitch2"></label>
-                    {/* <div className="custom-control custom-switch">
-                      <input type="checkbox" className="custom-control-input" disabled id="customSwitch2" />
-                      <label className="custom-control-label" htmlFor="customSwitch2">Disabled switch element</label>
-                    </div> */}
                   </div>
                 </div>
               </div>
+              */}
+
             </div>
 
             <h1 id="delete">Delete Account</h1>

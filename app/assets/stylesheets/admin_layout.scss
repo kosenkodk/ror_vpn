@@ -17,7 +17,6 @@ $font18: 18px;
 $font24: 24px;
 $font34: 34px;
 
-@import "checkbox_as_switcher";
 
 .bd-highlight {
   background-color: lightblue;
@@ -434,3 +433,5 @@ $font34: 34px;
   }
 
 }
+
+@import "checkbox_as_switcher";
