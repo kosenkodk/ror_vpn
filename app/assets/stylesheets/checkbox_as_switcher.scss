@@ -1,5 +1,12 @@
 
 // custom checkox (switcher/toggler)
+// .custom-switch .custom-control-label::after {
+//   transition: unset;
+// }
+// .custom-switch .custom-control-label::before {
+//   transition: unset;
+// }
+
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
   transform: translateX(1.5rem);
 }
@@ -48,6 +55,7 @@
 
 /* pink color */
 .custom-control-input:checked ~ .custom-control-label {
+  
   &::before {
     border-color: $pink;
     background-color: $pink;
@@ -69,4 +77,4 @@
     }
   }
 }
-/* end pink color*/
+/* end pink color */
