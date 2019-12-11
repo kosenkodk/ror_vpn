@@ -311,7 +311,7 @@ $font34: 34px;
       color: $white;
       opacity: $opacity05;
       &:hover {
-        opacity: $opacity08;
+        opacity: 1;//$opacity08;
       }
       &.active {
         text-decoration: none;
