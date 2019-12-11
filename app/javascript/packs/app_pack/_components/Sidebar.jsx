@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
                       <ul className="submenu">
                         {item.urls && Object.values(item.urls).map(subItem =>
                           <li key={subItem.path}>
-                            <Link smooth className="text-light" activeClassName="" to={subItem.path}
+                            <Link smooth className="" activeClassName="" to={subItem.path}
                               location={{ pathname: document.location.pathname + document.location.hash }}>
                               {subItem.name}
                             </Link>
@@ -51,7 +51,7 @@ class Sidebar extends React.Component {
                     </div>
                   </React.Fragment>
                   :
-                  <Link key={item.path} smooth to={item.path} activeClassName=""
+                  <Link key={item.path} smooth to={item.path} className="" activeClassName=""
                     location={{ pathname: document.location.pathname + document.location.hash }}>
                     <li className="list-group-item">{item.name}</li>
                   </Link>
