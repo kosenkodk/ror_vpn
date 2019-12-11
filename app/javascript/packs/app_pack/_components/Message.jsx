@@ -27,7 +27,20 @@ class Message extends React.Component {
 
 
         <div className="border border-radius border-gray p-3">
-          {item && item.text}
+
+          {item && item.text &&
+            <React.Fragment>
+              {item.text.split("\n").map(function (item) {
+                return (
+                  <span>
+                    {item}
+                    <br />
+                  </span>
+                )
+              })
+              }
+            </React.Fragment>
+          }
 
           {item && item.attachment_url &&
             <div className="form-group row">
