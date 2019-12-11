@@ -33,25 +33,27 @@ class TicketsViewPage extends React.Component {
     const { item, loggedIn } = this.props
 
     return (
-      <div id="tickets_new" className="tickets row mb-4 pb-1">
-        <div className="col-12">
-          <div className="container-section">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-shrink-0 align-self-center">
-                  <Link to={urls.tickets.path} className="">
-                    <img src={icArrowLeftSrc} className="img-fluid" />
-                  </Link>
-                </div>
-                <div className="col">
-                  <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.form.title')}: {item && item.title}</h4>
+      <div className="container-fluid">
+        <div id="tickets_new" className="tickets row mb-4 pb-1">
+          <div className="col-12">
+            <div className="container-section">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-shrink-0 align-self-center">
+                    <Link to={urls.tickets.path} className="">
+                      <img src={icArrowLeftSrc} className="img-fluid" />
+                    </Link>
+                  </div>
+                  <div className="col">
+                    <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.form.title')}: {item && item.title}</h4>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <ChatRoom id={this.state.id} messages={item && item.messages} />
-            {/* initial ticket message with attachment */}
-            {item && item.messages && <Messages items={item.messages} />}
+              <ChatRoom id={this.state.id} messages={item && item.messages} />
+              {/* initial ticket message with attachment */}
+              {item && item.messages && <Messages items={item.messages} />}
+            </div>
           </div>
         </div>
       </div>
