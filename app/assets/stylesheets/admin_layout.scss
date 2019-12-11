@@ -78,6 +78,10 @@ $font34: 34px;
   }
 }
 
+textarea {
+  min-height: 10rem;
+}
+
 .bd-callout-warning {
   border-left-color: #f0ad4e;
 }
