@@ -288,12 +288,12 @@ $font34: 34px;
       padding: 0 2rem;
       list-style: none !important;
     }
-    a li.list-group-item {
-      opacity: $opacity05;
-    }
-    a.active li.list-group-item {
-      opacity: 1;
-    }
+    // a li.list-group-item {
+    //   opacity: $opacity05;
+    // }
+    // a.active li.list-group-item {
+    //   opacity: 1;
+    // }
 
     li {
       cursor: pointer;
@@ -310,12 +310,13 @@ $font34: 34px;
     a {
       color: $white;
       opacity: $opacity05;
-      &:hover, &.active {
+      &:hover {
+        opacity: $opacity08;
+      }
+      &.active {
         text-decoration: none;
         opacity: 1;
-      }
-      &.active:hover {
-        opacity: $opacity;
+        // &:hover {}
       }
     }
   }
