@@ -60,6 +60,10 @@ $font34: 34px;
     border: unset;
   }
 
+  textarea {
+    min-height: 10rem;
+  }
+
   .close {
     color: $black;
     &:hover {
