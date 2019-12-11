@@ -21,7 +21,7 @@ class TicketsViewPage extends React.Component {
     this.props.dispatch(pageActions.setTitle(this.getTitle()))
   }
 
-  componentWillUpdate() {
+  UNSAFE_componentWillUpdate() {
     this.props.dispatch(pageActions.setTitle(this.getTitle()))
   }
 

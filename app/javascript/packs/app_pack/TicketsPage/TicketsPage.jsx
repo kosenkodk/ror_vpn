@@ -29,7 +29,7 @@ class TicketsPage extends React.Component {
     this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 
-  componentWillUpdate() {
+  UNSAFE_componentWillUpdate() {
     this.setTitle();
   }
 
