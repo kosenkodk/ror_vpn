@@ -7,3 +7,4 @@ export * from './ChatRoom';
 export * from './Alert';
 import Sidebar from './Sidebar';
 export { Sidebar };
+export * from './NewLineToBr';
