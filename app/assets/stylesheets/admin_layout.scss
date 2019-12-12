@@ -22,6 +22,7 @@ $font-size-base-admin: $font-size-base * 0.875;   // 14px;
 $base-line-height-admin: $font-size-base * 1.125; // 18px;
 $font14: $font-size-base * 0.875; // 14px;
 $font18: $font-size-base * 1.125; // 18px;
+$font20: $font-size-base * 1.25;  // 20px;
 $font22: $font-size-base * 1.375; // 22px;
 $font24: $font-size-base * 1.5;   // 24px;
 $font34: $font-size-base * 2.125; // 34px;
@@ -48,8 +49,8 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 @import "admin/public";
 
 #admin_layout {
-  font-size: $font-size-base-admin;
-  line-height: $base-line-height-admin;
+  // font-size: $font-size-base-admin;
+  // line-height: $base-line-height-admin;
   
   @media #{$mq-w1400px} {
     font-size: $font-size-base-admin;
@@ -57,28 +58,27 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
   }
 
   @media #{$mq-large} {
-    font-size: $font-size-base-admin*1.3;
+    // font-size: $font-size-base-admin*1.3;
   }
-  /*
-  body {
-    @media #{$mq-medium} {
-      font-size: $font-size-base-admin*1.2;
-      line-height: $base-line-height-admin*1.2;
-    }
-  
-    @media #{$mq-large} {
-      font-size: $font-size-base-admin*1.3;
-    }
-  
-    @media #{$mq-xlarge} {
-      font-size: $font-size-base-admin*1.4;
-    }
-  
-    @media #{$mq-xxlarge} {
-      font-size: $font-size-base-admin*1.6;
-    }
+
+  @media #{$mq-medium} {
+    // font-size: $font-size-base-admin*1.2;
+    // line-height: $base-line-height-admin*1.2;
   }
-  */ 
+
+  @media #{$mq-large} {
+    // font-size: $font-size-base-admin*1.3;
+  }
+
+  @media #{$mq-xlarge} {
+    font-size: $font-size-base-admin*1.5;
+    line-height: $base-line-height-admin*1.5;
+  }
+
+  @media #{$mq-xxlarge} {
+    font-size: 1vw;
+    line-height: 1vw;
+  }
   
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
@@ -89,29 +89,28 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
     // font-weight: normal;
   }
   h2 {
-    line-height: 22px;
+    line-height: $font22;
   }
   h3 {
-    font-size: 20px;
+    font-size: $font20;
   }
   h4 {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: $font18;
+    line-height: $font22;
   }
   h5 {
-    font-size: 16px;
+    font-size: $font-size-base;
   }
   h6 {
-    font-size: 14px;
+    font-size: $font14;
   }
   small {
-    font-size: 9px;
-    line-height: 15px;
+    font-size: (9px/$font-size-base) * $font-size-base; // 9px;
+    line-height: (15px/$font-size-base) * $font-size-base; // 15px;
   }
 
   .modal-lg {
-    // max-width: 800px;
-    max-width: 754px;
+    max-width: 53.8vw;// 754px;
   }
 
   .btn-outline-danger {
@@ -149,7 +148,7 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
   }
   .alert {
     font-size: $font18;
-    line-height: 24px;
+    line-height: $font24;
     z-index: 1000;
   }
   .alert-inline {
@@ -198,6 +197,9 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
       // max-width: 15.5vw;
       // width: 12rem;
       max-width: 13.5rem;
+    }
+    @media (min-width: $bp-xxlarge) {
+      max-width: 15.5vw;
     }
   }
 
