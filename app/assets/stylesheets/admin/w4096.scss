@@ -1,25 +1,35 @@
+$multiplier: 4;
+body {
+  font-size: 1vw;
+  line-height: 1vw;
+}
 h1 {
-  font-size: $font24;
-  line-height: $font34;
+  font-size: $font24*$multiplier;
+  line-height: $font34*$multiplier;
   // font-weight: normal;
 }
 h2 {
-  line-height: $font22;
+  line-height: $font22*$multiplier;
 }
 h3 {
-  font-size: $font20;
+  font-size: $font20*$multiplier;
 }
 h4 {
-  font-size: $font18;
-  line-height: $font22;
+  font-size: $font18*$multiplier;
+  line-height: $font22*$multiplier;
 }
 h5 {
-  font-size: $font-size-base;
+  font-size: $font-size-base*$multiplier;
 }
 h6 {
-  font-size: $font14;
+  font-size: $font14*$multiplier;
 }
 small {
-  font-size: $font-small;
-  line-height: $line-height-small;
+  font-size: $font-small*$multiplier;
+  line-height: $line-height-small*$multiplier;
+}
+
+.form-control {
+  font-size: $font14*$multiplier;
+  line-height: $font24*$multiplier;
 }
