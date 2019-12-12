@@ -1,0 +1,83 @@
+  
+.border-gray {
+  border-color: $borderColor2;
+}
+
+.border-radius {
+  border-radius: $admin_border_radius;
+}
+
+.modal-content {
+  padding: 15px 5px;
+  background: $white;
+  color: $black;
+  h1 {
+    font-size: $font24;
+    line-height: $font34;
+  }
+  .form-control {
+    font-size: $font14;
+    line-height: $font24;
+  }
+  .col-form-label {
+    font-weight: bold;
+  }
+  input, textarea {
+    background-color: $bgInputColor;
+    border: unset;
+  }
+
+  textarea {
+    min-height: 10rem;
+  }
+
+  .close {
+    color: $black;
+    &:hover {
+      color: $pink3;
+    }
+  }
+  .modal-header {
+    border: unset;
+  }
+  .modal-footer {
+    border: unset;
+  }
+}
+
+textarea {
+  min-height: 10rem;
+}
+
+.bd-callout-warning {
+  border-left-color: #f0ad4e;
+}
+
+.bd-callout {
+  background-color: $bgInputColor;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid $admin_pink;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+}
+
+.border-left-pink {
+  @extend .bd-callout;
+  border-right: unset;
+  border-top: unset;
+  border-bottom: unset;
+}
+
+// test
+.bd-highlight {
+  background-color: lightblue;
+  border: 1px solid $blue;
+  color: black;
+}
+
+.w-15 {
+  width: 15% !important;
+}
+// end test
