@@ -26,18 +26,22 @@ $font20: $font-size-base * 1.25;  // 20px;
 $font22: $font-size-base * 1.375; // 22px;
 $font24: $font-size-base * 1.5;   // 24px;
 $font34: $font-size-base * 2.125; // 34px;
+$font-small: (9px/$font-size-base) * $font-size-base; // 9px;
+$line-height-small: (15px/$font-size-base) * $font-size-base; // 15px;
 
 // breakpoints
-$bp-small: 48em; // 768px
-$bp-medium: 64em; // 1024px
-$bp-large: 85.375em; // 1366px
-$bp-xlarge: 120em; // 1920px
-$bp-xxlarge: 160em; // 2560px
+$bp-small: 48em;      // 768px
+$bp-medium: 64em;     // 1024px
+$bp-large: 85.375em;  // 1366px
+$bp-xlarge: 120em;    // 1920px
+$bp-xxlarge: 160em;   // 2560px
 
-$bp-w1400: 87.5em; // 1400px;
+$bp-w1400: 87.5em;    // 1400px;
+$bp-w4096: 256em;     // 4096px;
 
 // media queries
 $mq-w1400px: "(min-width: #{$bp-w1400})";
+$mq-k4: "(min-width: #{$bp-w4096})";
 
 $mq-small: "(min-width: #{$bp-small})";
 $mq-medium: "(min-width: #{$bp-medium})";
@@ -55,6 +59,8 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
   @media #{$mq-w1400px} {
     font-size: $font-size-base-admin;
     line-height: $base-line-height-admin;
+
+    @import "admin/w1400";
   }
 
   @media #{$mq-large} {
@@ -73,44 +79,25 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
   @media #{$mq-xlarge} {
     font-size: $font-size-base-admin*1.5;
     line-height: $base-line-height-admin*1.5;
+    @import "admin/w1920";
   }
 
   @media #{$mq-xxlarge} {
+    
+  }
+
+  @media #{$mq-k4} {
     font-size: 1vw;
     line-height: 1vw;
+    @import "admin/w4096";
   }
   
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
   }
-  h1 {
-    font-size: $font24;
-    line-height: $font34;
-    // font-weight: normal;
-  }
-  h2 {
-    line-height: $font22;
-  }
-  h3 {
-    font-size: $font20;
-  }
-  h4 {
-    font-size: $font18;
-    line-height: $font22;
-  }
-  h5 {
-    font-size: $font-size-base;
-  }
-  h6 {
-    font-size: $font14;
-  }
-  small {
-    font-size: (9px/$font-size-base) * $font-size-base; // 9px;
-    line-height: (15px/$font-size-base) * $font-size-base; // 15px;
-  }
-
+  
   .modal-lg {
-    max-width: 53.8vw;// 754px;
+    max-width: 53.8vw; // 754px;
   }
 
   .btn-outline-danger {

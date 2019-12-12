@@ -1,0 +1,25 @@
+h1 {
+  font-size: $font24;
+  line-height: $font34;
+  // font-weight: normal;
+}
+h2 {
+  line-height: $font22;
+}
+h3 {
+  font-size: $font20;
+}
+h4 {
+  font-size: $font18;
+  line-height: $font22;
+}
+h5 {
+  font-size: $font-size-base;
+}
+h6 {
+  font-size: $font14;
+}
+small {
+  font-size: $font-small;
+  line-height: $line-height-small;
+}
