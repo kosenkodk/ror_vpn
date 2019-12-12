@@ -1,35 +1,45 @@
-$multiplier: 4;
-body {
-  font-size: 1vw;
-  line-height: 1vw;
-}
+$multiplier4k: 4;
+// body,html {
+//   font-size: $font14*$multiplier4k !important;// 1vw;
+//   line-height: $font18*$multiplier4k !important; //1vw;
+// }
 h1 {
-  font-size: $font24*$multiplier;
-  line-height: $font34*$multiplier;
+  font-size: $font24*$multiplier4k;
+  line-height: $font34*$multiplier4k;
   // font-weight: normal;
 }
 h2 {
-  line-height: $font22*$multiplier;
+  line-height: $font22*$multiplier4k;
 }
 h3 {
-  font-size: $font20*$multiplier;
+  font-size: $font20*$multiplier4k;
 }
 h4 {
-  font-size: $font18*$multiplier;
-  line-height: $font22*$multiplier;
+  font-size: $font18*$multiplier4k;
+  line-height: $font22*$multiplier4k;
 }
 h5 {
-  font-size: $font-size-base*$multiplier;
+  font-size: $font-size-base*$multiplier4k;
 }
 h6 {
-  font-size: $font14*$multiplier;
+  font-size: $font14*$multiplier4k;
 }
 small {
-  font-size: $font-small*$multiplier;
-  line-height: $line-height-small*$multiplier;
+  font-size: $font-small*$multiplier4k;
+  line-height: $line-height-small*$multiplier4k;
 }
 
 .form-control {
-  font-size: $font14*$multiplier;
-  line-height: $font24*$multiplier;
+  font-size: $font14*$multiplier4k;
+  line-height: $font24*$multiplier4k;
+}
+.alert {
+  font-size: $font18*$multiplier4k;
+  line-height: $font24*$multiplier4k;
+  z-index: 1000;
+}
+.btn {
+  font-weight: $font-bold;
+  font-size: $font14*$multiplier4k;
+  line-height: $font18*$multiplier4k;
 }
