@@ -86,13 +86,7 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
     
   }
 
-  @media #{$mq-k4} {
-    // font-size: 1vmin;
-    // line-height: 1vmin;
-    font-size: $font-size-base-admin*4;
-    line-height: $base-line-height-admin*4;
-    @import "admin/w4096";
-  }
+  @import "admin/w4096";
   
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
@@ -306,11 +300,11 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
     }
   }
 
-  // .btn {
-  //   font-weight: $font-bold;
-  //   font-size: $font14;
-  //   line-height: $font18;
-  // }
+  .btn {
+    font-weight: $font-bold;
+    font-size: $font14;
+    line-height: $font18;
+  }
 
   .btn-black {
     @extend .btn-pink-dark;

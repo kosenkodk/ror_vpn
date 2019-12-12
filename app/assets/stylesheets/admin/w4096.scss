@@ -1,8 +1,9 @@
-$multiplier4k: 4;
-// body,html {
-//   font-size: $font14*$multiplier4k !important;// 1vw;
-//   line-height: $font18*$multiplier4k !important; //1vw;
-// }
+@media #{$mq-k4} {
+// @media (min-width: $k4-width) {
+  $multiplier4k: 4;
+  font-size: $font14*$multiplier4k;// 1vw;
+  line-height: $font18*$multiplier4k; //1vw;
+
 h1 {
   font-size: $font24*$multiplier4k;
   line-height: $font34*$multiplier4k;
@@ -42,4 +43,5 @@ small {
   font-weight: $font-bold;
   font-size: $font14*$multiplier4k;
   line-height: $font18*$multiplier4k;
+}
 }
