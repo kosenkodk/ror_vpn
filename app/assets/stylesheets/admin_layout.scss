@@ -9,103 +9,55 @@ $bgInputColor: #EDEEEF;
 $red: #9A2121;
 $blue: #2CB0B5;
 $pink: #7D2864;
-$padding: 15;
+$padding: 15; //px
 $font-weight: 500;
 $font-bold: 600;
 $font14: 14px;
 $font18: 18px;
+$font22: 22px;
 $font24: 24px;
 $font34: 34px;
+@import "admin/public";
 
+$admin-base-font-size: 1rem;//14px
+$admin-base-line-height: 1rem;//18px;
 
-.bd-highlight {
-  background-color: lightblue;
-  border: 1px solid $blue;
-  color: black;
-}
-
-.w-15 {
-  width: 15% !important;
-}
-
-.opacity-05 {
-  opacity: $opacity05;
-}
-  
-.border-gray {
-  border-color: $borderColor2;
-}
-
-.border-radius {
-  border-radius: $admin_border_radius;
-}
-
-.modal-content {
-  padding: 15px 5px;
-  background: $white;
-  color: $black;
-  h1 {
-    font-size: $font24;
-    line-height: $font34;
-  }
-  .form-control {
-    font-size: $font14;
-    line-height: $font24;
-  }
-  .col-form-label {
-    font-weight: bold;
-  }
-  input, textarea {
-    background-color: $bgInputColor;
-    border: unset;
-  }
-
-  textarea {
-    min-height: 10rem;
-  }
-
-  .close {
-    color: $black;
-    &:hover {
-      color: $pink3;
-    }
-  }
-  .modal-header {
-    border: unset;
-  }
-  .modal-footer {
-    border: unset;
-  }
-}
-
-textarea {
-  min-height: 10rem;
-}
-
-.bd-callout-warning {
-  border-left-color: #f0ad4e;
-}
-
-.bd-callout {
-  background-color: $bgInputColor;
-  padding: 1.25rem;
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-  border: 1px solid $admin_pink;
-  border-left-width: .25rem;
-  border-radius: .25rem;
-}
-
-.border-left-pink {
-  @extend .bd-callout;
-  border-right: unset;
-  border-top: unset;
-  border-bottom: unset;
-}
+$bp-small: 48em; // 768px
+$bp-medium: 64em; // 1024px
+$bp-large: 85.375em; // 1366px
+$bp-xlarge: 120em; // 1920px
+$bp-xxlarge: 160em; // 2560px
+ 
+// media queries
+$mq-small: "(min-width: #{$bp-small})";
+$mq-medium: "(min-width: #{$bp-medium})";
+$mq-large: "(min-width: #{$bp-large})";
+$mq-xlarge: "(min-width: #{$bp-xlarge})";
+$mq-xxlarge: "(min-width: #{$bp-xxlarge})";
+$mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 
 #admin_layout {
-  font-size: $font14;
-  line-height: $font18;
+  body {
+    font-size: $admin-base-font-size;
+    line-height: $admin-base-line-height;
+
+    @media #{$mq-medium} {
+      font-size: $admin-base-font-size*1.2;
+      line-height: $admin-base-line-height*1.2;
+    }
+  
+    @media #{$mq-large} {
+      font-size: $admin-base-font-size*1.3;
+    }
+  
+    @media #{$mq-xlarge} {
+      font-size: $admin-base-font-size*1.4;
+    }
+  
+    @media #{$mq-xxlarge} {
+      font-size: $admin-base-font-size*1.6;
+    }
+  }
   
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
@@ -255,10 +207,23 @@ textarea {
   }
     
   article {
+    // margin: 0 4%;
+ 
+    // @media #{$mq-medium} {
+    //   margin: 0 8%;
+    // }
+  
+    // @media #{$mq-large} {
+    //   margin: 0 12%;
+    // }
+  
+    // @media #{$mq-xlarge} {
+    //   margin: 0 18%;
+    // }
+
     // max-width: 55vw;
-    max-width: 1130px;//1400px;
-    margin-left: auto;
-    margin-right: auto;
+    // max-width: 1130px;//1400px;
+    // margin: 0 auto;
   }
 
   nav {
@@ -278,7 +243,7 @@ textarea {
       // padding: 6px 12px 5px 14px;
     }
     .accordion_menu-title:after {
-      font-size: 22px;
+      font-size: $font22;
       font-weight: 100;
       font-family: 'FontAwesome';
       content: "\f107";
