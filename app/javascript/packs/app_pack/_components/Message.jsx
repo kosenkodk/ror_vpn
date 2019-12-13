@@ -24,7 +24,7 @@ class Message extends React.Component {
         <h6 className="mb-0">
           <b>{this.getUserNameOrEmailFromMessage(item)}</b>
         </h6>
-        <p><small>Ticket created on {item && item.created_at_humanize}</small></p>
+        <p><small className="ticket__message_datetime">Ticket created on {item && item.created_at_humanize}</small></p>
 
 
         <div className="border border-radius border-gray p-3">
