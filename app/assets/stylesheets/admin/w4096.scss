@@ -1,6 +1,6 @@
 @media #{$mq-k4} {
 // @media (min-width: $k4-width) {
-  $multiplier4k: 4;
+  $multiplier4k: 3.5;
   font-size: $font14*$multiplier4k;// 1vw;
   line-height: $font18*$multiplier4k; //1vw;
 
@@ -50,4 +50,22 @@ small {
   line-height: $font18*$multiplier4k;
 }
 
+.header {
+    img {
+      height: 4.11vh;
+      // 22
+      // 18
+      // margin-top: 1.3rem*$multiplier4k;
+      // margin-bottom: 0.5rem*$multiplier4k;
+    }
+    // .img-fluid {
+    //   height: 4.11vh;
+    // }
+ }
+
+ .navbar-brand img {
+  //  height: 2.4vh;
+    width: (79/1400)*100+0vw;
+   max-height: unset;
+ }
 }
