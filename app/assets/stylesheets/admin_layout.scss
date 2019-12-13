@@ -129,6 +129,13 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
   .header__alert {
     margin: -2rem auto;
   }
+
+  // .header .nav-link {
+  //   font-weight: 600;
+  //   font-size: $font14;
+  //   line-height: $font18;
+  // }
+
   .alert {
     font-size: $font18;
     line-height: $font24;
@@ -302,8 +309,8 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 
   .btn {
     font-weight: $font-bold;
-    font-size: $font14;
-    line-height: $font18;
+    // font-size: $font14;
+    // line-height: $font18;
   }
 
   .btn-black {
