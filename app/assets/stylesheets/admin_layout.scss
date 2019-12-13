@@ -8,6 +8,7 @@ $bgInputColor: #EDEEEF;
 $red: #9A2121;
 $blue: #2CB0B5;
 $pink: #7D2864;
+$color-ticket__message_datetime: #3D194F;
 
 // paddings
 $padding: 15; // 15px
@@ -370,6 +371,9 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
     @extend .border-radius;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
+    &_datetime {
+      color: $color-ticket__message_datetime;
+    }
   }
 
   .card {
