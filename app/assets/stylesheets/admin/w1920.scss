@@ -1,4 +1,4 @@
-$multiplier: 2;
+$multiplier: 1.5;
 h1 {
   font-size: $font24*$multiplier;
   line-height: $font34*$multiplier;
@@ -35,6 +35,10 @@ small {
 }
 .btn {
   font-weight: $font-bold*$multiplier;
+  font-size: $font14*$multiplier;
+  line-height: $font18*$multiplier;
+}
+.header .nav-link {
   font-size: $font14*$multiplier;
   line-height: $font18*$multiplier;
 }
