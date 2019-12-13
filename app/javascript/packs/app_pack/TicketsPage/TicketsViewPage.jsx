@@ -39,7 +39,7 @@ class TicketsViewPage extends React.Component {
             <div className="container-section">
               <div className="container-fluid">
                 <div className="row">
-                  <div className="col-shrink-0 align-self-center">
+                  <div className="col-shrink-0 align-self-center mb-1">
                     <Link to={urls.tickets.path} className="">
                       <img src={icArrowLeftSrc} className="img-fluid" />
                     </Link>
