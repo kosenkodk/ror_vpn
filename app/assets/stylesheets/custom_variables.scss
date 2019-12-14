@@ -65,5 +65,8 @@ $container-max-widths: (
   sm: $sm-width,
   md: $md-width,
   lg: $lg-width,
-  xl: $xl-width
+  xl: $xl-width,
+  w1400: 1400px, // for admin panel
+  fullhd: 1920px,
+  k4: $k4-width,
 );

@@ -36,20 +36,22 @@ $bp-medium: 64em;     // 1024px
 $bp-large: 85.375em;  // 1366px
 $bp-xlarge: 120em;    // 1920px
 $bp-xxlarge: 160em;   // 2560px
-
+// admin panel's breakpoints 
 $bp-w1400: 87.5em;    // 1400px;
+$bp-w1920: 120em;     // 1920px;
 $bp-w4096: 256em;     // 4096px;
 
 // media queries
-$mq-w1400px: "(min-width: #{$bp-w1400})";
-$mq-k4: "(min-width: #{$bp-w4096})";
-
 $mq-small: "(min-width: #{$bp-small})";
 $mq-medium: "(min-width: #{$bp-medium})";
 $mq-large: "(min-width: #{$bp-large})";
 $mq-xlarge: "(min-width: #{$bp-xlarge})";
 $mq-xxlarge: "(min-width: #{$bp-xxlarge})";
 $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+// admin panel's media quieries
+$mq-w1400: "(min-width: #{$bp-w1400})"; // for admin panel by original design
+$mq-w1920: "(min-width: #{$bp-w1920})";
+$mq-w4096: "(min-width: #{$bp-w4096})";
 
 @import "admin/public";
 
@@ -389,34 +391,17 @@ $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
   }
 
   // media queries
-  @media #{$mq-w1400px} {
+  @media #{$mq-w1400} {
     font-size: $font-size-base-admin;
     line-height: $base-line-height-admin;
 
     @import "admin/w1400";
   }
 
-  // @media #{$mq-large} {
-  //   // font-size: $font-size-base-admin*1.3;
-  // }
-
-  // @media #{$mq-medium} {
-  //   // font-size: $font-size-base-admin*1.2;
-  //   // line-height: $base-line-height-admin*1.2;
-  // }
-
-  // @media #{$mq-large} {
-  //   // font-size: $font-size-base-admin*1.3;
-  // }
-
-  @media #{$mq-xlarge} {
+  @media #{$mq-w1920} {
     font-size: $font-size-base-admin*1.5;
     line-height: $base-line-height-admin*1.5;
     @import "admin/w1920";
-  }
-
-  @media #{$mq-xxlarge} {
-    
   }
 
   @import "admin/w4096";
