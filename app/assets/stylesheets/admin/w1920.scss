@@ -46,3 +46,11 @@ small {
 aside {
   max-width: 15.5vw;
 }
+
+$height: 972;
+$width: 1400;
+$padding-right: 15px;
+$padding-right-by-design: (30/$width)*100+0vw;
+section {
+  padding-right: calc(#{$padding-right-by-design} - #{$padding-right});
+}
