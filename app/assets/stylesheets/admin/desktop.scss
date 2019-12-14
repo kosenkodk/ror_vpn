@@ -1,0 +1,66 @@
+$multiplier: 1;
+h1 {
+  // @include fluidFontSize(24px, 68px, 1400px, 4096px, 24px);
+  // font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
+  font-size: pxtovw(24px);
+  line-height: $font34*$multiplier;
+  // font-weight: normal;
+}
+h2 {
+  line-height: $font22*$multiplier;
+}
+h3 {
+  font-size: $font20*$multiplier;
+}
+h4 {
+  font-size: $font18*$multiplier;
+  line-height: $font22*$multiplier;
+}
+h5 {
+  font-size: $font-size-base*$multiplier;
+}
+h6 {
+  font-size: $font14*$multiplier;
+}
+small {
+  font-size: $font-small*$multiplier;
+  line-height: $line-height-small*$multiplier;
+}
+.form-control {
+  font-size: $font14*$multiplier;
+  line-height: $font24*$multiplier;
+}
+.alert {
+  font-size: $font18*$multiplier;
+  line-height: $font24*$multiplier;
+  z-index: 1000;
+}
+.btn {
+  font-weight: $font-bold*$multiplier;
+  font-size: $font14*$multiplier;
+  line-height: $font18*$multiplier;
+}
+.header .nav-link {
+  font-size: $font14*$multiplier;
+  line-height: $font18*$multiplier;
+}
+
+aside {
+  max-width: pxtovw(217px);
+}
+
+section {
+  padding-right: pxtovw(30px);
+}
+
+@media #{$mq-w1920} {
+  section {
+    padding-right: pxtovw(15px);
+  }
+}
+
+@media (min-width: 1921px) {
+  section {
+    padding-right: pxtovw(30px);
+  }
+}
