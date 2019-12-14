@@ -53,12 +53,42 @@ $mq-w1400: "(min-width: #{$bp-w1400})"; // for admin panel by original design
 $mq-w1920: "(min-width: #{$bp-w1920})";
 $mq-w4096: "(min-width: #{$bp-w4096})";
 
-@import "admin/public";
+$width-of-admin-ui-design: 1400;
+$height-of-admin-ui-design: 972;
 
+@function calcFluidFontSize($f-min, $f-max, $v-min, $v-max, $units: px) {
+  $k: ($f-max - $f-min)/($v-max - $v-min);
+  $b: $f-min - $k * $v-min;
+
+  $b: $b + $units;
+
+  @return calc( #{$k} * 100vw + #{$b} );
+}
+
+.fluid-font-size-if-vw-support {
+  // font-size: calcFluidFontSize(1, 3, 30, 80, rem);
+  // font-size: calcFluidFontSize(1, 3, 1400, 972, px);
+  font-size: calcFluidFontSize($font14, $font14, $width-of-admin-ui-design, $height-of-admin-ui-design, px);
+}
+
+@mixin fluidFontSize($f-min, $f-max, $w-min, $w-max, $fallback: false) {
+  @if ($fallback) {
+    font-size: $fallback; // for old browsers wich are not support vw)
+  }
+  font-size: calcFluidFontSize($f-min, $f-max, $w-min, $w-max, px);
+}
+
+.fluid-font-size {
+  @include fluidFontSize($font14, $font14, $width-of-admin-ui-design, $height-of-admin-ui-design, $font14);
+}
+
+@import "admin/public";
 #admin_layout {
   // font-size: $font-size-base-admin;
   // line-height: $base-line-height-admin;
-  
+  // font-size: calcFluidFontSize($font14, $font14, $width-of-admin-ui-design, $height-of-admin-ui-design, px);
+  @include fluidFontSize($font14, $font14, $width-of-admin-ui-design, $height-of-admin-ui-design, $font14);
+
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
   }
