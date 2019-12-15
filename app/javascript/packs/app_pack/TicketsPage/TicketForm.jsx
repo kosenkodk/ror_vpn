@@ -59,7 +59,7 @@ class TicketForm extends React.Component {
         </div> */}
 
         <div className="form-group row">
-          <div className="col-sm-4">
+          <div className="col-sm-4 align-self-center">
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
 
