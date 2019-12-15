@@ -117,6 +117,9 @@ section {
   }
 }
 
+.form-control {
+  height: pxtovh(40);
+}
 /*
 @media #{$mq-w1920} {
   section {
