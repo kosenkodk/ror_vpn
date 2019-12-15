@@ -58,6 +58,7 @@ $height-of-admin-ui-design: 972;
 
 @function pxtovw($value) {
   $value: strip-unit($value);
+  $width-of-admin-ui-design: strip-unit($width-of-admin-ui-design);
   $proportion: ($value / $width-of-admin-ui-design)*100;
   $proportion: $proportion + vw;
   // $proportion: ($value/$width-of-admin-ui-design)*100+0vw;
@@ -66,6 +67,7 @@ $height-of-admin-ui-design: 972;
 
 @function pxtovh($value) {
   $value: strip-unit($value);
+  $height-of-admin-ui-design: strip-unit($height-of-admin-ui-design);
   $proportion: ($value/$height-of-admin-ui-design)*100;
   $proportion: $proportion + vh;
   @return $proportion;
@@ -239,7 +241,7 @@ $height-of-admin-ui-design: 972;
 
   .header {
     // min-height: 5rem;
-    margin: 1rem 0 0.65rem 0;
+    // margin: 1rem 0 0.65rem 0;
   }
 
   .main-content {
