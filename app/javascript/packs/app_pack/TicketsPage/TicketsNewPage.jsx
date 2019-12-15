@@ -65,7 +65,7 @@ class TicketsNewPage extends React.Component {
               <img src={icArrowLeftSrc} className="img-fluid" />
             </Link>
           </div>
-          <div className="ml-2">
+          <div className="ml-2 align-self-center">
             <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.new')}</h4>
           </div>
         </div>
