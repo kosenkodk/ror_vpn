@@ -53,11 +53,16 @@ small {
     height: 100%;
   }
 
+  .nav-item {
+    padding-left: pxtovw(8px);
+  }
+
   .nav-link {
     font-size: pxtovh(14px);
     line-height: pxtovh(18px);
     &.btn {
       padding: pxtovh(10px) pxtovw(15px);
+      // margin-left: pxtovw(8px);
     }
   }
 
