@@ -72,10 +72,16 @@ small {
     // }
   }
 
-  .navbar-brand img {
-    //  height: 2.4vh;
-    width: (79/1400)*100+0vw;
+  .navbar-brand {
+    padding: 0;
+    img {
+    // height: 2.4vh;
+    // width: (79/1400)*100+0vw;
+    width: pxtovw(95);
     max-height: unset;
+    margin-top: pxtovh(28px);
+    margin-bottom: pxtovh(16px);
+  }
   }
 
 aside {
