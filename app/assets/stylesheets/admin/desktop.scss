@@ -98,7 +98,9 @@ section {
   padding-right: pxtovw(30px);
   padding-left: pxtovw(30px);
 }
-
+.btn {
+  padding: pxtovh(10px) pxtovw(25px);
+}
 .pagination {
   margin-top: pxtovh(20px);
 }
