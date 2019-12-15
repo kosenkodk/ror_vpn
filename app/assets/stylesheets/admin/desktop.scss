@@ -52,12 +52,12 @@ small {
   .nav {
     height: 100%;
   }
-  
+
   .nav-link {
     font-size: pxtovh(14px);
     line-height: pxtovh(18px);
     &.btn {
-      padding: pxtovh(10px);
+      padding: pxtovh(10px) pxtovw(15px);
     }
   }
 
