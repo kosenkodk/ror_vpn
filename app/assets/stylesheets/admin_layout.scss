@@ -245,7 +245,7 @@ $height-of-admin-ui-design: 972;
   }
 
   .main-content {
-    border-radius: $admin_border_radius;
+    border-radius: pxtovw($admin_border_radius);
     // padding: $padding+0px;
     height: 85.5vh;
     max-height: 85.5vh;
