@@ -17,7 +17,7 @@ class Header extends React.Component {
     return (
       <nav className="nav justify-content-end d-flex align-items-center">
         <li className="nav-item mr-auto">
-          <h1 className="p-0 m-0">{title}</h1>
+          <h1 className="p-0 m-0 mt-2">{title}</h1>
         </li>
         <li className="nav-item">
           <a className="nav-link text-white">{user && user.email}</a>
