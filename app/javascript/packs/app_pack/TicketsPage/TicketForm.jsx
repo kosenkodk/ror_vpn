@@ -54,10 +54,60 @@ class TicketForm extends React.Component {
         <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8 align-self-center">
-            {/* <input id="ticketAttachment" type="file" name="attachment" onChange={this.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} /> */}
             <input id="ticketAttachment" type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
           </div>
         </div>
+
+        <div className="form-group row">
+          <div className="col-sm-4">
+            {I18n.t('pages.tickets.form.attachment')}
+          </div>
+
+          <div class="file col-sm-8">
+            <label className=""> Select a file
+              <input type="file" size="60" />
+            </label>
+          </div>
+        </div>
+
+        {/*
+        <div className="form-group row">
+
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" />
+            <label class="custom-file-label" for="customFile">No file selected</label>
+          </div>
+
+          <div class="file-field">
+            <div class="btn btn-outline-success btn-rounded waves-effect btn-sm float-left">
+              <span>Choose file</span>
+              <input type="file" />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload your file" />
+            </div>
+          </div>
+
+
+          <div class="file">
+            <label className=""> Select a file
+              <input type="file" size="60" />
+            </label>
+          </div>
+
+
+          <div class="input-group mb-3">
+            <div class="file">
+              <label className="btn btn-pink"> Select a file
+              <input type="file" size="60" />
+              </label>
+            </div>
+            <div className="input-group-append">
+              <span className="input-group-text" id="inputGroupFileAddon02">Upload</span>
+            </div>
+          </div>
+        </div>
+        */}
 
         <div className="form-group row">
           <div className="col-sm-4">
