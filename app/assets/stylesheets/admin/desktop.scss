@@ -1,70 +1,95 @@
 @media #{$mq-w1400} {
+// @media (min-width:1401px) {
 
 $multiplier: 1;
+
 h1 {
-  // @include fluidFontSize(24px, 68px, 1400px, 4096px, 24px);
-  font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
-  
-  // line-height: calcFluidFontSize(34, 140, 1400, 4096, px);
+  // font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
+  @include fluidFontSize(24px, 68px, 1400px, 4096px, 24px);
   @include fluidLineHeight(34px, 140px, 1400px, 4096, 34px);
   // font-weight: 500;
 }
 h2 {
-  line-height: $font22*$multiplier;
+  @include fluidLineHeight(22px, 24px, 1400px, 4096, 22px);
 }
 h3 {
-  font-size: $font20*$multiplier;
+  @include fluidFontSize(20px, 20px, 1400px, 4096, 20px);
 }
 h4 {
-  font-size: $font18*$multiplier;
-  line-height: $font22*$multiplier;
+  @include fluidFontSize(18px, 18px, 1400px, 4096, 18px);
+  @include fluidLineHeight(22px, 22px, 1400px, 4096, 22px);
 }
 h5 {
-  font-size: $font-size-base*$multiplier;
+  @include fluidFontSize(16px, 16px, 1400px, 4096, 16px);
 }
 h6 {
-  font-size: $font14*$multiplier;
+  @include fluidFontSize(14px, 14px, 1400px, 4096, 14px);
 }
 small {
   font-size: $font-small*$multiplier;
   line-height: $line-height-small*$multiplier;
 }
 .form-control {
-  font-size: $font14*$multiplier;
-  line-height: $font24*$multiplier;
+  font-size: pxtovh(14px);
+  line-height: pxtovh(24px);
 }
 .alert {
-  font-size: $font18*$multiplier;
-  line-height: $font24*$multiplier;
+  font-size: pxtovh(18px);
+  line-height: pxtovh(24px);
   z-index: 1000;
 }
 .btn {
   font-weight: $font-bold*$multiplier;
-  font-size: $font14*$multiplier;
-  line-height: $font18*$multiplier;
+  font-size: pxtovh(14px);
+  line-height: pxtovh(18px);
 }
+.header {
+  // margin: pxtovh(26px) 0 pxtovh(20px) 0;
+  padding-top: pxtovh(16px);
+  padding-bottom: pxtovh(20px);
+  height: pxtovh(80px);
+}
+
+.header .nav {
+  height: 100%;
+}
+
 .header .nav-link {
-  font-size: $font14*$multiplier;
-  line-height: $font18*$multiplier;
+  font-size: pxtovh(14px);
+  line-height: pxtovh(18px);
 }
 
 aside {
-  max-width: pxtovw(217px);
+  max-width: pxtovw(207); //217
 }
 
 section {
   padding-right: pxtovw(30px);
+  padding-left: pxtovw(30px);
 }
 
+/*
 @media #{$mq-w1920} {
   section {
     padding-right: pxtovw(15px);
+    padding-left: pxtovw(15px);
+  }
+  aside {
+    // max-width: pxtovw(217); //217
   }
 }
 
 @media (min-width: 1921px) {
   section {
     padding-right: pxtovw(30px);
+    padding-left: pxtovw(15px); //60px
+    
+  }
+  aside {
+    max-width: pxtovw(217); //217
+    padding: pxtovw(30);
   }
 }
+*/
+
 }
