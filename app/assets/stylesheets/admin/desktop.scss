@@ -1,5 +1,7 @@
 @media #{$mq-w1400} {
 // @media (min-width:1401px) {
+@include fluidFontSize(14px, 41px, 1400px, 4096px, 14px);
+@include fluidLineHeight(18px, 106px, 1400px, 4096px, 18px);
 
 $multiplier: 1;
 
@@ -16,8 +18,8 @@ h3 {
   @include fluidFontSize(20px, 20px, 1400px, 4096, 20px);
 }
 h4 {
-  @include fluidFontSize(18px, 18px, 1400px, 4096, 18px);
-  @include fluidLineHeight(22px, 22px, 1400px, 4096, 22px);
+  @include fluidFontSize(18px, 53px, 1400px, 4096px, 18px);
+  @include fluidLineHeight(22px, 22px, 1400px, 4096px, 22px);
 }
 h5 {
   @include fluidFontSize(16px, 16px, 1400px, 4096, 16px);
