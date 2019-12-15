@@ -59,6 +59,25 @@ small {
   line-height: pxtovh(18px);
 }
 
+.header {
+  img {
+    height: 4.11vh;
+    // 22
+    // 18
+    // margin-top: 1.3rem*$multiplier4k;
+    // margin-bottom: 0.5rem*$multiplier4k;
+    }
+    // .img-fluid {
+    //   height: 4.11vh;
+    // }
+  }
+
+  .navbar-brand img {
+    //  height: 2.4vh;
+    width: (79/1400)*100+0vw;
+    max-height: unset;
+  }
+
 aside {
   max-width: pxtovw(207); //217
 }
