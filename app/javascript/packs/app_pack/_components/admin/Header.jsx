@@ -17,7 +17,7 @@ class Header extends React.Component {
     return (
       <nav className="nav justify-content-end d-flex align-items-center">
         <li className="nav-item mr-auto">
-          <h1 className=" p-0 m-0">{title}</h1>
+          <h1 className="p-0 m-0">{title}</h1>
         </li>
         <li className="nav-item">
           <a className="nav-link text-white">{user && user.email}</a>
@@ -33,7 +33,7 @@ class Header extends React.Component {
           </NavHashLink>
         </li>
         <li className="nav-item">
-          <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link pl-3 pr-3 btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
+          <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
         </li>
       </nav>
     );
