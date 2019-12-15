@@ -4,9 +4,9 @@ $multiplier: 1;
 h1 {
   // @include fluidFontSize(24px, 68px, 1400px, 4096px, 24px);
   font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
-  // font-size: calcFluidFontSize(24, 24, 1400, 1401, px); // for h1 tag for screens > 1400px
-  line-height: calcFluidFontSize(34, 34, 1400, 1401, px);
-  // @include fluidLineHeight(34px, 34px, 1400px, 1401, 34px);
+  
+  // line-height: calcFluidFontSize(34, 140, 1400, 4096, px);
+  @include fluidLineHeight(34px, 140px, 1400px, 4096, 34px);
   // font-weight: 500;
 }
 h2 {
