@@ -92,18 +92,23 @@ small {
 
 aside {
   max-width: pxtovw(207); //217
+  padding-right: pxtovw(30);
+  padding-left: pxtovw(30);
 }
 
 section {
   padding-right: pxtovw(30px);
   padding-left: pxtovw(30px);
 }
+
 .btn {
   padding: pxtovh(10px) pxtovw(25px);
 }
+
 .pagination {
   margin-top: pxtovh(20px);
 }
+
 /*
 @media #{$mq-w1920} {
   section {
@@ -114,12 +119,12 @@ section {
     // max-width: pxtovw(217); //217
   }
 }
-*/
+
+
 @media (min-width: 1921px) {
   section {
     padding-right: pxtovw(30px);
     padding-left: pxtovw(15px); //60px
-    
   }
   aside {
     max-width: pxtovw(217); //217
@@ -127,6 +132,6 @@ section {
     padding-left: pxtovw(30);
   }
 }
-
+*/
 
 }
