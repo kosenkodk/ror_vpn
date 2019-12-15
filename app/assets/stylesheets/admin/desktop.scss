@@ -111,6 +111,12 @@ section {
   margin-top: pxtovh(20px);
 }
 
+.tickets {
+  .btn {
+    padding: pxtovh(10) pxtovw(150);
+  }
+}
+
 /*
 @media #{$mq-w1920} {
   section {
