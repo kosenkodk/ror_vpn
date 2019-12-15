@@ -114,7 +114,7 @@ section {
     // max-width: pxtovw(217); //217
   }
 }
-
+*/
 @media (min-width: 1921px) {
   section {
     padding-right: pxtovw(30px);
@@ -123,9 +123,10 @@ section {
   }
   aside {
     max-width: pxtovw(217); //217
-    padding: pxtovw(30);
+    padding-right: pxtovw(30);
+    padding-left: pxtovw(30);
   }
 }
-*/
+
 
 }
