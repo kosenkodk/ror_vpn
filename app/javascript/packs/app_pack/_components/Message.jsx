@@ -26,9 +26,8 @@ class Message extends React.Component {
         </h6>
         <p><small className="ticket__message_datetime">Ticket created on {item && item.created_at_humanize}</small></p>
 
-
         <div className="border border-radius border-gray p-3">
-          {(item && item.text) && <NewLineToBr>{item.text}</NewLineToBr>}
+          {(item && item.text) ? <NewLineToBr>{item.text}</NewLineToBr> : '-'}
 
           {item && item.attachment_url &&
             <div className="form-group row">
@@ -39,7 +38,7 @@ class Message extends React.Component {
             </div>
           }
         </div>
-      </React.Fragment >
+      </React.Fragment>
     )
   }
 }
