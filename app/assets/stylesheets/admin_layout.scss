@@ -125,8 +125,8 @@ $height-of-admin-ui-design: 972;
 #admin_layout {
   // font-size: $font-size-base-admin;
   // line-height: $base-line-height-admin;
-  @include fluidFontSize(14px, 41px, 1400px, 4096px, 14px);
-  @include fluidLineHeight(18px, 106px, 1400px, 4096px, 18px);
+  @include fluidFontSize(14px, 41px, 320px, 4096px, 14px);
+  @include fluidLineHeight(18px, 106px, 320px, 4096px, 18px);
 
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
