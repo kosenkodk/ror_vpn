@@ -108,6 +108,13 @@ $height-of-admin-ui-design: 972;
   font-size: calcFluidFontSize($f-min, $f-max, $w-min, $w-max, px);
 }
 
+@mixin fluidLineHeight($f-min, $f-max, $w-min, $w-max, $fallback: false) {
+  @if ($fallback) {
+    line-height: $fallback; // for old browsers wich are not support vw)
+  }
+  line-height: calcFluidFontSize($f-min, $f-max, $w-min, $w-max, px);
+}
+
 .fluid-font-size {
   // @include fluidFontSize($font-min, $font-max, $width-min, $width-max, $font-avg);
 }
@@ -116,7 +123,8 @@ $height-of-admin-ui-design: 972;
 #admin_layout {
   // font-size: $font-size-base-admin;
   // line-height: $base-line-height-admin;
-  // @include fluidFontSize(14px, 14px, 320px, 4096px, 14px);
+  @include fluidFontSize(14px, 41px, 1400px, 4096px, 14px);
+  @include fluidLineHeight(18px, 106px, 1400px, 4096px, 18px);
 
   h1, h2, h3, h4, h5 {
     font-weight: $font-bold;
