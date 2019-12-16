@@ -65,7 +65,7 @@ class TicketForm extends React.Component {
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
 
-          <div class="file col-sm-8">
+          <div className="file col-sm-8">
             <label className=""> Select a file
               <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} />
             </label>
@@ -78,10 +78,10 @@ class TicketForm extends React.Component {
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
 
-          <div class="file col-sm-8">
-            <div class="upload-btn-wrapper">
-              <button class="btn">Select a file</button>
-              <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} />
+          <div className="file col-sm-8">
+            <div className="upload-btn-wrapper">
+              <button className="btn">Select a file</button>
+              <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file || ''} required={false} />
             </div>
           </div>
         </div>
