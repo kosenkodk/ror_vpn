@@ -74,7 +74,7 @@ class TicketForm extends React.Component {
 
         {/* custom file input */}
         <div className="form-group row">
-          <div className="col-sm-4 align-self-center">
+          <div className="col-sm-4">
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
 
