@@ -126,23 +126,7 @@ section {
   // padding-top: pxtovh(7);
 }
 
-.file {
-  label{
-    padding: pxtovh(10) pxtovw(35);
-    border-radius: pxtovw($admin_border_radius);;
-    background: $pink_button_gradient;
-    color: $white;
-    border: unset;
-    font-weight: $font-bold;
-    &:hover {
-      opacity: $opacity;
-    }
-  }
 
-  input[type="file"] {
-    display: none;
-  }
-}
 /*
 @media #{$mq-w1920} {
   section {
