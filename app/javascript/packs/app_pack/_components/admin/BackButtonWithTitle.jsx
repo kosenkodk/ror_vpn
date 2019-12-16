@@ -5,7 +5,7 @@ import icArrowLeftSrc from 'images/accordion_menu/arrow_left.svg'
 
 class BackButtonWithTitle extends React.Component {
   render() {
-    const { title, url } = this.props;
+    const { title, url, children } = this.props;
     return (
       <div className="btn-back-with-title d-flex">
         <div className="align-self-center mb-1">
@@ -13,8 +13,9 @@ class BackButtonWithTitle extends React.Component {
             <img src={icArrowLeftSrc} className="img-fluid arrow" />
           </Link>
         </div>
-        <div className="ml-2 align-self-center">
-          <h4 className="mt-2 font-weight-bold">{title}</h4>
+        <div className="align-self-center">
+          {title && <h4 className="mt-2 font-weight-bold">{title}</h4>}
+          {children && children}
         </div>
       </div>
     );
@@ -27,10 +28,10 @@ BackButtonWithTitle.defaultProps = {
 }
 
 function mapStateToProps(state) {
-  const { title } = state.page
-  return {
-    title
-  };
+  // const { title } = state.page
+  // return {
+  //   title
+  // };
 }
 
 const connectedPage = connect(mapStateToProps)(BackButtonWithTitle);
