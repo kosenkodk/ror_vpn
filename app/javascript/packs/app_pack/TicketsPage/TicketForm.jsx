@@ -90,8 +90,6 @@ class TicketForm extends React.Component {
           <div className="col-sm-4">
           </div>
           <div className="col-sm-8">
-            <br />
-
             <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={this.props.loading ? true : false}>
               {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
               {' ' + I18n.t('pages.tickets.form.submit')}
