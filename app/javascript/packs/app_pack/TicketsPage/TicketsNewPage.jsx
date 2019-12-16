@@ -7,7 +7,7 @@ import { TicketForm } from './TicketForm'
 import { urls } from 'config'
 import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
 import { I18n } from 'helpers'
-import icArrowLeftSrc from 'images/accordion_menu/arrow_left.svg'
+import { BackButtonWithTitle } from '../_components/admin';
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
@@ -59,16 +59,7 @@ class TicketsNewPage extends React.Component {
     const { items } = this.props
     return (
       <div id="tickets_new" className="tickets container-fluid mb-4 pb-1">
-        <div className="d-flex">
-          <div className="align-self-center mb-1">
-            <Link to={urls.tickets.path} className="">
-              <img src={icArrowLeftSrc} className="img-fluid" />
-            </Link>
-          </div>
-          <div className="ml-2 align-self-center">
-            <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.new')}</h4>
-          </div>
-        </div>
+        <BackButtonWithTitle title={I18n.t('pages.tickets.new')} url={urls.tickets.path} />
         <div className="row mt-xl-3">
           <div className="col-md-8 col-xl-7">
             <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
