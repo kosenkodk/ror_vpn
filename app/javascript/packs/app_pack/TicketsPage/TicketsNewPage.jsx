@@ -69,6 +69,8 @@ class TicketsNewPage extends React.Component {
             <h4 className="mt-2 font-weight-bold">{I18n.t('pages.tickets.new')}</h4>
           </div>
         </div>
+        <div class="flex-row mt-3 mb-3"><div class="border border-gray"></div></div>
+
         <div className="row mt-xl-3">
           <div className="col-md-8 col-xl-7">
             <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
