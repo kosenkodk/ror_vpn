@@ -32,6 +32,7 @@ function mapStateToProps(state) {
   // return {
   //   title
   // };
+  return state;
 }
 
 const connectedPage = connect(mapStateToProps)(BackButtonWithTitle);
