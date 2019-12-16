@@ -436,6 +436,7 @@ $height-of-admin-ui-design: 972;
     &_datetime {
       color: $color-ticket__message_datetime;
     }
+    @include fluidLineHeight(15px, 72px, $bp-w1400, $bp-w4096, 15px);
   }
 
   .card {
