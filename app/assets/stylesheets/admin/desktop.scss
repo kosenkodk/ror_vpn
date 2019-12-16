@@ -4,7 +4,9 @@
 @include fluidLineHeight(18px, 106px, 1400px, 4096px, 18px);
 
 $multiplier: 1;
-
+.main-content {
+  padding: pxtovw(20px) pxtovh(20px);
+}
 h1 {
   // font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
   @include fluidFontSize(24px, 68px, 1400px, 4096px, 24px);
@@ -50,7 +52,6 @@ small {
   padding-top: pxtovh(16px);
   padding-bottom: pxtovh(20px);
   // height: pxtovh(80px);
-
   .nav {
     height: 100%;
   }
@@ -109,11 +110,15 @@ section {
 
 .pagination {
   margin-top: pxtovh(20px);
+  .page-link {
+    padding: pxtovh(12px) pxtovw(12.3px);
+  }
 }
 
 .tickets {
   .btn {
-    padding: pxtovh(10) pxtovw(150);
+    padding: pxtovh(10) pxtovw(27);
+    min-width: pxtovw(170);
   }
 }
 
@@ -125,6 +130,7 @@ section {
   padding-left: pxtovw(15);
   // padding-top: pxtovh(7);
 }
+
 
 
 /*
