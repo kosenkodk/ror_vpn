@@ -149,10 +149,13 @@ $height-of-admin-ui-design: 972;
     font-weight: bold;
   }
 
+  .form-group {
+    margin-bottom: pxtovh(20);
+  }
+  
   .form-control {
     font-size: $font14;
     line-height: $font24;
-    margin-bottom: pxtovh(20);
   }
 
   .navbar-brand {
