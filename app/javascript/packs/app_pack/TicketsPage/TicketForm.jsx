@@ -51,6 +51,7 @@ class TicketForm extends React.Component {
           </div>
         </div>
 
+        {/* default file input */}
         {/* <div className="form-group row">
           <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           <div className="col-sm-8 align-self-center">
@@ -58,7 +59,8 @@ class TicketForm extends React.Component {
           </div>
         </div> */}
 
-        <div className="form-group row">
+        {/* custom file input (height problem on 4k screens) */}
+        {/* <div className="form-group row">
           <div className="col-sm-4 align-self-center">
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
@@ -68,8 +70,21 @@ class TicketForm extends React.Component {
               <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} />
             </label>
           </div>
-        </div>
+        </div> */}
 
+        {/* custom file input */}
+        <div className="form-group row">
+          <div className="col-sm-4 align-self-center">
+            <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
+          </div>
+
+          <div class="file col-sm-8">
+            <div class="upload-btn-wrapper">
+              <button class="btn">Select a file</button>
+              <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} />
+            </div>
+          </div>
+        </div>
 
         <div className="form-group row">
           <div className="col-sm-4">
