@@ -152,7 +152,7 @@ $height-of-admin-ui-design: 972;
   .form-group {
     margin-bottom: pxtovh(20);
   }
-  
+
   .form-control {
     font-size: $font14;
     line-height: $font24;
@@ -499,6 +499,14 @@ $height-of-admin-ui-design: 972;
   
     input[type="file"] {
       display: none;
+    }
+  }
+
+  .btn-back-with-title {
+    img.arrow {
+      // height: pxtovh(13);
+      min-width: pxtovh(8);
+      margin-right: pxtovw(18);
     }
   }
 
