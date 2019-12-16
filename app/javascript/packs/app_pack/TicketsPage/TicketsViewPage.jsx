@@ -34,7 +34,7 @@ class TicketsViewPage extends React.Component {
 
     return (
       <div className="container-fluid">
-        <div id="tickets_new" className="tickets row mb-4 pb-1">
+        <div id="tickets_new" className="tickets tickets-view row mb-4 pb-1">
           <div className="col-12">
             <div className="container-section">
               <div className="container-fluid">

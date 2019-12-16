@@ -371,6 +371,16 @@ textarea {
     background-color: $bgInputColor;
   }
 
+  .tickets-new {
+    textarea {
+      min-height: 163px;
+    }
+  }
+  .tickets-view {
+    textarea {
+      min-height: 71px;
+    }
+  }
   .tickets {
     .btn {
       // padding: 14px 27px;
