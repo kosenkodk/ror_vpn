@@ -37,9 +37,13 @@ $bp-large: 85.375em;  // 1366px
 $bp-xlarge: 120em;    // 1920px
 $bp-xxlarge: 160em;   // 2560px
 // admin panel's breakpoints 
-$bp-w1400: 87.5em;    // 1400px;
-$bp-w1920: 120em;     // 1920px;
-$bp-w4096: 256em;     // 4096px;
+$bp-w1400em: 87.5em;    // 1400px;
+$bp-w1920em: 120em;     // 1920px;
+$bp-w4096em: 256em;     // 4096px;
+
+$bp-w1400: 1400px;
+$bp-w1920: 1920px;
+$bp-w4096: 4096px;
 
 // media queries
 $mq-small: "(min-width: #{$bp-small})";
@@ -49,9 +53,9 @@ $mq-xlarge: "(min-width: #{$bp-xlarge})";
 $mq-xxlarge: "(min-width: #{$bp-xxlarge})";
 $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 // admin panel's media quieries
-$mq-w1400: "(min-width: #{$bp-w1400})"; // for admin panel by original design
-$mq-w1920: "(min-width: #{$bp-w1920})";
-$mq-w4096: "(min-width: #{$bp-w4096})";
+$mq-w1400: "(min-width: #{$bp-w1400em})"; // for admin panel by original design
+$mq-w1920: "(min-width: #{$bp-w1920em})";
+$mq-w4096: "(min-width: #{$bp-w4096em})";
 
 $width-of-admin-ui-design: 1400;
 $height-of-admin-ui-design: 972;

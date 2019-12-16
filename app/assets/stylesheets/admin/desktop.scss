@@ -1,37 +1,39 @@
 @media #{$mq-w1400} {
 // @media (min-width:1401px) {
-@include fluidFontSize(14px, 41px, 1400px, 4096px, 14px);
-@include fluidLineHeight(18px, 106px, 1400px, 4096px, 18px);
+@include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+@include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
 
 $multiplier: 1;
 .main-content {
   padding: pxtovw(20px) pxtovh(20px);
 }
 h1 {
-  // font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
-  @include fluidFontSize(24px, 68px, 1400px, 4096px, 24px);
-  @include fluidLineHeight(34px, 140px, 1400px, 4096, 34px);
+  // font-size: calcFluidFontSize(24, 68, 1400, $bp-w4096, px); // for h1 tag for screens > $bp-w1400
+  @include fluidFontSize(24px, 68px, $bp-w1400, $bp-w4096, 24px);
+  @include fluidLineHeight(34px, 140px, $bp-w1400, $bp-w4096, 34px);
   // font-weight: 500;
 }
 h2 {
-  @include fluidLineHeight(22px, 24px, 1400px, 4096, 22px);
+  @include fluidLineHeight(22px, 24px, $bp-w1400, $bp-w4096, 22px);
 }
 h3 {
-  @include fluidFontSize(20px, 20px, 1400px, 4096, 20px);
+  @include fluidFontSize(20px, 20px, $bp-w1400, $bp-w4096, 20px);
 }
 h4 {
-  @include fluidFontSize(18px, 53px, 1400px, 4096px, 18px);
-  @include fluidLineHeight(22px, 22px, 1400px, 4096px, 22px);
+  @include fluidFontSize(18px, 53px, $bp-w1400, $bp-w4096, 18px);
+  @include fluidLineHeight(22px, 22px, $bp-w1400, $bp-w4096, 22px);
 }
 h5 {
-  @include fluidFontSize(16px, 16px, 1400px, 4096, 16px);
+  @include fluidFontSize(16px, 16px, $bp-w1400, $bp-w4096, 16px);
 }
 h6 {
-  @include fluidFontSize(14px, 14px, 1400px, 4096, 14px);
+  @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
 }
 small {
-  font-size: $font-small*$multiplier;
-  line-height: $line-height-small*$multiplier;
+  // font-size: $font-small*$multiplier; // 9px
+  // line-height: $line-height-small*$multiplier; // 15px
+  @include fluidFontSize(9px, 40px, $bp-w1400, $bp-w4096, 9px);
+  @include fluidLineHeight(15px, 40px, $bp-w1400, $bp-w4096, 15px);
 }
 .form-control {
   font-size: pxtovh(14px);
