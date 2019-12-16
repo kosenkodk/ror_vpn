@@ -20,7 +20,7 @@ class TicketsEditPage extends React.Component {
 
   render() {
     return (
-      <div id="tickets_new" className="container bg-vega shadow-vega mb-4 pb-1">
+      <div id="" className="container bg-vega shadow-vega mb-4 pb-1">
         <div className="container">
           <div className="row">
             <div className="col-xs-6 mr-auto">
