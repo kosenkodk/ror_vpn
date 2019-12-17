@@ -21,7 +21,7 @@ class Message extends React.Component {
 
     return (
       <React.Fragment>
-        <h6 className="mb-0">
+        <h6 className="mb-n2">
           <b>{this.getUserNameOrEmailFromMessage(item)}</b>
         </h6>
         <p><small className="ticket__message_datetime">Ticket created on {item && item.created_at_humanize}</small></p>
