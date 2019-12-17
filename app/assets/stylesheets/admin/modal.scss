@@ -1,0 +1,40 @@
+.modal-content {
+
+  max-width: 53.8vw;// 754px;
+
+  padding: 15px 5px;
+  background: $white;
+  color: $black;
+  h1 {
+    font-size: $font24;
+    line-height: $font34;
+  }
+  .form-control {
+    font-size: $font14;
+    line-height: $font24;
+  }
+  .col-form-label {
+    font-weight: bold;
+  }
+  input, textarea {
+    background-color: $bgInputColor;
+    border: unset;
+  }
+
+  textarea {
+    min-height: 10rem;
+  }
+
+  .close {
+    color: $black;
+    &:hover {
+      color: $pink3;
+    }
+  }
+  .modal-header {
+    border: unset;
+  }
+  .modal-footer {
+    border: unset;
+  }
+}
