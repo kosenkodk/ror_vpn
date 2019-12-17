@@ -14,7 +14,7 @@ class Messages extends React.Component {
         {/* <h3>Messages</h3> */}
         {items && items.length > 0 ?
           items.map((item, index) =>
-            <div key={`msg${item && item.id}_${index}`} className={`ticket__message ${index % 2 ? 'active' : ''}`}>
+            <div key={`msg${item && item.id}_${index}`} className={`px-0 ticket__message ${index % 2 ? 'active' : ''}`}>
               <Message item={item} />
             </div>
           )
