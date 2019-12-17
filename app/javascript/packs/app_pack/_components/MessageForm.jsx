@@ -43,7 +43,9 @@ class MessageForm extends React.Component {
             </div>
             */}
 
-            <div className="form-group d-flex justify-content-between">
+            <div className="
+            form-group d-flex flex-sm-column flex-md-row
+             justify-content-md-between">
 
               <button id="contact_submit" className="btn btn-outline-primary" disabled={this.props.loading ? true : false}>
                 {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
