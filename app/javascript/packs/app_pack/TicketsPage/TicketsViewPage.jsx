@@ -43,7 +43,7 @@ class TicketsViewPage extends React.Component {
         <div id="" className="tickets tickets__view row mb-4 pb-1">
           <div className="col-12">
             {/* <BackButtonWithTitle title={this.state.subTitle} url={urls.tickets.path} /> */}
-            <BackButtonWithTitle url={urls.tickets.path} >
+            <BackButtonWithTitle url={urls.tickets.path}>
               <h4 className="mt-2 font-weight-bold">{this.state.subTitle}</h4>
             </BackButtonWithTitle>
             <ChatRoom id={this.state.id} messages={item && item.messages} />
