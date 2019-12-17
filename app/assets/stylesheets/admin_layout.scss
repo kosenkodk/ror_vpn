@@ -304,9 +304,14 @@ $height-of-admin-ui-design: 972;
     // width: $value;
     // height: $value;
     // border-width: $value/5;
-    width: 2ch;
-    height: 2ch;
-    border-width: 0.25ch;
+    
+    // width: 2ch;
+    // height: 2ch;
+    // border-width: 0.25ch;
+
+    width: 1.25em;
+    height: 1.25em;
+    border-width: 0.15em;
   }
 
   // max-width: $admin_layout_max_width;
