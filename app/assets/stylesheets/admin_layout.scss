@@ -419,9 +419,10 @@ $height-of-admin-ui-design: 972;
         border-color: $borderColor !important;
         color: $black !important;
         cursor: pointer;
-        // padding: pxtovh(12px) pxtovw(12.3px);
-        padding-bottom: 0.75rem;
-        padding-top: 0.75rem;
+        // // padding: pxtovh(12px) pxtovw(12.3px);
+        // padding-bottom: 0.75rem;
+        // padding-top: 0.75rem;
+        // padding: 1rem 1.1rem;
       }
 
       &:hover, &.active {
