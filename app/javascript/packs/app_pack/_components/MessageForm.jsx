@@ -43,15 +43,12 @@ class MessageForm extends React.Component {
             </div>
             */}
 
-            <div className="
-            form-group d-flex flex-sm-column flex-md-row
-             justify-content-md-between">
+            <div className="form-group d-flex flex-column flex-sm-row justify-content-sm-between">
 
               <button id="contact_submit" className="btn btn-outline-primary" disabled={this.props.loading ? true : false}>
                 {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                 {' ' + I18n.t('pages.tickets.form.submit')}
               </button>
-
 
               {this.props.item &&
                 <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
