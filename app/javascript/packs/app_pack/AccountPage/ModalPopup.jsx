@@ -17,7 +17,7 @@ class ModalPopup extends React.Component {
         <button type="button" className={`btn btn-pink ${this.props.btnClasses}`} data-toggle="modal" data-target={`#${id}`}>
           {btnText}
         </button>
-        <div className="modal fade" onToggle={this.onToggle} data-backdrop={true} id={id} tabIndex="-1" role="dialog" aria-labelledby={`${id}Title`} aria-hidden="true">
+        <div className="modal fade admin_layout" onToggle={this.onToggle} data-backdrop={true} id={id} tabIndex="-1" role="dialog" aria-labelledby={`${id}Title`} aria-hidden="true">
           <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
