@@ -134,6 +134,9 @@ section {
   // padding-top: pxtovh(7);
 }
 
+ticket__message {
+  @include fluidLineHeight(25px, 72px, $bp-w1400, $bp-w4096, 25px);
+}
 
 
 /*
