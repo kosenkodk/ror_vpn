@@ -7,7 +7,7 @@ class MenuVertical extends React.Component {
 
   render() {
     const { items } = this.props;
-    return (<ul className="mt-sm-5 p-0 col sidebar accordion_menu list-group">
+    return (<ul className="mt-md-5 p-0 col sidebar accordion_menu list-group">
       {items ? items.map((item, index) =>
         <div key={item.path}>
           {item.urls ?
