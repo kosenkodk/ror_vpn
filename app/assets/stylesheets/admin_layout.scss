@@ -361,6 +361,7 @@ $height-of-admin-ui-design: 972;
   .ticket_statuses a.nav-link {
     cursor: pointer;
     text-decoration: underline dashed;
+    text-underline-position: under;
     &:hover, &.active {
       text-decoration: none;
       font-weight: bolder;
