@@ -54,7 +54,7 @@ class MessageForm extends React.Component {
                 <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
                   disabled={this.props.loading ? true : false}>
                   {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                  Close my ticket</button>
+                  &nbsp;Close my ticket</button>
               }
 
             </div>
