@@ -298,6 +298,17 @@ $height-of-admin-ui-design: 972;
     @extend .btn-pink-dark;
     background-color: $black !important;
   }
+
+  .spinner-border-sm {
+    // $value: pxtovw(30);
+    // width: $value;
+    // height: $value;
+    // border-width: $value/5;
+    width: 2ch;
+    height: 2ch;
+    border-width: 0.25ch;
+  }
+
   // max-width: $admin_layout_max_width;
   .text-black {
     color: $black;
