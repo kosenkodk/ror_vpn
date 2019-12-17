@@ -45,7 +45,7 @@ class MessageForm extends React.Component {
 
             <div className="form-group d-flex flex-column flex-sm-row justify-content-sm-between">
 
-              <button id="contact_submit" className="btn btn-outline-primary" disabled={this.props.loading ? true : false}>
+              <button id="contact_submit" className="btn btn-outline-primary mb-3 mb-sm-0" disabled={this.props.loading ? true : false}>
                 {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                 {' ' + I18n.t('pages.tickets.form.submit')}
               </button>
