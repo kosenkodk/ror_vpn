@@ -334,6 +334,12 @@ $height-of-admin-ui-design: 972;
     background-color: $bgInputColor;
   }
 
+  .conainer-half {
+    margin: 0;
+    margin-right: auto;
+    max-width: pxtovw(512px);
+  }
+
   .tickets__new {
     textarea {
       min-height: pxtovh(163)
