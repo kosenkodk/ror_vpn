@@ -63,7 +63,7 @@ $height-of-admin-ui-design: 972;
 @import "admin/helpers";
 @import "admin/public";
 
-#admin_layout {
+#admin_layout, .admin_layout {
   // font-size: $font-size-base-admin;
   // line-height: $base-line-height-admin;
   @include fluidFontSize(14px, 41px, 320px, 4096px, 14px);
