@@ -266,10 +266,10 @@ $height-of-admin-ui-design: 972;
       background: unset !important;
       &.list-group-item {
         opacity: $opacity05;
-      }
-      &.list-group-item.active {
-        border: unset;
-        opacity: 1;
+        &.active, &:hover {
+          border: unset;
+          opacity: 1;
+        }
       }
     }
   
