@@ -172,7 +172,7 @@ $height-of-admin-ui-design: 972;
       max-width: 13.5rem;
     }
     @media (min-width: $bp-xxlarge) {
-      max-width: 15.5vw;
+      max-width: pxtovw(217);
     }
   }
 
