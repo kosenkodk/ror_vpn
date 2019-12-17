@@ -37,13 +37,6 @@ small {
   @include fluidLineHeight(15px, 45px, $bp-w1400, $bp-w4096, 15px);
 }
 
-
-.modal-lg, modal-xl {
-  // margin-top: pxtovh(175);
-  // margin-bottom: pxtovh(247);
-  max-width: pxtovw(754);
-}
-
 .form-control {
   font-size: pxtovh(14px);
   line-height: pxtovh(24px);

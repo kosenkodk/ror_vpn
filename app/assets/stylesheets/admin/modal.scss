@@ -1,7 +1,10 @@
-.modal-lg, modal-xl {
-  // margin-top: pxtovh(175);
-  // margin-bottom: pxtovh(247);
-  // max-width: pxtovw(754);
+@include media-breakpoint-up(md) {
+  .modal-lg, modal-xl {
+    // margin-top: pxtovh(175);
+    // margin-bottom: pxtovh(247);
+    max-width: 754px;
+    max-width: pxtovw(754);
+  }
 }
 
 .modal-content {
