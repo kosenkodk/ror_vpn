@@ -9,6 +9,8 @@
 
 .modal-content {
   padding: 15px 5px;
+  padding: pxtovh(20px) pxtovw(20px);
+
   background: $white;
   color: $black;
   font-weight: normal;
