@@ -2,14 +2,32 @@ import React from 'react';
 import { NavHashLink as Link } from 'react-router-hash-link';
 import { urls } from 'config';
 import { history } from '../_helpers';
-import PropTypes from 'prop-types';
 import logoImage from 'images/logo.svg';
 import { MenuVertical } from '../_components/admin/MenuVertical';
 
 class Sidebar extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isHide: false
+    };
+    this.onMenuClose = this.onMenuClose.bind(this);
+    this.onMenuOpen = this.onMenuOpen.bind(this);
+  }
+
   getNavLinkClass = (path) => {
     return history.location.pathname === path ? 'active' : '';
+  }
+
+  onMenuClose(e) {
+    this.setState({ isHide: true });
+    e.preventDefault();
+  }
+
+  onMenuOpen(e) {
+    this.setState({ isHide: false });
+    e.preventDefault();
   }
 
   render() {
@@ -22,21 +40,17 @@ class Sidebar extends React.Component {
             </Link>
           </div>
           <div className="col-shrink align-self-center">
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
+            <button onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>
         </div>
-        <div className="p-0 border-secondary border-top navbar navbar-full navbar-collapse collapse" id="navbarForAdminLeftSidebar">
-          <MenuVertical />
+        <div className={`p-0 border-secondary border-top navbar navbar-full navbar-collapse collapse ${this.state.isHide && 'hide'}`} id="navbarForAdminLeftSidebar">
+          <MenuVertical onClick={this.onMenuClose} />
         </div>
       </nav>
     );
   }
-}
-
-Sidebar.propTypes = {
-  // items: PropTypes.array,
 }
 
 export default Sidebar;
