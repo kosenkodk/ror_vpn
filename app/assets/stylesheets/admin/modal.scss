@@ -11,9 +11,11 @@
   padding: 15px 5px;
   background: $white;
   color: $black;
+  font-weight: normal;
+  
   h1 {
-    font-size: $font24;
-    line-height: $font34;
+    // font-size: $font24;
+    // line-height: $font34;
   }
   .form-control {
     font-size: $font14;
@@ -31,16 +33,22 @@
     min-height: 10rem;
   }
 
-  .close {
-    color: $black;
-    &:hover {
-      color: $pink3;
-    }
-  }
+  // p {
+  //   // margin-bottom: 2rem;
+  //   padding: 1rem 2rem;
+  // }
+
+  .modal-footer {}
   .modal-header {
     border: unset;
-  }
-  .modal-footer {
-    border: unset;
+    .close {
+      color: $black;
+      &:hover {
+        color: $pink3;
+      }
+      img {
+        min-height: pxtovw(24);
+      }
+    }
   }
 }
