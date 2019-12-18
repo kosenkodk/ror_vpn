@@ -23,8 +23,8 @@ textarea {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   border: 1px solid $admin_pink;
-  border-left-width: .25rem;
-  border-radius: .25rem;
+  border-left-width: .3rem;
+  // border-radius: .25rem;
 }
 
 .border-left-pink {
@@ -32,6 +32,10 @@ textarea {
   border-right: unset;
   border-top: unset;
   border-bottom: unset;
+  // padding-top: 2rem;
+  // padding-bottom: 2rem;
+  // padding: pxtovw(15) pxtovw(30);
+  padding: 1rem 2rem;
 }
 
 // test

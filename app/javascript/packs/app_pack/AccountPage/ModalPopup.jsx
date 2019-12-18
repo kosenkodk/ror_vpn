@@ -20,7 +20,7 @@ class ModalPopup extends React.Component {
         <div className={`modal fade ${loggedIn && 'admin_layout'}`} onToggle={this.onToggle} data-backdrop={true} id={id} tabIndex="-1" role="dialog" aria-labelledby={`${id}Title`} aria-hidden="true">
           <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header align-items-center">
                 <h1 className="modal-title" id={`${id}Title`}>{title}</h1>
                 <button type="button" onClick={this.props.onClose} className="close" data-dismiss="modal" aria-label="Close">
                   {/* <span aria-hidden="true">&times;</span> */}
