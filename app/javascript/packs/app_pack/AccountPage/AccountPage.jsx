@@ -81,8 +81,8 @@ class AccountPage extends React.Component {
 
             <div className="mb-5">
               <h1>Username</h1>
-              <div className="row">
-                <div className="col-sm-5 align-self-center">
+              <div className="row align-items-center">
+                <div className="col-sm-5">
                   <label className="col-form-label">Email</label>
                 </div>
                 <div className="col">
@@ -93,8 +93,8 @@ class AccountPage extends React.Component {
 
             <div className="mb-5">
               <h1>Passwords</h1>
-              <div className="row">
-                <div className="col-sm-5 align-self-center">
+              <div className="row align-items-center">
+                <div className="col-sm-5">
                   <label className="col-form-label">Login password</label>
                 </div>
                 <div className="col">
@@ -130,8 +130,8 @@ class AccountPage extends React.Component {
                 </p>
               </div>
 
-              <div className="row">
-                <div className="col-sm-5 align-self-center">
+              <div className="row align-items-center">
+                <div className="col-sm-5">
                   <label className="col-form-label">Login email address</label>
                 </div>
                 <div className="col">
