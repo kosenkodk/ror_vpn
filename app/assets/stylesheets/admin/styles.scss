@@ -64,6 +64,5 @@ $height-of-admin-ui-design: 972;
 @import "./helpers";
 @import "./modal";
 @import "./public";
-
 @import "./base";
-@import "admin/checkbox_as_switcher";
+@import "./checkbox_as_switcher";
