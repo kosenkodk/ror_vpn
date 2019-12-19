@@ -64,6 +64,6 @@ $height-of-admin-ui-design: 972;
 @import 'admin/modal';
 @import "admin/public";
 @import "admin/base";
-// @import "admin/vh/styles"; // vartiant 1 - proportions for witdth and height
+// @import "admin/proportions_wh/styles"; // vartiant 1 - proportions for witdth and height
 // @import "admin/multiplier/styles"; // vartiant 2 - increase font sizes with multiplier
 @import "admin/checkbox_as_switcher";
