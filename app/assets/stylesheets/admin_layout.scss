@@ -61,7 +61,7 @@ $width-of-admin-ui-design: 1400;
 $height-of-admin-ui-design: 972;
 
 @import "admin/helpers";
-@import 'admin/modal';
+@import "admin/modal";
 @import "admin/public";
 @import "admin/base";
 // @import "admin/proportions_wh/styles"; // vartiant 1 - proportions for witdth and height
