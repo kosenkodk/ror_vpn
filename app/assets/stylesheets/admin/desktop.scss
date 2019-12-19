@@ -11,6 +11,8 @@ $multiplier: 1;
 h1 {
   // font-size: calcFluidFontSize(24, 68, 1400, $bp-w4096, px); // for h1 tag for screens > $bp-w1400
   @include fluidFontSize(24px, 68px, $bp-w1400, $bp-w4096, 24px);
+  // @include font-size(4rem);
+  // @include responsive-font-size(24px);
   @include fluidLineHeight(34px, 140px, $bp-w1400, $bp-w4096, 34px);
   // font-weight: 500;
 }

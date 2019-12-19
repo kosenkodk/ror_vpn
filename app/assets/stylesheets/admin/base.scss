@@ -9,6 +9,10 @@
   }
 
   h1 {
+    // @include font-size(24px);
+    // @include responsive-font-size(24px);
+    // @include rfs(24);
+
     @include fluidFontSize(16px, 24px, 320px, $bp-w1400, 1rem);
     @include fluidLineHeight(16px, 85px, 320px, $bp-w1400, 1.25rem);
   }

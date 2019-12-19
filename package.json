@@ -25,6 +25,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "rfs": "^9.0.2",
     "smoothscroll-polyfill": "^0.4.4",
     "turbolinks": "^5.2.0"
   },

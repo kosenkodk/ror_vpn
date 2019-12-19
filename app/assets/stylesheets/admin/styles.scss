@@ -61,6 +61,8 @@ $mq-w4096: "(min-width: #{$bp-w4096em})";
 $width-of-admin-ui-design: 1400;
 $height-of-admin-ui-design: 972;
 
+@import "../node_modules/rfs/scss";
+
 @import "./helpers";
 @import "./modal";
 @import "./public";
