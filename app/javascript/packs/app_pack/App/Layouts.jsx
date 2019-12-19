@@ -17,6 +17,41 @@ const AdminLayout = (props) => (
       </aside>
 
       <section className="col-md-9 col-lg background-pink">
+        <div className="d-flex flex-column h-100">
+          <div className="header text-center w-100">
+            <HeaderAdmin />
+          </div>
+
+          <div className="">
+            <AlertAdmin />
+            {/* <div id='alert' className="text-center header__alert">
+              <div className={`alert alert-danger alert-inline`}>alert message</div>
+            </div> */}
+          </div>
+
+          <div className="flex-grow-1 main-content background-white">
+            <article className="">
+              {props.children}
+              {/* <p>{Array.from(new Array(1500)).map(item => "article ")}</p> */}
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+);
+
+
+const AdminLayoutTwoScrolls = (props) => (
+  <div id="admin_layout" className="container-fluid position-sticky">
+    <div className='row'>
+
+      <aside className="col-md-3 d-flex flex-column">
+        <Sidebar />
+        <footer className='d-none d-md-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
+      </aside>
+
+      <section className="col-md-9 col-lg background-pink">
         <div className="row">
           <div className="col header text-center w-100">
             <HeaderAdmin />
