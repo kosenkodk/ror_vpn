@@ -426,16 +426,16 @@
     font-size: $font-size-base-admin;
     line-height: $base-line-height-admin;
 
-    @import "admin/w1400";
+    @import "w1400";
   }
 
   @media #{$mq-w1920} {
     font-size: $font-size-base-admin*1.5;
     line-height: $base-line-height-admin*1.5;
-    @import "admin/w1920";
+    @import "w1920";
   }
 
-  @import "admin/w4096";
+  @import "w4096";
 
 }
 
