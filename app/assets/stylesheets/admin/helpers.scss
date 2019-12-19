@@ -12,16 +12,7 @@
   $value: strip-unit($value);
   $height-of-admin-ui-design: strip-unit($height-of-admin-ui-design);
   $proportion: ($value/$height-of-admin-ui-design)*100;
-
-
-  $proportion: $proportion*1333/1080;// hot fix proportions for full hd 1333/1080=1.234
-  $proportion: $proportion + vh;
-
-  // $wh: $width-of-admin-ui-design/$height-of-admin-ui-design; // 1400/972=1.44
-  // $height_proportion: 100vw/$wh+0vh; // 1920/1.44=1333
-  // $kh: $height_proportion/100vh; //1333/1080
-  // $proportion: $proportion*$kh;// fix proportions for full hd 1333/1080=1.234
-  // $proportion: $proportion + vh;
+  $proportion: $proportion * $height-of-admin-ui-design/$width-of-admin-ui-design + vw; // vh to vw
   @return $proportion;
 }
 
