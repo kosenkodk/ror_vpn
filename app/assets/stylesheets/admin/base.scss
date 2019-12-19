@@ -113,10 +113,13 @@
   }
 
   section {
-    min-height: 100vh;
+    height: calc(100vh - #{$admin-navbar-height});
     // padding: 0 $padding*2+0px;
+    padding-bottom: $padding+px;
     @media (min-width: $md-width) {
-      padding: 0 2.14vw 5.17vh 1.5vw;
+      height: 100vh;
+      // padding: 0 2.14vw 5.17vh 1.5vw;
+      padding: 0 pxtovw(21) pxtovh(57) pxtovw(30);
     }
   }
 
@@ -129,10 +132,7 @@
   .main-content {
     border-radius: pxtovw($admin_border_radius);
     // padding: $padding+0px;
-    height: 85.5vh;
-    max-height: 85.5vh;
     overflow-y: scroll;
-    // padding-top: 2.25vh;
     // @include media-breakpoint-up(md) {
       // padding: 2.5vh 2vw;
       padding-top: 2.5vh;
