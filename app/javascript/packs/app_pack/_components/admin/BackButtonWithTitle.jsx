@@ -19,7 +19,7 @@ class BackButtonWithTitle extends React.Component {
             {children && children}
           </div>
         </div>
-        <div class="flex-row mt-3 mb-3"><div class="border border-gray"></div></div>
+        <div className="flex-row mt-3 mb-3"><div className="border border-gray"></div></div>
       </React.Fragment>
     );
   }
