@@ -30,7 +30,7 @@ const AdminLayout = (props) => (
           </div>
 
           <div className="flex-grow-1 main-content background-white">
-            <article className="">
+            <article className="container-fluid">
               {props.children}
               {/* <p>{Array.from(new Array(1500)).map(item => "article ")}</p> */}
             </article>
