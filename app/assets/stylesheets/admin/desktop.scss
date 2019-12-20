@@ -59,8 +59,11 @@ small {
   z-index: 1000;
 }
 
-.btn {
+button.btn {
   min-height: pxtovh(40);
+}
+
+.btn {  
   font-weight: $font-bold;
   // font-size: pxtovh(14px);
   // @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
