@@ -40,18 +40,41 @@ small {
 
 .form-control {
   font-size: pxtovh(14px);
-  line-height: pxtovh(24px);
+  line-height: calc(24/14); // 24px
 }
+
+.form-control {
+  min-height: pxtovh(40);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  // padding-left: pxtovw(15);
+  // padding-top: pxtovh(10);
+  padding: pxtovh(10) pxtovw(15);
+}
+
 .alert {
   font-size: pxtovh(18px);
   line-height: pxtovh(24px);
   z-index: 1000;
 }
+
 .btn {
+  min-height: pxtovh(40);
   font-weight: $font-bold;
-  font-size: pxtovh(14px);
-  line-height: pxtovh(18px);
+  // font-size: pxtovh(14px);
+  // @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  // @include fluidLineHeight(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  @include fluidLineHeight(18px, 40px, $bp-w1400, $bp-w4096, 18px);
+    // line-height: 18/14;
+  // line-height: pxtovh(18px);
+    // padding: 1rem 2rem;
+  padding: pxtovh(10px) pxtovw(25px);
+  // letter-spacing: 0.02rem; // 
+  // letter-spacing: 0.03rem; // full hd
 }
+
 .header {
   // margin: pxtovh(26px) 0 pxtovh(20px) 0;
   padding-top: pxtovh(16px);
@@ -110,10 +133,6 @@ section {
   padding-right: pxtovw(30px);
 }
 
-.btn {
-  padding: pxtovh(10px) pxtovw(25px);
-}
-
 .pagination {
   margin-top: pxtovh(20px);
   .page-link {
@@ -126,15 +145,6 @@ section {
     padding: pxtovh(10) pxtovw(27);
     min-width: pxtovw(170);
   }
-}
-
-.form-control {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  height: pxtovh(40);
-  padding-left: pxtovw(15);
-  // padding-top: pxtovh(7);
 }
 
 .ticket__message {
