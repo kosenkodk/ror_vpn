@@ -58,7 +58,7 @@ class TicketsNewPage extends React.Component {
   render() {
     const { items } = this.props
     return (
-      <div id="" className="tickets tickets__new container-fluid mb-4 pb-1">
+      <div id="" className="tickets tickets__new container-admin">
         <BackButtonWithTitle title={I18n.t('pages.tickets.new')} url={urls.tickets.path} />
         <div className="row mt-xl-3">
           <div className="col-md-8 col-xl-7">
