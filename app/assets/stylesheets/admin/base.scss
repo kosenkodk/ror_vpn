@@ -13,6 +13,13 @@
     @include fluidLineHeight(16px, 85px, 320px, $bp-w1400, 1.25rem);
   }
 
+  .container-admin {
+    @extend .container-fluid;
+    // padding: pxtovw(20);
+    padding-right: pxtovw(20);
+    padding-left: pxtovw(20);
+  }
+
   .btn-outline-danger {
     color: $red;
     border-color: $red;
