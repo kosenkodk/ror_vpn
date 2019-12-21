@@ -1,5 +1,9 @@
-@media #{$mq-w1400} {
+
+@media (min-width: $lg-width) {
+// @media #{$mq-medium} {
+// @media #{$mq-w1400} {
 // @media (min-width:1401px) {
+
 @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
 @include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
 // @include fluidLineHeight(18px, 74px, $bp-w1400, $bp-w4096, 18px);
