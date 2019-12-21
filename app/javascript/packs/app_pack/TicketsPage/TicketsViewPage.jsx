@@ -39,7 +39,7 @@ class TicketsViewPage extends React.Component {
   render() {
     const { item, title } = this.props
     return (
-      <div className="container-admin">
+      <div className="container-fluid">
         <div id="" className="tickets tickets__view row mb-4 pb-1">
           <div className="col-12">
             {/* <BackButtonWithTitle title={this.state.subTitle} url={urls.tickets.path} /> */}
