@@ -33,7 +33,7 @@ class TicketsViewPage extends React.Component {
   }
 
   getTitle() {
-    return `Ticket ${this.state.id}`
+    return `Ticket #${this.state.id}`
   }
 
   render() {
@@ -42,10 +42,10 @@ class TicketsViewPage extends React.Component {
       <div className="container-fluid">
         <div id="" className="tickets tickets__view row mb-4 pb-1">
           <div className="col-12">
-            {/* <BackButtonWithTitle title={this.state.subTitle} url={urls.tickets.path} /> */}
-            <BackButtonWithTitle url={urls.tickets.path}>
+            <BackButtonWithTitle title={`Subject: ${item && item.title}`} url={urls.tickets.path} />
+            {/* <BackButtonWithTitle url={urls.tickets.path}>
               <h4 className="mt-2 font-weight-bold">{this.state.subTitle}</h4>
-            </BackButtonWithTitle>
+            </BackButtonWithTitle> */}
             <ChatRoom id={this.state.id} messages={item && item.messages} />
             {/* initial ticket message with attachment */}
             {item && item.messages && <Messages items={item.messages} />}
