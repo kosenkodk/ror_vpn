@@ -16,7 +16,7 @@ class TicketForm extends React.Component {
 
   onFileChange(e) {
     e.preventDefault();
-    console.log('onFileChange', e.target.files);
+    // console.log('onFileChange', e.target.files);
     // if (e.target && e.target.files && e.target.files.length > 0)
     this.setState({ file: e.target.files[0] });
   }
