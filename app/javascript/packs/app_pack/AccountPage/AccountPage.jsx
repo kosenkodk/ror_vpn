@@ -61,7 +61,7 @@ class AccountPage extends React.Component {
   render() {
     const { loggingIn, user } = this.props;
     return (
-      <div className="container-admin">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-lg-7 mb-5">
             {/* <h2 className="pb-4">Account</h2> */}
