@@ -21,11 +21,15 @@ class TicketsViewPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(ticketActions.view(this.state.id))
     this.setTitle()
-    this.setState({ subTitle: `${I18n.t("pages.tickets.form.title")}: Ticket ${this.state.id}` })
+    this.setState({ subTitle: `${I18n.t("pages.tickets.form.title")}: ${I18n.t("pages.tickets.ticket")} ${this.state.id}` })
   }
 
   UNSAFE_componentWillUpdate() {
     this.setTitle()
+  }
+
+  componentDidUpdate() {
+    this.setTitle();
   }
 
   setTitle() {
@@ -33,7 +37,7 @@ class TicketsViewPage extends React.Component {
   }
 
   getTitle() {
-    return `Ticket #${this.state.id}`
+    return `${I18n.t("pages.tickets.ticket")} #${this.state.id}`
   }
 
   render() {
@@ -42,7 +46,7 @@ class TicketsViewPage extends React.Component {
       <div className="container-fluid">
         <div id="" className="tickets tickets__view row mb-4 pb-1">
           <div className="col-12">
-            <BackButtonWithTitle title={`Subject: ${item && item.title}`} url={urls.tickets.path} />
+            <BackButtonWithTitle title={`${I18n.t('pages.tickets.form.title')}: ${item && item.title}`} url={urls.tickets.path} />
             {/* <BackButtonWithTitle url={urls.tickets.path}>
               <h4 className="mt-2 font-weight-bold">{this.state.subTitle}</h4>
             </BackButtonWithTitle> */}
