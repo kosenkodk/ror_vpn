@@ -1,4 +1,5 @@
 import React from 'react'
+import { matchPath } from "react-router";
 import { Switch, Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import smoothscroll from 'smoothscroll-polyfill'
@@ -48,7 +49,6 @@ class App extends React.Component {
     // if (this.props.location !== prevProps.location) {
     window.scrollTo(0, 0); // move scroll to top on new page 
     // }
-
     this.setPageTitle(history.location)
     this.setBackgroundImages(history.location)
     this.calculateHeight()
@@ -243,7 +243,13 @@ class App extends React.Component {
 
   setPageTitle(location) {
     let pageTitle = Object.values(urls).reduce((prevItem, curItem, index) => {
-      return curItem.path.startsWith(location.pathname) ? curItem.name : prevItem.name || prevItem
+      const match = matchPath(location.pathname, {
+        path: curItem.path,
+        exact: true,
+        strict: false
+      });
+      return match ? curItem.name : prevItem.name || prevItem
+      // return curItem.path.startsWith(location.pathname) ? curItem.name : prevItem.name || prevItem
     });
     this.props.dispatch(pageActions.setTitle(pageTitle))
   }
