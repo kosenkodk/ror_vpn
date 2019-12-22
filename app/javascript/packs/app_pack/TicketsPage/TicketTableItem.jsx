@@ -35,10 +35,10 @@ class TicketTableItem extends React.Component {
 
         <td>{this.props.department && this.props.department.title}</td>
 
-        <td className="d-block d-sm-none">
+        <td className="d-block d-md-none">
           <TextCut max_length={30}>{this.props.title}</TextCut>
         </td>
-        <td className="d-none d-sm-block">
+        <td className="d-none d-md-block">
           <TextCut max_length={100}>{this.props.title}</TextCut>
         </td>
 
