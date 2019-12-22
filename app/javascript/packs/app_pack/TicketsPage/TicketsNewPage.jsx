@@ -19,7 +19,11 @@ class TicketsNewPage extends React.Component {
     this.onFileChange = this.onFileChange.bind(this)
   }
 
-  UNSAFE_componentWillUpdate() {
+  // UNSAFE_componentWillUpdate() {
+  //   this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
+  // }
+
+  componentDidUpdate() {
     this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 

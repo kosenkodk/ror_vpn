@@ -49,10 +49,13 @@ class App extends React.Component {
     // if (this.props.location !== prevProps.location) {
     window.scrollTo(0, 0); // move scroll to top on new page 
     // }
-    this.setPageTitle(history.location)
     this.setBackgroundImages(history.location)
     this.calculateHeight()
     this.onScrollNavbar()
+  }
+
+  UNSAFE_componentWillUpdate() {
+    this.setPageTitle(history.location)
   }
 
   componentDidMount() {
