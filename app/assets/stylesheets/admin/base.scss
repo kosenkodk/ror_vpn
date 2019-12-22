@@ -322,6 +322,12 @@
   }
 
   .tickets {
+    table tbody tr {
+      cursor: pointer;
+      &:hover {
+        background-color: $ticketsTableItemOnHoverColor;
+      }
+    }
     .btn {
       // padding: 14px 27px;
       // min-width: 170px;
