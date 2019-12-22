@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import { history } from '../_helpers'
-import { pageActions, alertActions, bgClassActions, departmentActions } from '../_actions'
+import { ticketActions, pageActions, alertActions, bgClassActions, departmentActions } from '../_actions'
 import { urls } from 'config'
 
 // components
@@ -42,6 +42,9 @@ class App extends React.Component {
       // clear alert on location change
       dispatch(alertActions.clear())
       this.isFooterVisible()
+
+      // reset ticket's statuses
+      this.resetTicketStatusesByLocation(location)
     });
   }
 
@@ -52,6 +55,23 @@ class App extends React.Component {
     this.setBackgroundImages(history.location)
     this.calculateHeight()
     this.onScrollNavbar()
+  }
+
+  resetTicketStatusesByLocation(location) {
+    // if (!this.isMatchUrls(location.pathname, urls.tickets_view.path) || !this.isMatchUrls(location.patname, urls.tickets.path))
+    if (!location.pathname.startsWith('/user/tickets')) {
+      this.props.dispatch(ticketActions.filterBy({ page: 1, status: '' }));
+      // this.props.dispatch(ticketActions.getAll({ page: 1, status: '' }));
+    }
+  }
+
+  isMatchUrls(url1, url2) {
+    const match = matchPath(url1, {
+      path: url2,
+      exact: true,
+      strict: false
+    });
+    return match
   }
 
   UNSAFE_componentWillUpdate() {
@@ -276,9 +296,11 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { page } = state.tickets;
   const { departments } = state;
   return {
-    departments
+    departments,
+    page // tickets page
   };
 }
 
