@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import TicketViewModal from './TicketViewModal'
 import { urls } from 'config';
 import { history } from '../_helpers';
-
+import { TextCut } from './TextCut';
 
 class TicketTableItem extends React.Component {
 
@@ -34,7 +34,13 @@ class TicketTableItem extends React.Component {
         */}
 
         <td>{this.props.department && this.props.department.title}</td>
-        <td>{this.props.title}</td>
+
+        <td className="d-block d-sm-none">
+          <TextCut max_length={30}>{this.props.title}</TextCut>
+        </td>
+        <td className="d-none d-sm-block">
+          <TextCut max_length={100}>{this.props.title}</TextCut>
+        </td>
 
         <td>{this.props.created_at_humanize}</td>
         <td>
