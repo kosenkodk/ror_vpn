@@ -59,19 +59,6 @@ class TicketForm extends React.Component {
           </div>
         </div> */}
 
-        {/* custom file input (height problem on 4k screens) */}
-        {/* <div className="form-group row">
-          <div className="col-sm-4 align-self-center">
-            <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
-          </div>
-
-          <div className="file col-sm-8">
-            <label className=""> Select a file
-              <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} />
-            </label>
-          </div>
-        </div> */}
-
         {/* custom file input */}
         <div className="form-group row">
           <div className="col-sm-4">

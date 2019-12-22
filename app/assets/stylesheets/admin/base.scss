@@ -427,17 +427,6 @@
       height: 200%;
       cursor: pointer;
     }
-
-    // custom file input 2 (problem with incorrect height on 4k screens)
-    // label{
-    //   padding: pxtovh(10) pxtovw(35) !important;
-    //   @extend .btn-pink;
-    //   cursor: pointer;
-    // }
-  
-    // input[type="file"] {
-    //   display: none;
-    // }
   }
 
   .btn-back-with-title {
