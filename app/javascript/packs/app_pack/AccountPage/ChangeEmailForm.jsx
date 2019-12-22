@@ -24,11 +24,9 @@ class ChangeEmailForm extends React.Component {
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
           <FlashMessages error={error && error} notice={notice && notice} />
-          <div className="col">
-            <div className="form-group row align-items-center">
-              <label htmlFor="email" className="col-sm-6 col-form-label">Email login:</label>
-              <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
-            </div>
+          <div className="form-group row align-items-center">
+            <label htmlFor="email" className="col-sm-4 col-form-label">Email login:</label>
+            <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
           </div>
         </div>
         <div className="modal-footer">
