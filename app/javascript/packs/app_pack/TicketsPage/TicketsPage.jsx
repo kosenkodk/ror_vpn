@@ -29,8 +29,12 @@ class TicketsPage extends React.Component {
     this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 
-  UNSAFE_componentWillUpdate() {
+  componentDidUpdate() {
     this.setTitle();
+  }
+
+  componentWillUnmount() {
+    // this.props.dispatch(ticketActions.filterBy({ page: this.props.page, status: '' }));
   }
 
   componentDidMount() {
@@ -43,11 +47,14 @@ class TicketsPage extends React.Component {
     }
   }
 
-  filterByStatus(e, status) {
+  filterByStatusE(e, status) {
+    this.filterByStatus(status);
+    e.preventDefault();
+  }
+
+  filterByStatus(status) {
     this.props.dispatch(ticketActions.filterBy({ page: this.props.page, status: status }));
     this.props.dispatch(ticketActions.getAll({ page: this.props.page, status: status }));
-
-    e.preventDefault();
   }
 
   render() {
@@ -57,13 +64,13 @@ class TicketsPage extends React.Component {
         <div className="col-12 ticket_statuses mb-3">
           <ul className="nav">
             <li className="nav-item">
-              <a onClick={(e) => this.filterByStatus(e, "")} className={`nav-link ${status === '' ? this.props.activeClass : ''}`} > All</a>
+              <a onClick={(e) => this.filterByStatusE(e, "")} className={`nav-link ${status === '' ? this.props.activeClass : ''}`} > All</a>
             </li>
             <li className="nav-item">
-              <a onClick={(e) => this.filterByStatus(e, "opened")} className={`nav-link ${status === 'opened' ? this.props.activeClass : ''}`}>Opened</a>
+              <a onClick={(e) => this.filterByStatusE(e, "opened")} className={`nav-link ${status === 'opened' ? this.props.activeClass : ''}`}>Opened</a>
             </li>
             <li className="nav-item">
-              <a onClick={(e) => this.filterByStatus(e, "closed")} className={`nav-link ${status === 'closed' ? this.props.activeClass : ''}`} > Closed</a>
+              <a onClick={(e) => this.filterByStatusE(e, "closed")} className={`nav-link ${status === 'closed' ? this.props.activeClass : ''}`} > Closed</a>
             </li>
             <li className="nav-item ml-auto align-self-center">
               <Link to={urls.tickets_new.path} className="btn btn-sm btn-outline-primary">New ticket</Link>
