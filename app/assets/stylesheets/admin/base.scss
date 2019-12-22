@@ -395,6 +395,9 @@
     }
   }
 
+  .mb-60 {
+    margin-bottom: pxtovh(60);
+  }
   .file {
     // custom file input 1
     .btn {

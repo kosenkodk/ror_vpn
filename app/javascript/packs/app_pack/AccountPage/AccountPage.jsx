@@ -63,7 +63,7 @@ class AccountPage extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-7 mb-5">
+          <div className="col-lg-7">
             {/* <h2 className="pb-4">Account</h2> */}
             {/* <div className="mb-5">
               <h1 id="email">Email</h1>
@@ -79,7 +79,7 @@ class AccountPage extends React.Component {
               </div>
             </div> */}
 
-            <div className="mb-5">
+            <div className="mb-60">
               <h1>Username</h1>
               <div className="row align-items-center">
                 <div className="col-sm-5">
@@ -91,7 +91,7 @@ class AccountPage extends React.Component {
               </div>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-60">
               <h1>Passwords</h1>
               <div className="row align-items-center">
                 <div className="col-sm-5">
@@ -121,7 +121,7 @@ class AccountPage extends React.Component {
               </div>
             </div> */}
 
-            <div className="mb-5">
+            <div className="mb-60">
               <h1 id="password">Recovery & notification</h1>
               <div className="border-left-pink">
                 {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
@@ -161,21 +161,23 @@ class AccountPage extends React.Component {
 
             </div>
 
-            <h1 id="delete">Delete Account</h1>
-            <div className="border-left-pink col">
-              {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
-              <p>
-                Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
+            <div className="mb-60">
+              <h1 id="delete">Delete Account</h1>
+              <div className="border-left-pink col">
+                {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+                <p>
+                  Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
               </p>
-            </div>
-            <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
-              <div className="border-left-pink">
-                <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
-                <p>If you wish to delete this account in order to combine it with another one, do NOT delete it.
-                  {/* <a>Learn more</a> */}
-                </p>
               </div>
-            </ModalPopup>
+              <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+                <div className="border-left-pink">
+                  <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
+                  <p>If you wish to delete this account in order to combine it with another one, do NOT delete it.
+                  {/* <a>Learn more</a> */}
+                  </p>
+                </div>
+              </ModalPopup>
+            </div>
           </div>
         </div>
       </div>
