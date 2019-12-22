@@ -34,7 +34,7 @@ class TicketsPage extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.props.dispatch(ticketActions.filterBy({ page: this.props.page, status: '' }));
+    // this.props.dispatch(ticketActions.filterBy({ page: 1, status: '' }));
   }
 
   componentDidMount() {
@@ -53,8 +53,9 @@ class TicketsPage extends React.Component {
   }
 
   filterByStatus(status) {
-    this.props.dispatch(ticketActions.filterBy({ page: this.props.page, status: status }));
-    this.props.dispatch(ticketActions.getAll({ page: this.props.page, status: status }));
+    const page = (this.props.status !== status) ? 1 : this.props.page // reset page number
+    this.props.dispatch(ticketActions.filterBy({ page: page, status: status }));
+    this.props.dispatch(ticketActions.getAll({ page: page, status: status }));
   }
 
   render() {
