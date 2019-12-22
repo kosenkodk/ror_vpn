@@ -18,18 +18,14 @@ class TicketsViewPage extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.setTitle();
+  }
+
   componentDidMount() {
     this.props.dispatch(ticketActions.view(this.state.id))
     this.setTitle()
     this.setState({ subTitle: `${I18n.t("pages.tickets.form.title")}: ${I18n.t("pages.tickets.ticket")} ${this.state.id}` })
-  }
-
-  UNSAFE_componentWillUpdate() {
-    this.setTitle()
-  }
-
-  componentDidUpdate() {
-    this.setTitle();
   }
 
   setTitle() {
