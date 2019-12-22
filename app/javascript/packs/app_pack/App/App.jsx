@@ -58,11 +58,12 @@ class App extends React.Component {
   }
 
   resetTicketStatusesByLocation(location) {
-    // if (!this.isMatchUrls(location.pathname, urls.tickets_view.path) || !this.isMatchUrls(location.patname, urls.tickets.path))
-    if (!location.pathname.startsWith('/user/tickets')) {
-      this.props.dispatch(ticketActions.filterBy({ page: 1, status: '' }));
-      // this.props.dispatch(ticketActions.getAll({ page: 1, status: '' }));
-    }
+    if (this.isMatchUrls(location.pathname, urls.tickets_view.path) ||
+      this.isMatchUrls(location.pathname, urls.tickets.path)) return;
+    // if (!location.pathname.startsWith('/user/tickets')) {
+    this.props.dispatch(ticketActions.filterBy({ page: 1, status: '' }));
+    this.props.dispatch(ticketActions.getAll({ page: 1, status: '' }));
+    // }
   }
 
   isMatchUrls(url1, url2) {
@@ -71,7 +72,7 @@ class App extends React.Component {
       exact: true,
       strict: false
     });
-    return match
+    return match ? true : false
   }
 
   UNSAFE_componentWillUpdate() {
