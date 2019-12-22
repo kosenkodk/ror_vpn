@@ -87,12 +87,12 @@ class TicketsPage extends React.Component {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="">#</th>
+                  {/* <th scope="col" className="">#</th> */}
                   <th scope="col" className="">Department</th>
                   <th scope="col" className="">Subject</th>
                   <th scope="col" className="">Date</th>
                   <th scope="col" className="">Status</th>
-                  <th colSpan="1" scope="col" className="">Action</th>
+                  {/* <th colSpan="1" scope="col" className="">Action</th> */}
                 </tr>
               </thead>
               <tbody>

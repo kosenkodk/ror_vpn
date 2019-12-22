@@ -1,14 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 // import TicketViewModal from './TicketViewModal'
-import { urls } from 'config'
+import { urls } from 'config';
+import { history } from '../_helpers';
+
 
 class TicketTableItem extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.viewTicket = this.viewTicket.bind(this);
+  }
+
+  viewTicket() {
+    history.push(`${urls.tickets.path}/${this.props.id}`);
+  }
+
   render() {
     return (
-      <tr>
-        <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-black'>{this.props.no}</Link></th>
+      <tr onClick={this.viewTicket}>
+        {/* <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-black'>{this.props.no}</Link></th> */}
 
         {/*
         <td>
@@ -22,7 +34,7 @@ class TicketTableItem extends React.Component {
         */}
 
         <td>{this.props.department && this.props.department.title}</td>
-        <td><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-black'>{this.props.title}</Link></td>
+        <td>{this.props.title}</td>
 
         <td>{this.props.created_at_humanize}</td>
         <td>
@@ -30,10 +42,10 @@ class TicketTableItem extends React.Component {
             : <span className="text-blue">{this.props.status}</span>
           }
         </td>
-        <td>
-          {/* <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={false} {...this.props} /> */}
-          <Link to={`${urls.tickets.path}/${this.props.id}`} className='text-pink'>view</Link>
-        </td>
+        {/* <td> */}
+        {/* <TicketViewModal onFormSubmit={this.props.onFormSubmit} isEdit={false} {...this.props} /> */}
+        {/* <Link to={`${urls.tickets.path}/${this.props.id}`} className='text-pink'>view</Link> */}
+        {/* </td> */}
       </tr>
     );
   }
