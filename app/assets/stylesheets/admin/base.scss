@@ -419,23 +419,25 @@
     }
       
     .upload-btn-wrapper input[type=file] {
-      font-size: 100px;
       position: absolute;
       left: 0;
-      top: 0;
+      top: -100%;
       opacity: 0;
+      width: 100%;
+      height: 200%;
+      cursor: pointer;
     }
 
     // custom file input 2 (problem with incorrect height on 4k screens)
-    label{
-      padding: pxtovh(10) pxtovw(35) !important;
-      @extend .btn-pink;
-      cursor: pointer;
-    }
+    // label{
+    //   padding: pxtovh(10) pxtovw(35) !important;
+    //   @extend .btn-pink;
+    //   cursor: pointer;
+    // }
   
-    input[type="file"] {
-      display: none;
-    }
+    // input[type="file"] {
+    //   display: none;
+    // }
   }
 
   .btn-back-with-title {
