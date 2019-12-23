@@ -112,7 +112,7 @@ class TicketForm extends React.Component {
         {(this.state.files && this.state.files.length > 0) &&
           <div className="form-group row multi-preview no-gutters">
             {(this.state.files || []).map((url, index) => (
-              <div className="col-md-3 m-1" key={`ticket-preview${index}`} >
+              <div className="col-sm-6 col-md-4 p-1" key={`ticket-preview${index}`} >
                 <img className="img-fluid img-thumbnail" src={url} alt="..." />
               </div>
             ))}
