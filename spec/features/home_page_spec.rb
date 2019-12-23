@@ -43,7 +43,7 @@ RSpec.describe HomeController, type: :feature, js: true do
       expect(page).to have_content(I18n.t('nav_menu.sign_up'))
       # sections
       expect(page).to have_content('Take control of who has access to your private data')
-      expect(page).to have_content('Why the Media loves VPN')
+      # expect(page).to have_content('Why the Media loves VPN') # reviews section
       expect(page).to have_content('Built for security and trust')
       expect(page).to have_content('One account for all your devices')
       # # feature react section (server side rendering)

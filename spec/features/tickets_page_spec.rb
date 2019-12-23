@@ -223,7 +223,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
         click_on(I18n.t('buttons.view'), match: :first)
         expect(page).to have_content(ticket_on_page2.title)
-        click_on(I18n.t('buttons.back'))
+        click_on_btn_back
         expect(page).to have_content(ticket_on_page2.title)
       end
 
@@ -232,7 +232,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(ticket_on_page2.title)
 
         click_on(I18n.t('buttons.add'))
-        click_on(I18n.t('buttons.back'))
+        click_on_btn_back
         expect(page).to have_content(ticket_on_page2.title)
 
         click_on(I18n.t('buttons.add'))
@@ -241,7 +241,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
         expect(page).to have_content('ticket')
         expect(page).to have_content('text')
-        click_on(I18n.t('buttons.back'))
+        click_on_btn_back
         expect(page).to have_content(ticket_on_page2.title)
       end
     end

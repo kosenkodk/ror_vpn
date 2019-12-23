@@ -29,4 +29,9 @@ module FeatureHelper
     end
   end
   
+  def click_on_btn_back
+    # click_on(I18n.t('buttons.back'))
+    click_link('btn-back')
+    # find('#btn-back').click
+  end
 end
