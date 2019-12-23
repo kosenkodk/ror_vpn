@@ -37,7 +37,9 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.host = 'localhost'
-  config.action_mailer.default_url_options = { host: config.host, port: 3000 }
+  config.port = 3000
+  Rails.application.routes.default_url_options[:host] = "#{config.host}:#{config.port}"
+  config.action_mailer.default_url_options = { host: config.host, port: config.port }
   config.action_mailer.default_options = { from: "VegaVPN <no-reply@#{config.host}>" }
   
   # config.action_mailer.logger = true

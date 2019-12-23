@@ -29,6 +29,7 @@ class Message extends React.Component {
         <div className="border border-radius border-gray p-3">
           {(item && item.text) ? <NewLineToBr>{item.text}</NewLineToBr> : '-'}
 
+          {/* single attachment */}
           {item && item.attachment_url &&
             <div className="form-group row">
               <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
@@ -37,6 +38,16 @@ class Message extends React.Component {
               </div>
             </div>
           }
+
+          {/* multiple attachments */}
+          {item && item.attachments_url && item.attachments_url.map(item =>
+            <div className="form-group row">
+              <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
+              <div className="col-sm-8">
+                <a className="" href={item.attachment_url}>{item.attachment_name && item.attachment_name}</a>
+              </div>
+            </div>
+          )}
         </div>
       </React.Fragment>
     )

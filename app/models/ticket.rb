@@ -8,6 +8,7 @@ class Ticket < ApplicationRecord
   enum status: { opened: 0, closed: 1 }
 
   has_one_attached :attachment, dependent: :destroy
+  has_many_attached :attachments, dependent: :destroy
   has_many_attached :files, dependent: :destroy
   
   has_many :messages, as: :messageable, inverse_of: 'ticket', dependent: :destroy
@@ -23,6 +24,18 @@ class Ticket < ApplicationRecord
     "#{url}user/tickets/#{self.id}"
   end
   
+  def attachmentListWithoutPort
+    self.attachments.map { |item| { url: rails_blob_url(item, host: Rails.application.config.host), name: item.blob.filename } }
+  end
+
+  def attachmentList
+    self.attachments.map { |item| { url: rails_blob_url(item), name: item.blob.filename } }
+  end
+
+  def attachments_url
+    self.attachments.map { |item| rails_blob_url(item, host: Rails.application.config.host) }
+  end
+
   def attachment_url
     rails_blob_url(self.attachment, host: Rails.application.config.host) if self.attachment.attached?
   end
@@ -47,9 +60,11 @@ class Ticket < ApplicationRecord
         messages: {
           only: [:id, :text],
           include: :user, 
-          methods: [:created_at_humanize, :attachment_url, :attachment_name]}
+          methods: [:created_at_humanize, :attachment_url, :attachment_name]
+        }
       },
-      methods: [:created_at_humanize, :attachment_url, :attachment_name],
+      methods: [:created_at_humanize, :attachment_url, :attachment_name, :attachments_url, :attachmentList
+      ],
     ).merge(options || {})
   end
 end
