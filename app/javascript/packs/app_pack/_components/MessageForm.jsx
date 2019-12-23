@@ -31,7 +31,7 @@ class MessageForm extends React.Component {
               <label className="col-sm-12 col-form-label">You Answer</label>
 
               <div className="col-sm-12">
-                <textarea type="text" name="message_text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
+                <textarea type="text" name="message_text" className="form-control" defaultValue={this.props.text || ''} required={true} rows="3" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
               </div>
             </div>
 
