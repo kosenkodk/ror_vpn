@@ -7,13 +7,11 @@ import { ticketActions } from '../_actions';
 import MultiFileUpload from './MultiFileUpload';
 
 class TicketForm extends React.Component {
-
-
   constructor(props) {
     super(props)
     this.state = {
       file: null,
-      files: [null]
+      files: []
     }
     this.onFileChange = this.onFileChange.bind(this);
     this.onFilesChange = this.onFilesChange.bind(this);
@@ -47,6 +45,7 @@ class TicketForm extends React.Component {
   }
 
   render() {
+    // console.log('state files', this.state.files);
     return (
       <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}>
         <div className="form-group row">
@@ -98,12 +97,12 @@ class TicketForm extends React.Component {
         {/* custom file input - multi file upload with preview */}
         <div className="form-group row">
           <div className="col-sm-4">
-            <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
+            <label className="col-form-label">{I18n.t('pages.tickets.form.attachments')}</label>
           </div>
 
           <div className="file col-sm-8">
             <div className="upload-btn-wrapper">
-              <button className="btn">Select a file</button>
+              <button className="btn">Select files</button>
               <input type="file" name="attachment" onChange={this.onFilesChange}
                 required={false} multiple={true} />
             </div>
@@ -111,9 +110,11 @@ class TicketForm extends React.Component {
         </div>
 
         {(this.state.files && this.state.files.length > 0) &&
-          <div className="form-group row multi-preview">
+          <div className="form-group row multi-preview no-gutters">
             {(this.state.files || []).map((url, index) => (
-              <img key={`ticket-preview${index}`} className="col-md-3 img-fluid" src={url} alt="..." />
+              <div className="col-md-3 m-1" key={`ticket-preview${index}`} >
+                <img className="img-fluid img-thumbnail" src={url} alt="..." />
+              </div>
             ))}
           </div>
         }
