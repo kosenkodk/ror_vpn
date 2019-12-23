@@ -4,7 +4,7 @@ import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
-import MultiFileUpload from './MultiFileUpload';
+// import MultiFileUpload from './MultiFileUpload';
 
 class TicketForm extends React.Component {
   constructor(props) {
@@ -94,7 +94,7 @@ class TicketForm extends React.Component {
 
         {/* <MultiFileUpload /> */}
 
-        {/* custom file input - multi file upload with preview */}
+        {/* custom file input - multi file upload with images preview */}
         <div className="form-group row">
           <div className="col-sm-4">
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachments')}</label>
@@ -103,8 +103,7 @@ class TicketForm extends React.Component {
           <div className="file col-sm-8">
             <div className="upload-btn-wrapper">
               <button className="btn">Select files</button>
-              <input type="file" name="attachment" onChange={this.onFilesChange}
-                required={false} multiple={true} />
+              <input type="file" name="attachment" onChange={this.onFilesChange} required={false} multiple={true} />
             </div>
           </div>
         </div>
@@ -118,7 +117,7 @@ class TicketForm extends React.Component {
             ))}
           </div>
         }
-
+        {/* end custom file input - multi file upload with images preview */}
 
         <div className="form-group row">
           <div className="col-sm-4">
