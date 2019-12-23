@@ -105,7 +105,8 @@
     // @include media-breakpoint-between(sm, xl) {
       // max-width: 15.5vw;
       // width: 12rem;
-      max-width: 13.5rem;
+      // max-width: 13.5rem;
+      max-width: pxtovw(217);
     }
     @media (min-width: $bp-xxlarge) {
       max-width: pxtovw(217);
