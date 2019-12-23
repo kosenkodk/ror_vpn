@@ -182,6 +182,7 @@ en:
         status: "Status"
         text: "Message"
         attachment: "Attachment"
+        attachments: "Attachments"
         attachment_url: "Visit Attachment Url"
         submit: "Submit"
         help:
