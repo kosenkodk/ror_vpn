@@ -10,7 +10,7 @@ class BackButtonWithTitle extends React.Component {
       <React.Fragment>
         <div className="btn-back-with-title d-flex">
           <div className="align-self-center mb-1">
-            <Link to={url}>
+            <Link to={url} id="btn-back">
               <img src={icArrowLeftSrc} className="img-fluid arrow" />
             </Link>
           </div>

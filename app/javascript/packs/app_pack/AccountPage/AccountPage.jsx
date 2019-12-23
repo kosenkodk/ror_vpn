@@ -86,7 +86,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Email</label>
                 </div>
                 <div className="col">
-                  <input type="string" name="email" className="form-control" id="email" defaultValue={user && user.email || ''} readOnly={true} placeholder='Email' />
+                  <input type="string" className="form-control" defaultValue={user && user.email || ''} readOnly={true} placeholder='Email' />
                 </div>
               </div>
             </div>
@@ -135,7 +135,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login email address</label>
                 </div>
                 <div className="col">
-                  <input type="string" name="email" className="form-control" id="email" value={user && user.email} readOnly placeholder='Email' />
+                  <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
                 <div className="col-auto">
                   <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
