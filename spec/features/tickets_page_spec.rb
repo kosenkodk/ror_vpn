@@ -52,7 +52,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
         
         # all('.btn-outline-info').last.click # click on last view item
-        # click_on(I18n.t('buttons.view'), match: :first)
+        # click_on_ticket_first
         # click_on(I18n.t('pages.tickets.chat.load'))
         # expect(page).to have_content('ticket with attachment')
         expect(page).to have_content('logo.png')
@@ -77,7 +77,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       
       it 'display title, text' do
         # ticket = build(:ticket, title:'ticket with title, text', text: 'text')
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
         expect(page).to have_content(ticket_last.id)
         expect(page).to have_content(ticket_last.title)
         # click_on(I18n.t('buttons.submit'))
@@ -87,14 +87,14 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # expect(page).to have_content(ticket_last.department)
       end
       it 'check reply and load messages' do
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
         fill_in :message_text, with: 'reply'
         click_on(I18n.t('buttons.submit'))
         expect(page).to have_content('reply')
         expect(page).to have_content('You')
       end
       it 'click on close button' do
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
         click_on(I18n.t('buttons.close'), match: :first)
         expect(page).to have_content('closed')
         expect(page).to have_content(I18n.t('pages.tickets.form.status'))
@@ -117,7 +117,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(department_billing.title)
         
         # all('.btn-outline-info').last.click # click on last view item
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
 
         expect(page).to have_content('text 1')
         expect(page).to have_content(department_billing.title)
@@ -138,7 +138,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(department_sales.title)
         
         # all('.btn-outline-info').last.click # click on last view item
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
         
         expect(page).to have_content('text 1')
         expect(page).to have_content(department_sales.title)
@@ -169,7 +169,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
 
         expect(page).to have_content('ticket 2')
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
         expect(page).to have_content('text 2')
       end
 
@@ -221,7 +221,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         find('#next').click
         expect(page).to have_content(ticket_on_page2.title)
 
-        click_on(I18n.t('buttons.view'), match: :first)
+        click_on_ticket_first
         expect(page).to have_content(ticket_on_page2.title)
         click_on_btn_back
         expect(page).to have_content(ticket_on_page2.title)
