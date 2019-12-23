@@ -44,7 +44,22 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(find('#departmentSelectBox').value.to_i).to eq(department_tech.id)
       end
 
-      it "attach file or image" do
+      it "preview multiple attachments of ticket new page" do
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket with multiple attachments'
+        file = Rails.root.join('app','assets', 'images', 'logo.png')
+        file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
+        
+        # attach_file('attachments', file) # input element that has a name, id, or label_text
+        attach_file('attachments[]', [file,file2]) # input element that has a name, id, or label_text
+        click_on(I18n.t('buttons.submit'))
+        
+        # todo: click on image > popup with image and image name > check name
+        expect(page).to have_content('logo.png')
+        expect(page).to have_content('logo_mail_black.png')
+      end
+
+      it "attach single file or image" do
         click_on(I18n.t('buttons.add'))
         fill_in :title, with: 'ticket with attachment'
         file = Rails.root.join('app','assets', 'images', 'logo.png')
@@ -60,10 +75,12 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         ## visit page.find('img#myimage')[:src]
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
+
       it "searching tickets by id/no, title or text"
       it "guests can't see the user's tickets"
     end
     context 'fail' do
+      
     end
   end
 
