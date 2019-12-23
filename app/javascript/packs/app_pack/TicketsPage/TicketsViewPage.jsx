@@ -49,6 +49,11 @@ class TicketsViewPage extends React.Component {
             <ChatRoom id={this.state.id} messages={item && item.messages} />
             {/* initial ticket message with attachment */}
             {item && item.messages && <Messages items={item.messages} />}
+
+            {item && item.attachmentList && item.attachmentList.map(item =>
+              <a className="" href={item.url}><img src={item.url} className="col-sm-6 col-md-4 img-fluid img-thumbnail" />{item.name}</a>
+            )}
+
           </div>
         </div>
       </div>

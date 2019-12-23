@@ -51,7 +51,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
         
         # attach_file('attachments', file) # input element that has a name, id, or label_text
-        attach_file('attachments[]', [file,file2]) # input element that has a name, id, or label_text
+        attach_file('attachments', [file, file2]) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
         # todo: click on image > popup with image and image name > check name

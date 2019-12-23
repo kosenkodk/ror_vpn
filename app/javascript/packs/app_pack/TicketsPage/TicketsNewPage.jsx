@@ -32,24 +32,26 @@ class TicketsNewPage extends React.Component {
   async onFormSubmit(e) {
     e.preventDefault();
     let jsonData = FormDataAsJsonFromEvent(e);
-    // prepare attachment for json api
+    // prepare attachment(-s) for json api
     if (this.state.file) {
       jsonData['attachment2'] = await this.prepareAttachmentForJsonApi(this.state.file);
       this.props.dispatch(ticketActions.add(jsonData));
     } else if (this.state.files) {
-
+      const promises = [...this.state.files].map(async (item) => await this.prepareAttachmentForJsonApi(item));
+      jsonData['attachments'] = await Promise.all(promises)
+      this.props.dispatch(ticketActions.add(jsonData));
     } else {
       this.props.dispatch(ticketActions.add(jsonData));
     }
   }
 
-  async prepareAttachmentForJsonApi() {
-    return fileToBase64(this.state.file, this.state.file.name).then(result => {
+  async prepareAttachmentForJsonApi(file) {
+    return fileToBase64(file, file).then(result => {
       return {
-        type: this.state.file.type,
-        name: this.state.file.name,
-        size: this.state.file.size,
-        lastModified: this.state.file.lastModified,
+        type: file.type,
+        name: file.name,
+        size: file.size,
+        lastModified: file.lastModified,
         file: result
       }
     });

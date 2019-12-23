@@ -41,7 +41,16 @@ class Api::V1::TicketsController < Api::V1::ApiController
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment, :attachment2))
     department_id = params[:ticket][:department]
     attachment_error = ''
+
+    # multiple attachment uploading
+    attachments = params[:ticket][:attachments]
+    attachments.each do |attachment|
+      file_params = get_attachment_base64(attachment)
+      @ticket.attachments.attach(file_params) if file_params.present?
+    end
+
     begin
+      # single attachment uploading
       file_params = get_attachment_base64(params[:ticket][:attachment2])
       @ticket.attachment.attach(file_params) if file_params.present?
       # @ticket.files.attach(io: File.open(path_to_file), filename: icon)
@@ -98,6 +107,6 @@ class Api::V1::TicketsController < Api::V1::ApiController
   end
 
   def item_params
-    params.require(:ticket).permit(:id, :title, :text, :status, :department, :attachment, :attachment2)
+    params.require(:ticket).permit(:id, :title, :text, :status, :department, :attachment, :attachment2, :attachments)
   end
 end
