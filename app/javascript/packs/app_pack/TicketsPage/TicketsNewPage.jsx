@@ -1,24 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { pageActions, ticketActions } from '../_actions'
-import { TicketForm } from './TicketForm'
-import { urls } from 'config'
-import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
-import { I18n } from 'helpers'
+import { pageActions, ticketActions } from '../_actions';
+import { TicketForm } from './TicketForm';
+import { urls } from 'config';
+import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers';
+import { I18n } from 'helpers';
 import { BackButtonWithTitle } from '../_components/admin';
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       file: null,
       files: []
-    }
-    this.onFormSubmit = this.onFormSubmit.bind(this)
-    this.onFileChange = this.onFileChange.bind(this)
-    this.onFilesChange = this.onFilesChange.bind(this)
+    };
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onFileChange = this.onFileChange.bind(this);
+    this.onFilesChange = this.onFilesChange.bind(this);
   }
 
   componentDidUpdate() {
@@ -31,25 +31,28 @@ class TicketsNewPage extends React.Component {
 
   async onFormSubmit(e) {
     e.preventDefault();
-    let jsonData = FormDataAsJsonFromEvent(e)
+    let jsonData = FormDataAsJsonFromEvent(e);
     // prepare attachment for json api
     if (this.state.file) {
-      const fileBase64 = await fileToBase64(this.state.file, this.state.file.name).then(result => {
-        return {
-          type: this.state.file.type,
-          name: this.state.file.name,
-          size: this.state.file.size,
-          lastModified: this.state.file.lastModified,
-          file: result
-        }
-      })
-      jsonData['attachment2'] = fileBase64
-      this.props.dispatch(ticketActions.add(jsonData))
+      jsonData['attachment2'] = await this.prepareAttachmentForJsonApi(this.state.file);
+      this.props.dispatch(ticketActions.add(jsonData));
     } else if (this.state.files) {
 
     } else {
-      this.props.dispatch(ticketActions.add(jsonData))
+      this.props.dispatch(ticketActions.add(jsonData));
     }
+  }
+
+  async prepareAttachmentForJsonApi() {
+    return fileToBase64(this.state.file, this.state.file.name).then(result => {
+      return {
+        type: this.state.file.type,
+        name: this.state.file.name,
+        size: this.state.file.size,
+        lastModified: this.state.file.lastModified,
+        file: result
+      }
+    });
   }
 
   onFileChange(e) {
@@ -59,7 +62,7 @@ class TicketsNewPage extends React.Component {
 
   onFilesChange(e) {
     e.preventDefault();
-    this.setState({ files: e.target.files })
+    this.setState({ files: e.target.files });
   }
 
   render() {
@@ -80,7 +83,7 @@ class TicketsNewPage extends React.Component {
 
 function mapStateToProps(state) {
   const { loading, items } = state.departments;
-  return { loading, items }
+  return { loading, items };
 }
 
 const connectedApp = connect(mapStateToProps)(TicketsNewPage);
