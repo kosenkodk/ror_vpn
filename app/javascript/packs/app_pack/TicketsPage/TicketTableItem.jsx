@@ -19,7 +19,7 @@ class TicketTableItem extends React.Component {
 
   render() {
     return (
-      <tr onClick={this.viewTicket}>
+      <tr onClick={this.viewTicket} className="ticket-table-item">
         {/* <th scope="row"><Link to={`${urls.tickets.path}/${this.props.id}`} className='text-black'>{this.props.no}</Link></th> */}
 
         {/*

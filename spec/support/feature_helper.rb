@@ -34,4 +34,8 @@ module FeatureHelper
     click_link('btn-back')
     # find('#btn-back').click
   end
+  def click_on_ticket_first
+    # click_on(I18n.t('buttons.view'), match: :first)
+    find('.ticket-table-item', match: :first).click
+  end
 end
