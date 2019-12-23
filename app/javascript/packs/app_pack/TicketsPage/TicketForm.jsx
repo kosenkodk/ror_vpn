@@ -11,7 +11,8 @@ class TicketForm extends React.Component {
     super(props)
     this.state = {
       file: null,
-      files: []
+      files: [],
+      imagePreviews: []
     }
     this.onFileChange = this.onFileChange.bind(this);
     this.onFilesChange = this.onFilesChange.bind(this);
@@ -19,24 +20,19 @@ class TicketForm extends React.Component {
 
   onFileChange(e) {
     e.preventDefault();
-    // console.log('onFileChange', e.target.files);
     // if (e.target && e.target.files && e.target.files.length > 0)
     this.setState({ file: e.target.files[0] });
   }
 
   onFilesChange(e) {
     e.preventDefault();
-    // console.log('target files', e.target.files, [...e.target.files]);
-
     if (e.target.files && e.target.files.length > 0) {
-      const previews = [...e.target.files].map((item, index) => {
-        // console.log(item);
+      const imagePreviews = [...e.target.files].map((item, index) => {
         return URL.createObjectURL(item);
       });
-      // console.log('on files change', previews);
-
-      this.setState({ files: previews })
+      this.setState({ imagePreviews: imagePreviews })
     }
+    this.props.onFilesChange(e);
   }
 
   onTicketClose(e, id) {
@@ -92,8 +88,6 @@ class TicketForm extends React.Component {
           </div>
         </div> */}
 
-        {/* <MultiFileUpload /> */}
-
         {/* custom file input - multi file upload with images preview */}
         <div className="form-group row">
           <div className="col-sm-4">
@@ -103,14 +97,14 @@ class TicketForm extends React.Component {
           <div className="file col-sm-8">
             <div className="upload-btn-wrapper">
               <button className="btn">Select files</button>
-              <input type="file" name="attachment" onChange={this.onFilesChange} required={false} multiple={true} />
+              <input type="file" name="attachments[]" onChange={this.onFilesChange} required={false} multiple={true} />
             </div>
           </div>
         </div>
 
-        {(this.state.files && this.state.files.length > 0) &&
+        {(this.state.imagePreviews && this.state.imagePreviews.length > 0) &&
           <div className="form-group row multi-preview no-gutters">
-            {(this.state.files || []).map((url, index) => (
+            {(this.state.imagePreviews || []).map((url, index) => (
               <div className="col-sm-6 col-md-4 p-1" key={`ticket-preview${index}`} >
                 <img className="img-fluid img-thumbnail" src={url} alt="..." />
               </div>

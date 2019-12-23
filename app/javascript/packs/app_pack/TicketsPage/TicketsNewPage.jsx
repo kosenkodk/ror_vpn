@@ -13,10 +13,12 @@ class TicketsNewPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      file: null
+      file: null,
+      files: []
     }
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onFileChange = this.onFileChange.bind(this)
+    this.onFilesChange = this.onFilesChange.bind(this)
   }
 
   componentDidUpdate() {
@@ -51,8 +53,13 @@ class TicketsNewPage extends React.Component {
   }
 
   onFileChange(e) {
-    this.setState({ file: e.target.files[0] });
     e.preventDefault();
+    this.setState({ file: e.target.files[0] });
+  }
+
+  onFilesChange(e) {
+    e.preventDefault();
+    this.setState({ files: e.target.files })
   }
 
   render() {
@@ -62,7 +69,7 @@ class TicketsNewPage extends React.Component {
         <BackButtonWithTitle title={I18n.t('pages.tickets.new')} url={urls.tickets.path} />
         <div className="row mt-xl-3">
           <div className="col-md-8 col-xl-7">
-            <TicketForm onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
+            <TicketForm onFilesChange={this.onFilesChange} onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
             {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
           </div>
         </div>
