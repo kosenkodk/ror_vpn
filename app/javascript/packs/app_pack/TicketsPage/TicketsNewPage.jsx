@@ -29,11 +29,12 @@ class TicketsNewPage extends React.Component {
     this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 
-  onFormSubmit(e) {
+  async onFormSubmit(e) {
+    e.preventDefault();
     let jsonData = FormDataAsJsonFromEvent(e)
     // prepare attachment for json api
     if (this.state.file) {
-      fileToBase64(this.state.file, this.state.file.name).then(result => {
+      const fileBase64 = await fileToBase64(this.state.file, this.state.file.name).then(result => {
         return {
           type: this.state.file.type,
           name: this.state.file.name,
@@ -41,15 +42,14 @@ class TicketsNewPage extends React.Component {
           lastModified: this.state.file.lastModified,
           file: result
         }
-      }).then(attachment_base64 => {
-        jsonData['attachment2'] = attachment_base64
-        this.props.dispatch(ticketActions.add(jsonData))
-        return
       })
+      jsonData['attachment2'] = fileBase64
+      this.props.dispatch(ticketActions.add(jsonData))
+    } else if (this.state.files) {
+
     } else {
       this.props.dispatch(ticketActions.add(jsonData))
     }
-    e.preventDefault();
   }
 
   onFileChange(e) {
