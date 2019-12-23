@@ -311,13 +311,15 @@
 
   .tickets__new {
     textarea {
-      min-height: pxtovh(163)
+      min-height: pxtovh(163);
+      resize: none;
     }
   }
 
   .tickets__view {
     textarea {
       min-height: pxtovh(71);
+      resize: none;
     }
   }
 
