@@ -4,14 +4,19 @@ import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
+import MultiFileUpload from './MultiFileUpload';
 
 class TicketForm extends React.Component {
+
+
   constructor(props) {
     super(props)
     this.state = {
-      file: null
+      file: null,
+      files: [null]
     }
-    this.onFileChange = this.onFileChange.bind(this)
+    this.onFileChange = this.onFileChange.bind(this);
+    this.onFilesChange = this.onFilesChange.bind(this);
   }
 
   onFileChange(e) {
@@ -19,6 +24,21 @@ class TicketForm extends React.Component {
     // console.log('onFileChange', e.target.files);
     // if (e.target && e.target.files && e.target.files.length > 0)
     this.setState({ file: e.target.files[0] });
+  }
+
+  onFilesChange(e) {
+    e.preventDefault();
+    // console.log('target files', e.target.files, [...e.target.files]);
+
+    if (e.target.files && e.target.files.length > 0) {
+      const previews = [...e.target.files].map((item, index) => {
+        // console.log(item);
+        return URL.createObjectURL(item);
+      });
+      // console.log('on files change', previews);
+
+      this.setState({ files: previews })
+    }
   }
 
   onTicketClose(e, id) {
@@ -59,8 +79,8 @@ class TicketForm extends React.Component {
           </div>
         </div> */}
 
-        {/* custom file input */}
-        <div className="form-group row">
+        {/* custom file input - single file upload */}
+        {/* <div className="form-group row">
           <div className="col-sm-4">
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
@@ -71,7 +91,33 @@ class TicketForm extends React.Component {
               <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file || ''} required={false} />
             </div>
           </div>
+        </div> */}
+
+        {/* <MultiFileUpload /> */}
+
+        {/* custom file input - multi file upload with preview */}
+        <div className="form-group row">
+          <div className="col-sm-4">
+            <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
+          </div>
+
+          <div className="file col-sm-8">
+            <div className="upload-btn-wrapper">
+              <button className="btn">Select a file</button>
+              <input type="file" name="attachment" onChange={this.onFilesChange}
+                required={false} multiple={true} />
+            </div>
+          </div>
         </div>
+
+        {(this.state.files && this.state.files.length > 0) &&
+          <div className="form-group row multi-preview">
+            {(this.state.files || []).map((url, index) => (
+              <img key={`ticket-preview${index}`} className="col-md-3 img-fluid" src={url} alt="..." />
+            ))}
+          </div>
+        }
+
 
         <div className="form-group row">
           <div className="col-sm-4">
