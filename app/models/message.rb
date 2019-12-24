@@ -13,7 +13,8 @@ class Message < ApplicationRecord
   end
   
   def attachment_url
-    rails_blob_url(self.attachment, host: Rails.application.config.host) if self.attachment.attached?
+    # rails_blob_url(self.attachment, host: Rails.application.config.host) if self.attachment.attached?
+    rails_blob_url(self.attachment) if self.attachment.attached?
   end
 
   def attachment_name
