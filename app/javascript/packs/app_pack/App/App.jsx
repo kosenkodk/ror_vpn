@@ -44,7 +44,8 @@ class App extends React.Component {
       this.isFooterVisible()
 
       // reset ticket's statuses
-      this.resetTicketStatusesByLocation(location)
+      if (this.props.loggedIn)
+        this.resetTicketStatusesByLocation(location)
     });
   }
 
@@ -297,9 +298,11 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { loggedIn } = state.authentication
   const { page } = state.tickets;
   const { departments } = state;
   return {
+    loggedIn,
     departments,
     page // tickets page
   };
