@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // import TicketViewModal from './TicketViewModal'
 import { urls } from 'config';
 import { history } from '../_helpers';
-import { TextCut } from './TextCut';
+import { TextCut } from '../_components/admin';
 
 class TicketTableItem extends React.Component {
 

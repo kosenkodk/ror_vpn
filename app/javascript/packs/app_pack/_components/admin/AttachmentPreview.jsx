@@ -18,4 +18,4 @@ class AttachmentPreview extends React.Component {
   }
 }
 
-export default AttachmentPreview;
+export { AttachmentPreview };
