@@ -41,6 +41,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
 
   config.host = 'localhost'
+  config.port = 3000
+  Rails.application.routes.default_url_options[:host] = "#{config.host}:#{config.port}"
+
   config.action_mailer.default_url_options = { host: config.host, port: 3000 }
   config.action_mailer.default_options = { from: "VegaVPN <no-reply@#{config.host}>" }
 

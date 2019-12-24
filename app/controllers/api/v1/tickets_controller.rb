@@ -42,12 +42,20 @@ class Api::V1::TicketsController < Api::V1::ApiController
     department_id = params[:ticket][:department]
     attachment_error = ''
 
-    # multiple attachment uploading
-    attachments = params[:ticket][:attachments]
-    attachments.each do |attachment|
-      file_params = get_attachment_base64(attachment)
-      @ticket.attachments.attach(file_params) if file_params.present?
-    end
+    # begin
+      # multiple attachment uploading
+      attachments = params[:ticket][:attachments]
+      if (attachments.present?)
+        attachments.each do |attachment|
+          file_params = get_attachment_base64(attachment)
+          @ticket.attachments.attach(file_params) if file_params.present?
+        end
+      end
+    # rescue => exception
+    #   attachment_error = I18n.t('api.errors.attachment_upload')
+    #   render json: { error: attachment_error, status: 400 }
+    #   return
+    # end
 
     begin
       # single attachment uploading
