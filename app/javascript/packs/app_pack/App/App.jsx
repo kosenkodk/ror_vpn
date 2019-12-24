@@ -44,7 +44,7 @@ class App extends React.Component {
       this.isFooterVisible()
 
       // reset ticket's statuses
-      if (this.props.loggedIn)
+      if (this.props.loggedIn) // users account
         this.resetTicketStatusesByLocation(location)
     });
   }
