@@ -40,8 +40,8 @@ class Message extends React.Component {
           } */}
 
           {/* multiple attachments */}
-          {item && item.attachmentList && item.attachmentList.map(item =>
-            <div className="form-group row">
+          {item && item.attachmentList && item.attachmentList.map((item, index) =>
+            <div className="form-group row" key={`message${index}`}>
               <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
               <div className="col-sm-8">
                 <a className="" href={item.url}>{item.name}</a>
