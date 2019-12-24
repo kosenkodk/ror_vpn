@@ -29,7 +29,7 @@ class TicketForm extends React.Component {
     e.preventDefault();
     if (e.target.files && e.target.files.length > 0) {
       const imagePreviews = [...e.target.files].map((item, index) => {
-        return URL.createObjectURL(item);
+        return { file: item, url: URL.createObjectURL(item) };
       });
       this.setState({ imagePreviews: imagePreviews })
     }
