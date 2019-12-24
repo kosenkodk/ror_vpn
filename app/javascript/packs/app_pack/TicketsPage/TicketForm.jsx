@@ -98,7 +98,7 @@ class TicketForm extends React.Component {
           <div className="file col-sm-8">
             <div className="upload-btn-wrapper">
               <button className="btn">Select files</button>
-              <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} />
+              <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
             </div>
           </div>
         </div>

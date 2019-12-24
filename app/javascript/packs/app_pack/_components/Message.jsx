@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { NewLineToBr } from '../_components'
-import { AttachmentPreview } from './admin'
 
 class Message extends React.Component {
 
@@ -45,7 +44,13 @@ class Message extends React.Component {
             <div className="">
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
               {item.attachmentList.map((item, index) =>
-                <img className="p-1 col-sm-4 col-md-3 col-lg-2 img-thumbnail img-fluid" src={item.url} alt={item.name} />
+                <React.Fragment>
+                  {(item.content_type === 'application/pdf') ?
+                    <a className="p-1 col-sm-4 col-md-3 col-lg-2 img-thumbnail" href={item.url}>{item.name}</a>
+                    :
+                    <img className="p-1 col-sm-4 col-md-3 col-lg-2 img-thumbnail img-fluid" src={item.url} alt={item.content_type} />
+                  }
+                </React.Fragment>
               )}
             </div>
           }

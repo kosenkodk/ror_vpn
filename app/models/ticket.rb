@@ -25,7 +25,7 @@ class Ticket < ApplicationRecord
   end
 
   def attachmentList
-    self.attachments.map { |item| { url: rails_blob_url(item), name: item.blob.filename } }
+    self.attachments.map { |item| { url: rails_blob_url(item), name: item.blob.filename, content_type: item.blob.content_type } }
   end
 
   def attachment_url
