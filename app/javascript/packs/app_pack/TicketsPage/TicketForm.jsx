@@ -4,8 +4,8 @@ import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
-// import MultiFileUpload from './MultiFileUpload';
-import AttachmentPreview from './AttachmentPreview';
+// import { MultiFileUpload } from '../_components/admin';
+import { AttachmentPreview } from '../_components/admin';
 
 class TicketForm extends React.Component {
   constructor(props) {

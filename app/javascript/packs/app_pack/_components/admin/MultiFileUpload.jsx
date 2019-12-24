@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class MultiFileUpload extends Component {
+class MultiFileUpload extends Component {
 
   fileObj = [];
   fileArray = [];
@@ -44,3 +44,5 @@ export default class MultiFileUpload extends Component {
     )
   }
 }
+
+export { MultiFileUpload }
