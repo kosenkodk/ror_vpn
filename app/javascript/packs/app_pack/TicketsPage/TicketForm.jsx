@@ -75,7 +75,7 @@ class TicketForm extends React.Component {
         </div> */}
 
         {/* custom file input - single file upload */}
-        <div className="form-group row">
+        {/* <div className="form-group row">
           <div className="col-sm-4">
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
           </div>
@@ -86,7 +86,7 @@ class TicketForm extends React.Component {
               <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file || ''} required={false} />
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* custom file input - multi file upload with images preview */}
         <div className="form-group row">
