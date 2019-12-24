@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { NewLineToBr } from '../_components'
+import { AttachmentPreview } from './admin'
 
 class Message extends React.Component {
 
@@ -40,14 +41,14 @@ class Message extends React.Component {
           } */}
 
           {/* multiple attachments */}
-          {item && item.attachmentList && item.attachmentList.map((item, index) =>
-            <div className="form-group row" key={`message${index}`}>
-              <label htmlFor="ticketAttachment" className="col-sm-4">{I18n.t('pages.tickets.form.attachment')}:</label>
-              <div className="col-sm-8">
-                <a className="" href={item.url}>{item.name}</a>
-              </div>
+          {item && item.attachmentList &&
+            <div className="">
+              <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
+              {item.attachmentList.map((item, index) =>
+                <img className="p-1 col-sm-4 col-md-3 col-lg-2 img-thumbnail img-fluid" src={item.url} alt={item.name} />
+              )}
             </div>
-          )}
+          }
         </div>
       </React.Fragment>
     )
