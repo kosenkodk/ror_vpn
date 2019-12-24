@@ -5,6 +5,7 @@ import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
 // import MultiFileUpload from './MultiFileUpload';
+import AttachmentPreview from './AttachmentPreview';
 
 class TicketForm extends React.Component {
   constructor(props) {
@@ -102,15 +103,7 @@ class TicketForm extends React.Component {
           </div>
         </div>
 
-        {(this.state.imagePreviews && this.state.imagePreviews.length > 0) &&
-          <div className="form-group row multi-preview no-gutters">
-            {(this.state.imagePreviews || []).map((url, index) => (
-              <div className="col-sm-6 col-md-4 p-1" key={`ticket-preview${index}`} >
-                <img className="img-fluid img-thumbnail" src={url} alt="..." />
-              </div>
-            ))}
-          </div>
-        }
+        <AttachmentPreview items={this.state.imagePreviews} />
         {/* end custom file input - multi file upload with images preview */}
 
         <div className="form-group row">
