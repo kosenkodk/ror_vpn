@@ -52,7 +52,7 @@ class Ticket < ApplicationRecord
         messages: {
           only: [:id, :text],
           include: :user, 
-          methods: [:created_at_humanize, :attachment_url, :attachment_name]
+          methods: [:created_at_humanize, :attachment_url, :attachment_name, :attachmentList]
         }
       },
       methods: [:created_at_humanize, :attachment_url, :attachment_name, :attachmentList

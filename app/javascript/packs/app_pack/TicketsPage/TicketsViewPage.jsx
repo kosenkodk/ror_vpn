@@ -50,9 +50,10 @@ class TicketsViewPage extends React.Component {
             {/* initial ticket message with attachment */}
             {item && item.messages && <Messages items={item.messages} />}
 
-            {item && item.attachmentList && item.attachmentList.map(item =>
+            {/* ticket's thumbnails */}
+            {/* {item && item.attachmentList && item.attachmentList.map(item =>
               <a className="" href={item.url}><img src={item.url} className="col-sm-6 col-md-4 img-fluid img-thumbnail" />{item.name}</a>
-            )}
+            )} */}
 
           </div>
         </div>

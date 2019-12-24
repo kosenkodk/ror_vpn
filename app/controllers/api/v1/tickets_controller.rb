@@ -41,10 +41,14 @@ class Api::V1::TicketsController < Api::V1::ApiController
     @ticket = current_user.tickets.build(item_params.except(:department, :attachment, :attachment2))
     department_id = params[:ticket][:department]
     attachment_error = ''
-
+    attachments = params[:ticket][:attachments]
+    
     begin
-      # multiple attachment uploading for ticket
-      attachments = params[:ticket][:attachments]
+      # ticket with single attachment uploading
+      file_params = get_attachment_base64(params[:ticket][:attachment2])
+      @ticket.attachment.attach(file_params) if file_params.present?
+
+      # ticket with multiple attachments uploading
       if (attachments.present?)
         attachments.each do |attachment|
           file_params = get_attachment_base64(attachment)
@@ -58,23 +62,23 @@ class Api::V1::TicketsController < Api::V1::ApiController
       return
     end
 
-    begin
-      # single attachment uploading
-      file_params = get_attachment_base64(params[:ticket][:attachment2])
-      @ticket.attachment.attach(file_params) if file_params.present?
-    rescue => exception
-      attachment_error = I18n.t('api.errors.attachment_upload')
-      render json: { error: attachment_error, status: 400 }
-      return
-    end
-
     @ticket.save!
 
     begin
-      # @ticket.messages << Message.create(title: @ticket.title, text: @ticket.text, user_id: @ticket.user.id, ticket_id: @ticket.id)
-      file_params = get_attachment_base64(params[:ticket][:attachment2])
       message = Message.new(title: @ticket.title, text: @ticket.text, user_id: @ticket.user.id, ticket_id: @ticket.id)
+
+      # message with single attachment uploading
+      file_params = get_attachment_base64(params[:ticket][:attachment2])
       message.attachment.attach(file_params) if file_params.present?
+      
+      # message with multiple attachments uploading
+      if (attachments.present?)
+        attachments.each do |attachment|
+          file_params = get_attachment_base64(attachment)
+          message.attachments.attach(file_params) if file_params.present?
+        end
+      end
+
       message.save
       @ticket.messages << message
     rescue => exception
