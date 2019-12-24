@@ -77,12 +77,13 @@ Rails.application.configure do
   }
 
   config.host = 'vega.isit.su'
+  Rails.application.routes.default_url_options[:host] = config.host
+  config.action_mailer.default_url_options = { host: config.host }
+  config.action_mailer.default_options = { from: "VegaVPN <no-reply@#{config.host}>" }
+  # config.action_mailer.asset_host = "#{Rails.application.config.host}/packs/media/images/"
+  
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: "VegaVPN <no-reply@#{config.host}>" }
-  config.action_mailer.default_url_options = { host: config.host }
-
-  # config.action_mailer.asset_host = "#{Rails.application.config.host}/packs/media/images/"
 
   # 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

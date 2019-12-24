@@ -23,21 +23,13 @@ class Ticket < ApplicationRecord
     url = root_url(host: Rails.application.config.host)
     "#{url}user/tickets/#{self.id}"
   end
-  
-  def attachmentListWithoutPort
-    self.attachments.map { |item| { url: rails_blob_url(item, host: Rails.application.config.host), name: item.blob.filename } }
-  end
 
   def attachmentList
     self.attachments.map { |item| { url: rails_blob_url(item), name: item.blob.filename } }
   end
 
-  def attachments_url
-    self.attachments.map { |item| rails_blob_url(item, host: Rails.application.config.host) }
-  end
-
   def attachment_url
-    rails_blob_url(self.attachment, host: Rails.application.config.host) if self.attachment.attached?
+    rails_blob_url(self.attachment) if self.attachment.attached?
   end
 
   def attachment_name
@@ -49,7 +41,7 @@ class Ticket < ApplicationRecord
   end
 
   def created_at_humanize
-    self.created_at.try(:strftime,"%d %B %Y at %H:%M") #to_formatted_s(:short) #strftime("%Y-%m-%d %H:%M:%S %Z")
+    self.created_at.try(:strftime, "%d %B %Y at %H:%M") #to_formatted_s(:short) #strftime("%Y-%m-%d %H:%M:%S %Z")
   end
 
   def as_json(options = nil)
@@ -63,7 +55,7 @@ class Ticket < ApplicationRecord
           methods: [:created_at_humanize, :attachment_url, :attachment_name]
         }
       },
-      methods: [:created_at_humanize, :attachment_url, :attachment_name, :attachments_url, :attachmentList
+      methods: [:created_at_humanize, :attachment_url, :attachment_name, :attachmentList
       ],
     ).merge(options || {})
   end
