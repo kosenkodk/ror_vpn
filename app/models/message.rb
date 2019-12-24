@@ -6,6 +6,11 @@ class Message < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
   belongs_to :ticket, class_name: 'Ticket', foreign_key: 'ticket_id', optional: true
   has_one_attached :attachment, dependent: :destroy
+  has_many_attached :attachments, dependent: :destroy
+
+  def attachmentList
+    self.attachments.map { |item| { url: rails_blob_url(item), name: item.blob.filename } }
+  end
 
   def attachment_path
     rails_blob_path(self.attachment, only_path: true) if self.attachment.attached?
@@ -29,11 +34,11 @@ class Message < ApplicationRecord
     if self.user.present?
       super(only: [:text],
         include: :user,
-        methods: [:attachment_url, :attachment_name, :created_at_humanize]
+        methods: [:attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )#.merge(options || {})
     else
       super(only: [:text],
-        methods: [:attachment_url, :attachment_name, :created_at_humanize]
+        methods: [:attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )
     end
   end
