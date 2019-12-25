@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { NewLineToBr, ModalPopup } from '../_components'
-import icSvg from 'images/icons/ic_pdf3'
+import icPdf from 'images/icons/ic_pdf3'
 
 class Message extends React.Component {
 
@@ -66,9 +66,20 @@ class Message extends React.Component {
                     {(item.content_type === 'application/pdf') ?
                       <div class="card">
                         <div class="embed-responsive embed-responsive-16by9">
+                          {/* <iframe src={item.url} class="card-img-top embed-responsive-item contain" frameborder="0"></iframe> */}
+                          {/* <iframe src={item.url} class="card-img-top embed-responsive-item cover" frameborder="0"></iframe> */}
+                          {/* <iframe src={item.url} style="width:600px; height:500px;" frameborder="0"></iframe> */}
+                          {/* 
                           <a className="" href={item.url}>
-                            <img src={icSvg} class="card-img-top embed-responsive-item cover" alt={item.name} />
-                          </a>
+                            <img src={icPdf} class="card-img-top embed-responsive-item cover" alt={item.name} />
+                          </a> */}
+                          <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={icPdf} aTitle={item.name} title={item.name} isShowFooter={false} >
+                            {/* <iframe scrolling="yes" src={item.url} class="card-img-top embed-responsive-item contain" frameborder="0"></iframe> */}
+
+                            <div className="vh-75">
+                              <iframe scrolling="yes" className="w-100 h-100" src={item.url} ></iframe>
+                            </div>
+                          </ModalPopup>
                         </div>
                         {/* <div class="card-body">
                           <h5 class="card-title">{item.name}</h5>
