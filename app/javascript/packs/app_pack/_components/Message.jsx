@@ -66,16 +66,12 @@ class Message extends React.Component {
                     {(item.content_type === 'application/pdf') ?
                       <div class="card">
                         <div class="embed-responsive embed-responsive-16by9">
-                          {/* <iframe src={item.url} class="card-img-top embed-responsive-item contain" frameborder="0"></iframe> */}
-                          {/* <iframe src={item.url} class="card-img-top embed-responsive-item cover" frameborder="0"></iframe> */}
-                          {/* <iframe src={item.url} style="width:600px; height:500px;" frameborder="0"></iframe> */}
-                          {/* 
-                          <a className="" href={item.url}>
+                          {/* pdf viewing in new tab */}
+                          {/* <a className="" href={item.url}>
                             <img src={icPdf} class="card-img-top embed-responsive-item cover" alt={item.name} />
                           </a> */}
+                          {/* pdf viewing in modal popup */}
                           <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={icPdf} aTitle={item.name} title={item.name} isShowFooter={false} >
-                            {/* <iframe scrolling="yes" src={item.url} class="card-img-top embed-responsive-item contain" frameborder="0"></iframe> */}
-
                             <div className="vh-75">
                               <iframe scrolling="yes" className="w-100 h-100" src={item.url} ></iframe>
                             </div>
