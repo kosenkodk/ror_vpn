@@ -16,7 +16,7 @@ const AdminLayout = (props) => (
         <footer className='d-none d-md-block mb-4 mt-auto align-self-center'>© {new Date(Date.now()).getFullYear()} Vega VPN</footer>
       </aside>
 
-      <section className="col-md-9 col-lg background-pink">
+      <section className="col flex-grow-1 background-pink">
         <div className="d-flex flex-column h-100">
           <div className="header text-center w-100">
             <HeaderAdmin />
