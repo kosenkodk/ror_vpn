@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { NewLineToBr } from '../_components'
-import icSvg from 'images/icons/ic_pdf3';
+import icSvg from 'images/icons/ic_pdf3'
 
 class Message extends React.Component {
 
@@ -66,9 +66,11 @@ class Message extends React.Component {
                     {(item.content_type === 'application/pdf') ?
                       <div class="card">
                         <div class="embed-responsive embed-responsive-16by9">
-                          <img src={icSvg} class="card-img-top embed-responsive-item" alt={item.name} />
+                          <a className="" href={item.url}>
+                            <img src={icSvg} class="card-img-top embed-responsive-item cover" alt={item.name} />
+                          </a>
                         </div>
-                        <div class="card-body">
+                        {/* <div class="card-body">
                           <h5 class="card-title">{item.name}</h5>
                           <p class="card-text">
                             <a className="" href={item.url}>{item.name}</a>
@@ -78,12 +80,12 @@ class Message extends React.Component {
                           <small class="text-muted">
                             {item.name}
                           </small>
-                        </div>
+                        </div> */}
                       </div>
                       :
                       <div class="card">
                         <img src={item.url} class="card-img-top" alt={item.name} />
-                        <div class="card-body">
+                        {/* <div class="card-body">
                           <h5 class="card-title">{item.name}</h5>
                           <p class="card-text">
                             <a className="" href={item.url}>{item.name}</a>
@@ -93,7 +95,7 @@ class Message extends React.Component {
                           <small class="text-muted">
                             {item.name}
                           </small>
-                        </div>
+                        </div> */}
                       </div>
                     }
                   </React.Fragment>
