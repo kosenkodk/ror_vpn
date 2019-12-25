@@ -3,22 +3,23 @@ import { ModalPopup } from '../../_components';
 
 class AttachmentImage extends React.Component {
   render() {
-    const { item, index } = this.props;
+    const { name, url, index } = this.props;
+    const item = { 'name': name, 'url': url };
     return (
-      <div class="card">
-        <div class="embed-responsive embed-responsive-16by9">
+      <div className="card">
+        <div className="embed-responsive embed-responsive-16by9">
           <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
-            <img src={item.url} class="card-img-top embed-responsive-item cover" alt={item.name} />
+            <img src={item.url} className="card-img-top embed-responsive-item cover" alt={item.name} />
           </ModalPopup>
         </div>
-        {/* <div class="card-body">
-          <h5 class="card-title">{item.name}</h5>
-          <p class="card-text">
+        {/* <div className="card-body">
+          <h5 className="card-title">{item.name}</h5>
+          <p className="card-text">
             <a className="" href={item.url}>{item.name}</a>
           </p>
         </div>
-        <div class="card-footer">
-          <small class="text-muted">
+        <div className="card-footer">
+          <small className="text-muted">
             {item.name}
           </small>
         </div> */}

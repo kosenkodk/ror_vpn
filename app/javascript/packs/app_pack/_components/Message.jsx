@@ -65,9 +65,9 @@ class Message extends React.Component {
                 {item.attachmentList.map((item, index) =>
                   <React.Fragment>
                     {(item.content_type === 'application/pdf') ?
-                      <AttachmentPdf item={item} index={index} />
+                      <AttachmentPdf name={item.name} url={item.url} index={index} />
                       :
-                      <AttachmentImage item={item} index={index} />
+                      <AttachmentImage name={item.name} url={item.url} index={index} />
                     }
                   </React.Fragment>
                 )}
