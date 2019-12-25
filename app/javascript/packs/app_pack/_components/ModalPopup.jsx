@@ -39,7 +39,7 @@ class ModalPopup extends React.Component {
                     <FlashMessages error={error && error} notice={notice && notice} />
                     {this.props.children}
                   </div>
-                  <div className="modal-footer">
+                  {this.props.isShowFooter && <div className="modal-footer">
                     <div className="d-flex w-100">
                       <button type="button" onClick={this.props.onClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
                       <button type="submit" onClick={this.props.onBtnSave} className="btn btn-pink active" disabled={loading ? true : false}>
@@ -49,6 +49,7 @@ class ModalPopup extends React.Component {
                       </button>
                     </div>
                   </div>
+                  }
                 </div>
               }
             </div>
@@ -66,6 +67,7 @@ ModalPopup.propTypes = {
   isForm: PropTypes.bool,
   aUrl: PropTypes.string,
   aTitle: PropTypes.string,
+  isHideFooter: PropTypes.bool
 }
 
 ModalPopup.defaultProps = {
@@ -76,6 +78,7 @@ ModalPopup.defaultProps = {
   btnSaveText: I18n.t('buttons.save'),
   btnCloseText: I18n.t('buttons.close'),
   btnClasses: '',
+  isShowFooter: true,
   // aUrl: '#',
   // aTitle: ''
 }
