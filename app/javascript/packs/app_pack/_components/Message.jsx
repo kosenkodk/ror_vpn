@@ -87,7 +87,11 @@ class Message extends React.Component {
                       </div>
                       :
                       <div class="card">
-                        <img src={item.url} class="card-img-top" alt={item.name} />
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
+                            <img src={item.url} class="card-img-top embed-responsive-item cover" alt={item.name} />
+                          </ModalPopup>
+                        </div>
                         {/* <div class="card-body">
                           <h5 class="card-title">{item.name}</h5>
                           <p class="card-text">
