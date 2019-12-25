@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ChangePasswordForm, ChangeEmailForm, ModalPopup } from './';
+import { ChangePasswordForm, ChangeEmailForm } from './';
 import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { account } from '../_reducers/account.reducer';
+import { ModalPopup } from '../_components';
 
 class AccountPage extends React.Component {
   constructor(props) {
