@@ -66,12 +66,9 @@ class Message extends React.Component {
                     {(item.content_type === 'application/pdf') ?
                       <div class="card">
                         <div class="embed-responsive embed-responsive-16by9">
-                          <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={icSvg} aTitle={item.name} title={item.name} isShowFooter={false} >
+                          <a className="" href={item.url}>
                             <img src={icSvg} class="card-img-top embed-responsive-item cover" alt={item.name} />
-                          </ModalPopup>
-                          {/* <a className="" href={item.url}>
-                            <img src={icSvg} class="card-img-top embed-responsive-item cover" alt={item.name} />
-                          </a> */}
+                          </a>
                         </div>
                         {/* <div class="card-body">
                           <h5 class="card-title">{item.name}</h5>
