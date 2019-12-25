@@ -44,7 +44,8 @@ class App extends React.Component {
       this.isFooterVisible()
 
       // reset ticket's statuses
-      if (this.props.loggedIn) // users account
+      // if (this.props.loggedIn) // todo: clear local storage with user when token is expire - force logout when get unauth error notification
+      if (location.pathname.startsWith('/user')) // for urls of admin panel only
         this.resetTicketStatusesByLocation(location)
     });
   }
@@ -60,7 +61,8 @@ class App extends React.Component {
 
   resetTicketStatusesByLocation(location) {
     if (this.isMatchUrls(location.pathname, urls.tickets_view.path) ||
-      this.isMatchUrls(location.pathname, urls.tickets.path)) return;
+      this.isMatchUrls(location.pathname, urls.tickets.path)
+    ) return;
     // if (!location.pathname.startsWith('/user/tickets')) {
     this.props.dispatch(ticketActions.filterBy({ page: 1, status: '' }));
     this.props.dispatch(ticketActions.getAll({ page: 1, status: '' }));
