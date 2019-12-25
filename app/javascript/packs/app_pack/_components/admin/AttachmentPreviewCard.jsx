@@ -1,7 +1,7 @@
 import React from 'react';
 import icPdf from 'images/icons/ic_pdf3'
 
-class AttachmentPreview extends React.Component {
+class AttachmentPreviewCard extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -27,4 +27,4 @@ class AttachmentPreview extends React.Component {
   }
 }
 
-export { AttachmentPreview };
+export { AttachmentPreviewCard };
