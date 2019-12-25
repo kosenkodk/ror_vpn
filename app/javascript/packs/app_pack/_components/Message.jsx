@@ -56,7 +56,7 @@ class Message extends React.Component {
             </div>
           } */}
 
-
+          {/* multiple attachments as card group (with filename and link) */}
           {item && item.attachmentList &&
             <div class="">
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
@@ -65,7 +65,9 @@ class Message extends React.Component {
                   <React.Fragment>
                     {(item.content_type === 'application/pdf') ?
                       <div class="card">
-                        <img src={icSvg} class="card-img-top card-img" alt={item.name} />
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <img src={icSvg} class="card-img-top embed-responsive-item" alt={item.name} />
+                        </div>
                         <div class="card-body">
                           <h5 class="card-title">{item.name}</h5>
                           <p class="card-text">
