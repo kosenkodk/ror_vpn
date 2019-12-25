@@ -8,7 +8,7 @@ class AttachmentPreviewCard extends React.Component {
         {(this.props.items && this.props.items.length > 0) &&
           <div className="card-group row">
             {(this.props.items || []).map((item, index) => (
-              <div className="col-sm-4 col-md-3 col-lg-2" key={`attachment-preview-${index}`} >
+              <div className="col-sm-4 col-md-3" key={`attachment-preview-${index}`} >
                 {(item.file.type === 'application/pdf') ?
                   <AttachmentPdf name={item.file.name} url={item.url} index={index} />
                   :
