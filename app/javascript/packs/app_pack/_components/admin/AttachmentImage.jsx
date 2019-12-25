@@ -8,7 +8,7 @@ class AttachmentImage extends React.Component {
     return (
       <div className="card">
         <div className="embed-responsive embed-responsive-16by9">
-          <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
+          <ModalPopup id={`modalForAttachmentImage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
             <img src={item.url} className="card-img-top embed-responsive-item cover" alt={item.name} />
           </ModalPopup>
         </div>
