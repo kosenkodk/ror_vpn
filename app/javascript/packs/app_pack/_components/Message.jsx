@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { NewLineToBr } from '../_components'
+import icSvg from 'images/icons/ic_pdf3';
 
 class Message extends React.Component {
 
@@ -40,7 +41,7 @@ class Message extends React.Component {
           } */}
 
           {/* multiple attachments */}
-          {item && item.attachmentList &&
+          {/* {item && item.attachmentList &&
             <div className="">
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
               {item.attachmentList.map((item, index) =>
@@ -53,7 +54,52 @@ class Message extends React.Component {
                 </React.Fragment>
               )}
             </div>
+          } */}
+
+
+          {item && item.attachmentList &&
+            <div class="">
+              <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
+              <div class="card-group">
+                {item.attachmentList.map((item, index) =>
+                  <React.Fragment>
+                    {(item.content_type === 'application/pdf') ?
+                      <div class="card">
+                        <img src={icSvg} class="card-img-top card-img" alt={item.name} />
+                        <div class="card-body">
+                          <h5 class="card-title">{item.name}</h5>
+                          <p class="card-text">
+                            <a className="" href={item.url}>{item.name}</a>
+                          </p>
+                        </div>
+                        <div class="card-footer">
+                          <small class="text-muted">
+                            {item.name}
+                          </small>
+                        </div>
+                      </div>
+                      :
+                      <div class="card">
+                        <img src={item.url} class="card-img-top" alt={item.name} />
+                        <div class="card-body">
+                          <h5 class="card-title">{item.name}</h5>
+                          <p class="card-text">
+                            <a className="" href={item.url}>{item.name}</a>
+                          </p>
+                        </div>
+                        <div class="card-footer">
+                          <small class="text-muted">
+                            {item.name}
+                          </small>
+                        </div>
+                      </div>
+                    }
+                  </React.Fragment>
+                )}
+              </div>
+            </div>
           }
+
         </div>
       </React.Fragment>
     )
