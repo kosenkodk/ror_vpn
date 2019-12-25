@@ -59,20 +59,20 @@ class Message extends React.Component {
 
           {/* multiple attachments as card group (with filename and link) */}
           {item && item.attachmentList &&
-            <div class="">
+            <React.Fragment>
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
-              <div class="card-group">
+              <div class="card-group row">
                 {item.attachmentList.map((item, index) =>
-                  <React.Fragment>
+                  <div className="col-sm-4 col-md-3 col-lg-2">
                     {(item.content_type === 'application/pdf') ?
                       <AttachmentPdf name={item.name} url={item.url} index={index} />
                       :
                       <AttachmentImage name={item.name} url={item.url} index={index} />
                     }
-                  </React.Fragment>
+                  </div>
                 )}
               </div>
-            </div>
+            </React.Fragment>
           }
 
         </div>
