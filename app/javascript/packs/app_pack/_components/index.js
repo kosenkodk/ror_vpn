@@ -11,3 +11,4 @@ export * from './NewLineToBr';
 
 // import NewLineToBr from './NewLineToBr';
 // export { NewLineToBr };
+export * from './TextCut';

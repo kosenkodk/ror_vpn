@@ -8,4 +8,3 @@ export * from './BackButtonWithTitle';
 export * from './Alert';
 export * from './AttachmentPreview';
 export * from './MultiFileUpload';
-export * from './TextCut';
