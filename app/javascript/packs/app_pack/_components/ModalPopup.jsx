@@ -14,7 +14,7 @@ class ModalPopup extends React.Component {
     const { loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
     return (
       <React.Fragment>
-        {aUrl ? <a className={` ${this.props.btnClasses}`} data-toggle="modal" data-target={`#${id}`}>
+        {aUrl ? <a className={`${this.props.btnClasses} stretched-link`} data-toggle="modal" data-target={`#${id}`}>
           {aImgSrc ? <img src={aImgSrc} className={aImgClasses} /> : aTitle}
         </a>
           :
