@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { NewLineToBr, ModalPopup } from '../_components'
-import icSvg from 'images/icons/ic_pdf3'
+import icPdf from 'images/icons/ic_pdf3'
+import { AttachmentPdf, AttachmentImage } from './admin'
 
 class Message extends React.Component {
 
@@ -58,57 +59,20 @@ class Message extends React.Component {
 
           {/* multiple attachments as card group (with filename and link) */}
           {item && item.attachmentList &&
-            <div class="">
+            <React.Fragment>
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
-              <div class="card-group">
+              <div class="card-group row">
                 {item.attachmentList.map((item, index) =>
-                  <React.Fragment>
+                  <div className="col-sm-4 col-md-3 col-lg-2">
                     {(item.content_type === 'application/pdf') ?
-                      <div class="card">
-                        <div class="embed-responsive embed-responsive-16by9">
-                          <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={icSvg} aTitle={item.name} title={item.name} isShowFooter={false} >
-                            <img src={icSvg} class="card-img-top embed-responsive-item cover" alt={item.name} />
-                          </ModalPopup>
-                          {/* <a className="" href={item.url}>
-                            <img src={icSvg} class="card-img-top embed-responsive-item cover" alt={item.name} />
-                          </a> */}
-                        </div>
-                        {/* <div class="card-body">
-                          <h5 class="card-title">{item.name}</h5>
-                          <p class="card-text">
-                            <a className="" href={item.url}>{item.name}</a>
-                          </p>
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-muted">
-                            {item.name}
-                          </small>
-                        </div> */}
-                      </div>
+                      <AttachmentPdf name={item.name} url={item.url} index={index} />
                       :
-                      <div class="card">
-                        <div class="embed-responsive embed-responsive-16by9">
-                          <ModalPopup id={`modalForMessage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
-                            <img src={item.url} class="card-img-top embed-responsive-item cover" alt={item.name} />
-                          </ModalPopup>
-                        </div>
-                        {/* <div class="card-body">
-                          <h5 class="card-title">{item.name}</h5>
-                          <p class="card-text">
-                            <a className="" href={item.url}>{item.name}</a>
-                          </p>
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-muted">
-                            {item.name}
-                          </small>
-                        </div> */}
-                      </div>
+                      <AttachmentImage name={item.name} url={item.url} index={index} />
                     }
-                  </React.Fragment>
+                  </div>
                 )}
               </div>
-            </div>
+            </React.Fragment>
           }
 
         </div>

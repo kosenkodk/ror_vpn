@@ -7,4 +7,7 @@ export * from './AccordionMenuVerticalCard';
 export * from './BackButtonWithTitle';
 export * from './Alert';
 export * from './AttachmentPreview';
+export * from './AttachmentPreviewCard';
+export * from './AttachmentPdf';
+export * from './AttachmentImage';
 export * from './MultiFileUpload';
