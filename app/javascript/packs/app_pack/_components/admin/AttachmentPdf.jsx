@@ -2,8 +2,9 @@ import React from 'react';
 import icPdf from 'images/icons/ic_pdf3';
 import { ModalPopup } from '../../_components';
 // import { Document, Page } from 'react-pdf';
-import { Document } from 'react-pdf/dist/entry.webpack';
+// import { Document } from 'react-pdf/dist/entry.webpack';
 // import { Document } from 'react-pdf/dist/entry.parcel';
+// import ReactPDF from '@react-pdf/renderer';
 
 class AttachmentPdf extends React.Component {
   render() {
@@ -21,11 +22,14 @@ class AttachmentPdf extends React.Component {
           </object> */}
 
 
-          <Document
+
+          {/* <Document
             file={item.url}
           // url={item.url} // no pdf file specified
           // data={item.url} // no pdf file specified
-          />
+          /> */}
+
+          {/* ReactPDF.render(<MyDocument />, `${__dirname}/example.pdf`); */}
 
           {/* object with embed support on old browsers even on mobiles */}
           {/* <object width="75" height="40" type="application/pdf" data={`${item.url}?#zoom=0&scrollbar=0&toolbar=0&navpanes=0`}> */}
