@@ -4,7 +4,7 @@ import { ModalPopup } from '../../_components';
 // import { Document, Page } from 'react-pdf';
 // import { Document } from 'react-pdf/dist/entry.webpack';
 // import { Document } from 'react-pdf/dist/entry.parcel';
-// import ReactPDF from '@react-pdf/renderer';
+import ReactPDF from '@react-pdf/renderer';
 
 class AttachmentPdf extends React.Component {
   render() {
@@ -21,12 +21,16 @@ class AttachmentPdf extends React.Component {
             </embed>
           </object> */}
 
-
+          <ReactPDF
+            file={{
+              data: { url }
+            }}
+          />
 
           {/* <Document
-            file={item.url}
-          // url={item.url} // no pdf file specified
-          // data={item.url} // no pdf file specified
+            file={url}
+            // url={url} // no pdf file specified
+          // data={url} // no pdf file specified
           /> */}
 
           {/* ReactPDF.render(<MyDocument />, `${__dirname}/example.pdf`); */}
