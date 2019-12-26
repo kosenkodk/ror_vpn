@@ -31,6 +31,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "webpack-dev-server": "^3.8.1"
   }
 }
