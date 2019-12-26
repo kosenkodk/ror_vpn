@@ -1,6 +1,7 @@
 import React from 'react';
 import icPdf from 'images/icons/ic_pdf3';
 import { ModalPopup } from '../../_components';
+import PdfPreview from "react-pdf-preview";
 
 class AttachmentPdf extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class AttachmentPdf extends React.Component {
     return (
       <div className="card">
         <div className="embed-responsive embed-responsive-16by9">
+          <PdfPreview src={item.url} />
           {/* <iframe scrolling="auto" width="200" height="150" src={item.url} title={item.name} frameborder="1" ></iframe> */}
           {/* <object width="400" height="500" type="application/pdf" data={`${item.url}?#zoom=85&scrollbar=0&toolbar=0&navpanes=0`}>
             <embed src={item.url} type="application/pdf">
@@ -17,13 +19,13 @@ class AttachmentPdf extends React.Component {
             </embed>
           </object> */}
 
-          <object width="75" height="40" type="application/pdf" data={`${item.url}?#zoom=0&scrollbar=0&toolbar=0&navpanes=0`}>
-            <embed src={item.url} type="application/pdf" />
-            {/* <embed src={item.url} type="application/pdf"> */}
-            {/* <p>{item.name}PDF cannot be displayed.</p> */}
-            {/* <p>This browser does not support PDFs. Please download the {item.name} to view it: <a href={item.url}>Download {item.name}</a>.</p> */}
-            {/* </embed> */}
-          </object>
+          {/* <object width="75" height="40" type="application/pdf" data={`${item.url}?#zoom=0&scrollbar=0&toolbar=0&navpanes=0`}>
+            <embed src={item.url} type="application/pdf" /> */}
+          {/* <embed src={item.url} type="application/pdf"> */}
+          {/* <p>{item.name}PDF cannot be displayed.</p> */}
+          {/* <p>This browser does not support PDFs. Please download the {item.name} to view it: <a href={item.url}>Download {item.name}</a>.</p> */}
+          {/* </embed> */}
+          {/* </object> */}
 
           {/* <object className="attachment-pdf" id={index} data={item.url} type="application/pdf">
             <embed src={item.url} type="application/pdf" />
