@@ -10,10 +10,12 @@ class AttachmentImage extends React.Component {
         <div class="row row-flex">
           <div class="col">
             <div class="content">
-              <ModalPopup id={`modalForAttachmentImage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
-                <img src={item.url} className="card-img-top embed-responsive-item cover" alt={item.name} />
-              </ModalPopup>
-              <p className="word-wrap p-2"><small>{item.name}</small></p>
+              <div className="embed-responsive embed-responsive-16by9">
+                <ModalPopup id={`modalForAttachmentImage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
+                  <img src={item.url} className="card-img-top embed-responsive-item cover" alt={item.name} />
+                </ModalPopup>
+              </div>
+              <p className="word-wrap p-2 text-center"><small>{item.name}</small></p>
             </div>
           </div>
         </div>
