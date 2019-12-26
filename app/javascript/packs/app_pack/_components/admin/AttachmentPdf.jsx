@@ -20,6 +20,13 @@ class AttachmentPdf extends React.Component {
             </div>
           </ModalPopup>
         </div>
+        <div className="card-footer">
+          <div className="embed-responsive embed-responsive-16by9">
+            <small className="text-muted embed-responsive-item ">
+              {item.name}
+            </small>
+          </div>
+        </div>
         {/* <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
           <p className="card-text">
@@ -30,7 +37,7 @@ class AttachmentPdf extends React.Component {
           <small className="text-muted">
             {item.name}
           </small>
-        </div> */}
+        </div>  */}
       </div>
     );
   }
