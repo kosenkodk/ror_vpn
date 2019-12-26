@@ -78,7 +78,7 @@ Rails.application.configure do
 
   config.host = 'vega.isit.su'
   Rails.application.routes.default_url_options[:host] = config.host
-  # Rails.application.routes.default_url_options[:protocol] = 'https'
+  Rails.application.routes.default_url_options[:protocol] = 'https'
 
   config.action_mailer.default_url_options = { host: config.host }
   config.action_mailer.default_options = { from: "VegaVPN <no-reply@#{config.host}>" }
