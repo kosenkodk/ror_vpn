@@ -61,7 +61,7 @@ class DeleteForm extends React.Component {
             <div className="col-sm-2"></div>
           </div>
 
-          <div className="form-group row align-items-center">
+          <div className="form-group row align-items-center mb-0">
             <label htmlFor="password_old" className="col-sm-4 col-form-label">
               Login password</label>
             <div className="col-sm-6">
