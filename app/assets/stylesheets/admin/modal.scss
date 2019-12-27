@@ -10,6 +10,7 @@
 .modal-content {
   padding: 15px 5px;
   padding: pxtovh(20px) pxtovw(20px);
+  border-radius: pxtovw(10px);
 
   background: $white;
   color: $black;
@@ -40,7 +41,20 @@
     // padding: 1rem 0rem;
   }
 
-  .modal-footer {}
+  .modal-dialog {
+    word-break: break-all;
+  }
+
+  .modal-body {
+    padding-bottom: 0;
+  }
+
+  .modal-footer {
+    padding-bottom: pxtovh(31); 
+    border: unset;
+    padding-top: 0;
+  }
+
   .modal-header {
     border: unset;
     .close {

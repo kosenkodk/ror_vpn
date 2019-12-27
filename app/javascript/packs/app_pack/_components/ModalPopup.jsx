@@ -35,11 +35,11 @@ class ModalPopup extends React.Component {
               {this.props.isForm ?
                 this.props.children :
                 <div>
-                  <div className="modal-body mt-0">
+                  <div className="modal-body mt-0 pb-0">
                     <FlashMessages error={error && error} notice={notice && notice} />
                     {this.props.children}
                   </div>
-                  {this.props.isShowFooter && <div className="modal-footer">
+                  {this.props.isShowFooter && <div className="modal-footer pt-0">
                     <div className="d-flex w-100">
                       <button type="button" onClick={this.props.onClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
                       <button type="submit" onClick={this.props.onBtnSave} className="btn btn-pink active" disabled={loading ? true : false}>
