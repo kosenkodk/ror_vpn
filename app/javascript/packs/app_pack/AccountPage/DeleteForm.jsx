@@ -21,7 +21,7 @@ class DeleteForm extends React.Component {
     const { email } = this.state;
     const { loading, error, notice } = this.props;
     return (
-      <form onSubmit={this.props.onFormSubmit}>
+      <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
         <div className="modal-body">
           <FlashMessages error={error && error} notice={notice && notice} />
           {/* <div className="form-group row align-items-center">
@@ -31,9 +31,9 @@ class DeleteForm extends React.Component {
 
           <div className="border-left-pink mt-0">
             <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
-            <p className="m-0">If you wish to delete this account in order to combine it with another one, do NOT delete it.
-                  {/* <a>Learn more</a> */}
+            <p className="mt-0 mb-2">If you wish to delete this account in order to combine it with another one, do NOT delete it.
             </p>
+            <a href="#" className="mt-1 text-blue">Learn more</a>
           </div>
 
           <div className="form-group row">
@@ -42,7 +42,7 @@ class DeleteForm extends React.Component {
               Feedback
               </label>
             <div className="col-sm-6">
-              <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} rows="6" placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
+              <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
             </div>
             <div className="col-sm-2"></div>
           </div>
@@ -54,8 +54,9 @@ class DeleteForm extends React.Component {
             </label>
             <div className="col-sm-6">
               <input type="hidden" name="id" value={this.props.id && this.props.id} />
-              <input type="text" name="title" required={true} className="form-control" defaultValue={this.props.title} placeholder={I18n.t('pages.tickets.form.help.title')} />
-              <p className="">Please provide an email address in case we need to contact you.</p>
+              <input type="text" name="title" required={true} className="form-control" defaultValue={this.props.title} placeholder={I18n.t('pages.tickets.form.help.title')} aria-describedby="emailHelp" />
+              {/* <p className="">Please provide an email address in case we need to contact you.</p> */}
+              <p id="emailHelp" className="form-text">Please provide an email address in case we need to contact you.</p>
             </div>
             <div className="col-sm-2"></div>
           </div>

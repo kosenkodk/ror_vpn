@@ -22,14 +22,6 @@
     }
   }
 
-  .modal-dialog {
-    word-break: break-all;
-  }
-
-  .modal-footer {
-    padding-bottom: pxtovh(31); 
-  }
-
   .col-form-label {
     font-weight: $font-bold;
   }
@@ -448,6 +440,15 @@
     }
   }
 
+  .account-delete-form {
+    textarea {
+      min-height: pxtovh(90);
+      resize: none;
+    }
+    p {
+      margin: 1rem 0;
+    }
+  }
   @import "admin/desktop";
   
   /*
