@@ -26,6 +26,10 @@
     word-break: break-all;
   }
 
+  .modal-footer {
+    padding-bottom: pxtovh(31);
+  }
+
   .col-form-label {
     font-weight: $font-bold;
   }
