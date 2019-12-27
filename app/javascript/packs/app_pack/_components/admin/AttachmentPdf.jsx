@@ -7,9 +7,9 @@ class AttachmentPdf extends React.Component {
     const { name, url, index } = this.props;
     const item = { 'name': name, 'url': url };
     return (
-      <div class="row row-flex">
+      <div class="row">
         <div class="col">
-          <div class="content">
+          <div class="h-100">
             <div className="embed-responsive embed-responsive-16by9">
               <ModalPopup id={`modalForAttachmentPdf${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={icPdf} aTitle={item.name} title={item.name} isShowFooter={false} >
                 <div className="vh-75">
