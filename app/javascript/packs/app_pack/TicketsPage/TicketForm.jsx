@@ -103,8 +103,8 @@ class TicketForm extends React.Component {
           </div>
         </div>
 
-        <AttachmentPreviewCard items={this.state.imagePreviews} />
-        {/* <AttachmentPreview items={this.state.imagePreviews} /> */}
+        {/* <AttachmentPreviewCard items={this.state.imagePreviews} /> */}
+        <AttachmentPreview items={this.state.imagePreviews} />
         {/* end custom file input - multi file upload with images preview */}
 
         <div className="form-group row">
