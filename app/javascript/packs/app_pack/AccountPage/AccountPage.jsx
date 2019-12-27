@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ChangePasswordForm, ChangeEmailForm } from './';
+import { DeleteForm, ChangePasswordForm, ChangeEmailForm } from './';
 import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
@@ -170,15 +170,11 @@ class AccountPage extends React.Component {
                   Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
               </p>
               </div>
-              <ModalPopup onClose={this.clearModalAlerts} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete you account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
-                <div className="border-left-pink">
-                  <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5>
-                  <p>If you wish to delete this account in order to combine it with another one, do NOT delete it.
-                  {/* <a>Learn more</a> */}
-                  </p>
-                </div>
+              <ModalPopup onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+                <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
               </ModalPopup>
             </div>
+
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@
   @include fluidFontSize(14px, 41px, 320px, 4096px, 14px);
   @include fluidLineHeight(18px, 106px, 320px, 4096px, 18px);
 
-  h1, h2, h3, h4, h5 {
+  h1, h2, h3, h4, h5, h6 {
     font-weight: $font-bold;
   }
 
@@ -27,7 +27,7 @@
   }
 
   .modal-footer {
-    padding-bottom: pxtovh(31);
+    padding-bottom: pxtovh(31); 
   }
 
   .col-form-label {
