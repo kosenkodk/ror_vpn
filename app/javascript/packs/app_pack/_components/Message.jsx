@@ -58,7 +58,7 @@ class Message extends React.Component {
           } */}
 
           {/* multiple attachments as card group (with filename and link) */}
-          {item && item.attachmentList &&
+          {item && item.attachmentList && item.attachmentList.length > 0 &&
             <React.Fragment>
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
               <div class="row">
