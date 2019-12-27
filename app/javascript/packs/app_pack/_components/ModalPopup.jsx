@@ -35,7 +35,7 @@ class ModalPopup extends React.Component {
               {this.props.isForm ?
                 this.props.children :
                 <div>
-                  <div className="modal-body mt-0 pb-0">
+                  <div className="modal-body mt-0">
                     <FlashMessages error={error && error} notice={notice && notice} />
                     {this.props.children}
                   </div>
