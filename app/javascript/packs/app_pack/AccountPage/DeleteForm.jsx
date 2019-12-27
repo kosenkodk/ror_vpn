@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavHashLink as Link } from 'react-router-hash-link';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
@@ -33,7 +34,7 @@ class DeleteForm extends React.Component {
             <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
             <p className="mt-0 mb-2">If you wish to delete this account in order to combine it with another one, do NOT delete it.
             </p>
-            <a href="#" className="mt-1 text-blue">Learn more</a>
+            <Link to="#" className="mt-1 text-blue">Learn more</Link>
           </div>
 
           <div className="form-group row">
