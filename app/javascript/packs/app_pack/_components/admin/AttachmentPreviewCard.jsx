@@ -1,5 +1,5 @@
 import React from 'react';
-import { AttachmentImage, AttachmentPdf } from './';
+import { AttachmentImageCard, AttachmentPdfCard } from './';
 
 class AttachmentPreviewCard extends React.Component {
   render() {
@@ -10,9 +10,9 @@ class AttachmentPreviewCard extends React.Component {
             {(this.props.items || []).map((item, index) => (
               <div className="col-sm-4 col-md-3" key={`attachment-preview-${index}`} >
                 {(item.file.type === 'application/pdf') ?
-                  <AttachmentPdf name={item.file.name} url={item.url} index={index} />
+                  <AttachmentPdfCard name={item.file.name} url={item.url} index={index} />
                   :
-                  <AttachmentImage name={item.file.name} url={item.url} index={index} />
+                  <AttachmentImageCard name={item.file.name} url={item.url} index={index} />
                 }
               </div>
             ))}
