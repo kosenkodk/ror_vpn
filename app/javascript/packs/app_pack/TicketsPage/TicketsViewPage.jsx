@@ -42,7 +42,7 @@ class TicketsViewPage extends React.Component {
       <div className="container-fluid">
         <div id="" className="tickets tickets__view row mb-4 pb-1">
           <div className="col-12">
-            <BackButtonWithTitle title={`${I18n.t('pages.tickets.form.title')}: ${item && item.title}`} url={urls.tickets.path} />
+            <BackButtonWithTitle title={`${I18n.t('pages.tickets.form.title')}: ${(item && item.title) || title}`} url={urls.tickets.path} />
             {/* <BackButtonWithTitle url={urls.tickets.path}>
               <h4 className="mt-2 font-weight-bold">{this.state.subTitle}</h4>
             </BackButtonWithTitle> */}
@@ -67,6 +67,10 @@ function mapStateToProps(state) {
   const { loading, item } = tickets
   const { loggedIn } = authentication
   return { loading, item, loggedIn }
+}
+
+TicketsViewPage.defaultProps = {
+  title: ''
 }
 
 const connectedApp = connect(mapStateToProps)(TicketsViewPage)
