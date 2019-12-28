@@ -134,9 +134,12 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
     context 'success' do
       it 'if user is signed in' do
-        delete :delete
+        delete :delete, params: {email_contact: 'contactme@email.com', message: 'delete reason'}
         expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
         expect(response_json.keys).to eq(['notice'])
+        item = BlackListEmail.find_by(email_contact: 'contactme@email.com')
+        expect(item.message).to eq('delete reason')
+        expect(item.email_contact).to eq('contactme@email.com')
       end
     end
   end
