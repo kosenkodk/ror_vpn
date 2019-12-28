@@ -7,14 +7,15 @@ import { TicketForm } from './TicketForm';
 import { urls } from 'config';
 import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
-import { BackButtonWithTitle } from '../_components/admin';
+import { BackButtonWithTitle, AttachmentPreview } from '../_components/admin';
 
 class TicketsNewPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       file: null,
-      files: []
+      files: [],
+      imagePreviews: []
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
@@ -59,9 +60,12 @@ class TicketsNewPage extends React.Component {
     this.setState({ file: e.target.files[0] });
   }
 
-  onFilesChange(e) {
+  onFilesChange(e, imagePreviews) {
     e.preventDefault();
-    this.setState({ files: e.target.files });
+    this.setState({
+      files: e.target.files,
+      imagePreviews: imagePreviews
+    });
   }
 
   render() {
@@ -73,6 +77,9 @@ class TicketsNewPage extends React.Component {
           <div className="col-md-8 col-xl-7">
             <TicketForm onFilesChange={this.onFilesChange} onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
             {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
+          </div>
+          <div className="col-md-4 col-xl-5">
+            <AttachmentPreview items={this.state.imagePreviews} />
           </div>
         </div>
       </div>
