@@ -132,16 +132,14 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('buttons.delete'))
         expect(find('.alert')).to have_text(I18n.t('pages.account.delete.success'))
         
-
-        # item = BlackListEmail.find_by(email_contact: email_contact)
-        item = BlackListEmail.find_by(email: user.email)
+        item = BlackListEmail.find_by(email_contact: email_contact)
+        # item = BlackListEmail.find_by(email: user.email)
         expect(item.email).to eq(user.email)
         expect(item.email_contact).to eq(email_contact)
         expect(item.message).to eq('delete reason')
-        
+
         fsign_in_as(user)
         expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
-
       end
     end
 
