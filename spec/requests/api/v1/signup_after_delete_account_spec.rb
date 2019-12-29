@@ -1,13 +1,15 @@
 require "rails_helper"
 
 RSpec.describe "Sign up after delete account", type: :request do
-  let(:user) { create(:user) }
   let(:password) { 'password' }
+  let(:user) { create(:user, password: password, password_confirmation: password) }
 
   describe 'auth users' do
     let(:access_cookie) { @tokens[:access] }
     let(:csrf_token) { @tokens[:csrf] }
     
+    let(:delete_params_valid) { { password: password } }
+
     before {
       payload = { user_id: user.id }
       session = JWTSessions::Session.new(payload: payload, 
@@ -21,10 +23,10 @@ RSpec.describe "Sign up after delete account", type: :request do
     }
 
     context 'success' do
-      let(:user_params) { { email: 'different@email.com', password: password, password_confirmation: password } }
+      let(:user_params) { { email: 'different@email.com', password: user.password, password_confirmation: user.password } }
 
       it 'with the different email of deleted account' do
-        delete '/api/v1/delete', headers: @headers
+        delete '/api/v1/delete', params: delete_params_valid, headers: @headers
         expect(response.body).to include(I18n.t('pages.account.delete.success'))
         expect(response.status).to eq(200)
 
@@ -37,10 +39,10 @@ RSpec.describe "Sign up after delete account", type: :request do
     end
 
     context 'failure' do
-      let(:user_params) { { email: user.email, password: password, password_confirmation: password } }
+      let(:user_params) { { email: user.email, password: user.password, password_confirmation: user.password } }
 
       it 'with the same email of deleted account' do
-        delete '/api/v1/delete', headers: @headers
+        delete '/api/v1/delete', params: delete_params_valid, headers: @headers
         expect(response.body).to include(I18n.t('pages.account.delete.success'))
         expect(response.status).to eq(200)
 
