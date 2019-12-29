@@ -18,7 +18,7 @@ class ChangeEmailForm extends React.Component {
   }
 
   render() {
-    const { email } = this.state;
+    const { email, password } = this.state;
     const { loading, error, notice } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit}>
@@ -29,15 +29,8 @@ class ChangeEmailForm extends React.Component {
             <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
           </div>
           <div className="form-group row align-items-center mb-0">
-            <label htmlFor="password" className="col-sm-4 col-form-label">
-              Login password</label>
-            <div className="col-sm-6 form-control">
-              <input type="password" name="password" className="form-control" id="password"
-                // value={password_old} 
-                onChange={this.handleChange} placeholder='Password'
-              />
-            </div>
-            <div className="col-sm-2"></div>
+            <label htmlFor="password" className="col-sm-4 col-form-label">Login password</label>
+            <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
           </div>
         </div>
         <div className="modal-footer">
