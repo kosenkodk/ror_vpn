@@ -26,8 +26,26 @@ class Api::V1::AccountController < Api::V1::ApiController
 
   def change_email
     if is_pwd_ok params[:password]
+      email = params[:email]
+      # change default validation email message
+      if !email.present?
+        # render json: { error: I18n.t('api.errors.invalid_email') }
+        render json: { error: I18n.t('pages.account.change_email.errors.email_invalid') }
+        return
+      end
+      # if @user.invalid?(email: email)
+      #   render json: { error: I18n.t('api.errors.invalid_email') }
+      #   return
+      # end
       @user.update!(email_params)
       render json: { notice: I18n.t('pages.account.change_email.success') }
+      # if (@user.update(email: email))
+      #   render json: { notice: I18n.t('pages.account.change_email.success') }
+      # else
+      #   # render json: { error: I18n.t('pages.account.change_email.error') }
+      #   # render json: { error: @user.errors.map{|k,v| [k,v] }
+      #   # render json: { error: @user.errors }
+      # end
     else
       render json: { error: I18n.t('api.errors.invalid_password') } #, status: 401 - force logout client 
     end
