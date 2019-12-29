@@ -19,11 +19,15 @@ export const userService = {
   deleteAccount,
 };
 
-function deleteAccount() {
+function deleteAccount(data) {
+  // if (autoRefreshToken)
+  //   return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/delete`, 'DELETE', data)
+
   return fetch(`${config.apiUrl}/delete`, {
     method: 'DELETE',
     credentials: credentials,
-    headers: authHeader()
+    headers: authHeader(),
+    body: JSON.stringify(data)
   })
     .then(handleResponse)
     .then(response => {

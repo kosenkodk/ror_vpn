@@ -16,7 +16,7 @@ function clearAlerts() {
 
 function changePassword(data) {
   return dispatch => {
-    dispatch(request({ data }))
+    dispatch(request(data))
     userService.changeLoginPassword(data)
       .then(
         response => {
@@ -53,10 +53,10 @@ function changeEmail(data) {
   function failure(error) { return { type: accountConstants.UPDATE_EMAIL_FAILURE, error } }
 }
 
-function deleteAccount() {
+function deleteAccount(data) {
   return dispatch => {
-    dispatch(request())
-    userService.deleteAccount()
+    dispatch(request({ data }))
+    userService.deleteAccount({ data })
       .then(
         response => {
           dispatch(success(response.notice))

@@ -6,8 +6,10 @@ class Api::V1::AccountController < Api::V1::ApiController
 
   def delete
     if current_user.present?
+      email_contact = params[:data][:email_contact]
+      message = params[:data][:message]
       # add user.email to blacklist and check it during sign up
-      BlackListEmail.create(email: current_user.email, email_contact: params[:email_contact], message: params[:message])
+      BlackListEmail.create(email: current_user.email, email_contact: email_contact, message: message)
       # todo: add delete reason (feedback) and contact email
 
       current_user.destroy
