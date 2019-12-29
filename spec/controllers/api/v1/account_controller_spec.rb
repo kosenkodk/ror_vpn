@@ -64,7 +64,15 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         patch :change_email, params: {email: email, password: ''}
         expect(response_json.keys).to eq(['error'])
         expect(response_json['error']).to eq(I18n.t('api.errors.invalid_password'))
-        expect(response).to have_http_status(401)
+        # expect(response).to have_http_status(401)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+
+      it 'with empty email and password' do
+        patch :change_email, params: {email: '', password: ''}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq(I18n.t('api.errors.invalid_password'))
+        # expect(response).to have_http_status(401)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
@@ -138,6 +146,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:email_contact) {'contactme@email.com'}
   let(:delete_params_valid) {{password: password, email_contact: email_contact, message: message}}
   let(:delete_params_invalid) {{password: password_invalid, email_contact: email_contact, message: message}}
+  let(:delete_params_empty) {{password: '', email_contact: '', message: ''}}
 
   describe 'delete account' do
 
@@ -166,6 +175,11 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       end
       it 'without params' do
         delete :delete, params: {}
+        expect(response_json.values).to eq([I18n.t('api.errors.invalid_password')])
+        expect(response_json.keys).to eq(['error'])
+      end
+      it 'with empty params' do
+        delete :delete, params: delete_params_empty
         expect(response_json.values).to eq([I18n.t('api.errors.invalid_password')])
         expect(response_json.keys).to eq(['error'])
       end
