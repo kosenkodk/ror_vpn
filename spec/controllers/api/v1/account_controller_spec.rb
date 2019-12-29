@@ -5,7 +5,6 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:password_invalid) { 'password_invalid' }
   let(:password_new) { 'newpassword' }
   let(:user) { create(:user, password: password, password_confirmation: password) }
-  let(:user2) { create(:user, password: password, password_confirmation: password) }
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
  
@@ -125,7 +124,13 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     end
   end
 
+  let(:message) {'delete reason'}
+  let(:email_contact) {'contactme@email.com'}
+  let(:delete_params_valid) {{password: password, email_contact: email_contact, message: message}}
+  let(:delete_params_invalid) {{password: password_invalid, email_contact: email_contact, message: message}}
+
   describe 'delete account' do
+
     before {
       # sign_in_as(user)
       request.cookies[JWTSessions.access_cookie] = access_cookie
@@ -134,25 +139,32 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
     context 'success' do
       it 'if user is signed in' do
-        delete :delete, params: {email_contact: 'contactme@email.com', message: 'delete reason'}
+        delete :delete, params: delete_params_valid
         expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
         expect(response_json.keys).to eq(['notice'])
-        item = BlackListEmail.find_by(email_contact: 'contactme@email.com')
-        expect(item.message).to eq('delete reason')
-        expect(item.email_contact).to eq('contactme@email.com')
+        item = BlackListEmail.find_by(email_contact: email_contact)
+        expect(item.message).to eq(message)
+        expect(item.email_contact).to eq(email_contact)
       end
+    end
 
+    context 'failure' do
+      it 'with incorrect password' do
+        delete :delete, params: delete_params_invalid
+        expect(response_json.values).to eq([I18n.t('api.errors.invalid_password')])
+        expect(response_json.keys).to eq(['error'])
+      end
       it 'without params' do
         delete :delete, params: {}
-        expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
-        expect(response_json.keys).to eq(['notice'])
+        expect(response_json.values).to eq([I18n.t('api.errors.invalid_password')])
+        expect(response_json.keys).to eq(['error'])
       end
     end
   end
 
   describe 'delete account for unauthorized user' do
     it 'failure with valid params' do
-      delete :delete
+      delete :delete, params: delete_params_valid
       expect(response_json.keys).to eq(['error'])
       expect(response_json.values).to eq(['Unauthorized'])
     end

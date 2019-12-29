@@ -1,18 +1,24 @@
 class Api::V1::AccountController < Api::V1::ApiController
   before_action :authorize_access_request!
-  before_action :find_user, only: [:change_password, :change_email]
+  before_action :find_user, only: [:change_password, :change_email, :delete]
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
   def delete
     if current_user.present?
-      email_contact = params[:email_contact]
-      message = params[:message]
-      # add user.email to blacklist and check it during sign up
-      BlackListEmail.create(email: current_user.email, email_contact: email_contact, message: message)
-
-      current_user.destroy
-      render json: { notice: I18n.t('pages.account.delete.success') }
+      if is_pwd_ok params[:password]
+        email_contact = params[:email_contact]
+        message = params[:message]
+        # add user.email to blacklist and check it during sign up
+        BlackListEmail.create(email: current_user.email, email_contact: email_contact, message: message)
+        if current_user.destroy
+          render json: { notice: I18n.t('pages.account.delete.success') }
+        else
+          render json: { error: I18n.t('pages.account.delete.error') }
+        end
+      else
+        render json: { error: I18n.t('api.errors.invalid_password') }
+      end
     else
       render json: { error: I18n.t('pages.account.delete.error') }
     end
@@ -24,7 +30,7 @@ class Api::V1::AccountController < Api::V1::ApiController
   end
 
   def change_password
-    if is_old_pwd_ok
+    if is_pwd_ok params[:password_old]
       if params[:password_old] == params[:password]
         render json: {error: I18n.t('pages.account.change_password.errors.use_another_password') }
         return
@@ -52,8 +58,8 @@ class Api::V1::AccountController < Api::V1::ApiController
 
   private
   
-  def is_old_pwd_ok
-    BCrypt::Password.new(@user.password_digest) == params[:password_old]
+  def is_pwd_ok password
+    BCrypt::Password.new(@user.password_digest) == password
   end
   
   def email_params

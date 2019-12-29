@@ -49,6 +49,7 @@ en:
       unauthorized: "Unauthorized"
       not_authorized: "Not authorized"
       invalid_credentials: "Invalid email or password"  
+      invalid_password: "Invalid password"  
       attachment_upload: "Error. Can't upload your attachment"
       deleted_account: "Error. Account with this email is deleted"
   email: "E-Mail"
