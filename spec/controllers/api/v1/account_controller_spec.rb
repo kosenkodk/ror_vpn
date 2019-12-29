@@ -20,6 +20,8 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
   describe 'change email' do
     let(:email) { 'new@email.com' }
+    let(:email_params_valid) { { email: email, password: password } }
+    let(:email_params_invalid) { { email: email, password: password_invalid } }
 
     context 'success' do
       before {
@@ -28,7 +30,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       }
 
       it 'with valid email' do
-        patch :change_email, params: {email: email}
+        patch :change_email, params: email_params_valid
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_email.success'))
         expect(response_json.keys).to eq(['notice'])
         expect(response).to have_http_status(:success)
@@ -45,13 +47,13 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
       it 'with invalid email' do
         ['new@gmailcom', 'new@gmail.c', 'new@gmail', 'new@gmail.', 'new@.com', 'new@ex.c'].each do |email_invalid|
-          patch :change_email, params: {email: email_invalid}
+          patch :change_email, params: {email: email_invalid, password: password}
           change_email_check_error
         end
       end
 
       it 'with empty email' do
-        patch :change_email, params: {email: ''}
+        patch :change_email, params: {email: '', password: password}
         expect(response_json.keys).to eq(['error'])
         expect(response_json['error']).to eq('Bad request')
         expect(response).to have_http_status(400)
@@ -61,7 +63,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
     context 'failure for unauth user' do
       it 'with valid email' do
-        patch :change_email, params: {email: email}
+        patch :change_email, params: email_params_valid
         expect(response_json.keys).to eq(['error'])
         expect(response_json['error']).to eq('Unauthorized')
         expect(response).to have_http_status(401)
