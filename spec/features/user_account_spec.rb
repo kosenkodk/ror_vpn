@@ -19,6 +19,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
         # click_on(I18n.t('pages.account.change_email.button'))
         click_on(I18n.t('buttons.edit'))
         fill_in :email, with: email_new
+        fill_in :password, with: password
         click_on(I18n.t('buttons.submit'))
         expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.success'))
         user.email = email_new
@@ -36,6 +37,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
         # click_on(I18n.t('pages.account.change_email.button'))
         click_on(I18n.t('buttons.edit'))
         fill_in :email, with: email_invalid
+        fill_in :password, with: password
         click_on(I18n.t('buttons.submit'))
         expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
       end
@@ -43,8 +45,18 @@ RSpec.describe 'User Account', type: :feature, js: true do
         # click_on(I18n.t('pages.account.change_email.button'))
         click_on(I18n.t('buttons.edit'))
         fill_in :email, with: ''
+        fill_in :password, with: password
         click_on(I18n.t('buttons.submit'))
-        expect(find('.alert')).to have_text('Bad request')
+        expect(find('.alert')).to have_text(I18n.t('api.errors.bad_request'))
+      end
+      it 'with empty password' do
+        # click_on(I18n.t('pages.account.change_email.button'))
+        click_on(I18n.t('buttons.edit'))
+        fill_in :email, with: ''
+        fill_in :password, with: ''
+        click_on(I18n.t('buttons.submit'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_password'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.unauthorized'))
       end
     end
   end

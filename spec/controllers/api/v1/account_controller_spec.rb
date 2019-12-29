@@ -55,7 +55,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       it 'with empty email' do
         patch :change_email, params: {email: '', password: password}
         expect(response_json.keys).to eq(['error'])
-        expect(response_json['error']).to eq('Bad request')
+        expect(response_json['error']).to eq(I18n.t('api.errors.bad_request'))
         expect(response).to have_http_status(400)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
@@ -116,7 +116,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       end
       it 'with empty new or confirmation password' do
         patch :change_password, params: {password_old: password, password: '', password_confirmation: ''}
-        expect(response_json.values).to eq(['Bad request'])
+        expect(response_json.values).to eq([I18n.t('api.errors.bad_request')])
       end
       it 'if new password the same as old password' do
         patch :change_password, params: {password_old: password, password: password, password_confirmation: password}

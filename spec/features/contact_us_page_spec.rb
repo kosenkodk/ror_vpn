@@ -61,7 +61,7 @@ RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
       it 'with empty email' do
         fill_in('message_short', with: 'message short')
         click_on('Submit')
-        # expect(find('.alert')).to have_text("Bad request")
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.bad_request'))
         expect(find('.alert')).to have_text("Email can't be blank")
       end
       it 'with invalid email' do
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::ContactsController, type: :feature, js: true do
         fill_in('message_short', with: 'message short')
         # fill_in('contact[email]', with: 'email@example.c')
         click_button('Submit')
-        # expect(find('.alert')).to have_text("Bad request")
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.bad_request'))
         expect(find('.alert')).to have_text("Email is invalid")
       end
     end
