@@ -141,6 +141,12 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(item.message).to eq('delete reason')
         expect(item.email_contact).to eq('contactme@email.com')
       end
+
+      it 'without params' do
+        delete :delete, params: {}
+        expect(response_json.values).to eq([I18n.t('pages.account.delete.success')])
+        expect(response_json.keys).to eq(['notice'])
+      end
     end
   end
 

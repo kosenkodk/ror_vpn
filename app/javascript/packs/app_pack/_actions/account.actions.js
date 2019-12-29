@@ -55,8 +55,8 @@ function changeEmail(data) {
 
 function deleteAccount(data) {
   return dispatch => {
-    dispatch(request({ data }))
-    userService.deleteAccount({ data })
+    dispatch(request(data))
+    userService.deleteAccount(data)
       .then(
         response => {
           dispatch(success(response.notice))
