@@ -62,7 +62,8 @@ class DeleteForm extends React.Component {
               Login password</label>
             <div className="col-sm-6">
               <input type="password" name="password" className="form-control" id="password"
-              // value={password_old} onChange={this.handleChange} placeholder='Password'
+                // value={password_old} 
+                onChange={this.handleChange} placeholder='Password'
               />
             </div>
             <div className="col-sm-2"></div>
