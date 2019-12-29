@@ -152,9 +152,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('buttons.delete'))
         expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_password'))
       end
-      xit do
-        expect(find('.alert')).to have_text(I18n.t('pages.account.delete.error'))
-      end
     end
   end
   
