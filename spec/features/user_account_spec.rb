@@ -119,6 +119,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
 
   describe 'Delete' do
     let(:email_contact) {'contact@email.com'}
+    
     context 'success' do
       it 'clear alert on modal close event' do
         check_clear_alerts_on_modal_close I18n.t('pages.account.delete.button'), I18n.t('buttons.delete'), I18n.t('buttons.cancel')
@@ -149,9 +150,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('pages.account.delete.button'))
         fill_in :password, with: password_invalid
         click_on(I18n.t('buttons.delete'))
-        expect(find('.alert')).to have_text(I18n.t('pages.account.delete.success'))
-        fsign_in_as(user)
-        expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_password'))
       end
       xit do
         expect(find('.alert')).to have_text(I18n.t('pages.account.delete.error'))
