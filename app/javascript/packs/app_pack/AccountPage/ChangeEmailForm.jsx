@@ -28,7 +28,7 @@ class ChangeEmailForm extends React.Component {
             <label htmlFor="email" className="col-sm-4 col-form-label">Email login</label>
             <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
           </div>
-          <div className="form-group row align-items-center mb-0">
+          <div className="form-group row align-items-center">
             <label htmlFor="password" className="col-sm-4 col-form-label">Login password</label>
             <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
           </div>
