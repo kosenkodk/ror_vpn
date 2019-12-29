@@ -48,15 +48,20 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       it 'with invalid email' do
         ['new@gmailcom', 'new@gmail.c', 'new@gmail', 'new@gmail.', 'new@.com', 'new@ex.c'].each do |email_invalid|
           patch :change_email, params: {email: email_invalid, password: password}
-          change_email_check_error
+          # change_email_check_error
+          # expect(response_json['error']).to eq(I18n.t('api.errors.invalid_email'))
+          expect(response_json['error']).to eq(I18n.t('pages.account.change_email.errors.email_invalid'))
         end
       end
 
       it 'with empty email' do
         patch :change_email, params: {email: '', password: password}
         expect(response_json.keys).to eq(['error'])
-        expect(response_json['error']).to eq(I18n.t('api.errors.bad_request'))
-        expect(response).to have_http_status(400)
+        # expect(response_json['error']).to eq(I18n.t('api.errors.bad_request'))
+        # expect(response_json['error']).to eq(I18n.t('api.errors.invalid_email'))
+        expect(response_json['error']).to eq(I18n.t('pages.account.change_email.errors.email_invalid'))
+
+        # expect(response).to have_http_status(400)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
 
