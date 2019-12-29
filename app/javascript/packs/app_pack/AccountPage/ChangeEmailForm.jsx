@@ -8,7 +8,7 @@ class ChangeEmailForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '' }
+    this.state = { email: '', password: '' }
     // this.handleChange = this.handleChange.bind(this);
   }
 
@@ -27,6 +27,17 @@ class ChangeEmailForm extends React.Component {
           <div className="form-group row align-items-center">
             <label htmlFor="email" className="col-sm-4 col-form-label">Email login:</label>
             <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
+          </div>
+          <div className="form-group row align-items-center mb-0">
+            <label htmlFor="password" className="col-sm-4 col-form-label">
+              Login password</label>
+            <div className="col-sm-6 form-control">
+              <input type="password" name="password" className="form-control" id="password"
+                // value={password_old} 
+                onChange={this.handleChange} placeholder='Password'
+              />
+            </div>
+            <div className="col-sm-2"></div>
           </div>
         </div>
         <div className="modal-footer">

@@ -25,8 +25,12 @@ class Api::V1::AccountController < Api::V1::ApiController
   end
 
   def change_email
-    @user.update!(email_params)
-    render json: { notice: I18n.t('pages.account.change_email.success') }
+    if is_pwd_ok params[:password]
+      @user.update!(email_params)
+      render json: { notice: I18n.t('pages.account.change_email.success') }
+    else
+      render json: { error: I18n.t('api.errors.invalid_password') }
+    end
   end
 
   def change_password

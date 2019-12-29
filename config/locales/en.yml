@@ -151,6 +151,7 @@ en:
       change_email:
         button: "Change login email"
         success: "Your email has been changed successfully"
+        error: "Error. Can't change email"
         errors:
           email_invalid: "Email is not an email"
       change_password:
