@@ -59,6 +59,14 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response).to have_http_status(400)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
+
+      it 'with wrong password' do
+        patch :change_email, params: {email: email, password: ''}
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq(I18n.t('api.errors.invalid_password'))
+        expect(response).to have_http_status(401)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
     end
 
     context 'failure for unauth user' do

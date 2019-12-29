@@ -29,7 +29,7 @@ class Api::V1::AccountController < Api::V1::ApiController
       @user.update!(email_params)
       render json: { notice: I18n.t('pages.account.change_email.success') }
     else
-      render json: { error: I18n.t('api.errors.invalid_password') }
+      render json: { error: I18n.t('api.errors.invalid_password') }, status: 401
     end
   end
 
@@ -57,7 +57,7 @@ class Api::V1::AccountController < Api::V1::ApiController
         return
       end
     end
-    render json: {error: I18n.t('pages.account.change_password.errors.password_invalid')}, status: 400
+    render json: {error: I18n.t('pages.account.change_password.errors.password_invalid')}, status: 401
   end
 
   private
