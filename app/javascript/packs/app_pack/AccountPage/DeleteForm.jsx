@@ -25,10 +25,6 @@ class DeleteForm extends React.Component {
       <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
         <div className="modal-body">
           <FlashMessages error={error && error} notice={notice && notice} />
-          {/* <div className="form-group row align-items-center">
-            <label htmlFor="email" className="col-sm-4 col-form-label">Email login:</label>
-            <input type="string" name="email" className="col-sm-6 form-control" id="email" value={email} onChange={this.handleChange} placeholder='Email' />
-          </div> */}
 
           <div className="border-left-pink mt-0">
             <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
@@ -43,30 +39,29 @@ class DeleteForm extends React.Component {
               Feedback
               </label>
             <div className="col-sm-6">
-              <textarea type="text" name="text" className="form-control" defaultValue={this.props.text || ''} required={false} placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
+              <textarea type="text" id="message" name="message" className="form-control" defaultValue={this.props.text || ''} required={false} placeholder={I18n.t('pages.tickets.form.help.text')}></textarea>
             </div>
             <div className="col-sm-2"></div>
           </div>
 
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label">
+            <label className="col-sm-4 col-form-label" htmlFor="email_contact">
               Email address
               {/* {I18n.t('pages.tickets.form.title')} */}
             </label>
             <div className="col-sm-6">
               <input type="hidden" name="id" value={this.props.id && this.props.id} />
-              <input type="text" name="title" required={true} className="form-control" defaultValue={this.props.title} placeholder={I18n.t('pages.tickets.form.help.title')} aria-describedby="emailHelp" />
-              {/* <p className="">Please provide an email address in case we need to contact you.</p> */}
-              <p id="emailHelp" className="form-text">Please provide an email address in case we need to contact you.</p>
+              <input type="text" name="email_contact" required={false} className="form-control" defaultValue={email} placeholder='Email' onChange={this.handleChange} aria-describedby="email_contact" />
+              <p className="form-text">Please provide an email address in case we need to contact you.</p>
             </div>
             <div className="col-sm-2"></div>
           </div>
 
           <div className="form-group row align-items-center mb-0">
-            <label htmlFor="password_old" className="col-sm-4 col-form-label">
+            <label htmlFor="password" className="col-sm-4 col-form-label">
               Login password</label>
             <div className="col-sm-6">
-              <input type="password" name="password_old" className="form-control" id="password_old"
+              <input type="password" name="password" className="form-control" id="password"
               // value={password_old} onChange={this.handleChange} placeholder='Password'
               />
             </div>
@@ -79,7 +74,7 @@ class DeleteForm extends React.Component {
             <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{I18n.t('buttons.cancel')}</button>
             <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
               {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-              {' ' + I18n.t('buttons.submit')}
+              {' ' + I18n.t('buttons.delete')}
             </button>
           </div>
         </div>

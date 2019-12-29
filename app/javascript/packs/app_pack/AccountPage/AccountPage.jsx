@@ -37,7 +37,8 @@ class AccountPage extends React.Component {
 
   onAccountDelete(e) {
     e.preventDefault();
-    this.props.dispatch(accountActions.deleteAccount());
+    const data = FormDataAsJsonFromEvent(e);
+    this.props.dispatch(accountActions.deleteAccount(data));
   }
 
   clearModalAlerts(e) { // clearModalAlerts = (e) => {
