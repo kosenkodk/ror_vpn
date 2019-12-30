@@ -63,7 +63,7 @@ function logout() {
 
 function signup(data) {
   return dispatch => {
-    dispatch(request({ data }));
+    dispatch(request(data));
 
     userService.signup(data)
       .then(

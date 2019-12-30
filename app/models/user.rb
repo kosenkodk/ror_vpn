@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
-
+  
   def attributes
     { id: id, email: email, role: role, tariff_plan: tariff_plan }
   end
