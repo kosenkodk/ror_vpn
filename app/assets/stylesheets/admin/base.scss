@@ -11,6 +11,7 @@
   h1 {
     @include fluidFontSize(16px, 24px, 320px, $bp-w1400, 1rem);
     @include fluidLineHeight(16px, 85px, 320px, $bp-w1400, 1.25rem);
+    margin-bottom: pxtovh(17);
   }
 
   .btn-outline-danger {
@@ -403,7 +404,9 @@
       }
     }
   }
-
+  .mt-10 {
+    margin-top: pxtovh(13);
+  }
   .mb-60 {
     margin-bottom: pxtovh(60);
   }
