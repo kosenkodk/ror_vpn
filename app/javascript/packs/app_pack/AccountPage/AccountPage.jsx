@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavHashLink as Link } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { DeleteForm, ChangePasswordForm, ChangeEmailForm } from './';
 import { accountActions } from '../_actions';
@@ -89,6 +90,18 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col">
                   <input type="string" className="form-control" defaultValue={user && user.email || ''} readOnly={true} placeholder='Email' />
+                </div>
+              </div>
+
+              <div className="row align-items-center">
+                <div className="col-sm-5">
+                  <label className="col-form-label">Subscription</label>
+                </div>
+                <div className="col">
+                  <div className="d-flex align-items-center">
+                    <p className="m-0 text-blue">{user.tariff_plan_id && user.tariff_plan_id || 'Free'}</p>
+                    <Link to="#" className="ml-auto text-black" >Cancel Account</Link>
+                  </div>
                 </div>
               </div>
             </div>
