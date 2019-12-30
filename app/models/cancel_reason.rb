@@ -1,0 +1,2 @@
+class CancelReason < ApplicationRecord
+end
