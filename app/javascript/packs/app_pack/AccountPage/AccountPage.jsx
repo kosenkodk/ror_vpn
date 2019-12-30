@@ -93,7 +93,7 @@ class AccountPage extends React.Component {
                 </div>
               </div>
 
-              <div className="row align-items-center">
+              <div className="row align-items-center mt-10">
                 <div className="col-sm-5">
                   <label className="col-form-label">Subscription</label>
                 </div>

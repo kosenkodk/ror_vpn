@@ -265,8 +265,8 @@ function refreshTokenAndRetryResponse(response, url, method, data_orig) {
 
       // network error
       if (!response.ok) {
-        if ((response.status === 401)
-          || (response.status === 403)
+        if ((response.status === 401) // unauth
+          || (response.status === 403) // forbidden
         ) {
           return handle401Status(url, method, data_orig)
         }
