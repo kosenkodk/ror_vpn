@@ -39,6 +39,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response).to have_http_status(:success)
         expect(response_json['notice']).to eq(I18n.t('pages.account.cancel.success'))
       end
+      it 'reset to free plan'
     end
   end
 
