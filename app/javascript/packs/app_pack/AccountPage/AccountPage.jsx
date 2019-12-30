@@ -95,11 +95,11 @@ class AccountPage extends React.Component {
 
               <div className="row align-items-center mt-10">
                 <div className="col-sm-5">
-                  <label className="col-form-label">Subscription</label>
+                  <label className="col-form-label">Current plan</label>
                 </div>
                 <div className="col">
                   <div className="d-flex align-items-center">
-                    <p className="m-0 text-blue">{user.tariff_plan_id && user.tariff_plan_id || 'Free'}</p>
+                    <p className="m-0 text-blue">{(user.tariff_plan && user.tariff_plan.title) || 'Free'}</p>
                     <Link to="#" className="ml-auto text-black" >Cancel Account</Link>
                   </div>
                 </div>

@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
 
   def attributes
-    { id: id, email: email, role: role }
+    { id: id, email: email, role: role, tariff_plan: tariff_plan }
   end
 
   def generate_password_token!
