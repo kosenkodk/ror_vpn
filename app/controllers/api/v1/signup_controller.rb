@@ -11,9 +11,15 @@ class Api::V1::SignupController < Api::V1::ApiController
     end
 
     # tariff plan
-    plan_id = params[:tariff_plan_id][:id] if params[:tariff_plan_id].present? && params[:tariff_plan_id][:id].present?
-    if plan_id.present? && TariffPlan.exists?(plan_id)
-      user.tariff_plan = TariffPlan.find(plan_id)
+    if params[:tariff_plan_id].present?
+      if params[:tariff_plan_id].is_a? String
+        plan = params[:tariff_plan_id]
+      else
+        plan = params[:tariff_plan_id].permit(:tariff_plan_id)[:tariff_plan_id]
+      end
+      if TariffPlan.exists?(plan)
+        user.tariff_plan = TariffPlan.find(plan)
+      end
     end
 
     if BlackListEmail.where(email: user.email).count > 0
