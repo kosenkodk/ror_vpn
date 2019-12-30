@@ -5,6 +5,9 @@ class Api::V1::AccountController < Api::V1::ApiController
   EMAIL_KEYS = [:email].freeze
 
   def cancel
+    # CancelHistory.create(user:@user, cancel_reason:a;l )
+    # plan_free = TariffPlan.find_by(title: 'Free')
+
     render json: { notice: I18n.t('pages.account.cancel.success') }
   end
 
