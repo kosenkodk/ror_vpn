@@ -8,6 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "\nTariff Plans\n\n"
 features = 'All Countries,5 Devices simultaneously,High Speed,Unlimited traffic'
 features_free = '1 Country,1 Device,Simultaneously,Medium speed,No torrenting,IKEv2 or OpenVPN'
 [
@@ -28,7 +29,7 @@ TariffPlan.find_or_create_by(
 )
 end
 
-
+puts "\nFeatures\n\n"
 features = [
   { icon_name: 'no_logs.png', is_published: true, order: 10, title: 'NO LOGS', subtitle: 'Your privacy is and will always be our first priority', text: "VEGA never tracks personal information or logs your online activity as verified by a team of independent security auditors."},
   { icon_name: 'no_leaks.png', is_published: true, order: 20, title: 'NO LEAKS', subtitle: 'Your privacy can be easily compromised by leaks', text: "VEGA software automatically blocks all known privacy leaks, even recently discovered IPv6, DNS and disconnection leaks. It even disables WebRTC."},
@@ -49,6 +50,7 @@ features = [
   feature.icon.attach(io: File.open(path_to_file), filename: item[:icon_name])
 end
 
+puts "\nPayment Methods\n\n"
 payment_methods = [
   {title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
   {title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
@@ -64,8 +66,21 @@ payment_methods = [
   end
 end
 
+puts "\nCancellation Reasons\n\n"
+cancel_reasons = [
+  {order: 10, title: 'No longer required' },
+  {order: 20, title: 'Reliability issues' },
+  {order: 30, title: 'Too expensive' },
+  {order: 40, title: 'Other' },
+  {order: 50, title: 'Performance issues' },
+  {order: 60, title: 'Unable to get the software working' },
+].each do |item|
+  cancel_reason = CancelReason.find_or_create_by(order: item[:order], title: item[:title])
+  puts cancel_reason.try(:title)
+end
 
-puts 'Tickets\n\n'
+
+puts "\nTickets\n\n"
 users = []
 users << User.find_or_create_by(email:'user@ex.com', password:'123', role:0)
 users << User.find_or_create_by(email:'manager@ex.com', password:'123', role:1)
@@ -81,7 +96,7 @@ tickets = [
 ].each do |item|
   departments.each do |department|
     users.each do |user|
-      ticket = Ticket.find_or_create_by(title:item[:title], user: user, department: department)
+      ticket = Ticket.find_or_create_by(title:item[:title], user_id: user.id, department: department)
       puts "#{department.title} #{user.email}: #{ticket.title}"
     end
   end
