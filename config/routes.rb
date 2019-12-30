@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       delete '/delete', to: 'account#delete'
       patch '/change_password', to: 'account#change_password'
       patch '/change_email', to: 'account#change_email'
+      post '/cancel', to: 'account#cancel'
 
       mount ActionCable.server, at: '/cable'
 

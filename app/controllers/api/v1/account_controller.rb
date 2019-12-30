@@ -4,6 +4,10 @@ class Api::V1::AccountController < Api::V1::ApiController
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
+  def cancel
+    render json: { notice: I18n.t('pages.account.cancel.success') }
+  end
+
   def delete
     if current_user.present?
       if is_pwd_ok params[:password]

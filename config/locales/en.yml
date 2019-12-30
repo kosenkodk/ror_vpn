@@ -145,6 +145,9 @@ en:
       contact_us: "Contact Us"
   pages:
     account:
+      cancel:
+        success: "Your account has been cancelled successfully"
+        error: "Error. Can't cancel account"
       delete:
         button: "Delete your account"
         success: "You account has been deleted successfully"
