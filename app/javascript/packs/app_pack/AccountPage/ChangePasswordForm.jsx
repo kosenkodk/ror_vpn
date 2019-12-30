@@ -45,16 +45,16 @@ class ChangePasswordForm extends React.Component {
 
           <div className="col">
             <div className="form-group row align-items-center">
-              <label htmlFor="password_old" className="col-sm-4 col-form-label">Old login password</label>
+              <label htmlFor="password_old" className="col-sm-4 col-form-label">{I18n.t('pages.account.change_password.password_old')}</label>
               <input type="password" name="password_old" className="col-sm-6 form-control" id="password_old" value={password_old} onChange={this.handleChange} placeholder='Password' />
               <div className="col"></div>
             </div>
             <div className="form-group row align-items-center">
-              <label htmlFor="password" className="col-sm-4 col-form-label">New login password</label>
+              <label htmlFor="password" className="col-sm-4 col-form-label">{I18n.t('pages.account.change_password.password_new')}</label>
               <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
             </div>
             <div className="form-group row align-items-center">
-              <label htmlFor="password_confirmation" className="col-sm-4 col-form-label">Confirm login password</label>
+              <label htmlFor="password_confirmation" className="col-sm-4 col-form-label">{I18n.t('pages.account.change_password.password_confirm')}</label>
               <input type="password" name="password_confirmation" className="col-sm-6 form-control" id="password_confirmation" value={password_confirmation} onChange={this.handleChange} placeholder='Confirm' />
             </div>
           </div>

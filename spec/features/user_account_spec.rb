@@ -74,7 +74,8 @@ RSpec.describe 'User Account', type: :feature, js: true do
         expect(page).to have_content(I18n.t('pages.account.change_password.button'))
         expect(page).to have_selector('.modal.fade.show')
         click_on(I18n.t('buttons.cancel'))
-        expect(page).not_to have_content(I18n.t('buttons.cancel'))
+        # expect(page).not_to have_content(I18n.t('buttons.cancel'))
+        expect(page).not_to have_content(I18n.t('pages.account.change_password.password_confirm'))
         # expect(page).to have_selector('.modal.fade')
       end
       it 'click on save button of the popup window' do
