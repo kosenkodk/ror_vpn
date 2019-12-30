@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   let!(:message) { create(:message, user: user, ticket: ticket) }
   let!(:plan) { create(:tariff_plan) }
   let!(:payment_method) { create(:payment_method) }
+  let!(:cancel_reason) { create(:cancel_reason) }
 
   it 'destroy user' do
     message.attachment.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'logo.png')), filename: 'logo.png')
@@ -26,6 +27,7 @@ RSpec.describe User, type: :model do
     user.tariff_plan = plan
     # user.payment_method_id = payment_method.id
     # user.tariff_plan_id = plan.id
+    user.cancel_reason = cancel_reason
     user.tickets << ticket
     user.save!
     expect(user.tariff_plan.id).to eq(plan.id)
