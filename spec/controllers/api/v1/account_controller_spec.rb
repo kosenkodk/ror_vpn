@@ -18,6 +18,30 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     @tokens = session.login
   }
 
+  describe 'cancel account' do
+    let(:cancel_params_valid) {{ message: '', cancel_reason_id: 0 }}
+    
+    context 'success' do
+      before {
+        request.cookies[JWTSessions.access_cookie] = access_cookie
+        request.headers[JWTSessions.csrf_header] = csrf_token
+      }
+
+      it 'display current subscription' do
+        # user.tariff_plan_id = 1
+        # expect(user.tariff_plan_id).to eq(1)
+        # get :me
+        # expect(response_json['tariff_plan_id']).to eq(1)
+      end
+
+      it 'with valid params' do
+        post :cancel, params: cancel_params_valid
+        expect(response).to have_http_status(:success)
+        expect(response_json['notice']).to eq(I18n.t('pages.account.cancel.success'))
+      end
+    end
+  end
+
   describe 'change email' do
     let(:email) { 'new@email.com' }
     let(:email_params_valid) { { email: email, password: password } }
