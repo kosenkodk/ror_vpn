@@ -156,8 +156,12 @@ en:
         errors:
           email_invalid: "Email is invalid"
       change_password:
+        title: "Change login password"
         button: "Change login password"
         success: "Your password has been changed successfully"
+        password_confirm: "Confirm login password"
+        password_old: "Old login password"
+        password_new: "New login password"
         errors:
           use_another_password: "Please use another new password"
           password_invalid: "Password is incorrect"

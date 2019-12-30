@@ -113,7 +113,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login password</label>
                 </div>
                 <div className="col">
-                  <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title='Change login password' btnClasses={'btn-block'} btnText={I18n.t('pages.account.change_password.button')}>
+                  <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title={I18n.t('pages.account.change_password.title')} btnClasses={'btn-block'} btnText={I18n.t('pages.account.change_password.button')}>
                     <ChangePasswordForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangePassword} />
                   </ModalPopup>
                 </div>
