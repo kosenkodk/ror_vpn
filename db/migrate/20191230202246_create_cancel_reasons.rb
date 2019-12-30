@@ -3,6 +3,7 @@ class CreateCancelReasons < ActiveRecord::Migration[6.0]
     create_table :cancel_reasons do |t|
       t.integer :order
       t.string :title
+      t.text :text
 
       t.timestamps
     end

@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_204113) do
   create_table "cancel_reasons", force: :cascade do |t|
     t.integer "order"
     t.string "title"
+    t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
