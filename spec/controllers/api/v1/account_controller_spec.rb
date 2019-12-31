@@ -4,7 +4,9 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:password) { 'password' }
   let(:password_invalid) { 'password_invalid' }
   let(:password_new) { 'newpassword' }
-  let(:user) { create(:user, password: password, password_confirmation: password) }
+  let(:tariff_plan) {create(:tariff_plan)}
+  let(:tariff_plan_free) {create(:tariff_plan_free)}
+  let(:user) { create(:user, password: password, password_confirmation: password, tariff_plan: tariff_plan) }
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
  
@@ -19,8 +21,9 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   }
 
   describe 'cancel account' do
-    let(:cancel_params_valid) {{ message: '', cancel_reason_id: 0 }}
-    
+    let(:cancel_reason_text) {'cancel reason'}
+    let(:cancel_params_valid) {{ cancel_reason_text: cancel_reason_text, cancel_reason_id: 0 }}
+
     context 'success' do
       before {
         request.cookies[JWTSessions.access_cookie] = access_cookie
@@ -34,12 +37,18 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         # expect(response_json['tariff_plan_id']).to eq(1)
       end
 
-      it 'with valid params' do
+      it 'reset to free plan' do
         post :cancel, params: cancel_params_valid
-        expect(response).to have_http_status(:success)
+        expect(user.tariff_plan.title).to eq(tariff_plan.title)
+
         expect(response_json['notice']).to eq(I18n.t('pages.account.cancel.success'))
+        expect(response).to have_http_status(:success)
+
+        # expect(user.cancel_reason_text).to eq(cancel_reason_text) # todo:
+        # reset to free plan
+        # expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
+        # expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
       end
-      it 'reset to free plan'
     end
   end
 
