@@ -4,6 +4,15 @@ class Api::V1::AccountController < Api::V1::ApiController
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
+  def cancel_account_reasons
+    items = CancelReason.all
+    render json: items
+    .as_json(
+      only: [:id, :order, :title],
+    #   except: [:text, :created_at, :updated_at]
+    )
+  end
+
   def cancel
     # @user.cancel_reason = CancelReason.find(params['cancel_reason_id'])
     #todo: @user.cancel_reason_text = params[:cancel_reason_text]

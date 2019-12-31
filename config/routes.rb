@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :departments, only: [:index]
+      
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
       resources :tariff_plans#, only: [:index, :show]
@@ -35,6 +36,8 @@ Rails.application.routes.draw do
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
 
+      # account page for logged in users
+      get '/cancel_account_reasons', to: 'account#cancel_account_reasons'
       delete '/delete', to: 'account#delete'
       patch '/change_password', to: 'account#change_password'
       patch '/change_email', to: 'account#change_email'

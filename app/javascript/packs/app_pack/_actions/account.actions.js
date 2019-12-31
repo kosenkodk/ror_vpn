@@ -1,13 +1,31 @@
 
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions } from './'
+// import { alertActions } from './';
 
 export const accountActions = {
+  getCancelAccountReasons,
   changePassword,
   changeEmail,
   deleteAccount,
   clearAlerts,
+}
+
+function getCancelAccountReasons() {
+  return dispatch => {
+    dispatch(request())
+
+    userService.getCancelAccountReasons()
+      .then(
+        items => dispatch(success(items)),
+        error => {
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request() { return { type: accountConstants.GET_ACCOUNT_CANCEL_REASONS_REQUEST } }
+  function success(items) { return { type: accountConstants.GET_ACCOUNT_CANCEL_REASONS_SUCCESS, items } }
 }
 
 function clearAlerts() {
