@@ -46,8 +46,8 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
         # expect(user.cancel_reason_text).to eq(cancel_reason_text) # todo:
         # reset to free plan
-        # expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
-        # expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
+        expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
+        expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
       end
     end
   end
