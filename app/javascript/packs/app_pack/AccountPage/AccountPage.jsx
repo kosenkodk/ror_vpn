@@ -108,7 +108,7 @@ class AccountPage extends React.Component {
                     <p className="m-0 text-blue">{(user.tariff_plan && user.tariff_plan.title) || 'Free'}</p>
 
                     <ModalPopup onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
-                      aClasses={'ml-auto text-black'} aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
+                      aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
                       <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
                     </ModalPopup>
 
