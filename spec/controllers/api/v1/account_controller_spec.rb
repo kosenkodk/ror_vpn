@@ -9,7 +9,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:user) { create(:user, password: password, password_confirmation: password, tariff_plan: tariff_plan) }
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
- 
+  
   before {
     # JWTSessions.access_exp_time = 3600
     payload = { user_id: user.id }
@@ -23,6 +23,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   describe 'cancel account' do
     let(:cancel_reason_text) {'cancel reason'}
     let(:cancel_params_valid) {{ cancel_reason_text: cancel_reason_text, cancel_reason_id: 0 }}
+    let!(:cancel_reason) {create(:cancel_reason) }
 
     context 'success' do
       before {
@@ -33,7 +34,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       it 'get cancellation reasons' do
         get :cancel_account_reasons
         expect(response).to have_http_status(:success)
-        expect(response_json).to eq([])
+        expect(response_json).not_to eq([])
       end
 
       it 'display current subscription' do
