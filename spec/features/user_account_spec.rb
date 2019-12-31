@@ -5,17 +5,18 @@ RSpec.describe 'User Account', type: :feature, js: true do
   let(:email) {'email@ex.com'}
   let!(:user) {create(:user, password: password, password_confirmation: password)}
 
+  let!(:tariff_plan) {create(:tariff_plan)}
+  let!(:tariff_plan_free) {create(:tariff_plan_free)}
+  let!(:cancel_reason) {create(:cancel_reason, title: 'reason')}
+  let!(:cancel_reason2) {create(:cancel_reason, title: 'reason 2')}
+  
   before(:each) {
     fsign_in_as(user)
     visit '/user/account'
   }
 
   describe 'Cancel Account' do
-    let(:tariff_plan) {create(:tariff_plan)}
-    let(:tariff_plan_free) {create(:tariff_plan_free)}
     let(:cancel_account_reason_text) {'too expensive'}
-    let(:cancel_reason) {create(:cancel_reason, title: 'reason')}
-    let(:cancel_reason2) {create(:cancel_reason, title: 'reason 2')}
     let(:id_of_cancel_account_link) {'cancel_account_link'}
 
     it 'reset from paid to free plan' do
