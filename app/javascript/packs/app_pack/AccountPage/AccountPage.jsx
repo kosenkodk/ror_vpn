@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavHashLink as Link } from 'react-router-hash-link';
 import { connect } from 'react-redux';
-import { DeleteForm, ChangePasswordForm, ChangeEmailForm } from './';
+import { DeleteForm, ChangePasswordForm, ChangeEmailForm, CancelAccountForm } from './';
 import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
-import { account } from '../_reducers/account.reducer';
 import { ModalPopup } from '../_components';
 
 class AccountPage extends React.Component {
@@ -19,9 +18,16 @@ class AccountPage extends React.Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.clearModalAlerts = this.clearModalAlerts.bind(this);
+    this.onCancelAccount = this.onCancelAccount.bind(this);
 
     this.allowPasswordReset = this.allowPasswordReset.bind(this);
     this.enable2FA = this.enable2FA.bind(this);
+  }
+
+  onCancelAccount(e) {
+    e.preventDefault();
+    const data = FormDataAsJsonFromEvent(e);
+    // this.propss.dispatch(accountActions.cancelAccount(data));
   }
 
   onChangePassword(e) {
@@ -100,7 +106,13 @@ class AccountPage extends React.Component {
                 <div className="col">
                   <div className="d-flex align-items-center">
                     <p className="m-0 text-blue">{(user.tariff_plan && user.tariff_plan.title) || 'Free'}</p>
-                    <Link to="#" className="ml-auto text-black" >Cancel Account</Link>
+
+                    <ModalPopup onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
+                      aClasses={'ml-auto text-black'} aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
+                      <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
+                    </ModalPopup>
+
+                    {/* <Link to="#" className="ml-auto text-black">Cancel Account</Link> */}
                   </div>
                 </div>
               </div>

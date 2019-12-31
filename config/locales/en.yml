@@ -146,8 +146,13 @@ en:
   pages:
     account:
       cancel:
+        title: "Cancel Account"
         success: "Your account has been cancelled successfully"
         error: "Error. Can't cancel account"
+        form:
+          select_reason: "Please select a reason"
+          message: "Message"
+          button: "Cancel my account"
       delete:
         button: "Delete your account"
         success: "You account has been deleted successfully"
