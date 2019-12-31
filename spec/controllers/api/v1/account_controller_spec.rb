@@ -29,6 +29,12 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         request.cookies[JWTSessions.access_cookie] = access_cookie
         request.headers[JWTSessions.csrf_header] = csrf_token
       }
+      
+      it 'get cancellation reasons' do
+        get :cancel_account_reasons
+        expect(response).to have_http_status(:success)
+        expect(response_json).to eq([])
+      end
 
       it 'display current subscription' do
         # user.tariff_plan_id = 1

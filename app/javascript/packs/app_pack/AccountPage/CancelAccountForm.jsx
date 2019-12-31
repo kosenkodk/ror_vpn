@@ -21,7 +21,7 @@ class CancelAccountForm extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.dispatch(accountActions.getCancelAccountReasons());
+    this.props.dispatch(accountActions.getCancelAccountReasons());
   }
 
   render() {
@@ -49,7 +49,7 @@ class CancelAccountForm extends React.Component {
               {I18n.t('pages.account.cancel.form.select_reason')}
             </label>
             <div className="col-sm-6">
-              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text" items={[]} />
+              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text" items={this.props.cancel_account_reasons || []} />
             </div>
             <div className="col-sm-2"></div>
           </div>
@@ -76,11 +76,12 @@ CancelAccountForm.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { loading, error, notice } = state.account;
+  const { loading, error, notice, cancel_account_reasons } = state.account;
   return {
     loading,
     error,
     notice,
+    cancel_account_reasons
   };
 }
 

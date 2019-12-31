@@ -14,6 +14,7 @@ export const userService = {
   updateTicket,
   getDepartments,
   contactUs,
+  getCancelAccountReasons,
   changeLoginPassword,
   changeLoginEmail,
   deleteAccount,
@@ -233,6 +234,18 @@ function getDepartments() {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/departments`, requestOptions).then(handleResponse);
+}
+
+function getCancelAccountReasons() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/cancel_account_reasons`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/cancel_account_reasons`, requestOptions).then(handleResponse);
 }
 
 function getRequestOptions(method, data) {
