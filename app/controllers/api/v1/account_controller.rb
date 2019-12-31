@@ -1,11 +1,18 @@
 class Api::V1::AccountController < Api::V1::ApiController
   before_action :authorize_access_request!
-  before_action :find_user, only: [:change_password, :change_email, :delete]
+  before_action :find_user, only: [:change_password, :change_email, :delete, :cancel]
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
   def cancel
-    render json: { notice: I18n.t('pages.account.cancel.success') }
+    # @user.cancel_reason = CancelReason.find(params['cancel_reason_id'])
+    #todo: @user.cancel_reason_text = params[:cancel_reason_text]
+    @user.tariff_plan = TariffPlan.find_by(price: 0)
+    if @user.save
+      render json: { notice: I18n.t('pages.account.cancel.success') }
+    else
+      render json: { notice: I18n.t('pages.account.cancel.error') }
+    end
   end
 
   def delete

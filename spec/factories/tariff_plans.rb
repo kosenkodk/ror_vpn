@@ -7,5 +7,9 @@ FactoryBot.define do
     price_duration_sale { 3.00 }
     price_comment { '' }
     features { '1 Country,1 Device,Simultaneously,Medium speed,No torrenting,IKEv2 or OpenVPN' }
+    factory :tariff_plan_free do
+      title { 'Free' }
+      price { 0.00 }
+    end
   end
 end
