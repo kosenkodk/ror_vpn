@@ -37,13 +37,6 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response_json).not_to eq([])
       end
 
-      it 'display current subscription' do
-        # user.tariff_plan_id = 1
-        # expect(user.tariff_plan_id).to eq(1)
-        # get :me
-        # expect(response_json['tariff_plan_id']).to eq(1)
-      end
-
       it 'reset to free plan' do
         post :cancel, params: cancel_params_valid
         expect(user.tariff_plan.title).to eq(tariff_plan.title)
