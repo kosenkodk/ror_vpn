@@ -21,9 +21,9 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   }
 
   describe 'cancel account' do
-    let(:cancel_reason_text) {'cancel reason'}
-    let(:cancel_params_valid) {{ cancel_reason_text: cancel_reason_text, cancel_reason_id: 0 }}
-    let!(:cancel_reason) {create(:cancel_reason) }
+    let!(:cancel_reason) { create(:cancel_reason) }
+    let(:cancel_account_reason_text) {'cancel account reason'}
+    let(:cancel_params_valid) {{ cancel_account_reason_text: cancel_account_reason_text, cancel_account_reason_id: 0 }}
 
     context 'success' do
       before {
@@ -31,10 +31,15 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         request.headers[JWTSessions.csrf_header] = csrf_token
       }
       
-      it 'get cancellation reasons' do
+      it 'get account cancellation reasons' do
         get :cancel_account_reasons
         expect(response).to have_http_status(:success)
         expect(response_json).not_to eq([])
+      end
+
+      it 'save account cancellation reason data' do
+        post :cancel, params: cancel_params_valid
+        expect(user.cancel_account_reason_text).to eq(cancel_account_reason_text)
       end
 
       it 'reset to free plan' do
@@ -44,7 +49,6 @@ RSpec.describe Api::V1::AccountController, type: :controller do
         expect(response_json['notice']).to eq(I18n.t('pages.account.cancel.success'))
         expect(response).to have_http_status(:success)
 
-        # expect(user.cancel_reason_text).to eq(cancel_reason_text) # todo:
         # reset to free plan
         expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
         expect(user.tariff_plan.price).to eq(tariff_plan_free.price)

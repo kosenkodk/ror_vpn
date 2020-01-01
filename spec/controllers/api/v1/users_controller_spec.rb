@@ -14,7 +14,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       expect(response_json).to eq user.as_json.stringify_keys
     end
 
-    it 'display current subscription' do
+    it 'display user\'s tariff plan/subscription' do
       get :me
       expect(response_json['tariff_plan']['id']).to eq(tariff_plan.id)
       expect(response_json).to eq user.as_json.stringify_keys

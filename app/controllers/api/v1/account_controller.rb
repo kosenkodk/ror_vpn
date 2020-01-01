@@ -15,7 +15,8 @@ class Api::V1::AccountController < Api::V1::ApiController
 
   def cancel
     # @user.cancel_reason = CancelReason.find(params['cancel_reason_id'])
-    #todo: @user.cancel_reason_text = params[:cancel_reason_text]
+    @user.cancel_account_reason_text = params[:cancel_account_reason_text]
+    @user.cancel_reason = CancelReason.find(params[:cancel_account_reason_id])
     @user.tariff_plan = TariffPlan.find_by(price: 0)
     if @user.save
       render json: { notice: I18n.t('pages.account.cancel.success') }
