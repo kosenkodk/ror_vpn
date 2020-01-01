@@ -1,7 +1,7 @@
 
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
-// import { alertActions } from './';
+import { alertActions } from './';
 
 export const accountActions = {
   getCancelAccountReasons,
@@ -17,7 +17,10 @@ function getCancelAccountReasons() {
 
     userService.getCancelAccountReasons()
       .then(
-        items => dispatch(success(items)),
+        items => {
+          localStorage.setItem('cancel_account_reasons', JSON.stringify(items))
+          dispatch(success(items))
+        },
         error => {
           dispatch(alertActions.error(error))
         }

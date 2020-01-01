@@ -36,7 +36,8 @@ SelectBox.defaultProps = {
 SelectBox.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
-  itemSelectedIndex: PropTypes.number
+  itemSelectedIndex: PropTypes.number,
+  items: PropTypes.array
 }
 
 export { SelectBox };

@@ -11,7 +11,10 @@ class CancelAccountForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '' }
+    this.state = {
+      email: '',
+      cancelAccountReasons: []
+    }
     // this.handleChange = this.handleChange.bind(this);
   }
 
@@ -20,7 +23,21 @@ class CancelAccountForm extends React.Component {
     this.setState({ [name]: value });
   }
 
+  UNSAFE_componentWillUpdate() {
+    // this.props.dispatch(accountActions.getCancelAccountReasons());
+  }
+
+  // componentDidUpdate() {}
+
   componentDidMount() {
+    try {
+      const itemsFromLocalStorage = JSON.parse(localStorage.getItem('cancel_account_reasons'))
+      this.setState({ cancelAccountReasons: itemsFromLocalStorage });
+    } catch (e) {
+      // console.log(e);
+    }
+    if (this.state.cancelAccountReasons.length > 0) return;
+
     this.props.dispatch(accountActions.getCancelAccountReasons());
   }
 
@@ -49,7 +66,7 @@ class CancelAccountForm extends React.Component {
               {I18n.t('pages.account.cancel.form.select_reason')}
             </label>
             <div className="col-sm-6">
-              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text" items={this.props.cancel_account_reasons || []} />
+              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text" items={this.props.cancel_account_reasons || this.state.cancelAccountReasons} />
             </div>
             <div className="col-sm-2"></div>
           </div>
@@ -73,6 +90,7 @@ CancelAccountForm.propTypes = {
   id: PropTypes.string,
   error: PropTypes.string,
   notice: PropTypes.string,
+  cancel_account_reasons: PropTypes.array
 }
 
 function mapStateToProps(state) {
