@@ -65,19 +65,18 @@ class AccountPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getUser();
+    // this.getUser();
   }
 
   UNSAFE_componentWillUpdate() {
-    this.getUser();
+    // this.getUser();
   }
 
   getUser() {
-    // this.setState({ user: JSON.parse(localStorage.getItem('user')) })
     try {
-      const itemFromLocalStorage = JSON.parse(localStorage.getItem('user'))
+      const itemFromLocalStorage = JSON.parse(localStorage.getItem('user'));
       this.setState({ user: itemFromLocalStorage });
-      console.log('getUser()', itemFromLocalStorage)
+      // console.log('getUser()', itemFromLocalStorage);
     } catch (e) {
       // console.log(e);
     }
@@ -125,8 +124,8 @@ class AccountPage extends React.Component {
                 <div className="col">
                   <div className="d-flex align-items-center">
                     <p className="m-0 text-blue">
-                      {/* {(userWithFreshInfo && userWithFreshInfo.tariff_plan && userWithFreshInfo.tariff_plan.title) || (user.tariff_plan && user.tariff_plan.title) || 'Free '} */}
-                      {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)}
+                      {(userWithFreshInfo && userWithFreshInfo.tariff_plan && userWithFreshInfo.tariff_plan.title) || (user.tariff_plan && user.tariff_plan.title) || 'Free '}
+                      {/* {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)} */}
                     </p>
 
                     <ModalPopup onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
