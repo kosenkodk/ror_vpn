@@ -14,6 +14,8 @@ class Api::V1::SignupController < Api::V1::ApiController
     if params[:tariff_plan_id].present?
       if params[:tariff_plan_id].is_a? String
         plan = params[:tariff_plan_id]
+      elsif params[:tariff_plan_id].is_a? Integer
+        plan = params[:tariff_plan_id]
       else
         plan = params[:tariff_plan_id].permit(:tariff_plan_id)[:tariff_plan_id]
       end
