@@ -17,14 +17,12 @@ RSpec.describe 'User Account', type: :feature, js: true do
 
   describe 'Cancel Account' do
     let(:cancel_account_reason_text) {'too expensive'}
-    let(:id_of_cancel_account_link) {'cancel_account_link'}
 
     it 'reset from paid to free plan' do
       user.tariff_plan = tariff_plan
       user.save
-      # click_on(I18n.t('pages.account.cancel.title'))
-      find('#'+id_of_cancel_account_link).click
-      
+      click_on_cancel_account_link
+
       fill_in :cancel_account_reason_text, with: cancel_account_reason_text
       # click_on(I18n.t('pages.account.cancel.form.button'))
       click_on(I18n.t('buttons.submit'))
@@ -37,31 +35,24 @@ RSpec.describe 'User Account', type: :feature, js: true do
     it 'select cancellation reason' do
       user.tariff_plan = tariff_plan
       user.save
-      # click_on(I18n.t('pages.account.cancel.title'))
-      find('#'+id_of_cancel_account_link).click
+      click_on_cancel_account_link
       fill_in :cancel_account_reason_text, with: cancel_account_reason_text
       
-      # select cancellation reason
-      id_of_select_box = 'cancel_account_select_box'
-      select(cancel_reason.title, from: id_of_select_box)
-      # find('#'+id_of_select_box).select(cancel_reason.title)
-      expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason.id)
-      select(cancel_reason2.title, from: id_of_select_box)
-      expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason2.id)
+      # selectbox - select cancellation reason 
+      select_cancel_account_reason cancel_reason
+      select_cancel_account_reason cancel_reason2
 
       # click_on(I18n.t('pages.account.cancel.form.button'))
       click_on(I18n.t('buttons.submit'))
     end
 
     it 'select cancellation reason after cancel or close modal popup' do
-      find('#'+id_of_cancel_account_link).click
+      click_on_cancel_account_link
       click_on(I18n.t('buttons.cancel'))
-      find('#'+id_of_cancel_account_link).click
-
-      expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason.id)
-      select(cancel_reason.title, from: id_of_select_box)
-      select(cancel_reason2.title, from: id_of_select_box)
-      expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason2.id)
+      click_on_cancel_account_link
+      
+      select_cancel_account_reason cancel_reason
+      select_cancel_account_reason cancel_reason2
     end
   end
 
