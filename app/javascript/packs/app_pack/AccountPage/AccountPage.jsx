@@ -13,6 +13,7 @@ class AccountPage extends React.Component {
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
       is2faEnabled: this.props.is2faEnabled,
+      user: ''
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -64,11 +65,29 @@ class AccountPage extends React.Component {
   }
 
   componentDidMount() {
+    this.getUser();
+  }
 
+  UNSAFE_componentWillUpdate() {
+    this.getUser();
+  }
+
+  getUser() {
+    // this.setState({ user: JSON.parse(localStorage.getItem('user')) })
+    try {
+      const itemFromLocalStorage = JSON.parse(localStorage.getItem('user'))
+      this.setState({ user: itemFromLocalStorage });
+      console.log('getUser()', itemFromLocalStorage)
+    } catch (e) {
+      // console.log(e);
+    }
+  }
+
+  componentDidUpdate() {
   }
 
   render() {
-    const { loggingIn, user } = this.props;
+    const { loggingIn, user, userWithFreshInfo } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -105,7 +124,10 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col">
                   <div className="d-flex align-items-center">
-                    <p className="m-0 text-blue">{(user.tariff_plan && user.tariff_plan.title) || 'Free'}</p>
+                    <p className="m-0 text-blue">
+                      {/* {(userWithFreshInfo && userWithFreshInfo.tariff_plan && userWithFreshInfo.tariff_plan.title) || (user.tariff_plan && user.tariff_plan.title) || 'Free '} */}
+                      {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)}
+                    </p>
 
                     <ModalPopup onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
                       aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
@@ -209,9 +231,10 @@ class AccountPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const userWithFreshInfo = state.users.user;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user
+    loggingIn, user, userWithFreshInfo
   };
 }
 
