@@ -50,21 +50,9 @@ class CancelAccountForm extends React.Component {
     const { email } = this.state;
     const { loading, error, notice } = this.props;
     return (
-      <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
+      <form onSubmit={this.props.onFormSubmit} className="account-cancel-form">
         <div className="modal-body">
           <FlashMessages error={error && error} notice={notice && notice} />
-
-          <div className="form-group row">
-            <label className="col-sm-4 col-form-label">
-              {I18n.t('pages.account.cancel.form.message')}
-            </label>
-            <div className="col-sm-6">
-              <textarea type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
-              // placeholder={I18n.t('pages.account.cancel.form.message')}
-              ></textarea>
-            </div>
-            <div className="col-sm-2"></div>
-          </div>
 
           <div className="form-group row">
             <label className="col-sm-4 col-form-label" htmlFor="email_contact">
@@ -79,7 +67,20 @@ class CancelAccountForm extends React.Component {
             </div>
             <div className="col-sm-2"></div>
           </div>
+
+          <div className="form-group row">
+            <label className="col-sm-4 col-form-label">
+              {I18n.t('pages.account.cancel.form.message')}
+            </label>
+            <div className="col-sm-6">
+              <textarea type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
+              // placeholder={I18n.t('pages.account.cancel.form.message')}
+              ></textarea>
+            </div>
+            <div className="col-sm-2"></div>
+          </div>
         </div>
+
         <div className="modal-footer">
           <div className="d-flex w-100">
             <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{I18n.t('buttons.cancel')}</button>

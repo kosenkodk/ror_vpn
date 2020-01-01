@@ -445,7 +445,17 @@
 
   .account-delete-form {
     textarea {
-      min-height: pxtovh(90);
+      height: pxtovh(90);
+      resize: none;
+    }
+    p {
+      margin: 1rem 0;
+    }
+  }
+
+  .account-cancel-form {
+    textarea {
+      height: pxtovh(163);
       resize: none;
     }
     p {
