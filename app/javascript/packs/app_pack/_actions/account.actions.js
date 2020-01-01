@@ -4,11 +4,32 @@ import { userService } from '../_services';
 import { alertActions } from './';
 
 export const accountActions = {
+  cancelAccount,
   getCancelAccountReasons,
   changePassword,
   changeEmail,
   deleteAccount,
   clearAlerts,
+}
+
+function cancelAccount(data) {
+  return dispatch => {
+    dispatch(request(data))
+    userService.cancelAccount(data)
+      .then(
+        response => {
+          dispatch(success(response.notice))
+          // dispatch(alertActions.success(response.notice))
+        },
+        error => {
+          dispatch(failure(error))
+          // dispatch(alertActions.error(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.CANCEL_ACCOUNT_REQUEST } }
+  function success(notice) { return { type: accountConstants.UPDATE_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.UPDATE_FAILURE, error } }
 }
 
 function getCancelAccountReasons() {
@@ -26,7 +47,6 @@ function getCancelAccountReasons() {
         }
       )
   }
-
   function request() { return { type: accountConstants.GET_ACCOUNT_CANCEL_REASONS_REQUEST } }
   function success(items) { return { type: accountConstants.GET_ACCOUNT_CANCEL_REASONS_SUCCESS, items } }
 }
@@ -54,7 +74,6 @@ function changePassword(data) {
   function success(notice) { return { type: accountConstants.UPDATE_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.UPDATE_FAILURE, error } }
 }
-
 
 function changeEmail(data) {
   return dispatch => {
