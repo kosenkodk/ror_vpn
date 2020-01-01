@@ -52,6 +52,17 @@ RSpec.describe 'User Account', type: :feature, js: true do
       # click_on(I18n.t('pages.account.cancel.form.button'))
       click_on(I18n.t('buttons.submit'))
     end
+
+    it 'select cancellation reason after cancel or close modal popup' do
+      find('#'+id_of_cancel_account_link).click
+      click_on(I18n.t('buttons.cancel'))
+      find('#'+id_of_cancel_account_link).click
+
+      expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason.id)
+      select(cancel_reason.title, from: id_of_select_box)
+      select(cancel_reason2.title, from: id_of_select_box)
+      expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason2.id)
+    end
   end
 
   describe 'Change email' do
