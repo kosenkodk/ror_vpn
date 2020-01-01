@@ -25,20 +25,25 @@ class CancelAccountForm extends React.Component {
 
   UNSAFE_componentWillUpdate() {
     // this.props.dispatch(accountActions.getCancelAccountReasons());
+    this.getCancelAccountReasonsFromLocalStorage();
   }
 
   // componentDidUpdate() {}
 
   componentDidMount() {
+    this.getCancelAccountReasonsFromLocalStorage();
+    // if (this.state.cancelAccountReasons.length > 0) return;
+
+    this.props.dispatch(accountActions.getCancelAccountReasons());
+  }
+
+  getCancelAccountReasonsFromLocalStorage() {
     try {
       const itemsFromLocalStorage = JSON.parse(localStorage.getItem('cancel_account_reasons'))
       this.setState({ cancelAccountReasons: itemsFromLocalStorage });
     } catch (e) {
       // console.log(e);
     }
-    // if (this.state.cancelAccountReasons.length > 0) return;
-
-    this.props.dispatch(accountActions.getCancelAccountReasons());
   }
 
   render() {
@@ -66,7 +71,11 @@ class CancelAccountForm extends React.Component {
               {I18n.t('pages.account.cancel.form.select_reason')}
             </label>
             <div className="col-sm-6">
-              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text" items={this.props.cancel_account_reasons || this.state.cancelAccountReasons} />
+              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text"
+                // items={(this.props.cancel_account_reasons || this.state.cancelAccountReasons} 
+                // items={this.state.cancelAccountReasons || this.props.cancel_account_reasons}
+                items={this.state.cancelAccountReasons}
+              />
             </div>
             <div className="col-sm-2"></div>
           </div>

@@ -48,9 +48,12 @@ RSpec.describe 'User Account', type: :feature, js: true do
 
     it 'select cancellation reason after cancel or close modal popup' do
       click_on_cancel_account_link
+      select_cancel_account_reason cancel_reason
+      select_cancel_account_reason cancel_reason2
+
       click_on(I18n.t('buttons.cancel'))
+
       click_on_cancel_account_link
-      
       select_cancel_account_reason cancel_reason
       select_cancel_account_reason cancel_reason2
     end
