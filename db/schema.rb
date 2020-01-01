@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_205814) do
+ActiveRecord::Schema.define(version: 2020_01_01_150408) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_205814) do
     t.integer "tariff_plan_id"
     t.integer "payment_method_id"
     t.integer "cancel_reason_id"
+    t.text "cancel_account_reason_text"
     t.index ["cancel_reason_id"], name: "index_users_on_cancel_reason_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["payment_method_id"], name: "index_users_on_payment_method_id"
