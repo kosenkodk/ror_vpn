@@ -34,8 +34,21 @@ module FeatureHelper
     click_link('btn-back')
     # find('#btn-back').click
   end
+
   def click_on_ticket_first
     # click_on(I18n.t('buttons.view'), match: :first)
     find('.ticket-table-item', match: :first).click
+  end
+  
+  def click_on_cancel_account_link
+    # click_on(I18n.t('pages.account.cancel.title'))
+    find('#cancel_account_link').click
+  end
+
+  def select_cancel_account_reason cancel_reason
+    id_of_select_box = 'cancel_account_select_box'
+    select(cancel_reason.title, from: id_of_select_box)
+    # find('#'+id_of_select_box).select(cancel_reason.title)
+    expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason.id)
   end
 end

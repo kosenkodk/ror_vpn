@@ -36,7 +36,7 @@ class CancelAccountForm extends React.Component {
     } catch (e) {
       // console.log(e);
     }
-    if (this.state.cancelAccountReasons.length > 0) return;
+    // if (this.state.cancelAccountReasons.length > 0) return;
 
     this.props.dispatch(accountActions.getCancelAccountReasons());
   }
