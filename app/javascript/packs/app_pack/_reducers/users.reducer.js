@@ -18,6 +18,18 @@ export function users(state = {}, action) {
       return {
         error: action.error
       };
+    case userConstants.GET_USER_REQUEST:
+      return {
+        loading: true
+      };
+    case userConstants.GET_USER_SUCCESS:
+      return {
+        user: action.user
+      };
+    case userConstants.GET_USER_FAILURE:
+      return {
+        error: action.error
+      };
     default:
       return state
   }

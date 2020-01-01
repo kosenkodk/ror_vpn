@@ -8,6 +8,7 @@ export const userService = {
   logout,
   signup,
   getAll,
+  getUser,
   getTickets,
   addTicket,
   viewTicket,

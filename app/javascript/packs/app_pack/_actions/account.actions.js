@@ -1,7 +1,7 @@
 
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions } from './';
+import { alertActions, userActions } from './';
 
 export const accountActions = {
   cancelAccount,
@@ -18,12 +18,11 @@ function cancelAccount(data) {
     userService.cancelAccount(data)
       .then(
         response => {
+          dispatch(userActions.getUser()) // get updated user's info (tariff plan)
           dispatch(success(response.notice))
-          // dispatch(alertActions.success(response.notice))
         },
         error => {
           dispatch(failure(error))
-          // dispatch(alertActions.error(error))
         }
       )
   }

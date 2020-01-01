@@ -23,7 +23,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   describe 'cancel account' do
     let!(:cancel_reason) { create(:cancel_reason) }
     let(:cancel_account_reason_text) {'cancel account reason'}
-    let(:cancel_params_valid) {{ cancel_account_reason_text: cancel_account_reason_text, cancel_account_reason_id: 0 }}
+    let(:cancel_params_valid) {{ cancel_account_reason_text: cancel_account_reason_text, cancel_account_reason_id: cancel_reason.id }}
 
     context 'success' do
       before {
@@ -45,7 +45,8 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       it 'reset to free plan' do
         post :cancel, params: cancel_params_valid
         expect(user.tariff_plan.title).to eq(tariff_plan.title)
-
+        
+        expect(response_json.keys).to eq(['notice'])
         expect(response_json['notice']).to eq(I18n.t('pages.account.cancel.success'))
         expect(response).to have_http_status(:success)
 

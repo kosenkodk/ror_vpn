@@ -17,11 +17,12 @@ class Api::V1::AccountController < Api::V1::ApiController
     @user.cancel_account_reason_text = params[:cancel_account_reason_text]
     @user.cancel_reason = CancelReason.find(params[:cancel_account_reason_id])
     @user.tariff_plan = TariffPlan.find_by(price: 0)
+    # @user.update(tariff_plan: TariffPlan.find_by(price: 0))
     if @user.save
       # todo: return title of current plan to display in mobile client
       render json: { notice: I18n.t('pages.account.cancel.success') }
     else
-      render json: { notice: I18n.t('pages.account.cancel.error') }
+      render json: { error: I18n.t('pages.account.cancel.error') }
     end
   end
 
