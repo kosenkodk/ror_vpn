@@ -4,8 +4,8 @@ RSpec.describe Api::V1::AccountController, type: :controller do
   let(:password) { 'password' }
   let(:password_invalid) { 'password_invalid' }
   let(:password_new) { 'newpassword' }
-  let(:tariff_plan) {create(:tariff_plan)}
-  let(:tariff_plan_free) {create(:tariff_plan_free)}
+  let!(:tariff_plan) {create(:tariff_plan)}
+  let!(:tariff_plan_free) {create(:tariff_plan_free)}
   let(:user) { create(:user, password: password, password_confirmation: password, tariff_plan: tariff_plan) }
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
@@ -39,20 +39,21 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
       it 'save account cancellation reason data' do
         post :cancel, params: cancel_params_valid
-        expect(user.cancel_account_reason_text).to eq(cancel_account_reason_text)
+        expect(response_json['user']['cancel_account_reason_text']).to eq(cancel_account_reason_text)
       end
 
       it 'reset to free plan' do
         post :cancel, params: cancel_params_valid
         expect(user.tariff_plan.title).to eq(tariff_plan.title)
         
-        expect(response_json.keys).to eq(['notice'])
+        expect(response_json.keys).to include('notice')
         expect(response_json['notice']).to eq(I18n.t('pages.account.cancel.success'))
         expect(response).to have_http_status(:success)
 
         # reset to free plan
-        expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
-        expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
+        expect(response_json.keys).to include('user')
+        expect(response_json['user']['tariff_plan']['title']).to eq(tariff_plan_free.title)
+        expect(response_json['user']['tariff_plan']['price']).to eq(tariff_plan_free.price)
       end
     end
   end
