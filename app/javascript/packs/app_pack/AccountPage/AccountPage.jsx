@@ -27,7 +27,7 @@ class AccountPage extends React.Component {
   onCancelAccount(e) {
     e.preventDefault();
     const data = FormDataAsJsonFromEvent(e);
-    // this.propss.dispatch(accountActions.cancelAccount(data));
+    this.props.dispatch(accountActions.cancelAccount(data));
   }
 
   onChangePassword(e) {

@@ -59,7 +59,7 @@ class CancelAccountForm extends React.Component {
               {I18n.t('pages.account.cancel.form.select_reason')}
             </label>
             <div className="col-sm-6">
-              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_text"
+              <SelectBox id="cancel_account_select_box" name="cancel_account_reason_id"
                 // items={(this.props.cancel_account_reasons || this.state.cancelAccountReasons} 
                 // items={this.state.cancelAccountReasons || this.props.cancel_account_reasons}
                 items={this.state.cancelAccountReasons}
