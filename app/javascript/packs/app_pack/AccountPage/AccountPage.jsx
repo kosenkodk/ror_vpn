@@ -230,7 +230,8 @@ class AccountPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const userWithFreshInfo = state.users.user;
+  // const userWithFreshInfo = state.users.user;
+  const userWithFreshInfo = state.account.user;
   const { loggingIn, user } = state.authentication;
   return {
     loggingIn, user, userWithFreshInfo

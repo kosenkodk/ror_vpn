@@ -61,7 +61,10 @@ export function account(state = {}, action) {
       }
     case accountConstants.CANCEL_ACCOUNT_SUCCESS:
       return {
-        notice: action.notice,
+        // notice: action.notice,
+        // user: action.user,
+        notice: action.response.notice,
+        user: action.response.user
       }
     case accountConstants.CANCEL_ACCOUNT_FAILURE:
       return {
