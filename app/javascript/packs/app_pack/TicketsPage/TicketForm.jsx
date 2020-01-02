@@ -4,8 +4,7 @@ import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
 import { ticketActions } from '../_actions';
-// import { MultiFileUpload } from '../_components/admin';
-import { AttachmentPreview, AttachmentPreviewCard } from '../_components/admin';
+// import { AttachmentPreview, AttachmentPreviewCard } from '../_components/admin';
 
 class TicketForm extends React.Component {
   constructor(props) {
@@ -32,6 +31,8 @@ class TicketForm extends React.Component {
         return { file: item, url: URL.createObjectURL(item) };
       });
       this.setState({ imagePreviews: imagePreviews })
+      this.props.onFilesChange(e, imagePreviews);
+      return;
     }
     this.props.onFilesChange(e);
   }
@@ -42,7 +43,6 @@ class TicketForm extends React.Component {
   }
 
   render() {
-    // console.log('state files', this.state.files);
     return (
       <form onSubmit={(e) => this.props.onFormSubmit(e, this.props.isEdit)}>
         <div className="form-group row">
@@ -104,7 +104,7 @@ class TicketForm extends React.Component {
         </div>
 
         {/* <AttachmentPreviewCard items={this.state.imagePreviews} /> */}
-        <AttachmentPreview items={this.state.imagePreviews} />
+        {/* <AttachmentPreview items={this.state.imagePreviews} /> */}
         {/* end custom file input - multi file upload with images preview */}
 
         <div className="form-group row">
