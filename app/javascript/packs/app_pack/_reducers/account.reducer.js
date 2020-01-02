@@ -61,10 +61,8 @@ export function account(state = {}, action) {
       }
     case accountConstants.CANCEL_ACCOUNT_SUCCESS:
       return {
-        // notice: action.notice,
-        // user: action.user,
-        notice: action.response.notice,
-        user: action.response.user
+        notice: action.notice,
+        user: action.user,
       }
     case accountConstants.CANCEL_ACCOUNT_FAILURE:
       return {
@@ -72,8 +70,10 @@ export function account(state = {}, action) {
       }
     case accountConstants.CLEAR_ALERTS:
       return {
+        // ...state,
         error: '',
-        notice: ''
+        notice: '',
+        // user: action.user,
       }
     default:
       return state
