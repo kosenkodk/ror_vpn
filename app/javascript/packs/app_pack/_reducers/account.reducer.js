@@ -70,10 +70,9 @@ export function account(state = {}, action) {
       }
     case accountConstants.CLEAR_ALERTS:
       return {
-        // ...state,
+        ...state,
         error: '',
         notice: '',
-        // user: action.user,
       }
     default:
       return state
