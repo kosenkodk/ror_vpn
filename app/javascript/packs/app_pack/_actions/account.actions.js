@@ -18,7 +18,9 @@ function cancelAccount(data) {
     userService.cancelAccount(data)
       .then(
         response => {
-          dispatch(success(response))
+          localStorage.setItem('user', JSON.stringify(response.user))
+          // dispatch(userActions.getUser()) // get updated user's info (tariff plan)
+          dispatch(success(response.notice, response.user))
         },
         error => {
           dispatch(failure(error))
@@ -26,7 +28,7 @@ function cancelAccount(data) {
       )
   }
   function request() { return { type: accountConstants.CANCEL_ACCOUNT_REQUEST } }
-  function success(response) { return { type: accountConstants.CANCEL_ACCOUNT_SUCCESS, response } }
+  function success(notice, user) { return { type: accountConstants.CANCEL_ACCOUNT_SUCCESS, notice, user } }
   function failure(error) { return { type: accountConstants.CANCEL_ACCOUNT_FAILURE, error } }
 }
 
