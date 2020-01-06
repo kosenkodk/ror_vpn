@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import { history } from '../_helpers'
-import { ticketActions, pageActions, alertActions, bgClassActions, departmentActions } from '../_actions'
+import { ticketActions, pageActions, alertActions, bgClassActions, globalActions } from '../_actions'
 import { urls } from 'config'
 
 // components
@@ -84,7 +84,7 @@ class App extends React.Component {
 
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
-    this.props.dispatch(departmentActions.getAll())
+    this.props.dispatch(globalActions.getDepartments())
     this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
     this.isFooterVisible()
   }
@@ -302,7 +302,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   const { loggedIn } = state.authentication
   const { page } = state.tickets;
-  const { departments } = state;
+  const { departments } = state.global;
   return {
     loggedIn,
     departments,

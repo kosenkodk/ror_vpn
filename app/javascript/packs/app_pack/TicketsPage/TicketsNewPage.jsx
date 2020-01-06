@@ -69,14 +69,14 @@ class TicketsNewPage extends React.Component {
   }
 
   render() {
-    const { items } = this.props
+    const { departments } = this.props
     return (
       <div id="" className="tickets tickets__new container-fluid">
         <BackButtonWithTitle title={I18n.t('pages.tickets.new')} url={urls.tickets.path} />
         <div className="row mt-xl-3">
           <div className="col-md-8 col-xl-7">
-            <TicketForm onFilesChange={this.onFilesChange} onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={items} />
-            {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={items} /> */}
+            <TicketForm onFilesChange={this.onFilesChange} onFileChange={this.onFileChange} onFormSubmit={this.onFormSubmit} departments={departments} />
+            {/* <TicketForm onFormSubmit={this.onFormSubmit} departments={departments} /> */}
           </div>
           <div className="col-md-4 col-xl-5">
             <AttachmentPreview items={this.state.imagePreviews} />
@@ -88,8 +88,8 @@ class TicketsNewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loading, items } = state.departments;
-  return { loading, items };
+  const { departments } = state.global;
+  return { departments };
 }
 
 const connectedApp = connect(mapStateToProps)(TicketsNewPage);
