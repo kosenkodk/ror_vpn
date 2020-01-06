@@ -6,8 +6,14 @@ import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { ModalPopup, AlertDismissible } from '../_components';
+
 import ModalDialog from 'react-bootstrap/ModalDialog';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 // import ModalVerticallyCentered from '../_components/ModalVerticallyCentered';
+import "bootstrap/dist/css/bootstrap.min.css";
+// import ModalStyled from '../_components/ModalStyled';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -15,7 +21,8 @@ class AccountPage extends React.Component {
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
       is2faEnabled: this.props.is2faEnabled,
-      user: ''
+      user: '',
+      isModalShow: false
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -87,7 +94,13 @@ class AccountPage extends React.Component {
   componentDidUpdate() {
   }
 
+  setModalShow(value) {
+    this.setState({ isModalShow: value })
+  }
+
   render() {
+    // const [modalShow, setModalShow] = React.useState(false);
+
     const { loggingIn, user, userWithFreshInfo } = this.props;
     return (
       <div className="container-fluid">
@@ -107,9 +120,49 @@ class AccountPage extends React.Component {
                 </div>
               </div>
             </div> */}
-            <AlertDismissible />
+
+            {/* <ModalStyled /> */}
+
+            {/* <ButtonToolbar> */}
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+              Launch vertically centered modal
+              </Button>
+
+            {/* <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              /> */}
+
+            <Modal
+              // {...props}
+              // show={modalShow}
+              show={this.state.isModalShow}
+              size="lg"
+              aria-labelledby="contained-modal-title-vcenter"
+              centered
+            >
+              <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                  Modal heading
+        </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h4>Centered Modal</h4>
+                <p></p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={
+                  // props.onHide
+                  () => setModalShow(false)
+                }>Close</Button>
+              </Modal.Footer>
+            </Modal>
+
+            {/* </ButtonToolbar> */}
+
+            {/* <AlertDismissible /> */}
             {/* <ModalVerticallyCentered /> */}
-            <ModalDialog>Hi</ModalDialog>
+            {/* <ModalDialog>Hi</ModalDialog> */}
 
             <div className="mb-60">
               <h1>Username</h1>
@@ -234,6 +287,12 @@ class AccountPage extends React.Component {
     );
   }
 }
+
+// function MyVerticallyCenteredModal(props) {
+//   return (
+
+//   );
+// }
 
 function mapStateToProps(state) {
   // const userWithFreshInfo = state.users.user;

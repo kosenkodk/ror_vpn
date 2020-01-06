@@ -33,9 +33,9 @@ $(jQuery).on('ready turbolinks:load', function () {
   })
 
   // fix for modal popup
-  $(document).on('show.bs.modal', '.modal', function () {
-    $(document.body).append($(this).detach());
-  });
+  // $(document).on('show.bs.modal', '.modal', function () {
+  //   $(document.body).append($(this).detach());
+  // });
 
   // $('.modal').on('shown.bs.modal', function () {
   // //To relate the z-index make sure backdrop and modal are siblings
