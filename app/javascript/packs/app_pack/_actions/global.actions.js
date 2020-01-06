@@ -21,9 +21,9 @@ function getDepartments() {
       )
   }
 
-  // function request() { return { type: globalConstants.GETALL_REQUEST } }
-  function success(departments) { return { type: globalConstants.DEPARTMENTS, departments } }
-  // function failure(error) { return { type: globalConstants.GETALL_FAILURE, error } }
+  // function request() { return { type: globalConstants.GET_DEPARTMENTS_REQUEST } }
+  function success(departments) { return { type: globalConstants.GET_DEPARTMENTS_SUCCESS, departments } }
+  // function failure(error) { return { type: globalConstants.GET_DEPARTMENTS_FAILURE, error } }
 }
 
 
@@ -40,8 +40,7 @@ function getAccountCancellationReasons() {
       )
   }
 
-  // function request() { return { type: globalConstants.GETALL_REQUEST } }
+  // function request() { return { type: globalConstants.GET_ACCOUNT_CANCELLATION_REASONS_REQUEST } }
   function success(account_cancellation_reasons) { return { type: globalConstants.GET_ACCOUNT_CANCELLATION_REASONS_SUCCESS, account_cancellation_reasons } }
-  // function failure(error) { return { type: globalConstants.GETALL_FAILURE, error } }
-
+  // function failure(error) { return { type: globalConstants.GET_ACCOUNT_CANCELLATION_REASONS_FAILURE, error } }
 }

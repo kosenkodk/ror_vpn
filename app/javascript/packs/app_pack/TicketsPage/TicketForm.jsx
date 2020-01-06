@@ -48,7 +48,7 @@ class TicketForm extends React.Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.select_the_department')}</label>
           <div className="col-sm-8">
-            <SelectBoxDepartment departments={this.props.departments} />
+            <SelectBoxDepartment departments={this.props.departments && this.props.departments} />
           </div>
         </div>
 

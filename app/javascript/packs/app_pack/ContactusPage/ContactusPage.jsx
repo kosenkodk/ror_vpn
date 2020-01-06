@@ -49,7 +49,7 @@ class ContactusPage extends React.Component {
               </div>
             </div>
              */}
-            <ContactusForm handleFormSubmit={this.handleFormSubmit} departments={this.props && this.props.items} />
+            <ContactusForm handleFormSubmit={this.handleFormSubmit} departments={this.props.departments && this.props.departments} />
           </div>
 
           <div className="col-md-12 align-self-end">
@@ -63,8 +63,8 @@ class ContactusPage extends React.Component {
 
 function mapStateToProps(state) {
   const { height } = state.page;
-  const { loading, items } = state.departments;
-  return { loading, items, height };
+  const { departments } = state.global;
+  return { departments, height };
 }
 
 const connectedApp = connect(mapStateToProps)(ContactusPage);
