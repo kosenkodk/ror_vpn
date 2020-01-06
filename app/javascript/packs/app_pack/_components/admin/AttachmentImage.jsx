@@ -6,9 +6,9 @@ class AttachmentImage extends React.Component {
     const { name, url, index } = this.props;
     const item = { 'name': name, 'url': url };
     return (
-      <div class="row">
-        <div class="col">
-          <div class="h-100">
+      <div className="row">
+        <div className="col">
+          <div className="h-100">
             <div className="embed-responsive embed-responsive-16by9">
               <ModalPopup id={`modalForAttachmentImage${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
                 <div className="text-center">
