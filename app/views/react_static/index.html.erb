@@ -2,5 +2,7 @@
 <%#= react_component("App", { token: @csrf_token }, { prerender: true }) #%>
 <%#= react_component("App", { token: @csrf_token }) #%>
 
-<%= javascript_pack_tag 'app_pack' %>
-<div id="app_pack"></div>
+<body>
+  <%= javascript_pack_tag 'app_pack' %>
+  <div id="app_pack"></div>
+</body>

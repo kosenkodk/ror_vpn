@@ -6,6 +6,7 @@ import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { ModalPopup } from '../_components';
+import Modal from 'react-bootstrap/Modal';
 
 class AccountPage extends React.Component {
   constructor(props) {
