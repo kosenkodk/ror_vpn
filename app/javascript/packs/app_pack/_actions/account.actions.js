@@ -1,11 +1,10 @@
 
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions, userActions } from './';
+// import { alertActions, userActions } from './';
 
 export const accountActions = {
   cancelAccount,
-  getAccountCancellationReasons,
   changePassword,
   changeEmail,
   deleteAccount,
@@ -30,25 +29,6 @@ function cancelAccount(data) {
   function request() { return { type: accountConstants.CANCEL_ACCOUNT_REQUEST } }
   function success(notice, user) { return { type: accountConstants.CANCEL_ACCOUNT_SUCCESS, notice, user } }
   function failure(error) { return { type: accountConstants.CANCEL_ACCOUNT_FAILURE, error } }
-}
-
-function getAccountCancellationReasons() {
-  return dispatch => {
-    dispatch(request())
-
-    userService.getAccountCancellationReasons()
-      .then(
-        items => {
-          localStorage.setItem('account_cancellation_reasons', JSON.stringify(items))
-          dispatch(success(items))
-        },
-        error => {
-          dispatch(alertActions.error(error))
-        }
-      )
-  }
-  function request() { return { type: accountConstants.GET_ACCOUNT_CANCEL_REASONS_REQUEST } }
-  function success(items) { return { type: accountConstants.GET_ACCOUNT_CANCEL_REASONS_SUCCESS, items } }
 }
 
 function clearAlerts() {

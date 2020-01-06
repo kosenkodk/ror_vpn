@@ -44,17 +44,6 @@ export function account(state = {}, action) {
       return {
         error: action.error,
       }
-    case accountConstants.GET_ACCOUNT_CANCEL_REASONS_REQUEST:
-      return {
-        loading: true,
-        error: '',
-        notice: '',
-      }
-    case accountConstants.GET_ACCOUNT_CANCEL_REASONS_SUCCESS:
-      return {
-        error: action.notice,
-        account_cancellation_reasons: action.items
-      }
     case accountConstants.CANCEL_ACCOUNT_REQUEST:
       return {
         loading: true
@@ -70,7 +59,6 @@ export function account(state = {}, action) {
       }
     case accountConstants.CLEAR_ALERTS:
       return {
-        ...state,
         error: '',
         notice: '',
       }
