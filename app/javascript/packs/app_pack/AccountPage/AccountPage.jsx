@@ -5,7 +5,9 @@ import { DeleteForm, ChangePasswordForm, ChangeEmailForm, CancelAccountForm } fr
 import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
-import { ModalPopup } from '../_components';
+import { ModalPopup, AlertDismissible } from '../_components';
+import ModalDialog from 'react-bootstrap/ModalDialog';
+// import ModalVerticallyCentered from '../_components/ModalVerticallyCentered';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -105,9 +107,13 @@ class AccountPage extends React.Component {
                 </div>
               </div>
             </div> */}
+            <AlertDismissible />
+            {/* <ModalVerticallyCentered /> */}
+            <ModalDialog>Hi</ModalDialog>
 
             <div className="mb-60">
               <h1>Username</h1>
+
               <div className="row align-items-center">
                 <div className="col-sm-5">
                   <label className="col-form-label">Email</label>
