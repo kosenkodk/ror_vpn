@@ -59,6 +59,8 @@ export function account(state = {}, action) {
       }
     case accountConstants.CLEAR_ALERTS:
       return {
+        ...state,
+        loading: false,
         error: '',
         notice: '',
       }
