@@ -6,7 +6,8 @@ import { accountActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { ModalPopup } from '../_components';
-import Modal from 'react-bootstrap/Modal';
+// import Modal from 'react-bootstrap/Modal';
+import { ModalPopupVerticallyCentered } from '../_components/ModalPopupVerticallyCentered';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -129,10 +130,10 @@ class AccountPage extends React.Component {
                       {/* {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)} */}
                     </p>
 
-                    <ModalPopup onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
+                    <ModalPopupVerticallyCentered onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
                       aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
                       <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
-                    </ModalPopup>
+                    </ModalPopupVerticallyCentered>
 
                     {/* <Link to="#" className="ml-auto text-black">Cancel Account</Link> */}
                   </div>
