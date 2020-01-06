@@ -4,7 +4,7 @@ class Api::V1::AccountController < Api::V1::ApiController
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
-  def cancel_account_reasons
+  def account_cancellation_reasons
     items = CancelReason.all
     render json: items
     .as_json(
