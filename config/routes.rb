@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       get '/me', to: 'users#me'
 
       # account page for logged in users
-      get '/cancel_account_reasons', to: 'account#cancel_account_reasons'
+      get '/account_cancellation_reasons', to: 'account#account_cancellation_reasons'
       delete '/delete', to: 'account#delete'
       patch '/change_password', to: 'account#change_password'
       patch '/change_email', to: 'account#change_email'

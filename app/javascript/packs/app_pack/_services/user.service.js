@@ -16,7 +16,7 @@ export const userService = {
   getDepartments,
   contactUs,
   cancelAccount,
-  getCancelAccountReasons,
+  getAccountCancellationReasons,
   changeLoginPassword,
   changeLoginEmail,
   deleteAccount,
@@ -251,16 +251,16 @@ function cancelAccount(data) {
   return fetch(`${config.apiUrl}/cancel`, requestOptions).then(handleResponse);
 }
 
-function getCancelAccountReasons() {
+function getAccountCancellationReasons() {
   if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/cancel_account_reasons`, 'GET', {})
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/account_cancellation_reasons`, 'GET', {})
 
   const requestOptions = {
     method: 'GET',
     credentials: credentials,
     headers: authHeader()
   }
-  return fetch(`${config.apiUrl}/cancel_account_reasons`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/account_cancellation_reasons`, requestOptions).then(handleResponse);
 }
 
 function getRequestOptions(method, data) {

@@ -5,7 +5,7 @@ import { alertActions, userActions } from './';
 
 export const accountActions = {
   cancelAccount,
-  getCancelAccountReasons,
+  getAccountCancellationReasons,
   changePassword,
   changeEmail,
   deleteAccount,
@@ -32,14 +32,14 @@ function cancelAccount(data) {
   function failure(error) { return { type: accountConstants.CANCEL_ACCOUNT_FAILURE, error } }
 }
 
-function getCancelAccountReasons() {
+function getAccountCancellationReasons() {
   return dispatch => {
     dispatch(request())
 
-    userService.getCancelAccountReasons()
+    userService.getAccountCancellationReasons()
       .then(
         items => {
-          localStorage.setItem('cancel_account_reasons', JSON.stringify(items))
+          localStorage.setItem('account_cancellation_reasons', JSON.stringify(items))
           dispatch(success(items))
         },
         error => {

@@ -32,7 +32,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       }
       
       it 'get account cancellation reasons' do
-        get :cancel_account_reasons
+        get :account_cancellation_reasons
         expect(response).to have_http_status(:success)
         expect(response_json).not_to eq([])
       end

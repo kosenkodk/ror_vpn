@@ -1,21 +1,15 @@
 import React from 'react';
-import { NavHashLink as Link } from 'react-router-hash-link';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 import FlashMessages from '../_sections/FlashMessages';
 import { SelectBox } from '../_components';
-import { accountActions } from '../_actions';
+import { globalActions } from '../_actions';
 
 class CancelAccountForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      email: '',
-      cancelAccountReasons: []
-    }
-    // this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = (e) => {
@@ -23,31 +17,12 @@ class CancelAccountForm extends React.Component {
     this.setState({ [name]: value });
   }
 
-  UNSAFE_componentWillUpdate() {
-    // this.props.dispatch(accountActions.getCancelAccountReasons());
-    this.getCancelAccountReasonsFromLocalStorage();
-  }
-
-  // componentDidUpdate() {}
-
   componentDidMount() {
-    this.getCancelAccountReasonsFromLocalStorage();
-    // if (this.state.cancelAccountReasons.length > 0) return;
-
-    this.props.dispatch(accountActions.getCancelAccountReasons());
-  }
-
-  getCancelAccountReasonsFromLocalStorage() {
-    try {
-      const itemsFromLocalStorage = JSON.parse(localStorage.getItem('cancel_account_reasons'))
-      this.setState({ cancelAccountReasons: itemsFromLocalStorage });
-    } catch (e) {
-      // console.log(e);
-    }
+    if (this.props.account_cancellation_reasons && this.props.account_cancellation_reasons.length > 0) return;
+    this.props.dispatch(globalActions.getAccountCancellationReasons());
   }
 
   render() {
-    const { email } = this.state;
     const { loading, error, notice } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit} className="account-cancel-form">
@@ -55,14 +30,12 @@ class CancelAccountForm extends React.Component {
           <FlashMessages error={error && error} notice={notice && notice} />
 
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label" htmlFor="email_contact">
+            <label className="col-sm-4 col-form-label" htmlFor="cancel_account_select_box">
               {I18n.t('pages.account.cancel.form.select_reason')}
             </label>
             <div className="col-sm-6">
               <SelectBox id="cancel_account_select_box" name="cancel_account_reason_id"
-                // items={(this.props.cancel_account_reasons || this.state.cancelAccountReasons} 
-                // items={this.state.cancelAccountReasons || this.props.cancel_account_reasons}
-                items={this.state.cancelAccountReasons}
+                items={this.props.account_cancellation_reasons && this.props.account_cancellation_reasons}
               />
             </div>
             <div className="col-sm-2"></div>
@@ -100,16 +73,17 @@ CancelAccountForm.propTypes = {
   id: PropTypes.string,
   error: PropTypes.string,
   notice: PropTypes.string,
-  cancel_account_reasons: PropTypes.array
+  account_cancellation_reasons: PropTypes.array
 }
 
 function mapStateToProps(state) {
-  const { loading, error, notice, cancel_account_reasons } = state.account;
+  const { account_cancellation_reasons } = state.global
+  const { loading, error, notice } = state.account;
   return {
     loading,
     error,
     notice,
-    cancel_account_reasons
+    account_cancellation_reasons
   };
 }
 

@@ -53,7 +53,7 @@ export function account(state = {}, action) {
     case accountConstants.GET_ACCOUNT_CANCEL_REASONS_SUCCESS:
       return {
         error: action.notice,
-        cancel_account_reasons: action.items
+        account_cancellation_reasons: action.items
       }
     case accountConstants.CANCEL_ACCOUNT_REQUEST:
       return {
