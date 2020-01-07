@@ -2,6 +2,7 @@
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
 // import { alertActions, userActions } from './';
+import { globalActions } from './';
 
 export const accountActions = {
   cancelAccount,
@@ -19,6 +20,8 @@ function cancelAccount(data) {
         response => {
           localStorage.setItem('user', JSON.stringify(response.user))
           // dispatch(userActions.getUser()) // get updated user's info (tariff plan)
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+
           dispatch(success(response.notice, response.user))
         },
         error => {
