@@ -27,7 +27,7 @@ class CancelAccountForm extends React.Component {
     return (
       <form onSubmit={this.props.onFormSubmit} className="account-cancel-form">
         <div className="modal-body">
-          <FlashMessages error={error && error} notice={notice && notice} />
+          {/* <FlashMessages error={error && error} notice={notice && notice} /> */}
 
           <div className="form-group row">
             <label className="col-sm-4 col-form-label" htmlFor="cancel_account_select_box">
