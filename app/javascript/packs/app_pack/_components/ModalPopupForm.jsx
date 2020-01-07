@@ -29,7 +29,7 @@ class ModalPopupForm extends React.Component {
 
   Hide(e) {
     this.setState({ isModalShow: false });
-    this.props.onClose(e);
+    // this.props.onClose(e);
   }
 
   Show(e) {
@@ -91,6 +91,23 @@ class ModalPopupForm extends React.Component {
             {this.props.children}
           </Modal.Body>
 
+          {this.props.isShowFooter &&
+            <Modal.Footer className="pt-0">
+              <div className="d-flex w-100">
+                <button type="button"
+                  // onClick={this.props.onClose}
+                  // onClick={() => this.setModalShow(false)}
+                  onClick={this.Hide}
+                  className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
+                <button type="submit"
+                  onClick={this.onBtnSave}
+                  className="btn btn-pink active" disabled={loading ? true : false}>
+                  {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                  {' ' + btnSaveText}
+                </button>
+              </div>
+            </Modal.Footer>
+          }
         </Modal>
       </React.Fragment>
     );
