@@ -7,7 +7,8 @@ import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { ModalPopup } from '../_components';
 // import Modal from 'react-bootstrap/Modal';
-import { ModalPopupVerticallyCentered } from '../_components/ModalPopupVerticallyCentered';
+// import { ModalPopupVerticallyCentered } from '../_components/ModalPopupVerticallyCentered';
+import { ModalPopupForm } from '../_components/ModalPopupForm';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -130,10 +131,22 @@ class AccountPage extends React.Component {
                       {/* {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)} */}
                     </p>
 
-                    <ModalPopupVerticallyCentered onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
+                    {/* <a href="#" className="ml-auto text-black"
+                      // data-toggle="modal"
+                      // onClick={() => this.setModalShow(true)}
+                      onClick={this.Show}
+                    >
+                      {I18n.t('pages.account.cancel.title')}
+                    </a> */}
+
+                    <ModalPopupForm aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
+                      <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
+                    </ModalPopupForm>
+
+                    {/* <ModalPopupVerticallyCentered onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
                       aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
                       <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
-                    </ModalPopupVerticallyCentered>
+                    </ModalPopupVerticallyCentered> */}
 
                     {/* <Link to="#" className="ml-auto text-black">Cancel Account</Link> */}
                   </div>

@@ -45,19 +45,17 @@
     word-break: break-all;
   }
 
-  .modal-body {}
-
   .modal-title {
     margin-bottom:0;
   }
 
   .modal-footer {
-    padding-bottom: pxtovh(31); 
     border: unset;
-    padding-top: 0;
+    padding: pxtovh(10px) pxtovw(5px);
   }
 
   .modal-header {
+    padding: 0;
     border: unset;
     .close {
       color: $black;
@@ -68,5 +66,9 @@
         min-height: pxtovw(24);
       }
     }
+  }
+
+  .modal-body {
+    padding: 0;
   }
 }
