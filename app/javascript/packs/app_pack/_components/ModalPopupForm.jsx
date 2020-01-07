@@ -68,13 +68,13 @@ class ModalPopupForm extends React.Component {
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
-          className={`p-0 ${loggedIn && 'admin_layout'}`}
+          className={`${loggedIn && 'admin_layout'}`}
         // dialogAs={ModalDialog}
         // dialogClassName="p-0"
         >
           <Modal.Header
             // closeButton 
-            className="align-items-center pb-0">
+            className="align-items-center">
             {/* <Modal.Title id="contained-modal-title-vcenter"> */}
             <h1 className="modal-title" id={`${id}Title`}>{title}</h1>
             <button type="button"
@@ -86,7 +86,7 @@ class ModalPopupForm extends React.Component {
             {/* </Modal.Title> */}
           </Modal.Header>
 
-          <Modal.Body className="mt-0">
+          <Modal.Body className="">
             <FlashMessages error={error && error} notice={notice && notice} />
             {this.props.children}
           </Modal.Body>
