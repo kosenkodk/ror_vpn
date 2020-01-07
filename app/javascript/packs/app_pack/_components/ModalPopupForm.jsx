@@ -37,7 +37,9 @@ class ModalPopupForm extends React.Component {
   }
 
   onBtnSave(e) {
-    this.setState({ isModalShow: false });
+    // todo: hide modal popup on success response
+    if (this.props.notice)
+      this.setState({ isModalShow: false });
     this.props.onBtnSave(e);
   }
 
@@ -86,27 +88,33 @@ class ModalPopupForm extends React.Component {
             {/* </Modal.Title> */}
           </Modal.Header>
 
-          <Modal.Body className="">
-            <FlashMessages error={error && error} notice={notice && notice} />
-            {this.props.children}
-          </Modal.Body>
+          {this.props.isForm ?
+            this.props.children :
+            <div>
 
-          {this.props.isShowFooter &&
-            <Modal.Footer className="pt-0">
-              <div className="d-flex w-100">
-                <button type="button"
-                  // onClick={this.props.onClose}
-                  // onClick={() => this.setModalShow(false)}
-                  onClick={this.Hide}
-                  className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
-                <button type="submit"
-                  onClick={this.onBtnSave}
-                  className="btn btn-pink active" disabled={loading ? true : false}>
-                  {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                  {' ' + btnSaveText}
-                </button>
-              </div>
-            </Modal.Footer>
+              <Modal.Body className="">
+                <FlashMessages error={error && error} notice={notice && notice} />
+                {this.props.children}
+              </Modal.Body>
+
+              {this.props.isShowFooter &&
+                <Modal.Footer className="pt-0">
+                  <div className="d-flex w-100">
+                    <button type="button"
+                      // onClick={this.props.onClose}
+                      // onClick={() => this.setModalShow(false)}
+                      onClick={this.Hide}
+                      className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
+                    <button type="submit"
+                      onClick={this.onBtnSave}
+                      className="btn btn-pink active" disabled={loading ? true : false}>
+                      {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                      {' ' + btnSaveText}
+                    </button>
+                  </div>
+                </Modal.Footer>
+              }
+            </div>
           }
         </Modal>
       </React.Fragment>

@@ -59,7 +59,6 @@ class CancelAccountForm extends React.Component {
             <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{I18n.t('buttons.cancel')}</button>
             <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
               {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-              {/* {' ' + I18n.t('pages.account.cancel.form.button')} */}
               {' ' + I18n.t('buttons.submit')}
             </button>
           </div>

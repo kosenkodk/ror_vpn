@@ -139,7 +139,11 @@ class AccountPage extends React.Component {
                       {I18n.t('pages.account.cancel.title')}
                     </a> */}
 
-                    <ModalPopupForm aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
+                    <ModalPopupForm aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}
+                      onBtnSave={this.onCancelAccount}
+                      onClose={this.clearModalAlerts}
+                      isForm={true}
+                    >
                       <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
                     </ModalPopupForm>
 
