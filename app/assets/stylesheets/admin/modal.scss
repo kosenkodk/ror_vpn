@@ -47,6 +47,10 @@
 
   .modal-body {}
 
+  .modal-title {
+    margin-bottom:0;
+  }
+
   .modal-footer {
     padding-bottom: pxtovh(31); 
     border: unset;
