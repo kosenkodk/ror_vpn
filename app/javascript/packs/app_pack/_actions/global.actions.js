@@ -5,7 +5,15 @@ import { globalConstants } from '../_constants';
 
 export const globalActions = {
   getDepartments,
-  getAccountCancellationReasons
+  getAccountCancellationReasons,
+  setModalShow,
+}
+
+function setModalShow(isModalShow) {
+  return dispatch => {
+    dispatch(setModalShow(isModalShow))
+  }
+  function setModalShow(isModalShow) { return { type: globalConstants.IS_MODAL_SHOW, isModalShow } }
 }
 
 function getDepartments() {

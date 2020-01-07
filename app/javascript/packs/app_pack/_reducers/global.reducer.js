@@ -13,6 +13,11 @@ export function global(state = {}, action) {
         ...state,
         departments: action.departments
       };
+    case globalConstants.IS_MODAL_SHOW:
+      return {
+        ...state,
+        isModalShow: action.isModalShow
+      };
     case globalConstants.CLEAR:
       return {};
     default:

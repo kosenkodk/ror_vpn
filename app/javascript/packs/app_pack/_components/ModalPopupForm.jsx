@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { globalActions } from '../_actions';
 import { I18n } from 'helpers';
 import FlashMessages from '../_sections/FlashMessages';
 import imgCloseSrc from 'images/admin/ic_close';
@@ -14,9 +15,9 @@ import Button from 'react-bootstrap/Button';
 class ModalPopupForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isModalShow: false
-    };
+    // this.state = {
+    //   isModalShow: false
+    // };
     this.setModalShow = this.setModalShow.bind(this);
     this.Hide = this.Hide.bind(this);
     this.Show = this.Show.bind(this);
@@ -24,22 +25,22 @@ class ModalPopupForm extends React.Component {
   }
 
   setModalShow(isModalShow) {
-    this.setState({ isModalShow: isModalShow });
+    // this.setState({ isModalShow: isModalShow });
+    this.props.dispatch(globalActions.setModalShow(isModalShow))
   }
 
   Hide(e) {
-    this.setState({ isModalShow: false });
+    // this.setState({ isModalShow: false });
     // this.props.onClose(e);
+    this.props.dispatch(globalActions.setModalShow(false))
   }
 
   Show(e) {
-    this.setState({ isModalShow: true });
+    // this.setState({ isModalShow: true });
+    this.props.dispatch(globalActions.setModalShow(true))
   }
 
   onBtnSave(e) {
-    // todo: hide modal popup on success response
-    if (this.props.notice)
-      this.setState({ isModalShow: false });
     this.props.onBtnSave(e);
   }
 
@@ -64,7 +65,8 @@ class ModalPopupForm extends React.Component {
         }
 
         <Modal
-          show={this.state.isModalShow}
+          // show={this.state.isModalShow}
+          show={this.props.isModalShow}
           // onHide={() => this.setModalShow(false)}
           onHide={this.Hide}
           size="lg"
@@ -141,14 +143,16 @@ ModalPopupForm.defaultProps = {
   btnCloseText: I18n.t('buttons.close'),
   btnClasses: '',
   isShowFooter: true,
+  isModalShow: false,
   // aUrl: '#',
   // aTitle: ''
 }
 
 function mapStateToProps(state) {
+  const { isModalShow } = state.global;
   const { loggedIn } = state.authentication;
-  const { error, notice, loading } = state.account
-  return { loading, error, notice, loggedIn }
+  const { error, notice, loading } = state.account;
+  return { loading, error, notice, loggedIn, isModalShow }
 }
 
 const connectedPage = connect(mapStateToProps)(ModalPopupForm);
