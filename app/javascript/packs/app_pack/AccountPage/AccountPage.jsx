@@ -2,7 +2,7 @@ import React from 'react';
 import { NavHashLink as Link } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { DeleteForm, ChangePasswordForm, ChangeEmailForm, CancelAccountForm } from './';
-import { accountActions } from '../_actions';
+import { accountActions, globalActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { ModalPopup } from '../_components';
@@ -54,6 +54,7 @@ class AccountPage extends React.Component {
 
   clearModalAlerts(e) { // clearModalAlerts = (e) => {
     e.preventDefault();
+    this.props.dispatch(globalActions.setModalShow(false));
     this.props.dispatch(accountActions.clearAlerts());
   }
 
