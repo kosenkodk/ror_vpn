@@ -7,7 +7,6 @@ import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
 import { ModalPopup } from '../_components';
 // import Modal from 'react-bootstrap/Modal';
-// import { ModalPopupVerticallyCentered } from '../_components/ModalPopupVerticallyCentered';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
 
 class AccountPage extends React.Component {
@@ -148,12 +147,6 @@ class AccountPage extends React.Component {
                       <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
                     </ModalPopupForm>
 
-                    {/* <ModalPopupVerticallyCentered onClose={this.clearModalAlerts} id='cancelAccountModal' isForm={true} title={I18n.t('pages.account.cancel.title')}
-                      aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}>
-                      <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
-                    </ModalPopupVerticallyCentered> */}
-
-                    {/* <Link to="#" className="ml-auto text-black">Cancel Account</Link> */}
                   </div>
                 </div>
               </div>
@@ -166,9 +159,9 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login password</label>
                 </div>
                 <div className="col">
-                  <ModalPopup onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title={I18n.t('pages.account.change_password.title')} btnClasses={'btn-block'} btnText={I18n.t('pages.account.change_password.button')}>
+                  <ModalPopupForm onClose={this.clearModalAlerts} id='changePasswordModal' isForm={true} title={I18n.t('pages.account.change_password.title')} btnClasses={'btn-block'} btnText={I18n.t('pages.account.change_password.button')}>
                     <ChangePasswordForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangePassword} />
-                  </ModalPopup>
+                  </ModalPopupForm>
                 </div>
               </div>
             </div>
@@ -206,9 +199,9 @@ class AccountPage extends React.Component {
                   <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
                 <div className="col-auto">
-                  <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
+                  <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
                     <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
-                  </ModalPopup>
+                  </ModalPopupForm>
                 </div>
               </div>
 
@@ -237,9 +230,9 @@ class AccountPage extends React.Component {
                   Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
               </p>
               </div>
-              <ModalPopup onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+              <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
                 <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
-              </ModalPopup>
+              </ModalPopupForm>
             </div>
 
           </div>
