@@ -15,6 +15,28 @@ RSpec.describe 'User Account', type: :feature, js: true do
     visit '/user/account'
   }
 
+  describe 'Alerts' do
+    it 'do not display the same message when open another modal popup' do
+      click_on_cancel_account_link
+      click_on(I18n.t('buttons.submit'))
+      expect(find('.alert')).to have_text(I18n.t('pages.account.cancel.success'))
+      
+      click_on(I18n.t('buttons.edit'))
+      expect(page).not_to have_css('alert')
+      expect(page).not_to have_text(I18n.t('pages.account.cancel.success'))
+      click_on(I18n.t('buttons.cancel'))
+
+      click_on(I18n.t('pages.account.change_password.button'))
+      expect(page).not_to have_css('alert')
+      expect(page).not_to have_text(I18n.t('pages.account.cancel.success'))
+      click_on(I18n.t('buttons.cancel'))
+
+      click_on(I18n.t('pages.account.delete.button'))
+      expect(page).not_to have_css('alert')
+      expect(page).not_to have_text(I18n.t('pages.account.cancel.success'))
+    end
+  end
+
   describe 'Cancel Account' do
     let(:cancel_account_reason_text) {'too expensive'}
 
