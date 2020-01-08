@@ -6,6 +6,7 @@
     transform: translateX(-50%);
   
   .alert {
+    border-radius: pxtovw($admin_border_radius_alert);
     font-size: $font18;
     line-height: $font24;
     z-index: 1000;
@@ -56,6 +57,13 @@
 @include media-breakpoint-up(xl) {
   .alert-admin {
     top: 50px;
+    .alert {
+      font-size: $font18;
+      line-height: $font24;
+      z-index: 1000;
+      @include fluidFontSize(18px, 41px, 1400px, 4096px, 18px);
+      @include fluidLineHeight(24px, 106px, 1400px, 4096px, 24px);
+    }
   }
 }
 
