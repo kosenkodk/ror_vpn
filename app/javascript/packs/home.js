@@ -39,15 +39,12 @@ $(jQuery).on('ready turbolinks:load', function () {
   });
 
   // alert behind modal backdrop
-  $(document).on('DOMSubtreeModified', ".alert-wrapper", function () {
+  $(document).on('DOMSubtreeModified', ".alert-admin", function () {
     try {
       $('.modal-backdrop').after($(this));
-      $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
-    } catch (e) {
-
-    }
+      $(this).css("z-index", parseInt($('.modal').css('z-index')) + 1);
+    } catch (e) { }
   });
-
 
   // $('.modal').on('shown.bs.modal', function () {
   // //To relate the z-index make sure backdrop and modal are siblings
