@@ -18,13 +18,17 @@ class AlertAutoHidden extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.alert) {
-      this.setShow(true);
-      const timer = setTimeout(() => {
-        clearTimeout(timer);
-        this.setShow(false);
-        // this.props.dispatch(alertActions.clear());
-      }, 3000);
+      this.autoHideAlert();
     }
+  }
+
+  autoHideAlert() {
+    this.setShow(true);
+    const timer = setTimeout(() => {
+      clearTimeout(timer);
+      this.setShow(false);
+      // this.props.dispatch(alertActions.clear());
+    }, this.props.hideDuration);
   }
 
   render() {
@@ -45,6 +49,10 @@ class AlertAutoHidden extends React.Component {
     }
     return '';
   }
+}
+
+AlertAutoHidden.defaultProps = {
+  hideDuration: 3000
 }
 
 function mapStateToProps(state) {
