@@ -22,7 +22,7 @@ const AdminLayout = (props) => (
             <HeaderAdmin />
           </div>
 
-          <div className="alert-wrapper">
+          <div className="alert-admin">
             <AlertAdmin />
             {/* <div id='alert' className="text-center header__alert">
               <div className={`alert alert-danger alert-inline`}>alert message</div>
