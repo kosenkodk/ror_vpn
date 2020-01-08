@@ -38,6 +38,12 @@ $(jQuery).on('ready turbolinks:load', function () {
     $(document.body).append($(this).detach());
   });
 
+  // window.setTimeout(function () {
+  //   $(".alert").fadeTo(500, 0).slideUp(500, function () {
+  //     $(this).remove();
+  //   });
+  // }, 2000);
+
   // // fix for alert - todo: use position absolute
   // $(document).on('DOMSubtreeModified', ".alert-wrapper", function () {
   //   try {
