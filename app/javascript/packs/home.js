@@ -41,8 +41,21 @@ $(jQuery).on('ready turbolinks:load', function () {
   // alert behind modal backdrop
   $(document).on('DOMSubtreeModified', ".alert-admin", function () {
     try {
+      // alert('alert top' + $('.alert-admin').offsetTop + ' height: ' + ($('.alert-admin').offsetHeight));
       $('.modal-backdrop').after($(this));
       $(this).css("z-index", parseInt($('.modal').css('z-index')) + 1);
+
+      if (document.getElementById('main-content') != null && document.getElementById('alert') != null) {
+        const offsetTop = document.getElementById('main-content').offsetTop;
+        const height = document.getElementById('alert').offsetHeight;
+        const navbarHeight = document.getElementById('adminNavbar').offsetHeight;
+        let alertTop = offsetTop - (height / 2);
+        if (navbarHeight < 100) {
+          alertTop += navbarHeight;
+        }
+        // alert('main content top' + offsetTop + 'alert height:' + height + 'alert top:' + alertTop);
+        $(this).css("top", alertTop);
+      }
     } catch (e) { }
   });
 
