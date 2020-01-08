@@ -41,7 +41,6 @@ $(jQuery).on('ready turbolinks:load', function () {
   // alert behind modal backdrop
   $(document).on('DOMSubtreeModified', ".alert-admin", function () {
     try {
-      // alert('alert top' + $('.alert-admin').offsetTop + ' height: ' + ($('.alert-admin').offsetHeight));
       $('.modal-backdrop').after($(this));
       $(this).css("z-index", parseInt($('.modal').css('z-index')) + 1);
 
