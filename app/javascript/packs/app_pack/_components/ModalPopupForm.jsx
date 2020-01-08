@@ -32,8 +32,9 @@ class ModalPopupForm extends React.Component {
   Hide(e) {
     // this.setState({ isModalShow: false });
     // this.props.onClose(e);
-    // this.props.dispatch(globalActions.setModalShow(false));
-    this.props.dispatch(globalActions.setModalShow(this.props.id))
+    this.props.dispatch(globalActions.setModalShow(false));
+    // this.props.dispatch(globalActions.setModalShow(null));
+    // this.props.dispatch(globalActions.setModalShow(this.props.id))
   }
 
   Show(e) {
@@ -68,7 +69,7 @@ class ModalPopupForm extends React.Component {
 
         <Modal
           // show={this.state.isModalShow}
-          show={this.props.isModalShow == this.props.id}
+          show={this.props.isModalShow === this.props.id}
           // onHide={() => this.setModalShow(false)}
           onHide={this.Hide}
           size="lg"
