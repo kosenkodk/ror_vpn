@@ -38,19 +38,15 @@ $(jQuery).on('ready turbolinks:load', function () {
     $(document.body).append($(this).detach());
   });
 
-  // // fix for alert - todo: use position absolute
-  // $(document).on('DOMSubtreeModified', ".alert-wrapper", function () {
-  //   try {
-  //     // $('.modal-backdrop').after($('#alert'));
-  //     // $(this).before($('.modal-backdrop'));
-  //     // $(this).after($('.modal-backdrop'));
-  //     $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
-  //     $('#alert').css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
-  //     $('.alert').css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
-  //   } catch (e) {
+  // alert behind modal backdrop
+  $(document).on('DOMSubtreeModified', ".alert-wrapper", function () {
+    try {
+      $('.modal-backdrop').after($(this));
+      $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+    } catch (e) {
 
-  //   }
-  // });
+    }
+  });
 
 
   // $('.modal').on('shown.bs.modal', function () {

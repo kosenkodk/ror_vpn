@@ -56,25 +56,6 @@
     font-weight: $font-bold;
   }
 
-  .alert {
-    font-size: $font18;
-    line-height: $font24;
-    z-index: 1000;
-  }
-  .alert-inline {
-    display: inline-block;
-  }
-  .alert-danger {
-    background-color: $red;
-    border-color: $red;
-    color: $white;
-  }
-  .alert-success {
-    background-color: $blue;
-    border-color: $blue;
-    color: $white;
-  }
-
   .accordion { 
     .card-title {
       width: 100%;
