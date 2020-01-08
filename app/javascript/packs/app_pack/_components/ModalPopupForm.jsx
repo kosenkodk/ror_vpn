@@ -26,18 +26,20 @@ class ModalPopupForm extends React.Component {
 
   setModalShow(isModalShow) {
     // this.setState({ isModalShow: isModalShow });
-    this.props.dispatch(globalActions.setModalShow(isModalShow))
+    this.props.dispatch(globalActions.setModalShow(isModalShow));
   }
 
   Hide(e) {
     // this.setState({ isModalShow: false });
     // this.props.onClose(e);
-    this.props.dispatch(globalActions.setModalShow(false))
+    // this.props.dispatch(globalActions.setModalShow(false));
+    this.props.dispatch(globalActions.setModalShow(this.props.id))
   }
 
   Show(e) {
     // this.setState({ isModalShow: true });
-    this.props.dispatch(globalActions.setModalShow(true))
+    // this.props.dispatch(globalActions.setModalShow(true));
+    this.props.dispatch(globalActions.setModalShow(this.props.id))
   }
 
   onBtnSave(e) {
@@ -66,11 +68,11 @@ class ModalPopupForm extends React.Component {
 
         <Modal
           // show={this.state.isModalShow}
-          show={this.props.isModalShow}
+          show={this.props.isModalShow == this.props.id}
           // onHide={() => this.setModalShow(false)}
           onHide={this.Hide}
           size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
+          aria-labelledby={`${id}Title`}
           centered
           className={`${loggedIn && 'admin_layout'}`}
         // dialogAs={ModalDialog}
@@ -79,7 +81,7 @@ class ModalPopupForm extends React.Component {
           <Modal.Header
             // closeButton 
             className="align-items-center">
-            {/* <Modal.Title id="contained-modal-title-vcenter"> */}
+            {/* <Modal.Title id={`${id}Title`}> */}
             <h1 className="modal-title" id={`${id}Title`}>{title}</h1>
             <button type="button"
               // onClick={this.props.onClose} 
