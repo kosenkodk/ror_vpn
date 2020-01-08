@@ -24,7 +24,7 @@ class DeleteForm extends React.Component {
     return (
       <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
         <div className="modal-body">
-          <FlashMessages error={error && error} notice={notice && notice} />
+          {/* <FlashMessages error={error && error} notice={notice && notice} /> */}
 
           <div className="border-left-pink mt-0">
             <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>

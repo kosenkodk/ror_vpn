@@ -41,7 +41,7 @@ class ChangePasswordForm extends React.Component {
             </p>
           </div>
 
-          <FlashMessages error={error && error} notice={notice && notice} />
+          {/* <FlashMessages error={error && error} notice={notice && notice} /> */}
 
           <div className="col">
             <div className="form-group row align-items-center">
