@@ -8,7 +8,13 @@ class Alert extends React.Component {
       <React.Fragment>
         {alert.message &&
           <div id='alert' className="text-center header__alert">
-            <div className={`alert ${alert.type} alert-inline`}>
+            {/* <div className={`alert ${alert.type} alert-inline alert-dismissible fade show`} role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {alert.message}
+            </div> */}
+            <div className={`alert ${alert.type} alert-inline`} >
               {alert.message}
             </div>
           </div>
