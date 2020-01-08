@@ -4,7 +4,7 @@ import { urls } from 'config';
 import { connect } from 'react-redux';
 import { FooterSection } from '../_sections';
 import { Sidebar, Alert, Header } from '../_components';
-import { Alert as AlertAdmin, Header as HeaderAdmin, AccordionMenuVertical } from '../_components/admin';
+import { AlertDismissible as AlertAdmin, Header as HeaderAdmin, AccordionMenuVertical } from '../_components/admin';
 
 
 const AdminLayout = (props) => (
