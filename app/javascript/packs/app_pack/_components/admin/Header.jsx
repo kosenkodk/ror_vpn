@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { userActions } from '../../_actions';
@@ -9,6 +11,11 @@ class Header extends React.Component {
   signOut = (e) => {
     this.props.dispatch(userActions.logout());
     e.preventDefault();
+  }
+
+  componentDidUpdate() {
+    var n = ReactDOM.findDOMNode(this);
+    console.log('header position', n.offsetTop, n.offsetBottom);
   }
 
   render() {
