@@ -50,7 +50,7 @@ $(jQuery).on('ready turbolinks:load', function () {
         const height = document.getElementById('alert').offsetHeight;
         const navbarHeight = document.getElementById('adminNavbar').offsetHeight;
         let alertTop = offsetTop - (height / 2);
-        if (navbarHeight < 100) {
+        if (navbarHeight < 100) { // mobiles
           alertTop += navbarHeight;
         }
         // alert('main content top' + offsetTop + 'alert height:' + height + 'alert top:' + alertTop);
