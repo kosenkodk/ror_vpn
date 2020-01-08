@@ -7,6 +7,7 @@ export * from './AccordionMenuVerticalCard';
 export * from './BackButtonWithTitle';
 export * from './Alert';
 export * from './AlertDismissible';
+export * from './AlertAutoHidden';
 export * from './AttachmentPreview';
 export * from './AttachmentPreviewCard';
 export * from './AttachmentPdf';
