@@ -45,12 +45,14 @@ function changePassword(data) {
     userService.changeLoginPassword(data)
       .then(
         response => {
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
           // dispatch(alertActions.success(response.notice))
         },
         error => {
           dispatch(failure(error))
-          // dispatch(alertActions.error(error))
+          dispatch(alertActions.error(error))
         }
       )
   }
@@ -65,10 +67,13 @@ function changeEmail(data) {
     userService.changeLoginEmail(data)
       .then(
         response => {
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
         },
         error => {
           dispatch(failure(error))
+          dispatch(alertActions.error(error))
         }
       )
   }
@@ -83,10 +88,13 @@ function deleteAccount(data) {
     userService.deleteAccount(data)
       .then(
         response => {
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
         },
         error => {
           dispatch(failure(error))
+          dispatch(alertActions.error(error))
         }
       )
   }
