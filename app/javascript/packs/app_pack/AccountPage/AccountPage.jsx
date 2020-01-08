@@ -5,7 +5,7 @@ import { DeleteForm, ChangePasswordForm, ChangeEmailForm, CancelAccountForm } fr
 import { accountActions, globalActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
-import { ModalPopup } from '../_components';
+// import { ModalPopup } from '../_components';
 // import Modal from 'react-bootstrap/Modal';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
 
@@ -139,7 +139,7 @@ class AccountPage extends React.Component {
                       {I18n.t('pages.account.cancel.title')}
                     </a> */}
 
-                    <ModalPopupForm aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}
+                    <ModalPopupForm id='cancelAccountModal' aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}
                       onBtnSave={this.onCancelAccount}
                       onClose={this.clearModalAlerts}
                       isForm={true}
