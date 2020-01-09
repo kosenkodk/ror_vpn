@@ -94,7 +94,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :email, with: email_new
         fill_in :password, with: password
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.success'))
         alert_have_text(I18n.t('pages.account.change_email.success'))
         user.email = email_new
         fsign_in_as(user)
@@ -123,7 +122,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
         # expect(find('.alert')).to have_text(I18n.t('api.errors.bad_request'))
         # expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_email'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
         alert_have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
       end
       it 'with empty password' do
@@ -133,7 +131,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :password, with: ''
         click_on(I18n.t('buttons.submit'))
         # expect(find('.alert')).to have_text(I18n.t('api.errors.unauthorized'))
-        # expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_password'))
         alert_have_text(I18n.t('api.errors.invalid_password'))
       end
     end
@@ -163,7 +160,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         expect(page).to have_content(I18n.t('pages.account.change_password.button'))
         expect(page).to have_selector('.modal.fade.show')
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
         alert_have_text(I18n.t('pages.account.change_password.success'))
       end
       it 'relogin in background after change password' do
@@ -172,7 +168,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :password, with: password_new
         fill_in :password_confirmation, with: password_new
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
         alert_have_text I18n.t('pages.account.change_password.success')
         
         click_on(I18n.t('pages.account.change_password.button'))
@@ -180,7 +175,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :password, with: password
         fill_in :password_confirmation, with: password
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
         alert_have_text(I18n.t('pages.account.change_password.success'))
       end
       it 'clear alerts on modal close event' do
@@ -194,7 +188,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :password, with: password_new
         fill_in :password_confirmation, with: password_new
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.errors.password_invalid'))
         alert_have_text(I18n.t('pages.account.change_password.errors.password_invalid'))
       end
       it 'if new password and confirmation does not match' do
@@ -203,13 +196,11 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :password, with: password_invalid
         fill_in :password_confirmation, with: password_new
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.errors.passwords_does_not_match'))
         alert_have_text(I18n.t('pages.account.change_password.errors.passwords_does_not_match'))
       end
       it 'with empty passwords' do
         click_on(I18n.t('pages.account.change_password.button'))
         click_on(I18n.t('buttons.submit'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.errors.password_invalid'))
         alert_have_text(I18n.t('pages.account.change_password.errors.password_invalid'))
       end
     end
@@ -229,7 +220,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :message, with: 'delete reason'
         fill_in :email_contact, with: email_contact
         click_on(I18n.t('buttons.delete'))
-        # expect(find('.alert')).to have_text(I18n.t('pages.account.delete.success'))
         alert_have_text(I18n.t('pages.account.delete.success'))
 
         item = BlackListEmail.find_by(email_contact: email_contact)
@@ -239,7 +229,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         expect(item.message).to eq('delete reason')
 
         fsign_in_as(user)
-        # expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
         alert_have_text(I18n.t('api.errors.invalid_credentials'))
       end
     end
@@ -250,7 +239,6 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('pages.account.delete.button'))
         fill_in :password, with: password_invalid
         click_on(I18n.t('buttons.delete'))
-        # expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_password'))
         alert_have_text(I18n.t('api.errors.invalid_password'))
       end
     end
