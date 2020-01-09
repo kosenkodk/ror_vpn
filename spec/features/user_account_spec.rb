@@ -112,7 +112,20 @@ RSpec.describe 'User Account', type: :feature, js: true do
         fill_in :email, with: email_invalid
         fill_in :password, with: password
         click_on(I18n.t('buttons.submit'))
-        expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
+        # it works for permanent flash messages
+        # expect(find('.alert')).to have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
+        # expect(find('.alert', visible: true)).to have_content(I18n.t('pages.account.change_email.errors.email_invalid'))
+        # expect(find('.alert', visible: :all)).to have_content(I18n.t('pages.account.change_email.errors.email_invalid'))
+        # expect(find('.alert', visible: :hidden)).to have_text(I18n.t('pages.account.change_email.errors.email_invalid'))
+
+        # if element is hidden
+        expect(page).to have_css('.alert', visible: :hidden, text: I18n.t('pages.account.change_email.errors.email_invalid'))
+        # # to wait for element to be removed from the dom
+        # expect(page).not_to have_css('.alert', visible: :hidden, text: I18n.t('pages.account.change_email.errors.email_invalid'))
+        
+        # workaround for capybara < 2.11.0 
+        element = page.find('.alert', visible: :all, text: I18n.t('pages.account.change_email.errors.email_invalid'))
+        expect(element).to match_css('.alert', visible: :hidden)
       end
       it 'with empty email' do
         # click_on(I18n.t('pages.account.change_email.button'))
