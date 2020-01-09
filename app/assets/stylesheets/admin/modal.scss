@@ -55,7 +55,10 @@
   }
 
   .modal-header {
-    padding: 0;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 0;
+
     border: unset;
     .close {
       color: $black;

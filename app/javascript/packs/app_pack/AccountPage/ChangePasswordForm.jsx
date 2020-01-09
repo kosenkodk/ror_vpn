@@ -28,7 +28,7 @@ class ChangePasswordForm extends React.Component {
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
 
-          <div className="mt-0 border-left-pink col">
+          <div className="border-left-pink  mt-0 col">
             {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
             <p className="mt-1">
               Do NOT forget this password. If you forget it, you will not be able to login or decrypt your message.
