@@ -174,6 +174,8 @@ RSpec.describe 'User Account', type: :feature, js: true do
         click_on(I18n.t('buttons.submit'))
         # expect(find('.alert')).to have_text(I18n.t('pages.account.change_password.success'))
         alert_have_text I18n.t('pages.account.change_password.success')
+        
+        click_on(I18n.t('pages.account.change_password.button'))
         fill_in :password_old, with: password_new
         fill_in :password, with: password
         fill_in :password_confirmation, with: password
