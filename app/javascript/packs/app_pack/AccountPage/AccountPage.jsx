@@ -161,8 +161,8 @@ class AccountPage extends React.Component {
             <div className="mb-5">
               <h1 id="password">Two-factor authentication</h1>
 
-              <div className="row">
-                <div className="col-sm-5 align-self-center">
+              <div className="row align-items-center">
+                <div className="col-sm-5">
                   <label className="col-form-label">Two-factor authentication</label>
                 </div>
                 <div className="col-auto">
@@ -197,14 +197,14 @@ class AccountPage extends React.Component {
                 </div>
               </div> */}
 
-              <div className="d-flex align-items-center justify-content-between">
-                <div className="w-45">
+              <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
+                <div className="w-45 mb-3 mb-sm-auto">
                   <label className="col-form-label">Login email address</label>
                 </div>
-                <div className="">
+                <div className="mb-3 mb-sm-auto">
                   <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
-                <div className="">
+                <div className="mb-3 mb-sm-auto">
                   <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
                     <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
                   </ModalPopupForm>
