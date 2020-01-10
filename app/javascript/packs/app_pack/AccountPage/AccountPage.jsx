@@ -131,14 +131,6 @@ class AccountPage extends React.Component {
                       {/* {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)} */}
                     </p>
 
-                    {/* <a href="#" className="ml-auto text-black"
-                      // data-toggle="modal"
-                      // onClick={() => this.setModalShow(true)}
-                      onClick={this.Show}
-                    >
-                      {I18n.t('pages.account.cancel.title')}
-                    </a> */}
-
                     <ModalPopupForm id='cancelAccountModal' aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} title={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}
                       onBtnSave={this.onCancelAccount}
                       onClose={this.clearModalAlerts}
@@ -166,7 +158,7 @@ class AccountPage extends React.Component {
               </div>
             </div>
 
-            {/* <div className="mb-5">
+            <div className="mb-5">
               <h1 id="password">Two-factor authentication</h1>
 
               <div className="row">
@@ -175,12 +167,12 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col-auto">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch1" onChange={this.enable2FA} checked={this.state.is2faEnabled} />
-                    <label className="custom-control-label" htmlFor="customSwitch1"></label>
+                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa" onChange={this.enable2FA} checked={this.state.is2faEnabled} />
+                    <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
 
             <div className="mb-60">
               <h1 id="password">Recovery & notification</h1>
@@ -191,7 +183,7 @@ class AccountPage extends React.Component {
                 </p>
               </div>
 
-              <div className="row align-items-center">
+              {/* defect in col class after click on custom checkbox/switcher/toggler <div className="row align-items-center">
                 <div className="col-sm-5">
                   <label className="col-form-label">Login email address</label>
                 </div>
@@ -199,6 +191,20 @@ class AccountPage extends React.Component {
                   <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
                 <div className="col-auto">
+                  <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
+                    <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
+                  </ModalPopupForm>
+                </div>
+              </div> */}
+
+              <div className="d-flex align-items-center justify-content-between">
+                <div className="w-45">
+                  <label className="col-form-label">Login email address</label>
+                </div>
+                <div className="">
+                  <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
+                </div>
+                <div className="">
                   <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
                     <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
                   </ModalPopupForm>
@@ -213,8 +219,8 @@ class AccountPage extends React.Component {
 
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch2" onChange={this.allowPasswordReset} disabled={false} checked={this.state.isAllowPasswordReset} />
-                    <label className="custom-control-label" htmlFor="customSwitch2"></label>
+                    <input type="checkbox" className="custom-control-input" id="customSwitchAllowPwdReset" onChange={this.allowPasswordReset} disabled={false} checked={this.state.isAllowPasswordReset} />
+                    <label className="custom-control-label" htmlFor="customSwitchAllowPwdReset"></label>
                   </div>
                 </div>
               </div>
@@ -224,7 +230,7 @@ class AccountPage extends React.Component {
 
             <div className="mb-60">
               <h1 id="delete">Delete Account</h1>
-              <div className="border-left-pink col">
+              <div className="border-left-pink">
                 {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
                 <p>
                   Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
