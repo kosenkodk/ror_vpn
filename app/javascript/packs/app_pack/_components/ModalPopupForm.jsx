@@ -48,25 +48,30 @@ class ModalPopupForm extends React.Component {
   }
 
   render() {
-    const { loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
+    // console.log('modal popup form props: ', this.props.id, this.props.isModalShow);
+    const { isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
     return (
       <React.Fragment>
-        {aUrl ?
-          <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal"
-            // onClick={() => this.setModalShow(true)}
-            onClick={this.Show}
-          >
-            {aImgSrc ? <img src={aImgSrc} className={aImgClasses} /> : aTitle}
-          </a>
-          :
-          <Button type="button" className={`btn btn-pink ${this.props.btnClasses}`} variant="primary"
-            // onClick={() => this.setModalShow(true)}
-            onClick={this.Show}
-          >
-            {btnText}
-          </Button>
+        {!isHideBtn &&
+          <React.Fragment>
+            {
+              aUrl ?
+                <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal"
+                  // onClick={() => this.setModalShow(true)}
+                  onClick={this.Show}
+                >
+                  {aImgSrc ? <img src={aImgSrc} className={aImgClasses} /> : aTitle}
+                </a>
+                :
+                <Button type="button" className={`btn btn-pink ${this.props.btnClasses}`} variant="primary"
+                  // onClick={() => this.setModalShow(true)}
+                  onClick={this.Show}
+                >
+                  {btnText}
+                </Button>
+            }
+          </React.Fragment>
         }
-
         <Modal
           // show={this.state.isModalShow}
           show={this.props.isModalShow === this.props.id}
@@ -121,7 +126,7 @@ class ModalPopupForm extends React.Component {
             </div>
           }
         </Modal>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }

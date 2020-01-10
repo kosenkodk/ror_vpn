@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
-import FlashMessages from '../_sections/FlashMessages';
+// import FlashMessages from '../_sections/FlashMessages';
 import { SelectBox } from '../_components';
 import { globalActions } from '../_actions';
 
