@@ -201,7 +201,7 @@ class AccountPage extends React.Component {
                 <div className="w-45 mb-3 mb-sm-auto">
                   <label className="col-form-label">Login email address</label>
                 </div>
-                <div className="mb-3 mb-sm-auto">
+                <div className="mb-3 mb-sm-auto flex-grow-1 mr-2">
                   <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
                 <div className="mb-3 mb-sm-auto">
