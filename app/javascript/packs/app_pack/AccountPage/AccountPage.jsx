@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavHashLink as Link } from 'react-router-hash-link';
 import { connect } from 'react-redux';
-import { DeleteForm, ChangePasswordForm, ChangeEmailForm, CancelAccountForm } from './';
+import { Setup2faStep3Form, DeleteForm, ChangePasswordForm, ChangeEmailForm, CancelAccountForm } from './';
 import { accountActions, globalActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
@@ -15,7 +15,11 @@ class AccountPage extends React.Component {
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
       is2faEnabled: this.props.is2faEnabled,
-      user: ''
+      user: '',
+      setup2faStep1: false,
+      setup2faStep2: false,
+      setup2faStep3: false,
+      setup2faStep3: false
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -64,7 +68,33 @@ class AccountPage extends React.Component {
 
   enable2FA(e) {
     this.setState({ is2faEnabled: e.target.checked });
-    // this.props.dispatch(accountActions.enable2FA(e.target.checked)); //todo:
+    if (e.target.checked)
+      this.setup2faStep1();
+  }
+
+  setup2faStep1() {
+    console.log('setup2faStep1')
+    // this.setState({ setup2faStep1: 'setup2faStep1' })
+    this.props.dispatch(globalActions.setModalShow('setup2faStep1'))
+  }
+
+  setup2faStep2() {
+    console.log('setup2faStep2')
+    // this.setState({ setup2faStep2: 'setup2faStep2' })
+    this.props.dispatch(globalActions.setModalShow('setup2faStep2'))
+  }
+
+  setup2faStep3() {
+    console.log('setup2faStep3')
+    // this.setState({ setup2faStep3: 'setup2faStep3' })
+    this.props.dispatch(globalActions.setModalShow('setup2faStep3'))
+  }
+
+  setup2faStep4() {
+    console.log('setup2faStep4')
+    // this.setState({ setup2faStep4: 'setup2faStep4' })
+    // this.props.dispatch(globalActions.setModalShow('setup2faStep4'))
+    this.props.dispatch(accountActions.enable2FA(true)); //todo:
   }
 
   componentDidMount() {
@@ -89,6 +119,7 @@ class AccountPage extends React.Component {
   }
 
   render() {
+    // console.log('setup2faStep1 account page', this.state.setup2faStep1)
     const { loggingIn, user, userWithFreshInfo } = this.props;
     return (
       <div className="container-fluid">
@@ -169,6 +200,64 @@ class AccountPage extends React.Component {
                   <div className="mt-n1 custom-control custom-switch">
                     <input type="checkbox" className="custom-control-input" id="customSwitch2fa" onChange={this.enable2FA} checked={this.state.is2faEnabled} />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
+
+                    <ModalPopupForm onClose={this.clearModalAlerts}
+                      id='setup2faStep1'
+                      // isModalShow={this.state.setup2faStep1}
+                      // isModalShow='setup2faStep1'
+                      // isForm={true}
+                      isHideBtn={true}
+                      onBtnSave={() => this.setup2faStep2()}
+                      title='Set up two-factor authentication'
+                      // btnText={I18n.t('buttons.next')}
+                      btnCloseText={I18n.t('buttons.cancel')}
+                      btnSaveText={I18n.t('buttons.next')}
+                      btnClasses={''}>
+                        <p>This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
+                        <div className="border-left-pink mt-0">
+                          <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
+                          <p className="mt-0 mb-2">
+                            If you have never used 2FA before, we strongly recommend you
+                          <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
+                          </p>
+                        </div>
+                    </ModalPopupForm>
+
+                    <ModalPopupForm onClose={this.clearModalAlerts}
+                      id='setup2faStep2'
+                      // isModalShow={this.state.setup2faStep2}
+                      // isModalShow='setup2faStep2'
+                      // isForm={true}
+                      isHideBtn={true}
+                      onBtnSave={() => this.setup2faStep3()}
+                      title='Set up two-factor authentication'
+                      // btnText={I18n.t('buttons.next')}
+                      btnCloseText={I18n.t('buttons.cancel')}
+                      btnSaveText={I18n.t('buttons.next')}
+                      btnClasses={''}>
+
+                      <div className="border-left-pink mt-0">
+                        <p className="mt-0 mb-2">
+                        Scan this code with your two-factor authentication device to set up your account.
+                        <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
+                        </p>
+                      </div>
+                    </ModalPopupForm>
+
+                    <ModalPopupForm onClose={this.clearModalAlerts}
+                      id='setup2faStep3'
+                      // isModalShow={this.state.setup2faStep3}
+                      // isModalShow='setup2faStep3'
+                      isForm={true}
+                      isHideBtn={true}
+                      onBtnSave={() => this.setup2faStep4()}
+                      title='Set up two-factor authentication'
+                      // btnText={I18n.t('buttons.submit')}
+                      // btnCloseText={I18n.t('buttons.back')}
+                      // btnSaveText={I18n.t('buttons.submit')}
+                      btnClasses={''}>
+                      <Setup2faStep3Form onModalClose={this.clearModalAlerts} onFormSubmit={this.onSetup2faStep3} />
+                    </ModalPopupForm>
                   </div>
                 </div>
               </div>
@@ -182,20 +271,6 @@ class AccountPage extends React.Component {
                   The selected method can be used to recover an account in the event your forget your password and to be notified about missed emails.
                 </p>
               </div>
-
-              {/* defect in col class after click on custom checkbox/switcher/toggler <div className="row align-items-center">
-                <div className="col-sm-5">
-                  <label className="col-form-label">Login email address</label>
-                </div>
-                <div className="col">
-                  <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
-                </div>
-                <div className="col-auto">
-                  <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
-                    <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
-                  </ModalPopupForm>
-                </div>
-              </div> */}
 
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
                 <div className="w-45 mb-3 mb-sm-auto">
