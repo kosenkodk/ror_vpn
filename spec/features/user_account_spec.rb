@@ -15,6 +15,36 @@ RSpec.describe 'User Account', type: :feature, js: true do
     visit '/user/account'
   }
 
+  describe '2FA Setup' do
+    context 'success' do
+      it 'enable 2fa' do
+        # find('.custom-control').click
+        # find('customSwitch2fa', visible: :all).click
+        find('#customSwitch2fa', visible: :all).click
+
+        # check('#customSwitch2fa')
+        # check('#customSwitch2fa', visible: :all)
+        # check('#customSwitch2fa', allow_label_click: true)
+        # check('Two-factor authentication', allow_label_click: true)
+
+        # page.find(:xpath, "//label[@for='customSwitch2fa']", visible: :all).click
+        # page.find(:xpath, "//input[@id='customSwitch2fa']", visible: :all).click
+        # page.find(:xpath, "//input[@id='customSwitch2fa']", visible: :all).trigger(:click)
+
+
+        expect(page).to have_content(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.back'))
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.submit'))
+      end
+      it 'disable 2fa' do
+        uncheck('customSwitch2fa')
+      end
+    end
+  end
+
   describe 'Alerts' do
     it 'do not display the same message when open another modal popup' do
       click_on_cancel_account_link
