@@ -35,7 +35,7 @@ class Setup2faStep3Form extends React.Component {
         </div>
         <div className="modal-footer">
           <div className="d-flex w-100">
-            <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">
+            <button type="button" onClick={this.props.onModalCancel} className="mr-auto btn btn-outline-danger" data-dismiss="modal">
               {I18n.t('buttons.back')}
             </button>
             <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>

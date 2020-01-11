@@ -113,7 +113,9 @@ class ModalPopupForm extends React.Component {
                       // onClick={this.props.onClose}
                       // onClick={() => this.setModalShow(false)}
                       onClick={this.Hide}
-                      className="mr-auto btn btn-outline-danger" data-dismiss="modal">{btnCloseText}</button>
+                      className="mr-auto btn btn-outline-danger" data-dismiss="modal">
+                      {btnCloseText}
+                    </button>
                     <button type="submit"
                       onClick={this.onBtnSave}
                       className="btn btn-pink active" disabled={loading ? true : false}>
