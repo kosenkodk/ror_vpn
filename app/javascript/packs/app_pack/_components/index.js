@@ -9,6 +9,7 @@ import Sidebar from './Sidebar';
 export { Sidebar };
 export * from './NewLineToBr';
 export * from './ModalPopup';
+export * from './ModalPopupForm';
 // import NewLineToBr from './NewLineToBr';
 // export { NewLineToBr };
 export * from './TextCut';

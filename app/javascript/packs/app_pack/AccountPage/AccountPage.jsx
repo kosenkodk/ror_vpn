@@ -134,7 +134,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Email</label>
                 </div>
                 <div className="col">
-                  <input type="string" className="form-control" defaultValue={user && user.email || ''} readOnly={true} placeholder='Email' />
+                  <input type="string" className="form-control" defaultValue={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email) || ''} readOnly={true} placeholder='Email' />
                 </div>
               </div>
 
@@ -145,7 +145,7 @@ class AccountPage extends React.Component {
                 <div className="col">
                   <div className="d-flex align-items-center">
                     <p className="m-0 text-blue">
-                      {(userWithFreshInfo && userWithFreshInfo.tariff_plan && userWithFreshInfo.tariff_plan.title) || (user.tariff_plan && user.tariff_plan.title) || 'Free '}
+                      {(userWithFreshInfo.tariff_plan && userWithFreshInfo.tariff_plan.title) || (user.tariff_plan && user.tariff_plan.title) || 'Free '}
                       {/* {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)} */}
                     </p>
 
@@ -185,7 +185,7 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa"  onClick={this.enable2FA} onChange={this.enable2FA} checked={this.state.is2faEnabled} />
+                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa" onClick={this.enable2FA} onChange={this.enable2FA} checked={this.state.is2faEnabled} />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login email address</label>
                 </div>
                 <div className="mb-3 mb-sm-auto flex-grow-1 mr-2">
-                  <input type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
+                  <input type="string" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email) } readOnly placeholder='Email' />                  
                 </div>
                 <div className="mb-3 mb-sm-auto">
                   <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
