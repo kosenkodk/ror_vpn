@@ -15,11 +15,7 @@ class AccountPage extends React.Component {
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
       is2faEnabled: this.props.is2faEnabled,
-      user: '',
-      setup2faStep1: false,
-      setup2faStep2: false,
-      setup2faStep3: false,
-      setup2faStep3: false
+      user: ''
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -73,27 +69,18 @@ class AccountPage extends React.Component {
   }
 
   setup2faStep1() {
-    console.log('setup2faStep1')
-    // this.setState({ setup2faStep1: 'setup2faStep1' })
     this.props.dispatch(globalActions.setModalShow('setup2faStep1'))
   }
 
   setup2faStep2() {
-    console.log('setup2faStep2')
-    // this.setState({ setup2faStep2: 'setup2faStep2' })
     this.props.dispatch(globalActions.setModalShow('setup2faStep2'))
   }
 
   setup2faStep3() {
-    console.log('setup2faStep3')
-    // this.setState({ setup2faStep3: 'setup2faStep3' })
     this.props.dispatch(globalActions.setModalShow('setup2faStep3'))
   }
 
   setup2faStep4() {
-    console.log('setup2faStep4')
-    // this.setState({ setup2faStep4: 'setup2faStep4' })
-    // this.props.dispatch(globalActions.setModalShow('setup2faStep4'))
     this.props.dispatch(accountActions.enable2FA(true)); //todo:
   }
 
@@ -196,20 +183,19 @@ class AccountPage extends React.Component {
                 <div className="col-sm-5">
                   <label className="col-form-label">Two-factor authentication</label>
                 </div>
-                <div className="col-auto">
+                <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa" onChange={this.enable2FA} checked={this.state.is2faEnabled} />
+                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa"  onClick={this.enable2FA} onChange={this.enable2FA} checked={this.state.is2faEnabled} />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
+                  </div>
+                </div>
+              </div>
 
-                    <ModalPopupForm onClose={this.clearModalAlerts}
+              <ModalPopupForm onClose={this.clearModalAlerts}
                       id='setup2faStep1'
-                      // isModalShow={this.state.setup2faStep1}
-                      // isModalShow='setup2faStep1'
-                      // isForm={true}
                       isHideBtn={true}
                       onBtnSave={() => this.setup2faStep2()}
                       title='Set up two-factor authentication'
-                      // btnText={I18n.t('buttons.next')}
                       btnCloseText={I18n.t('buttons.cancel')}
                       btnSaveText={I18n.t('buttons.next')}
                       btnClasses={''}>
@@ -225,13 +211,9 @@ class AccountPage extends React.Component {
 
                     <ModalPopupForm onClose={this.clearModalAlerts}
                       id='setup2faStep2'
-                      // isModalShow={this.state.setup2faStep2}
-                      // isModalShow='setup2faStep2'
-                      // isForm={true}
                       isHideBtn={true}
                       onBtnSave={() => this.setup2faStep3()}
                       title='Set up two-factor authentication'
-                      // btnText={I18n.t('buttons.next')}
                       btnCloseText={I18n.t('buttons.cancel')}
                       btnSaveText={I18n.t('buttons.next')}
                       btnClasses={''}>
@@ -246,21 +228,14 @@ class AccountPage extends React.Component {
 
                     <ModalPopupForm onClose={this.clearModalAlerts}
                       id='setup2faStep3'
-                      // isModalShow={this.state.setup2faStep3}
-                      // isModalShow='setup2faStep3'
                       isForm={true}
                       isHideBtn={true}
                       onBtnSave={() => this.setup2faStep4()}
                       title='Set up two-factor authentication'
-                      // btnText={I18n.t('buttons.submit')}
-                      // btnCloseText={I18n.t('buttons.back')}
-                      // btnSaveText={I18n.t('buttons.submit')}
                       btnClasses={''}>
                       <Setup2faStep3Form onModalCancel={() => this.setup2faStep2()} onFormSubmit={this.onSetup2faStep3} />
                     </ModalPopupForm>
-                  </div>
-                </div>
-              </div>
+                    
             </div>
 
             <div className="mb-60">
