@@ -213,7 +213,7 @@ class AccountPage extends React.Component {
                       btnCloseText={I18n.t('buttons.cancel')}
                       btnSaveText={I18n.t('buttons.next')}
                       btnClasses={''}>
-                        <p>This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
+                        <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
                         <div className="border-left-pink mt-0">
                           <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
                           <p className="mt-0 mb-2">
@@ -256,7 +256,7 @@ class AccountPage extends React.Component {
                       // btnCloseText={I18n.t('buttons.back')}
                       // btnSaveText={I18n.t('buttons.submit')}
                       btnClasses={''}>
-                      <Setup2faStep3Form onModalClose={this.clearModalAlerts} onFormSubmit={this.onSetup2faStep3} />
+                      <Setup2faStep3Form onModalCancel={() => this.setup2faStep2()} onFormSubmit={this.onSetup2faStep3} />
                     </ModalPopupForm>
                   </div>
                 </div>
