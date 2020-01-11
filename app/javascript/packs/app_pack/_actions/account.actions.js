@@ -69,7 +69,7 @@ function changeEmail(data) {
         response => {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
-          dispatch(success(response.notice))
+          dispatch(success(response.notice, response.user))
         },
         error => {
           dispatch(failure(error))
@@ -78,7 +78,7 @@ function changeEmail(data) {
       )
   }
   function request() { return { type: accountConstants.UPDATE_EMAIL_REQUEST } }
-  function success(notice) { return { type: accountConstants.UPDATE_EMAIL_SUCCESS, notice } }
+  function success(notice, user) { return { type: accountConstants.UPDATE_EMAIL_SUCCESS, notice, user } }
   function failure(error) { return { type: accountConstants.UPDATE_EMAIL_FAILURE, error } }
 }
 

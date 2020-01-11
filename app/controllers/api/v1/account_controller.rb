@@ -56,7 +56,7 @@ class Api::V1::AccountController < Api::V1::ApiController
         return
       end
       @user.update!(email_params)
-      render json: { notice: I18n.t('pages.account.change_email.success') }
+      render json: { user: @user, notice: I18n.t('pages.account.change_email.success') }
     else
       render json: { error: I18n.t('api.errors.invalid_password') } #, status: 401 - force logout client 
     end
