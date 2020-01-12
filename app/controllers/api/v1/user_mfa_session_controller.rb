@@ -1,4 +1,6 @@
 class Api::V1::UserMfaSessionController < Api::V1::ApiController
+  before_action :authorize_access_request!
+
   def new
     # load your view
     qr_code_url = current_user.google_qr_uri 
@@ -9,10 +11,9 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
     user = current_user # grab your currently logged in user
     if user.google_authentic?(params[:mfa_code])
       UserMfaSession.create(user)
-      redirect_to root_path
+      render json: { notice: 'Please scan QR code' }
     else
-      flash[:error] = "Wrong code"
-      render :new
+      render json: { error: 'Error. Wrong QR code', status: 400 }
     end
   end
 

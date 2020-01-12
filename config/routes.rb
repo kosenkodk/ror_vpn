@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       patch '/change_email', to: 'account#change_email'
       post '/cancel', to: 'account#cancel'
 
+      resources :user_mfa_session
       mount ActionCable.server, at: '/cable'
 
       resources :tickets do
