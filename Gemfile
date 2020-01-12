@@ -79,4 +79,6 @@ gem 'will_paginate'
 gem 'griddler'#, '1.3.1'
 gem 'griddler-sendgrid'#, '1.0.0'
 
-gem 'active_model_otp' # for 2fa
+# gem 'active_model_otp' # for 2fa
+gem 'rotp'
+gem 'active_model_otp', github: 'heapsource/active_model_otp'

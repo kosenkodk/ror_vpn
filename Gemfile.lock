@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/heapsource/active_model_otp.git
+  revision: c0fee5a69bee18513f9b0e4ff0140f4721b3d770
+  specs:
+    active_model_otp (2.0.1)
+      activemodel
+      rotp (~> 5.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -39,9 +47,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_model_otp (2.0.1)
-      activemodel
-      rotp (~> 5.0.0)
     activejob (6.0.0)
       activesupport (= 6.0.0)
       globalid (>= 0.3.6)
@@ -291,7 +296,7 @@ PLATFORMS
 
 DEPENDENCIES
   action-cable-testing
-  active_model_otp
+  active_model_otp!
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   bootstrap-email
@@ -311,6 +316,7 @@ DEPENDENCIES
   rails-controller-testing
   react-rails
   redis (~> 4.0)
+  rotp
   rspec-rails (~> 4.0.0.beta2)
   ruby-debug-ide
   sass-rails (~> 5)
