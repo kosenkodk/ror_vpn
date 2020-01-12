@@ -58,6 +58,19 @@ export function account(state = {}, action) {
       return {
         error: action.error,
       }
+    case accountConstants.QR_CODE_REQUEST:
+      return {
+        loading: true
+      }
+    case accountConstants.QR_CODE_SUCCESS:
+      return {
+        notice: action.notice,
+        qrCodeUrl: action.qr_code_url,
+      }
+    case accountConstants.QR_CODE_FAILURE:
+      return {
+        error: action.error,
+      }
     case accountConstants.CLEAR_ALERTS:
       return {
         ...state,

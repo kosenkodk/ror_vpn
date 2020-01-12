@@ -73,6 +73,7 @@ class AccountPage extends React.Component {
   }
 
   setup2faStep2() {
+    this.props.dispatch(accountActions.getQrCodeUrl())
     this.props.dispatch(globalActions.setModalShow('setup2faStep2'))
   }
 
@@ -201,11 +202,11 @@ class AccountPage extends React.Component {
                 btnClasses={''}>
                 <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
                         <div className="border-left-pink mt-0">
-                <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
                 <p className="mt-0 mb-2">
                   If you have never used 2FA before, we strongly recommend you
                   <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
                 </p>
+                <img src={getQrCodeUrl} />
                         </div>
                     </ModalPopupForm>
 
@@ -293,7 +294,7 @@ class AccountPage extends React.Component {
 
         </div>
       </div>  
-      </div >  
+      </div>  
     );
   }
 }
@@ -301,9 +302,10 @@ class AccountPage extends React.Component {
 function mapStateToProps(state) {
   // const userWithFreshInfo = state.users.user;
   const userWithFreshInfo = state.account.user;
+  const { qrCodeUrl } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, userWithFreshInfo
+    loggingIn, user, userWithFreshInfo, qrCodeUrl
   };
 }
 

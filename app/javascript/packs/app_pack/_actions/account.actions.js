@@ -10,6 +10,25 @@ export const accountActions = {
   changeEmail,
   deleteAccount,
   clearAlerts,
+  getQrCodeUrl
+}
+
+function getQrCodeUrl(data) {
+  return dispatch => {
+    dispatch(request(data))
+    userService.getQrCodeUrl(data)
+      .then(
+        response => {
+          dispatch(success(response.notice, response.qr_code_url))
+        },
+        error => {
+          dispatch(failure(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.QR_CODE_REQUEST } }
+  function success(notice, qr_code_url) { return { type: accountConstants.QR_CODE_SUCCESS, notice, qr_code_url } }
+  function failure(error) { return { type: accountConstants.QR_CODE_FAILURE, error } }
 }
 
 function cancelAccount(data) {
