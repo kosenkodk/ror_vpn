@@ -73,16 +73,20 @@ class AccountPage extends React.Component {
   }
 
   setup2faStep2() {
+    // display qr code
     this.props.dispatch(accountActions.getQrCodeUrl())
     this.props.dispatch(globalActions.setModalShow('setup2faStep2'))
   }
 
   setup2faStep3() {
+    // type 2fa otp code
     this.props.dispatch(globalActions.setModalShow('setup2faStep3'))
   }
 
   setup2faStep4() {
-    this.props.dispatch(accountActions.enable2FA(true)); //todo:
+    // sent password and 2fa code to remote api
+    const data = FormDataAsJsonFromEvent(e);
+    this.props.dispatch(accountActions.enable2FA(data));
   }
 
   componentDidMount() {

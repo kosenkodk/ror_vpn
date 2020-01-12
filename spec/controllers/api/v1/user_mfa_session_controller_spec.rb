@@ -12,4 +12,16 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
       expect(response).to be_successful
     end
   end
+
+  describe 'POST #create' do
+    context 'success' do
+      it '' do
+        expect {
+          post :create, params: { code2fa: '' }
+        }.to change(UserMfaSession, :count).by(1)
+      end
+    end
+  end
+
 end
+

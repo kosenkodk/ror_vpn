@@ -21,6 +21,7 @@ export const userService = {
   changeLoginEmail,
   deleteAccount,
   getQrCodeUrl,
+  enable2FA
 };
 
 function getQrCodeUrl() {
@@ -35,6 +36,21 @@ function getQrCodeUrl() {
 
   return fetch(`${config.apiUrl}/user_mfa_session/new`, requestOptions).then(handleResponse);
 }
+
+function enable2FA() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/user_mfa_session/create`, 'POST', data)
+
+  const requestOptions = {
+    method: 'POST',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  };
+
+  return fetch(`${config.apiUrl}/user_mfa_session/create`, requestOptions).then(handleResponse);
+}
+
 
 function deleteAccount(data) {
   // if (autoRefreshToken)

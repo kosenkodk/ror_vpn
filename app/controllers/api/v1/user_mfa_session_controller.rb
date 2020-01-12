@@ -9,11 +9,14 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
 
   def create
     user = current_user # grab your currently logged in user
-    if user.google_authentic?(params[:mfa_code])
+    mfa_code = params[:code2fa]
+    login_password = params[:password]
+
+    if user.google_authentic?(mfa_code)
       UserMfaSession.create(user)
-      render json: { notice: 'Please scan QR code' }
+      render json: { notice: 'Success' }
     else
-      render json: { error: 'Error. Wrong QR code', status: 400 }
+      render json: { error: 'Wrong QR code', status: 400 }
     end
   end
 

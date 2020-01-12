@@ -10,7 +10,28 @@ export const accountActions = {
   changeEmail,
   deleteAccount,
   clearAlerts,
-  getQrCodeUrl
+  getQrCodeUrl,
+  enable2FA
+}
+
+function enable2FA(data) {
+  return dispatch => {
+    dispatch(request(data))
+    userService.enable2FA(data)
+      .then(
+        response => {
+          // dispatch(alertActions.success(response.notice))
+          dispatch(success(response.notice))
+        },
+        error => {
+          dispatch(alertActions.error(error))
+          dispatch(failure(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.ENABLE_2FA_REQUEST } }
+  function success(notice) { return { type: accountConstants.ENABLE_2FA_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.ENABLE_2FA_FAILURE, error } }
 }
 
 function getQrCodeUrl(data) {
