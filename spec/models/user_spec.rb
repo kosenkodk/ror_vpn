@@ -8,6 +8,12 @@ RSpec.describe User, type: :model do
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }
 
+  it '2fa' do
+    expect(user.set_google_secret).to eq(true)
+    expect(user.google_qr_uri).to include(user.email.gsub('@','%40')) # "http://path.to.google/qr?with=params")
+    expect(user.google_qr_uri).to include(user.google_secret_value)
+  end
+
   it 'destroy user' do
     message.attachment.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'logo.png')), filename: 'logo.png')
     ticket.messages << message
