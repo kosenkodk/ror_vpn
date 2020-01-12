@@ -72,7 +72,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       it 'with valid email' do
         patch :change_email, params: email_params_valid
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_email.success'))
-        expect(response_json.keys).to eq(['notice'])
+        expect(response_json.keys).to eq(['user', 'notice'])
         expect(response).to have_http_status(:success)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
