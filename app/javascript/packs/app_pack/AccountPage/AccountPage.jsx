@@ -107,7 +107,7 @@ class AccountPage extends React.Component {
   }
 
   render() {
-    const { loggingIn, user, userWithFreshInfo, qrCodeUrl } = this.props;
+    const { loggingIn, user, userWithFreshInfo, qr_code_url } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -222,11 +222,8 @@ class AccountPage extends React.Component {
                     Scan this code with your two-factor authentication device to set up your account.
                     <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
                 </p>
-                                  {/* <img src="https://chart.googleapis.com/chart?cht=qr&chl=otpauth%3A%2F%2Ftotp%2Fuser1%40ex.com%3Fsecret%3Df56c7keo5whrwtod&chs=200x200" /> */}
-
-                      <img src={qrCodeUrl} />
-                    
               </div>
+              <img src={qr_code_url} />
             </ModalPopupForm>
 
             <ModalPopupForm onClose={this.clearModalAlerts}
@@ -304,10 +301,10 @@ class AccountPage extends React.Component {
 function mapStateToProps(state) {
   // const userWithFreshInfo = state.users.user;
   const userWithFreshInfo = state.account.user;
-  const { qrCodeUrl } = state.account;
+  const { qr_code_url } = state.account;
   const { loggingIn,  user } = state.authentication;
   return { 
-    loggingIn, user, userWithFreshInfo, qrCodeUrl
+    loggingIn, user, userWithFreshInfo, qr_code_url
   }; 
 }
 
