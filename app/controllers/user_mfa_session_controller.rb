@@ -1,0 +1,2 @@
+class UserMfaSessionController < ApplicationController
+end
