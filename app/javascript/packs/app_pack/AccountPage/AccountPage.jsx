@@ -134,7 +134,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Email</label>
                 </div>
                 <div className="col">
-                  <input type="string" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email)} readOnly={true} placeholder='Email' />
+                  <input type="text" name="email" id="email" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email)} readOnly={true} placeholder='Email' />
                 </div>
               </div>
 
@@ -202,66 +202,66 @@ class AccountPage extends React.Component {
                 <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
                         <div className="border-left-pink mt-0">
                 <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
-                  <p className="mt-0 mb-2">
+                <p className="mt-0 mb-2">
                   If you have never used 2FA before, we strongly recommend you
                   <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
-                          </p>
+                </p>
                         </div>
                     </ModalPopupForm>
 
-                    <ModalPopupForm onClose={this.clearModalAlerts}
-            id='setup2faStep2'
+            <ModalPopupForm onClose={this.clearModalAlerts}
+              id='setup2faStep2'
               isHideBtn={true}
               onBtnSave={() => this.setup2faStep3()}
               title='Set up two-factor authentication'
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.next')}
               btnClasses={''}>
-              
-      <div className="border-left-pink mt-0">
-              <p className="mt-0 mb-2">
+
+              <div className="border-left-pink mt-0">
+                <p className="mt-0 mb-2">
                   Scan this code with your two-factor authentication device to set up your account.
                   <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
-                        </p>
-                      </div>
-                    </ModalPopupForm>
-
-                    <ModalPopupForm onClose={this.clearModalAlerts}
-          id='setup2faStep3'
-            isForm={true}
-            isHideBtn={true}
-            onBtnSave={() => this.setup2faStep4()}
-            title='Set up two-factor authentication'
-            btnClasses={''}>
-            <Setup2faStep3Form onModalCancel={() => this.setup2faStep2()} onFormSubmit={this.onSetup2faStep3} />
-                </ModalPopupForm>
-          
-        </div>
-      
-    <div className="mb-60">
-      <h1 id="password">Recovery & notification</h1>
-        <div className="border-left-pink">
-          {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
-          <p>
-            The selected method can be used to recover an account in the event your forget your password and to be notified about missed emails.
-              </p>
+                </p>
               </div>
-        
-      <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
-        <div className="w-45 mb-3 mb-sm-auto">
-            <label className="col-form-label">Login email address</label>
-                </div>
-            <div className="mb-3 mb-sm-auto flex-grow-1 mr-2">
-        <input type="string" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email) } readOnly placeholder='Email' />                  
-                      </div>
-            <div  className="mb-3 mb-sm-auto">
-            <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
-          <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
-                      </ModalPopupForm>
-                </div> 
-              </div> 
- 
-             {/*
+            </ModalPopupForm>
+
+            <ModalPopupForm onClose={this.clearModalAlerts}
+              id='setup2faStep3'
+              isForm={true}
+              isHideBtn={true}
+              onBtnSave={() => this.setup2faStep4()}
+              title='Set up two-factor authentication'
+              btnClasses={''}>
+              <Setup2faStep3Form onModalCancel={() => this.setup2faStep2()} onFormSubmit={this.onSetup2faStep3} />
+            </ModalPopupForm>
+
+          </div>
+
+          <div className="mb-60">
+            <h1 id="password">Recovery & notification</h1>
+            <div className="border-left-pink">
+              {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+              <p>
+                The selected method can be used to recover an account in the event your forget your password and to be notified about missed emails.
+              </p>
+            </div>
+
+            <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
+              <div className="w-45 mb-3 mb-sm-auto">
+                <label className="col-form-label">Login email address</label>
+              </div>
+              <div className="mb-3 mb-sm-auto flex-grow-1 mr-2">
+                <input id="email2" name="email2" type="string" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email)} readOnly placeholder='Email' />
+              </div>
+              <div className="mb-3 mb-sm-auto">
+                <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
+                  <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
+                </ModalPopupForm>
+              </div>
+            </div>
+
+            {/*
         Name="row mt-2">
                 <div className="col-sm-5 align-self-center">
                   <label className="col-form-label">Allow password reset</label>
@@ -276,25 +276,25 @@ class AccountPage extends React.Component {
               </div>
               */}
 
-            </div>
- 
-           <div className="mb-60">
-      <h1 id="delete">Delete Account</h1>
-        <div className="border-left-pink">
-          {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
-          <p>
-            Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
-          </p>
-              </div>
-        <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
-        <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
-                </ModalPopupForm>
-            </div> 
- 
           </div>
-        </div>  
+
+          <div className="mb-60">
+            <h1 id="delete">Delete Account</h1>
+            <div className="border-left-pink">
+              {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+              <p>
+                Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
+          </p>
+            </div>
+            <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+              <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
+            </ModalPopupForm>
+          </div>
+
+        </div>
       </div>  
-    );  
+      </div >  
+    );
   }
 }
 
@@ -308,8 +308,8 @@ function mapStateToProps(state) {
 }
 
 AccountPage.defaultProps = {
-isAllowPasswordReset: true,
-    is2faEnabled: false,
+  isAllowPasswordReset: true,
+  is2faEnabled: false,
 }
 
 const connectedPage = connect(mapStateToProps)(AccountPage);
