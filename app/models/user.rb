@@ -1,4 +1,3 @@
-
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
@@ -9,6 +8,7 @@ end
 
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
+  has_one_time_password
   has_secure_password
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
