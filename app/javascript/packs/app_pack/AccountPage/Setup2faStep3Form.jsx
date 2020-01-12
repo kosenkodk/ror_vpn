@@ -8,11 +8,12 @@ class Setup2faStep3Form extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { code: '', password: '' }
+    this.state = { code2fa: '', password: '' }
     // this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = (e) => {
+    // handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
