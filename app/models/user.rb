@@ -6,9 +6,20 @@ class EmailValidator < ActiveModel::EachValidator
   end
 end
 
+require 'active_model_otp'
 class User < ApplicationRecord
-  include ActiveModel::Serializers::JSON
+  # start 2fa
+  extend ActiveModel::Callbacks
+  include ActiveModel::Validations
+  include ActiveModel::OneTimePassword
+
+  define_model_callbacks :create
+  # attr_accessor :otp_secret_key, :email
+
   has_one_time_password
+
+  # end 2fa
+  include ActiveModel::Serializers::JSON
   has_secure_password
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
