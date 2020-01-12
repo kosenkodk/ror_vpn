@@ -11,7 +11,10 @@ RSpec.describe User, type: :model do
   it '2fa' do
     expect(user.set_google_secret).to eq(true)
     expect(user.google_qr_uri).to include(user.email.gsub('@','%40')) # "http://path.to.google/qr?with=params")
-    expect(user.google_qr_uri).to include(user.google_secret_value)
+    expect(user.google_qr_uri).to include(user.google_secret_value) # 16-character plain-text secret, whatever the name of the secret column 
+    expect(user.clear_google_secret!).to eq(true)
+    expect(user.google_secret_value).to eq(nil)
+    expect(user.google_label).to eq(user.email)
   end
 
   it 'destroy user' do
