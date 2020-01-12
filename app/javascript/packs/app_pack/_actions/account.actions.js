@@ -19,9 +19,11 @@ function getQrCodeUrl(data) {
     userService.getQrCodeUrl(data)
       .then(
         response => {
+          // dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice, response.qr_code_url))
         },
         error => {
+          dispatch(alertActions.error(error))
           dispatch(failure(error))
         }
       )
