@@ -39,7 +39,7 @@ function getQrCodeUrl() {
 
 function enable2FA(data) {
   if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/user_mfa_session/create`, 'POST', data)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/user_mfa_session`, 'POST', data)
 
   const requestOptions = {
     method: 'POST',
@@ -48,7 +48,7 @@ function enable2FA(data) {
     body: JSON.stringify(data)
   };
 
-  return fetch(`${config.apiUrl}/user_mfa_session/create`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/user_mfa_session`, requestOptions).then(handleResponse);
 }
 
 
