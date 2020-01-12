@@ -20,7 +20,21 @@ export const userService = {
   changeLoginPassword,
   changeLoginEmail,
   deleteAccount,
+  getQrCodeUrl,
 };
+
+function getQrCodeUrl() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/user_mfa_session/new`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  };
+
+  return fetch(`${config.apiUrl}/user_mfa_session/new`, requestOptions).then(handleResponse);
+}
 
 function deleteAccount(data) {
   // if (autoRefreshToken)
