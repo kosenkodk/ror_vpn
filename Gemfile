@@ -79,5 +79,5 @@ gem 'will_paginate'
 gem 'griddler'#, '1.3.1'
 gem 'griddler-sendgrid'#, '1.0.0'
 
-# gem 'google-authenticator-rails', github: 'jaredonline/google-authenticator' # NoMethodError: undefined method `cookies' for nil:NilClass https://github.com/jaredonline/google-authenticator/issues/48
-gem 'google-authenticator-rails', github: 'dilpreet92/google-authenticator', branch: 'fix/google_authentication_inclusion'
+# gem 'google-authenticator-rails', github: 'jaredonline/google-authenticator'
+gem 'google-authenticator-rails', github: 'dilpreet92/google-authenticator', branch: 'fix/google_authentication_inclusion' # NoMethodError: undefined method `cookies' for nil:NilClass https://github.com/jaredonline/google-authenticator/issues/48
