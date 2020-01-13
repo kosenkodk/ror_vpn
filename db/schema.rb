@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_191316) do
+ActiveRecord::Schema.define(version: 2020_01_13_104113) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_191316) do
     t.text "cancel_account_reason_text"
     t.string "otp_secret_key"
     t.string "google_secret"
+    t.string "salt"
     t.index ["cancel_reason_id"], name: "index_users_on_cancel_reason_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["payment_method_id"], name: "index_users_on_payment_method_id"

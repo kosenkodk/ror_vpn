@@ -22,7 +22,10 @@ class User < ApplicationRecord
   # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
   
-  acts_as_google_authenticated column_name: :email, drift: 30 # drift is the number of seconds that the client and server are allowed to drift apart (default is 5 seconds)
+  acts_as_google_authenticated column_name: :email, lookup_token: :salt, drift: 30 # drift is the number of seconds that the client and server are allowed to drift apart (default is 5 seconds)
+
+  before_save {|record| record.salt = SecureRandom.hex unless record.salt }
+  after_create {|record| record.set_google_secret }
 
   def attributes
     { id: id, email: email, role: role, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text }
