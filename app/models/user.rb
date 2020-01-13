@@ -9,6 +9,7 @@ end
 
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
+  
   has_secure_password
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
@@ -22,7 +23,8 @@ class User < ApplicationRecord
   # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
   
-  acts_as_google_authenticated column_name: :email, lookup_token: :salt, drift: 30 # drift is the number of seconds that the client and server are allowed to drift apart (default is 5 seconds)
+  acts_as_google_authenticated column_name: :email, lookup_token: :salt, drift: 30 #, issuer: 'VegaVPN' # drift is the number of seconds that the client and server are allowed to drift apart (default is 5 seconds)
+  # acts_as_google_authentic lookup_token: :salt # will fix UserMfaSession.create(user) error: "token not found" if user.salt is not nill
 
   before_save {|record| record.salt = SecureRandom.hex unless record.salt }
   after_create {|record| record.set_google_secret }

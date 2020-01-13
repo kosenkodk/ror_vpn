@@ -10,8 +10,13 @@ RSpec.describe User, type: :model do
 
   it '2fa' do
     expect(user.set_google_secret).to eq(true)
+    expect(user.google_secret).not_to eq(nil)
+    
     expect(user.google_qr_uri).to include(user.email.gsub('@','%40')) # "http://path.to.google/qr?with=params")
     expect(user.google_qr_uri).to include(user.google_secret_value) # 16-character plain-text secret, whatever the name of the secret column 
+    # expect(user.google_authentic?(user.google_secret)).to eq(true)
+    expect(user.persistence_token).not_to eq(nil)
+
     expect(user.clear_google_secret!).to eq(true)
     expect(user.google_secret_value).to eq(nil)
     expect(user.google_label).to eq(user.email)
@@ -20,8 +25,8 @@ RSpec.describe User, type: :model do
   it 'token not fond' do
     # user.salt = "123"
     item = UserMfaSession.create(user)
-    expect(user.mfa_secret).to eq('')
-    expect(user.persistence_token).to eq('')
+    expect(user.google_secret).not_to eq(nil)
+    expect(user.persistence_token).not_to eq(nil)
     # user.persistence_token='123'
     expect(item).to eq(UserMfaSession.last)
   end

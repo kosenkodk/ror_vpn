@@ -1,5 +1,13 @@
+# class Api::V1::ApiController < ActionController::Base #  UserMfaSession.create(user) # NoMethodError: undefined method `cookies' for nil:NilClass
 class Api::V1::ApiController < ActionController::API
+  # before_filter :check_mfa
+
   include ApplicationHelper
+  
+  include Response
+  include ExceptionHandler
+  include ActionController::Helpers
+  include ActionController::Cookies
 
   include JWTSessions::RailsAuthorization
   rescue_from ActionController::ParameterMissing, with: :bad_request
@@ -10,6 +18,12 @@ class Api::V1::ApiController < ActionController::API
   rescue_from ResetPasswordError, with: :not_authorized
 
   private
+
+  def check_mfa
+     if !(user_mfa_session = UserMfaSession.find) && (user_mfa_session ? user_mfa_session.record == current_user : !user_mfa_session)
+      redirect_to new_user_mfa_session_path
+    end
+  end
 
   def current_user
     @current_user ||= User.find(payload['user_id'])
