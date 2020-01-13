@@ -235,7 +235,9 @@ class AccountPage extends React.Component {
                     <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
                 </p>
               </div>
-              <img src={qr_code_url} />
+              <div className="text-center">
+                <img src={qr_code_url} className="img-fluid w-45" />
+              </div>
             </ModalPopupForm>
 
             <ModalPopupForm onClose={this.clearModalAlerts}
