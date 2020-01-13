@@ -67,27 +67,34 @@ class AccountPage extends React.Component {
   }
 
   enable2FA(e) {
+    e.preventDefault();
     this.setState({ is2faEnabled: e.target.checked });
     if (e.target.checked)
       this.setup2faStep1(e);
+    else
+      this.disable2FA(e);
+  }
+
+  disable2FA(e) {
+    this.props.dispatch(accountActions.disable2FA());
   }
 
   setup2faStep1(e) {
-    if (e) e.preventDefault()
-    this.props.dispatch(globalActions.setModalShow('setup2faStep1'))
+    if (e) e.preventDefault();
+    this.props.dispatch(globalActions.setModalShow('setup2faStep1'));
   }
 
   setup2faStep2(e) {
     // display qr code
-    e.preventDefault()
-    this.props.dispatch(accountActions.getQrCodeUrl())
-    this.props.dispatch(globalActions.setModalShow('setup2faStep2'))
+    e.preventDefault();
+    this.props.dispatch(accountActions.getQrCodeUrl());
+    this.props.dispatch(globalActions.setModalShow('setup2faStep2'));
   }
 
   setup2faStep3(e) {
     e.preventDefault();
     // type 2fa otp code
-    this.props.dispatch(globalActions.setModalShow('setup2faStep3'))
+    this.props.dispatch(globalActions.setModalShow('setup2faStep3'));
   }
 
   setup2faStep4(e) {
@@ -197,7 +204,10 @@ class AccountPage extends React.Component {
                 </div>
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
-                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa" onClick={this.enable2FA} onChange={this.enable2FA} checked={this.state.is2faEnabled} />
+                    <input type="checkbox" className="custom-control-input" id="customSwitch2fa"
+                      onClick={this.enable2FA} onChange={this.enable2FA} checked={this.state.is2faEnabled}
+                    // defaultChecked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa)}
+                    />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
                   </div>
                 </div>
@@ -211,7 +221,7 @@ class AccountPage extends React.Component {
                 btnCloseText={I18n.t('buttons.cancel')}
                 btnSaveText={I18n.t('buttons.next')}
                 btnClasses={''}>
-                <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
+                <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
                         <div className="border-left-pink mt-0">
                 <p className="mt-0 mb-2">
                   If you have never used 2FA before, we strongly recommend you
@@ -319,7 +329,7 @@ function mapStateToProps(state) {
   const { loggingIn, user } = state.authentication;
   return {
     loggingIn, user, userWithFreshInfo, qr_code_url
-  }; 
+  };
 }
 
 AccountPage.defaultProps = {

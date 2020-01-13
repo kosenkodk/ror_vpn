@@ -28,7 +28,7 @@ class User < ApplicationRecord
   after_create {|record| record.set_google_secret }
 
   def attributes
-    { id: id, email: email, role: role, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text }
+    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text }
   end
 
   def generate_password_token!

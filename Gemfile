@@ -75,7 +75,6 @@ gem 'i18n-js'
 gem 'bootstrap-email'
 gem 'will_paginate'
 
-
 gem 'griddler'#, '1.3.1'
 gem 'griddler-sendgrid'#, '1.0.0'
 

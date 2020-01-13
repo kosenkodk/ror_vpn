@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }
 
-  it '2fa' do
+  it 'enable 2fa' do
     expect(user.set_google_secret).to eq(true)
     expect(user.google_qr_uri).to include(user.email.gsub('@','%40')) # "http://path.to.google/qr?with=params")
     expect(user.google_qr_uri).to include(user.google_secret_value) # 16-character plain-text secret, whatever the name of the secret column 
@@ -17,7 +17,16 @@ RSpec.describe User, type: :model do
     expect(user.google_label).to eq(user.email)
   end
 
-  xit 'token not found' do
+  it '2fa is disabled by default' do
+    expect(user.is2fa).to eq(false)
+  end
+
+  it 'disable 2fa' do
+    user.update(is2fa: true)
+    expect(user.is2fa).to eq(true)
+  end
+
+  xit 'token is not found' do
     # user.salt = "123"
     item = UserMfaSession.create(user)
     expect(user.google_secret).not_to eq(nil)
