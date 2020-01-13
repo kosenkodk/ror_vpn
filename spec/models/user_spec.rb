@@ -17,6 +17,15 @@ RSpec.describe User, type: :model do
     expect(user.google_label).to eq(user.email)
   end
 
+  it 'token not fond' do
+    # user.salt = "123"
+    item = UserMfaSession.create(user)
+    expect(user.mfa_secret).to eq('')
+    expect(user.persistence_token).to eq('')
+    # user.persistence_token='123'
+    expect(item).to eq(UserMfaSession.last)
+  end
+
   it 'destroy user' do
     message.attachment.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'logo.png')), filename: 'logo.png')
     ticket.messages << message
