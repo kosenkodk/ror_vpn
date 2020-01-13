@@ -11,7 +11,8 @@ export const accountActions = {
   deleteAccount,
   clearAlerts,
   getQrCodeUrl,
-  enable2FA
+  enable2FA,
+  disable2FA
 }
 
 function enable2FA(data) {
@@ -33,6 +34,27 @@ function enable2FA(data) {
   function request() { return { type: accountConstants.ENABLE_2FA_REQUEST } }
   function success(notice) { return { type: accountConstants.ENABLE_2FA_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.ENABLE_2FA_FAILURE, error } }
+}
+
+function disable2FA() {
+  return dispatch => {
+    dispatch(request())
+    userService.disable2FA()
+      .then(
+        response => {
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(alertActions.success(response.notice))
+          dispatch(success(response.notice))
+        },
+        error => {
+          dispatch(alertActions.error(error))
+          dispatch(failure(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.DISABLE_2FA_REQUEST } }
+  function success(notice) { return { type: accountConstants.DISABLE_2FA_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.DISABLE_2FA_FAILURE, error } }
 }
 
 function getQrCodeUrl(data) {

@@ -78,6 +78,31 @@ export function account(state = {}, action) {
         error: '',
         notice: '',
       }
+    case accountConstants.ENABLE_2FA_REQUEST:
+      return {
+        loading: true
+      }
+    case accountConstants.ENABLE_2FA_SUCCESS:
+      return {
+        notice: action.notice,
+      }
+    case accountConstants.ENABLE_2FA_FAILURE:
+      return {
+        error: action.error,
+      }
+    case accountConstants.DISABLE_2FA_REQUEST:
+      return {
+        loading: true
+      }
+    case accountConstants.DISABLE_2FA_SUCCESS:
+      return {
+        notice: action.notice,
+      }
+    case accountConstants.DISABLE_2FA_FAILURE:
+      return {
+        error: action.error,
+      }
+
     default:
       return state
   }

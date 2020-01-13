@@ -145,6 +145,14 @@ en:
       contact_us: "Contact Us"
   pages:
     account:
+      2fa:
+        pls_scan_qr_code: "Please scan QR code"
+        disable:
+          success: "You have disabled two-factor authentication successfully"
+          error: "Can't disable two-factor authentication."
+        enable:
+          success: "You have enabled two-factor authentication successfully"
+          error: "Wrong two-factor code" 
       cancel:
         title: "Cancel Account"
         success: "Your account has been cancelled successfully"
