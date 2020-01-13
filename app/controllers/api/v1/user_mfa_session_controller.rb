@@ -4,7 +4,7 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
   def new
     # load your view
     qr_code_url = current_user.google_qr_uri 
-    render json: { notice: 'qr code url', qr_code_url: qr_code_url }
+    render json: { notice: 'Please scan QR code', qr_code_url: qr_code_url }
   end
 
   def create
@@ -14,9 +14,9 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
 
     if user.google_authentic?(mfa_code)
       # UserMfaSession.create(user)
-      render json: { notice: 'Success' }
+      render json: { notice: 'You have enabled two-factor authentication successfully' }
     else
-      render json: { error: 'Wrong QR code', status: 400 }
+      render json: { error: 'Wrong two-factor code', status: 400 }
     end
   end
 
