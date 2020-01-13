@@ -20,7 +20,8 @@ function enable2FA(data) {
     userService.enable2FA(data)
       .then(
         response => {
-          // dispatch(alertActions.success(response.notice))
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
         },
         error => {
