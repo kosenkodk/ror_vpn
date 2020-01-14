@@ -23,7 +23,7 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
 
   def destroy
     if (current_user && current_user.update(is2fa: false))
-      current_user.clear_google_secret
+      # current_user.clear_google_secret!
       render json: { notice: I18n.t('pages.account.2fa.disable.success') }
     else
       render json: { error: I18n.t('pages.account.2fa.disable.error') }

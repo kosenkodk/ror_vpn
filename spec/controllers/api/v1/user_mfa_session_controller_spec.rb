@@ -18,6 +18,7 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
       it 'enable 2fa' do
         post :create, params: {password: user.password, code2fa: ''}
         expect(response).to be_successful
+        expect(user.is2fa).to eq(true)
       end
       xit 'create mfa session' do
         expect {
@@ -28,9 +29,12 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
   end
 
   describe '#destroy' do
-    it 'disable 2fa' do
-      delete :destroy
-      expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.disable.success'))
+    context 'success' do
+      it 'disable 2fa' do
+        delete :destroy
+        expect(user.is2fa).to eq(false)
+        expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.disable.success'))
+      end
     end
   end
 
