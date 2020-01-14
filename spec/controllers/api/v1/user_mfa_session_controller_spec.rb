@@ -20,7 +20,8 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
         expect(response).to be_successful
         expect(response_json.values).to include(I18n.t('pages.account.2fa.enable.success'))
         expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.enable.success'))
-        # expect(user.is2fa).to eq(true)
+        user.reload
+        expect(user.is2fa).to eq(true)
       end
       xit 'create mfa session' do
         expect {
