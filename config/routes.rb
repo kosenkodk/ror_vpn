@@ -44,6 +44,9 @@ Rails.application.routes.draw do
       post '/cancel', to: 'account#cancel'
 
       resources :user_mfa_session
+      delete '/user_mfa_session', to: 'user_mfa_session#destroy'
+      # resource :user_mfa_session
+
       mount ActionCable.server, at: '/cable'
 
       resources :tickets do
