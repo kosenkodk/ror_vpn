@@ -26,12 +26,27 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
         }.to change(UserMfaSession, :count).by(1)
       end
     end
+
+    context 'failure' do
+      it 'with wrong or empty qr code' do
+        post :create, params: {password: user.password, code2fa: ''}
+        expect(response).to be_successful
+        expect(response_json.keys).to include('error')
+        expect(response_json.values).to include(I18n.t('pages.account.2fa.enable.error'))
+        expect(response_json['error']).to eq(I18n.t('pages.account.2fa.enable.error'))
+        expect(user.is2fa).to eq(false)
+      end
+      it 'with empty password' do
+        post :create, params: {password: '', code2fa: ''}
+        expect(response_json['error']).to eq(I18n.t('pages.account.2fa.enable.error'))
+      end
+    end
   end
 
   describe '#destroy' do
     context 'success' do
       it 'disable 2fa' do
-        delete :destroy
+        delete :destroy, params: { id: user.id }
         expect(user.is2fa).to eq(false)
         expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.disable.success'))
       end
