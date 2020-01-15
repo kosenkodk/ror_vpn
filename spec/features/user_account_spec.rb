@@ -61,10 +61,13 @@ RSpec.describe 'User Account', type: :feature, js: true do
     end
     describe 'disable 2fa' do
        context 'success' do
-        it 'for logged in user'
-       end
-       context 'failure' do
-        it 'for logged out user'
+        it 'for logged in user' do
+          user.update(is2fa: true)
+          expect(user.is2fa).to eq(true)
+          uncheck('customSwitch2fa', allow_label_click: true, visible: :all)
+          user.reload
+          expect(user.is2fa).to eq(false)
+        end
        end
     end
   end
