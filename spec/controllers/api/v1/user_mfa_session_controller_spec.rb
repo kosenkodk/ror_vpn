@@ -14,22 +14,22 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
   end
 
   describe 'POST #create' do
+    # let(:secret) { ROTP::Base32.random_base32 }
+    let(:secret) { user.google_secret }
+
     context 'success' do
       it 'enable 2fa' do
-        # GoogleAuthenticatorRails::generate_password("test", counter)
+        totp = ROTP::TOTP.new(secret)
+        expect(GoogleAuthenticatorRails::valid?(totp.now, secret)).to eq(true)
 
-        post :create, params: {password: user.password, code2fa: ''}
+        post :create, params: {password: user.password, code2fa: totp.now}
         expect(response).to be_successful
 
         expect(response_json.values).to include(I18n.t('pages.account.2fa.enable.success'))
         expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.enable.success'))
+
         user.reload
         expect(user.is2fa).to eq(true)
-      end
-      xit 'create mfa session' do
-        expect {
-          post :create, params: { code2fa: '' }
-        }.to change(UserMfaSession, :count).by(1)
       end
     end
 
