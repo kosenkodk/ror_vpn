@@ -7,6 +7,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
   let!(:tariff_plan) {create(:tariff_plan)}
   let!(:tariff_plan_free) {create(:tariff_plan_free)}
   let!(:user) {create(:user, password: password, password_confirmation: password, tariff_plan: tariff_plan)}
+  let!(:user_2fa_enabled) {create(:user, password: password, password_confirmation: password, tariff_plan: tariff_plan, is2fa: true)}
   let!(:cancel_reason) {create(:cancel_reason, title: 'reason')}
   let!(:cancel_reason2) {create(:cancel_reason, title: 'reason 2')}
   
@@ -62,12 +63,13 @@ RSpec.describe 'User Account', type: :feature, js: true do
     describe 'disable 2fa' do
        context 'success' do
         it 'for logged in user' do
-          user.update(is2fa: true)
-          expect(user.is2fa).to eq(true)
+          fsign_in_as(user_2fa_enabled)
           visit '/user/account'
+          user_2fa_enabled.reload
+          expect(user_2fa_enabled.is2fa).to eq(true)
           uncheck('customSwitch2fa', allow_label_click: true, visible: :all)
-          user.reload
-          expect(user.is2fa).to eq(false)
+          user_2fa_enabled.reload
+          expect(user_2fa_enabled.is2fa).to eq(false)
         end
        end
     end
