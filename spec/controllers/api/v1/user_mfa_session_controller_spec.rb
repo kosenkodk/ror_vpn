@@ -42,9 +42,14 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
         expect(response_json['error']).to eq(I18n.t('pages.account.2fa.enable.error'))
         expect(user.is2fa).to eq(false)
       end
-      it 'with empty password' do
+      it 'with empty password and code' do
         post :create, params: {password: '', code2fa: ''}
-        expect(response_json['error']).to eq(I18n.t('pages.account.2fa.enable.error'))
+        expect(response_json['error']).to eq(I18n.t('api.errors.invalid_password'))
+      end
+      it 'with empty password' do
+        totp = ROTP::TOTP.new(secret)
+        post :create, params: {password: '', code2fa: totp.now}
+        expect(response_json['error']).to eq(I18n.t('api.errors.invalid_password'))
       end
     end
   end
