@@ -59,7 +59,8 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
       it 'for logged in user' do
         user.update(is2fa: true)
         expect(user.is2fa).to eq(true)
-        delete :destroy, params: { id: user.id }
+        # delete :destroy, params: { id: user.id }
+        delete :destroy, params: { id: '' }
         user.reload
         expect(user.is2fa).to eq(false)
         expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.disable.success'))

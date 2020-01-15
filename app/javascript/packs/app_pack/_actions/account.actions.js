@@ -23,7 +23,7 @@ function enable2FA(data) {
         response => {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
-          dispatch(success(response.notice))
+          dispatch(success(response.notice, response.is2fa))
         },
         error => {
           dispatch(alertActions.error(error))
@@ -32,7 +32,7 @@ function enable2FA(data) {
       )
   }
   function request() { return { type: accountConstants.ENABLE_2FA_REQUEST } }
-  function success(notice) { return { type: accountConstants.ENABLE_2FA_SUCCESS, notice } }
+  function success(notice, is2fa) { return { type: accountConstants.ENABLE_2FA_SUCCESS, notice, is2fa } }
   function failure(error) { return { type: accountConstants.ENABLE_2FA_FAILURE, error } }
 }
 
@@ -44,7 +44,7 @@ function disable2FA() {
         response => {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
-          dispatch(success(response.notice))
+          dispatch(success(response.notice, response.is2fa))
         },
         error => {
           dispatch(alertActions.error(error))
@@ -53,7 +53,7 @@ function disable2FA() {
       )
   }
   function request() { return { type: accountConstants.DISABLE_2FA_REQUEST } }
-  function success(notice) { return { type: accountConstants.DISABLE_2FA_SUCCESS, notice } }
+  function success(notice, is2fa) { return { type: accountConstants.DISABLE_2FA_SUCCESS, notice, is2fa } }
   function failure(error) { return { type: accountConstants.DISABLE_2FA_FAILURE, error } }
 }
 
