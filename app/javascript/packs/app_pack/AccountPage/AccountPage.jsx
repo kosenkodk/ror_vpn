@@ -208,7 +208,7 @@ class AccountPage extends React.Component {
                     <input type="checkbox" className="custom-control-input" id="customSwitch2fa"
                       // onClick={this.enable2FA} 
                       onChange={this.enable2FA}
-                      checked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa) || this.state.is2faEnabled}
+                      checked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa)}
                     // checked={is2fa || (userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa) || this.state.is2faEnabled}
                     // defaultChecked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa)}
                     />

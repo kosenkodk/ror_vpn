@@ -86,6 +86,7 @@ export function account(state = {}, action) {
       return {
         notice: action.notice,
         is2fa: action.is2fa,
+        user: { ...(state.authentication && state.authentication.user), is2fa: action.is2fa }
       }
     case accountConstants.ENABLE_2FA_FAILURE:
       return {
@@ -99,6 +100,7 @@ export function account(state = {}, action) {
       return {
         notice: action.notice,
         is2fa: action.is2fa,
+        user: { ...(state.authentication && state.authentication.user), is2fa: action.is2fa }
       }
     case accountConstants.DISABLE_2FA_FAILURE:
       return {
