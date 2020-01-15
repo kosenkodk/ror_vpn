@@ -18,46 +18,27 @@ RSpec.describe 'User Account', type: :feature, js: true do
   describe '2FA Setup' do
     context 'success' do
       it 'enable 2fa' do
-        # find('.custom-control').click
-        # find('customSwitch2fa', visible: :all).click
-        # find('#customSwitch2fa', visible: :all).click
-
-        # within('.custom-control') do
-        within('.custom-switch') do
-          check('customSwitch2fa', allow_label_click: true, visible: :all)
-
-          uncheck('customSwitch2fa', visible: :all)
-          check('customSwitch2fa', visible: :all)
-        end
-        # end
-
-        # check('#customSwitch2fa')
-        # check('#customSwitch2fa', visible: :all)
-        # check('#customSwitch2fa', allow_label_click: true)
-        # check('Two-factor authentication', allow_label_click: true)
-
-        # page.find(:xpath, "//label[@for='customSwitch2fa']", visible: :all).click
-        # page.find(:xpath, "//input[@id='customSwitch2fa']", visible: :all).click
-        # page.find(:xpath, "//input[@id='customSwitch2fa']", visible: :all).trigger(:click)
-
+        check('customSwitch2fa', allow_label_click: true, visible: :all)
         expect(page).to have_content(I18n.t('buttons.next'))
         click_on(I18n.t('buttons.next'))
         click_on(I18n.t('buttons.next'))
         click_on(I18n.t('buttons.back'))
         click_on(I18n.t('buttons.next'))
         click_on(I18n.t('buttons.submit'))
+        alert_have_text I18n.t('pages.account.2fa.enable.success')
+        user.reload
+        expect(user.is2fa).to eq(true)
       end
 
-      xit 'disable 2fa' do
-        # page.find(:xpath, "//input[@id='customSwitch2fa']", visible: :all).click
-        find('customSwitch2fa', visible: :all).click
-        # uncheck('customSwitch2fa', visible: :all)
-        # check('customSwitch2fa', visible: :all)
-
-        # within('.custom-switch') do
-        #   uncheck('customSwitch2fa', visible: :all)
-        #   check('customSwitch2fa', visible: :all)
-        # end
+      it 'disable 2fa' do
+        check('customSwitch2fa', allow_label_click: true, visible: :all)
+        expect(page).to have_content(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.submit'))
+        alert_have_text I18n.t('pages.account.2fa.enable.error')
+        user.reload
+        expect(user.is2fa).to eq(false)
       end
     end
   end
