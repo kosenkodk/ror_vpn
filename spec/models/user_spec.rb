@@ -8,31 +8,48 @@ RSpec.describe User, type: :model do
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }
 
-  it 'enable 2fa' do
-    expect(user.set_google_secret).to eq(true)
-    expect(user.google_qr_uri).to include(user.email.gsub('@','%40')) # "http://path.to.google/qr?with=params")
-    expect(user.google_qr_uri).to include(user.google_secret_value) # 16-character plain-text secret, whatever the name of the secret column 
-    expect(user.clear_google_secret!).to eq(true)
-    expect(user.google_secret_value).to eq(nil)
-    expect(user.google_label).to eq(user.email)
-  end
+  context '2fa' do
+    let(:secret) { '5qlcip7azyjuwm36' }
 
-  it '2fa is disabled by default' do
-    expect(user.is2fa).to eq(false)
-  end
+    it 'check code' do
+      # code_test = GoogleAuthenticatorRails::generate_password(secret, 1)
+      # expect(GoogleAuthenticatorRails::valid?(code_test, secret)).to eq(true)
 
-  it 'disable 2fa' do
-    user.update(is2fa: true)
-    expect(user.is2fa).to eq(true)
-  end
+      code_fresh = GoogleAuthenticatorRails::time_based_password(secret)
+      expect(GoogleAuthenticatorRails::valid?(code_fresh, secret)).to eq(true)
+      GoogleAuthenticatorRails::time_based_password(secret).should == code_fresh
 
-  xit 'token is not found' do
-    # user.salt = "123"
-    item = UserMfaSession.create(user)
-    expect(user.google_secret).not_to eq(nil)
-    expect(user.persistence_token).not_to eq(nil)
-    # user.persistence_token='123'
-    expect(item).to eq(UserMfaSession.last)
+      totp = ROTP::TOTP.new(secret)
+      expect(GoogleAuthenticatorRails::valid?(totp.now, secret)).to eq(true)
+      expect(ROTP::TOTP.new(secret).verify_with_drift(totp.now, 1)).to eq(true)
+    end
+
+    it 'enable' do
+      expect(user.set_google_secret).to eq(true)
+      expect(user.google_qr_uri).to include(user.email.gsub('@','%40')) # "http://path.to.google/qr?with=params")
+      expect(user.google_qr_uri).to include(user.google_secret_value) # 16-character plain-text secret, whatever the name of the secret column 
+      expect(user.clear_google_secret!).to eq(true)
+      expect(user.google_secret_value).to eq(nil)
+      expect(user.google_label).to eq(user.email)
+    end
+
+    it 'is disabled by default' do
+      expect(user.is2fa).to eq(false)
+    end
+
+    it 'disable' do
+      user.update(is2fa: true)
+      expect(user.is2fa).to eq(true)
+    end
+
+    xit 'token is not found' do
+      # user.salt = "123"
+      item = UserMfaSession.create(user)
+      expect(user.google_secret).not_to eq(nil)
+      expect(user.persistence_token).not_to eq(nil)
+      # user.persistence_token='123'
+      expect(item).to eq(UserMfaSession.last)
+    end
   end
 
   it 'destroy user' do
