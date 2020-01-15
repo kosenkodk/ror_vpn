@@ -17,15 +17,19 @@ RSpec.describe 'User Account', type: :feature, js: true do
 
   describe '2FA Setup' do
     context 'success' do
-      xit 'enable 2fa' do
+      it 'enable 2fa' do
         # find('.custom-control').click
         # find('customSwitch2fa', visible: :all).click
         # find('#customSwitch2fa', visible: :all).click
 
+        # within('.custom-control') do
         within('.custom-switch') do
+          check('customSwitch2fa', allow_label_click: true, visible: :all)
+
           uncheck('customSwitch2fa', visible: :all)
           check('customSwitch2fa', visible: :all)
         end
+        # end
 
         # check('#customSwitch2fa')
         # check('#customSwitch2fa', visible: :all)
