@@ -21,4 +21,11 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* Testing
+# NODE_ENV is development by default
+RAILS_ENV=test ./bin/webpack
+
+RAILS_ENV=test bundle exec rails webpacker:compile
+RAILS_ENV=test bundle exec rails assets:precompile
+bundle exec rspec
 * ...
