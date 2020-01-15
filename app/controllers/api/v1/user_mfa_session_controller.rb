@@ -8,7 +8,6 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
   end
 
   def create
-    user = current_user # grab your currently logged in user
     mfa_code = params[:code2fa]
     login_password = params[:password]
 
@@ -17,10 +16,10 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
       return
     end
 
-    if user.google_authentic?(mfa_code)
-      # UserMfaSession.create(user)
-      user.update(is2fa: true)
-      render json: { notice: I18n.t('pages.account.2fa.enable.success') }
+    if current_user.google_authentic?(mfa_code)
+      # UserMfaSession.create(current_user)
+      current_user.update(is2fa: true)
+      render json: { is2fa: current_user.is2fa, notice: I18n.t('pages.account.2fa.enable.success') }
     else
       render json: { error: I18n.t('pages.account.2fa.enable.error'), status: 400 }
     end
@@ -29,9 +28,9 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
   def destroy
     if (current_user && current_user.update(is2fa: false))
       # current_user.clear_google_secret!
-      render json: { notice: I18n.t('pages.account.2fa.disable.success') }
+      render json: { is2fa: current_user.is2fa, notice: I18n.t('pages.account.2fa.disable.success') }
     else
-      render json: { error: I18n.t('pages.account.2fa.disable.error') }
+      render json: { error: I18n.t('pages.account.2fa.disable.error'), status: 400 }
     end
   end
 

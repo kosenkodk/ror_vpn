@@ -64,6 +64,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
         it 'for logged in user' do
           user.update(is2fa: true)
           expect(user.is2fa).to eq(true)
+          visit '/user/account'
           uncheck('customSwitch2fa', allow_label_click: true, visible: :all)
           user.reload
           expect(user.is2fa).to eq(false)

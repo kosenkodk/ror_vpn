@@ -54,13 +54,13 @@ function enable2FA(data) {
 
 function disable2FA() {
   if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/user_mfa_session`, 'DELETE', {})
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/user_mfa_session/0`, 'DELETE', { id: '' })
 
   const requestOptions = {
     method: 'DELETE',
     credentials: credentials,
     headers: authHeader(),
-    // body: JSON.stringify({})
+    body: JSON.stringify({ id: '' })
   };
 
   return fetch(`${config.apiUrl}/user_mfa_session`, requestOptions).then(handleResponse);

@@ -76,6 +76,7 @@ class AccountPage extends React.Component {
   }
 
   disable2FA(e) {
+    e.preventDefault();
     this.props.dispatch(accountActions.disable2FA());
   }
 
@@ -126,7 +127,7 @@ class AccountPage extends React.Component {
   }
 
   render() {
-    const { loggingIn, user, userWithFreshInfo, qr_code_url } = this.props;
+    const { loggingIn, user, userWithFreshInfo, qr_code_url, is2fa } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -205,7 +206,10 @@ class AccountPage extends React.Component {
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
                     <input type="checkbox" className="custom-control-input" id="customSwitch2fa"
-                      onClick={this.enable2FA} onChange={this.enable2FA} checked={this.state.is2faEnabled}
+                      // onClick={this.enable2FA} 
+                      onChange={this.enable2FA}
+                      checked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa) || this.state.is2faEnabled}
+                    // checked={is2fa || (userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa) || this.state.is2faEnabled}
                     // defaultChecked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa)}
                     />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
@@ -325,10 +329,10 @@ class AccountPage extends React.Component {
 function mapStateToProps(state) {
   // const userWithFreshInfo = state.users.user;
   const userWithFreshInfo = state.account.user;
-  const { qr_code_url } = state.account;
+  const { qr_code_url, is2fa } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, userWithFreshInfo, qr_code_url
+    loggingIn, user, userWithFreshInfo, qr_code_url, is2fa
   };
 }
 
