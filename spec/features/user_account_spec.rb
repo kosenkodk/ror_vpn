@@ -16,36 +16,56 @@ RSpec.describe 'User Account', type: :feature, js: true do
   }
 
   describe '2FA Setup' do
-    context 'success' do
-      it 'enable 2fa' do
-        expect(user.is2fa).to eq(false)
-        totp = ROTP::TOTP.new(user.google_secret)
-        check('customSwitch2fa', allow_label_click: true, visible: :all)
-        expect(page).to have_content(I18n.t('buttons.next'))
-        click_on(I18n.t('buttons.next'))
-        click_on(I18n.t('buttons.next'))
-        click_on(I18n.t('buttons.back'))
-        click_on(I18n.t('buttons.next'))
-        fill_in :code2fa, with: totp.now
-        fill_in :password, with: user.password
-        click_on(I18n.t('buttons.submit'))
-        alert_have_text I18n.t('pages.account.2fa.enable.success')
-        user.reload
-        expect(user.is2fa).to eq(true)
+    describe 'enable 2fa' do
+      let(:totp) { ROTP::TOTP.new(user.google_secret) }
+      context 'success' do
+        it 'with valid code and password' do
+          check('customSwitch2fa', allow_label_click: true, visible: :all)
+          expect(page).to have_content(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.back'))
+          click_on(I18n.t('buttons.next'))
+          fill_in :code2fa, with: totp.now
+          fill_in :password, with: user.password
+          click_on(I18n.t('buttons.submit'))
+          alert_have_text I18n.t('pages.account.2fa.enable.success')
+          user.reload
+          expect(user.is2fa).to eq(true)
+        end
       end
-
-      it 'disable 2fa' do
-        user.is2fa = true
-        expect(user.is2fa).to eq(true)
-        check('customSwitch2fa', allow_label_click: true, visible: :all)
-        expect(page).to have_content(I18n.t('buttons.next'))
-        click_on(I18n.t('buttons.next'))
-        click_on(I18n.t('buttons.next'))
-        click_on(I18n.t('buttons.submit'))
-        alert_have_text I18n.t('pages.account.2fa.enable.error')
-        user.reload
-        expect(user.is2fa).to eq(false)
+      context 'failure' do
+        it 'with empty password' do
+          check('customSwitch2fa', allow_label_click: true, visible: :all)
+          expect(page).to have_content(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          fill_in :code2fa, with: totp.now
+          click_on(I18n.t('buttons.submit'))
+          alert_have_text I18n.t('api.errors.invalid_password')
+          user.reload
+          expect(user.is2fa).to eq(false)
+        end
+        it 'with empty code' do
+          check('customSwitch2fa', allow_label_click: true, visible: :all)
+          expect(page).to have_content(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          fill_in :password, with: user.password
+          click_on(I18n.t('buttons.submit'))
+          alert_have_text I18n.t('pages.account.2fa.enable.error')
+          user.reload
+          expect(user.is2fa).to eq(false)
+        end
       end
+    end
+    describe 'disable 2fa' do
+       context 'success' do
+        it 'for logged in user'
+       end
+       context 'failure' do
+        it 'for logged out user'
+       end
     end
   end
 

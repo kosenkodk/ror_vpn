@@ -12,6 +12,11 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
     mfa_code = params[:code2fa]
     login_password = params[:password]
 
+    if !is_pwd_ok login_password
+      render json: { error: I18n.t('api.errors.invalid_password'), status: 400 }
+      return
+    end
+
     if user.google_authentic?(mfa_code)
       # UserMfaSession.create(user)
       user.update(is2fa: true)
@@ -28,5 +33,10 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
     else
       render json: { error: I18n.t('pages.account.2fa.disable.error') }
     end
+  end
+
+  private
+  def is_pwd_ok password
+    BCrypt::Password.new(current_user.password_digest) == password
   end
 end
