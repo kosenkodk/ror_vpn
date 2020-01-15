@@ -16,8 +16,11 @@ RSpec.describe Api::V1::UserMfaSessionController, type: :controller do
   describe 'POST #create' do
     context 'success' do
       it 'enable 2fa' do
+        # GoogleAuthenticatorRails::generate_password("test", counter)
+
         post :create, params: {password: user.password, code2fa: ''}
         expect(response).to be_successful
+
         expect(response_json.values).to include(I18n.t('pages.account.2fa.enable.success'))
         expect(response_json['notice']).to eq(I18n.t('pages.account.2fa.enable.success'))
         user.reload

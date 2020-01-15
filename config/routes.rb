@@ -44,8 +44,9 @@ Rails.application.routes.draw do
       post '/cancel', to: 'account#cancel'
 
       resources :user_mfa_session
-      # delete '/user_mfa_session', to: 'user_mfa_session#destroy'
-      # resource :user_mfa_session
+      # delete '/disable2fa', to: 'user_mfa_session#destroy'
+      # post '/enable2fa', to: 'user_mfa_session#create'
+      # get '/qrcode2fa', to: 'user_mfa_session#new'
 
       mount ActionCable.server, at: '/cable'
 
