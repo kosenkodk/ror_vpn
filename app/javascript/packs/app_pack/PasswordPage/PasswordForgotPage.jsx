@@ -45,7 +45,7 @@ class PasswordForgotPage extends React.Component {
         <div className="featurette text-center">
 
           <div className="row status_page align-items-center" style={{ minHeight: this.props.height }}>
-            <div className="col text-center align-self-end">
+            <div className="col-md-8 offset-md-2 text-center align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.forgot_pwd.title')}
               </h1>
