@@ -55,11 +55,11 @@ class PasswordResetPage extends React.Component {
 
   render() {
     return (
-      <div className="container reset_pwd ">
-        <div className="featurette text-center">
-          {/* <div className="row"> */}
-          <div className="row align-items-center" style={{ minHeight: this.props.height }}>
-
+      <div className="container reset_pwd">
+        <div className="featurette text-center vh-100">
+          <div className="row align-content-center h-50"
+          // style={{ minHeight: this.props.height / 2 }}
+          >
             <div className="col-md-8 offset-md-2 text-center align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.reset_pwd.title')}
