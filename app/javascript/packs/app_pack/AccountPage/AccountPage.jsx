@@ -127,7 +127,7 @@ class AccountPage extends React.Component {
   }
 
   render() {
-    const { loggingIn, user, userWithFreshInfo, qr_code_url, is2fa } = this.props;
+    const { loggingIn, user, qr_code_url } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -154,7 +154,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Email</label>
                 </div>
                 <div className="col">
-                  <input type="text" name="email_username" id="email_username" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email)} readOnly={true} placeholder='Email' />
+                  <input type="text" name="email_username" id="email_username" className="form-control" value={user && user.email} readOnly={true} placeholder='Email' />
                 </div>
               </div>
 
@@ -165,10 +165,8 @@ class AccountPage extends React.Component {
                 <div className="col">
                   <div className="d-flex align-items-center">
                     <p className="m-0 text-blue">
-                      {(userWithFreshInfo && userWithFreshInfo.tariff_plan && userWithFreshInfo.tariff_plan.title) || (user && user.tariff_plan && user.tariff_plan.title) || 'Free '}
-                      {/* {(this.state.user && this.state.user.tariff_plan && this.state.user.tariff_plan.title)} */}
+                      {(user && user.tariff_plan && user.tariff_plan.title) || 'Free '}
                     </p>
-
                     <ModalPopupForm id='cancelAccountModal' aClasses={'ml-auto text-black'} aId='cancel_account_link' aUrl="#" aTitle={I18n.t('pages.account.cancel.title')} title={I18n.t('pages.account.cancel.title')} aText={I18n.t('pages.account.cancel.button')}
                       onBtnSave={this.onCancelAccount}
                       onClose={this.clearModalAlerts}
@@ -176,7 +174,6 @@ class AccountPage extends React.Component {
                     >
                       <CancelAccountForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onCancelAccount} />
                     </ModalPopupForm>
-
                   </div>
                 </div>
               </div>
@@ -206,11 +203,9 @@ class AccountPage extends React.Component {
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
                     <input type="checkbox" className="custom-control-input" id="customSwitch2fa"
-                      // onClick={this.enable2FA} 
                       onChange={this.enable2FA}
-                      checked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa)}
-                    // checked={is2fa || (userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa) || this.state.is2faEnabled}
-                    // defaultChecked={(userWithFreshInfo && userWithFreshInfo.is2fa) || (user && user.is2fa)}
+                      checked={user && user.is2fa}
+                    // checked={(user && user.is2fa) || this.state.is2faEnabled}
                     />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
                   </div>
@@ -280,7 +275,7 @@ class AccountPage extends React.Component {
                   <label className="col-form-label">Login email address</label>
                 </div>
                 <div className="mb-3 mb-sm-auto flex-grow-1 mr-2">
-                  <input id="email_recovery" name="email_recovery" type="string" className="form-control" value={(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email)} readOnly placeholder='Email' />
+                  <input id="email_recovery" name="email_recovery" type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
                 <div className="mb-3 mb-sm-auto">
                   <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
@@ -290,7 +285,7 @@ class AccountPage extends React.Component {
               </div>
 
               {/*
-      Name="row mt-2">
+              <div className="row mt-2">
                 <div className="col-sm-5 align-self-center">
                   <label className="col-form-label">Allow password reset</label>
                 </div>
@@ -303,7 +298,6 @@ class AccountPage extends React.Component {
                 </div>
               </div>
               */}
-
             </div>
 
             <div className="mb-60">
@@ -312,27 +306,25 @@ class AccountPage extends React.Component {
                 {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
                 <p>
                   Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
-          </p>
+                </p>
               </div>
               <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
                 <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
               </ModalPopupForm>
             </div>
-
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const userWithFreshInfo = state.account.user;
-  const { qr_code_url, is2fa } = state.account;
+  const { qr_code_url } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, userWithFreshInfo, qr_code_url, is2fa
-  };
+    loggingIn, user, qr_code_url
+  }; 
 }
 
 AccountPage.defaultProps = {
