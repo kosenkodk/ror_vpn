@@ -10,8 +10,15 @@ export const userActions = {
   signup,
   getAll,
   getUser,
+  setUser,
   contactUs,
 };
+
+function setUser(user) {
+  return {
+    type: userConstants.SET_USER, user
+  };
+}
 
 function getUser() {
   return dispatch => {

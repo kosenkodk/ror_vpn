@@ -12,7 +12,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { loggedIn, user, title, userWithFreshInfo } = this.props;
+    const { loggedIn, user, title } = this.props;
 
     return (
       <nav className="nav justify-content-end d-flex align-items-center">
@@ -20,7 +20,7 @@ class Header extends React.Component {
           <h1 className="p-0 m-0 mt-xl-2">{title}</h1>
         </li>
         <li className="nav-item">
-          <a id="emailInHeader" className="nav-link text-white">{(userWithFreshInfo && userWithFreshInfo.email) || (user && user.email)}</a>
+          <a id="emailInHeader" className="nav-link text-white">{user && user.email}</a>
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.user_account.path} activeClassName="" className="">
@@ -41,11 +41,10 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const userWithFreshInfo = state.account.user;
   const { title } = state.page;
   const { loggedIn, user } = state.authentication;
   return {
-    loggedIn, user, title, userWithFreshInfo
+    loggedIn, user, title
   };
 }
 

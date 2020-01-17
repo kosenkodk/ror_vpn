@@ -1,8 +1,7 @@
 
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
-// import { userActions } from './';
-import { alertActions, globalActions } from './';
+import { userActions, alertActions, globalActions } from './';
 
 export const accountActions = {
   cancelAccount,
@@ -135,6 +134,7 @@ function changeEmail(data) {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice, response.user))
+          dispatch(userActions.setUser(response.user))
         },
         error => {
           dispatch(failure(error))

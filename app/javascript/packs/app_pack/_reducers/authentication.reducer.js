@@ -31,6 +31,10 @@ export function authentication(state = initialState, action) {
       return {
         error: action.error
       };
+    case userConstants.SET_USER:
+      return {
+        user: action.user
+      };
     case userConstants.LOGOUT:
       return {};
     default:
