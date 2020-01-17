@@ -1,9 +1,9 @@
 import React from 'react'
 import { I18n } from 'helpers'
-import astronautImage from 'images/coming_soon/astronaut'
-import starImage from 'images/star'
-import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
-import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
+// import astronautImage from 'images/coming_soon/astronaut'
+// import starImage from 'images/star'
+// import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
+// import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 import { connect } from 'react-redux'
 
 class ComingSoonPage extends React.Component {
