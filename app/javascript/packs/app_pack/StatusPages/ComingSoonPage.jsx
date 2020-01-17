@@ -1,18 +1,19 @@
 import React from 'react'
 import { I18n } from 'helpers'
-import astronautImage from 'images/coming_soon/astronaut'
-import starImage from 'images/star'
-import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
-import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
+// import astronautImage from 'images/coming_soon/astronaut'
+// import starImage from 'images/star'
+// import spaceshipImage from 'images/coming_soon/spaceship@2x.svg'
+// import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship'
 import { connect } from 'react-redux'
 
 class ComingSoonPage extends React.Component {
   render() {
     return (
       <div className="container status_page">
-        <div className="featurette text-center">
-          {/* <div className="row"> */}
-          <div className="row align-items-center" style={{ minHeight: this.props.loggedIn ? this.props.height : '50vh' }}>
+        <div className="featurette text-center vh-100">
+          <div className="row align-content-center h-50"
+          // style={{ minHeight: this.props.loggedIn ? this.props.height : '50vh' }}
+          >
             <div className="col-md-3">
               {/* <img src={astronautImage} className="img-fluid" alt="" /> */}
             </div>

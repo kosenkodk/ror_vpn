@@ -112,10 +112,10 @@ RSpec.describe 'User Account', type: :feature, js: true do
       click_on(I18n.t('buttons.cancel'))
       expect(page).to have_content(tariff_plan_free.title)
       
-      # todo: uncomment and fix
-      # expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
-      # expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
-      # expect(user.cancel_account_reason_text).to eq(cancel_account_reason_text)
+      user.reload
+      expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
+      expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
+      expect(user.cancel_account_reason_text).to eq(cancel_account_reason_text)
     end
 
     it 'select cancellation reason' do
