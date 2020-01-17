@@ -23,6 +23,9 @@ function enable2FA(data) {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice, response.is2fa))
+
+          const user = { ...localStorage.getItem('user'), is2fa: response.is2fa }
+          dispatch(userActions.setUser(user))
         },
         error => {
           dispatch(alertActions.error(error))
@@ -44,6 +47,9 @@ function disable2FA() {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice, response.is2fa))
+
+          const user = { ...localStorage.getItem('user'), is2fa: response.is2fa }
+          dispatch(userActions.setUser(user))
         },
         error => {
           dispatch(alertActions.error(error))
