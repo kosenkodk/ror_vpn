@@ -327,7 +327,6 @@ class AccountPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // const userWithFreshInfo = state.users.user;
   const userWithFreshInfo = state.account.user;
   const { qr_code_url, is2fa } = state.account;
   const { loggingIn, user } = state.authentication;
@@ -340,6 +339,6 @@ AccountPage.defaultProps = {
   isAllowPasswordReset: true,
   is2faEnabled: false,
 }
-
+  
 const connectedPage = connect(mapStateToProps)(AccountPage);
 export { connectedPage as AccountPage }; 
