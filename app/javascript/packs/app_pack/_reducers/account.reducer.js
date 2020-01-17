@@ -24,8 +24,7 @@ export function account(state = {}, action) {
       };
     case accountConstants.UPDATE_EMAIL_SUCCESS:
       return {
-        notice: action.notice,
-        user: action.user
+        notice: action.notice
       }
     case accountConstants.UPDATE_EMAIL_FAILURE:
       return {
