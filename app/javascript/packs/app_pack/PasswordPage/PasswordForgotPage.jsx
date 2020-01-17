@@ -44,8 +44,8 @@ class PasswordForgotPage extends React.Component {
       <div className="container forgot_pwd">
         <div className="featurette text-center">
 
-          <div className="row status_page align-items-center" style={{ minHeight: this.props.height }}>
-            <div className="col-md-8 offset-md-2 text-center align-self-end">
+          <div className="row status_page align-content-center" style={{ minHeight: this.props.height }}>
+            <div className="col-md-8 offset-md-2 text-center">
               <h1 className="featurette-heading">
                 {I18n.t('pages.forgot_pwd.title')}
               </h1>
@@ -55,12 +55,12 @@ class PasswordForgotPage extends React.Component {
             </div>
 
             {((this.state && this.state.error) || (this.state && this.state.notice)) &&
-              <div className="col-sm-4 offset-md-4 text-center">
+              <div className="col-sm-8 offset-sm-2 col-md-4 offset-md-4 text-center">
                 <FlashMessages error={this.state && this.state.error && this.state.error} notice={this.state && this.state.notice && this.state.notice} />
               </div>
             }
 
-            <div className="col-md-8 offset-md-2 align-self-start">
+            <div className="col-md-8 offset-md-2">
               <div className="text-right">
                 <PasswordForgotForm handleFormSubmit={this.handleFormSubmit} />
               </div>
