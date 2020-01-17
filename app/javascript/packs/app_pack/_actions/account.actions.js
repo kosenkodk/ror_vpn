@@ -83,10 +83,10 @@ function cancelAccount(data) {
       .then(
         response => {
           localStorage.setItem('user', JSON.stringify(response.user))
-          // dispatch(userActions.getUser()) // get updated user's info (tariff plan)
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
-          dispatch(success(response.notice, response.user))
+          dispatch(success(response.notice))
+          dispatch(userActions.setUser(response.user))
         },
         error => {
           dispatch(failure(error))
@@ -95,7 +95,7 @@ function cancelAccount(data) {
       )
   }
   function request() { return { type: accountConstants.CANCEL_ACCOUNT_REQUEST } }
-  function success(notice, user) { return { type: accountConstants.CANCEL_ACCOUNT_SUCCESS, notice, user } }
+  function success(notice) { return { type: accountConstants.CANCEL_ACCOUNT_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.CANCEL_ACCOUNT_FAILURE, error } }
 }
 
