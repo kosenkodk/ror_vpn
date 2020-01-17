@@ -157,6 +157,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
         alert_have_text(I18n.t('pages.account.change_email.success'))
         expect(page).to have_field('email_username', with: email_new)
         expect(page).to have_field('email_recovery', with: email_new)
+        expect(find('#emailInHeader')).to have_text(email_new)
         user.email = email_new
         fsign_in_as(user)
         visit('/user/account')
