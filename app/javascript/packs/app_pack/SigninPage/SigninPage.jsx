@@ -14,9 +14,8 @@ class SigninPage extends React.Component {
   render() {
     return (
       <div className="container login">
-        <div className="featurette text-center">
-          <div className="row vh-100">
-
+        <div className="featurette text-center vh-100">
+          <div className="row h-50">
             <div className="col-md-12 align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.login.title')}
