@@ -10,9 +10,10 @@ class ComingSoonPage extends React.Component {
   render() {
     return (
       <div className="container status_page">
-        <div className="featurette text-center">
-          {/* <div className="row"> */}
-          <div className="row align-items-center" style={{ minHeight: this.props.loggedIn ? this.props.height : '50vh' }}>
+        <div className="featurette text-center vh-100">
+          <div className="row align-content-center h-50"
+          // style={{ minHeight: this.props.loggedIn ? this.props.height : '50vh' }}
+          >
             <div className="col-md-3">
               {/* <img src={astronautImage} className="img-fluid" alt="" /> */}
             </div>
