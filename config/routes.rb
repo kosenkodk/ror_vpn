@@ -31,6 +31,8 @@ Rails.application.routes.draw do
       # post 'refresh', controller: :refresh, action: :create
       post '/refresh', to: 'refresh#create'
       post '/signin', to: 'signin#create'
+      post '/signin_check_credentials', to: 'signin#signin_check_credentials'
+      post '/signin_check_code', to: 'signin#signin_check_code'
       post '/signup', to: 'signup#create'
       delete '/signin', to: 'signin#destroy'
       # delete 'signin', controller: :signin, action: :destroy
