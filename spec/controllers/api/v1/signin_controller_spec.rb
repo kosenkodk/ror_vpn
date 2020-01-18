@@ -6,6 +6,35 @@ RSpec.describe Api::V1::SigninController, type: :controller do
   describe 'POST #create' do
 
     let(:user_params) { { email: user.email, password: user.password } }
+    
+    describe '2fa is enabled' do
+      context 'success' do
+        it 'with valid login and password (step 2)' do
+          user.is2fa = true
+          user.reload
+          post :signin_check_credentials, params: user_params
+          expect(response).to be_successful
+        end
+        it 'with valid code (step 1)' do
+          user.is2fa = true
+          user.reload
+          code = ROTP::TOTP.new(user.google_secret).now
+          post :signin_check_code, params: { email: user.email, password: user.password, code2fa: code }
+          expect(response).to be_successful
+          expect(response_json.keys).to eq(['csrf'])
+          expect(response.cookies[JWTSessions.access_cookie]).to be_present
+        end
+      end
+      context 'failure' do
+        it 'with invalid code' do
+          user.is2fa = true
+          user.reload
+          code = ''
+          post :signin_check_code, params: { email: user.email, password: user.password, code2fa: code }
+          expect(response_json['error']).to eq(I18n.t("api.errors.invalid_code"))
+        end
+      end
+    end
 
     context 'login' do
       it 'returns http success' do
