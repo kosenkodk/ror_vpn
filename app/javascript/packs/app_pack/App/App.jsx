@@ -16,6 +16,7 @@ import { HomePage } from '../HomePage'
 import { TicketsPage, TicketsNewPage, TicketsEditPage, TicketsViewPage } from '../TicketsPage'
 
 import { SigninPage } from '../SigninPage'
+import { Code2faPage } from '../Code2faPage'
 import { PasswordForgotPage, PasswordResetPage, PasswordResetPageOk } from '../PasswordPage'
 
 import { SignupPage } from '../SignupPage'
@@ -133,6 +134,7 @@ class App extends React.Component {
           {/* public pages */}
           <Route path={[urls.home.path,
           urls.signin.path,
+          urls.code2fa.path,
           urls.signup.path,
           urls.pricing.path,
           urls.forgot.path,
@@ -149,6 +151,7 @@ class App extends React.Component {
               <Route exact path={urls.home.path} component={HomePage} />
 
               <Route exact path={urls.signin.path} component={SigninPage} />
+              <Route exact path={urls.code2fa.path} component={Code2faPage} />
               <Route exact path={urls.signup.path} component={SignupPage} />
               <Route exact path={urls.pricing.path} component={PricingPage} />
               <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
