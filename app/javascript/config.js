@@ -22,6 +22,11 @@ const urls = {
     className: 'ml-xl-5',
     // component: SigninPage
   },
+  code2fa: {
+    path: '/code2fa',
+    name: 'Enter your code',
+    // component: Code2faPage
+  },
   signout: {
     path: '/signout',
     name: I18n.t('nav_menu.sign_out'),

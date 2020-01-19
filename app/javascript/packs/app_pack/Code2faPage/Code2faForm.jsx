@@ -60,7 +60,7 @@ class Code2faForm extends React.Component {
           <div className="col-sm-6 offset-sm-3">
             <button id="contact_submit" className="btn btn-outline-primary btn-block" disabled={loggingIn ? true : false}>
               {loggingIn && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-              {' ' + I18n.t('pages.login.form.login')}
+              {' ' + I18n.t('buttons.signin_securely')}
             </button>
           </div>
         </div>
