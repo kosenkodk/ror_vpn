@@ -249,6 +249,16 @@ en:
         help:
           email: "vegavpn@inbox.com"
           password: "*********"
+    code2fa:
+      title: "Enter your code"
+      subtitle: "Check your mobile device:"
+      check_device: "Check your mobile device:"
+      form:
+        your_verification_code: "Your Verification Code"
+        help:
+          code2fa: "6-digit code"
+          trusted_device: "This is a trusted device, don’t ask again."
+          learn_more: "Learn more"
     signup:
       title: "Sign Up"
       steps:
@@ -296,6 +306,7 @@ en:
     back_to_home_page: "Back to home page"
     submit: "Submit"
     login: "Log in →"
+    signin_securely: "Sign in Securely"
     reset_password: "Reset Password"
     ok: "Ok"
     continue: "Continue"
