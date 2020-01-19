@@ -5,6 +5,7 @@ const credentials = 'same-origin'
 
 export const userService = {
   login,
+  login_check_code2fa,
   logout,
   signup,
   getAll,
@@ -84,6 +85,21 @@ function deleteAccount(data) {
     .catch(error => {
       return Promise.reject(error);
     });
+}
+
+
+function login_check_code2fa(data) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/signin_check_code`, 'POST', data)
+
+  const requestOptions = {
+    method: 'POST',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  };
+
+  return fetch(`${config.apiUrl}/signin_check_code`, requestOptions).then(handleResponse);
 }
 
 function login(email, password) {
