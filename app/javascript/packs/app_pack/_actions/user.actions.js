@@ -2,10 +2,11 @@ import { userConstants } from '../_constants';
 import { userService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
-import { config } from 'config';
+import { urls, config } from 'config';
 
 export const userActions = {
   login,
+  login_check_code2fa,
   logout,
   signup,
   getAll,
@@ -46,7 +47,15 @@ function login(email, password) {
       .then(
         user => {
           dispatch(success(user));
-          history.push(config.userUrlAfterSignin);
+
+          if (user.is2fa) {
+            // console.log('login is2fa', user.is2fa);
+            history.push(urls.code2fa.path);
+          }
+          else {
+            // console.log('login is2fa', user.is2fa);
+            history.push(config.userUrlAfterSignin);
+          }
         },
         error => {
           dispatch(failure(error));
@@ -58,6 +67,28 @@ function login(email, password) {
   function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
   function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
   function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function login_check_code2fa(code) {
+  return dispatch => {
+    dispatch(request(code));
+
+    userService.login_check_code2fa(code)
+      .then(
+        user => {
+          dispatch(success(user));
+          history.push(config.userUrlAfterSignin);
+        },
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request(user) { return { type: userConstants.LOGIN_CHECK_CODE2FA_REQUEST, user } }
+  function success(user) { return { type: userConstants.LOGIN_CHECK_CODE2FA_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.LOGIN_CHECK_CODE2FA_FAILURE, error } }
 }
 
 function contactUs(data) {

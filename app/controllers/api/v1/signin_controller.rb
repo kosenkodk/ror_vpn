@@ -6,7 +6,7 @@ class Api::V1::SigninController < Api::V1::ApiController
   def signin_check_credentials
     user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
-      render json: { }
+      render json: { user: user }
     else
       render json: { }, status: :unauthorized
     end
@@ -17,9 +17,12 @@ class Api::V1::SigninController < Api::V1::ApiController
     user = User.find_by!(email: params[:email])
 
     if (!user.google_authentic?(params[:code2fa]))
-      render json: { error: I18n.t("api.errors.invalid_code") }, status: :unauthorized
+      render json: { error: I18n.t("api.errors.invalid_code") }, status: 400 # :unauthorized (401), forbidden (403)
       return
     end
+
+    render json: { notice: :ok, user: user }
+    return
 
     payload = { user_id: user.id, aud: [user.role] }
     session = JWTSessions::Session.new(payload: payload,

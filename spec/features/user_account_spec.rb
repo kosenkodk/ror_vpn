@@ -17,7 +17,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
   }
 
   describe '2FA Setup' do
-    describe 'enable 2fa' do
+    describe 'enable 2fa in admin panel' do
       let(:totp) { ROTP::TOTP.new(user.google_secret) }
       context 'success' do
         it 'with valid code and password' do
@@ -33,6 +33,19 @@ RSpec.describe 'User Account', type: :feature, js: true do
           alert_have_text I18n.t('pages.account.2fa.enable.success')
           user.reload
           expect(user.is2fa).to eq(true)
+
+          # check signin with enabled 2fa
+          visit('/signin')
+          fill_in :email, with: user.email
+          fill_in :password, with: user.password
+          click_on(I18n.t('buttons.login'))
+          fill_in :code2fa, with: 'invalid code'
+          click_on(I18n.t('buttons.signin_securely'))
+          expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_code'))
+
+          fill_in :code2fa, with: totp.now
+          click_on(I18n.t('buttons.signin_securely'))
+          expect(page).to have_content(I18n.t('nav_menu.sign_out'))
         end
       end
       context 'failure' do
