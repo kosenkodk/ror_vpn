@@ -82,6 +82,7 @@ function login_check_code2fa(code) {
         error => {
           dispatch(failure(error));
           dispatch(alertActions.error(error));
+          // dispatch(userService.logout());
         }
       );
   };
