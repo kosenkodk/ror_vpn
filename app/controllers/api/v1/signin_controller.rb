@@ -6,9 +6,9 @@ class Api::V1::SigninController < Api::V1::ApiController
   def signin_check_credentials
     user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
-      render json: { user: user }
+      render json: { notice: :ok, user: user }
     else
-      render json: { }, status: :unauthorized
+      render json: { error: I18n.t('api.errors.invalid_credentials') }, status: 400 # :unauthorized
     end
   end
 
