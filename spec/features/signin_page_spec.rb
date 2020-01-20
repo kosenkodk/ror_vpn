@@ -15,6 +15,34 @@ RSpec.describe AuthController, type: :feature, js: true do
       visit('/signin')
     end
 
+    context '2fa is active' do
+      let(:totp) { ROTP::TOTP.new(user.google_secret) }
+      let(:code2fa) { totp.now }
+      before { user.update(is2fa: true) }
+
+      context 'success' do
+        it 'with valid 2fa code' do
+          fill_in :email, with: user.email
+          fill_in :password, with: user.password
+          click_on(I18n.t('buttons.login'))
+          fill_in :code2fa, with: code2fa
+          click_on(I18n.t('buttons.signin_securely'))
+          expect(page).to have_content(I18n.t('nav_menu.sign_out'))
+        end
+      end
+
+      context 'failure' do
+        it 'with invalid 2fa code' do
+          fill_in :email, with: user.email
+          fill_in :password, with: user.password
+          click_on(I18n.t('buttons.login'))
+          fill_in :code2fa, with: 'invalid 2fa code'
+          click_on(I18n.t('buttons.signin_securely'))
+          expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_code'))
+        end
+      end
+    end
+
     context 'error' do
       it 'with invalid email and password' do
         fill_in :email, with: email_invalid
