@@ -8,16 +8,23 @@ RSpec.describe Api::V1::SigninController, type: :controller do
     let(:user_params) { { email: user.email, password: user.password } }
     
     describe '2fa is enabled' do
+      before { user.update(is2fa: true) }
+      let(:code2fa) { ROTP::TOTP.new(user.google_secret).now }
+
       context 'success' do
+        it 'with valid 2fa code' do
+          post :create, params: { email: user.email, password: user.password, code2fa: code2fa }
+          expect(response).to be_successful
+          expect(response_json.keys).to eq(['csrf'])
+          # expect(response.cookies.keys.sort).to eq ['jwt_access', 'jwt_refresh']
+          expect(response.cookies[JWTSessions.access_cookie]).to be_present
+        end
+  
         it 'with valid login and password (step 1)' do
-          user.is2fa = true
-          user.reload
           post :signin_check_credentials, params: user_params
           expect(response).to be_successful
         end
         it 'with valid code (step 2)' do
-          user.is2fa = true
-          user.reload
           code = ROTP::TOTP.new(user.google_secret).now
           post :signin_check_code, params: { email: user.email, password: user.password, code2fa: code }
           expect(response).to be_successful
@@ -25,9 +32,12 @@ RSpec.describe Api::V1::SigninController, type: :controller do
         end
       end
       context 'failure' do
+        it 'with invalid 2fa code' do
+          post :create, params: { email: user.email, password: user.password, code2fa: 'invalid' }
+          expect(response_json['error']).to eq(I18n.t("api.errors.invalid_code"))
+          # expect(response.status).to eq(401)
+        end
         it 'with invalid code' do
-          user.is2fa = true
-          user.reload
           code = ''
           post :signin_check_code, params: { email: user.email, password: user.password, code2fa: code }
           expect(response_json['error']).to eq(I18n.t("api.errors.invalid_code"))
