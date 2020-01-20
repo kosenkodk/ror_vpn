@@ -46,7 +46,6 @@ class Code2faForm extends React.Component {
             <label htmlFor='code2fa' className="col-form-label">{I18n.t("pages.code2fa.form.your_verification_code")}</label>
           </div>
           <div className="col-sm-6">
-            {/* <input type='hidden' name='authenticity_token' value={this.props.appState.csrf} /> */}
             <input type="text" className="form-control" name="code2fa" value={code2fa} onChange={this.handleChange} placeholder={I18n.t("pages.code2fa.form.help.code2fa")} />
           </div>
           <div className="col-sm-3 align-self-center">
@@ -55,6 +54,13 @@ class Code2faForm extends React.Component {
             }
           </div>
         </div>
+
+        {/* <div className="form-group row">
+          <div className="col-sm-6 offset-sm-3">
+            {I18n.t("pages.code2fa.form.help.trusted_device")}
+            <Link to="/trusted_device" className="trouble">{I18n.t("pages.code2fa.form.help.learn_more")}</Link>
+          </div>
+        </div> */}
 
         <div className="form-group row">
           <div className="col-sm-6 offset-sm-3">
