@@ -20,9 +20,9 @@ class Code2faPage extends React.Component {
               <h1 className="featurette-heading">
                 {I18n.t('pages.code2fa.title')}
               </h1>
-              <p className="lead">
+              {/* <p className="lead">
                 {I18n.t('pages.code2fa.check_device')}
-              </p>
+              </p> */}
             </div>
 
             {/* <div className="col-md-4 offset-md-4 text-center">
@@ -32,12 +32,6 @@ class Code2faPage extends React.Component {
             <div className="col-md-8 offset-md-2 align-self-start">
               <div className="text-right">
                 <Code2faForm />
-              </div>
-              <div className="row">
-                <div className="col-md-8 offset-md-2">
-                  {I18n.t("pages.code2fa.form.help.trusted_device")}
-                  <Link to="/trusted_device" className="trouble">{I18n.t("pages.code2fa.form.help.learn_more")}</Link>
-                </div>
               </div>
             </div>
 
