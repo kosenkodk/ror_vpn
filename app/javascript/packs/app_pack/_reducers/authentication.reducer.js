@@ -29,10 +29,8 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.LOGIN_CHECK_CODE2FA_FAILURE:
       return {
-        ...state,
-        loggedIn: false,
-        loggingIn: false,
-        // user: state.authentication.user
+        error: action.error,
+        user: state.user || action.user
       };
     case userConstants.SIGNUP_REQUEST:
       return {
