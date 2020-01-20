@@ -41,6 +41,15 @@ RSpec.describe AuthController, type: :feature, js: true do
           expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_code'))
         end
       end
+
+      it '2fa code is required to login' do
+        fill_in :email, with: user.email
+        fill_in :password, with: user.password
+        click_on(I18n.t('buttons.login'))
+        expect(page).not_to have_content(I18n.t('nav_menu.sign_out'))
+        visit('/user/dashboard')
+        expect(page).not_to have_content(I18n.t('nav_menu.sign_out'))
+      end
     end
 
     context 'error' do
