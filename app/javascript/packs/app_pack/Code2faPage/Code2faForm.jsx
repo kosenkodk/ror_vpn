@@ -41,9 +41,12 @@ class Code2faForm extends React.Component {
     return (
       <form name="form" onSubmit={this.handleSubmit}>
 
-        <div className={'form-group row' + (submitted && !code2fa ? ' has-error' : '')}>
+        <div className={'form-group row align-items-center' + (submitted && !code2fa ? ' has-error' : '')}>
           <div className="col-sm-3">
-            <label htmlFor='code2fa' className="col-form-label">{I18n.t("pages.code2fa.form.your_verification_code")}</label>
+            <label htmlFor='code2fa' className="col-form-label">
+              Your Code
+              {/* {I18n.t("pages.code2fa.form.your_verification_code")} */}
+            </label>
           </div>
           <div className="col-sm-6">
             <input type="text" className="form-control" name="code2fa" value={code2fa} onChange={this.handleChange} placeholder={I18n.t("pages.code2fa.form.help.code2fa")} />
