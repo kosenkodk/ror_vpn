@@ -4,7 +4,6 @@ RSpec.describe Api::V1::SigninController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
   
   describe 'POST #create' do
-
     let(:user_params) { { email: user.email, password: user.password } }
     
     describe '2fa is enabled' do
@@ -16,7 +15,7 @@ RSpec.describe Api::V1::SigninController, type: :controller do
           post :create, params: { email: user.email, password: user.password, code2fa: code2fa }
           expect(response).to be_successful
           expect(response_json.keys).to eq(['csrf'])
-          # expect(response.cookies.keys.sort).to eq ['jwt_access', 'jwt_refresh']
+          expect(response.cookies.keys.sort).to eq ['jwt_access']
           expect(response.cookies[JWTSessions.access_cookie]).to be_present
         end
   

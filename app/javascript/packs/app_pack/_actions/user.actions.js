@@ -6,6 +6,7 @@ import { urls, config } from 'config';
 
 export const userActions = {
   login,
+  signin_check_credentials,
   login_check_code2fa,
   logout,
   signup,
@@ -47,15 +48,7 @@ function login(email, password) {
       .then(
         user => {
           dispatch(success(user));
-
-          if (user.is2fa) {
-            // console.log('login is2fa', user.is2fa);
-            history.push(urls.code2fa.path);
-          }
-          else {
-            // console.log('login is2fa', user.is2fa);
-            history.push(config.userUrlAfterSignin);
-          }
+          history.push(config.userUrlAfterSignin);
         },
         error => {
           dispatch(failure(error));
@@ -67,6 +60,35 @@ function login(email, password) {
   function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
   function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
   function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function signin_check_credentials(email, password) {
+  return dispatch => {
+    dispatch(request({ email }));
+
+    userService.signin_check_credentials(email, password)
+      .then(
+        response => {
+          dispatch(success(response.user));
+          // dispatch(alertActions.success(response.notice));
+
+          if (user.is2fa) {
+            history.push(urls.code2fa.path); // page to check 2fa code
+          }
+          else {
+            dispatch(login(email, password));
+          }
+        },
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request(user) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_REQUEST, user } }
+  function success(user) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_FAILURE, error } }
 }
 
 function login_check_code2fa(code) {

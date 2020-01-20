@@ -28,10 +28,12 @@ class Api::V1::SigninController < Api::V1::ApiController
     user = User.find_by!(email: params[:email])
     
     if user.authenticate(params[:password])
-      if (user.is2fa && !user.google_authentic?(params[:code2fa]||''))
+      
+      if (user.is2fa && !user.google_authentic?(params[:code2fa] || ''))
         render json: { error: I18n.t("api.errors.invalid_code") }, status: 400 # :unauthorized (401), forbidden (403)
         return
       end
+
       payload = { user_id: user.id, aud: [user.role] }
       session = JWTSessions::Session.new(payload: payload,
                                          refresh_by_access_allowed: true,
