@@ -30,7 +30,7 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_CHECK_CODE2FA_FAILURE:
       return {
         error: action.error,
-        user: state.user || action.user
+        user: action.user || state.user
       };
     case userConstants.SIGNUP_REQUEST:
       return {
