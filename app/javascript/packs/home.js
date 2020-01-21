@@ -43,18 +43,22 @@ $(jQuery).on('ready turbolinks:load', function () {
     try {
       $('.modal-backdrop').after($(this));
       $(this).css("z-index", parseInt($('.modal').css('z-index')) + 1);
+      const offsetTop = ((document.getElementById('main-content') != null) && document.getElementById('main-content').offsetTop);//|| '115px';
 
-      if (document.getElementById('main-content') != null && document.getElementById('alert') != null) {
-        const offsetTop = document.getElementById('main-content').offsetTop;
-        const height = document.getElementById('alert').offsetHeight;
-        const navbarHeight = document.getElementById('adminNavbar').offsetHeight;
-        let alertTop = offsetTop - (height / 2);
-        if (navbarHeight < 100) { // mobiles
-          alertTop += navbarHeight;
-        }
-        // alert('main content top' + offsetTop + 'alert height:' + height + 'alert top:' + alertTop);
-        $(this).css("top", alertTop);
-      }
+      const height = ((document.getElementById('alert') != null) && document.getElementById('alert').offsetHeight) || '60';
+      $(this).css("top", offsetTop - (height / 2));
+
+      // if (document.getElementById('main-content') != null && document.getElementById('alert') != null) {
+      //   const offsetTop = document.getElementById('main-content').offsetTop;
+      //   const height = document.getElementById('alert').offsetHeight;
+      //   const navbarHeight = document.getElementById('adminNavbar').offsetHeight;
+      //   let alertTop = offsetTop - (height / 2);
+      //   if (navbarHeight < 100) { // mobiles
+      //     alertTop += navbarHeight;
+      //   }
+      //   // alert('main content top' + offsetTop + 'alert height:' + height + 'alert top:' + alertTop);
+      //   $(this).css("top", alertTop);
+      // }
     } catch (e) { }
   });
 
