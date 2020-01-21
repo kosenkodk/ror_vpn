@@ -40,18 +40,18 @@ function getUser() {
   function failure(error) { return { type: userConstants.GET_USER_FAILURE, error } }
 }
 
-function login(email, password) {
+function login({ email, password, code2fa }) {
   return dispatch => {
     dispatch(request({ email }));
 
-    userService.login(email, password)
+    userService.login({ email, password, code2fa })
       .then(
         user => {
           dispatch(success(user));
           history.push(config.userUrlAfterSignin);
         },
         error => {
-          dispatch(failure(error));
+          dispatch(failure(error, password));
           dispatch(alertActions.error(error));
         }
       );
@@ -59,7 +59,7 @@ function login(email, password) {
 
   function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
   function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-  function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+  function failure(error, password) { return { type: userConstants.LOGIN_FAILURE, error, password } }
 }
 
 function signin_check_credentials(email, password) {
@@ -69,10 +69,10 @@ function signin_check_credentials(email, password) {
     userService.signin_check_credentials(email, password)
       .then(
         response => {
-          dispatch(success(response.user));
+          dispatch(success(response.user, password));
           // dispatch(alertActions.success(response.notice));
 
-          if (user.is2fa) {
+          if (response.user.is2fa) {
             history.push(urls.code2fa.path); // page to check 2fa code
           }
           else {
@@ -87,7 +87,7 @@ function signin_check_credentials(email, password) {
   };
 
   function request(user) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_REQUEST, user } }
-  function success(user) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_SUCCESS, user } }
+  function success(user, password) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_SUCCESS, user, password } }
   function failure(error) { return { type: userConstants.SIGNIN_CHECK_CREDENTIALS_FAILURE, error } }
 }
 

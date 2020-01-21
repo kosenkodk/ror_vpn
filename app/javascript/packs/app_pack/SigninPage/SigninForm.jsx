@@ -34,7 +34,8 @@ class SigninForm extends React.Component {
     const { email, password } = this.state;
     const { dispatch } = this.props;
     if (email && password) {
-      dispatch(userActions.login(email, password));
+      // dispatch(userActions.login(email, password));
+      dispatch(userActions.signin_check_credentials(email, password));
     }
 
     e.preventDefault();

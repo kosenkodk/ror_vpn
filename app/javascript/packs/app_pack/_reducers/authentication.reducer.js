@@ -16,7 +16,10 @@ export function authentication(state = initialState, action) {
         user: action.user
       };
     case userConstants.LOGIN_FAILURE:
-      return {};
+      return {
+        user: state.user,
+        password: action.password
+      };
     case userConstants.LOGIN_CHECK_CODE2FA_REQUEST:
       return {
         loggingIn: true,
@@ -39,12 +42,13 @@ export function authentication(state = initialState, action) {
     case userConstants.SIGNIN_CHECK_CREDENTIALS_SUCCESS:
       return {
         loggedIn: true,
-        user: action.user
+        user: action.user,
+        password: action.password
       };
     case userConstants.SIGNIN_CHECK_CREDENTIALS_FAILURE:
       return {
         error: action.error,
-        user: action.user || state.user
+        user: action.user || state.user,
       };
     case userConstants.SIGNUP_REQUEST:
       return {
