@@ -29,6 +29,13 @@ RSpec.describe AuthController, type: :feature, js: true do
           click_on(I18n.t('buttons.signin_securely'))
           expect(page).to have_content(I18n.t('nav_menu.sign_out'))
         end
+        it 'display sign in page (don not stay on the code 2fa page after click on sign in link)' do
+          fill_in :email, with: user.email
+          fill_in :password, with: user.password
+          click_on(I18n.t('buttons.login'))
+          click_on(I18n.t('nav_menu.sign_in'))
+          expect(page).to have_content(I18n.t('pages.login.title'))
+        end
       end
 
       context 'failure' do
