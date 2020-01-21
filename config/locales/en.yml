@@ -251,7 +251,8 @@ en:
           password: "*********"
     code2fa:
       title: "Enter your code"
-      subtitle: "Check your mobile device:"
+      # subtitle: "Check your mobile device:"
+      subtitle: "Please type the code from google authenticator app of your mobile device"
       check_device: "Check your mobile device:"
       form:
         your_verification_code: "Your Verification Code"
