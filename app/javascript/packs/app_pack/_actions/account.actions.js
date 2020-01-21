@@ -2,6 +2,8 @@
 import { accountConstants } from '../_constants';
 import { userService } from '../_services';
 import { userActions, alertActions, globalActions } from './';
+import { config } from 'config';
+import { history } from '../_helpers';
 
 export const accountActions = {
   cancelAccount,
@@ -162,6 +164,7 @@ function deleteAccount(data) {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
+          history.push(config.urlAfterSignout);
         },
         error => {
           dispatch(failure(error))
