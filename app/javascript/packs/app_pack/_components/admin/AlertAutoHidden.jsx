@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 
 class AlertAutoHidden extends React.Component {
   constructor(props) {
