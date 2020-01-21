@@ -21,6 +21,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
       let(:totp) { ROTP::TOTP.new(user.google_secret) }
       context 'success' do
         it 'with valid code and password' do
+          expect(page).to have_field('customSwitch2fa', visible: :all, checked: false)
           check('customSwitch2fa', allow_label_click: true, visible: :all)
           expect(page).to have_content(I18n.t('buttons.next'))
           click_on(I18n.t('buttons.next'))
@@ -33,6 +34,10 @@ RSpec.describe 'User Account', type: :feature, js: true do
           alert_have_text I18n.t('pages.account.2fa.enable.success')
           user.reload
           expect(user.is2fa).to eq(true)
+          expect(page).to have_field('customSwitch2fa', visible: :all, checked: true)
+          # should save enable 2fa checkbox's state after reload page
+          visit('/user/account')
+          expect(page).to have_field('customSwitch2fa', visible: :all, checked: true)
         end
       end
       context 'failure' do
