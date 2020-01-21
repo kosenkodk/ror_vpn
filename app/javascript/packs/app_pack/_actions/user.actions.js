@@ -17,6 +17,7 @@ export const userActions = {
 };
 
 function setUser(user) {
+  localStorage.setItem('user', JSON.stringify(user));
   return {
     type: userConstants.SET_USER, user
   };
