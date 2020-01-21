@@ -76,7 +76,7 @@ function signin_check_credentials(email, password) {
             history.push(urls.code2fa.path); // page to check 2fa code
           }
           else {
-            dispatch(login(email, password));
+            dispatch(login({ email: email, password: password }));
           }
         },
         error => {
