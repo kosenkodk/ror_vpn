@@ -18,7 +18,7 @@ class AlertAutoHidden extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.alert) {
-      this.autoHideAlert();
+      if (this.props.isAutoHide) this.autoHideAlert();
     }
   }
 
@@ -52,7 +52,8 @@ class AlertAutoHidden extends React.Component {
 }
 
 AlertAutoHidden.defaultProps = {
-  hideDuration: 3000
+  hideDuration: 3000,
+  isAutoHide: true
 }
 
 function mapStateToProps(state) {

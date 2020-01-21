@@ -35,7 +35,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
           user.reload
           expect(user.is2fa).to eq(true)
           expect(page).to have_field('customSwitch2fa', visible: :all, checked: true)
-          # should save enable 2fa checkbox's state after reload page
+          # should save 'enable 2fa' checkbox's state after page reload
           visit('/user/account')
           expect(page).to have_field('customSwitch2fa', visible: :all, checked: true)
         end
