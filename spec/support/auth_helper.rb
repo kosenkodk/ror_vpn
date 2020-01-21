@@ -15,6 +15,12 @@ module AuthHelper
     fill_in :email, with: user.email
     fill_in :password, with: user.password
     click_on(I18n.t('buttons.login'))
+    if (user.is2fa)
+      let(:code2fa) { ROTP::TOTP.new(user.google_secret).now }
+      fill_in :code2fa, with: code2fa
+      click_on(I18n.t('buttons.signin_securely'))
+      # expect(page).to have_content(I18n.t('nav_menu.sign_out'))
+    end
   end
 
   def fsign_up_as(user)

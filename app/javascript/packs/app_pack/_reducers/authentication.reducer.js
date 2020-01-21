@@ -36,12 +36,12 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.SIGNIN_CHECK_CREDENTIALS_REQUEST:
       return {
-        loggingIn: true,
+        // loggingIn: true,
         user: action.user
       };
     case userConstants.SIGNIN_CHECK_CREDENTIALS_SUCCESS:
       return {
-        loggedIn: true,
+        // loggedIn: true,
         user: action.user,
         password: action.password
       };
