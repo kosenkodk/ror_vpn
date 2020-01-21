@@ -88,15 +88,15 @@ function deleteAccount(data) {
     });
 }
 
-function signin_check_credentials(data) {
+function signin_check_credentials(email, password) {
   if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/signin_check_credentials`, 'POST', data)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/signin_check_credentials`, 'POST', { email, password })
 
   const requestOptions = {
     method: 'POST',
     credentials: credentials,
     headers: authHeader(),
-    body: JSON.stringify(data)
+    body: JSON.stringify({ email, password })
   };
 
   return fetch(`${config.apiUrl}/signin_check_credentials`, requestOptions).then(handleResponse);
@@ -116,12 +116,12 @@ function login_check_code2fa(data) {
   return fetch(`${config.apiUrl}/signin_check_code`, requestOptions).then(handleResponse);
 }
 
-function login(email, password) {
+function login(data) {
   const requestOptions = {
     method: 'POST',
     credentials: credentials,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify(data)
   };
 
   return fetch(`${config.apiUrl}/signin`, requestOptions)

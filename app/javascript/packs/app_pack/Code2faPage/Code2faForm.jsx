@@ -26,10 +26,9 @@ class Code2faForm extends React.Component {
   handleSubmit(e) {
     this.setState({ submitted: true });
     const { code2fa } = this.state;
-    const { dispatch, user } = this.props;
+    const { dispatch, user, password } = this.props;
     if (code2fa) {
-      dispatch(userActions.login_check_code2fa({ email: user && user.email, code2fa: code2fa }));
-      // dispatch(userActions.login_check_code2fa({email: user.email, password: user.password, code2fa: code2fa}));
+      dispatch(userActions.login({ email: user && user.email, password: password, code2fa: code2fa }));
     }
     e.preventDefault();
   }
@@ -83,9 +82,9 @@ Code2faForm.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { loggingIn, user } = state.authentication;
+  const { loggingIn, user, password } = state.authentication;
   return {
-    loggingIn, user
+    loggingIn, user, password
   };
 }
 
