@@ -25,6 +25,8 @@ const AdminLayout = (props) => (
           <div className="alert-admin"
           // style={{ top: ((document.getElementById('main-content') != null) && document.getElementById('main-content').offsetTop) || '115px' }}
           >
+            {/* <AlertAdmin isAutoHide={false} /> */}
+            <AlertAdmin />
             {/* <div id='alert' className="text-center header__alert">
               <div className={`alert alert-danger alert-inline`}>alert message</div>
             </div> */}
