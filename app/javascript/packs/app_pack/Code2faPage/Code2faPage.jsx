@@ -15,14 +15,15 @@ class Code2faPage extends React.Component {
     return (
       <div className="container login">
         <div className="featurette text-center vh-100">
-          <div className="row h-50">
+          <div className="row h-50 align-content-center">
             <div className="col-md-12 align-self-end">
               <h1 className="featurette-heading">
                 {I18n.t('pages.code2fa.title')}
               </h1>
-              {/* <p className="lead">
-                {I18n.t('pages.code2fa.check_device')}
-              </p> */}
+              <p className="lead col-md-8 offset-md-2">
+                {/* {I18n.t('pages.code2fa.check_device')} */}
+                {I18n.t('pages.code2fa.subtitle')}
+              </p>
             </div>
 
             {/* <div className="col-md-4 offset-md-4 text-center">
