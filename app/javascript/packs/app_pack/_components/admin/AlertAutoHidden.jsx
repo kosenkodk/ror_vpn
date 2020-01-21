@@ -18,7 +18,8 @@ class AlertAutoHidden extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.alert) {
-      if (this.props.isAutoHide) this.autoHideAlert();
+      if (this.props.isAutoHide)
+        this.autoHideAlert();
     }
   }
 
