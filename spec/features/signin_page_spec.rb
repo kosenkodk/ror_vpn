@@ -71,7 +71,8 @@ RSpec.describe AuthController, type: :feature, js: true do
         fill_in :email, with: email
         fill_in :password, with: password_invalid
         click_on(I18n.t('buttons.login'))
-        expect(find('.alert')).to have_text(I18n.t('api.errors.unauthorized'))
+        # expect(find('.alert')).to have_text(I18n.t('api.errors.unauthorized'))
+        expect(find('.alert')).to have_text(I18n.t('api.errors.invalid_credentials'))
       end
     end
 
