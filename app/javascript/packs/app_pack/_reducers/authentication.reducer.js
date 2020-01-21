@@ -66,6 +66,7 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.SET_USER:
       return {
+        ...state,
         user: action.user
       };
     case userConstants.LOGOUT:
