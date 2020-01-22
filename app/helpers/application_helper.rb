@@ -21,6 +21,7 @@ module ApplicationHelper
         return {io: file, filename: attachmentFileName, content_type: attachmentContentType}
       end
     rescue => exception
+      error= exception
     end
     {}
   end

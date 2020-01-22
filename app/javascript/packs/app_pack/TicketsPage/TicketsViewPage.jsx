@@ -6,8 +6,7 @@ import { pageActions, ticketActions } from '../_actions'
 import { urls } from 'config'
 import { I18n } from 'helpers'
 import { ChatRoom, Messages } from '../_components'
-import icArrowLeftSrc from 'images/accordion_menu/arrow_left.svg'
-import { BackButtonWithTitle } from '../_components/admin';
+import { BackButtonWithTitle } from '../_components/admin'
 
 class TicketsViewPage extends React.Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class TicketsViewPage extends React.Component {
   }
 
   componentDidUpdate() {
-    this.setTitle();
+    this.setTitle()
   }
 
   componentDidMount() {
@@ -43,10 +42,8 @@ class TicketsViewPage extends React.Component {
         <div id="" className="tickets tickets__view row mb-4 pb-1">
           <div className="col-12">
             <BackButtonWithTitle title={`${I18n.t('pages.tickets.form.title')}: ${(item && item.title) || title}`} url={urls.tickets.path} />
-            {/* <BackButtonWithTitle url={urls.tickets.path}>
-              <h4 className="mt-2 font-weight-bold">{this.state.subTitle}</h4>
-            </BackButtonWithTitle> */}
             <ChatRoom id={this.state.id} messages={item && item.messages} />
+
             {/* initial ticket message with attachment */}
             {item && item.messages && <Messages items={item.messages} />}
 

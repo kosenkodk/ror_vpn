@@ -303,6 +303,7 @@ en:
       department:
         subject: "Contact Us. New message."
   buttons:
+    select_files: "Select files"
     back_to_prev_page: "Back to previous page"
     back_to_home_page: "Back to home page"
     submit: "Submit"
