@@ -15,12 +15,12 @@ class SigninPage extends React.Component {
     return (
       <div className="container login">
         <div className="featurette text-center vh-100">
-          <div className="row h-50">
+          <div className="row h-50 align-items-center">
             <div className="col-md-12 align-self-end">
-              <h1 className="featurette-heading">
+              <h1 className="featurette-heading mb-3">
                 {I18n.t('pages.login.title')}
               </h1>
-              <p className="lead">
+              <p className="lead mb-5">
                 {I18n.t('pages.login.do_not_have_an_account')} <Link to="/signup" className="trouble">{I18n.t("pages.signup.title")}</Link>
                 {/* <a href="/signup"> {I18n.t("pages.signup.title")}</a> */}
               </p>
