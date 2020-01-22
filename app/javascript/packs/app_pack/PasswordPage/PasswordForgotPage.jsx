@@ -47,11 +47,11 @@ class PasswordForgotPage extends React.Component {
           <div className="row status_page align-items-center h-50"
           //  style={{ minHeight: this.props.height }}
           >
-            <div className="col-md-8 offset-md-2 text-center">
-              <h1 className="featurette-heading">
+            <div className="col-md-8 offset-md-2 text-center align-self-end">
+              <h1 className="featurette-heading mb-3">
                 {I18n.t('pages.forgot_pwd.title')}
               </h1>
-              <p className="lead">
+              <p className="lead mb-5">
                 {I18n.t('pages.forgot_pwd.subtitle')}
               </p>
             </div>
@@ -62,7 +62,7 @@ class PasswordForgotPage extends React.Component {
               </div>
             }
 
-            <div className="col-md-8 offset-md-2">
+            <div className="col-md-8 offset-md-2 align-self-start">
               <div className="text-right">
                 <PasswordForgotForm handleFormSubmit={this.handleFormSubmit} />
               </div>

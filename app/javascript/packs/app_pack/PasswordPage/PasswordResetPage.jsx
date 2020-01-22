@@ -61,10 +61,10 @@ class PasswordResetPage extends React.Component {
           // style={{ minHeight: this.props.height / 2 }}
           >
             <div className="col-md-8 offset-md-2 text-center align-self-end">
-              <h1 className="featurette-heading">
+              <h1 className="featurette-heading mb-3">
                 {I18n.t('pages.reset_pwd.title')}
               </h1>
-              <p className="lead">
+              <p className="lead mb-5">
                 {I18n.t('pages.reset_pwd.subtitle')}
               </p>
             </div>
