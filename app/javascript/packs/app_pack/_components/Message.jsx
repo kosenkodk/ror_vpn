@@ -61,7 +61,7 @@ class Message extends React.Component {
           {item && item.attachmentList && item.attachmentList.length > 0 &&
             <React.Fragment>
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
-              <div class="row">
+              <div className="row">
                 {item.attachmentList.map((item, index) =>
                   <div className="col-sm-4 col-md-3 col-lg-2">
                     {(item.content_type === 'application/pdf') ?

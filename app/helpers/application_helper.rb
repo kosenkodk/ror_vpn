@@ -1,10 +1,10 @@
 module ApplicationHelper
   def get_attachment_base64(params_base64)
     begin
-      if params_base64.present? && params_base64[:file].present? && params_base64[:name].present? && params_base64[:type].present?
-        attachmentUrl = params_base64[:file] # data:application/octet-stream;base64,FILE
-        attachmentFileName =  params_base64[:name]
-        attachmentContentType =  params_base64[:type]
+      if params_base64.present? && params_base64['file'].present? && params_base64['name'].present? && params_base64['type'].present?
+        attachmentUrl = params_base64['file'] # data:application/octet-stream;base64,FILE
+        attachmentFileName =  params_base64['name']
+        attachmentContentType =  params_base64['type']
         start = attachmentUrl.index(',') + 1
         attachment_base64_decoded = Base64.decode64 attachmentUrl[start..-1]
         
