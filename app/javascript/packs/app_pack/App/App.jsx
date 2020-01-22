@@ -264,6 +264,7 @@ class App extends React.Component {
       location.pathname.startsWith(this.pathWithoutParams(urls.reset.path)) ||
       [
         // urls.home.path,
+        urls.code2fa.path,
         urls.signin.path, urls.forgot.path, urls.reset_ok.path].includes(location.pathname)
     ) {
       // dispatch(bgClassActions.set('bg_stars', 'bg_stars'))
