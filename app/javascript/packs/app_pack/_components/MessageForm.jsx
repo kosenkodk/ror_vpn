@@ -2,8 +2,30 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { ticketActions } from '../_actions';
+import { AttachmentPreview } from '../_components/admin';
 
 class MessageForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      files: [],
+      imagePreviews: []
+    }
+    this.onFilesChange = this.onFilesChange.bind(this)
+  }
+
+  onFilesChange(e) {
+    e.preventDefault();
+    if (e.target.files && e.target.files.length > 0) {
+      const imagePreviews = [...e.target.files].map((item, index) => {
+        return { file: item, url: URL.createObjectURL(item) };
+      });
+      this.setState({ imagePreviews: imagePreviews })
+      this.props.onFilesChange(e, imagePreviews);
+      return;
+    }
+    this.props.onFilesChange(e);
+  }
 
   onTicketClose(e, id) {
     this.props.dispatch(ticketActions.update(id));
@@ -49,7 +71,12 @@ class MessageForm extends React.Component {
                 {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                 {' ' + I18n.t('pages.tickets.form.submit')}
               </button>
-
+              <div className="file">
+                <div className="upload-btn-wrapper">
+                  <button className="btn btn-outline-primary mb-3 mb-sm-0">{I18n.t('buttons.select_files')}</button>
+                  <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+                </div>
+              </div>
               {this.props.item &&
                 <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
                   disabled={this.props.loading ? true : false}>
@@ -58,6 +85,9 @@ class MessageForm extends React.Component {
               }
 
             </div>
+
+            <AttachmentPreview items={this.state.imagePreviews} />
+
           </form>
         }
       </React.Fragment>

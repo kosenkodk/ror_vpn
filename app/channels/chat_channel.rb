@@ -1,4 +1,6 @@
 class ChatChannel < ApplicationCable::Channel
+  include ApplicationHelper
+
   def subscribed
     # stream_from "ticket_channel#{params[:room]}"
     stream_for "ticket_channel#{params[:room]}"
@@ -30,7 +32,18 @@ class ChatChannel < ApplicationCable::Channel
       # message.update(ticket_id: data['message_ticket_id'])
       message = Message.create(text: data['message_text'], ticket_id: data['message_ticket_id'], user_id: data['message_user_id']) if data['message_user_id']
       ticket = Ticket.find(data['message_ticket_id'])
+      
+      attachments = data['attachments']
+      # message with multiple attachments uploading
+      if (attachments.present?)
+        attachments.each do |attachment|
+          file_params = get_attachment_base64(attachment)
+          message.attachments.attach(file_params) if message && file_params.present?
+        end
+      end
+
       ticket.messages << message if message
+
     else
     end
 
