@@ -44,7 +44,7 @@ class PasswordForgotPage extends React.Component {
       <div className="container forgot_pwd">
         <div className="featurette text-center vh-100">
 
-          <div className="row status_page align-content-center h-50"
+          <div className="row status_page align-items-center h-50"
           //  style={{ minHeight: this.props.height }}
           >
             <div className="col-md-8 offset-md-2 text-center">
