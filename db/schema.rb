@@ -143,10 +143,8 @@ ActiveRecord::Schema.define(version: 2020_01_13_165354) do
     t.integer "payment_method_id"
     t.integer "cancel_reason_id"
     t.text "cancel_account_reason_text"
-    t.string "otp_secret_key"
     t.string "google_secret"
     t.string "salt"
-    t.string "persistence_token"
     t.boolean "is2fa", default: false
     t.index ["cancel_reason_id"], name: "index_users_on_cancel_reason_id"
     t.index ["email"], name: "index_users_on_email"
