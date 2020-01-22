@@ -223,8 +223,8 @@ class AccountPage extends React.Component {
                 <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
                 <div className="border-left-pink mt-0">
                   <p className="mt-0 mb-2">
-                    If you have never used 2FA before, we strongly recommend you
-                  <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
+                    If you have never used 2FA before, we strongly recommend you &nbsp;
+                    <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
                   </p>
                 </div>
               </ModalPopupForm>
@@ -240,7 +240,7 @@ class AccountPage extends React.Component {
 
                 <div className="border-left-pink mt-0">
                   <p className="mt-0 mb-2">
-                    Scan this code with your two-factor authentication device to set up your account.
+                    Scan this code with your two-factor authentication device to set up your account.&nbsp;
                     <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
                   </p>
                 </div>
@@ -324,13 +324,13 @@ function mapStateToProps(state) {
   const { loggingIn, user } = state.authentication;
   return {
     loggingIn, user, qr_code_url
-  }; 
+  };
 }
 
 AccountPage.defaultProps = {
   isAllowPasswordReset: true,
   is2faEnabled: false,
 }
-  
+
 const connectedPage = connect(mapStateToProps)(AccountPage);
 export { connectedPage as AccountPage }; 
