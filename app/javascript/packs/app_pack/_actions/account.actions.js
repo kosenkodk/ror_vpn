@@ -162,9 +162,9 @@ function deleteAccount(data) {
       .then(
         response => {
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          history.push(config.urlAfterSignout);
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
-          history.push(config.urlAfterSignout);
         },
         error => {
           dispatch(failure(error))
