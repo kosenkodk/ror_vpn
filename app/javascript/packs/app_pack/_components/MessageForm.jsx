@@ -71,9 +71,9 @@ class MessageForm extends React.Component {
                 {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                 {' ' + I18n.t('pages.tickets.form.submit')}
               </button>
-              <div className="file">
-                <div className="upload-btn-wrapper">
-                  <button className="btn btn-outline-primary mb-3 mb-sm-0">{I18n.t('buttons.select_files')}</button>
+              <div className="file row mb-3 mb-sm-0">
+                <div className="upload-btn-wrapper col-12">
+                  <button className="btn btn-outline-primary">{I18n.t('buttons.select_files')}</button>
                   <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
                 </div>
               </div>
