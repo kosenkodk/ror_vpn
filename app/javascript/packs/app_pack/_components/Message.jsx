@@ -63,7 +63,7 @@ class Message extends React.Component {
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
               <div className="row">
                 {item.attachmentList.map((item, index) =>
-                  <div className="col-sm-4 col-md-3 col-lg-2">
+                  <div className="col-sm-4 col-md-3 col-lg-2" key={`ticket_message${index}`}>
                     {(item.content_type === 'application/pdf') ?
                       <AttachmentPdf name={item.name} url={item.url} index={index} />
                       :
@@ -76,7 +76,7 @@ class Message extends React.Component {
           }
 
         </div>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }

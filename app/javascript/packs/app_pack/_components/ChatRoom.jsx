@@ -37,6 +37,7 @@ class ChatRoom extends React.Component {
     }
     this.chatChannel.reply(jsonData)
     // this.chatChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text })
+    this.setState({ files: [], imagePreviews: [] })
   }
 
   async prepareAttachmentForJsonApi(file) {
