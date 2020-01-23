@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
-import { ticketActions } from '../_actions';
-import { AttachmentPreview } from '../_components/admin';
+import { ticketActions } from '../_actions'
+import { AttachmentPreview } from '../_components/admin'
 
 class MessageForm extends React.Component {
   constructor(props) {
@@ -15,28 +15,35 @@ class MessageForm extends React.Component {
   }
 
   onFilesChange(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (e.target.files && e.target.files.length > 0) {
       const imagePreviews = [...e.target.files].map((item, index) => {
-        return { file: item, url: URL.createObjectURL(item) };
-      });
+        return { file: item, url: URL.createObjectURL(item) }
+      })
       this.setState({ imagePreviews: imagePreviews })
-      this.props.onFilesChange(e, imagePreviews);
-      return;
+      this.props.onFilesChange(e, imagePreviews)
+      return
     }
-    this.props.onFilesChange(e);
+    this.props.onFilesChange(e)
+    this.setState({ files: [], imagePreviews: [] })
   }
 
   onTicketClose(e, id) {
-    this.props.dispatch(ticketActions.update(id));
-    e.preventDefault();
+    e.preventDefault()
+    this.props.dispatch(ticketActions.update(id))
+  }
+
+  onMessageFormSubmit(e, props) {
+    e.preventDefault()
+    this.setState({ files: [], imagePreviews: [] })
+    this.props.onMessageFormSubmit(e, props)
   }
 
   render() {
     return (
       <React.Fragment>
         {this.props.item && this.props.item.status !== 'closed' &&
-          <form onSubmit={(e) => this.props.onMessageFormSubmit(e, this.props)}>
+          <form onSubmit={(e) => this.onMessageFormSubmit(e, this.props)}>
             <input type="hidden" name="message_user_id" value={this.props.user_id} />
             <input type="hidden" name="message_ticket_id" value={this.props.ticket_id} />
 
@@ -84,7 +91,6 @@ class MessageForm extends React.Component {
                   {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                   &nbsp;Close my ticket</button>
               }
-
             </div>
 
             <AttachmentPreview items={this.state.imagePreviews} />
