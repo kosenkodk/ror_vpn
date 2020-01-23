@@ -88,6 +88,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   # end
 
   describe 'view ticket' do
+    let(:message_text) { 'reply message' }
+
     context 'success' do
       it 'when admin click on close ticket button'
       
@@ -104,10 +106,26 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
       it 'check reply and load messages' do
         click_on_ticket_first
-        fill_in :message_text, with: 'reply'
+        fill_in :message_text, with: message_text
         click_on(I18n.t('buttons.submit'))
-        expect(page).to have_content('reply')
+        expect(page).to have_content(message_text)
         expect(page).to have_content('You')
+      end
+      it 'reply with text and attachments' do
+        click_on_ticket_first
+        fill_in :message_text, with: message_text
+
+        # add attachments
+        file = Rails.root.join('app','assets', 'images', 'logo.png')
+        file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
+        
+        attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
+        click_on(I18n.t('buttons.submit'))
+        
+        expect(page).to have_content(message_text)
+        expect(page).to have_content('logo.png')
+        expect(page).to have_content('logo_mail_black.png')
+        
       end
       it 'click on close button' do
         click_on_ticket_first
