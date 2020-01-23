@@ -2,9 +2,10 @@ require 'rails_helper'
   
 RSpec.describe AuthController, type: :feature, js: true do
   describe 'GET :signup' do
-    let(:user) { build(:user) }
-    let!(:plan_free) { FactoryBot.create :tariff_plan }
+    let(:email) { 'user@email.com'}
+    let(:user) { build(:user, email: email) }
     let!(:plan) { FactoryBot.create :tariff_plan, price: 1 }
+    let!(:plan_free) { FactoryBot.create :tariff_plan_free }
     let!(:payment_method1) { FactoryBot.create :payment_method, title: I18n.t('payment_method.cryptocurrencies') }
     let!(:payment_method2) { FactoryBot.create :payment_method, title: I18n.t('payment_method.qiwi')  }
     let!(:payment_method3) { FactoryBot.create :payment_method, title: I18n.t('payment_method.credit_card')  }
@@ -56,6 +57,11 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(page).to have_content('Billing')
       expect(page).not_to have_selector('.alert')
       expect(page).not_to have_content('Unauthorized')
+      # user = User.last # User.find_by(email: email)
+      user.reload
+      expect(user.email).to eq(email)
+      expect(user.tariff_plan_id).to eq(plan.id)
+      expect(user.tariff_plan).to eq(plan)
     end
   end
 end

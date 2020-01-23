@@ -37,16 +37,26 @@ class Plans extends React.Component {
   }
 
   componentDidMount() {
-    const url = "/api/v1/tariff_plans";
+    const items = JSON.parse(localStorage.getItem('tariff_plans'))
+    this.setState({ items: items ? items : [] })
+    if (items && items.length > this.state.preselectedIndex) {
+      this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
+      this.props.onPlanChange(null, items[this.state.preselectedIndex].id)
+    }
+    const url = "/api/v1/tariff_plans"
     fetch(url)
       .then(response => {
         if (response.ok) {
-          return response.json();
+          return response.json()
         }
-        throw new Error("Network response was not ok.");
-      }).then(response => {
-        this.selectItemInCollectionByIndex(response, this.state.preselectedIndex)
-        this.props.onPlanChange(null, this.state.items[this.state.preselectedIndex])
+        throw new Error("Network response was not ok.")
+      }).then(items => {
+        localStorage.setItem('tariff_plans', JSON.stringify(items))
+        this.setState({ items: items })
+        if (items && items.length > this.state.preselectedIndex) {
+          this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
+          this.props.onPlanChange(null, items[this.state.preselectedIndex].id)
+        }
       }).catch((err) => {
         console.log(err)
       });

@@ -83,7 +83,7 @@ class Plan extends React.Component {
         offer</button>
           </div>
         </div>
-      </div >
+      </div>
     )
   }
 }
