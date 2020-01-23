@@ -66,17 +66,18 @@ class MessageForm extends React.Component {
             */}
 
             <div className="form-group d-flex flex-column flex-sm-row justify-content-sm-between">
-
-              <button id="contact_submit" className="btn btn-outline-primary mb-3 mb-sm-0" disabled={this.props.loading ? true : false}>
-                {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                {' ' + I18n.t('pages.tickets.form.submit')}
-              </button>
-              <div className="file row mb-3 mb-sm-0">
+              <div className="file row mb-3 mb-sm-0 mr-2">
                 <div className="upload-btn-wrapper col-12">
-                  <button className="btn btn-outline-primary">{I18n.t('buttons.select_files')}</button>
+                  <button className="btn">{I18n.t('buttons.select_files')}</button>
                   <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
                 </div>
               </div>
+
+              <button id="contact_submit" className="mr-auto btn btn-outline-primary mb-3 mb-sm-0" disabled={this.props.loading ? true : false}>
+                {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                {' ' + I18n.t('pages.tickets.form.submit')}
+              </button>
+
               {this.props.item &&
                 <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
                   disabled={this.props.loading ? true : false}>
