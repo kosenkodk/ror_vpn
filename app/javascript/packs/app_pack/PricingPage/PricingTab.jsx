@@ -16,8 +16,10 @@ class PricingTab extends React.Component {
 
     return (
       <React.Fragment>
+        {/* {items && items.length > 0 &&
+          <React.Fragment> */}
         <ul className="nav nav-pills mb-3" id="pills-tabPlan" role="tablist">
-          {items.map((item, index) => (
+          {items && items.map((item, index) => (
             <li key={item.id} className="nav-item col-sm-6 col-md-3">
               <button className={`btn btn-pink-dark btn-block rounded-pill ${index == 0 ? 'active' : ''}`}
                 id={`pills-plan${index}-tab`} data-toggle="pill" href={`#pills-plan${index}`} role="tab"
@@ -29,7 +31,7 @@ class PricingTab extends React.Component {
 
         <div className="tab-content" id="pills-tabPlanContent">
           {
-            items.map((item, index) => (
+            items && items.map((item, index) => (
               <div key={item.id} className={`tab-pane fade show ${index == 0 ? 'active' : ''}`}
                 id={`pills-plan${index}`} role="tabpanel" aria-labelledby={`pills-plan${index}-tab`}>
                 {/* <PricingTabItem {...item} /> */}
@@ -38,12 +40,15 @@ class PricingTab extends React.Component {
             ))
           }
         </div>
+        {/* </React.Fragment>
+        } */}
       </React.Fragment>
     )
   }
 
   componentDidMount() {
-    const items = localStorage.getItem('tariff_plans')
+    const items = JSON.parse(localStorage.getItem('tariff_plans'))
+    // console.log('tariff_plans', items)
     this.setState({ items: items ? items : [] })
     const url = 'api/v1/tariff_plans'
     fetch(url)
