@@ -75,6 +75,12 @@ class PaymentMethods extends React.Component {
   }
 
   componentDidMount() {
+    const items = JSON.parse(localStorage.getItem('payment_methods'))
+    if (items && items.length > this.state.preselectedIndex) {
+      this.setState({ items: items ? items : [] })
+      this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
+    }
+
     const url = "api/v1/payment_methods";
     fetch(url)
       .then(response => {
@@ -83,9 +89,12 @@ class PaymentMethods extends React.Component {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => {
-        this.selectItemInCollectionByIndex(response, this.state.preselectedIndex)
-        this.props.onPaymentMethodChange(this.state.preselectedIndex)
+      .then(items => {
+        if (items && items.length > this.state.preselectedIndex) {
+          localStorage.setItem('payment_methods', JSON.stringify(items))
+          this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
+          this.props.onPaymentMethodChange(items[this.state.preselectedIndex].id)
+        }
       })
       .catch((err) => {
         console.log(err)

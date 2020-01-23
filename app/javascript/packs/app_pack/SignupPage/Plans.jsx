@@ -51,9 +51,8 @@ class Plans extends React.Component {
         }
         throw new Error("Network response was not ok.")
       }).then(items => {
-        localStorage.setItem('tariff_plans', JSON.stringify(items))
-        this.setState({ items: items })
         if (items && items.length > this.state.preselectedIndex) {
+          localStorage.setItem('tariff_plans', JSON.stringify(items))
           this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
           this.props.onPlanChange(null, items[this.state.preselectedIndex].id)
         }

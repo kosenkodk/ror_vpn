@@ -60,8 +60,8 @@ RSpec.describe AuthController, type: :feature, js: true do
       # user = User.last # User.find_by(email: email)
       user.reload
       expect(user.email).to eq(email)
-      expect(user.tariff_plan_id).to eq(plan.id)
       expect(user.tariff_plan).to eq(plan)
+      expect(user.payment_method).to eq(payment_method3)
     end
   end
 end
