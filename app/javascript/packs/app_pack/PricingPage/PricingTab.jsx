@@ -1,5 +1,5 @@
 import React from 'react'
-import { I18n } from 'helpers'
+// import { I18n } from 'helpers'
 import PricingTabItem from './PricingTabItem'
 import PricingTabItemFree from './PricingTabItemFree'
 
@@ -10,8 +10,9 @@ class PricingTab extends React.Component {
       items: []
     }
   }
+
   render() {
-    const { items } = this.state;
+    const { items } = this.state
 
     return (
       <React.Fragment>
@@ -42,18 +43,23 @@ class PricingTab extends React.Component {
   }
 
   componentDidMount() {
-    const url = "api/v1/tariff_plans";
+    this.setState({ items: localStorage.getItem('tariff_plans') })
+    const url = 'api/v1/tariff_plans'
     fetch(url)
       .then(response => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error("Network response was not ok.");
+        throw new Error('Network response was not ok.');
       })
-      .then(response => this.setState({ items: response }))
+      .then(response => {
+        localStorage.setItem('tariff_plans', JSON.stringify(response))
+        this.setState({ items: response })
+      })
       .catch((err) => {
         console.log(err)
       });
   }
 }
+
 export default PricingTab
