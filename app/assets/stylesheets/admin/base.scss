@@ -396,7 +396,7 @@
     .btn {
       @extend .btn;
       @extend .btn-pink;
-      padding: pxtovh(10) pxtovw(35) !important;
+      // padding: pxtovh(10) pxtovw(35) !important;
     }
 
     .upload-btn-wrapper {
