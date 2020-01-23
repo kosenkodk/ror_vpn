@@ -1,10 +1,10 @@
-import React from 'react';
-import { ModalPopupForm } from '../../_components';
+import React from 'react'
+import { ModalPopupForm } from '../../_components'
 
 class AttachmentImage extends React.Component {
   render() {
-    const { name, url, index } = this.props;
-    const item = { 'name': name, 'url': url };
+    const { name, url, index } = this.props
+    const item = { 'name': name, 'url': url }
     return (
       <div className="row">
         <div className="col">
@@ -24,4 +24,4 @@ class AttachmentImage extends React.Component {
   }
 }
 
-export { AttachmentImage };
+export { AttachmentImage }

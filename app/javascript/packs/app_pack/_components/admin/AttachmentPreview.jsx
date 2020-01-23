@@ -10,9 +10,9 @@ class AttachmentPreview extends React.Component {
             {(this.props.items || []).map((item, index) => (
               <div className="col-sm-4 col-md-3" key={`attachment-preview-${index}`} >
                 {(item.file.type === 'application/pdf') ?
-                  <AttachmentPdf name={item.file.name} url={item.url} index={index} />
+                  <AttachmentPdf item={item} name={item.file.name} url={item.url} index={index} />
                   :
-                  <AttachmentImage name={item.file.name} url={item.url} index={index} />
+                  <AttachmentImage item={item} name={item.file.name} url={item.url} index={index} />
                 }
               </div>
             ))}

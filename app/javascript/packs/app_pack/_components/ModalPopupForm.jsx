@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { globalActions } from '../_actions';
 import { I18n } from 'helpers';
-import FlashMessages from '../_sections/FlashMessages';
+// import FlashMessages from '../_sections/FlashMessages';
 import imgCloseSrc from 'images/admin/ic_close';
+import iconTrash from 'images/icons/ic_trash.svg'
 
 import Modal from 'react-bootstrap/Modal';
 // import ModalDialog from 'react-bootstrap/ModalDialog';
@@ -22,6 +23,7 @@ class ModalPopupForm extends React.Component {
     this.Hide = this.Hide.bind(this);
     this.Show = this.Show.bind(this);
     this.onBtnSave = this.onBtnSave.bind(this);
+    this.deleteAttachment = this.deleteAttachment.bind(this);
   }
 
   setModalShow(isModalShow) {
@@ -47,9 +49,15 @@ class ModalPopupForm extends React.Component {
     this.props.onBtnSave(e);
   }
 
+  deleteAttachment(e) {
+    e.preventDefault()
+    // this.props.dispatch(globalActions.deleteAttachment(this.props.item.id))
+    console.log('deleteAttachment', this.props.item)
+  }
+
   render() {
     // console.log('modal popup form props: ', this.props.id, this.props.isModalShow);
-    const { isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
+    const { item, isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
     return (
       <React.Fragment>
         {!isHideBtn &&
@@ -57,10 +65,15 @@ class ModalPopupForm extends React.Component {
             {
               aUrl ?
                 <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal"
-                  // onClick={() => this.setModalShow(true)}
-                  onClick={this.Show}
+                // onClick={() => this.setModalShow(true)}
+                // onClick={this.Show}
                 >
-                  {aImgSrc ? <img src={aImgSrc} className={aImgClasses} /> : aTitle}
+                  {aImgSrc ?
+                    <div className="preview-container" ng-repeat="file in imagefinaldata">
+                      <img src={aImgSrc} className={aImgClasses} onClick={this.Show} />
+                      <img className="preview-delete" src={iconTrash} onClick={this.deleteAttachment} />
+                    </div>
+                    : aTitle}
                 </a>
                 :
                 <Button type="button" className={`btn btn-pink ${this.props.btnClasses}`} variant="primary"
