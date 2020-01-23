@@ -43,7 +43,8 @@ class PricingTab extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ items: localStorage.getItem('tariff_plans') })
+    const items = localStorage.getItem('tariff_plans')
+    this.setState({ items: items ? items : [] })
     const url = 'api/v1/tariff_plans'
     fetch(url)
       .then(response => {
