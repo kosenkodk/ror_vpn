@@ -16,20 +16,19 @@ class MessageForm extends React.Component {
 
   onFilesChange(e) {
     e.preventDefault()
-    this.props.dispatch(globalActions.setAttachments(e.target.files))
-    return
 
     if (e.target.files && e.target.files.length > 0) {
-      const imagePreviews = [...e.target.files].map((item, index) => {
-        return { file: item, url: URL.createObjectURL(item) }
-      })
-      this.setState({ imagePreviews: imagePreviews })
-      this.props.onFilesChange(e, imagePreviews)
+      // const imagePreviews = [...e.target.files].map((item, index) => {
+      //   return { file: item, url: URL.createObjectURL(item) }
+      // })
+      // this.setState({ imagePreviews: imagePreviews })
+      this.props.dispatch(globalActions.setAttachments(e.target.files))
+      // this.props.onFilesChange(e, imagePreviews)
       return
     }
-    this.props.onFilesChange(e)
-    this.setState({ files: [], imagePreviews: [] })
-    // this.props.dispatch(globalActions.clearAttachments())
+    // this.props.onFilesChange(e)
+    // this.setState({ files: [], imagePreviews: [] })
+    this.props.dispatch(globalActions.clearAttachments())
   }
 
   onTicketClose(e, id) {
@@ -39,7 +38,7 @@ class MessageForm extends React.Component {
 
   onMessageFormSubmit(e, props) {
     e.preventDefault()
-    this.setState({ files: [], imagePreviews: [] })
+    // this.setState({ files: [], imagePreviews: [] })
     // this.props.dispatch(globalActions.clearAttachments())
     this.props.onMessageFormSubmit(e, props)
   }

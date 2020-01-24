@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
 import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
+import { globalActions } from '../_actions'
 
 class ChatRoom extends React.Component {
 
@@ -31,13 +32,14 @@ class ChatRoom extends React.Component {
   async onMessageFormSubmit(e, item) {
     e.preventDefault()
     let jsonData = FormDataAsJsonFromEvent(e)
-    if (this.state.files) {
-      const promises = [...this.state.files].map(async (item) => await this.prepareAttachmentForJsonApi(item));
+    if (this.props.attachments && this.props.attachments.files) {
+      const promises = [...this.props.attachments.files].map(async (item) => await this.prepareAttachmentForJsonApi(item));
       jsonData['attachments'] = await Promise.all(promises)
     }
     this.chatChannel.reply(jsonData)
     // this.chatChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text })
-    this.setState({ files: [], imagePreviews: [] })
+    // this.setState({ files: [], imagePreviews: [] })
+    this.props.dispatch(globalActions.clearAttachments());
   }
 
   async prepareAttachmentForJsonApi(file) {
@@ -112,9 +114,10 @@ class ChatRoom extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { attachments } = state.global
   const { loading, item } = state.tickets
   return {
-    loading, item
+    loading, item, attachments
   }
 }
 
