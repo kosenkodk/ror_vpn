@@ -82,7 +82,7 @@ class MessageForm extends React.Component {
 
                   <div className="col-sm-6 col-md-3">
                     <div className="row file mb-3 mb-sm-0">
-                      <div className="upload-btn-wrapper col px-0 px-sm-2">
+                      <div className="upload-btn-wrapper col px-0 pl-sm-2">
                         <button className="btn btn-block">{I18n.t('buttons.select_files')}</button>
                         <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
                       </div>
