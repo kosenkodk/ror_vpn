@@ -396,6 +396,7 @@
     .btn {
       @extend .btn;
       @extend .btn-pink;
+      height: 100%;
       // padding: pxtovh(10) pxtovw(35) !important;
     }
 
