@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
-import { ticketActions } from '../_actions'
+import { ticketActions, globalActions } from '../_actions'
 import { AttachmentPreview } from '../_components/admin'
 
 class MessageForm extends React.Component {
@@ -16,6 +16,9 @@ class MessageForm extends React.Component {
 
   onFilesChange(e) {
     e.preventDefault()
+    this.props.dispatch(globalActions.setAttachments(e.target.files))
+    return
+
     if (e.target.files && e.target.files.length > 0) {
       const imagePreviews = [...e.target.files].map((item, index) => {
         return { file: item, url: URL.createObjectURL(item) }
@@ -26,6 +29,7 @@ class MessageForm extends React.Component {
     }
     this.props.onFilesChange(e)
     this.setState({ files: [], imagePreviews: [] })
+    // this.props.dispatch(globalActions.clearAttachments())
   }
 
   onTicketClose(e, id) {
@@ -36,6 +40,7 @@ class MessageForm extends React.Component {
   onMessageFormSubmit(e, props) {
     e.preventDefault()
     this.setState({ files: [], imagePreviews: [] })
+    // this.props.dispatch(globalActions.clearAttachments())
     this.props.onMessageFormSubmit(e, props)
   }
 
@@ -95,7 +100,11 @@ class MessageForm extends React.Component {
               }
             </div>
 
-            <AttachmentPreview items={this.state.imagePreviews} />
+            <AttachmentPreview
+              items={this.props.attachments}
+            // items={this.props.attachments && this.props.attachments}
+            // items={this.state.imagePreviews}
+            />
 
           </form>
         }
@@ -105,6 +114,7 @@ class MessageForm extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { attachments } = state.global
   const { user } = state.authentication
   const user_id = user.id
   const { loading, item } = state.tickets
@@ -114,6 +124,7 @@ function mapStateToProps(state) {
     item,
     loading,
     ticket_id,
+    attachments,
   }
 }
 

@@ -5,9 +5,9 @@ class AttachmentPreview extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {(this.props.items && this.props.items.length > 0) &&
+        {(this.props.items && this.props.items.previews) &&
           <div className="row">
-            {(this.props.items || []).map((item, index) => (
+            {(this.props.items.previews || []).map((item, index) => (
               <div className="col-sm-4 col-md-3" key={`attachment-preview-${index}`} >
                 {(item.file.type === 'application/pdf') ?
                   <AttachmentPdf item={item} name={item.file.name} url={item.url} index={index} />
