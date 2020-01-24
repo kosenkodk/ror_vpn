@@ -43,7 +43,7 @@ class MessageForm extends React.Component {
     return (
       <React.Fragment>
         {this.props.item && this.props.item.status !== 'closed' &&
-          <form onSubmit={(e) => this.onMessageFormSubmit(e, this.props)}>
+          <form className="col" onSubmit={(e) => this.onMessageFormSubmit(e, this.props)}>
             <input type="hidden" name="message_user_id" value={this.props.user_id} />
             <input type="hidden" name="message_ticket_id" value={this.props.ticket_id} />
 
@@ -72,27 +72,54 @@ class MessageForm extends React.Component {
             </div>
             */}
 
-            <div className="form-group d-flex flex-column flex-sm-row justify-content-sm-between">
+            <div className="form-group row">
+              <div className="col">
+                <div className="row">
+                  <button id="contact_submit" className="col-sm-6 col-md-3 btn btn-outline-primary mb-3 mb-sm-0" disabled={this.props.loading ? true : false}>
+                    {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                    {' ' + I18n.t('pages.tickets.form.submit')}
+                  </button>
 
-              <button id="contact_submit" className="btn btn-outline-primary mb-3 mb-sm-0 mr-2" disabled={this.props.loading ? true : false}>
-                {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                {' ' + I18n.t('pages.tickets.form.submit')}
-              </button>
-
-              <div className="file row mb-3 mb-sm-0 mr-auto">
-                <div className="upload-btn-wrapper col-12">
-                  <button className="btn">{I18n.t('buttons.select_files')}</button>
-                  <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+                  <div className="col-sm-6 col-md-3">
+                    <div className="row file mb-3 mb-sm-0">
+                      <div className="upload-btn-wrapper col px-0 px-sm-2">
+                        <button className="btn btn-block">{I18n.t('buttons.select_files')}</button>
+                        <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
+              {this.props.item &&
+                <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='col-sm-12 col-md-3 btn btn-outline-danger'
+                  disabled={this.props.loading ? true : false}>
+                  {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                  &nbsp;Close my ticket</button>
+              }
+            </div>
+
+            {/* <div className="form-group d-flex flex-column flex-sm-row justify-content-sm-between">
+              <div classname="d-flex align-items-between">
+                <button id="contact_submit" className="btn btn-outline-primary mb-3 mb-sm-0 mr-sm-2" disabled={this.props.loading ? true : false}>
+                  {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                  {' ' + I18n.t('pages.tickets.form.submit')}
+                </button>
+
+                <div className="row file mb-3 mb-sm-0 mr-sm-auto">
+                  <div className="upload-btn-wrapper col">
+                    <button className="btn btn-xs-block">{I18n.t('buttons.select_files')}</button>
+                    <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+                  </div>
+                </div>
+              </div>
               {this.props.item &&
                 <button onClick={(e) => this.onTicketClose(e, this.props.item)} className='btn btn-outline-danger'
                   disabled={this.props.loading ? true : false}>
                   {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                   &nbsp;Close my ticket</button>
               }
-            </div>
+            </div> */}
 
             <AttachmentPreview items={this.state.imagePreviews} />
 
