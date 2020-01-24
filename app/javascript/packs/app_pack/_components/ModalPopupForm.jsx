@@ -52,29 +52,37 @@ class ModalPopupForm extends React.Component {
   deleteAttachment(e) {
     e.preventDefault()
     // this.props.dispatch(globalActions.deleteAttachment(this.props.item.id))
-    console.log('deleteAttachment', this.props.item)
+    // console.log('deleteAttachment', this.props.item)
   }
 
   render() {
     // console.log('modal popup form props: ', this.props.id, this.props.isModalShow);
     const { item, isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
+    let link = <React.Fragment>
+      {
+        (aUrl && aImgSrc) ?
+          <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal">
+            <div className="preview-container" ng-repeat="file in imagefinaldata">
+              <img src={aImgSrc} className={aImgClasses} onClick={this.Show} />
+              <img className="preview-delete" src={iconTrash} onClick={this.deleteAttachment} />
+            </div>
+          </a>
+          :
+          <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal"
+            // onClick={() => this.setModalShow(true)}
+            onClick={this.Show}
+          >{aTitle}
+          </a>
+      }
+    </React.Fragment>
+
     return (
       <React.Fragment>
         {!isHideBtn &&
           <React.Fragment>
             {
               aUrl ?
-                <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal"
-                // onClick={() => this.setModalShow(true)}
-                // onClick={this.Show}
-                >
-                  {aImgSrc ?
-                    <div className="preview-container" ng-repeat="file in imagefinaldata">
-                      <img src={aImgSrc} className={aImgClasses} onClick={this.Show} />
-                      <img className="preview-delete" src={iconTrash} onClick={this.deleteAttachment} />
-                    </div>
-                    : aTitle}
-                </a>
+                link
                 :
                 <Button type="button" className={`btn btn-pink ${this.props.btnClasses}`} variant="primary"
                   // onClick={() => this.setModalShow(true)}
