@@ -16,9 +16,6 @@ import Button from 'react-bootstrap/Button';
 class ModalPopupForm extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   isModalShow: false
-    // };
     this.setModalShow = this.setModalShow.bind(this);
     this.Hide = this.Hide.bind(this);
     this.Show = this.Show.bind(this);
@@ -27,20 +24,16 @@ class ModalPopupForm extends React.Component {
   }
 
   setModalShow(isModalShow) {
-    // this.setState({ isModalShow: isModalShow });
     this.props.dispatch(globalActions.setModalShow(isModalShow));
   }
 
   Hide(e) {
-    // this.setState({ isModalShow: false });
     // this.props.onClose(e);
     this.props.dispatch(globalActions.setModalShow(false));
     // this.props.dispatch(globalActions.setModalShow(null));
-    // this.props.dispatch(globalActions.setModalShow(this.props.id))
   }
 
   Show(e) {
-    // this.setState({ isModalShow: true });
     // this.props.dispatch(globalActions.setModalShow(true));
     this.props.dispatch(globalActions.setModalShow(this.props.id))
   }
@@ -56,7 +49,6 @@ class ModalPopupForm extends React.Component {
   }
 
   render() {
-    // console.log('modal popup form props: ', this.props.id, this.props.isModalShow);
     const { item, isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
     let link = <React.Fragment>
       {
@@ -68,10 +60,8 @@ class ModalPopupForm extends React.Component {
             </div>
           </a>
           :
-          <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal"
-            // onClick={() => this.setModalShow(true)}
-            onClick={this.Show}
-          >{aTitle}
+          <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal" onClick={this.Show}>
+            {aTitle}
           </a>
       }
     </React.Fragment>
@@ -85,7 +75,6 @@ class ModalPopupForm extends React.Component {
                 link
                 :
                 <Button type="button" className={`btn btn-pink ${this.props.btnClasses}`} variant="primary"
-                  // onClick={() => this.setModalShow(true)}
                   onClick={this.Show}
                 >
                   {btnText}
@@ -96,7 +85,6 @@ class ModalPopupForm extends React.Component {
         <Modal
           // show={this.state.isModalShow}
           show={this.props.isModalShow === this.props.id}
-          // onHide={() => this.setModalShow(false)}
           onHide={this.Hide}
           size="lg"
           aria-labelledby={`${id}Title`}
@@ -131,8 +119,6 @@ class ModalPopupForm extends React.Component {
                 <Modal.Footer className="pt-0">
                   <div className="d-flex w-100">
                     <button type="button"
-                      // onClick={this.props.onClose}
-                      // onClick={() => this.setModalShow(false)}
                       onClick={this.Hide}
                       className="mr-auto btn btn-outline-danger" data-dismiss="modal">
                       {btnCloseText}
