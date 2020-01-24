@@ -73,15 +73,15 @@ class MessageForm extends React.Component {
             */}
 
             <div className="form-group d-flex flex-column flex-md-row justify-content-md-between">
-              <div className="d-flex flex-column flex-sm-row justify-content-sm-between mr-md-auto">
-                <button id="contact_submit" className="btn btn-outline-primary mb-3 mb-md-0 mr-sm-2" disabled={this.props.loading ? true : false}>
+              <div className="d-flex flex-row justify-content-md-between">
+                <button id="contact_submit" className="flex-fill btn btn-outline-primary mb-3 mb-md-0 mr-2" disabled={this.props.loading ? true : false}>
                   {this.props.loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                   {' ' + I18n.t('pages.tickets.form.submit')}
                 </button>
 
-                <div className="file row mb-3 mb-md-0">
+                <div className="file row mb-3 mb-md-0 flex-fill">
                   <div className="upload-btn-wrapper col-12">
-                    <button className="btn btn-xs-block">{I18n.t('buttons.select_files')}</button>
+                    <button className="btn btn-block">{I18n.t('buttons.select_files')}</button>
                     <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
                   </div>
                 </div>
