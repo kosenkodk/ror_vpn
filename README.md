@@ -20,6 +20,8 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+* Development
+export NODE_OPTIONS="--max-old-space-size=2048"
 
 * Testing
 # NODE_ENV is development by default
