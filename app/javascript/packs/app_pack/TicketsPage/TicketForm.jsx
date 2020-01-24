@@ -95,10 +95,12 @@ class TicketForm extends React.Component {
             <label className="col-form-label">{I18n.t('pages.tickets.form.attachments')}</label>
           </div>
 
-          <div className="file col-sm-8">
-            <div className="upload-btn-wrapper">
-              <button className="btn">{I18n.t('buttons.select_files')}</button>
-              <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+          <div className="col-sm-8">
+            <div className="file row">
+              <div className="upload-btn-wrapper col">
+                <button className="btn btn-xs-block">{I18n.t('buttons.select_files')}</button>
+                <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+              </div>
             </div>
           </div>
         </div>
@@ -126,7 +128,7 @@ class TicketForm extends React.Component {
             } */}
           </div>
         </div>
-      </form>
+      </form >
     )
   }
 }
