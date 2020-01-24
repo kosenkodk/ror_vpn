@@ -44,8 +44,8 @@ class ModalPopupForm extends React.Component {
 
   deleteAttachment(e) {
     e.preventDefault()
-    // this.props.dispatch(globalActions.deleteAttachment(this.props.item.id))
-    // console.log('deleteAttachment', this.props.item)
+    this.props.dispatch(globalActions.deleteAttachment(this.props.item.id))
+    console.log('deleteAttachment', this.props.item)
   }
 
   render() {

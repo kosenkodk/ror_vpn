@@ -7,6 +7,31 @@ export const globalActions = {
   getDepartments,
   getAccountCancellationReasons,
   setModalShow,
+  setAttachments,
+  clearAttachments,
+  deleteAttachment,
+}
+
+function setAttachments(files) {
+  if (files && files.length > 0) {
+    // const promises = [...files].map(async (item) => await this.prepareAttachmentForJsonApi(item));
+    // const attachmentsForApi = await Promise.all(promises)
+
+    const imagePreviews = [...files].map((item, index) => {
+      return { file: item, url: URL.createObjectURL(item) };
+    });
+    return { type: globalConstants.SET_ATTACHMENTS, attachments: { files: files, previews: imagePreviews } };
+  }
+  // return { type: globalConstants.SET_ATTACHMENTS, attachments: { files: [], previews: [] } };
+  return dispatch(clearAttachments())
+}
+
+function clearAttachments() {
+  return { type: globalConstants.CLEAR_ATTACHMENTS };
+}
+
+function deleteAttachment(index) {
+  return { type: globalConstants.DELETE_ATTACHMENT, index: index };
 }
 
 function setModalShow(isModalShow) {

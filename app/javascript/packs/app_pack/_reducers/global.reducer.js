@@ -20,6 +20,24 @@ export function global(state = {}, action) {
       };
     case globalConstants.CLEAR:
       return {};
+    case globalConstants.SET_ATTACHMENTS:
+      return {
+        ...state,
+        attachments: action.attachments // { files: action.files, previews: action.previews }
+      };
+    case globalConstants.CLEAR_ATTACHMENTS:
+      return {
+        ...state,
+        attachments: { files: [], previews: [] }
+      };
+    case globalConstants.DELETE_ATTACHMENT:
+      return {
+        ...state,
+        attachments: {
+          files: [...state.attachments.files].filter((item, index) => (index !== action.index)),
+          previews: [...state.attachments.previews].filter((item, index) => (index !== action.index)),
+        }
+      };
     default:
       return state
   }

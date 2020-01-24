@@ -18,13 +18,13 @@ class AttachmentPdf extends React.Component {
 
   render() {
     const { name, url, index } = this.props;
-    const item = { 'name': name, 'url': url };
+    const item = { 'id': index, 'name': name, 'url': url };
     return (
       <div className="row">
         <div className="col">
           <div className="h-100" onClick={this.isWillLoad}>
             <div className="embed-responsive embed-responsive-16by9">
-              <ModalPopupForm id={`modalForAttachmentPdf${index}`} aImgClasses='card-img-top embed-responsive-item cover' aUrl={item.url} aImgSrc={icPdf} aTitle={item.name} title={item.name} isShowFooter={false} >
+              <ModalPopupForm id={`modalForAttachmentPdf${index}`} aImgClasses='card-img-top embed-responsive-item cover' item={item} aUrl={item.url} aImgSrc={icPdf} aTitle={item.name} title={item.name} isShowFooter={false} >
                 {this.state.isWillLoad && <div className="vh-75">
                   <iframe scrolling="yes" className="w-100 h-100" src={item.url} ></iframe>
                 </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
-import { ticketActions } from '../_actions';
+import { ticketActions, globalActions } from '../_actions';
 // import { AttachmentPreview, AttachmentPreviewCard } from '../_components/admin';
 
 class TicketForm extends React.Component {
@@ -26,6 +26,8 @@ class TicketForm extends React.Component {
 
   onFilesChange(e) {
     e.preventDefault();
+    this.props.dispatch(globalActions.setAttachments(e.target.files))
+
     if (e.target.files && e.target.files.length > 0) {
       const imagePreviews = [...e.target.files].map((item, index) => {
         return { file: item, url: URL.createObjectURL(item) };
