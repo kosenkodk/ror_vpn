@@ -42,7 +42,7 @@ class TicketsNewPage extends React.Component {
             <TicketForm onFormSubmit={this.onFormSubmit} departments={departments} />
           </div>
           <div className="col-md-4 col-xl-5">
-            <AttachmentPreview items={this.props.attachments} />
+            <AttachmentPreview items={this.props.attachments} isAllowPreviewDeletion={true} />
           </div>
         </div>
       </div>

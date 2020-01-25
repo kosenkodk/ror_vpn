@@ -10,7 +10,8 @@ class AttachmentImage extends React.Component {
         <div className="col">
           <div className="h-100">
             <div className="embed-responsive embed-responsive-16by9">
-              <ModalPopupForm id={`modalForAttachmentImage${index}`} aImgClasses='card-img-top embed-responsive-item cover' item={item} aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
+              <ModalPopupForm isAllowPreviewDeletion={this.props.isAllowPreviewDeletion}
+                id={`modalForAttachmentImage${index}`} aImgClasses='card-img-top embed-responsive-item cover' item={item} aUrl={item.url} aImgSrc={item.url} aTitle={item.name} title={item.name} isShowFooter={false} >
                 <div className="text-center">
                   <img src={item.url} className="img-fluid mh-75" alt={item.name} />
                 </div>
