@@ -85,8 +85,7 @@ class MessageForm extends React.Component {
               }
             </div>
 
-            <AttachmentPreview
-              items={this.props.attachments}
+            <AttachmentPreview items={this.props.attachments}
             // items={this.props.attachments && this.props.attachments}
             />
 

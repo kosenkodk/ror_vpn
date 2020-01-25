@@ -4,39 +4,20 @@ import { I18n } from 'helpers';
 import SelectBoxDepartment from '../_components/SelectBoxDepartment';
 import { connect } from 'react-redux';
 import { ticketActions, globalActions } from '../_actions';
-// import { AttachmentPreview, AttachmentPreviewCard } from '../_components/admin';
 
 class TicketForm extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      file: null,
-      files: [],
-      imagePreviews: []
-    }
-    this.onFileChange = this.onFileChange.bind(this);
+    super(props);
     this.onFilesChange = this.onFilesChange.bind(this);
-  }
-
-  onFileChange(e) {
-    e.preventDefault();
-    // if (e.target && e.target.files && e.target.files.length > 0)
-    this.setState({ file: e.target.files[0] });
   }
 
   onFilesChange(e) {
     e.preventDefault();
-    this.props.dispatch(globalActions.setAttachments(e.target.files))
-
     if (e.target.files && e.target.files.length > 0) {
-      const imagePreviews = [...e.target.files].map((item, index) => {
-        return { file: item, url: URL.createObjectURL(item) };
-      });
-      this.setState({ imagePreviews: imagePreviews })
-      this.props.onFilesChange(e, imagePreviews);
-      return;
+      this.props.dispatch(globalActions.setAttachments(e.target.files))
+      return
     }
-    this.props.onFilesChange(e);
+    this.props.dispatch(globalActions.clearAttachments())
   }
 
   onTicketClose(e, id) {
@@ -69,28 +50,6 @@ class TicketForm extends React.Component {
           </div>
         </div>
 
-        {/* default file input */}
-        {/* <div className="form-group row">
-          <label htmlFor="ticketAttachment" className="col-sm-4 col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
-          <div className="col-sm-8 align-self-center">
-            <input id="ticketAttachment" type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file} required={false} className="form-control-file" placeholder={I18n.t('pages.tickets.form.help.attachment')} />
-          </div>
-        </div> */}
-
-        {/* custom file input - single file upload */}
-        {/* <div className="form-group row">
-          <div className="col-sm-4">
-            <label className="col-form-label">{I18n.t('pages.tickets.form.attachment')}</label>
-          </div>
-
-          <div className="file col-sm-8">
-            <div className="upload-btn-wrapper">
-              <button className="btn">Select a file</button>
-              <input type="file" name="attachment" onChange={this.props.onFileChange} value={this.state.file || ''} required={false} />
-            </div>
-          </div>
-        </div> */}
-
         {/* custom file input - multi file upload with images preview */}
         <div className="form-group row">
           <div className="col-sm-4">
@@ -106,10 +65,6 @@ class TicketForm extends React.Component {
             </div>
           </div>
         </div>
-
-        {/* <AttachmentPreviewCard items={this.state.imagePreviews} /> */}
-        {/* <AttachmentPreview items={this.state.imagePreviews} /> */}
-        {/* end custom file input - multi file upload with images preview */}
 
         <div className="form-group row">
           <div className="col-sm-4">
@@ -145,8 +100,9 @@ TicketForm.propTypes = {
 }
 
 function mapStateToProps(state) {
+  const { attachments } = state.global
   const { loading, item } = state.tickets;
-  return { loading, item }
+  return { loading, item, attachments }
 }
 
 const connectedApp = connect(mapStateToProps)(TicketForm);
