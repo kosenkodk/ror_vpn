@@ -111,7 +111,6 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).not_to have_content(file_name)
         expect(page).to have_content(file_name2)
       end
-     
     end
 
     context 'success' do
@@ -163,6 +162,28 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
   describe 'add ticket' do
     context 'success' do
+      it 'with attachments' do
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket 1'
+        fill_in :text, with: 'text 1'
+        
+        # add attachments
+        attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
+
+        # delete first preview
+        expect(page).to have_content(file_name)
+        find('.preview-delete', match: :first).click
+        expect(page).not_to have_content(file_name)
+        expect(page).to have_content(file_name2)
+
+        click_on(I18n.t('buttons.submit'))
+
+        expect(page).to have_content('ticket 1')
+        expect(page).to have_content('text 1')
+        expect(page).not_to have_content(file_name)
+        expect(page).to have_content(file_name2)
+      end
+
       xit 'add item with default department to list' do
         click_on(I18n.t('buttons.add'))
         
@@ -212,7 +233,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
     end
     context 'fail' do
-      it "with empty title"
+      it 'with empty title'
     end
   end
 
