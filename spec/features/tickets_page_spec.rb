@@ -17,6 +17,11 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   # let!(:ticket_billing) {create(:ticket, user: user, department: department_billing)}
   # let!(:ticket_sales) {create(:ticket, user: user, department: department_sales)}
   # let!(:ticket_tech) {create(:ticket, user: user, department: department_tech)}
+  
+  let(:file_name) {'logo.png'} 
+  let(:file_name2) {'logo_mail_black.png'} 
+  let(:file) {Rails.root.join('app','assets', 'images', file_name)} 
+  let(:file2) {Rails.root.join('app','assets', 'images', file_name2)} 
 
   before(:each) do
     fsign_in_as(user)
@@ -47,21 +52,18 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       it "preview multiple attachments of ticket new page" do
         click_on(I18n.t('buttons.add'))
         fill_in :title, with: 'ticket with multiple attachments'
-        file = Rails.root.join('app','assets', 'images', 'logo.png')
-        file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
         
         attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
         # todo: click on image > popup with image and image name > check name
-        expect(page).to have_content('logo.png')
-        expect(page).to have_content('logo_mail_black.png')
+        expect(page).to have_content(file_name)
+        expect(page).to have_content(file_name2)
       end
 
       xit "attach single file or image" do
         click_on(I18n.t('buttons.add'))
         fill_in :title, with: 'ticket with attachment'
-        file = Rails.root.join('app','assets', 'images', 'logo.png')
         attach_file('attachment', file) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
@@ -69,8 +71,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # click_on_ticket_first
         # click_on(I18n.t('pages.tickets.chat.load'))
         # expect(page).to have_content('ticket with attachment')
-        expect(page).to have_content('logo.png')
-        # click_on('logo.png')
+        expect(page).to have_content(file_name)
+        # click_on(file_name)
         ## visit page.find('img#myimage')[:src]
         # expect(page).to have_http_status(200) # Capybara::NotSupportedByDriverError:
       end
@@ -96,22 +98,20 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         fill_in :message_text, with: message_text
 
         # add attachments
-        file = Rails.root.join('app','assets', 'images', 'logo.png')
-        file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
         attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
 
         # delete first preview
-        expect(page).to have_content('logo.png')
+        expect(page).to have_content(file_name)
         find('.preview-delete', match: :first).click
-        expect(page).not_to have_content('logo.png')
-        expect(page).to have_content('logo_mail_black.png')
+        expect(page).not_to have_content(file_name)
+        expect(page).to have_content(file_name2)
 
         click_on(I18n.t('buttons.submit'))
-        
         expect(page).to have_content(message_text)
-        expect(page).not_to have_content('logo.png')
-        expect(page).to have_content('logo_mail_black.png')
+        expect(page).not_to have_content(file_name)
+        expect(page).to have_content(file_name2)
       end
+     
     end
 
     context 'success' do
@@ -135,19 +135,18 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(message_text)
         expect(page).to have_content('You')
       end
+      
       it 'reply with text and attachments' do
         click_on_ticket_first
         fill_in :message_text, with: message_text
 
         # add attachments
-        file = Rails.root.join('app','assets', 'images', 'logo.png')
-        file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
         attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
         expect(page).to have_content(message_text)
-        expect(page).to have_content('logo.png')
-        expect(page).to have_content('logo_mail_black.png')
+        expect(page).to have_content(file_name)
+        expect(page).to have_content(file_name2)
       end
 
       it 'click on close button' do
