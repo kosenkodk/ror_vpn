@@ -38,7 +38,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
   # POST /tickets
   def create
-    @ticket = current_user.tickets.build(item_params.except(:department, :attachment, :attachment2))
+    @ticket = current_user.tickets.build(item_params.except(:department, :attachments, :attachment, :attachment2))
     department_id = params[:ticket][:department]
     attachment_error = ''
     attachments = params[:ticket][:attachments]
@@ -51,7 +51,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
       # ticket with multiple attachments uploading
       if (attachments.present?)
         attachments.each do |attachment|
-          file_params = get_attachment_base64(attachment)
+          file_params = get_attachment_base64(attachment) 
           @ticket.attachments.attach(file_params) if file_params.present?
           # @ticket.attachments.attach(io: File.open(path_to_file), filename: file_name)
         end

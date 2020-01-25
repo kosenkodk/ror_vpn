@@ -26,7 +26,8 @@ class TicketsNewPage extends React.Component {
     e.preventDefault();
     let jsonData = FormDataAsJsonFromEvent(e);
     // prepare attachment(-s) for json api
-    jsonData['attachments'] = await Promise.all(this.props.attachments.attachmentsForApi);;
+    if (this.props.attachments && this.props.attachments.attachmentsForApi)
+      jsonData['attachments'] = await Promise.all(this.props.attachments.attachmentsForApi);;
     this.props.dispatch(ticketActions.add(jsonData));
     this.props.dispatch(globalActions.clearAttachments());
   }
