@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import { I18n } from 'helpers'
 import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
-import { fileToBase64, FormDataAsJsonFromEvent } from '../_helpers'
+import { prepareAttachmentForJsonApiAsync, FormDataAsJsonFromEvent } from '../_helpers'
 import { globalActions } from '../_actions'
 
 class ChatRoom extends React.Component {
@@ -13,45 +13,22 @@ class ChatRoom extends React.Component {
     this.state = {
       messages: [],
       message_text: '',
-      files: [],
-      imagePreviews: [],
     }
     this.chatChannel = ''
     this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
-    this.onFilesChange = this.onFilesChange.bind(this)
-  }
-
-  onFilesChange(e, imagePreviews) {
-    e.preventDefault()
-    this.setState({
-      files: e.target.files,
-      imagePreviews: imagePreviews
-    });
   }
 
   async onMessageFormSubmit(e, item) {
     e.preventDefault()
     let jsonData = FormDataAsJsonFromEvent(e)
     if (this.props.attachments && this.props.attachments.files) {
-      const promises = [...this.props.attachments.files].map(async (item) => await this.prepareAttachmentForJsonApi(item));
-      jsonData['attachments'] = await Promise.all(promises)
+      // const items = await Promise.all([...this.props.attachments.files].map(async (item) => await prepareAttachmentForJsonApiAsync(item)));
+      const items = await Promise.all(this.props.attachments.attachmentsForApi)
+      jsonData['attachments'] = items
     }
     this.chatChannel.reply(jsonData)
     // this.chatChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text })
-    // this.setState({ files: [], imagePreviews: [] })
     this.props.dispatch(globalActions.clearAttachments());
-  }
-
-  async prepareAttachmentForJsonApi(file) {
-    return fileToBase64(file, file).then(result => {
-      return {
-        type: file.type,
-        name: file.name,
-        size: file.size,
-        lastModified: file.lastModified,
-        file: result
-      }
-    });
   }
 
   componentDidMount() {
@@ -99,7 +76,7 @@ class ChatRoom extends React.Component {
       <React.Fragment>
         <MessageForm onMessageFormSubmit={this.onMessageFormSubmit}
           onFilesChange={this.onFilesChange} />
-        {/* <button className="btn btn-outline-info"
+        {/* load chat history <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
           {I18n.t('pages.tickets.chat.load')}
         </button> */}
