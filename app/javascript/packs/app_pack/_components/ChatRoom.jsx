@@ -21,7 +21,7 @@ class ChatRoom extends React.Component {
   async onMessageFormSubmit(e, item) {
     e.preventDefault()
     let jsonData = FormDataAsJsonFromEvent(e)
-    if (this.props.attachments && this.props.attachments.files) {
+    if (this.props.attachments && this.props.attachments.attachmentsForApi) {
       // const items = await Promise.all([...this.props.attachments.files].map(async (item) => await prepareAttachmentForJsonApiAsync(item)));
       const items = await Promise.all(this.props.attachments.attachmentsForApi)
       jsonData['attachments'] = items
