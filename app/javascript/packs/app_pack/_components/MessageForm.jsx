@@ -14,6 +14,7 @@ class MessageForm extends React.Component {
     e.preventDefault()
     if (e.target.files && e.target.files.length > 0) {
       this.props.dispatch(globalActions.setAttachments(e.target.files))
+      e.target.value = null
       return
     }
     this.props.dispatch(globalActions.clearAttachments())
@@ -72,7 +73,10 @@ class MessageForm extends React.Component {
                 <div className="file row mb-3 mb-md-0 flex-fill">
                   <div className="upload-btn-wrapper col-12">
                     <button className="btn btn-block">{I18n.t('buttons.select_files')}</button>
-                    <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+                    <input type="file" name="attachments"
+                      // onClick={(e) => {e.target.value = null}}
+                      onChange={this.onFilesChange}
+                      required={false} multiple={true} accept="application/pdf, image/*" />
                   </div>
                 </div>
               </div>
