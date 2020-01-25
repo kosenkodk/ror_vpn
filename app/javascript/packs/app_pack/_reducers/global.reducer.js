@@ -23,12 +23,12 @@ export function global(state = {}, action) {
     case globalConstants.SET_ATTACHMENTS:
       return {
         ...state,
-        attachments: action.attachments // { files: action.files, previews: action.previews }
+        attachments: action.attachments
       };
     case globalConstants.CLEAR_ATTACHMENTS:
       return {
         ...state,
-        attachments: { files: [], previews: [] }
+        attachments: { files: [], previews: [], attachmentsForApi: [] }
       };
     case globalConstants.DELETE_ATTACHMENT:
       return {
@@ -36,6 +36,7 @@ export function global(state = {}, action) {
         attachments: {
           files: [...state.attachments.files].filter((item, index) => (index !== action.index)),
           previews: [...state.attachments.previews].filter((item, index) => (index !== action.index)),
+          attachmentsForApi: [...state.attachments.attachmentsForApi].filter((item, index) => (index !== action.index)),
         }
       };
     default:

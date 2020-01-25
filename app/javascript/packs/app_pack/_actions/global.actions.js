@@ -2,6 +2,7 @@
 import { userService } from '../_services';
 import { alertActions } from './';
 import { globalConstants } from '../_constants';
+import { prepareAttachmentForJsonApi, prepareAttachmentForJsonApiAsync } from '../_helpers';
 
 export const globalActions = {
   getDepartments,
@@ -9,20 +10,17 @@ export const globalActions = {
   setModalShow,
   setAttachments,
   clearAttachments,
-  deleteAttachment,
+  deleteAttachment
 }
 
 function setAttachments(files) {
   if (files && files.length > 0) {
-    // const promises = [...files].map(async (item) => await this.prepareAttachmentForJsonApi(item));
-    // const attachmentsForApi = await Promise.all(promises)
-
+    const attachmentsForApi = [...files].map((item) => prepareAttachmentForJsonApi(item));
     const imagePreviews = [...files].map((item, index) => {
       return { file: item, url: URL.createObjectURL(item) };
     });
-    return { type: globalConstants.SET_ATTACHMENTS, attachments: { files: files, previews: imagePreviews } };
+    return { type: globalConstants.SET_ATTACHMENTS, attachments: { files: files, previews: imagePreviews, attachmentsForApi: attachmentsForApi } };
   }
-  // return { type: globalConstants.SET_ATTACHMENTS, attachments: { files: [], previews: [] } };
   return dispatch(clearAttachments())
 }
 

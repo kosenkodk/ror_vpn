@@ -7,27 +7,15 @@ import { AttachmentPreview } from '../_components/admin'
 class MessageForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      files: [],
-      imagePreviews: []
-    }
     this.onFilesChange = this.onFilesChange.bind(this)
   }
 
   onFilesChange(e) {
     e.preventDefault()
-
     if (e.target.files && e.target.files.length > 0) {
-      // const imagePreviews = [...e.target.files].map((item, index) => {
-      //   return { file: item, url: URL.createObjectURL(item) }
-      // })
-      // this.setState({ imagePreviews: imagePreviews })
       this.props.dispatch(globalActions.setAttachments(e.target.files))
-      // this.props.onFilesChange(e, imagePreviews)
       return
     }
-    // this.props.onFilesChange(e)
-    // this.setState({ files: [], imagePreviews: [] })
     this.props.dispatch(globalActions.clearAttachments())
   }
 
@@ -38,8 +26,6 @@ class MessageForm extends React.Component {
 
   onMessageFormSubmit(e, props) {
     e.preventDefault()
-    // this.setState({ files: [], imagePreviews: [] })
-    // this.props.dispatch(globalActions.clearAttachments())
     this.props.onMessageFormSubmit(e, props)
   }
 
@@ -102,7 +88,6 @@ class MessageForm extends React.Component {
             <AttachmentPreview
               items={this.props.attachments}
             // items={this.props.attachments && this.props.attachments}
-            // items={this.state.imagePreviews}
             />
 
           </form>
