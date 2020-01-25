@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { I18n } from 'helpers'
 import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
-import { prepareAttachmentForJsonApiAsync, FormDataAsJsonFromEvent } from '../_helpers'
+import { FormDataAsJsonFromEvent } from '../_helpers'
+// import { prepareAttachmentForJsonApiAsync } from '../_helpers'
 import { globalActions } from '../_actions'
 
 class ChatRoom extends React.Component {
@@ -74,8 +74,7 @@ class ChatRoom extends React.Component {
     // const { item } = this.props
     return (
       <React.Fragment>
-        <MessageForm onMessageFormSubmit={this.onMessageFormSubmit}
-          onFilesChange={this.onFilesChange} />
+        <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
         {/* load chat history <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
           {I18n.t('pages.tickets.chat.load')}
