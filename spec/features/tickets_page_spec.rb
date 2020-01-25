@@ -89,6 +89,30 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
 
   describe 'view ticket' do
     let(:message_text) { 'reply message' }
+    
+    context 'attachments' do
+      it 'delete preview' do
+        click_on_ticket_first
+        fill_in :message_text, with: message_text
+
+        # add attachments
+        file = Rails.root.join('app','assets', 'images', 'logo.png')
+        file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
+        attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
+
+        # delete first preview
+        expect(page).to have_content('logo.png')
+        find('.preview-delete', match: :first).click
+        expect(page).not_to have_content('logo.png')
+        expect(page).to have_content('logo_mail_black.png')
+
+        click_on(I18n.t('buttons.submit'))
+        
+        expect(page).to have_content(message_text)
+        expect(page).not_to have_content('logo.png')
+        expect(page).to have_content('logo_mail_black.png')
+      end
+    end
 
     context 'success' do
       it 'when admin click on close ticket button'
@@ -118,15 +142,14 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # add attachments
         file = Rails.root.join('app','assets', 'images', 'logo.png')
         file2 = Rails.root.join('app','assets', 'images', 'logo_mail_black.png')
-        
         attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
         
         expect(page).to have_content(message_text)
         expect(page).to have_content('logo.png')
         expect(page).to have_content('logo_mail_black.png')
-        
       end
+
       it 'click on close button' do
         click_on_ticket_first
         click_on(I18n.t('buttons.close'), match: :first)
@@ -135,6 +158,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
     end
     context 'fail' do
+      it 'with empty message'
     end
   end
 
