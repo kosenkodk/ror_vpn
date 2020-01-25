@@ -14,10 +14,11 @@ class TicketForm extends React.Component {
   onFilesChange(e) {
     e.preventDefault();
     if (e.target.files && e.target.files.length > 0) {
-      this.props.dispatch(globalActions.setAttachments(e.target.files))
-      return
+      this.props.dispatch(globalActions.setAttachments(e.target.files));
+      event.target.value = null;
+      return;
     }
-    this.props.dispatch(globalActions.clearAttachments())
+    this.props.dispatch(globalActions.clearAttachments());
   }
 
   onTicketClose(e, id) {
@@ -60,7 +61,10 @@ class TicketForm extends React.Component {
             <div className="file row">
               <div className="upload-btn-wrapper col">
                 <button className="btn btn-xs-block">{I18n.t('buttons.select_files')}</button>
-                <input type="file" name="attachments" onChange={this.onFilesChange} required={false} multiple={true} accept="application/pdf, image/*" />
+                <input type="file" name="attachments"
+                  onFilesChange={this.onFilesChange}
+                  // onChange={this.onFilesChange} 
+                  required={false} multiple={true} accept="application/pdf, image/*" />
               </div>
             </div>
           </div>
@@ -100,9 +104,9 @@ TicketForm.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { attachments } = state.global
+  const { attachments } = state.global;
   const { loading, item } = state.tickets;
-  return { loading, item, attachments }
+  return { loading, item, attachments };
 }
 
 const connectedApp = connect(mapStateToProps)(TicketForm);
