@@ -45,18 +45,17 @@ class ModalPopupForm extends React.Component {
   deleteAttachment(e) {
     e.preventDefault()
     this.props.dispatch(globalActions.deleteAttachment(this.props.item.id))
-    console.log('deleteAttachment', this.props.item)
   }
 
   render() {
-    const { item, isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
+    const { isAllowPreviewDeletion, item, isHideBtn, loggedIn, error, notice, loading, id, title, btnText, btnCloseText, btnSaveText, aId, aClasses, aImgSrc, aImgClasses, aUrl, aTitle } = this.props;
     let link = <React.Fragment>
       {
         (aUrl && aImgSrc) ?
           <a href="#" id={aId} className={`${this.props.aClasses}`} data-toggle="modal">
             <div className="preview-container" ng-repeat="file in imagefinaldata">
               <img src={aImgSrc} className={aImgClasses} onClick={this.Show} />
-              <img className="preview-delete" src={iconTrash} onClick={this.deleteAttachment} />
+              {isAllowPreviewDeletion && <img className="preview-delete" src={iconTrash} onClick={this.deleteAttachment} />}
             </div>
           </a>
           :
