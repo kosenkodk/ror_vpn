@@ -28,6 +28,7 @@ class TicketsNewPage extends React.Component {
     // prepare attachment(-s) for json api
     jsonData['attachments'] = await Promise.all(this.props.attachments.attachmentsForApi);;
     this.props.dispatch(ticketActions.add(jsonData));
+    this.props.dispatch(globalActions.clearAttachments());
   }
 
   render() {
