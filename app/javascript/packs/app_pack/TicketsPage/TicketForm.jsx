@@ -62,7 +62,6 @@ class TicketForm extends React.Component {
               <div className="upload-btn-wrapper col">
                 <button className="btn btn-xs-block">{I18n.t('buttons.select_files')}</button>
                 <input type="file" name="attachments"
-                  // onFilesChange={this.onFilesChange}
                   onChange={this.onFilesChange}
                   required={false} multiple={true} accept="application/pdf, image/*" />
               </div>
