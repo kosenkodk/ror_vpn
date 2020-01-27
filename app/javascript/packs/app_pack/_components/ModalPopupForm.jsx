@@ -5,7 +5,6 @@ import { globalActions } from '../_actions';
 import { I18n } from 'helpers';
 // import FlashMessages from '../_sections/FlashMessages';
 import imgCloseSrc from 'images/admin/ic_close';
-// import iconTrash from 'images/icons/ic_trash_red.svg';
 import iconTrash from 'images/icons/ic_trash.svg';
 
 import Modal from 'react-bootstrap/Modal';
