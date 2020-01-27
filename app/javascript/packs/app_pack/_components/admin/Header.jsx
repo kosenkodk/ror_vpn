@@ -19,7 +19,7 @@ class Header extends React.Component {
         <li className="nav-item mr-auto">
           <h1 className="p-0 m-0 mt-xl-2">{title}</h1>
         </li>
-        <li className="nav-item">
+        <li className="nav-item d-none d-sm-block">
           <a id="emailInHeader" className="nav-link text-white">{user && user.email}</a>
         </li>
         <li className="nav-item">
