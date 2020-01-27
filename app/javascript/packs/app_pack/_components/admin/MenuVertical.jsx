@@ -6,13 +6,14 @@ import { urls } from 'config';
 class MenuVertical extends React.Component {
 
   render() {
-    const { items } = this.props;
+    const { items, user } = this.props;
     return (<ul className="mt-md-5 p-0 col sidebar accordion_menu list-group">
+      <li className="list-group-item d-block d-sm-none"> {user && user.email}</li>
       {items ? items.map((item, index) =>
         <div onClick={this.props.onClick} key={item.path}>
           <Link key={item.path} smooth to={item.path} className="" activeClassName=""
             location={{ pathname: document.location.pathname + document.location.hash }}>
-            <li className="list-group-item" >{item.name}</li>
+            <li className="list-group-item">{item.name}</li>
           </Link>
         </div>
       )
