@@ -96,11 +96,11 @@
   }
 
   section {
-    height: calc(100vh - #{$admin-navbar-height});
+    min-height: calc(100vh - #{$admin-navbar-height});
     // padding: 0 $padding*2+0px;
     padding-bottom: $padding+px;
     @media (min-width: $md-width) {
-      height: 100vh;
+      // min-height: 100vh;
       // padding: 0 2.14vw 5.17vh 1.5vw;
       padding: 0 pxtovw(21) pxtovh(60) pxtovw(30);
     }
