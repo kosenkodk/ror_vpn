@@ -311,7 +311,7 @@ class AccountPage extends React.Component {
               </div>
               <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete}
                 id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')}
-                btnClasses={'w-xs-100 w-sm-45 w-md-35'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+                btnClasses={'w-xs-100 w-sm-45'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
                 <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
               </ModalPopupForm>
             </div>
