@@ -15,7 +15,7 @@ RSpec.describe Ticket, type: :model do
   it 'check humanize date time' do
     ticket = create(:ticket, user:user)
 
-    created_at_short = ticket.created_at.strftime("%d %B %Y at %H:%M") # .to_formatted_s(:short)  # "04 Dec 00:00" # strftime("%Y-%m-%d %H:%M:%S %Z")
+    created_at_short = ticket.created_at.try(:strftime, "%d/%m/%y %H:%M")
     expect(ticket.created_at_humanize).to eq(created_at_short)
 
     expect(ticket.to_json).to include created_at_short

@@ -216,7 +216,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).not_to have_content(file_name)
         expect(page).not_to have_content(file_name2)
       end
-      
+
       xit 'add item with default department to list' do
         click_on(I18n.t('buttons.add'))
         
