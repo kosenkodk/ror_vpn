@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { pageActions, ticketActions } from '../_actions'
+import { pageActions, ticketActions, globalActions } from '../_actions'
 import { urls } from 'config'
 import { I18n } from 'helpers'
 import { ChatRoom, Messages } from '../_components'
@@ -25,6 +25,10 @@ class TicketsViewPage extends React.Component {
     this.props.dispatch(ticketActions.view(this.state.id))
     this.setTitle()
     this.setState({ subTitle: `${I18n.t("pages.tickets.form.title")}: ${I18n.t("pages.tickets.ticket")} ${this.state.id}` })
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(globalActions.clearAttachments())
   }
 
   setTitle() {
