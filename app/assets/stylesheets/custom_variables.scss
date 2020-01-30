@@ -1,3 +1,5 @@
+@import "bootstrap/scss/bootstrap-grid.scss";
+
 $bg_color_black: #0F0216;
 $bg_color_black2: #16041f;
 $bg_color_black3: #2b0c29;
@@ -30,6 +32,14 @@ $lg-width: 960px;
 $xl-width: 1140px; // 1020px by ui design (public website)
 $fullhd-width: 1921px;
 $k4-width: 3840px;
+
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px
+// ) !default;
 
 $header_navbar_height: 70; // 70px +  unquote("px");
 $padding: 15;
@@ -70,3 +80,26 @@ $container-max-widths: (
   fullhd: 1920px,
   k4: $k4-width,
 );
+
+$sizes: (
+  10: 10%,
+  15: 15%,
+  35: 35%,
+  45: 45%,
+
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+  60px: 60px,
+  80px: 80px,
+  100px: 100px
+);
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @each $size, $length in $sizes {
+    @include media-breakpoint-up($breakpoint) {
+      .w-#{$breakpoint}-#{$size} {width: $length !important;}
+    }
+  }
+}
