@@ -15,7 +15,8 @@ class AccountPage extends React.Component {
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
       is2faEnabled: this.props.is2faEnabled,
-      user: ''
+      user: '',
+      step2fa: 0
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -29,6 +30,43 @@ class AccountPage extends React.Component {
     this.setup2faStep2 = this.setup2faStep2.bind(this);
     this.setup2faStep3 = this.setup2faStep3.bind(this);
     this.setup2faStep4 = this.setup2faStep4.bind(this);
+    // this.set2faStep = this.set2faStep.bind(this);
+  }
+
+  set2faStep(e, step) {
+    e.preventDefault()
+    console.log('before set2faStep:', this.state.step2fa, step)
+    this.setState({ step2fa: step })
+    console.log('after set2faStep:', this.state.step2fa, step)
+
+    switch (step) {
+      case 0:
+        // close modal popup
+        this.props.dispatch(globalActions.setModalShow(false));
+        break
+      case 1:
+        // help popup
+        break
+      case 2:
+        // display qr code
+        this.props.dispatch(accountActions.getQrCodeUrl());
+        break
+      case 3:
+        // type 2fa otp code
+        break
+      case 4:
+        // finish
+        const data = FormDataAsJsonFromEvent(e)
+        this.props.dispatch(accountActions.enable2FA(data))
+        // this.setState({ step2fa:  })
+        break
+      default:
+        console.log('set2faStep default')
+        this.props.dispatch(globalActions.setModalShow(false));
+        this.setState({ step2fa: 0 })
+    }
+    console.log('after switch set2faStep:', this.state.step2fa, step)
+
   }
 
   onCancelAccount(e) {
@@ -82,6 +120,8 @@ class AccountPage extends React.Component {
 
   setup2faStep1(e) {
     if (e) e.preventDefault();
+    this.setState({ step2fa: 1 });
+    // this.props.dispatch(globalActions.setStep(1));
     this.props.dispatch(globalActions.setModalShow('setup2faStep1'));
   }
 
@@ -132,20 +172,6 @@ class AccountPage extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-7">
-            {/* <h2 className="pb-4">Account</h2> */}
-            {/* <div className="mb-5">
-              <h1 id="email">Email</h1>
-              <div className="row">
-                <div className="col-sm-4 align-self-center">
-                  <label className="col-form-label">Login email address: {user && user.email}</label>
-                </div>
-                <div className="col-sm-8">
-                  <ModalPopup onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('pages.account.change_email.button')}>
-                    <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
-                  </ModalPopup>
-                </div>
-              </div>
-            </div> */}
 
             <div className="mb-60">
               <h1>Username</h1>
@@ -198,7 +224,9 @@ class AccountPage extends React.Component {
 
               <div className="row align-items-center">
                 <div className="col-sm-5">
-                  <label className="col-form-label">Two-factor authentication</label>
+                  <label className="col-form-label">Two-factor authentication
+                  {this.state.step2fa}
+                  </label>
                 </div>
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
@@ -214,6 +242,46 @@ class AccountPage extends React.Component {
 
               <ModalPopupForm onClose={this.clearModalAlerts}
                 id='setup2faStep1'
+                isForm={this.state.step2fa === 3 ? true : false}
+                isHideBtn={true}
+                onBtnSave={(e) => this.set2faStep(e, this.state.step2fa + 1)}
+                title='Set up two-factor authentication'
+                btnCloseText={I18n.t('buttons.cancel')}
+                btnSaveText={I18n.t('buttons.next')}
+                btnClasses={''}>
+                {this.state.step2fa === 1 && <React.Fragment>
+                  <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
+                  <div className="border-left-pink mt-0">
+                    <p className="mt-0 mb-2">
+                      If you have never used 2FA before, we strongly recommend you &nbsp;
+                    <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
+                    </p>
+                  </div>
+                </React.Fragment>
+                }
+                {this.state.step2fa === 2 && <React.Fragment>
+                  <div className="border-left-pink mt-0">
+                    <p className="mt-0 mb-2">
+                      Scan this code with your two-factor authentication device to set up your account.&nbsp;
+                    <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <img src={qr_code_url} className="img-fluid w-45" />
+                  </div>
+                </React.Fragment>
+                }
+
+                {this.state.step2fa === 3 && <React.Fragment>
+                  <Setup2faStep3Form onModalCancel={(e) => this.set2faStep(e, this.state.step2fa - 1)} onFormSubmit={(e) => this.set2faStep(e, this.state.step2fa + 1)} />
+                </React.Fragment>
+                }
+
+              </ModalPopupForm>
+
+              {/* multiple modal popups */}
+              {/* <ModalPopupForm onClose={this.clearModalAlerts}
+                id='setup2faStep1'
                 isHideBtn={true}
                 onBtnSave={this.setup2faStep2}
                 title='Set up two-factor authentication'
@@ -227,9 +295,9 @@ class AccountPage extends React.Component {
                     <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
                   </p>
                 </div>
-              </ModalPopupForm>
+              </ModalPopupForm> */}
 
-              <ModalPopupForm onClose={this.clearModalAlerts}
+              {/* <ModalPopupForm onClose={this.clearModalAlerts}
                 id='setup2faStep2'
                 isHideBtn={true}
                 onBtnSave={this.setup2faStep3}
@@ -247,9 +315,9 @@ class AccountPage extends React.Component {
                 <div className="text-center">
                   <img src={qr_code_url} className="img-fluid w-45" />
                 </div>
-              </ModalPopupForm>
+              </ModalPopupForm> */}
 
-              <ModalPopupForm onClose={this.clearModalAlerts}
+              {/* <ModalPopupForm onClose={this.clearModalAlerts}
                 id='setup2faStep3'
                 isForm={true}
                 isHideBtn={true}
@@ -257,7 +325,7 @@ class AccountPage extends React.Component {
                 title='Set up two-factor authentication'
                 btnClasses={''}>
                 <Setup2faStep3Form onModalCancel={this.setup2faStep2} onFormSubmit={this.setup2faStep4} />
-              </ModalPopupForm>
+              </ModalPopupForm> */}
             </div>
           </div>
           <div className="col-lg-8">
@@ -323,10 +391,11 @@ class AccountPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { step } = state.global;
   const { qr_code_url } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, qr_code_url
+    loggingIn, user, qr_code_url, step
   };
 }
 
