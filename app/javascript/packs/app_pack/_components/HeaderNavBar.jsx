@@ -34,11 +34,11 @@ class HeaderNavBar extends React.Component {
                     // urls.user_payment, urls.user_downloads, urls.user_invite_friend,
                     urls.user_dashboard, urls.features, urls.pricing, urls.downloads, urls.contact_us, urls.help,
                   ].map((item, index) =>
-                    <li key={`nav-private${index}`} className="nav-item pr-1 pl-1">
+                    <li key={`nav-private${index}`} className="nav-item px-1">
                       <NavHashLink smooth to={item.path} activeClassName="" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink">{item.name}</NavHashLink>
                     </li>
                   )}
-                  <li className="nav-item">
+                  <li className="nav-item px-1">
                     <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link pl-3 pr-3 text-left btn btn-outline-pink active">{urls.signout.name}</NavHashLink>
                   </li>
                 </ul>
@@ -47,7 +47,7 @@ class HeaderNavBar extends React.Component {
                   {[
                     urls.features, urls.pricing, urls.downloads, urls.contact_us, urls.help, urls.signin, urls.signup
                   ].map((item, index) =>
-                    <li key={`nav-pubic${index}`} className="nav-item pr-1 pl-1">
+                    <li key={`nav-pubic${index}`} className="nav-item px-1">
                       <NavHashLink smooth to={item.path} activeClassName="" className={`nav-link pl-3 pr-3 text-left btn btn-outline-pink ${item.className || ''}`}>{item.name}</NavHashLink>
                     </li>
                   )}
