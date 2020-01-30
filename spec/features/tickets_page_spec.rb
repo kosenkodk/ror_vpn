@@ -111,6 +111,21 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).not_to have_content(file_name)
         expect(page).to have_content(file_name2)
       end
+
+      it 'clear previews when come back from another page' do
+        click_on_ticket_first
+        fill_in :message_text, with: message_text
+
+        # add attachments
+        attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
+        expect(page).to have_content(file_name)
+        expect(page).to have_content(file_name2)
+
+        click_on_btn_back
+        click_on_ticket_first
+        expect(page).not_to have_content(file_name)
+        expect(page).not_to have_content(file_name2)
+      end
     end
 
     context 'success' do
@@ -127,6 +142,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         # expect(page).to have_content(ticket_last.text) # problem with action cable ?
         # expect(page).to have_content(ticket_last.department)
       end
+
       it 'check reply and load messages' do
         click_on_ticket_first
         fill_in :message_text, with: message_text
@@ -155,6 +171,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(I18n.t('pages.tickets.form.status'))
       end
     end
+    
     context 'fail' do
       it 'with empty message'
     end
@@ -184,6 +201,22 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(file_name2)
       end
 
+      it 'clear previews when come back from another page' do
+        click_on(I18n.t('buttons.add'))
+        fill_in :title, with: 'ticket 1'
+
+        # add attachments
+        attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
+        expect(page).to have_content(file_name)
+        expect(page).to have_content(file_name2)
+
+        click_on_btn_back
+        click_on(I18n.t('buttons.add'))
+
+        expect(page).not_to have_content(file_name)
+        expect(page).not_to have_content(file_name2)
+      end
+      
       xit 'add item with default department to list' do
         click_on(I18n.t('buttons.add'))
         

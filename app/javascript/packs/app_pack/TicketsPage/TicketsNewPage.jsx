@@ -22,6 +22,10 @@ class TicketsNewPage extends React.Component {
     this.props.dispatch(pageActions.setTitle(I18n.t('nav_menu.tickets')));
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(globalActions.clearAttachments());
+  }
+
   async onFormSubmit(e) {
     e.preventDefault();
     let jsonData = FormDataAsJsonFromEvent(e);
