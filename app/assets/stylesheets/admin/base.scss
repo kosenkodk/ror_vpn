@@ -188,8 +188,7 @@
   }
 
   .sidebar {
-    height: 100vh;
-    
+
     ul.submenu {
       padding: 0 2rem;
       list-style: none !important;
@@ -445,6 +444,7 @@
       margin: 1rem 0;
     }
   }
+  @import "admin/mobiles";
   @import "admin/desktop";
   
   /*
