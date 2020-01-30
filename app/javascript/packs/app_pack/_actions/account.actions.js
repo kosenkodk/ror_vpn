@@ -22,6 +22,7 @@ function enable2FA(data) {
     userService.enable2FA(data)
       .then(
         response => {
+          dispatch(globalActions.setStep(0));
           dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice, response.is2fa))
@@ -30,6 +31,7 @@ function enable2FA(data) {
           dispatch(userActions.setUser(user))
         },
         error => {
+          dispatch(globalActions.setStep(3));
           dispatch(alertActions.error(error))
           dispatch(failure(error))
         }
@@ -43,6 +45,7 @@ function enable2FA(data) {
 function disable2FA() {
   return dispatch => {
     dispatch(request())
+    dispatch(globalActions.setStep(0))
     userService.disable2FA()
       .then(
         response => {

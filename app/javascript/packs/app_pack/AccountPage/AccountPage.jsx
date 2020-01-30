@@ -15,8 +15,7 @@ class AccountPage extends React.Component {
     this.state = {
       isAllowPasswordReset: this.props.isAllowPasswordReset,
       is2faEnabled: this.props.is2faEnabled,
-      user: '',
-      step2fa: 0
+      user: ''
     }
     this.onAccountDelete = this.onAccountDelete.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -35,9 +34,7 @@ class AccountPage extends React.Component {
 
   set2faStep(e, step) {
     e.preventDefault()
-    console.log('before set2faStep:', this.state.step2fa, step)
-    this.setState({ step2fa: step })
-    console.log('after set2faStep:', this.state.step2fa, step)
+    this.props.dispatch(globalActions.setStep(step));
 
     switch (step) {
       case 0:
@@ -58,15 +55,11 @@ class AccountPage extends React.Component {
         // finish
         const data = FormDataAsJsonFromEvent(e)
         this.props.dispatch(accountActions.enable2FA(data))
-        // this.setState({ step2fa:  })
         break
       default:
-        console.log('set2faStep default')
+        this.props.dispatch(globalActions.setStep(0));
         this.props.dispatch(globalActions.setModalShow(false));
-        this.setState({ step2fa: 0 })
     }
-    console.log('after switch set2faStep:', this.state.step2fa, step)
-
   }
 
   onCancelAccount(e) {
@@ -120,8 +113,7 @@ class AccountPage extends React.Component {
 
   setup2faStep1(e) {
     if (e) e.preventDefault();
-    this.setState({ step2fa: 1 });
-    // this.props.dispatch(globalActions.setStep(1));
+    this.props.dispatch(globalActions.setStep(1));
     this.props.dispatch(globalActions.setModalShow('setup2faStep1'));
   }
 
@@ -167,7 +159,7 @@ class AccountPage extends React.Component {
   }
 
   render() {
-    const { loggingIn, user, qr_code_url } = this.props;
+    const { loggingIn, user, qr_code_url, step } = this.props;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -225,7 +217,7 @@ class AccountPage extends React.Component {
               <div className="row align-items-center">
                 <div className="col-sm-5">
                   <label className="col-form-label">Two-factor authentication
-                  {this.state.step2fa}
+                  {step}
                   </label>
                 </div>
                 <div className="col">
@@ -242,14 +234,14 @@ class AccountPage extends React.Component {
 
               <ModalPopupForm onClose={this.clearModalAlerts}
                 id='setup2faStep1'
-                isForm={this.state.step2fa === 3 ? true : false}
+                isForm={step === 3 ? true : false}
                 isHideBtn={true}
-                onBtnSave={(e) => this.set2faStep(e, this.state.step2fa + 1)}
+                onBtnSave={(e) => this.set2faStep(e, step + 1)}
                 title='Set up two-factor authentication'
                 btnCloseText={I18n.t('buttons.cancel')}
                 btnSaveText={I18n.t('buttons.next')}
                 btnClasses={''}>
-                {this.state.step2fa === 1 && <React.Fragment>
+                {step === 1 && <React.Fragment>
                   <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
                   <div className="border-left-pink mt-0">
                     <p className="mt-0 mb-2">
@@ -259,7 +251,7 @@ class AccountPage extends React.Component {
                   </div>
                 </React.Fragment>
                 }
-                {this.state.step2fa === 2 && <React.Fragment>
+                {step === 2 && <React.Fragment>
                   <div className="border-left-pink mt-0">
                     <p className="mt-0 mb-2">
                       Scan this code with your two-factor authentication device to set up your account.&nbsp;
@@ -272,8 +264,8 @@ class AccountPage extends React.Component {
                 </React.Fragment>
                 }
 
-                {this.state.step2fa === 3 && <React.Fragment>
-                  <Setup2faStep3Form onModalCancel={(e) => this.set2faStep(e, this.state.step2fa - 1)} onFormSubmit={(e) => this.set2faStep(e, this.state.step2fa + 1)} />
+                {step === 3 && <React.Fragment>
+                  <Setup2faStep3Form onModalCancel={(e) => this.set2faStep(e, step - 1)} onFormSubmit={(e) => this.set2faStep(e, step + 1)} />
                 </React.Fragment>
                 }
 
@@ -395,13 +387,13 @@ function mapStateToProps(state) {
   const { qr_code_url } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, qr_code_url, step
+    loggingIn, user, qr_code_url, step,
   };
 }
 
 AccountPage.defaultProps = {
   isAllowPasswordReset: true,
-  is2faEnabled: false,
+  is2faEnabled: false
 }
 
 const connectedPage = connect(mapStateToProps)(AccountPage);
