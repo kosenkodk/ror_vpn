@@ -258,9 +258,9 @@ class AccountPage extends React.Component {
                 btnClasses={''}>
                 <Setup2faStep3Form onModalCancel={this.setup2faStep2} onFormSubmit={this.setup2faStep4} />
               </ModalPopupForm>
-
             </div>
-
+          </div>
+          <div className="col-lg-8">
             <div className="mb-60">
               <h1 id="password">Recovery & notification</h1>
               <div className="border-left-pink">
@@ -271,14 +271,14 @@ class AccountPage extends React.Component {
               </div>
 
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
-                <div className="w-45 mb-3 mb-sm-auto">
+                <div className="w-35 mb-3 mb-sm-auto">
                   <label className="col-form-label">Login email address</label>
                 </div>
-                <div className="mb-3 mb-sm-auto flex-grow-1 mr-2">
+                <div className="mb-3 mb-sm-auto flex-grow-1 mr-5">
                   <input id="email_recovery" name="email_recovery" type="string" className="form-control" value={user && user.email} readOnly placeholder='Email' />
                 </div>
                 <div className="mb-3 mb-sm-auto">
-                  <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={''}>
+                  <ModalPopupForm onClose={this.clearModalAlerts} id='changeEmailModal' isForm={true} title='Change login email' btnText={I18n.t('buttons.edit')} btnClasses={'px-3'}>
                     <ChangeEmailForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onChangeEmail} />
                   </ModalPopupForm>
                 </div>
@@ -308,7 +308,7 @@ class AccountPage extends React.Component {
                   Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
                 </p>
               </div>
-              <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={''} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
+              <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete} id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')} btnClasses={'w-45'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>
                 <DeleteForm onModalClose={this.clearModalAlerts} onFormSubmit={this.onAccountDelete} />
               </ModalPopupForm>
             </div>
