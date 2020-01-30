@@ -10,7 +10,8 @@ export const globalActions = {
   setModalShow,
   setAttachments,
   clearAttachments,
-  deleteAttachment
+  deleteAttachment,
+  setStep,
 }
 
 function setAttachments(files) {
@@ -30,6 +31,10 @@ function clearAttachments() {
 
 function deleteAttachment(index) {
   return { type: globalConstants.DELETE_ATTACHMENT, index: index };
+}
+
+function setStep(step) {
+  return { type: globalConstants.SET_STEP, step }
 }
 
 function setModalShow(isModalShow) {

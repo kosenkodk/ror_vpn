@@ -39,6 +39,11 @@ export function global(state = {}, action) {
           attachmentsForApi: [...state.attachments.attachmentsForApi].filter((item, index) => (index !== action.index)),
         }
       };
+    case globalConstants.SET_STEP:
+      return {
+        ...state,
+        step: action.step
+      };
     default:
       return state
   }
