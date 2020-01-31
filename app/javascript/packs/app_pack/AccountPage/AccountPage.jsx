@@ -234,7 +234,7 @@ class AccountPage extends React.Component {
 
               <ModalPopupForm onClose={this.clearModalAlerts}
                 id='setup2faStep1'
-                isForm={step === 3 ? true : false}
+                isForm={step >= 3 ? true : false}
                 isHideBtn={true}
                 onBtnSave={(e) => this.set2faStep(e, step + 1)}
                 title='Set up two-factor authentication'
@@ -264,7 +264,7 @@ class AccountPage extends React.Component {
                 </React.Fragment>
                 }
 
-                {step === 3 && <React.Fragment>
+                {step >= 3 && <React.Fragment>
                   <Setup2faStep3Form onModalCancel={(e) => this.set2faStep(e, step - 1)} onFormSubmit={(e) => this.set2faStep(e, step + 1)} />
                 </React.Fragment>
                 }
