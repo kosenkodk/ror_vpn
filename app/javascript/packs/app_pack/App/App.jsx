@@ -25,6 +25,7 @@ import { PricingPage } from '../PricingPage'
 import { ContactusPage } from '../ContactusPage'
 import { DashboardPage } from '../DashboardPage'
 import { AccountPage } from '../AccountPage'
+import { FriendInvitePage } from '../FriendInvitePage'
 
 // layouts
 import { GuestLayout, AdminLayout, LayoutWithSidebar } from '../App'
@@ -125,7 +126,7 @@ class App extends React.Component {
                 {/* <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
                   sidebarUrls={Object.values(urls.user_downloads.urls)} /> */}
 
-                <PrivateRoute path={urls.user_invite_friend.path} component={ComingSoonPage} />
+                <PrivateRoute path={urls.user_invite_friend.path} component={FriendInvitePage} />
 
                 <PrivateRoute component={NotFoundPage} />
               </Switch>
