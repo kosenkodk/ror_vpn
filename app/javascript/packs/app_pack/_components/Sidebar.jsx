@@ -22,11 +22,15 @@ class Sidebar extends React.Component {
 
   onMenuClose(e) {
     this.setState({ isHide: true });
+    document.body.classList.remove('no-scroll');
     e.preventDefault();
   }
 
   onMenuOpen(e) {
     this.setState({ isHide: false });
+    document.getElementById('navbar-toggler').classList.contains('collapsed') ?
+      document.body.classList.remove('no-scroll') :
+      document.body.classList.add('no-scroll');
     e.preventDefault();
   }
 
@@ -40,7 +44,7 @@ class Sidebar extends React.Component {
             </Link>
           </div>
           <div className="col-shrink align-self-center">
-            <button onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
+            <button id="navbar-toggler" onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>

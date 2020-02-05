@@ -1,11 +1,15 @@
   
 
-  @include media-breakpoint-only(xs) {
-    .btn-xs-block {
-      width: 100%;
-      display: block;
-    }
+@include media-breakpoint-only(xs) {
+  .btn-xs-block {
+    width: 100%;
+    display: block;
   }
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
 
 /* display this row with flex and use wrap (= respect columns' widths) */
 .row-flex {
