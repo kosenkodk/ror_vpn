@@ -37,7 +37,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <nav id="adminNavbar" className="d-flex flex-column navbar-expand-md navbar-dark bg-transparent">
-        <div className="row mx-2">
+        <div className="row mx-2 d-none d-md-block">
           <div className="col text-sm-center">
             <Link smooth to={urls.home.path} className="navbar-brand">
               <img src={logoImage} className='' alt='Vega VPN'></img>
@@ -47,6 +47,20 @@ class Sidebar extends React.Component {
             <button id="navbar-toggler" onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
               <span className="navbar-toggler-icon"></span>
             </button>
+          </div>
+        </div>
+        {/* for mobiles */}
+        <div className="d-block d-md-none flex-row d-flex align-items-center">
+          <div className="mr-2">
+            <button id="navbar-toggler" onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div className="">
+            <Link smooth to={urls.home.path} className="navbar-brand">
+              <img src={logoImage} className='' alt='Vega VPN'></img>
+            </Link>
+
           </div>
         </div>
         <div className={`p-0 border-secondary border-top navbar navbar-full navbar-collapse collapse ${this.state.isHide && 'hide'}`} id="navbarForAdminLeftSidebar">
