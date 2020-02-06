@@ -51,7 +51,7 @@ class Sidebar extends React.Component {
         </div>
         {/* for mobiles */}
         <div className="d-block d-md-none flex-row d-flex align-items-center">
-          <div className="mr-2">
+          <div className="mr-auto">
             <button id="navbar-toggler" onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
               <span className="navbar-toggler-icon"></span>
             </button>
