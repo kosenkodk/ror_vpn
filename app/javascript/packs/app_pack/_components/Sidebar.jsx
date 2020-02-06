@@ -3,6 +3,7 @@ import { NavHashLink as Link } from 'react-router-hash-link';
 import { urls } from 'config';
 import { history } from '../_helpers';
 import logoImage from 'images/logo.svg';
+import icCloseSrc from 'images/admin/ic_close_white.svg';
 import { MenuVertical } from '../_components/admin/MenuVertical';
 
 class Sidebar extends React.Component {
@@ -60,11 +61,30 @@ class Sidebar extends React.Component {
             <Link smooth to={urls.home.path} className="navbar-brand">
               <img src={logoImage} className='' alt='Vega VPN'></img>
             </Link>
-
           </div>
         </div>
         <div className={`p-0 border-secondary border-top navbar navbar-full navbar-collapse collapse ${this.state.isHide && 'hide'}`} id="navbarForAdminLeftSidebar">
-          <MenuVertical onClick={this.onMenuClose} />
+
+
+
+          <MenuVertical onClick={this.onMenuClose} >
+            <div className="mx-2 d-block d-md-none flex-row d-flex align-items-center">
+              <div className="mr-auto">
+                <Link smooth to={urls.home.path} className="navbar-brand">
+                  <img src={logoImage} className='' alt='Vega VPN'></img>
+                </Link>
+
+              </div>
+              <div className="">
+                <button id="navbar-toggler" onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">
+                  {/* <span className="navbar-toggler-icon"></span> */}
+
+                  <img src={icCloseSrc} className='' alt='Vega VPN'></img>
+
+                </button>
+              </div>
+            </div>
+          </MenuVertical>
         </div>
       </nav>
     );
