@@ -1,3 +1,15 @@
 .sidebar {
   height: 100vh;
+
+  position: fixed;
+  // left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 500;
+
+  left: -100%;
+  transform: translateX(100%);
+  background: $black;
+  transition-duration: 2s;
 }
