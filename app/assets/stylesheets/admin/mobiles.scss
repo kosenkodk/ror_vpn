@@ -1,3 +1,6 @@
+// start mobile navbar menu
+// Open menu: .collapse - .collapsing - .collapse.show
+// Close menu: .collapse.show - .collapsing.show - .collapse
 
 .navbar-collapse {
   z-index: 2;
@@ -27,3 +30,4 @@
   transition: all 0.2s ease;
   opacity: 1;
 }
+// end mobile navbar menu
