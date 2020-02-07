@@ -1,15 +1,29 @@
-.sidebar {
+
+.navbar-collapse {
+  z-index: 2;
+  background-color: $black;
   height: 100vh;
 
-  position: fixed;
-  // left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  z-index: 500;
-
+  // position: absolute; // able to scroll
+  position: fixed; // unable to scroll
+  top: 0px;
   left: -100%;
-  transform: translateX(100%);
-  background: $black;
-  transition-duration: 2s;
+  width: 100%;
+  transition: all 0.4s ease;
+  display: block;
+  opacity: 0.8;
+}
+
+.navbar-collapse.collapsing {
+  // height: auto !important;
+  left: -100%;
+  margin-left: 1px;
+  transition: all 0.2s ease;
+  opacity: 0.9;
+}
+
+.navbar-collapse.show {
+  margin-left: 100%;
+  transition: all 0.2s ease;
+  opacity: 1;
 }
