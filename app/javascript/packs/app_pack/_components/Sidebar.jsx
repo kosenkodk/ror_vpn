@@ -38,6 +38,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <nav id="adminNavbar" className="d-flex flex-column navbar-expand-md navbar-dark bg-transparent">
+        {/* desktops */}
         <div className="row mx-2 d-none d-md-block">
           <div className="col text-sm-center">
             <Link smooth to={urls.home.path} className="navbar-brand">
@@ -50,7 +51,7 @@ class Sidebar extends React.Component {
             </button>
           </div>
         </div>
-        {/* for mobiles */}
+        {/* mobiles */}
         <div className="d-block d-md-none flex-row d-flex align-items-center">
           <div className="mr-auto">
             <button id="navbar-toggler" onClick={this.onMenuOpen} className={`navbar-toggler ${this.state.isHide && 'collapsed'}`} type="button" data-toggle="collapse" data-target="#navbarForAdminLeftSidebar">

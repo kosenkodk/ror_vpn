@@ -4,8 +4,11 @@
     position: relative;
     left: unset;
     height: auto;
+    &.show {
+      margin-left: 0px;
+    }
   }
-  
+
 // @media #{$mq-medium} {
 // @media #{$mq-w1400} {
 // @media (min-width:1401px) {

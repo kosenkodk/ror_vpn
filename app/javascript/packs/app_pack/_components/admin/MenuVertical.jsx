@@ -12,7 +12,13 @@ class MenuVertical extends React.Component {
       {/* <li className="list-group-item d-block d-sm-none"> {user && user.email}</li> */}
       {items ? items.map((item, index) =>
         <div onClick={this.props.onClick} key={item.path}>
-          <Link key={item.path} smooth to={item.path} className="" activeClassName=""
+          {/* desktops */}
+          <Link key={item.path} smooth to={item.path} className="d-none d-md-block" activeClassName=""
+            location={{ pathname: document.location.pathname + document.location.hash }}>
+            <li className="list-group-item">{item.name}</li>
+          </Link>
+          {/* mobiles */}
+          <Link key={item.path} smooth to={item.path} className="d-block d-md-none" activeClassName="active"
             location={{ pathname: document.location.pathname + document.location.hash }}>
             <li className="list-group-item">{item.name}</li>
           </Link>
