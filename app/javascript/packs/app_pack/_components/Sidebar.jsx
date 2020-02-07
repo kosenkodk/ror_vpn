@@ -68,7 +68,7 @@ class Sidebar extends React.Component {
 
 
           <MenuVertical onClick={this.onMenuClose} >
-            <div className="mx-2 d-block d-md-none flex-row d-flex align-items-center">
+            <div className="mx-3 my-1 d-block d-md-none flex-row d-flex align-items-center">
               <div className="mr-auto">
                 <Link smooth to={urls.home.path} className="navbar-brand">
                   <img src={logoImage} className='' alt='Vega VPN'></img>
