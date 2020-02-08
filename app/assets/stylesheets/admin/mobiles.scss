@@ -1,3 +1,4 @@
+@media (max-width: $md-width) {
 // start mobile navbar menu
 // Open menu: .collapse - .collapsing - .collapse.show
 // Close menu: .collapse.show - .collapsing.show - .collapse
@@ -27,3 +28,4 @@
   transition: all 0.2s ease;
 }
 // end mobile navbar menu
+}
