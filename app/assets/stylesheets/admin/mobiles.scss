@@ -6,15 +6,20 @@
 .navbar-collapse {
   z-index: 2;
   background-color: $black;
-  height: 100vh;
+  // height: 100vh;
 
   // position: absolute; // able to scroll
   position: fixed; // unable to scroll
   top: 0px;
+  bottom: 0px;
+  right: 0px;
   left: -100%;
   width: 100%;
+  max-width: 100%;
+  max-height: none;
   transition: all 0.4s ease;
   display: block;
+  height: 100%;
 }
 
 .navbar-collapse.collapsing {
@@ -28,4 +33,9 @@
   transition: all 0.2s ease;
 }
 // end mobile navbar menu
+
+.main-content {
+  margin-bottom: pxtovh(60);
+}
+
 }

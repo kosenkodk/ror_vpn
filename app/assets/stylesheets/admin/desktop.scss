@@ -21,6 +21,9 @@ $multiplier: 1;
 .main-content {
   // padding: pxtovh(30px) pxtovw(20px);
   // padding: pxtovw(20px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: unset;
 }
 h1 {
   // font-size: calcFluidFontSize(24, 68, 1400, $bp-w4096, px); // for h1 tag for screens > $bp-w1400
