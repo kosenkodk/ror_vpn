@@ -14,20 +14,16 @@
   width: 100%;
   transition: all 0.4s ease;
   display: block;
-  opacity: 0.8;
 }
 
 .navbar-collapse.collapsing {
   // height: auto !important;
   left: -100%;
-  margin-left: 1px;
   transition: all 0.2s ease;
-  opacity: 0.9;
 }
 
 .navbar-collapse.show {
-  margin-left: 100%;
+  left: 0%;
   transition: all 0.2s ease;
-  opacity: 1;
 }
 // end mobile navbar menu
