@@ -9,6 +9,7 @@
 
 .no-scroll {
   // overflow-y: hidden;
+  position:fixed;
 }
 
 /* display this row with flex and use wrap (= respect columns' widths) */
