@@ -9,7 +9,7 @@
 
 .no-scroll {
   // overflow-y: hidden;
-  position:fixed;
+  position: fixed; // disable scroll when mobile navbar menu was opened for touchable mobile devices
 }
 
 /* display this row with flex and use wrap (= respect columns' widths) */
