@@ -9,7 +9,8 @@
 
 .no-scroll {
   // overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  // -webkit-overflow-scrolling: touch;
+  position: fixed;
 }
 
 /* display this row with flex and use wrap (= respect columns' widths) */
