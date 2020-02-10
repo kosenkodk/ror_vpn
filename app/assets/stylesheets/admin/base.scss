@@ -196,9 +196,9 @@
     // a li.list-group-item {
     //   opacity: $opacity05;
     // }
-    // a.active li.list-group-item {
-    //   opacity: 1;
-    // }
+    a.active li.list-group-item {
+      opacity: 1;
+    }
 
     li {
       cursor: pointer;
