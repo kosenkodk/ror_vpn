@@ -25,24 +25,26 @@ class Setup2faStep3Form extends React.Component {
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
           {/* <FlashMessages error={error && error} notice={notice && notice} /> */}
-          <div className="form-group row align-items-center">
-            <label htmlFor="password" className="col-sm-4 col-form-label">Password</label>
-            <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
+          <div className="col">
+            <div className="form-group row align-items-center">
+              <label htmlFor="password" className="col-sm-4 col-form-label">Password</label>
+              <input type="password" name="password" className="col-sm-6 form-control" id="password" value={password} onChange={this.handleChange} placeholder='Password' />
+            </div>
+            <div className="form-group row align-items-center">
+              <label htmlFor="code" className="col-sm-4 col-form-label">Two-factor code</label>
+              <input type="password" name="code2fa" className="col-sm-6 form-control" id="code2fa" value={code} onChange={this.handleChange} placeholder='Two-factor code' />
+            </div>
           </div>
-          <div className="form-group row align-items-center">
-            <label htmlFor="code" className="col-sm-4 col-form-label">Two-factor code</label>
-            <input type="password" name="code2fa" className="col-sm-6 form-control" id="code2fa" value={code} onChange={this.handleChange} placeholder='Two-factor code' />
-          </div>
-        </div>
-        <div className="modal-footer">
-          <div className="d-flex w-100">
-            <button type="button" onClick={this.props.onModalCancel} className="mr-auto btn btn-outline-danger" data-dismiss="modal">
-              {I18n.t('buttons.back')}
-            </button>
-            <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
-              {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-              {' ' + I18n.t('buttons.submit')}
-            </button>
+          <div className="modal-footer">
+            <div className="d-flex w-100">
+              <button type="button" onClick={this.props.onModalCancel} className="mr-auto btn btn-outline-danger" data-dismiss="modal">
+                {I18n.t('buttons.back')}
+              </button>
+              <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
+                {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                {' ' + I18n.t('buttons.submit')}
+              </button>
+            </div>
           </div>
         </div>
       </form>

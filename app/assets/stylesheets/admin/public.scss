@@ -1,11 +1,16 @@
   
 
-  @include media-breakpoint-only(xs) {
-    .btn-xs-block {
-      width: 100%;
-      display: block;
-    }
+@include media-breakpoint-only(xs) {
+  .btn-xs-block {
+    width: 100%;
+    display: block;
   }
+}
+
+.no-scroll {
+  // overflow-y: hidden;
+  position: fixed; // disable scroll when mobile navbar menu was opened for touchable mobile devices
+}
 
 /* display this row with flex and use wrap (= respect columns' widths) */
 .row-flex {
