@@ -20,12 +20,12 @@
 .navbar-collapse.collapsing {
   // height: auto !important;
   left: -100%;
-  transition: all 0.2s ease;
+  transition: all 0.4s ease;
 }
 
 .navbar-collapse.show {
   left: 0%;
-  transition: all 0.2s ease;
+  transition: all 0.4s ease;
 }
 // end mobile navbar menu
 }
