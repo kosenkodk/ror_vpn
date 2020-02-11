@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../_actions';
-import { I18n } from 'helpers'
+import { I18n } from 'helpers';
+import friendInviteSrc from 'images/admin/friend_invite.svg';
 
 class FriendInvitePage extends React.Component {
   constructor(props) {
@@ -39,8 +40,20 @@ class FriendInvitePage extends React.Component {
     const { loggingIn } = this.props;
     const { email, invite_link, submitted } = this.state;
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <h2>Refer Friend</h2>
+      <div className="col-md-8 col-md-offset-2 friend-invite">
+        <h1>Refer Friends</h1>
+
+        <div class="media">
+          <img class="mr-4" src={friendInviteSrc} alt="Generic placeholder image" />
+          <div class="media-body">
+            <h6 class="mt-2 mb-4 pb-1">Spread the word and earn rewards</h6>
+            <p className="mb-3">
+              When someone sighs up with your unqique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
+            </p>
+            <a href="#" className="text-blue">Terms and conditions apply.</a>
+          </div>
+        </div>
+
         <form name="form" onSubmit={this.handleSubmit}>
           <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
             <label htmlFor="email">Email</label>
