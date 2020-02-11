@@ -278,7 +278,7 @@
   }
   
   .form-control {
-    font-weight: $font-weight;
+    font-weight: $font-normal;
     border: 1px solid $borderColor2;
   }
 
@@ -444,6 +444,16 @@
       margin: 1rem 0;
     }
   }
+  
+  .friend-invite {
+    h1 {
+      font-weight: $font-normal;
+    }
+    p {
+      line-height: 1.5rem;
+    }
+  }
+
   @import "admin/mobiles";
   @import "admin/desktop";
   
