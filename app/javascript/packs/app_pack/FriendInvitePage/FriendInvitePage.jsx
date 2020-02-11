@@ -44,7 +44,7 @@ class FriendInvitePage extends React.Component {
         <h1>Refer Friends</h1>
 
         <div class="media row">
-          <img class="col-sm-4 px-0" src={friendInviteSrc} alt="Generic placeholder image" />
+          <img class="col-sm-4 px-sm-0" src={friendInviteSrc} alt="Generic placeholder image" />
           <div class="media-body col-sm-8 ml-md-3 align-self-center">
             <h6 class="mt-sm-n3 mb-4">Spread the word and earn rewards</h6>
             <p className="mb-3">
