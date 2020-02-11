@@ -35,6 +35,10 @@ class Sidebar extends React.Component {
     e.preventDefault();
   }
 
+  componentWillUnmount() {
+    document.body.classList.remove('no-scroll');
+  }
+
   render() {
     return (
       <nav id="adminNavbar" className="d-flex flex-column navbar-expand-md navbar-dark bg-transparent">
