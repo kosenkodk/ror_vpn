@@ -43,10 +43,10 @@ class FriendInvitePage extends React.Component {
       <div className="col-md-8 col-md-offset-2 friend-invite">
         <h1>Refer Friends</h1>
 
-        <div class="media">
-          <img class="mr-4" src={friendInviteSrc} alt="Generic placeholder image" />
-          <div class="media-body">
-            <h6 class="mt-2 mb-4 pb-1">Spread the word and earn rewards</h6>
+        <div class="media row">
+          <img class="col-sm-4 px-0" src={friendInviteSrc} alt="Generic placeholder image" />
+          <div class="media-body col-sm-8 ml-md-3 align-self-center">
+            <h6 class="mt-sm-n3 mb-4">Spread the word and earn rewards</h6>
             <p className="mb-3">
               When someone sighs up with your unqique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
             </p>
