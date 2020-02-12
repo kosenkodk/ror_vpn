@@ -37,56 +37,87 @@ class FriendInvitePage extends React.Component {
   }
 
   render() {
-    const { loggingIn } = this.props;
+    const { loggingIn, loading } = this.props;
     const { email, invite_link, submitted } = this.state;
     return (
-      <div className="col-md-8 col-md-offset-2 friend-invite">
-        <h1>Refer Friends</h1>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-8 col-lg-offset-2 friend-invite">
+            <h1>Refer Friends</h1>
 
-        <div class="media row">
-          <img class="col-sm-4 px-sm-0" src={friendInviteSrc} alt="Generic placeholder image" />
-          <div class="media-body col-sm-8 ml-md-3 align-self-center">
-            <h6 class="mt-sm-n3 mb-4">Spread the word and earn rewards</h6>
-            <p className="mb-3">
-              When someone sighs up with your unqique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
-            </p>
-            <a href="#" className="text-blue">Terms and conditions apply.</a>
-          </div>
-        </div>
+            <div className="mt-sm-4 d-flex flex-column flex-sm-row align-items-center">
+              <div className="w-sm-37 pr-2">
+                <img className="img-fluid" src={friendInviteSrc} alt="Generic placeholder image" />
+              </div>
+              <div className="w-sm-63">
+                <h6 className="mt-lg-n4 mb-4">Spread the word and earn rewards</h6>
+                <p className="mb-3">
+                  When someone signs up with your unqique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
+                </p>
+                <a href="#" className="text-blue">Terms and conditions apply.</a>
+              </div>
+            </div>
 
-        <form name="form" onSubmit={this.handleSubmit}>
-          <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-            <label htmlFor="email">Email</label>
-            <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
-            {submitted && !email &&
-              <div className="help-block">email is required</div>
-            }
-          </div>
-          {/* <div className={'form-group' + (submitted && !invite_link ? ' has-error' : '')}>
+            {/* flex + mobiles */}
+            <div className="mb-60 mt-88">
+              <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                <div className="w-37">
+                  <label className="col-form-label">
+                    Email address
+                  </label>
+                </div>
+                <div className="flex-grow-1">
+                  <input type="string" name="email" className="form-control" id="email"
+                  // value={email} onChange={this.handleChange} placeholder='Email'
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <button type="submit" className="btn btn-pink px-2 mx-sm-2 mt-2 mt-sm-auto"
+                    disabled={loading ? true : false}
+                  >
+                    {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                    {' ' + I18n.t('buttons.send_invites')}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <form name="form" onSubmit={this.handleSubmit}>
+              <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+                <label htmlFor="email">Email</label>
+                <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
+                {submitted && !email &&
+                  <div className="help-block">email is required</div>
+                }
+              </div>
+              {/* <div className={'form-group' + (submitted && !invite_link ? ' has-error' : '')}>
             <label htmlFor="invite_link">Share Your Link</label>
             <input type="text" className="form-control" name="invite_link" value={invite_link} onChange={this.handleChange} />
             {submitted && !invite_link &&
               <div className="help-block">Invite link is required</div>
             }
           </div> */}
-          <div className="form-group">
-            <button className="btn btn-primary">
-              {I18n.t('buttons.send_invites')}
-            </button>
-            {loggingIn &&
-              <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            }
+              <div className="form-group">
+                <button className="btn btn-primary">
+                  {I18n.t('buttons.send_invites')}
+                </button>
+                {loggingIn &&
+                  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                }
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  const loading = false // todo:
   const { loggingIn } = state.authentication;
   return {
-    loggingIn
+    loggingIn, loading
   };
 }
 
