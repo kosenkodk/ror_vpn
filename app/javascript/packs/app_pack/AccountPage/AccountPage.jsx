@@ -216,9 +216,7 @@ class AccountPage extends React.Component {
 
               <div className="row align-items-center">
                 <div className="col-sm-5">
-                  <label className="col-form-label">Two-factor authentication
-                  {step}
-                  </label>
+                  <label className="col-form-label">Two-factor authentication</label>
                 </div>
                 <div className="col">
                   <div className="mt-n1 custom-control custom-switch">
