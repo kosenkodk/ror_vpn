@@ -462,6 +462,17 @@
         font-size: 0.75rem;
       }
     }
+    .share-links {
+      button {
+        img {
+          min-height: 12px;
+          height: pxtovh(12);
+        }
+      }
+    }
+    .btn-copy {
+      min-width: 116px;
+    }
     .btn-telegram {
       background-color: $telegram;
       border-color: $telegram;

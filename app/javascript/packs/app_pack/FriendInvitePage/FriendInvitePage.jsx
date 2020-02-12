@@ -65,7 +65,7 @@ class FriendInvitePage extends React.Component {
             {/* flex + mobiles */}
             <div className="mb-60 mt-88">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
-                <div className="w-37">
+                <div className="w-sm-37">
                   <label className="col-form-label">
                     Email address
                   </label>
@@ -76,7 +76,7 @@ class FriendInvitePage extends React.Component {
                   />
                 </div>
 
-                <div className="w-sm-16">
+                <div className="flex-shrink-0">
                   <button type="submit" className="btn btn-pink btn-block px-2 mt-2 mt-sm-auto"
                     disabled={loading ? true : false}
                   >
@@ -103,7 +103,7 @@ class FriendInvitePage extends React.Component {
             {/* share link */}
             <div className="mb-60 mt-88">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
-                <div className="w-37">
+                <div className="w-sm-37">
                   <label className="col-form-label">
                     Share Your Link
                   </label>
@@ -114,8 +114,8 @@ class FriendInvitePage extends React.Component {
                   />
                 </div>
 
-                <div className="w-sm-16">
-                  <button type="submit" className="btn btn-pink btn-block px-2 mt-2 mt-sm-auto"
+                <div className="flex-shrink-0">
+                  <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
                     disabled={loading ? true : false}
                   >
                     {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
@@ -125,14 +125,14 @@ class FriendInvitePage extends React.Component {
               </div>
 
               {/* share link to soc nets */}
-              <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+              <div className="share-links d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-37"></div>
                 <div className="flex-grow-1">
-                  <div className="mt-2 mt-md-0 d-flex flex-column flex-sm-row align-items-end">
-                    <button className="btn btn-telegram btn-block px-2 mr-sm-2">
+                  <div className="mt-2 mt-md-0 d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
+                    <button className="btn btn-telegram btn-block px-2 mr-md-2">
                       <img src={icTelegram} /> {I18n.t('buttons.telegram')}
                     </button>
-                    <button className="btn btn-facebook btn-block px-2 mr-sm-2">
+                    <button className="btn btn-facebook btn-block px-2 mr-md-2">
                       <img src={icFacebook} /> {I18n.t('buttons.facebook')}
                     </button>
                     <button className="btn btn-twitter px-2 btn-block">
