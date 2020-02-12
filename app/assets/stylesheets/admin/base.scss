@@ -462,6 +462,33 @@
         font-size: 0.75rem;
       }
     }
+    .btn-telegram {
+      background-color: $telegram;
+      border-color: $telegram;
+      color: $white;
+      opacity: 1;
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+    .btn-facebook {
+      background-color: $facebook;
+      border-color: $facebook;
+      color: $white;
+      opacity: 1;
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+    .btn-twitter {
+      background-color: $twitter;
+      border-color: $twitter;
+      color: $white;
+      opacity: 1;
+      &:hover {
+        opacity: 0.85;
+      }
+    }
   }
 
   @import "admin/mobiles";
