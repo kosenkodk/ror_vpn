@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { I18n } from 'helpers';
 import friendInviteSrc from 'images/admin/friend_invite.svg';
+import gmailSrc from 'images/icons/ic_gmail.svg';
 
 class FriendInvitePage extends React.Component {
   constructor(props) {
@@ -71,6 +72,7 @@ class FriendInvitePage extends React.Component {
                   // value={email} onChange={this.handleChange} placeholder='Email'
                   />
                 </div>
+
                 <div className="flex-shrink-0">
                   <button type="submit" className="btn btn-pink px-2 mx-sm-2 mt-2 mt-sm-auto"
                     disabled={loading ? true : false}
@@ -78,6 +80,18 @@ class FriendInvitePage extends React.Component {
                     {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                     {' ' + I18n.t('buttons.send_invites')}
                   </button>
+                </div>
+              </div>
+
+              {/* import gmail contacts */}
+              <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                <div className="w-37"></div>
+                <div className="flex-grow-1">
+                  <p className="">
+                    <small>
+                      Import Contacts: <img src={gmailSrc} className="img-fluid p-2" /> Gmail
+                    </small>
+                  </p>
                 </div>
               </div>
             </div>
