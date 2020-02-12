@@ -77,7 +77,7 @@ class FriendInvitePage extends React.Component {
                 </div>
 
                 <div className="flex-shrink-0">
-                  <button type="submit" className="btn btn-pink btn-block px-2 mt-2 mt-sm-auto"
+                  <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
                     disabled={loading ? true : false}
                   >
                     {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
