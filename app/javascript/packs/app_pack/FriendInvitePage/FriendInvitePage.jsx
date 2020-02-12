@@ -6,6 +6,9 @@ import { userActions } from '../_actions';
 import { I18n } from 'helpers';
 import friendInviteSrc from 'images/admin/friend_invite.svg';
 import gmailSrc from 'images/icons/ic_gmail.svg';
+import icTwitter from 'images/icons/ic_twitter.svg';
+import icFacebook from 'images/icons/ic_facebook.svg';
+import icTelegram from 'images/icons/ic_telegram.svg';
 
 class FriendInvitePage extends React.Component {
   constructor(props) {
@@ -67,14 +70,14 @@ class FriendInvitePage extends React.Component {
                     Email address
                   </label>
                 </div>
-                <div className="flex-grow-1">
+                <div className="flex-grow-1 pr-sm-2">
                   <input type="string" name="email" className="form-control" id="email"
                   // value={email} onChange={this.handleChange} placeholder='Email'
                   />
                 </div>
 
-                <div className="flex-shrink-0">
-                  <button type="submit" className="btn btn-pink px-2 mx-sm-2 mt-2 mt-sm-auto"
+                <div className="w-sm-16">
+                  <button type="submit" className="btn btn-pink btn-block px-2 mt-2 mt-sm-auto"
                     disabled={loading ? true : false}
                   >
                     {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
@@ -92,6 +95,50 @@ class FriendInvitePage extends React.Component {
                       Import Contacts: <img src={gmailSrc} className="img-fluid p-2" /> Gmail
                     </small>
                   </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* share link */}
+            <div className="mb-60 mt-88">
+              <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                <div className="w-37">
+                  <label className="col-form-label">
+                    Share Your Link
+                  </label>
+                </div>
+                <div className="flex-grow-1 pr-sm-2">
+                  <input type="string" name="email" className="form-control" id="email"
+                  // value={email} onChange={this.handleChange} placeholder='Email'
+                  />
+                </div>
+
+                <div className="w-sm-16">
+                  <button type="submit" className="btn btn-pink btn-block px-2 mt-2 mt-sm-auto"
+                    disabled={loading ? true : false}
+                  >
+                    {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                    {' ' + I18n.t('buttons.copy')}
+                  </button>
+                </div>
+              </div>
+
+              {/* share link to soc nets */}
+              <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                <div className="w-37"></div>
+                <div className="flex-grow-1">
+                  <div className="mt-2 mt-md-0 d-flex flex-column flex-sm-row align-items-end">
+                    <button className="btn btn-telegram btn-block px-2 mr-sm-2">
+                      <img src={icTelegram} /> {I18n.t('buttons.telegram')}
+                    </button>
+                    <button className="btn btn-facebook btn-block px-2 mr-sm-2">
+                      <img src={icFacebook} /> {I18n.t('buttons.facebook')}
+                    </button>
+                    <button className="btn btn-twitter px-2 btn-block">
+                      <img src={icTwitter} /> {I18n.t('buttons.twitter')}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

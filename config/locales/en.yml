@@ -303,6 +303,10 @@ en:
       department:
         subject: "Contact Us. New message."
   buttons:
+    copy: "Copy"
+    telegram: "Telegram"
+    facebook: "Facebook"
+    twitter: "Twitter"
     send_invites: "Send Invites"
     select_files: "Select files"
     back_to_prev_page: "Back to previous page"
