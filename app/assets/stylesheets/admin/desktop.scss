@@ -1,5 +1,14 @@
 
 @media (min-width: $lg-width) {
+
+  .friend-invite {
+    .import_email_contacts {
+      p small {
+        @include fluidFontSize(12px, 38px, $bp-w1400, $bp-w4096, 12px);
+      }
+    }
+  }
+
   .navbar-collapse {
     position: relative;
     left: unset;
