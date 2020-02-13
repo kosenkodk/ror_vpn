@@ -79,13 +79,13 @@ class FriendInvitePage extends React.Component {
                       Email address
                   </label>
                   </div>
-                  <div className="flex-grow-1 pr-sm-2">
+                  <div className="w-sm-45 pr-sm-2">
                     <input type="string" name="email" className="form-control" id="email"
                       value={email} onChange={this.handleChange} placeholder='Email'
                     />
                   </div>
 
-                  <div className="flex-shrink-0">
+                  <div className="flex-grow-1">
                     <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
                       disabled={loading ? true : false}
                     >
@@ -121,14 +121,14 @@ class FriendInvitePage extends React.Component {
                     Share Your Link
                   </label>
                 </div>
-                <div className="flex-grow-1 pr-sm-2">
+                <div className="w-sm-45 pr-sm-2">
                   <input type="string" name="refer_link" className="form-control" id="refer_link"
                     ref={(copyLinkRefer) => this.copyLinkRefer = copyLinkRefer}
                     defaultValue={refer_link} readOnly={true} placeholder=''
                   />
                 </div>
 
-                <div className="flex-shrink-0">
+                <div className="flex-grow-1">
                   <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
                     onClick={this.copyToClipboard}
                     disabled={loading ? true : false}
