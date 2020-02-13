@@ -79,7 +79,7 @@ class FriendInvitePage extends React.Component {
                   <div className="w-sm-37">
                     <label className="col-form-label">
                       Email address
-                  </label>
+                    </label>
                   </div>
                   <div className="w-sm-37 w-md-45 pr-sm-2">
                     <input type="string" name="email" className="form-control" id="email"
@@ -104,7 +104,7 @@ class FriendInvitePage extends React.Component {
                     <p className="">
                       <small>
                         Import Contacts: <img src={gmailSrc} className="img-fluid p-2" /> Gmail
-                    </small>
+                      </small>
                     </p>
                   </div>
                 </div>
