@@ -144,10 +144,9 @@ class FriendInvitePage extends React.Component {
                 <div className="w-37"></div>
                 <div className="flex-grow-1">
                   <div className="mt-2 mt-md-0 d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
-                    {/* <a href="https://telegram.me/share/url?url=http://ya.ru&text='referlink'">Telegram</a> */}
-                    {/* tg://msg_url?url=http%3A%2F%2Fya.ru&text=%27sharelink%27 */}
                     <a className="btn btn-telegram btn-block px-2 mr-md-2"
-                      href={`https://t.me/share/url?url=${refer_link}&text=${refer_title}`} >
+                      // href={`https://t.me/share/url?url=${refer_link}&text=${refer_title}`}>
+                      href={`https://t.me/share/url?url=${refer_link}`}>
                       <img src={icTelegram} /> {I18n.t('buttons.telegram')}
                     </a>
                     <a className="btn btn-facebook btn-block px-2 mr-md-2"
@@ -155,7 +154,8 @@ class FriendInvitePage extends React.Component {
                       <img src={icFacebook} /> {I18n.t('buttons.facebook')}
                     </a>
                     <a className="btn btn-twitter px-2 btn-block"
-                      href={`https://twitter.com/intent/tweet?url=${refer_link}&text=${refer_title}`}>
+                      href={`https://twitter.com/intent/tweet?url=${refer_link}`}>
+                      {/* href={`https://twitter.com/intent/tweet?url=${refer_link}&text=${refer_title}`}> */}
                       <img src={icTwitter} /> {I18n.t('buttons.twitter')}
                     </a>
                   </div>
