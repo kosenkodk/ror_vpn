@@ -33,16 +33,16 @@ class FriendInvitePage extends React.Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { email, invite_link } = this.state;
+    const { email, link_refer } = this.state;
     const { dispatch } = this.props;
-    if (email && invite_link) {
-      // dispatch(userActions.invites_send(email, invite_link));
+    if (email && link_refer) {
+      // dispatch(userActions.invites_send(email, link_refer));
     }
   }
 
   render() {
     const { loggingIn, loading } = this.props;
-    const { email, invite_link, submitted } = this.state;
+    const { email, link_refer, submitted } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -62,49 +62,51 @@ class FriendInvitePage extends React.Component {
               </div>
             </div>
 
-            {/* flex + mobiles */}
+            {/* send invites */}
             <div className="mt-88">
-              <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
-                <div className="w-sm-37">
-                  <label className="col-form-label">
-                    Email address
+              <form name="form" onSubmit={this.handleSubmit}>
+
+                <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                  <div className="w-sm-37">
+                    <label className="col-form-label">
+                      Email address
                   </label>
-                </div>
-                <div className="flex-grow-1 pr-sm-2">
-                  <input type="string" name="email" className="form-control" id="email"
-                  // value={email} onChange={this.handleChange} placeholder='Email'
-                  />
+                  </div>
+                  <div className="flex-grow-1 pr-sm-2">
+                    <input type="string" name="email" className="form-control" id="email"
+                      value={email} onChange={this.handleChange} placeholder='Email'
+                    />
+                  </div>
+
+                  <div className="flex-shrink-0">
+                    <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
+                      disabled={loading ? true : false}
+                    >
+                      {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                      {' ' + I18n.t('buttons.send_invites')}
+                    </button>
+                  </div>
                 </div>
 
-                <div className="flex-shrink-0">
-                  <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
-                    disabled={loading ? true : false}
-                  >
-                    {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                    {' ' + I18n.t('buttons.send_invites')}
-                  </button>
-                </div>
-              </div>
-
-              {/* import gmail contacts */}
-              <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
-                <div className="w-37"></div>
-                <div className="flex-grow-1">
-                  <p className="">
-                    <small>
-                      Import Contacts: <img src={gmailSrc} className="img-fluid p-2" /> Gmail
+                {/* import gmail contacts */}
+                <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                  <div className="w-37"></div>
+                  <div className="flex-grow-1">
+                    <p className="">
+                      <small>
+                        Import Contacts: <img src={gmailSrc} className="img-fluid p-2" /> Gmail
                     </small>
-                  </p>
+                    </p>
+                  </div>
                 </div>
-              </div>
-
+              </form>
             </div>
 
             <div className="mt-lg-n2 mb-lg-3 d-flex flex-row align-items-center justify-content-between">
               <div className="border-secondary border-top w-45"></div> <b>or</b> <div className="w-45 border-secondary border-top"></div>
             </div>
 
-            {/* share link */}
+            {/* share refer link */}
             <div className="mb-60">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-sm-37">
@@ -113,8 +115,8 @@ class FriendInvitePage extends React.Component {
                   </label>
                 </div>
                 <div className="flex-grow-1 pr-sm-2">
-                  <input type="string" name="email" className="form-control" id="email"
-                  // value={email} onChange={this.handleChange} placeholder='Email'
+                  <input type="string" name="link_refer" className="form-control" id="link_refer"
+                    defaultValue={link_refer} readOnly={true} placeholder=''
                   />
                 </div>
 
@@ -128,7 +130,7 @@ class FriendInvitePage extends React.Component {
                 </div>
               </div>
 
-              {/* share link to soc nets */}
+              {/* share refer link to soc nets */}
               <div className="share-links d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-37"></div>
                 <div className="flex-grow-1">
@@ -147,30 +149,6 @@ class FriendInvitePage extends React.Component {
               </div>
             </div>
 
-            <form name="form" onSubmit={this.handleSubmit}>
-              <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-                <label htmlFor="email">Email</label>
-                <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
-                {submitted && !email &&
-                  <div className="help-block">email is required</div>
-                }
-              </div>
-              {/* <div className={'form-group' + (submitted && !invite_link ? ' has-error' : '')}>
-            <label htmlFor="invite_link">Share Your Link</label>
-            <input type="text" className="form-control" name="invite_link" value={invite_link} onChange={this.handleChange} />
-            {submitted && !invite_link &&
-              <div className="help-block">Invite link is required</div>
-            }
-          </div> */}
-              <div className="form-group">
-                <button className="btn btn-primary">
-                  {I18n.t('buttons.send_invites')}
-                </button>
-                {loggingIn &&
-                  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                }
-              </div>
-            </form>
           </div>
         </div>
       </div>
