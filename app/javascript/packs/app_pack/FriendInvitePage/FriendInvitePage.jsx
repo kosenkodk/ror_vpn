@@ -16,7 +16,7 @@ class FriendInvitePage extends React.Component {
 
     this.state = {
       email: '',
-      invite_link: '',
+      link_refer: '',
       submitted: false
     };
 
