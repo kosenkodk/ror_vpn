@@ -7,6 +7,12 @@ RSpec.describe User, type: :model do
   let!(:plan) { create(:tariff_plan) }
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }
+  
+  context 'refer link' do
+    it do
+      expect(user.get_refer_link).to eq("#{Rails.application.config.host}/signup?refer=#{user.email}")
+    end
+  end
 
   context '2fa' do
     let(:secret) { '5qlcip7azyjuwm36' }

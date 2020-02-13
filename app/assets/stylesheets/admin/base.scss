@@ -463,6 +463,9 @@
       }
     }
     .share-links {
+      a {
+        text-decoration: none;
+      }
       button {
         img {
           min-height: 12px;

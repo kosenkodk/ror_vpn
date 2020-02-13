@@ -39,6 +39,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def get_refer_link
+    "#{Rails.application.config.host}/signup?refer=#{self.email}"
+  end
+
   def clear_password_token!
     self.reset_password_token = nil
     self.reset_password_token_expires_at = nil
