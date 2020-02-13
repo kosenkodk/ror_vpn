@@ -79,7 +79,7 @@ class FriendInvitePage extends React.Component {
                       Email address
                   </label>
                   </div>
-                  <div className="w-sm-45 pr-sm-2">
+                  <div className="w-sm-37 w-md-45 pr-sm-2">
                     <input type="string" name="email" className="form-control" id="email"
                       value={email} onChange={this.handleChange} placeholder='Email'
                     />
@@ -109,7 +109,7 @@ class FriendInvitePage extends React.Component {
               </form>
             </div>
 
-            <div className="mt-lg-n2 mb-lg-3 d-flex flex-row align-items-center justify-content-between">
+            <div className="mt-md-n2 mb-md-3 d-flex flex-row align-items-center justify-content-between">
               <div className="border-secondary border-top w-45"></div> <b>or</b> <div className="w-45 border-secondary border-top"></div>
             </div>
 
@@ -121,7 +121,7 @@ class FriendInvitePage extends React.Component {
                     Share Your Link
                   </label>
                 </div>
-                <div className="w-sm-45 pr-sm-2">
+                <div className="w-sm-37 w-md-45 pr-sm-2">
                   <input type="string" name="refer_link" className="form-control" id="refer_link"
                     ref={(copyLinkRefer) => this.copyLinkRefer = copyLinkRefer}
                     defaultValue={refer_link} readOnly={true} placeholder=''
@@ -143,20 +143,26 @@ class FriendInvitePage extends React.Component {
               <div className="share-links d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-37"></div>
                 <div className="flex-grow-1">
-                  <div className="mt-2 mt-md-0 d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
-                    <a className="btn btn-telegram btn-block px-2 mr-md-2"
+                  <div className="d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
+                    <a className="w-100 mr-md-2 mt-2"
                       // href={`https://t.me/share/url?url=${refer_link}&text=${refer_title}`}>
                       href={`https://t.me/share/url?url=${refer_link}`}>
-                      <img src={icTelegram} /> {I18n.t('buttons.telegram')}
+                      <button className="btn btn-telegram btn-block px-2 ">
+                        <img src={icTelegram} /> {I18n.t('buttons.telegram')}
+                      </button>
                     </a>
-                    <a className="btn btn-facebook btn-block px-2 mr-md-2"
+                    <a className="w-100 mr-md-2 mt-2"
                       href={`https://www.facebook.com/sharer.php?u=${refer_link}`}>
-                      <img src={icFacebook} /> {I18n.t('buttons.facebook')}
+                      <button className="btn btn-facebook btn-block px-2 ">
+                        <img src={icFacebook} /> {I18n.t('buttons.facebook')}
+                      </button>
                     </a>
-                    <a className="btn btn-twitter px-2 btn-block"
+                    <a className="w-100 mt-2"
                       href={`https://twitter.com/intent/tweet?url=${refer_link}`}>
                       {/* href={`https://twitter.com/intent/tweet?url=${refer_link}&text=${refer_title}`}> */}
-                      <img src={icTwitter} /> {I18n.t('buttons.twitter')}
+                      <button className="btn btn-twitter px-2 btn-block">
+                        <img src={icTwitter} /> {I18n.t('buttons.twitter')}
+                      </button>
                     </a>
                   </div>
                 </div>
