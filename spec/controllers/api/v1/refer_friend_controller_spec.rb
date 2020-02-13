@@ -27,7 +27,10 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it 'send refer link to emails'
+    it 'send refer link to emails' do
+      post :create, params: {emails: 'email@ex.com,email2@ex.com'}
+      expect(response).to have_http_status(:success)
+    end
     it 'send refer link to friend using email'
     it 'import emails from gmail'
 
@@ -35,6 +38,6 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
   
   context 'signup' do
     it 'with refer link'
-    it 'get bonus or free month?'
+    it 'get bonus or free month for both users?'
   end
 end

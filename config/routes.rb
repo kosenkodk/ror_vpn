@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       
       # invite/refer friend
       get '/refer_friend/link', to: 'refer_friend#link'
+      post '/refer_friend', to: 'refer_friend#create'
       
       resources :user_mfa_session
       # delete '/disable2fa', to: 'user_mfa_session#destroy'
