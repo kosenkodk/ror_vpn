@@ -24,6 +24,12 @@ class FriendInvitePage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  copyToClipboard = (e) => {
+    this.copyLinkRefer.select();
+    document.execCommand('copy');
+    e.target.focus();
+  };
+
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -116,12 +122,14 @@ class FriendInvitePage extends React.Component {
                 </div>
                 <div className="flex-grow-1 pr-sm-2">
                   <input type="string" name="link_refer" className="form-control" id="link_refer"
+                    ref={(copyLinkRefer) => this.copyLinkRefer = copyLinkRefer}
                     defaultValue={link_refer} readOnly={true} placeholder=''
                   />
                 </div>
 
                 <div className="flex-shrink-0">
                   <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
+                    onClick={this.copyToClipboard}
                     disabled={loading ? true : false}
                   >
                     {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
