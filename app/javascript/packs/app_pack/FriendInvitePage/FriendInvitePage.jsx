@@ -63,7 +63,7 @@ class FriendInvitePage extends React.Component {
             </div>
 
             {/* flex + mobiles */}
-            <div className="mb-60 mt-88">
+            <div className="mt-88">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-sm-37">
                   <label className="col-form-label">
@@ -100,11 +100,12 @@ class FriendInvitePage extends React.Component {
 
             </div>
 
-            <div className="d-flex flex-row align-items-center justify-content-between">
+            <div className="mt-lg-n2 mb-lg-3 d-flex flex-row align-items-center justify-content-between">
               <div className="border-secondary border-top w-45"></div> <b>or</b> <div className="w-45 border-secondary border-top"></div>
             </div>
+
             {/* share link */}
-            <div className="mb-60 mt-88">
+            <div className="mb-60">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-sm-37">
                   <label className="col-form-label">
