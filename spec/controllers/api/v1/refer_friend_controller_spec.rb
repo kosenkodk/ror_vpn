@@ -22,12 +22,19 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
 
     it 'generate refer link' do
       get :link
-      expect(response_json).to eq({})
+      # expect(response_json).to eq({})
+      expect(response_json['refer_link']).to eq(user.get_refer_link)
       expect(response).to have_http_status(:success)
     end
 
     it 'send refer link to emails'
     it 'send refer link to friend using email'
     it 'import emails from gmail'
+
+  end
+  
+  context 'signup' do
+    it 'with refer link'
+    it 'get bonus or free month?'
   end
 end

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../_actions';
+import { userActions, globalActions } from '../_actions';
 import { I18n } from 'helpers';
 import friendInviteSrc from 'images/admin/friend_invite.svg';
 import gmailSrc from 'images/icons/ic_gmail.svg';
@@ -16,8 +16,6 @@ class FriendInvitePage extends React.Component {
 
     this.state = {
       email: '',
-      refer_link: 'http://vega.isit.su/',
-      refer_title: 'ReferLink',
       submitted: false
     };
 
@@ -47,9 +45,13 @@ class FriendInvitePage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.dispatch(globalActions.getReferLink())
+  }
+
   render() {
-    const { loggingIn, loading } = this.props;
-    const { email, refer_link, refer_title, submitted } = this.state;
+    const { refer_link, loggingIn, loading } = this.props;
+    const { email, submitted } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -177,9 +179,11 @@ class FriendInvitePage extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const { refer_link } = state.global;
   const loading = false // todo:
   const { loggingIn } = state.authentication;
   return {
+    refer_link,
     loggingIn, loading
   };
 }

@@ -12,6 +12,24 @@ export const globalActions = {
   clearAttachments,
   deleteAttachment,
   setStep,
+  getReferLink
+}
+
+function getReferLink() {
+  return dispatch => {
+    // dispatch(request())
+    userService.getReferLink()
+      .then(
+        response => dispatch(success(response.refer_link)),
+        error => {
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  // function request() { return { type: globalConstants.GET_REFER_LINK_REQUEST } }
+  function success(refer_link) { return { type: globalConstants.GET_REFER_LINK_SUCCESS, refer_link } }
+  // function failure(error) { return { type: globalConstants.GET_REFER_LINK_FAILURE, error } }
 }
 
 function setAttachments(files) {
