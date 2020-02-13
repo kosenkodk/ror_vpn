@@ -44,6 +44,11 @@ export function global(state = {}, action) {
         ...state,
         step: action.step
       };
+    case globalConstants.GET_REFER_LINK_SUCCESS:
+      return {
+        ...state,
+        refer_link: action.refer_link
+      };
     default:
       return state
   }

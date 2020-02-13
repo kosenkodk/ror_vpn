@@ -24,8 +24,21 @@ export const userService = {
   deleteAccount,
   getQrCodeUrl,
   enable2FA,
-  disable2FA
+  disable2FA,
+  getReferLink
 };
+
+function getReferLink() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/refer_friend/link`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/refer_friend/link`, requestOptions).then(handleResponse);
+}
 
 function getQrCodeUrl() {
   if (autoRefreshToken)
