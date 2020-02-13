@@ -16,7 +16,8 @@ class FriendInvitePage extends React.Component {
 
     this.state = {
       email: '',
-      link_refer: '',
+      refer_link: 'http://vega.isit.su/',
+      refer_title: 'ReferLink',
       submitted: false
     };
 
@@ -39,16 +40,16 @@ class FriendInvitePage extends React.Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { email, link_refer } = this.state;
+    const { email, refer_link } = this.state;
     const { dispatch } = this.props;
-    if (email && link_refer) {
-      // dispatch(userActions.invites_send(email, link_refer));
+    if (email && refer_link) {
+      // dispatch(userActions.invites_send(email, refer_link));
     }
   }
 
   render() {
     const { loggingIn, loading } = this.props;
-    const { email, link_refer, submitted } = this.state;
+    const { email, refer_link, refer_title, submitted } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -121,9 +122,9 @@ class FriendInvitePage extends React.Component {
                   </label>
                 </div>
                 <div className="flex-grow-1 pr-sm-2">
-                  <input type="string" name="link_refer" className="form-control" id="link_refer"
+                  <input type="string" name="refer_link" className="form-control" id="refer_link"
                     ref={(copyLinkRefer) => this.copyLinkRefer = copyLinkRefer}
-                    defaultValue={link_refer} readOnly={true} placeholder=''
+                    defaultValue={refer_link} readOnly={true} placeholder=''
                   />
                 </div>
 
@@ -143,15 +144,20 @@ class FriendInvitePage extends React.Component {
                 <div className="w-37"></div>
                 <div className="flex-grow-1">
                   <div className="mt-2 mt-md-0 d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
-                    <button className="btn btn-telegram btn-block px-2 mr-md-2">
+                    {/* <a href="https://telegram.me/share/url?url=http://ya.ru&text='referlink'">Telegram</a> */}
+                    {/* tg://msg_url?url=http%3A%2F%2Fya.ru&text=%27sharelink%27 */}
+                    <a className="btn btn-telegram btn-block px-2 mr-md-2"
+                      href={`https://t.me/share/url?url=${refer_link}&text=${refer_title}`} >
                       <img src={icTelegram} /> {I18n.t('buttons.telegram')}
-                    </button>
-                    <button className="btn btn-facebook btn-block px-2 mr-md-2">
+                    </a>
+                    <a className="btn btn-facebook btn-block px-2 mr-md-2"
+                      href={`https://www.facebook.com/sharer.php?u=${refer_link}`}>
                       <img src={icFacebook} /> {I18n.t('buttons.facebook')}
-                    </button>
-                    <button className="btn btn-twitter px-2 btn-block">
+                    </a>
+                    <a className="btn btn-twitter px-2 btn-block"
+                      href={`https://twitter.com/intent/tweet?url=${refer_link}&text=${refer_title}`}>
                       <img src={icTwitter} /> {I18n.t('buttons.twitter')}
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
