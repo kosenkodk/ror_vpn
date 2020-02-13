@@ -44,7 +44,10 @@ Rails.application.routes.draw do
       patch '/change_password', to: 'account#change_password'
       patch '/change_email', to: 'account#change_email'
       post '/cancel', to: 'account#cancel'
-
+      
+      # invite/refer friend
+      get '/refer_friend/link', to: 'refer_friend#link'
+      
       resources :user_mfa_session
       # delete '/disable2fa', to: 'user_mfa_session#destroy'
       # post '/enable2fa', to: 'user_mfa_session#create'
