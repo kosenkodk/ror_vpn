@@ -5,15 +5,6 @@ class Api::V1::SignupController < Api::V1::ApiController
     params_total = user_params_all
     user = User.new params_total.except(:payment_method_id, :tariff_plan_id)
 
-    if params[:refer].present?
-      # todo: add bonus to user and refer user
-      if User.exists?(email: params[:refer])
-        refer_user = User.find_by(email: params[:refer])
-        # refer_user.update(subscription_date_expiration, 1.month.after)
-      end
-      # todo: add message to notifications
-    end
-
     # payment method
     if PaymentMethod.exists?(params[:payment_method_id]) && params[:payment_method_id].present?
       user.payment_method = PaymentMethod.find(params[:payment_method_id])
@@ -40,6 +31,27 @@ class Api::V1::SignupController < Api::V1::ApiController
     end
 
     if user.save
+      # refer friend
+      if params[:refer].present?
+        if User.exists?(email: params[:refer])
+          refer_user = User.find_by(email: params[:refer])
+          # user.update(refer_user, refer_user)
+          # refer_user.referred_friends << user # add 
+          # refer_user.save
+          
+          # todo: after buy paid subscription add extra month for free
+          # refer_user.update(subscription_date_expiration, 1.month.after) # if user select 1mo plan
+          # user.update(subscription_date_expiration, 1.month.after) # if user select 1mo plan 
+          
+          # refer_user.update(subscription_date_expiration, 45.days.after) # if user select 3mo/quartely plan
+          # user.update(subscription_date_expiration, 45.days.after) # if user select 3mo/quartely plan
+          
+          # refer_user.update(subscription_date_expiration, 2.months.after) # if user select year plan
+          # user.update(subscription_date_expiration, 2.months.after) # if user select year plan
+        end
+        # todo: add message to notifications
+      end
+
       begin
         UserMailer.signup(user).deliver_now
       rescue => exception

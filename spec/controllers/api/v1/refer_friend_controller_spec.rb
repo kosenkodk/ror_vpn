@@ -48,17 +48,15 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
     end
 
     it 'send refer link to friend using email'
-    it 'import emails from gmail'
-
   end
   
   context 'signup' do
     it 'with refer link'
-    it 'get bonus or free month for both users?'
     it 'display message in notifications after signup'
   end
 
-  context 'after login' do
-    it 'add bonus to refer user and display a message in notifications'
+  context 'if reffered friend bought a paid subscription' do
+    it 'add bonus (get 1/1.5/2 month(-s) for 1mo/3mo/year subscription for free) for both users'
+    it 'display a message in notifications for both users'
   end
 end
