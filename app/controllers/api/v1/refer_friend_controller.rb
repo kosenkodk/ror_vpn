@@ -1,4 +1,4 @@
-class Api::V1::ReferFriendController < ApplicationController
+class Api::V1::ReferFriendController < Api::V1::ApiController
   before_action :authorize_access_request!
 
   def link

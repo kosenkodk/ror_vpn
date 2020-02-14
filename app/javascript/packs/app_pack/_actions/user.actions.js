@@ -14,7 +14,30 @@ export const userActions = {
   getUser,
   setUser,
   contactUs,
+  refer_friend,
 };
+
+function refer_friend(emails) {
+  return dispatch => {
+    dispatch(request());
+
+    userService.refer_friend({ emails })
+      .then(
+        response => {
+          dispatch(success(response.notice));
+          dispatch(alertActions.success(response.notice));
+        },
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request() { return { type: userConstants.REFER_FRIEND_REQUEST } }
+  function success(notice) { return { type: userConstants.REFER_FRIEND_SUCCESS, notice } }
+  function failure(error) { return { type: userConstants.REFER_FRIEND_FAILURE, error } }
+}
 
 function setUser(user) {
   localStorage.setItem('user', JSON.stringify(user));

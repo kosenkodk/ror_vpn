@@ -25,8 +25,24 @@ export const userService = {
   getQrCodeUrl,
   enable2FA,
   disable2FA,
-  getReferLink
+  getReferLink,
+  refer_friend,
 };
+
+function refer_friend(emails) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/refer_friend`, 'POST', emails)
+
+  const requestOptions = {
+    method: 'POST',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify(emails)
+  };
+
+  return fetch(`${config.apiUrl}/refer_friend`, requestOptions).then(handleResponse);
+}
+
 
 function getReferLink() {
   if (autoRefreshToken)
