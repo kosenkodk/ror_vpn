@@ -181,6 +181,11 @@ section {
   }
 }
 
+.friend-invite {
+  p {
+    @include fluidLineHeight(25px, 35px, $bp-w1400, $bp-w1920, 25px);
+  }
+}
 
 /*
 @media #{$mq-w1920} {
