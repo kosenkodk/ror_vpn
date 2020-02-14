@@ -98,7 +98,7 @@ class FriendInvitePage extends React.Component {
                 </div>
 
                 {/* import gmail contacts */}
-                <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
+                {/* <div className="import_email_contacts d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                   <div className="w-37"></div>
                   <div className="flex-grow-1">
                     <p className="">
@@ -107,7 +107,7 @@ class FriendInvitePage extends React.Component {
                       </small>
                     </p>
                   </div>
-                </div>
+                </div> */}
               </form>
             </div>
 
