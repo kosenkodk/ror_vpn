@@ -220,6 +220,15 @@ en:
         subject: "Congrats with your new ticket!"
       department:
         subject: "New ticket."
+    refer_friend:
+      send_invites:
+        btn: "Send Invites"
+        error: "Error. Can not refer friend (-s)"
+        success: "Success. Invitations has been sent."
+      share_link:
+        error: ""
+        success: ""
+        btn: "Copy"
     pricing:
       title: "One price for all your devices"
     forgot_pwd:

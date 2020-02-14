@@ -67,7 +67,7 @@ class FriendInvitePage extends React.Component {
                 <p className="mb-3">
                   When someone signs up with your unqique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
                 </p>
-                <a href="#" className="text-blue">Terms and conditions apply.</a>
+                <Link to="#" className="text-blue">Terms and conditions apply.</Link>
               </div>
             </div>
 
@@ -78,12 +78,12 @@ class FriendInvitePage extends React.Component {
                 <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                   <div className="w-sm-37">
                     <label className="col-form-label">
-                      Email address
+                      Email address (-es)
                     </label>
                   </div>
                   <div className="w-sm-37 w-md-45 pr-sm-2">
                     <input type="string" name="email" className="form-control" id="email"
-                      value={email} onChange={this.handleChange} placeholder='Email'
+                      value={email} onChange={this.handleChange} placeholder='friend@email.com,friend2@email.com'
                     />
                   </div>
 
