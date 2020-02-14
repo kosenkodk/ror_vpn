@@ -13,9 +13,9 @@ class Api::V1::ReferFriendController < ApplicationController
         UserMailer.refer_friend(current_user, email).deliver_now
       end
     rescue => exception
-      render json: {error: 'error', status: 500}
+      render json: {error: I18n.t('pages.refer_friend.send_invites.error'), status: 500}
       return
     end
-    render json: {ok: 'ok'}
+    render json: {notice: I18n.t('pages.refer_friend.send_invites.success')}
   end
 end
