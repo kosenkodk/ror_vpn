@@ -30,6 +30,18 @@ export function users(state = {}, action) {
       return {
         error: action.error
       };
+    case userConstants.REFER_FRIEND_REQUEST:
+      return {
+        loading: true
+      };
+    case userConstants.REFER_FRIEND_SUCCESS:
+      return {
+        notice: action.notice
+      };
+    case userConstants.REFER_FRIEND_FAILURE:
+      return {
+        error: action.error
+      };
     default:
       return state
   }

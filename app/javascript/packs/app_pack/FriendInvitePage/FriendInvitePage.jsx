@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { userActions, globalActions } from '../_actions';
 import { I18n } from 'helpers';
 import friendInviteSrc from 'images/admin/friend_invite.svg';
-import gmailSrc from 'images/icons/ic_gmail.svg';
+// import gmailSrc from 'images/icons/ic_gmail.svg';
 import icTwitter from 'images/icons/ic_twitter.svg';
 import icFacebook from 'images/icons/ic_facebook.svg';
 import icTelegram from 'images/icons/ic_telegram.svg';
@@ -15,8 +15,7 @@ class FriendInvitePage extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
-      submitted: false
+      emails: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -36,12 +35,9 @@ class FriendInvitePage extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    this.setState({ submitted: true });
-    const { email, refer_link } = this.state;
-    const { dispatch } = this.props;
-    if (email && refer_link) {
-      // dispatch(userActions.invites_send(email, refer_link));
+    const { emails } = this.state;
+    if (emails) {
+      this.props.dispatch(userActions.refer_friend(emails));
     }
   }
 
@@ -51,7 +47,7 @@ class FriendInvitePage extends React.Component {
 
   render() {
     const { refer_link, loggingIn, loading } = this.props;
-    const { email, submitted } = this.state;
+    const { emails } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -82,8 +78,8 @@ class FriendInvitePage extends React.Component {
                     </label>
                   </div>
                   <div className="w-sm-37 w-md-45 pr-sm-2">
-                    <input type="string" name="email" className="form-control" id="email"
-                      value={email} onChange={this.handleChange} placeholder='friend@email.com,friend2@email.com'
+                    <input type="string" name="emails" className="form-control" id="emails"
+                      value={emails} onChange={this.handleChange} placeholder='friend@email.com,friend2@email.com'
                     />
                   </div>
 
@@ -133,9 +129,7 @@ class FriendInvitePage extends React.Component {
                 <div className="flex-grow-1">
                   <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
                     onClick={this.copyToClipboard}
-                    disabled={loading ? true : false}
                   >
-                    {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                     {' ' + I18n.t('buttons.copy')}
                   </button>
                 </div>
@@ -180,7 +174,7 @@ class FriendInvitePage extends React.Component {
 
 function mapStateToProps(state) {
   const { refer_link } = state.global;
-  const loading = false // todo:
+  const { loading } = state.users
   const { loggingIn } = state.authentication;
   return {
     refer_link,

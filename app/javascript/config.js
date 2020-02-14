@@ -165,7 +165,7 @@ const urls = {
     }
   },
   user_invite_friend: {
-    path: '/user/invite_friend',
+    path: '/user/refer_friend',
     name: 'Refer Friends',
   },
   user_account: {
