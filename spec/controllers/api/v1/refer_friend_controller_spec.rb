@@ -47,16 +47,11 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it 'send refer link to friend using email'
-  end
-  
-  context 'signup' do
-    it 'with refer link'
-    it 'display message in notifications after signup'
   end
 
   context 'if reffered friend bought a paid subscription' do
-    it 'add bonus (get 1/1.5/2 month(-s) for 1mo/3mo/year subscription for free) for both users'
-    it 'display a message in notifications for both users'
+    it 'add bonus (get 1/1/2 month(-s) for 1mo/3mo/year subscription for free) for both users'
+    it 'upgrade user to the paid subscription (1-2 mo free trial)'
+    it 'display a bonus message in notifications for both users'
   end
 end
