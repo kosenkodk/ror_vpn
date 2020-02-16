@@ -26,15 +26,15 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
   
   context 'signup' do
     it 'with refer link' do
-      visit("/signup?refer=#{user.id}")
+      visit("/signup?rid=#{user.id}")
       fill_in :email, with: user_referred.email
       fill_in :password, with: user_referred.password
       fill_in :password_confirmation, with: user_referred.password_confirmation
       click_on(I18n.t('buttons.continue'))
-      user_referred = User.find_by(email: user_referred.email)
-      expect(user_referred.referrer).to eq(user) # todo
-      user.reload
-      expect(user.referrals).to contains(user_referred)
+      user_referred = User.find(user_referred.id)
+      expect(user_referred.referrer_id).to eq(user.id)
+      # user.reload
+      # expect(user.referrals).to contains(user_referred)
     end
   end
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::SignupController, type: :controller do
   describe 'Sign up (POST #create)' do
+    
     let!(:tariff_plan) { create(:tariff_plan) }
     let!(:payment_method) { create(:payment_method) }
     let(:email) { 'test@email.com' }
@@ -9,7 +10,20 @@ RSpec.describe Api::V1::SignupController, type: :controller do
     let(:user_params_all) { { email: email, password: 'password', password_confirmation: 'password', tariff_plan_id: tariff_plan.id, payment_method_id: payment_method.id } }
     let(:user_params_invalid) { { email: '', password: 'password', password_confirmation: 'password', tariff_plan_id: tariff_plan.id, payment_method_id: payment_method.id, unknown_param: '' } }
 
+    describe 'with refer link' do
+      let!(:user_referrer) {create(:user)}
+      context 'success' do
+        it 'with referrer id' do
+          post :create, params: { rid: user_referrer.id, email: email, password: 'password', password_confirmation: 'password' }
+
+          user_referral = User.find_by(email: email)
+          expect(user_referral.referrer_id).to eq(user_referrer.id)
+    
+        end
+      end
+    end
     context 'success' do
+
       it 'without ids of tariff plan and payment method' do
         post :create, params: user_params
         # expect(response_json.values).to eq([''])
