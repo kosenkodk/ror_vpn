@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   
   context 'refer link' do
     it do
-      expect(user.get_refer_link).to eq("https://#{Rails.application.config.host}/signup?rid=#{user.id}")
+      expect(user.get_refer_link).to eq("https://#{Rails.application.config.host}/signup/#{user.id}")
     end
   end
 
