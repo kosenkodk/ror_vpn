@@ -40,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def get_refer_link
-    "https://#{Rails.application.config.host}/signup?refer=#{self.email}"
+    "https://#{Rails.application.config.host}/signup?rid=#{self.id}"
   end
 
   def clear_password_token!

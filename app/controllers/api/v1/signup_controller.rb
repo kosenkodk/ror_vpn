@@ -32,21 +32,23 @@ class Api::V1::SignupController < Api::V1::ApiController
 
     if user.save
       # refer friend
-      if params[:refer].present?
-        if User.exists?(email: params[:refer])
-          refer_user = User.find_by(email: params[:refer])
-          # user.update(refer_user, refer_user)
-          # refer_user.referred_friends << user # add 
-          # refer_user.save
+      if params[:rid].present?
+        if User.exists?(params[:rid])
+          referrer = User.find(params[:rid])
+          user.referrer_id = referrer.id #params[:rid]
+          user.save
+          # user.update(referrer_id, referrer.id)
+          # referrer.referred_friends << user # add 
+          # referrer.save
           
           # todo: after buy paid subscription add extra month for free
-          # refer_user.update(subscription_date_expiration, 1.month.after) # if user select 1mo plan
+          # referrer.update(subscription_date_expiration, 1.month.after) # if user select 1mo plan
           # user.update(subscription_date_expiration, 1.month.after) # if user select 1mo plan 
           
-          # refer_user.update(subscription_date_expiration, 45.days.after) # if user select 3mo/quartely plan
+          # referrer.update(subscription_date_expiration, 45.days.after) # if user select 3mo/quartely plan
           # user.update(subscription_date_expiration, 45.days.after) # if user select 3mo/quartely plan
           
-          # refer_user.update(subscription_date_expiration, 2.months.after) # if user select year plan
+          # referrer.update(subscription_date_expiration, 2.months.after) # if user select year plan
           # user.update(subscription_date_expiration, 2.months.after) # if user select year plan
         end
         # todo: add message to notifications
