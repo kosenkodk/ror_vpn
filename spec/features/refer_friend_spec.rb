@@ -37,4 +37,11 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
       expect(user.referrals).to contains(user_referred)
     end
   end
+
+  context 'get bonus' do
+    it 'after referal subscription to paid plan' do
+      # pay
+      # user.bonus 
+    end
+  end
 end

@@ -2,14 +2,21 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
+  let!(:user_invited) { create(:user, email: 'email@ex.com') }
   let!(:ticket) { create(:ticket, user: user) }
   let!(:message) { create(:message, user: user, ticket: ticket) }
   let!(:plan) { create(:tariff_plan) }
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }
   
-  context 'refer link' do
-    it do
+  context 'refer friend' do
+    it 'save referrer' do
+      user_invited.referrer = create(:referrer, user_id: user.id)
+      user.save
+      user.reload
+      expect(user_invited.referrer.user_id).to eq(user.id)
+    end
+    it 'validate refer link' do
       expect(user.get_refer_link).to eq("#{Rails.application.config.host}/signup?refer=#{user.email}")
     end
   end

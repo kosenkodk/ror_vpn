@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_165354) do
+ActiveRecord::Schema.define(version: 2020_02_16_165550) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,20 @@ ActiveRecord::Schema.define(version: 2020_01_13_165354) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "referrals", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_referrals_on_user_id"
+  end
+
+  create_table "referrers", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_referrers_on_user_id"
+  end
+
   create_table "tariff_plans", force: :cascade do |t|
     t.string "title"
     t.float "price"
@@ -146,9 +160,11 @@ ActiveRecord::Schema.define(version: 2020_01_13_165354) do
     t.string "google_secret"
     t.string "salt"
     t.boolean "is2fa", default: false
+    t.integer "referrer_id"
     t.index ["cancel_reason_id"], name: "index_users_on_cancel_reason_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["payment_method_id"], name: "index_users_on_payment_method_id"
+    t.index ["referrer_id"], name: "index_users_on_referrer_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
     t.index ["tariff_plan_id"], name: "index_users_on_tariff_plan_id"
   end
@@ -160,5 +176,6 @@ ActiveRecord::Schema.define(version: 2020_01_13_165354) do
   add_foreign_key "todos", "users"
   add_foreign_key "users", "cancel_reasons"
   add_foreign_key "users", "payment_methods"
+  add_foreign_key "users", "referrers"
   add_foreign_key "users", "tariff_plans"
 end
