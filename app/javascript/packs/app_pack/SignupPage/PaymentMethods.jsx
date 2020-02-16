@@ -81,7 +81,7 @@ class PaymentMethods extends React.Component {
       this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
     }
 
-    const url = "api/v1/payment_methods";
+    const url = "/api/v1/payment_methods";
     fetch(url)
       .then(response => {
         if (response.ok) {
