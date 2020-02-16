@@ -32,6 +32,13 @@ const urls = {
     name: I18n.t('nav_menu.sign_out'),
     // component: SignOut
   },
+  signup_with_reflink: {
+    path: '/signup/:rid',
+    name: I18n.t('nav_menu.sign_up'),
+    className: 'active',
+    isActive: true,
+    // component: SignupPage
+  },
   signup: {
     path: '/signup',
     name: I18n.t('nav_menu.sign_up'),

@@ -34,7 +34,8 @@ class SignupPage extends React.Component {
       holder_name: '',
       month: 0,
       year: 0,
-      cvc: 0
+      cvc: 0,
+      rid: props.match.params.rid,
     }
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }

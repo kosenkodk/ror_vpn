@@ -154,6 +154,7 @@ class App extends React.Component {
               <Route exact path={urls.signin.path} component={SigninPage} />
               <Route exact path={urls.code2fa.path} component={Code2faPage} />
               <Route exact path={urls.signup.path} component={SignupPage} />
+              <Route exact path={urls.signup_with_reflink.path} component={SignupPage} />
               <Route exact path={urls.pricing.path} component={PricingPage} />
               <Route exact path={urls.forgot.path} component={PasswordForgotPage} />
               <Route exact path={urls.reset.path} component={PasswordResetPage} />
