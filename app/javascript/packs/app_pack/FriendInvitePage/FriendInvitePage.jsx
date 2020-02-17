@@ -112,7 +112,7 @@ class FriendInvitePage extends React.Component {
             </div>
 
             <div className="mt-30 mb-30 d-flex flex-row align-items-center justify-content-between">
-              <div className="border-secondary border-top w-45"></div> <b>or</b> <div className="w-45 border-secondary border-top"></div>
+              <div className="border-top w-43"></div> <b>or</b> <div className="w-43 border-top"></div>
             </div>
 
             {/* share refer link */}
