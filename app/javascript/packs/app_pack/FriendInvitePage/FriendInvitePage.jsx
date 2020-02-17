@@ -77,7 +77,7 @@ class FriendInvitePage extends React.Component {
                       Email address (-es)
                     </label>
                   </div>
-                  <div className="w-sm-37 w-md-45 pr-sm-2">
+                  <div className="w-sm-37 w-md-45 pr-sm-3">
                     <input type="string" name="emails" className="form-control" id="emails"
                       value={emails} onChange={this.handleChange} placeholder='friend@email.com,friend2@email.com'
                     />
@@ -119,7 +119,7 @@ class FriendInvitePage extends React.Component {
                     Share Your Link
                   </label>
                 </div>
-                <div className="w-sm-37 w-md-45 pr-sm-2">
+                <div className="w-sm-37 w-md-45 pr-sm-3">
                   <input type="string" name="refer_link" className="form-control" id="refer_link"
                     ref={(copyLinkRefer) => this.copyLinkRefer = copyLinkRefer}
                     defaultValue={refer_link} readOnly={true} placeholder=''
@@ -140,20 +140,20 @@ class FriendInvitePage extends React.Component {
                 <div className="w-37"></div>
                 <div className="flex-grow-1">
                   <div className="d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
-                    <a className="w-100 mr-md-2 mt-2"
+                    <a className="w-100 mr-md-3 mt-3"
                       // href={`https://t.me/share/url?url=${refer_link}&text=${refer_title}`}>
                       href={`https://t.me/share/url?url=${refer_link}`}>
                       <button className="btn btn-telegram btn-block px-2 ">
                         <img src={icTelegram} /> {I18n.t('buttons.telegram')}
                       </button>
                     </a>
-                    <a className="w-100 mr-md-2 mt-2"
+                    <a className="w-100 mr-md-3 mt-3"
                       href={`https://www.facebook.com/sharer.php?u=${refer_link}`}>
                       <button className="btn btn-facebook btn-block px-2 ">
                         <img src={icFacebook} /> {I18n.t('buttons.facebook')}
                       </button>
                     </a>
-                    <a className="w-100 mt-2"
+                    <a className="w-100 mt-3"
                       href={`https://twitter.com/intent/tweet?url=${refer_link}`}>
                       {/* href={`https://twitter.com/intent/tweet?url=${refer_link}&text=${refer_title}`}> */}
                       <button className="btn btn-twitter px-2 btn-block">
