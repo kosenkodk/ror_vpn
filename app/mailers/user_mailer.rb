@@ -9,6 +9,6 @@ class UserMailer < ApplicationMailer
   end
   def refer_friend(user, email)
     @user = user
-    make_bootstrap_mail(to: email, subject: 'Referal link for VegaVPN account.')
+    make_bootstrap_mail(to: email, subject: 'Referral link for VegaVPN account.')
   end
 end
