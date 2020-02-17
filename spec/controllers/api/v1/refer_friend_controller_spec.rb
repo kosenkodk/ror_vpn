@@ -50,8 +50,8 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
   end
 
   context 'if reffered friend bought a paid subscription' do
-    it 'add bonus (get 1/1/2 month(-s) for 1mo/3mo/year subscription for free) for both users'
-    it 'upgrade user to the paid subscription (1-2 mo free trial)'
+    it 'add bonus: free 1/1/2 month(-s) trial of paid subscription [1mo/3mo/year] for both users'
+    it 'upgrade referrer from free to the paid subscription (1-2 mo for free)'
     it 'display a bonus message in notifications for both users'
   end
 end
