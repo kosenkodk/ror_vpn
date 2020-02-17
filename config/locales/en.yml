@@ -37,6 +37,7 @@ en:
       item_updated: "Item has been updated successfully"
       item_updated: "Item has been found"
     errors:
+      email_blank: "Email can't be blank"
       item_added: "Item can't be created"
       item_deleted: "Item can't be deleted"
       item_updated: "Item can't be updated"

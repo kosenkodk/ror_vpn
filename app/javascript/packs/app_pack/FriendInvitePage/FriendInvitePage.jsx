@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions, globalActions } from '../_actions';
+import { userActions, globalActions, alertActions } from '../_actions';
 import { I18n } from 'helpers';
 import friendInviteSrc from 'images/admin/friend_invite.svg';
 // import gmailSrc from 'images/icons/ic_gmail.svg';
@@ -38,6 +38,8 @@ class FriendInvitePage extends React.Component {
     const { emails } = this.state;
     if (emails) {
       this.props.dispatch(userActions.refer_friend(emails));
+    } else {
+      this.props.dispatch(alertActions.error(I18n.t('api.errors.email_blank')))
     }
   }
 

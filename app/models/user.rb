@@ -1,7 +1,7 @@
 
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+    unless value =~ User.email_regex
       record.errors[attribute] << (options[:message] || "is invalid")
     end
   end
@@ -26,6 +26,10 @@ class User < ApplicationRecord
 
   before_save {|record| record.salt = SecureRandom.hex unless record.salt }
   after_create {|record| record.set_google_secret }
+
+  def self.email_regex
+    /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  end
 
   def attributes
     { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text }
