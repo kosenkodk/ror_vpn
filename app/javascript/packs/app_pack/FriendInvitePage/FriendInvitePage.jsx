@@ -87,7 +87,7 @@ class FriendInvitePage extends React.Component {
                     <button type="submit" className="btn btn-pink btn-block btn-copy px-2 mt-2 mt-sm-auto"
                       disabled={loading ? true : false}
                     >
-                      {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                      {/* {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>} */}
                       {' ' + I18n.t('buttons.send_invites')}
                     </button>
                   </div>
