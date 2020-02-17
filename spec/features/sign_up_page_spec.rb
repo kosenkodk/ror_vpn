@@ -57,8 +57,8 @@ RSpec.describe AuthController, type: :feature, js: true do
       expect(page).to have_content('Billing')
       expect(page).not_to have_selector('.alert')
       expect(page).not_to have_content('Unauthorized')
-      # user = User.last # User.find_by(email: email)
-      user.reload
+      user = User.find_by(email: email)
+      # user.reload
       expect(user.email).to eq(email)
       expect(user.tariff_plan).to eq(plan)
       expect(user.payment_method).to eq(payment_method3)
