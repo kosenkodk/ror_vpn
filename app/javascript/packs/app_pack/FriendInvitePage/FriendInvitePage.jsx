@@ -107,7 +107,7 @@ class FriendInvitePage extends React.Component {
               </form>
             </div>
 
-            <div className="mt-3 mb-3 d-flex flex-row align-items-center justify-content-between">
+            <div className="mt-30 mb-30 d-flex flex-row align-items-center justify-content-between">
               <div className="border-secondary border-top w-45"></div> <b>or</b> <div className="w-45 border-secondary border-top"></div>
             </div>
 
