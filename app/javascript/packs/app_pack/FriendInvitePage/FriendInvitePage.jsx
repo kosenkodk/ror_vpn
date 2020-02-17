@@ -29,8 +29,10 @@ class FriendInvitePage extends React.Component {
   };
 
   handleChange(e) {
+    const cyrillicPattern = /^[\u0400-\u04FF]+$/;
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    if (!cyrillicPattern.test(value))
+      this.setState({ [name]: value });
   }
 
   handleSubmit(e) {
