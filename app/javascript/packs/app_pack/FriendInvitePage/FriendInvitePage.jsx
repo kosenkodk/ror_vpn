@@ -145,21 +145,19 @@ class FriendInvitePage extends React.Component {
                 <div className="flex-grow-1">
                   <div className="d-flex flex-column flex-sm-row align-items-end flex-wrap flex-md-nowrap">
                     <a className="w-100 mr-md-3 mt-3"
-                      // href={`https://t.me/share/url?url=${refer_link}&text=${refer_title}`}>
-                      href={`https://t.me/share/url?url=${refer_link}`}>
+                      href={`https://telegram.me/share/url?url=${refer_link}`} target="_blank">
                       <button className="btn btn-telegram btn-block px-2 ">
                         <img src={icTelegram} /> {I18n.t('buttons.telegram')}
                       </button>
                     </a>
                     <a className="w-100 mr-md-3 mt-3"
-                      href={`https://www.facebook.com/sharer.php?u=${refer_link}`}>
+                      href={`https://www.facebook.com/sharer.php?u=${refer_link}`} target="_blank">
                       <button className="btn btn-facebook btn-block px-2 ">
                         <img src={icFacebook} /> {I18n.t('buttons.facebook')}
                       </button>
                     </a>
                     <a className="w-100 mt-3"
-                      href={`https://twitter.com/intent/tweet?url=${refer_link}`}>
-                      {/* href={`https://twitter.com/intent/tweet?url=${refer_link}&text=${refer_title}`}> */}
+                      href={`https://twitter.com/intent/tweet?url=${refer_link}`} target="_blank">
                       <button className="btn btn-twitter px-2 btn-block">
                         <img src={icTwitter} /> {I18n.t('buttons.twitter')}
                       </button>
