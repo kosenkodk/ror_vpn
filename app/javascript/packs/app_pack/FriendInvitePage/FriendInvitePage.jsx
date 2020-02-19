@@ -72,7 +72,7 @@ class FriendInvitePage extends React.Component {
             </div>
 
             {/* send invites */}
-            <div className="mt-88">
+            <div className="friend-invite__send-invites">
               <form name="form" onSubmit={this.handleSubmit}>
 
                 <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
@@ -111,12 +111,12 @@ class FriendInvitePage extends React.Component {
               </form>
             </div>
 
-            <div className="mt-30 mb-30 d-flex flex-row align-items-center justify-content-between">
+            <div className="friend-invite__or d-flex flex-row align-items-center justify-content-between">
               <div className="border-top w-43"></div> <b>or</b> <div className="w-43 border-top"></div>
             </div>
 
             {/* share refer link */}
-            <div className="mb-60">
+            <div className="friend-invite__share-ref-link">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-sm-37">
                   <label className="col-form-label">

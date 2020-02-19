@@ -185,6 +185,26 @@ section {
   p {
     @include fluidLineHeight(25px, 35px, $bp-w1400, $bp-w1920, 25px);
   }
+
+  @media #{$mq-w1400} {
+    &__send-invites {
+      // margin-top: pxtovh(88);
+      margin-top: 6.5em;
+    }
+  }
+
+  @media #{$mq-w1920} {
+    &__send-invites {
+      margin-top: 2em;
+    }
+  }
+
+  &__or {
+    // margin-top: pxtovh(30);
+    // margin-bottom: pxtovh(30);
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
 }
 
 /*
