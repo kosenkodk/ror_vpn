@@ -1,5 +1,5 @@
 
-@media (min-width: $lg-width) {
+@media (min-width: $bp-w1400) {
 
   .navbar-collapse {
     position: relative;
@@ -14,9 +14,9 @@
 // @media #{$mq-w1400} {
 // @media (min-width:1401px) {
 
-@include fluidFontSize(14px, 41px, $lg-width, $bp-w4096, 14px);
-@include fluidLineHeight(18px, 106px, $lg-width, $bp-w4096, 18px);
-// @include fluidLineHeight(18px, 74px, $lg-width, $bp-w4096, 18px);
+@include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+@include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
+// @include fluidLineHeight(18px, 74px, $bp-w1400, $bp-w4096, 18px);
 
 $multiplier: 1;
 .main-content {
@@ -25,31 +25,31 @@ $multiplier: 1;
 }
 h1 {
   // font-size: calcFluidFontSize(24, 68, 1400, $bp-w4096, px); // for h1 tag for screens > $bp-w1400
-  @include fluidFontSize(24px, 68px, $lg-width, $bp-w4096, 24px);
-  @include fluidLineHeight(34px, 140px, $lg-width, $bp-w4096, 34px);
+  @include fluidFontSize(24px, 68px, $bp-w1400, $bp-w4096, 24px);
+  @include fluidLineHeight(34px, 140px, $bp-w1400, $bp-w4096, 34px);
   // font-weight: 500;
 }
 h2 {
-  @include fluidLineHeight(22px, 24px, $lg-width, $bp-w4096, 22px);
+  @include fluidLineHeight(22px, 24px, $bp-w1400, $bp-w4096, 22px);
 }
 h3 {
-  @include fluidFontSize(20px, 20px, $lg-width, $bp-w4096, 20px);
+  @include fluidFontSize(20px, 20px, $bp-w1400, $bp-w4096, 20px);
 }
 h4 {
-  @include fluidFontSize(18px, 53px, $lg-width, $bp-w4096, 18px);
-  @include fluidLineHeight(22px, 22px, $lg-width, $bp-w4096, 22px);
+  @include fluidFontSize(18px, 53px, $bp-w1400, $bp-w4096, 18px);
+  @include fluidLineHeight(22px, 22px, $bp-w1400, $bp-w4096, 22px);
 }
 h5 {
-  @include fluidFontSize(16px, 16px, $lg-width, $bp-w4096, 16px);
+  @include fluidFontSize(16px, 16px, $bp-w1400, $bp-w4096, 16px);
 }
 h6 {
-  @include fluidFontSize(14px, 40px, $lg-width, $bp-w4096, 14px);
+  @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
 }
 small {
   // font-size: $font-small*$multiplier; // 9px
   // line-height: $line-height-small*$multiplier; // 15px
-  @include fluidFontSize(9px, 26px, $lg-width, $bp-w4096, 9px);
-  @include fluidLineHeight(15px, 45px, $lg-width, $bp-w4096, 15px);
+  @include fluidFontSize(9px, 26px, $bp-w1400, $bp-w4096, 9px);
+  @include fluidLineHeight(15px, 45px, $bp-w1400, $bp-w4096, 15px);
 }
 
 .form-control {
@@ -80,10 +80,10 @@ button.btn {
 .btn {  
   font-weight: $font-bold;
   // font-size: pxtovh(14px);
-  // @include fluidFontSize(14px, 40px, $lg-width, $bp-w4096, 14px);
-  // @include fluidLineHeight(14px, 40px, $lg-width, $bp-w4096, 14px);
-  @include fluidFontSize(14px, 40px, $lg-width, $bp-w4096, 14px);
-  @include fluidLineHeight(18px, 40px, $lg-width, $bp-w4096, 18px);
+  // @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  // @include fluidLineHeight(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  @include fluidLineHeight(18px, 40px, $bp-w1400, $bp-w4096, 18px);
     // line-height: 18/14;
   // line-height: pxtovh(18px);
     // padding: 1rem 2rem;
@@ -167,7 +167,7 @@ section {
 }
 
 .ticket__message {
-  @include fluidLineHeight(25px, 72px, $lg-width, $bp-w4096, 25px);
+  @include fluidLineHeight(25px, 72px, $bp-w1400, $bp-w4096, 25px);
   p {
     margin-bottom: 0.5rem;
   }
@@ -179,7 +179,7 @@ section {
       @include fluidFontSize(12px, 38px, $lg-width, $bp-w4096, 12px);
     }
   }
-
+  
   p {
     @include fluidLineHeight(25px, 35px, $lg-width, $bp-w1920, 25px);
   }
@@ -204,32 +204,5 @@ section {
     margin-bottom: 0.75em;
   }
 }
-
-@import "./w1400";
-
-/*
-@media #{$mq-w1920} {
-  section {
-    padding-right: pxtovw(15px);
-    padding-left: pxtovw(15px);
-  }
-  aside {
-    // max-width: pxtovw(217); //217
-  }
-}
-
-
-@media (min-width: 1921px) {
-  section {
-    padding-right: pxtovw(30px);
-    padding-left: pxtovw(15px); //60px
-  }
-  aside {
-    max-width: pxtovw(217); //217
-    padding-right: pxtovw(30);
-    padding-left: pxtovw(30);
-  }
-}
-*/
 
 }
