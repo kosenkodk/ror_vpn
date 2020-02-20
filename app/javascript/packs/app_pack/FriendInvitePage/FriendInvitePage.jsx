@@ -116,7 +116,7 @@ class FriendInvitePage extends React.Component {
             </div>
 
             {/* share refer link */}
-            <div className="mb-60">
+            <div className="">
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between">
                 <div className="w-sm-37">
                   <label className="col-form-label">
