@@ -53,7 +53,7 @@ class FriendInvitePage extends React.Component {
     const { refer_link, loggingIn, loading } = this.props;
     const { emails } = this.state;
     return (
-      <div className="container-fluid">
+      <div className="container-fluid pt-0 pb-0">
         <div className="row">
           <div className="col-lg-8 col-lg-offset-2 friend-invite">
             <h1>Refer Friends</h1>
@@ -111,7 +111,7 @@ class FriendInvitePage extends React.Component {
               </form>
             </div>
 
-            <div className="mt-30 mb-30 d-flex flex-row align-items-center justify-content-between">
+            <div className="mt-3 mb-3 d-flex flex-row align-items-center justify-content-between">
               <div className="border-top w-43"></div> <b>or</b> <div className="w-43 border-top"></div>
             </div>
 

@@ -102,7 +102,8 @@
     @media (min-width: $md-width) {
       // min-height: 100vh;
       // padding: 0 2.14vw 5.17vh 1.5vw;
-      padding: 0 pxtovw(21) pxtovh(60) pxtovw(30);
+      // padding: 0 pxtovw(21) pxtovh(60) pxtovw(30);
+      padding: 0 pxtovw(21) pxtovw(21) pxtovw(30);
     }
   }
 
@@ -111,7 +112,7 @@
     // min-height: 5rem;
     // margin: 1rem 0 0.65rem 0;
     // margin: 0.5rem 0;
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
   }
 
   .main-content {
