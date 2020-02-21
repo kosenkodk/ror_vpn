@@ -180,6 +180,11 @@ section {
 }
 
 .friend-invite {
+  // fix for large screen
+  @media (min-width: 960px) and (max-width: 991px) {
+    // padding-right: pxtovw(397);
+    max-width: 68%;
+  }
   p {
     @include fluidLineHeight(25px, 35px, $bp-w1400, $bp-w1920, 25px);
   }
