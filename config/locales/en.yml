@@ -187,6 +187,8 @@ en:
     dashboard:
       billing:
         title: "Billing"
+      subscription:
+        title: "Subscription"
       subscriptions:
         title: "Subscriptions"
       plans:

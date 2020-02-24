@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // import { userActions } from '../_actions';
 import { I18n } from 'helpers';
-import Plans from '../SignupPage/Plans';
+import Plans from '../DashboardPage/Plans';
 import { InfoBlock } from '../_components/admin';
 
 class DashboardPage extends React.Component {
@@ -20,15 +20,15 @@ class DashboardPage extends React.Component {
   render() {
     const { loggingIn, user } = this.props;
     return (
-      <React.Fragment>
-        <div id="plans" className="">
+      <div className="container-fluid dashboard">
+        <div id="plans" className="plans">
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
 
           <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." />
 
           <Plans onPlanChange={this.onPlanChange} />
         </div>
-        <div id="subscriptions" className="">
+        <div id="subscriptions" className="subscriptions">
           <h1>{I18n.t('pages.dashboard.subscriptions.title')}</h1>
           <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} linkTitle='Change' />
         </div>
@@ -36,7 +36,7 @@ class DashboardPage extends React.Component {
           <h1>{I18n.t('pages.dashboard.billing.title')}</h1>
           <p>No any billing details found</p>
         </div> */}
-      </React.Fragment>
+      </div>
     );
   }
 }
