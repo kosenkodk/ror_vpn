@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // import { userActions } from '../_actions';
@@ -25,18 +24,13 @@ class DashboardPage extends React.Component {
         <div id="plans" className="">
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
 
-          <InfoBlock>
-            Get 20% bundle discount when you purchase VPNMail and VEGAVPN together.
-          </InfoBlock>
+          <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." />
 
           <Plans onPlanChange={this.onPlanChange} />
         </div>
         <div id="subscriptions" className="">
           <h1>{I18n.t('pages.dashboard.subscriptions.title')}</h1>
-          <InfoBlock>
-            {(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'}
-            <Link to="#" className="mt-1 text-blue"> Change</Link>
-          </InfoBlock>
+          <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} linkTitle='Change' />
         </div>
         {/* <div id="billing" className="">
           <h1>{I18n.t('pages.dashboard.billing.title')}</h1>
