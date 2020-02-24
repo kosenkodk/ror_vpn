@@ -88,7 +88,6 @@ class MessageForm extends React.Component {
                   &nbsp;Close my ticket</button>
               }
             </div>
-
             <AttachmentPreview isAllowPreviewDeletion={true} items={this.props.attachments}
             // items={this.props.attachments && this.props.attachments}
             />
