@@ -516,6 +516,25 @@
     }
   }
 
+  .dashboard {
+    padding-right: 6%;
+    // max-width: ;
+    .plans {
+      // max-width: 80%;
+      margin-top: 2em;
+      .best-offer {
+        background: $pink_gradient;
+        border-radius: pxtovw(20);
+      }
+      .card {
+        padding-right: paxtovh(10);
+      }
+    }
+    .subscriptions {
+      margin-top: 2em;
+    }
+  }
+
   @import "admin/mobiles";
   @import "admin/desktop";
   
