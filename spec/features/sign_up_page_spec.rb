@@ -54,7 +54,7 @@ RSpec.describe AuthController, type: :feature, js: true do
       # expect(find('.alert', match: :first)).to have_text('')
       expect(page).to have_content('Plans')
       expect(page).to have_content('Subscriptions')
-      expect(page).to have_content('Billing')
+      # expect(page).to have_content('Billing')
       expect(page).not_to have_selector('.alert')
       expect(page).not_to have_content('Unauthorized')
       user = User.find_by(email: email)
