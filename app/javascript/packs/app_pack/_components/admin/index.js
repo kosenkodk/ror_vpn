@@ -15,3 +15,4 @@ export * from './AttachmentImage';
 export * from './AttachmentPdfCard';
 export * from './AttachmentImageCard';
 export * from './MultiFileUpload';
+export * from './InfoBlock';
