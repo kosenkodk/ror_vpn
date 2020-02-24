@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 // import FlashMessages from '../_sections/FlashMessages';
+import { InfoBlock } from '../_components/admin';
 
 class ChangePasswordForm extends React.Component {
 
@@ -27,9 +28,7 @@ class ChangePasswordForm extends React.Component {
     return (
       <form onSubmit={this.props.onFormSubmit}>
         <div className="modal-body">
-
-          <div className="border-left-pink  mt-0 col">
-            {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+          <InfoBlock optionalCssClasses="col">
             <p className="mt-1">
               Do NOT forget this password. If you forget it, you will not be able to login or decrypt your message.
             </p>
@@ -39,7 +38,7 @@ class ChangePasswordForm extends React.Component {
             <p className="mb-1">
               We recommend adding a recovery email address first. Otherwise, you cannot recover your account if something goes wrong.
             </p>
-          </div>
+          </InfoBlock>
 
           {/* <FlashMessages error={error && error} notice={notice && notice} /> */}
 

@@ -12,7 +12,6 @@ class InfoBlock extends React.Component {
             {text && <p className="mt-0 mb-2">{text}
               {linkTitle && <Link to={`${linkUrl || '#'}`} className="mt-1 text-blue"> {linkTitle}</Link>}
             </p>}
-
           </React.Fragment>
         }
       </div>

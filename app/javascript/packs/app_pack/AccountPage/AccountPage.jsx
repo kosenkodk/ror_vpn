@@ -8,6 +8,7 @@ import { I18n } from 'helpers';
 // import { ModalPopup } from '../_components';
 // import Modal from 'react-bootstrap/Modal';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
+import { InfoBlock } from '../_components/admin';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -241,21 +242,21 @@ class AccountPage extends React.Component {
                 btnClasses={''}>
                 {step === 1 && <React.Fragment>
                   <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
-                  <div className="border-left-pink mt-0">
+                  <InfoBlock>
                     <p className="mt-0 mb-2">
                       If you have never used 2FA before, we strongly recommend you &nbsp;
                     <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
                     </p>
-                  </div>
+                  </InfoBlock>
                 </React.Fragment>
                 }
                 {step === 2 && <React.Fragment>
-                  <div className="border-left-pink mt-0">
+                  <InfoBlock>
                     <p className="mt-0 mb-2">
                       Scan this code with your two-factor authentication device to set up your account.&nbsp;
                     <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
                     </p>
-                  </div>
+                  </InfoBlock>
                   <div className="text-center">
                     <img src={qr_code_url} className="img-fluid w-45" />
                   </div>
@@ -279,12 +280,12 @@ class AccountPage extends React.Component {
                 btnSaveText={I18n.t('buttons.next')}
                 btnClasses={''}>
                 <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
-                <div className="border-left-pink mt-0">
+                <InfoBlock>
                   <p className="mt-0 mb-2">
                     If you have never used 2FA before, we strongly recommend you &nbsp;
                     <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
                   </p>
-                </div>
+                </InfoBlock>
               </ModalPopupForm> */}
 
               {/* <ModalPopupForm onClose={this.clearModalAlerts}
@@ -296,12 +297,12 @@ class AccountPage extends React.Component {
                 btnSaveText={I18n.t('buttons.next')}
                 btnClasses={''}>
 
-                <div className="border-left-pink mt-0">
+                <InfoBlock>
                   <p className="mt-0 mb-2">
                     Scan this code with your two-factor authentication device to set up your account.&nbsp;
                     <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
                   </p>
-                </div>
+                </InfoBlock>
                 <div className="text-center">
                   <img src={qr_code_url} className="img-fluid w-45" />
                 </div>
@@ -321,12 +322,11 @@ class AccountPage extends React.Component {
           <div className="col-lg-8">
             <div className="mb-60">
               <h1 id="password">Recovery & notification</h1>
-              <div className="border-left-pink">
-                {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+              <InfoBlock>
                 <p>
                   The selected method can be used to recover an account in the event your forget your password and to be notified about missed emails.
-              </p>
-              </div>
+                </p>
+              </InfoBlock>
 
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
                 <div className="w-sm-35 mb-3 mb-sm-auto">
@@ -361,12 +361,11 @@ class AccountPage extends React.Component {
 
             <div className="mb-60">
               <h1 id="delete">Delete Account</h1>
-              <div className="border-left-pink">
-                {/* <h5 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h5> */}
+              <InfoBlock>
                 <p>
                   Deleting your account will permanently delete all data associated with it and cannot be recovered. You will no longe be able to use the same email.
                 </p>
-              </div>
+              </InfoBlock>
               <ModalPopupForm onClose={this.clearModalAlerts} isForm={true} onBtnSave={this.onAccountDelete}
                 id='deleteAccountModal' title='Delete account' btnText={I18n.t('pages.account.delete.button')}
                 btnClasses={'w-xs-100 w-sm-45'} btnCloseText={I18n.t('buttons.cancel')} btnSaveText={I18n.t('buttons.delete')}>

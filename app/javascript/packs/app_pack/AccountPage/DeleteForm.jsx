@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 // import FlashMessages from '../_sections/FlashMessages';
+import { InfoBlock } from '../_components/admin';
 
 class DeleteForm extends React.Component {
 
@@ -26,12 +27,12 @@ class DeleteForm extends React.Component {
         <div className="modal-body">
           {/* <FlashMessages error={error && error} notice={notice && notice} /> */}
 
-          <div className="border-left-pink mt-0">
+          <InfoBlock>
             <h6 id="caveat-with-anchors">WARNING: DELETION IS PERMANENT</h6>
             <p className="mt-0 mb-2">If you wish to delete this account in order to combine it with another one, do NOT delete it.
             </p>
             <Link to="#" className="mt-1 text-blue">Learn more</Link>
-          </div>
+          </InfoBlock>
 
           <div className="form-group row">
             <label className="col-sm-4 col-form-label">
