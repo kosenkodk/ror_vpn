@@ -329,7 +329,7 @@ class AccountPage extends React.Component {
               </InfoBlock>
 
               <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between">
-                <div className="w-sm-35 mb-3 mb-sm-auto">
+                <div className="w-sm-35 mb-3 mb-sm-0">
                   <label className="col-form-label">Login email address</label>
                 </div>
                 <div className="mb-3 mb-sm-auto flex-grow-1 mr-sm-3 mr-md-5">
