@@ -9,7 +9,7 @@ class Message < ApplicationRecord
   has_many_attached :attachments, dependent: :destroy
 
   def attachmentList
-    self.attachments.map { |item| { url: rails_blob_url(item), name: item.blob.filename, content_type: item.blob.content_type } }
+    self.attachments.map { |item| {id: item.id, url: rails_blob_url(item), name: item.blob.filename, content_type: item.blob.content_type } }
   end
 
   def attachment_path

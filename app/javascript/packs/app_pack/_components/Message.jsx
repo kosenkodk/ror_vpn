@@ -63,11 +63,11 @@ class Message extends React.Component {
               <h6 className="mt-2">{I18n.t('pages.tickets.form.attachments')}:</h6>
               <div className="row">
                 {item.attachmentList.map((item, index) =>
-                  <div className="col-sm-4 col-md-3 col-lg-2" key={`ticket_message${index}`}>
+                  <div className="col-sm-4 col-md-3 col-lg-2" key={`ticket_message${item.id}`}>
                     {(item.content_type === 'application/pdf') ?
-                      <AttachmentPdf name={item.name} url={item.url} index={index} />
+                      <AttachmentPdf id={item.id} name={item.name} url={item.url} index={index} />
                       :
-                      <AttachmentImage name={item.name} url={item.url} index={index} />
+                      <AttachmentImage id={item.id} name={item.name} url={item.url} index={index} />
                     }
                   </div>
                 )}
