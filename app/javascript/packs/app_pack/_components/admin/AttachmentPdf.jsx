@@ -18,7 +18,7 @@ class AttachmentPdf extends React.Component {
 
   render() {
     const { id, name, url, index } = this.props;
-    const item = { 'id': id, 'name': name, 'url': url };
+    const item = { 'id': id || index, 'name': name, 'url': url };
     return (
       <div className="row">
         <div className="col">
