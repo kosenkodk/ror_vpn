@@ -24,13 +24,13 @@ class DashboardPage extends React.Component {
         <div id="plans" className="plans">
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
 
-          <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." />
+          <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." optionalCssClasses="py-1" />
 
           <Plans onPlanChange={this.onPlanChange} />
         </div>
         <div id="subscriptions" className="subscriptions">
           <h1>{I18n.t('pages.dashboard.subscriptions.title')}</h1>
-          <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} linkTitle='Change' />
+          <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} linkTitle='Change' optionalCssClasses="py-1" />
         </div>
         {/* <div id="billing" className="">
           <h1>{I18n.t('pages.dashboard.billing.title')}</h1>
