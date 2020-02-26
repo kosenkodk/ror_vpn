@@ -517,17 +517,29 @@
   }
 
   .dashboard {
-    padding-right: 6%;
+    $plans-padding: 5;
+    // padding-right: 7%;
+    padding-right: pxtovw(78);
     // max-width: ;
+    margin-top: 2em;
     .plans {
       // max-width: 80%;
-      margin-top: 2em;
+      margin-left: pxtovw(-$plans-padding);
       .best-offer {
         background: $pink_gradient;
         border-radius: pxtovw(20);
       }
-      .card {
-        padding-right: paxtovh(10);
+      .card, .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
+        padding-right: pxtovw($plans-padding);
+        padding-left: pxtovw($plans-padding);
+      }
+      .card-deck {
+        padding-right: pxtovw(-$plans-padding);
+        padding-left: pxtovw(-$plans-padding);
+      }
+      .pricing-card-title {
+        font-size: 56px;
+        font-weight: $font-bold;
       }
     }
     .subscriptions {
