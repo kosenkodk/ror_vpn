@@ -36,22 +36,22 @@ class Plan extends React.Component {
         className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3 card-group">
         <div className={`card ${active_class} ${hover_class}`}>
           <div className="card-header">
-            <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-between`}>Best offer</div>
+            <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
           </div>
           <div className="card-body">
             {item.price > 0 ?
-              <div className="d-flex flex-row align-items-start justify-content-center">
-                <div className="mr-xl-1">
+              <div className="d-flex flex-row align-items-start justify-content-between">
+                <div className="ml-3">
                   <span className="text-sm-1 font-weight-bold align-text-top">$</span>
                 </div>
-                <div>
+                <div className="flex-grow-1">
                   <h1 className="card-title pricing-card-title">
                     {item.price}
                   </h1>
                 </div>
-                <div></div>
+                <div className="flex-grow-1"></div>
               </div>
               :
               <h1 className="card-title pricing-card-title">Free</h1>
