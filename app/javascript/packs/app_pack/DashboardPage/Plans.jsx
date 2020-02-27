@@ -7,7 +7,7 @@ class Plans extends React.Component {
     super(props);
     this.state = {
       items: [],
-      preselectedIndex: 0
+      preselectedIndex: 3
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -28,7 +28,7 @@ class Plans extends React.Component {
 
   render() {
     return (
-      <div id="plans" className="plans row card-deck mb-0 text-dark text-center">
+      <div id="plans" className="plans row card-deck text-center align-items-center">
         {this.state.items.map((item, index) => (
           <Plan handleClick={this.handleClick} key={`plan-${item.id}`} index={index} item={item} />
         ))}
