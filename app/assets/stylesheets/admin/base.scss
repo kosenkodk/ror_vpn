@@ -574,6 +574,9 @@
           border-bottom-left-radius: pxtovw(20);
           border-top-right-radius: pxtovw(20);
         }
+        .plan__best-offer-hidden {
+          margin-top: pxtovh(38);
+        }
         .plan-free__features {
           margin-top: pxtovh(65);
           font-size: 12px;
@@ -590,6 +593,7 @@
           line-height: 15px;
           color: $white;
           margin-top: pxtovh(6);
+          background-color: #3F0E4D;
         }
         .plan__my-plan {
           margin-left: pxtovw(-5);
@@ -597,7 +601,7 @@
         }
         .plan__btn-my-plan {
           background: $white;
-          color: $pink;
+          color: #3F0E4D;
           margin-bottom: pxtovh(53);
           border-radius: 0;
         }
