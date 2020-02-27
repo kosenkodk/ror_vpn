@@ -1,7 +1,7 @@
 $(jQuery).on('ready turbolinks:load', function () {
 
   // $('.plans button.active').show();
-  $('.plans button.active').removeClass('d-none');
+  $('.signup .plans button.active').removeClass('d-none');
 
   $('.payment_methods .card').on('click hover', function () {
     $('.payment_methods .card').removeClass('active');
@@ -14,7 +14,7 @@ $(jQuery).on('ready turbolinks:load', function () {
 
   })
 
-  $('.plans .card').on('click hover', function () {
+  $('.signup .plans .card').on('click hover', function () {
     $('.plans .card').removeClass('active');
     $('.plans .card .icon-checkbox').removeClass('active');
 

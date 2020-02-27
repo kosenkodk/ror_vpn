@@ -524,7 +524,7 @@
     margin-top: 2em;
     .plans {
       // max-width: 80%;
-      margin-top: pxtovh(32);
+      margin-top: pxtovh(32); // break height of the plan items
       margin-left: pxtovw(-$plans-padding);
       .best-offer {
         background: $pink_gradient;
@@ -574,6 +574,34 @@
           top: pxtovh(-12);
           border-bottom-left-radius: pxtovw(20);
           border-top-right-radius: pxtovw(20);
+        }
+        .plan-free__features {
+          margin-top: pxtovh(65);
+          font-size: 12px;
+          line-height: 15px;
+        }
+        .card-header {
+          border: unset;
+          background: unset;
+        }
+        .plan__btn-save {
+          padding: pxtovh(6) pxtovw(15);
+          max-height: pxtovh(29);
+          font-size: 12px;
+          line-height: 15px;
+          color: $white;
+          margin-top: pxtovh(6);
+        }
+        .plan__features {
+          margin-top: pxtovh(13);
+          font-size: 12px;
+          line-height: 15px;
+        }
+        .card-footer button, .plan__btn-change {
+          margin-bottom: pxtovh(40);
+          min-height: pxtovh(50);
+          width: pxtovw(177);
+          border-radius: pxtovw(20);
         }
       }
     }
