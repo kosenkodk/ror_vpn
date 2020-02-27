@@ -33,14 +33,14 @@ class Plan extends React.Component {
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
         onClick={(e) => this.props.handleClick(e, item.id, this.props.index)}
-        className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 card-group">
-        <div className={`card mb-3 m-1 ${active_class} ${hover_class}`}>
-          <div className="card-header pt-2 pb-0">
+        className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3 card-group">
+        <div className={`card ${active_class} ${hover_class}`}>
+          <div className="card-header">
             <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
           </div>
-          <div className="card-body pt-0 pb-0">
+          <div className="card-body">
             {item.price > 0 ?
               <div className="d-flex flex-row align-items-start justify-content-center">
                 <div className="m-xl-1">
@@ -53,14 +53,14 @@ class Plan extends React.Component {
                 </div>
               </div>
               :
-              <h1 className="card-title pricing-card-title mt-0 mb-0">Free</h1>
+              <h1 className="card-title pricing-card-title">Free</h1>
             }
 
             <span className="text-sm-1 align-text-top">Per month</span>
 
             {item.price > 0 &&
               <div>
-                <p className="p-0 mb-0 mt-2">
+                <p className="">
                   <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill text-white`}>Save $ {item.price_duration_sale}</a>
                   {/* <%= link_to "Save $ #{item.try(:price_duration_sale)}", '#', {class: "btn btn-blue #{active_class} rounded-pill text-white"} %> */}
                 </p>
@@ -69,7 +69,7 @@ class Plan extends React.Component {
               </div>
             }
 
-            <ul className="text-left pt-0 text-opacity">
+            <ul className="text-left text-opacity">
               {item.features.split(',').map((feature, index) => (
                 <li key={index}>
                   {/* <%#= image_tag 'icons/icon_checkbox_on.png', {class: 'img-fluid', alt: '' } #%> */}
@@ -78,9 +78,10 @@ class Plan extends React.Component {
               ))}
             </ul>
           </div>
-          <div className="card-footer p-0 m-0 mt-n2">
-            {/* <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${this.props.index === 0 && (active_class || hover_class) ? '' : 'd-none'}`}>Best
-        offer</button> */}
+          <div className="card-footer">
+            <button type="button" className={`btn btn-outline-primary rounded-pill`}>
+              Start today
+            </button>
           </div>
         </div>
       </div>

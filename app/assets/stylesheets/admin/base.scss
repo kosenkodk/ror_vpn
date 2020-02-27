@@ -524,16 +524,31 @@
     margin-top: 2em;
     .plans {
       // max-width: 80%;
+      margin-top: pxtovh(32);
       margin-left: pxtovw(-$plans-padding);
       .best-offer {
         background: $pink_gradient;
         border-radius: pxtovw(20);
       }
       .card {
-        margin: 3px auto;
-          &.active {
+        margin: 2px auto;
+        border: 2px solid $pink2;
+        border-radius: pxtovw(20);
+        height: pxtovh(450);
+        &:hover {
+          text-shadow: unset;
+        }
+        &.active {
+          // square corners
+          // border: 3px solid;
+          // border-image: $pink_button_gradient;
+          // border-image-slice: 60 30;
+          // border-radius: pxtovw(20);
+
           background-image: $pink_button_gradient;
           border-radius: pxtovw(20);
+          color: $white;
+          height: pxtovh(486);
         }
       }
       .card, .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
@@ -555,8 +570,8 @@
           background: $pink_button_gradient;
           color: $white;
           position: relative;
-          right: pxtovw(-110);
-          top: pxtovh(-10);
+          right: pxtovw(-114);
+          top: pxtovh(-12);
           border-bottom-left-radius: pxtovw(20);
           border-top-right-radius: pxtovw(20);
         }
