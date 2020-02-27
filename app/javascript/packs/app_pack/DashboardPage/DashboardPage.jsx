@@ -21,7 +21,7 @@ class DashboardPage extends React.Component {
     const { loggingIn, user } = this.props;
     return (
       <div className="container-fluid dashboard">
-        <div id="plans" className="plans">
+        <div>
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
 
           <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." optionalCssClasses="py-1" />
