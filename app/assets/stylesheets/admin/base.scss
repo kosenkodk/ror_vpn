@@ -518,10 +518,8 @@
 
   .dashboard {
     $plans-padding: 5;
-    // padding-right: 7%;
     padding-right: pxtovw(78);
-    // max-width: ;
-    margin-top: 2em;
+    margin-top: pxtovh(46);
     .plans {
       // max-width: 80%;
       margin-top: pxtovh(32); // break height of the plan items
@@ -592,12 +590,22 @@
           color: $white;
           margin-top: pxtovh(6);
         }
+        .plan__my-plan {
+          margin-left: pxtovw(-5);
+          margin-right: pxtovw(-5);
+        }
+        .plan__btn-my-plan {
+          background: $white;
+          color: $pink;
+          margin-bottom: pxtovh(53);
+          border-radius: 0;
+        }
         .plan__features {
           margin-top: pxtovh(13);
           font-size: 12px;
           line-height: 15px;
         }
-        .card-footer button, .plan__btn-change {
+        .plan__btn-change {
           margin-bottom: pxtovh(40);
           min-height: pxtovh(50);
           width: pxtovw(177);
@@ -606,7 +614,10 @@
       }
     }
     .subscriptions {
-      margin-top: 2em;
+      margin-top: pxtovh(64); //4em;
+      h1 {
+        margin-bottom: pxtovh(23);
+      }
     }
   }
 
