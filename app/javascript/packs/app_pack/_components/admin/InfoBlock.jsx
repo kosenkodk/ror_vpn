@@ -9,7 +9,7 @@ class InfoBlock extends React.Component {
         {children ? children :
           <React.Fragment>
             {title && <h6 id="caveat-with-anchors">{title}</h6>}
-            {text && <p className="mt-0 mb-2">{text}
+            {text && <p className="mt-0 mb-0">{text}
               {linkTitle && <Link to={`${linkUrl || '#'}`} className="mt-1 text-blue"> {linkTitle}</Link>}
             </p>}
           </React.Fragment>
