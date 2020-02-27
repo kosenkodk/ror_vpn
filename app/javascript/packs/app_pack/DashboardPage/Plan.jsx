@@ -33,10 +33,10 @@ class Plan extends React.Component {
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
         onClick={(e) => this.props.handleClick(e, item.id, this.props.index)}
-        className="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 card-group">
-        <div className={`card mb-3 m-1 shadow-vega ${active_class} ${hover_class}`}>
+        className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-3 card-group">
+        <div className={`card mb-3 m-1 ${active_class} ${hover_class}`}>
           <div className="card-header pt-2 pb-0">
-            <div className={`icon-checkbox ${active_class} ${hover_class} pb-5`}></div>
+            <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
           </div>
@@ -79,8 +79,8 @@ class Plan extends React.Component {
             </ul>
           </div>
           <div className="card-footer p-0 m-0 mt-n2">
-            <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${this.props.index === 0 && (active_class || hover_class) ? '' : 'd-none'}`}>Best
-        offer</button>
+            {/* <button type="button" className={`btn btn-outline-primary rounded-pill mb-n4 ${this.props.index === 0 && (active_class || hover_class) ? '' : 'd-none'}`}>Best
+        offer</button> */}
           </div>
         </div>
       </div>

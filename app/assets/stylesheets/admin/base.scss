@@ -529,6 +529,13 @@
         background: $pink_gradient;
         border-radius: pxtovw(20);
       }
+      .card {
+        margin: 3px auto;
+          &.active {
+          background-image: $pink_button_gradient;
+          border-radius: pxtovw(20);
+        }
+      }
       .card, .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
         padding-right: pxtovw($plans-padding);
         padding-left: pxtovw($plans-padding);
@@ -540,6 +547,19 @@
       .pricing-card-title {
         font-size: 56px;
         font-weight: $font-bold;
+      }
+      .plan {
+        .plan__best-offer {
+          width: pxtovw(100);
+          height: pxtovh(38);
+          background: $pink_button_gradient;
+          color: $white;
+          position: relative;
+          right: pxtovw(-110);
+          top: pxtovh(-10);
+          border-bottom-left-radius: pxtovw(20);
+          border-top-right-radius: pxtovw(20);
+        }
       }
     }
     .subscriptions {
