@@ -29,7 +29,7 @@ class DashboardPage extends React.Component {
           <Plans onPlanChange={this.onPlanChange} />
         </div>
         <div id="subscriptions" className="subscriptions">
-          <h1>{I18n.t('pages.dashboard.subscriptions.title')}</h1>
+          <h1>{I18n.t('pages.dashboard.subscription.title')}</h1>
           <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} linkTitle='Change' optionalCssClasses="py-1" />
         </div>
         {/* <div id="billing" className="">
