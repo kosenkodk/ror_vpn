@@ -25,21 +25,34 @@ class Plan extends React.Component {
     e.preventDefault()
   }
 
+  isBestOffer() {
+    return (this.props.index === 0) ? true : false
+  }
+
+  bestOfferClass() {
+    return (this.props.index === 0) ? 'active' : ''
+  }
+
   render() {
-    let { item } = this.props
+    let { item, index } = this.props
     let { active_class } = item
     let { hover_class } = this.state
     return (
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
-        onClick={(e) => this.props.handleClick(e, item.id, this.props.index)}
+        onClick={(e) => this.props.handleClick(e, item.id, index)}
         className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3 card-group">
         <div className={`card ${active_class} ${hover_class}`}>
           <div className="card-header">
-            <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
+            {this.isBestOffer() ?
+              <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
+              :
+              <div className="plan__best-offer-hidden" />
+            }
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
             <h6 className="m-0 font-weight-normal">{item.title}</h6>
           </div>
+
           <div className="card-body">
             {item.price > 0 ?
               <div className="d-flex flex-row align-items-start justify-content-between">
@@ -62,7 +75,7 @@ class Plan extends React.Component {
             {item.price > 0 &&
               <div>
                 <p className="">
-                  <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save`}>Save $ {item.price_duration_sale}</a>
+                  <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
                   {/* <%= link_to "Save $ #{item.try(:price_duration_sale)}", '#', {class: "btn btn-blue #{active_class} rounded-pill text-white"} %> */}
                 </p>
                 <h5 className="card-title text-info mb-0"><strike>$ {item.price_duration} </strike></h5>
