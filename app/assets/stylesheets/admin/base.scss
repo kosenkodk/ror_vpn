@@ -529,13 +529,14 @@
         border-radius: pxtovw(20);
       }
       .card {
+        &:hover {
+          box-shadow: unset;
+        }
         margin: 2px auto;
         border: 2px solid $pink2;
         border-radius: pxtovw(20);
         height: pxtovh(450);
-        &:hover {
-          text-shadow: unset;
-        }
+        
         &.active {
           // square corners
           // border: 3px solid;

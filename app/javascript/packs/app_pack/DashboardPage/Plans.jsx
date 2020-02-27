@@ -13,7 +13,7 @@ class Plans extends React.Component {
   }
 
   handleClick(e, id, index) {
-    this.selectItemInCollectionByIndex(this.state.items, index)
+    // this.selectItemInCollectionByIndex(this.state.items, index)
     this.props.onPlanChange(e, id)
     e.preventDefault()
   }
