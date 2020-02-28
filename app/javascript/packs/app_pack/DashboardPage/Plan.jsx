@@ -41,7 +41,7 @@ class Plan extends React.Component {
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
         onClick={(e) => this.props.handleClick(e, item.id, index)}
-        className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3 card-group">
+        className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div className={`card ${active_class} ${hover_class}`}>
           <div className="card-header">
             {this.isBestOffer() ?
@@ -56,7 +56,7 @@ class Plan extends React.Component {
           <div className="card-body">
             {item.price > 0 ?
               <div className="d-flex flex-row align-items-start justify-content-between">
-                <div className="ml-3">
+                <div className="ml-lg-3">
                   <span className="text-sm-1 font-weight-bold align-text-top">$</span>
                 </div>
                 <div className="flex-grow-1">

@@ -1,7 +1,11 @@
 
   .dashboard {
     $plans-padding: 5;
-    max-width: pxtovw(1030,$scale_k);
+
+    @media (min-width: $lg-width) {
+      max-width: pxtovw(1030,$scale_k);
+    }
+
     float: left;
     // margin-top: pxtovh(46, $scale_k);
     .plans {
