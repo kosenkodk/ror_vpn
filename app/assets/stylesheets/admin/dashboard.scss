@@ -1,10 +1,8 @@
 
   .dashboard {
     $plans-padding: 5;
-    max-width: pxtovw(1030, $scale_k);
+    max-width: pxtovw(1030,$scale_k);
     float: left;
-
-    // padding-right: pxtovw(78, $scale_k);
     // margin-top: pxtovh(46, $scale_k);
     .plans {
       // max-width: 80%;
@@ -15,13 +13,15 @@
         border-radius: pxtovw(20,$scale_k);
       }
       .card {
+        .card-footer {
+          padding: 0;
+        }
         &:hover {
           box-shadow: unset;
         }
         margin: 2px auto;
         border: 2px solid $pink2;
         border-radius: pxtovw(20,$scale_k);
-        height: pxtovh(450,$scale_k);
         
         &.active {
           // square corners
@@ -33,7 +33,9 @@
           background-image: $pink_button_gradient;
           border-radius: pxtovw(20,$scale_k);
           color: $white;
-          height: pxtovh(486,$scale_k);
+          .card-header, .card-footer {
+            padding-top: pxtovh(18);
+          }
         }
       }
       .card, .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
@@ -68,7 +70,7 @@
           font-size: 12px;
           line-height: 15px;
         }
-        .card-header {
+        .card-header, .card-footer {
           border: unset;
           background: unset;
         }
