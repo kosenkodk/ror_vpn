@@ -85,8 +85,8 @@
           font-size: 12px;
           line-height: 15px;
           @media (min-width: $bp-w1400) {
-            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
-            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+            @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 50px, $bp-w1400, $bp-w4096, 15px);
           }
           
           position: absolute;
@@ -108,12 +108,13 @@
           font-size: 12px;
           line-height: 15px;
           @media (min-width: $bp-w1400) {
-            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
-            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+            @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 42px, $bp-w1400, $bp-w4096, 15px);
           }
         }
         .card-header {
-          margin-top: pxtovh(34,$scale_k);
+          margin-top: pxtovh(49,$scale_k);
+          margin-bottom: pxtovh(39);
         }
         .card-header, .card-footer {
           border: unset;
@@ -121,7 +122,7 @@
         }
         .card-body {
           // padding-top: 0;
-          padding-bottom: 0;
+          // padding-bottom: 0;
         }
         .plan__btn-save {
           padding: pxtovh(6,$scale_k) pxtovw(15,$scale_k);
@@ -130,12 +131,25 @@
           line-height: 15px;
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
-            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+            @include fluidLineHeight(15px, 50px, $bp-w1400, $bp-w4096, 15px);
           }
           color: $white;
           margin-top: pxtovh(6,$scale_k);
           margin-bottom: pxtovh(20,$scale_k);
           background-color: #3F0E4D;
+        }
+        .plan__price-duration {
+          font-size: 14px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+          }
+          margin-bottom: pxtovh(1px);
+        }
+        .plan__price-comment {
+          // font-size: 14px;
+          // @media (min-width: $bp-w1400) {
+          //   @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+          // }
         }
         .plan__my-plan {
           margin-left: pxtovw(-5,$scale_k);
@@ -153,8 +167,8 @@
           font-size: 12px;
           line-height: 15px;
           @media (min-width: $bp-w1400) {
-            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
-            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+            @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 42px, $bp-w1400, $bp-w4096, 15px);
           }
         }
         .plan__btn-change {
