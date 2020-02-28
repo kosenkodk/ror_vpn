@@ -43,7 +43,7 @@ class Plan extends React.Component {
         onClick={(e) => this.props.handleClick(e, item.id, index)}
         className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div className={`card ${active_class} ${hover_class}`}>
-          <div className="card-header">
+          <div className="card-header py-0">
             {this.isBestOffer() ?
               <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
               :
@@ -53,18 +53,18 @@ class Plan extends React.Component {
             <h6 className="m-0">{item.title}</h6>
           </div>
 
-          <div className="card-body">
+          <div className="card-body py-0">
             {item.price > 0 ?
-              <div className="d-flex flex-row align-items-start justify-content-between">
-                <div className="ml-lg-3">
+              <div className="d-flex flex-row align-items-start justify-content-center">
+                <div className="mr-lg-3">
                   <span className="text-sm-1 font-weight-bold align-text-top">$</span>
                 </div>
-                <div className="flex-grow-1">
+                <div className="">
                   <h1 className="card-title pricing-card-title">
                     {item.price}
                   </h1>
                 </div>
-                <div className="flex-grow-1"></div>
+                <div className=""></div>
               </div>
               :
               <h1 className="card-title pricing-card-title">Free</h1>
@@ -75,8 +75,8 @@ class Plan extends React.Component {
             {item.price > 0 &&
               <div>
                 <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
-                <h5 className="card-title text-info mb-0"><strike>$ {item.price_duration} </strike></h5>
-                <h6 className="card-title">{item.price_comment}</h6>
+                <h5 className="plan__price-duration card-title text-info"><strike>$ {item.price_duration} </strike></h5>
+                <h6 className="plan__price-comment card-title">{item.price_comment}</h6>
               </div>
             }
 
