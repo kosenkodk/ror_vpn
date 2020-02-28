@@ -13,8 +13,16 @@
         border-radius: pxtovw(20,$scale_k);
       }
       .card {
+        .card-body {
+          span {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: $font-bold;
+          }
+        }
         .card-footer {
-          padding: 0;
+          padding-top: 0;
+          padding-bottom: 0;
         }
         &:hover {
           box-shadow: unset;
@@ -24,6 +32,9 @@
         border-radius: pxtovw(20,$scale_k);
         
         &.active {
+
+          padding-top: pxtovh(18);
+          padding-bottom: pxtovh(18);
           // square corners
           // border: 3px solid;
           // border-image: $pink_button_gradient;
@@ -33,8 +44,15 @@
           background-image: $pink_button_gradient;
           border-radius: pxtovw(20,$scale_k);
           color: $white;
-          .card-header, .card-footer {
+          .card-header {
             padding-top: pxtovh(18);
+            // padding-top: pxtovh(36);
+          }
+          .card-footer {
+            padding-right: 0;
+            padding-left: 0;
+            padding-top: pxtovh(18);
+            // padding-top: pxtovh(36);
           }
         }
       }
@@ -52,6 +70,9 @@
       }
       .plan {
         .plan__best-offer {
+          font-size: 12px;
+          line-height: 15px;
+
           width: pxtovw(100);
           height: pxtovh(38);
           background: $pink_button_gradient;
@@ -63,7 +84,7 @@
           border-top-right-radius: pxtovw(20,$scale_k);
         }
         .plan__best-offer-hidden {
-          margin-top: pxtovh(38,$scale_k);
+          margin-top: pxtovh(34,$scale_k);
         }
         .plan-free__features {
           margin-top: pxtovh(65,$scale_k);
@@ -74,6 +95,10 @@
           border: unset;
           background: unset;
         }
+        .card-body {
+          // padding-top: 0;
+          padding-bottom: 0;
+        }
         .plan__btn-save {
           padding: pxtovh(6,$scale_k) pxtovw(15,$scale_k);
           max-height: pxtovh(29,$scale_k);
@@ -81,6 +106,7 @@
           line-height: 15px;
           color: $white;
           margin-top: pxtovh(6,$scale_k);
+          margin-bottom: pxtovh(20,$scale_k);
           background-color: #3F0E4D;
         }
         .plan__my-plan {
@@ -95,13 +121,14 @@
         }
         .plan__features {
           margin-top: pxtovh(13,$scale_k);
+          margin-bottom: pxtovh(29,$scale_k);
           font-size: 12px;
           line-height: 15px;
         }
         .plan__btn-change {
           margin-bottom: pxtovh(40,$scale_k);
           min-height: pxtovh(50,$scale_k);
-          width: pxtovw(177,$scale_k);
+          // width: pxtovw(177,$scale_k);
           border-radius: pxtovw(20,$scale_k);
         }
       }

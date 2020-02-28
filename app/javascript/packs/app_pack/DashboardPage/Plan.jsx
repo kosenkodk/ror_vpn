@@ -50,7 +50,7 @@ class Plan extends React.Component {
               <div className="plan__best-offer-hidden" />
             }
             {/* <%#= image_tag image_name, {class: 'mt-n4'} #%> */}
-            <h6 className="m-0 font-weight-normal">{item.title}</h6>
+            <h6 className="m-0">{item.title}</h6>
           </div>
 
           <div className="card-body">
@@ -74,10 +74,7 @@ class Plan extends React.Component {
 
             {item.price > 0 &&
               <div>
-                <p className="">
-                  <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
-                  {/* <%= link_to "Save $ #{item.try(:price_duration_sale)}", '#', {class: "btn btn-blue #{active_class} rounded-pill text-white"} %> */}
-                </p>
+                <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
                 <h5 className="card-title text-info mb-0"><strike>$ {item.price_duration} </strike></h5>
                 <h6 className="card-title">{item.price_comment}</h6>
               </div>
@@ -95,17 +92,16 @@ class Plan extends React.Component {
 
           <div className="card-footer">
             {item.price > 0 ?
-              <button type="button" className={`btn btn-outline-primary plan__btn-change align-self-center`}>
+              <button type="button" className={`btn btn-outline-primary btn-block plan__btn-change align-self-center`}>
                 Start today
-            </button>
+              </button>
               :
               <div class="plan__my-plan">
                 <button type="button" className={`btn btn-outline-primary plan__btn-my-plan btn-block align-self-center`}>
                   My subscription
-              </button>
+                </button>
               </div>
             }
-
           </div>
         </div>
       </div>
