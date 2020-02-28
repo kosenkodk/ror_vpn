@@ -4,12 +4,10 @@
 
     @media (min-width: $lg-width) {
       max-width: pxtovw(1030,$scale_k);
+      float: left;
     }
 
-    float: left;
-    // margin-top: pxtovh(46, $scale_k);
     .plans {
-      // max-width: 80%;
       margin-top: pxtovh(32, $scale_k); // break height of the plan items
       margin-left: pxtovw(-$plans-padding,$scale_k);
       .best-offer {
@@ -17,26 +15,33 @@
         border-radius: pxtovw(20,$scale_k);
       }
       .card {
+
+        margin: 2px auto;
+        border: 2px solid $pink2;
+        border-radius: pxtovw(20,$scale_k);
+
         .card-body {
           span {
             font-size: 14px;
             line-height: 18px;
+            @media (min-width: $bp-w1400) {
+              @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+              @include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
+            }
             font-weight: $font-bold;
           }
         }
+
         .card-footer {
           padding-top: 0;
           padding-bottom: 0;
         }
+
         &:hover {
           box-shadow: unset;
         }
-        margin: 2px auto;
-        border: 2px solid $pink2;
-        border-radius: pxtovw(20,$scale_k);
         
         &.active {
-
           padding-top: pxtovh(18);
           padding-bottom: pxtovh(18);
           // square corners
@@ -69,13 +74,20 @@
         padding-left: pxtovw(-$plans-padding,$scale_k);
       }
       .pricing-card-title {
-        font-size: 56px;
+        font-size: 56px; // 76px fullhd
+        @media (min-width: $bp-w1400) {
+          @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
+        }
         font-weight: $font-bold;
       }
       .plan {
         .plan__best-offer {
           font-size: 12px;
           line-height: 15px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+          }
           
           position: absolute;
           right: 0;
@@ -95,6 +107,10 @@
           margin-top: pxtovh(65,$scale_k);
           font-size: 12px;
           line-height: 15px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+          }
         }
         .card-header {
           margin-top: pxtovh(34,$scale_k);
@@ -112,6 +128,10 @@
           min-height: pxtovh(29,$scale_k);
           font-size: 12px;
           line-height: 15px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+          }
           color: $white;
           margin-top: pxtovh(6,$scale_k);
           margin-bottom: pxtovh(20,$scale_k);
@@ -132,6 +152,10 @@
           margin-bottom: pxtovh(29,$scale_k);
           font-size: 12px;
           line-height: 15px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 106px, $bp-w1400, $bp-w4096, 15px);
+          }
         }
         .plan__btn-change {
           margin-bottom: pxtovh(40,$scale_k);
