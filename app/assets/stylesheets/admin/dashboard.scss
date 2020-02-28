@@ -1,0 +1,114 @@
+
+  .dashboard {
+    $plans-padding: 5;
+    max-width: pxtovw(1030, $scale_k);
+    // max-width: pxtovw(1030, var(--scale_k));
+    float: left;
+
+    // padding-right: pxtovw(78, $scale_k);
+    // margin-top: pxtovh(46, $scale_k);
+    .plans {
+      // max-width: 80%;
+      margin-top: pxtovh(32, $scale_k); // break height of the plan items
+      margin-left: pxtovw(-$plans-padding,$scale_k);
+      .best-offer {
+        background: $pink_gradient;
+        border-radius: pxtovw(20,$scale_k);
+      }
+      .card {
+        &:hover {
+          box-shadow: unset;
+        }
+        margin: 2px auto;
+        border: 2px solid $pink2;
+        border-radius: pxtovw(20,$scale_k);
+        height: pxtovh(450,$scale_k);
+        
+        &.active {
+          // square corners
+          // border: 3px solid;
+          // border-image: $pink_button_gradient;
+          // border-image-slice: 60 30;
+          // border-radius: pxtovw(20);
+
+          background-image: $pink_button_gradient;
+          border-radius: pxtovw(20,$scale_k);
+          color: $white;
+          height: pxtovh(486,$scale_k);
+        }
+      }
+      .card, .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
+        padding-right: pxtovw($plans-padding,$scale_k);
+        padding-left: pxtovw($plans-padding,$scale_k);
+      }
+      .card-deck {
+        padding-right: pxtovw(-$plans-padding,$scale_k);
+        padding-left: pxtovw(-$plans-padding,$scale_k);
+      }
+      .pricing-card-title {
+        font-size: 56px;
+        font-weight: $font-bold;
+      }
+      .plan {
+        .plan__best-offer {
+          width: pxtovw(100);
+          height: pxtovh(38);
+          background: $pink_button_gradient;
+          color: $white;
+          position: relative;
+          right: pxtovw(-114,$scale_k);
+          top: pxtovh(-12,$scale_k);
+          border-bottom-left-radius: pxtovw(20,$scale_k);
+          border-top-right-radius: pxtovw(20,$scale_k);
+        }
+        .plan__best-offer-hidden {
+          margin-top: pxtovh(38,$scale_k);
+        }
+        .plan-free__features {
+          margin-top: pxtovh(65,$scale_k);
+          font-size: 12px;
+          line-height: 15px;
+        }
+        .card-header {
+          border: unset;
+          background: unset;
+        }
+        .plan__btn-save {
+          padding: pxtovh(6,$scale_k) pxtovw(15,$scale_k);
+          max-height: pxtovh(29,$scale_k);
+          font-size: 12px;
+          line-height: 15px;
+          color: $white;
+          margin-top: pxtovh(6,$scale_k);
+          background-color: #3F0E4D;
+        }
+        .plan__my-plan {
+          margin-left: pxtovw(-5,$scale_k);
+          margin-right: pxtovw(-5,$scale_k);
+        }
+        .plan__btn-my-plan {
+          background: $white;
+          color: #3F0E4D;
+          margin-bottom: pxtovh(53,$scale_k);
+          border-radius: 0;
+        }
+        .plan__features {
+          margin-top: pxtovh(13,$scale_k);
+          font-size: 12px;
+          line-height: 15px;
+        }
+        .plan__btn-change {
+          margin-bottom: pxtovh(40,$scale_k);
+          min-height: pxtovh(50,$scale_k);
+          width: pxtovw(177,$scale_k);
+          border-radius: pxtovw(20,$scale_k);
+        }
+      }
+    }
+    .subscriptions {
+      margin-top: pxtovh(64,$scale_k); //4em;
+      h1 {
+        margin-bottom: pxtovh(23,$scale_k);
+      }
+    }
+  }
