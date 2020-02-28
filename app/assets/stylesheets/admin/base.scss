@@ -521,9 +521,9 @@
     @import "admin/dashboard";
   // }
 
-  // @media (min-width: 1920px) {
-  @media #{$mq-w1920} {
-    $scale_k: 0.8;
+  @media (min-width: 1401px) {
+  // @media #{$mq-w1920} {
+    $scale_k: 0.92;
     @import "admin/dashboard";
   }
 
