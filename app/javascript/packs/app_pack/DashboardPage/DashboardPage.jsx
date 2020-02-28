@@ -20,7 +20,7 @@ class DashboardPage extends React.Component {
   render() {
     const { loggingIn, user } = this.props;
     return (
-      <div className="container-fluid dashboard">
+      <div className="container-fluid dashboard pt-0">
         <div>
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
 
