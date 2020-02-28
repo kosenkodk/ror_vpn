@@ -28,7 +28,7 @@ class Plans extends React.Component {
 
   render() {
     return (
-      <div id="plans" className="plans row card-deck text-center align-items-center">
+      <div id="plans" className="plans card-deck text-center align-items-center">
         {this.state.items.map((item, index) => (
           <Plan handleClick={this.handleClick} key={`plan-${item.id}`} index={index} item={item} />
         ))}
