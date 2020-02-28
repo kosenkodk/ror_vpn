@@ -76,24 +76,28 @@
         .plan__best-offer {
           font-size: 12px;
           line-height: 15px;
+          
+          position: absolute;
+          right: 0;
+          top: 0;
 
-          width: pxtovw(100);
-          height: pxtovh(38);
+          min-width: pxtovw(100);
+          min-height: pxtovh(38);
           background: $pink_button_gradient;
           color: $white;
-          position: relative;
-          right: pxtovw(-114,$scale_k);
-          top: pxtovh(-12,$scale_k);
+          
           border-bottom-left-radius: pxtovw(20,$scale_k);
           border-top-right-radius: pxtovw(20,$scale_k);
         }
         .plan__best-offer-hidden {
-          margin-top: pxtovh(34,$scale_k);
         }
         .plan-free__features {
           margin-top: pxtovh(65,$scale_k);
           font-size: 12px;
           line-height: 15px;
+        }
+        .card-header {
+          margin-top: pxtovh(34,$scale_k);
         }
         .card-header, .card-footer {
           border: unset;
@@ -105,7 +109,7 @@
         }
         .plan__btn-save {
           padding: pxtovh(6,$scale_k) pxtovw(15,$scale_k);
-          max-height: pxtovh(29,$scale_k);
+          min-height: pxtovh(29,$scale_k);
           font-size: 12px;
           line-height: 15px;
           color: $white;
