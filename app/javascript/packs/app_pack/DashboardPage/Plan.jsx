@@ -93,19 +93,20 @@ class Plan extends React.Component {
             </ul>
           </div>
 
-          {item.price > 0 ?
-            <button type="button" className={`btn btn-outline-primary plan__btn-change align-self-center`}>
-              Start today
+          <div className="card-footer">
+            {item.price > 0 ?
+              <button type="button" className={`btn btn-outline-primary plan__btn-change align-self-center`}>
+                Start today
             </button>
-            :
-            <div class="plan__my-plan">
-              <button type="button" className={`btn btn-outline-primary plan__btn-my-plan btn-block align-self-center`}>
-                My subscription
+              :
+              <div class="plan__my-plan">
+                <button type="button" className={`btn btn-outline-primary plan__btn-my-plan btn-block align-self-center`}>
+                  My subscription
               </button>
-            </div>
-          }
+              </div>
+            }
 
-          {/* <div className="card-footer"></div> */}
+          </div>
         </div>
       </div>
     )
