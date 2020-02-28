@@ -1,14 +1,24 @@
 
-@function pxtovw($value) {
+@function pxtovw($value, $scale:1) {  
   $value: strip-unit($value);
   $width-of-admin-ui-design: strip-unit($width-of-admin-ui-design);
   $proportion: ($value / $width-of-admin-ui-design)*100;
-  $proportion: $proportion + vw;
   // $proportion: ($value/$width-of-admin-ui-design)*100+0vw;
+  
+  $height-of-admin-ui-design: strip-unit($height-of-admin-ui-design);
+  $k_orig: $height-of-admin-ui-design/$width-of-admin-ui-design;
+  $k_device: 100vh/100vw;
+
+  // proportions for origin ui design (1400x972)
+  @if ($k_orig == $k_device) {
+    @return $proportion + vw;
+  }
+
+  $proportion: ($proportion * $scale) + vw;
   @return $proportion;
 }
 
-@function pxtovh($value) {
+@function pxtovh($value, $scale:1) {
   $value: strip-unit($value);
   $width-of-admin-ui-design: strip-unit($width-of-admin-ui-design);
   $height-of-admin-ui-design: strip-unit($height-of-admin-ui-design);
@@ -22,7 +32,7 @@
     @return $proportion + vh;
   }
 
-  $proportion: $proportion * $k_orig + vw; // vh to vw
+  $proportion: $proportion * $k_orig * $scale + vw; // vh to vw
   @return $proportion;
 }
 
