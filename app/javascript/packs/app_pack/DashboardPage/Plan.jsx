@@ -57,20 +57,20 @@ class Plan extends React.Component {
             {item.price > 0 ?
               <div className="d-flex flex-row align-items-start justify-content-center">
                 <div className="mr-lg-3">
-                  <span className="text-sm-1 font-weight-bold align-text-top">$</span>
+                  <span className="plan__price-currency align-text-top">$</span>
                 </div>
                 <div className="">
-                  <h1 className="card-title pricing-card-title">
+                  <h1 className="card-title plan__price">
                     {item.price}
                   </h1>
                 </div>
                 <div className=""></div>
               </div>
               :
-              <h1 className="card-title pricing-card-title">Free</h1>
+              <h1 className="card-title plan__price">Free</h1>
             }
 
-            <span className="text-sm-1 align-text-top">Per month</span>
+            <span className="plan__per-mo align-text-top">Per month</span>
 
             {item.price > 0 &&
               <div>

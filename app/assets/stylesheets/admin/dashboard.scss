@@ -1,6 +1,7 @@
 
   .dashboard {
-    $plans-padding: 5;
+    $card-padding-x: 5;
+    $padding-x: 32;
 
     @media (min-width: $lg-width) {
       max-width: pxtovw(1030,$scale_k);
@@ -8,31 +9,22 @@
     }
 
     .plans {
-      margin-top: pxtovh(32,$scale_k); // break height of the plan items
-      margin-left: pxtovw(-$plans-padding,$scale_k);
+      margin-top: pxtovh($padding-x,$scale_k); // break height of the plan items
+      margin-left: pxtovw(-$card-padding-x,$scale_k);
       .best-offer {
         background: $pink_gradient;
         border-radius: pxtovw(20,$scale_k);
       }
       .card {
-        padding-right: pxtovw(32,$scale_k);
-        padding-left: pxtovw(32,$scale_k);
+        padding-left: pxtovw($padding-x,$scale_k);
+        padding-right: pxtovw($padding-x,$scale_k);
         margin: 2px auto;
         border: 2px solid $pink2;
         border-radius: pxtovw(20,$scale_k);
-
         .card-body {
-          span {
-            font-size: 14px;
-            line-height: 18px;
-            @media (min-width: $bp-w1400) {
-              @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
-              @include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
-            }
-            font-weight: $font-bold;
-          }
+          padding-right: 0;
+          padding-left: 0;
         }
-
         .card-footer {
           // padding-top: 0;
           // padding-bottom: 0;
@@ -64,8 +56,8 @@
             // padding-top: pxtovh(36,$scale_k);
           }
           .card-body {
-            padding-right: pxtovw($plans-padding,$scale_k);
-            padding-right: pxtovw($plans-padding,$scale_k);
+            padding-left: pxtovw($padding-x,$scale_k);
+            padding-right: pxtovw($padding-x,$scale_k);
           }
           .card-footer {
             padding-top: pxtovh(18,$scale_k);
@@ -74,21 +66,38 @@
         }
       }
       .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
-        padding-right: pxtovw($plans-padding,$scale_k);
-        padding-left: pxtovw($plans-padding,$scale_k);
+        padding-right: pxtovw($card-padding-x,$scale_k);
+        padding-left: pxtovw($card-padding-x,$scale_k);
       }
       .card-deck {
-        padding-right: pxtovw(-$plans-padding,$scale_k);
-        padding-left: pxtovw(-$plans-padding,$scale_k);
-      }
-      .pricing-card-title {
-        font-size: 56px; // 76px fullhd
-        @media (min-width: $bp-w1400) {
-          @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
-        }
-        font-weight: $font-bold;
+        padding-right: pxtovw(-$card-padding-x,$scale_k);
+        padding-left: pxtovw(-$card-padding-x,$scale_k);
       }
       .plan {
+        .plan__price {
+          // @extend .pricing-card-title;
+          font-size: 56px; // 76px fullhd
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
+          }
+          font-weight: $font-bold;
+        }
+        .plan__price-currency {
+          font-size: 18px;
+          line-height: 7px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(18px, 52px, $bp-w1400, $bp-w4096, 14px);
+            @include fluidLineHeight(7px, 7px, $bp-w1400, $bp-w4096, 7px);
+          }
+          font-weight: $font-bold;
+        }
+        .plan__per-mo {
+          // @extend .plan__price-currency;
+          @include fluidFontSize(14px, 54px, $bp-w1400, $bp-w4096, 14px);
+          @include fluidLineHeight(7px, 106px, $bp-w1400, $bp-w4096, 18px);
+          font-weight: $font-bold;
+        }
+        
         .plan__best-offer {
           font-size: 12px;
           line-height: 15px;
@@ -127,10 +136,6 @@
         .card-header, .card-footer {
           border: unset;
           background: unset;
-        }
-        .card-body {
-          // padding-top: 0;
-          // padding-bottom: 0;
         }
         .plan__btn-save {
           padding: pxtovh(6,$scale_k) pxtovw(15,$scale_k);
