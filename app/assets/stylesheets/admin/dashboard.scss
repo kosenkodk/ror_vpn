@@ -8,7 +8,7 @@
     }
 
     .plans {
-      margin-top: pxtovh(32, $scale_k); // break height of the plan items
+      margin-top: pxtovh(32,$scale_k); // break height of the plan items
       margin-left: pxtovw(-$plans-padding,$scale_k);
       .best-offer {
         background: $pink_gradient;
@@ -42,8 +42,8 @@
         }
         
         &.active {
-          padding-top: pxtovh(18);
-          padding-bottom: pxtovh(18);
+          padding-top: pxtovh(18,$scale_k);
+          padding-bottom: pxtovh(18,$scale_k);
           // square corners
           // border: 3px solid;
           // border-image: $pink_button_gradient;
@@ -54,14 +54,12 @@
           border-radius: pxtovw(20,$scale_k);
           color: $white;
           .card-header {
-            padding-top: pxtovh(18);
-            // padding-top: pxtovh(36);
+            padding-top: pxtovh(18,$scale_k);
+            // padding-top: pxtovh(36,$scale_k);
           }
           .card-footer {
-            padding-right: 0;
-            padding-left: 0;
-            padding-top: pxtovh(18);
-            // padding-top: pxtovh(36);
+            padding-top: pxtovh(18,$scale_k);
+            // padding-top: pxtovh(36,$scale_k);
           }
         }
       }
@@ -93,8 +91,8 @@
           right: 0;
           top: 0;
 
-          min-width: pxtovw(100);
-          min-height: pxtovh(38);
+          min-width: pxtovw(100,$scale_k);
+          min-height: pxtovh(38,$scale_k);
           background: $pink_button_gradient;
           color: $white;
           
@@ -114,7 +112,7 @@
         }
         .card-header {
           margin-top: pxtovh(49,$scale_k);
-          margin-bottom: pxtovh(39);
+          margin-bottom: pxtovh(39,$scale_k);
         }
         .card-header, .card-footer {
           border: unset;
@@ -143,7 +141,7 @@
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
           }
-          margin-bottom: pxtovh(1px);
+          margin-bottom: pxtovh(1px,$scale_k);
         }
         .plan__price-comment {
           // font-size: 14px;
