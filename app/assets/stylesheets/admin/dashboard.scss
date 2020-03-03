@@ -4,6 +4,10 @@
     $padding-x: 32;
 
     @media (min-width: $lg-width) {
+      .border-left-pink {
+        // max-width: 70%;
+        max-width: pxtovw(690,$scale_k);
+      }
       max-width: pxtovw(1030,$scale_k);
       float: left;
     }
