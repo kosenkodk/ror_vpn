@@ -6,25 +6,25 @@
     @media (min-width: $lg-width) {
       .border-left-pink {
         // max-width: 70%;
-        max-width: pxtovw(690,$scale_k);
+        max-width: pxtovw(690);
       }
-      max-width: pxtovw(1030,$scale_k);
+      max-width: pxtovw(1030);
       float: left;
     }
 
     .plans {
-      margin-top: pxtovh($padding-x,$scale_k); // break height of the plan items
-      margin-left: pxtovw(-$card-padding-x,$scale_k);
+      margin-top: pxtovh($padding-x); // break height of the plan items
+      margin-left: pxtovw(-$card-padding-x);
       .best-offer {
         background: $pink_gradient;
-        border-radius: pxtovw(20,$scale_k);
+        border-radius: pxtovw(20);
       }
       .card {
-        padding-left: pxtovw($padding-x,$scale_k);
-        padding-right: pxtovw($padding-x,$scale_k);
+        padding-left: pxtovw($padding-x);
+        padding-right: pxtovw($padding-x);
         margin: 2px auto;
         border: 2px solid $pink2;
-        border-radius: pxtovw(20,$scale_k);
+        border-radius: pxtovw(20);
         &:hover {
           cursor: unset;
         }
@@ -50,31 +50,31 @@
           // border-radius: pxtovw(20);
 
           background-image: $pink_button_gradient;
-          border-radius: pxtovw(20,$scale_k);
+          border-radius: pxtovw(20);
           color: $white;
 
           .card-header {
-            // padding-top: pxtovh(36,$scale_k);
+            // padding-top: pxtovh(36);
           }
           .card-body {
-            margin-top: pxtovh(5,$scale_k);
-            margin-bottom: pxtovh(45,$scale_k);
-            padding-left: pxtovw($padding-x,$scale_k);
-            padding-right: pxtovw($padding-x,$scale_k);
+            margin-top: pxtovh(5);
+            margin-bottom: pxtovh(45);
+            padding-left: pxtovw($padding-x);
+            padding-right: pxtovw($padding-x);
           }
           .card-footer {
-            // padding-top: pxtovh(18,$scale_k);
-            // padding-bottom: pxtovh(32,$scale_k);
+            // padding-top: pxtovh(18);
+            // padding-bottom: pxtovh(32);
           }
         }
       }
       .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
-        padding-right: pxtovw($card-padding-x,$scale_k);
-        padding-left: pxtovw($card-padding-x,$scale_k);
+        padding-right: pxtovw($card-padding-x);
+        padding-left: pxtovw($card-padding-x);
       }
       .card-deck {
-        padding-right: pxtovw(-$card-padding-x,$scale_k);
-        padding-left: pxtovw(-$card-padding-x,$scale_k);
+        padding-right: pxtovw(-$card-padding-x);
+        padding-left: pxtovw(-$card-padding-x);
       }
       .plan {
         .plan__price {
@@ -84,7 +84,7 @@
             @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
           }
           font-weight: $font-bold;
-          margin-bottom: pxtovh(12,$scale_k);
+          margin-bottom: pxtovh(12);
         }
 
         .plan__price-currency {
@@ -98,7 +98,7 @@
         }
         
         .plan__per-mo {
-          // padding-top: pxtovh(4px, $scale_k);
+          // padding-top: pxtovh(4px);
           // @extend .plan__price-currency;
           font-size: 14px;
           // line-height: 14px;
@@ -112,7 +112,7 @@
         .plan__best-offer {
           font-size: 12px;
           line-height: 15px;
-          padding: pxtovh(11, $scale_k) pxtovw(20, $scale_k);
+          padding: pxtovh(11) pxtovw(20);
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
             @include fluidLineHeight(15px, 50px, $bp-w1400, $bp-w4096, 15px);
@@ -122,19 +122,19 @@
           right: 0;
           top: 0;
 
-          min-width: pxtovw(100,$scale_k);
-          min-height: pxtovh(38,$scale_k);
+          min-width: pxtovw(100);
+          min-height: pxtovh(38);
           background: $pink_button_gradient;
           color: $white;
           
-          border-bottom-left-radius: pxtovw(20,$scale_k);
-          border-top-right-radius: pxtovw(20,$scale_k);
+          border-bottom-left-radius: pxtovw(20);
+          border-top-right-radius: pxtovw(20);
         }
 
         .plan__best-offer-hidden {}
 
         .plan-free__features {
-          margin-top: pxtovh(65,$scale_k);
+          margin-top: pxtovh(65);
           font-size: 12px;
           line-height: 15px;
           @media (min-width: $bp-w1400) {
@@ -143,8 +143,8 @@
           }
         }
         .card-header {
-          margin-top: pxtovh(49,$scale_k);
-          margin-bottom: pxtovh(39,$scale_k);
+          margin-top: pxtovh(49);
+          margin-bottom: pxtovh(39);
         }
         .card-header, .card-footer {
           border: unset;
@@ -152,10 +152,10 @@
         }
 
         .plan__discount {
-          margin-bottom: pxtovh(5,$scale_k);
+          margin-bottom: pxtovh(5);
           .plan__btn-save {
-            padding: pxtovh(6,$scale_k) pxtovw(15,$scale_k);
-            // min-height: pxtovh(29,$scale_k);
+            padding: pxtovh(6) pxtovw(15);
+            // min-height: pxtovh(29);
             font-size: 12px;
             line-height: 15px;
             @media (min-width: $bp-w1400) {
@@ -163,8 +163,8 @@
               @include fluidLineHeight(15px, 50px, $bp-w1400, $bp-w4096, 15px);
             }
             color: $white;
-            margin-top: pxtovh(6,$scale_k);
-            margin-bottom: pxtovh(20,$scale_k);
+            margin-top: pxtovh(6);
+            margin-bottom: pxtovh(20);
             background-color: #3F0E4D;
           }
           .plan__price-duration {
@@ -172,7 +172,7 @@
             @media (min-width: $bp-w1400) {
               @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
             }
-            margin-bottom: pxtovh(1px,$scale_k);
+            margin-bottom: pxtovh(1px);
           }
           .plan__price-comment {
             // font-size: 14px;
@@ -183,18 +183,18 @@
         }
 
         .plan__my-plan {
-          // margin-left: pxtovw(-5,$scale_k);
-          // margin-right: pxtovw(-5,$scale_k);
+          // margin-left: pxtovw(-5);
+          // margin-right: pxtovw(-5);
         }
         .plan__btn-my-plan {
           background: $white;
           color: #3F0E4D;
-          margin-bottom: pxtovh(53,$scale_k);
+          margin-bottom: pxtovh(53);
           border-radius: 0;
         }
         .plan__features {
-          margin-top: pxtovh(13,$scale_k);
-          margin-bottom: pxtovh(29,$scale_k);
+          margin-top: pxtovh(13);
+          margin-bottom: pxtovh(29);
           font-size: 12px;
           line-height: 15px;
           @media (min-width: $bp-w1400) {
@@ -203,16 +203,16 @@
           }
         }
         .plan__btn-change {
-          margin-bottom: pxtovh(40,$scale_k);
-          min-height: pxtovh(50,$scale_k);
-          border-radius: pxtovw(20,$scale_k);
+          margin-bottom: pxtovh(40);
+          min-height: pxtovh(50);
+          border-radius: pxtovw(20);
         }
       }
     }
     .subscriptions {
-      margin-top: pxtovh(64,$scale_k); //4em;
+      margin-top: pxtovh(64); //4em;
       h1 {
-        margin-bottom: pxtovh(23,$scale_k);
+        margin-bottom: pxtovh(23);
       }
     }
   }
