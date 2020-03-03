@@ -517,12 +517,6 @@
   }
   
   @import "admin/dashboard";
-  @media (min-width: 1401px) {
-    .dashboard {
-      zoom: 0.9;
-      -moz-transform: scale(0.9);
-    }
-  }
 
   @import "admin/mobiles";
   @import "admin/desktop";

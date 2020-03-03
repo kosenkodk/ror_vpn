@@ -3,6 +3,13 @@
     $card-padding-x: 5;
     $padding-x: 32;
 
+    @media (min-width: 1401px) {
+      .dashboard {
+        zoom: 0.9;
+        -moz-transform: scale(0.9);
+      }
+    }
+
     @media (min-width: $lg-width) {
       .border-left-pink {
         // max-width: 70%;
@@ -57,7 +64,7 @@
             // padding-top: pxtovh(36);
           }
           .card-body {
-            margin-top: pxtovh(5);
+            margin-top: unset;//pxtovh(5);
             margin-bottom: pxtovh(45);
             padding-left: pxtovw($padding-x);
             padding-right: pxtovw($padding-x);
@@ -80,8 +87,10 @@
         .plan__price {
           // @extend .pricing-card-title;
           font-size: 56px; // 76px fullhd
+          line-height: 30px;
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
+            @include fluidLineHeight(62px, 62px, $bp-w1400, $bp-w4096, 62px);
           }
           font-weight: $font-bold;
           margin-bottom: pxtovh(12);
@@ -101,10 +110,10 @@
           // padding-top: pxtovh(4px);
           // @extend .plan__price-currency;
           font-size: 14px;
-          // line-height: 14px;
+          line-height: 18px;
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(14px, 42px, $bp-w1400, $bp-w4096, 14px);
-            @include fluidLineHeight(7px, 106px, $bp-w1400, $bp-w4096, 18px);
+            @include fluidLineHeight(18px, 21px, $bp-w1400, $bp-w4096, 18px);
           }
           font-weight: $font-bold;
         }
@@ -191,6 +200,7 @@
           color: #3F0E4D;
           margin-bottom: pxtovh(53);
           border-radius: 0;
+          min-height: pxtovh(50);
         }
         .plan__features {
           margin-top: pxtovh(13);
