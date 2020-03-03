@@ -25,6 +25,9 @@
         margin: 2px auto;
         border: 2px solid $pink2;
         border-radius: pxtovw(20,$scale_k);
+        &:hover {
+          cursor: unset;
+        }
         .card-body {
           padding-right: 0;
           padding-left: 0;
