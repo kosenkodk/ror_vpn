@@ -90,8 +90,11 @@
           line-height: 30px;
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
-            @include fluidLineHeight(62px, 62px, $bp-w1400, $bp-w4096, 62px);
           }
+          @media (min-width: $bp-w1920) {
+            @include fluidLineHeight(45px, 62px, $bp-w1920, $bp-w4096, 62px);
+          }
+          
           font-weight: $font-bold;
           margin-bottom: pxtovh(12);
         }
