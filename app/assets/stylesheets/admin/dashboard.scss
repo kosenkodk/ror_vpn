@@ -92,7 +92,7 @@
             @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
           }
           @media (min-width: $bp-w1920) {
-            @include fluidLineHeight(45px, 62px, $bp-w1920, $bp-w4096, 62px);
+            @include fluidLineHeight(45px, 120px, $bp-w1920, $bp-w4096, 62px);
           }
           
           font-weight: $font-bold;
