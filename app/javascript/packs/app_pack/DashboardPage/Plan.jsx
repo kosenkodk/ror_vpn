@@ -60,23 +60,25 @@ class Plan extends React.Component {
                   <span className="plan__price-currency align-text-top">$</span>
                 </div>
                 <div className="">
-                  <h1 className="card-title plan__price">
+                  <h1 className="plan__price">
                     {item.price}
                   </h1>
                 </div>
                 <div className=""></div>
               </div>
               :
-              <h1 className="card-title plan__price">Free</h1>
+              <h1 className="plan__price">Free</h1>
             }
 
-            <span className="plan__per-mo align-text-top">Per month</span>
+            <div className="plan__per-mo">
+              <span className="align-text-top">{item.price > 0 ? 'Per month' : '$0 per month'}</span>
+            </div>
 
             {item.price > 0 &&
-              <div>
+              <div className="plan__discount">
                 <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
-                <h5 className="plan__price-duration card-title text-info"><strike>$ {item.price_duration} </strike></h5>
-                <h6 className="plan__price-comment card-title">{item.price_comment}</h6>
+                <h5 className="plan__price-duration text-info"><strike>$ {item.price_duration} </strike></h5>
+                <h6 className="plan__price-comment">{item.price_comment}</h6>
               </div>
             }
 
