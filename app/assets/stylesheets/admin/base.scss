@@ -516,18 +516,12 @@
     }
   }
   
-  // @media screen and (max-width: 1919px) {
-    $scale_k: 1;
-    @import "admin/dashboard";
-  // }
-
+  @import "admin/dashboard";
   @media (min-width: 1401px) {
-  // @media #{$mq-w1920} {
     .dashboard {
       zoom: 0.9;
       -moz-transform: scale(0.9);
     }
-    @import "admin/dashboard";
   }
 
   @import "admin/mobiles";
