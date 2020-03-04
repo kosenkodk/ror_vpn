@@ -98,7 +98,7 @@ class Plan extends React.Component {
                 Start today
               </button>
               :
-              <div class="plan__my-plan">
+              <div className="plan__my-plan">
                 <button type="button" className={`btn btn-outline-primary plan__btn-my-plan btn-block align-self-center`}>
                   My subscription
                 </button>
