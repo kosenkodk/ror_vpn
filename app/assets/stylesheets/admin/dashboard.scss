@@ -4,10 +4,8 @@
     $padding-x: 32;
 
     @media (min-width: 1401px) {
-      .dashboard {
-        zoom: 0.9;
-        -moz-transform: scale(0.9);
-      }
+      zoom: 0.9;
+      -moz-transform: scale(0.9);
     }
 
     @media (min-width: $lg-width) {
