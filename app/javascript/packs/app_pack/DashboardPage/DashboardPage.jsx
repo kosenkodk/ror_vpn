@@ -95,6 +95,39 @@ class DashboardPage extends React.Component {
             <InfoBlock>
               A 20% discount for annual billing has been automatically applied.
             </InfoBlock>
+            <table className="table">
+              <thead>
+                <th>SUBSCRIPTION DETAILS</th>
+              </thead>
+              <tr>
+                <td>VegaVPN</td>
+                <td>Free</td>
+              </tr>
+              <tr className="font-weight-bold">
+                <td>Total</td>
+                <td>$2.99 / month</td>
+              </tr>
+              <tr>
+                <td colSpan="2">
+                  <Link to="#" >Add coupon</Link>
+                </td>
+              </tr>
+            </table>
+
+            <table className="table">
+              <thead>
+                <th>SUBSCRIPTION DETAILS</th>
+              </thead>
+              <tr className="font-weight-bold">
+                <td>Total (annual billing)</td>
+                <td>$48</td>
+              </tr>
+              <tr className="font-weight-bold">
+                <td>Amount due</td>
+                <td>$45.01</td>
+              </tr>
+            </table>
+
           </React.Fragment>
           }
           {step === 2 && <React.Fragment>
