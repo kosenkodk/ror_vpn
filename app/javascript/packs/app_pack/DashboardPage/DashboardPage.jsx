@@ -9,12 +9,14 @@ import { InfoBlock } from '../_components/admin';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
 import { accountActions, globalActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
+import { PaymentDetailsCard } from './PaymentDetailsCard';
 
 class DashboardPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ''
+      title: '',
+      isForm: false,
     };
     this.onPlanChange = this.onPlanChange.bind(this);
   }
@@ -44,10 +46,12 @@ class DashboardPage extends React.Component {
       case 2:
         // payment details
         this.setState({ title: 'Payment details' });
+        this.setState({ isForm: true })
         //TODO: this.props.dispatch(accountActions.getPaymentDetails());
         break;
       case 3:
         // upgrading account (loading indicator)
+        this.setState({ isForm: false })
         this.setState({ title: 'Upgrading account' });
         // const data = FormDataAsJsonFromEvent(e);
         //TODO: this.props.dispatch(accountActions.changePlan(data))
@@ -84,8 +88,9 @@ class DashboardPage extends React.Component {
 
         <ModalPopupForm onClose={this.clearModalAlerts}
           id='changePlan'
-          isForm={step >= 4 ? true : false}
+          isForm={this.state.isForm}
           isHideBtn={true}
+          isNextBtnOnly={true}
           onBtnSave={(e) => this.setStep(e, step + 1)}
           title={this.state.title}
           btnCloseText={I18n.t('buttons.cancel')}
@@ -97,45 +102,51 @@ class DashboardPage extends React.Component {
             </InfoBlock>
             <table className="table">
               <thead>
-                <th>SUBSCRIPTION DETAILS</th>
+                <tr>
+                  <th colSpan="2">SUBSCRIPTION DETAILS</th>
+                </tr>
               </thead>
-              <tr>
-                <td>VegaVPN</td>
-                <td>Free</td>
-              </tr>
-              <tr className="font-weight-bold">
-                <td>Total</td>
-                <td>$2.99 / month</td>
-              </tr>
-              <tr>
-                <td colSpan="2">
-                  <Link to="#" >Add coupon</Link>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>VegaVPN</td>
+                  <td>Free</td>
+                </tr>
+                <tr className="font-weight-bold">
+                  <td>Total</td>
+                  <td>$2.99 / month</td>
+                </tr>
+                <tr>
+                  <td colSpan="2">
+                    <Link to="#" >Add coupon</Link>
+                  </td>
+                </tr>
+              </tbody>
             </table>
 
             <table className="table">
               <thead>
-                <th>SUBSCRIPTION DETAILS</th>
+                <tr>
+                  <th colSpas="2">SUBSCRIPTION DETAILS</th>
+                </tr>
               </thead>
-              <tr className="font-weight-bold">
-                <td>Total (annual billing)</td>
-                <td>$48</td>
-              </tr>
-              <tr className="font-weight-bold">
-                <td>Amount due</td>
-                <td>$45.01</td>
-              </tr>
+              <tbody>
+                <tr className="font-weight-bold">
+                  <td>Total (annual billing)</td>
+                  <td>$48</td>
+                </tr>
+                <tr className="font-weight-bold">
+                  <td>Amount due</td>
+                  <td>$45.01</td>
+                </tr>
+              </tbody>
             </table>
-
           </React.Fragment>
           }
           {step === 2 && <React.Fragment>
             <InfoBlock>
               Your payment details are protected with TLS encryption and Swiss privacy laws
             </InfoBlock>
-            <div className="text-center">
-            </div>
+            <PaymentDetailsCard />
           </React.Fragment>
           }
           {step === 3 && <React.Fragment>

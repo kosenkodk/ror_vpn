@@ -116,25 +116,36 @@ class ModalPopupForm extends React.Component {
 
               {this.props.isShowFooter &&
                 <Modal.Footer className="pt-0">
-                  <div className="d-flex w-100">
-                    <button type="button"
-                      onClick={this.Hide}
-                      className="mr-auto btn btn-outline-danger" data-dismiss="modal">
-                      {btnCloseText}
-                    </button>
-                    <button type="submit"
-                      onClick={this.onBtnSave}
-                      className="btn btn-pink active" disabled={loading ? true : false}>
-                      {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
-                      {' ' + btnSaveText}
-                    </button>
-                  </div>
+                  {this.props.isNextBtnOnly ?
+                    <div className="d-flex w-100 justify-content-center">
+                      <button type="submit"
+                        onClick={this.onBtnSave}
+                        className="btn btn-pink active" disabled={loading ? true : false}>
+                        {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                        {' ' + btnSaveText}
+                      </button>
+                    </div>
+                    :
+                    <div className="d-flex w-100">
+                      <button type="button"
+                        onClick={this.Hide}
+                        className="mr-auto btn btn-outline-danger" data-dismiss="modal">
+                        {btnCloseText}
+                      </button>
+                      <button type="submit"
+                        onClick={this.onBtnSave}
+                        className="btn btn-pink active" disabled={loading ? true : false}>
+                        {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                        {' ' + btnSaveText}
+                      </button>
+                    </div>
+                  }
                 </Modal.Footer>
               }
             </div>
           }
         </Modal>
-      </React.Fragment >
+      </React.Fragment>
     );
   }
 }
