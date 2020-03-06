@@ -70,6 +70,10 @@
   .modal-footer {
     border: unset;
     padding: pxtovh(10px) pxtovw(5px);
+    .btn-next-only {
+      width: 100%;
+      max-width: pxtovw(155);
+    }
   }
 
   .modal-header {
