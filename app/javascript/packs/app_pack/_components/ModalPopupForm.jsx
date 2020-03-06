@@ -120,7 +120,7 @@ class ModalPopupForm extends React.Component {
                     <div className="d-flex w-100 justify-content-center">
                       <button type="submit"
                         onClick={this.onBtnSave}
-                        className="btn btn-pink active" disabled={loading ? true : false}>
+                        className="btn btn-pink active btn-next-only" disabled={loading ? true : false}>
                         {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         {' ' + btnSaveText}
                       </button>
