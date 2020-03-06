@@ -12,8 +12,9 @@ class PaymentDetailsCard extends React.Component {
     super(props);
     this.state = {
       email: '',
-      currentPaymentMethod: 1 // || this.props.payment_methods && this.props.payment_methods[0].id
-    }
+      currentPaymentMethodId: 0, // || this.props.payment_methods && this.props.payment_methods[0].id
+      currentPaymentMethod: '',
+    };
     // this.handleChange = this.handleChange.bind(this);
   }
 
@@ -27,13 +28,19 @@ class PaymentDetailsCard extends React.Component {
   }
 
   onPaymentMethodChange = (e) => {
-    const currentPaymentMethod = this.props.payment_methods.filter(item => item.id == e.target.value)
-    this.setState({ currentPaymentMethod: currentPaymentMethod[0] })
-    e.preventDefault();
+    if (e && e.target.value > 0) {
+      const currentPaymentMethod = this.props.payment_methods.filter(item => item.id == e.target.value);
+      this.setState({ currentPaymentMethodId: currentPaymentMethod[0].id });
+      this.setState({ currentPaymentMethod: currentPaymentMethod[0] });
+      return;
+    }
+    this.setState({ currentPaymentMethod: '' });
+    this.setState({ currentPaymentMethodId: 0 });
+    if (e) e.preventDefault();
   }
 
   render() {
-    const { email, currentPaymentMethod } = this.state;
+    const { email, currentPaymentMethod, currentPaymentMethodId } = this.state;
     const { loading, error, notice } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
@@ -56,7 +63,8 @@ class PaymentDetailsCard extends React.Component {
               {/* {I18n.t('pages.tickets.form.title')} */}
             </label>
             <div className="col-sm-6">
-              <select name="payment_methods" onChange={this.onPaymentMethodChange} value={this.state.currentPaymentMethod.id} className="form-control">
+              <select name="payment_methods" onChange={this.onPaymentMethodChange} value={currentPaymentMethodId} className="form-control">
+                <option value={0}>Please select</option>
                 {this.props.payment_methods && this.props.payment_methods.map((item) =>
                   <option key={`payment_method${item.id}`} value={item.id}>{item.title}</option>
                 )}
@@ -67,7 +75,6 @@ class PaymentDetailsCard extends React.Component {
             </div>
             <div className="col-sm-2"></div>
           </div>
-          {/* {currentPaymentMethod.title} */}
           {(currentPaymentMethod.id === 1) &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
@@ -111,7 +118,7 @@ class PaymentDetailsCard extends React.Component {
         <div className="modal-footer">
           <div className="d-flex w-100 justify-content-center">
             {/* <button type="button" onClick={this.props.onModalClose} className="mr-auto btn btn-outline-danger" data-dismiss="modal">{I18n.t('buttons.cancel')}</button> */}
-            <button type="submit" className="btn btn-pink" disabled={loading ? true : false}>
+            <button type="submit" className="btn btn-pink btn-next-only" disabled={loading ? true : false}>
               {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
               {' ' + I18n.t('buttons.next')}
             </button>
