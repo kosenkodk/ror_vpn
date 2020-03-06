@@ -29,6 +29,15 @@ class DashboardPage extends React.Component {
     }
   }
 
+  onModalClose = (e) => {
+    e.preventDefault();
+    this.props.dispatch(accountActions.clearAlerts());
+
+    this.setState({ isForm: false });
+    this.props.dispatch(globalActions.setStep(0));
+    this.props.dispatch(globalActions.setModalShow(false));
+  }
+
   setStep(e, step) {
     if (e) e.preventDefault();
     this.props.dispatch(globalActions.setStep(step));
@@ -61,8 +70,7 @@ class DashboardPage extends React.Component {
         // success message ?
         break
       default:
-        this.props.dispatch(globalActions.setStep(0));
-        this.props.dispatch(globalActions.setModalShow(false));
+        this.onModalClose(e);
     }
   }
 
@@ -86,7 +94,7 @@ class DashboardPage extends React.Component {
           <p>No any billing details found</p>
         </div> */}
 
-        <ModalPopupForm onClose={this.clearModalAlerts}
+        <ModalPopupForm onClose={this.onModalClose}
           id='changePlan'
           isForm={this.state.isForm}
           isHideBtn={true}
@@ -126,7 +134,7 @@ class DashboardPage extends React.Component {
             <table className="table">
               <thead>
                 <tr>
-                  <th colSpas="2">SUBSCRIPTION DETAILS</th>
+                  <th colSpan="2">SUBSCRIPTION DETAILS</th>
                 </tr>
               </thead>
               <tbody>
@@ -146,7 +154,7 @@ class DashboardPage extends React.Component {
             <InfoBlock>
               Your payment details are protected with TLS encryption and Swiss privacy laws
             </InfoBlock>
-            <PaymentDetailsCard />
+            <PaymentDetailsCard onFormSubmit={(e) => this.setStep(e, 2)} />
           </React.Fragment>
           }
           {step === 3 && <React.Fragment>
