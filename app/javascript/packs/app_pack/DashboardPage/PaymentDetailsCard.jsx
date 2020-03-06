@@ -10,7 +10,10 @@ class PaymentDetailsCard extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { email: '' }
+    this.state = {
+      email: '',
+      currentPaymentMethod: 1 // || this.props.payment_methods && this.props.payment_methods[0].id
+    }
     // this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,8 +26,14 @@ class PaymentDetailsCard extends React.Component {
     this.props.dispatch(globalActions.getPaymentMethods());
   }
 
+  onPaymentMethodChange = (e) => {
+    const currentPaymentMethod = this.props.payment_methods.filter(item => item.id == e.target.value)
+    this.setState({ currentPaymentMethod: currentPaymentMethod[0] })
+    e.preventDefault();
+  }
+
   render() {
-    const { email } = this.state;
+    const { email, currentPaymentMethod } = this.state;
     const { loading, error, notice } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
@@ -47,9 +56,7 @@ class PaymentDetailsCard extends React.Component {
               {/* {I18n.t('pages.tickets.form.title')} */}
             </label>
             <div className="col-sm-6">
-              <select
-              // className={`${this.props.className ? this.props.className : 'form-control'}`} id="departmentSelectBox" name="department" value={this.state.departmentSelectValue} onChange={this.onDepartmentSelectChange}
-              >
+              <select name="payment_methods" onChange={this.onPaymentMethodChange} value={this.state.currentPaymentMethod.id}>
                 {this.props.payment_methods && this.props.payment_methods.map((item) =>
                   <option key={`payment_method${item.id}`} value={item.id}>{item.title}</option>
                 )}
@@ -60,18 +67,46 @@ class PaymentDetailsCard extends React.Component {
             </div>
             <div className="col-sm-2"></div>
           </div>
-
-          <div className="form-group row">
-            <label className="col-sm-4 col-form-label">
-            </label>
-            <div className="col-sm-6">
-              <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
-              // placeholder={I18n.t('pages.account.cancel.form.message')}
-              ></textarea>
+          {/* {currentPaymentMethod.title} */}
+          {(currentPaymentMethod.id === 1) &&
+            <div className="form-group row">
+              <label className="col-sm-4 col-form-label">
+                {currentPaymentMethod.title}
+              </label>
+              <div className="col-sm-6">
+                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
+                // placeholder={I18n.t('pages.account.cancel.form.message')}
+                ></textarea>
+              </div>
+              <div className="col-sm-2"></div>
             </div>
-            <div className="col-sm-2"></div>
-          </div>
-
+          }
+          {(currentPaymentMethod.id === 2) &&
+            <div className="form-group row">
+              <label className="col-sm-4 col-form-label">
+                {currentPaymentMethod.title}
+              </label>
+              <div className="col-sm-6">
+                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
+                // placeholder={I18n.t('pages.account.cancel.form.message')}
+                ></textarea>
+              </div>
+              <div className="col-sm-2"></div>
+            </div>
+          }
+          {(currentPaymentMethod.id === 3) &&
+            <div className="form-group row">
+              <label className="col-sm-4 col-form-label">
+                {currentPaymentMethod.title}
+              </label>
+              <div className="col-sm-6">
+                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
+                // placeholder={I18n.t('pages.account.cancel.form.message')}
+                ></textarea>
+              </div>
+              <div className="col-sm-2"></div>
+            </div>
+          }
         </div>
         <div className="modal-footer">
           <div className="d-flex w-100 justify-content-center">
