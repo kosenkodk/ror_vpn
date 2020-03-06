@@ -88,6 +88,11 @@ en:
     cryptocurrencies: "Cryptocurrencies"
     qiwi: "Qiwi"
     credit_card: "Credit card"
+  pay_with:
+    credit_card: "Pay with credit/debit card"
+    paypal: "Pay with PayPal"
+    bitcoin: "Pay with Bitcoin"
+    other_payments: "Other payments"
   footer:
     product:
       title: "PRODUCT"
