@@ -88,7 +88,7 @@ class AccountPage extends React.Component {
   }
 
   clearModalAlerts(e) { // clearModalAlerts = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     this.props.dispatch(globalActions.setModalShow(false));
     this.props.dispatch(accountActions.clearAlerts());
   }
