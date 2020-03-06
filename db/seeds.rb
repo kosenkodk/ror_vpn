@@ -55,6 +55,10 @@ payment_methods = [
   {title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
   {title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
   {title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
+  {title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
+  {title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
+  {title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
+  {title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'paypal.png' ]},
 ].each do |item|
   payment_method = PaymentMethod.find_or_create_by(title: item[:title])
   puts payment_method.try(:title)
