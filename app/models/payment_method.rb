@@ -3,7 +3,9 @@ class PaymentMethod < ApplicationRecord
   
   has_one :user
   has_many_attached :icons
-  
+  # belongs_to :payment_method_group, optional: true
+  has_and_belongs_to_many :payment_method_group
+
   def active_class
     ''
   end
