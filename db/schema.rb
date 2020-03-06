@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_175919) do
+ActiveRecord::Schema.define(version: 2020_03_06_203843) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,11 @@ ActiveRecord::Schema.define(version: 2020_03_06_175919) do
     t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id"
     t.index ["ticket_id"], name: "index_messages_on_ticket_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "payment_groups", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "payment_method_groups", force: :cascade do |t|
