@@ -30,7 +30,7 @@ class DashboardPage extends React.Component {
   }
 
   onModalClose = (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     this.props.dispatch(accountActions.clearAlerts());
 
     this.setState({ isForm: false });
@@ -45,8 +45,7 @@ class DashboardPage extends React.Component {
     switch (step) {
       case 0:
         // close modal popup
-        this.setState({ title: 'Start today' });
-        this.props.dispatch(globalActions.setModalShow(false));
+        this.onModalClose(e);
         break;
       case 1:
         // start today
@@ -55,12 +54,11 @@ class DashboardPage extends React.Component {
       case 2:
         // payment details
         this.setState({ title: 'Payment details' });
-        this.setState({ isForm: true })
-        //TODO: this.props.dispatch(accountActions.getPaymentDetails());
+        this.setState({ isForm: true });
         break;
       case 3:
         // upgrading account (loading indicator)
-        this.setState({ isForm: false })
+        this.setState({ isForm: false });
         this.setState({ title: 'Upgrading account' });
         // const data = FormDataAsJsonFromEvent(e);
         //TODO: this.props.dispatch(accountActions.changePlan(data))
@@ -68,7 +66,7 @@ class DashboardPage extends React.Component {
       case 4:
         this.setState({ title: 'Success' });
         // success message ?
-        break
+        break;
       default:
         this.onModalClose(e);
     }
@@ -117,15 +115,15 @@ class DashboardPage extends React.Component {
               <tbody>
                 <tr>
                   <td>VegaVPN</td>
-                  <td>Free</td>
+                  <td className="text-right">Free</td>
                 </tr>
                 <tr className="font-weight-bold">
                   <td>Total</td>
-                  <td>$2.99 / month</td>
+                  <td className="text-right">$2.99 / month</td>
                 </tr>
                 <tr>
                   <td colSpan="2">
-                    <Link to="#" >Add coupon</Link>
+                    <Link to="#" className="text-blue">Add coupon</Link>
                   </td>
                 </tr>
               </tbody>
@@ -140,11 +138,11 @@ class DashboardPage extends React.Component {
               <tbody>
                 <tr className="font-weight-bold">
                   <td>Total (annual billing)</td>
-                  <td>$48</td>
+                  <td className="text-right">$48</td>
                 </tr>
                 <tr className="font-weight-bold">
                   <td>Amount due</td>
-                  <td>$45.01</td>
+                  <td className="text-right">$45.01</td>
                 </tr>
               </tbody>
             </table>
