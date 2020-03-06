@@ -6,6 +6,7 @@ import { prepareAttachmentForJsonApi, prepareAttachmentForJsonApiAsync } from '.
 
 export const globalActions = {
   getDepartments,
+  getPaymentMethods,
   getAccountCancellationReasons,
   setModalShow,
   setAttachments,
@@ -62,6 +63,24 @@ function setModalShow(isModalShow) {
   function setModalShow(isModalShow) { return { type: globalConstants.IS_MODAL_SHOW, isModalShow } }
 }
 
+function getPaymentMethods() {
+  return dispatch => {
+    // dispatch(request())
+    userService.getPaymentMethods()
+      .then(
+        items => dispatch(success(items)),
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  // function request() { return { type: globalConstants.GET_PAYMENT_METHODS_REQUEST } }
+  function success(payment_methods) { return { type: globalConstants.GET_PAYMENT_METHODS_SUCCESS, payment_methods } }
+  // function failure(error) { return { type: globalConstants.GET_PAYMENT_METHODS_FAILURE, error } }
+}
+
 function getDepartments() {
   return dispatch => {
     // dispatch(request())
@@ -79,7 +98,6 @@ function getDepartments() {
   function success(departments) { return { type: globalConstants.GET_DEPARTMENTS_SUCCESS, departments } }
   // function failure(error) { return { type: globalConstants.GET_DEPARTMENTS_FAILURE, error } }
 }
-
 
 function getAccountCancellationReasons() {
   return dispatch => {

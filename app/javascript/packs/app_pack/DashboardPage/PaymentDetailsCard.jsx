@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 import { InfoBlock } from '../_components/admin';
+import { globalActions } from '../_actions';
 
 class PaymentDetailsCard extends React.Component {
 
@@ -16,6 +17,10 @@ class PaymentDetailsCard extends React.Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  }
+
+  componentDidMount() {
+    this.props.dispatch(globalActions.getPaymentMethods());
   }
 
   render() {
@@ -45,8 +50,8 @@ class PaymentDetailsCard extends React.Component {
               <select
               // className={`${this.props.className ? this.props.className : 'form-control'}`} id="departmentSelectBox" name="department" value={this.state.departmentSelectValue} onChange={this.onDepartmentSelectChange}
               >
-                {this.props.departments && this.props.departments.map((item) =>
-                  <option key={`department${item.id}`} value={item.id}>{item.title}</option>
+                {this.props.payment_methods && this.props.payment_methods.map((item) =>
+                  <option key={`payment_method${item.id}`} value={item.id}>{item.title}</option>
                 )}
               </select>
               {/* <input type="hidden" name="id" value={this.props.id && this.props.id} />
@@ -89,8 +94,10 @@ PaymentDetailsCard.propTypes = {
 }
 
 function mapStateToProps(state) {
+  const { payment_methods } = state.global;
   const { loading, error, notice } = state.account;
   return {
+    payment_methods,
     loading,
     error,
     notice,
