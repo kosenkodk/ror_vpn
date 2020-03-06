@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PaymentMethodGroup, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'add payment method to group' do
+    group = create(:payment_method_group)
+    payment_method = create(:payment_method, title:'paypal')
+    group.payment_methods << payment_method
+    group.save
+    expect(group.payment_methods.first.title).to eq('paypal')
+  end
 end
