@@ -52,9 +52,9 @@ end
 
 puts "\nPayment Methods\n\n"
 payment_methods = [
-  {title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
-  {title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
-  {title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
+  {is_for_signup: true, title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
+  {is_for_signup: true, title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
+  {is_for_signup: true, title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
   {title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
   {title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
   {title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
