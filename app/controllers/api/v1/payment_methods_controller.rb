@@ -1,4 +1,10 @@
 class Api::V1::PaymentMethodsController < Api::V1::ApiController
+
+  def for_signup
+    items = PaymentMethod.for_signup
+    render json: items.as_json(only: [:id, :title, :icons], methods: [ :active_class, :icon_urls])
+  end
+
   def index
     items = PaymentMethod.all
     render json: items.as_json(only: [:id, :title, :icons], methods: [ :active_class, :icon_urls])
