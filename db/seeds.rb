@@ -60,7 +60,7 @@ payment_methods = [
   {title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
   {title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'paypal.png' ]},
 ].each do |item|
-  payment_method = PaymentMethod.find_or_create_by(title: item[:title])
+  payment_method = PaymentMethod.find_or_create_by(title: item[:title], is_for_signup: item[:is_for_signup] || false)
   puts payment_method.try(:title)
   # icons = []
   item[:icons].each do |icon|

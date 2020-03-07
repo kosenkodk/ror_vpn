@@ -40,7 +40,7 @@ class PaymentMethods extends React.Component {
     return (
       <React.Fragment>
         <ul className="payment_methods row card-deck mb-3 text-dark text-center nav nav-tabs" id="pmTab" role="tablist">
-          {this.state.items.map((item, index) => (
+          {this.state.items && this.state.items.length > 0 && this.state.items.map((item, index) => (
             <li key={`pm-key${index}`} className="nav-item col-sm-6 col-md-4">
               <a className="nav-link bg-transparent p-0" id={`pm${index}-tab`} data-toggle="tab" href={`#pm${index}`}
                 role="tab" aria-controls={`pm1${index}`} aria-selected={index == this.state.preselectedIndex ? true : false}>
@@ -54,10 +54,10 @@ class PaymentMethods extends React.Component {
           <div className="row shadow-vega pb-5 bg-vega">
             <div className="col-lg-8 offset-lg-2 text-left">
               <div className="tab-content">
-                {this.state.items.map((item, index) => (
+                {this.state.items && this.state.items.length > 0 && this.state.items.map((item, index) => (
                   <div key={`pm-key${index}`} className={`tab-pane ${index == this.state.preselectedIndex ? 'active' : ''}`} id={`pm${index}`} role="tabpanel" aria-labelledby={`pm1${index}-tab`}>
                     {
-                      item.title === I18n.t('payment_method.credit_card') &&
+                      (item.title === I18n.t('payment_method.credit_card')) &&
                       <PaymentMethodCreditCardForm
                         onPaymentMethodChange={this.props.onPaymentMethodChange} paymentMethodId={item.id}
                       />
@@ -75,13 +75,13 @@ class PaymentMethods extends React.Component {
   }
 
   componentDidMount() {
-    const items = JSON.parse(localStorage.getItem('payment_methods'))
+    const items = JSON.parse(localStorage.getItem('payment_methods_for_signup'))
     if (items && items.length > this.state.preselectedIndex) {
       this.setState({ items: items ? items : [] })
       this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
     }
 
-    const url = "/api/v1/payment_methods";
+    const url = "/api/v1/payment_methods_for_signup";
     fetch(url)
       .then(response => {
         if (response.ok) {
@@ -91,7 +91,7 @@ class PaymentMethods extends React.Component {
       })
       .then(items => {
         if (items && items.length > this.state.preselectedIndex) {
-          localStorage.setItem('payment_methods', JSON.stringify(items))
+          localStorage.setItem('payment_methods_for_signup', JSON.stringify(items))
           this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
           this.props.onPaymentMethodChange(items[this.state.preselectedIndex].id)
         }
