@@ -92,11 +92,6 @@ ActiveRecord::Schema.define(version: 2020_03_06_204237) do
   end
 
   create_table "payment_groups", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "payment_method_groups", force: :cascade do |t|
     t.string "title"
     t.integer "order"
     t.boolean "is_on_main_page"
