@@ -3,12 +3,17 @@ class PaymentMethod < ApplicationRecord
   # scope :for_signup, -> { where(is_for_signup: true) }
 
   has_one :user
-  has_many_attached :icons
+  has_one_attached :icon, dependent: :destroy
+  has_many_attached :icons, dependent: :destroy
   # belongs_to :payment_method_group, optional: true
   # has_and_belongs_to_many :payment_method_groups
 
   def active_class
     ''
+  end
+
+  def icon_url
+    rails_blob_url(self.icon) if self.icon.attached?
   end
 
   def icon_urls
