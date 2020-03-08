@@ -15,9 +15,4 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
     render json: item #.attributes.merge({icon_url: url_for(item.icon)})
   end
 
-  def groups
-    items = PaymentGroup.all
-    render json: items
-  end
-
 end
