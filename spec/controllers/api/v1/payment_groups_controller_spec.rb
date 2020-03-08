@@ -14,6 +14,7 @@ RSpec.describe Api::V1::PaymentGroupsController, type: :controller do
       expect(response).to have_http_status(200)
       expect(response_json[0].values).to include(payment_group_title)
       expect(response_json[0].keys).to include('payment_methods')
+      expect(response_json[0].keys).to include('icon_urls')
       expect(response_json[0]['payment_methods'][0]).not_to include(payment_method_title2)
       expect(response_json[0]['payment_methods'][0].values).to include(payment_method_title)
     end
