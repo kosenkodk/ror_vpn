@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_152055) do
+ActiveRecord::Schema.define(version: 2020_03_08_144320) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_152055) do
     t.integer "payment_group_id"
     t.boolean "is_readonly"
     t.boolean "is_for_signup"
+    t.boolean "is_active"
     t.index ["payment_group_id"], name: "index_payment_methods_on_payment_group_id"
   end
 
