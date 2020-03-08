@@ -92,6 +92,8 @@ en:
     credit_card: "Pay with credit/debit card"
     paypal: "Pay with PayPal"
     bitcoin: "Pay with Bitcoin"
+    ripple: "Pay with Ripple"
+    ethereum: "Pay with Ethereum"
     other_payments: "Other payments"
   footer:
     product:
