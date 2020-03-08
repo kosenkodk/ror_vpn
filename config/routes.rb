@@ -25,8 +25,15 @@ Rails.application.routes.draw do
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
       resources :tariff_plans#, only: [:index, :show]
-      resources :payment_methods, only: [:index, :show]
-      get '/payment_methods_for_signup', to: "payment_methods#for_signup"
+      resources :payment_methods, only: [:index, :show] 
+      # resources :payment_methods, only: [:index, :show] do
+      #   collection do
+      #     get '/groups', action: :groups, as: :groups
+      #   end
+      # end
+      # resources :payment_groups, only: [:index]
+      get '/payment_groups', to: "payment_methods#groups"
+      # get '/payment_methods_for_signup', to: "payment_methods#for_signup"
       resources :contacts, only: [:new, :show, :create]
       
       # post 'refresh', controller: :refresh, action: :create
