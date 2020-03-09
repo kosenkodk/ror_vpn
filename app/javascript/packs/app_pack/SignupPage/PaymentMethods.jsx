@@ -75,13 +75,15 @@ class PaymentMethods extends React.Component {
   }
 
   componentDidMount() {
-    const items = JSON.parse(localStorage.getItem('payment_methods_for_signup'))
+    const payment_methods = 'payment_methods_for_signup';
+    // const payment_methods = 'payment_methods';
+    const items = JSON.parse(localStorage.getItem(payment_methods))
     if (items && items.length > this.state.preselectedIndex) {
       this.setState({ items: items ? items : [] })
       this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
     }
 
-    const url = "/api/v1/payment_methods_for_signup";
+    const url = `/api/v1/${payment_methods}`;
     fetch(url)
       .then(response => {
         if (response.ok) {
@@ -91,7 +93,7 @@ class PaymentMethods extends React.Component {
       })
       .then(items => {
         if (items && items.length > this.state.preselectedIndex) {
-          localStorage.setItem('payment_methods_for_signup', JSON.stringify(items))
+          localStorage.setItem(payment_methods, JSON.stringify(items))
           this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
           this.props.onPaymentMethodChange(items[this.state.preselectedIndex].id)
         }
