@@ -50,25 +50,71 @@ features = [
   feature.icon.attach(io: File.open(path_to_file), filename: item[:icon_name])
 end
 
-puts "\nPayment Methods\n\n"
-payment_methods = [
-  {is_for_signup: true, title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
-  {is_for_signup: true, title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
-  {is_for_signup: true, title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
-  {title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
-  {title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
-  {title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
-  {title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'paypal.png' ]},
-].each do |item|
-  payment_method = PaymentMethod.find_or_create_by(title: item[:title], is_for_signup: item[:is_for_signup] || false)
-  puts payment_method.try(:title)
-  # icons = []
-  item[:icons].each do |icon|
+puts "\nPayment Groups:\n\n"
+payment_groups = [
+  {title: I18n.t('payment_method.cryptocurrencies'), is_on_main_page: true, is_read_only: false, icons: ['bitcoin.png', 'ripple.png', 'ethereum.png'],
+    payment_methods: [
+      {title: I18n.t('pay_with.bitcoin'), icon: 'bitcoin.png', is_active: true},
+      {title: I18n.t('pay_with.ripple'), icon: 'ripple.png', is_active: false},
+      {title: I18n.t('pay_with.ethereum'), icon: 'ethereum.png', is_active: false},
+    ]
+  },
+  {title: I18n.t('payment_method.qiwi'), is_on_main_page: true, is_read_only: false, icons: ['qiwi.png'],
+    payment_methods: [
+      {title: I18n.t('payment_method.qiwi'), icon: 'qiwi.png', is_active: false},
+    ]
+  },
+  {title: I18n.t('payment_method.credit_card'), is_on_main_page: true, is_read_only: false, icons: ['credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png'],
+    payment_methods: [
+      {title: I18n.t('pay_with.credit_card'), icon: 'credit_card/visa.png', is_active: true},
+    ]
+  },
+  {title: I18n.t('pay_with.other_payments'), is_on_main_page: false, is_read_only: false, icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'paypal.png'],
+    payment_methods: [
+      {title: I18n.t('pay_with.paypal'), icon: 'paypal.png', is_active: true},
+    ]
+  },
+]
+payment_groups.each do |group|
+  payment_group = nil
+  payment_group = PaymentGroup.create(title: group[:title], is_on_main_page: group[:is_on_main_page])
+  puts "payment group: #{payment_group.title}\n"
+  group[:icons].each do |icon|
     path_to_file = Rails.root.join('app', 'assets', 'images', 'signup', 'payment_methods', icon)
-    puts "#{path_to_file}\n"
-    payment_method.icons.attach(io: File.open(path_to_file), filename: icon)
+    puts " #{path_to_file}\n"
+    payment_group.icons.attach(io: File.open(path_to_file), filename: icon)
+  end
+  puts " payment methods:\n"
+  group[:payment_methods].each do |item|
+    payment_method = nil
+    payment_method = PaymentMethod.create(title: item[:title], is_active: item[:is_active])
+    path_to_file = Rails.root.join('app', 'assets', 'images', 'signup', 'payment_methods', item[:icon])
+    payment_method.icons.attach(io: File.open(path_to_file), filename: item[:icon])
+    payment_group.payment_methods << payment_method
+    puts "  #{payment_method.title} #{item[:icon]}\n"
+    payment_group.save
   end
 end
+
+# puts "\nPayment Methods\n\n"
+# payment_methods = [
+#   {is_for_signup: true, title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
+#   {is_for_signup: true, title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
+#   {is_for_signup: true, title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
+#   {title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
+#   {title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
+#   {title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
+#   {title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'paypal.png' ]},
+# ].each do |item|
+#   payment_method = PaymentMethod.find_or_create_by(title: item[:title], is_for_signup: item[:is_for_signup] || false)
+#   puts payment_method.try(:title)
+#   # icons = []
+#   item[:icons].each do |icon|
+#     path_to_file = Rails.root.join('app', 'assets', 'images', 'signup', 'payment_methods', icon)
+#     puts "#{path_to_file}\n"
+#     payment_method.icons.attach(io: File.open(path_to_file), filename: icon)
+#   end
+# end
 
 puts "\nCancellation Reasons\n\n"
 cancel_reasons = [
