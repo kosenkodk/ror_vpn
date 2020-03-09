@@ -9,6 +9,8 @@ html {
 html, body {
   font-family: "Montserrat" !important;
   height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .wrapper {
@@ -84,7 +86,7 @@ h1, h2, h3, h4, h5 {
 
 .header {
   .nav-link {
-    font-weight: 600;
+    font-weight: $font-bold;
     font-size: 14px;
     line-height: 18px;
   }
@@ -275,7 +277,7 @@ h1, h2, h3, h4, h5 {
 
 .pricing {
   h2 {
-    font-weight: 500;
+    font-weight: $font-normal;
   }
   @media (min-width: $xl-width) {
     h5 {
@@ -287,7 +289,7 @@ h1, h2, h3, h4, h5 {
     }
     a, a.btn {
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: $font-normal;
     }
     a.btn-blue {
       // font-weight: normal;
@@ -772,7 +774,7 @@ button:focus {
   .card-text {
     font-size: 16px;
     line-height: 24px;
-    font-weight: 100;
+    font-weight: $font-normal;
     img {
       opacity: $opacity06;
     }
