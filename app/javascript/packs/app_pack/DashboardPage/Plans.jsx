@@ -6,7 +6,7 @@ class Plans extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      items: this.props.plans || [],
       preselectedIndex: 3
     }
     this.handleClick = this.handleClick.bind(this)
@@ -27,9 +27,10 @@ class Plans extends React.Component {
   }
 
   render() {
+    const { plans } = this.props;
     return (
       <div id="plans" className="plans card-deck text-center align-items-center">
-        {this.state.items.map((item, index) => (
+        {plans && plans.map((item, index) => (
           <Plan handleClick={this.handleClick} key={`plan-${item.id}`} index={index} item={item} />
         ))}
       </div>
@@ -37,28 +38,7 @@ class Plans extends React.Component {
   }
 
   componentDidMount() {
-    const items = JSON.parse(localStorage.getItem('tariff_plans'))
-    this.setState({ items: items ? items : [] })
-    if (items && items.length > this.state.preselectedIndex) {
-      this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
-      this.props.onPlanChange(null, items[this.state.preselectedIndex].id)
-    }
-    const url = "/api/v1/tariff_plans"
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        throw new Error("Network response was not ok.")
-      }).then(items => {
-        if (items && items.length > this.state.preselectedIndex) {
-          localStorage.setItem('tariff_plans', JSON.stringify(items))
-          this.selectItemInCollectionByIndex(items, this.state.preselectedIndex)
-          this.props.onPlanChange(null, items[this.state.preselectedIndex].id)
-        }
-      }).catch((err) => {
-        console.log(err)
-      });
+    // this.setState({ items: this.props.plans })
   }
 }
 

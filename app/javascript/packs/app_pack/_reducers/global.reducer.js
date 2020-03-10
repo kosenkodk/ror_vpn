@@ -13,6 +13,16 @@ export function global(state = {}, action) {
         ...state,
         payment_methods: action.payment_methods
       }
+    case globalConstants.GET_PLANS_REQUEST:
+      return {
+        ...state,
+        plans: action.plans
+      };
+    case globalConstants.GET_PLANS_SUCCESS:
+      return {
+        ...state,
+        plans: action.plans
+      };
     case globalConstants.GET_DEPARTMENTS_SUCCESS:
       return {
         ...state,
