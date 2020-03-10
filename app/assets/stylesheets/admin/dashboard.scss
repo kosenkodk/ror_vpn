@@ -84,7 +84,7 @@
       .plan {
         .plan__price {
           // @extend .pricing-card-title;
-          font-size: 56px; // 76px fullhd
+          font-size: 55px; // 76px fullhd
           line-height: 30px;
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
