@@ -40,7 +40,7 @@ class Plan extends React.Component {
     return (
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
-        onClick={(e) => this.props.handleClick(e, item.id, index)}
+        onClick={(e) => this.props.onPlanSelect(e, item.id, index)}
         className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div className={`card ${active_class} ${hover_class}`}>
           <div className="card-header py-0">
