@@ -142,9 +142,11 @@
         }
 
         .plan__best-offer-hidden {}
-
+        
         .plan-free__features {
-          margin-top: pxtovh(65);
+          margin-top: pxtovh(77);
+          margin-bottom: pxtovh(29);
+
           font-size: 12px;
           line-height: 15px;
           @media (min-width: $bp-w1400) {
@@ -152,6 +154,12 @@
             @include fluidLineHeight(15px, 42px, $bp-w1400, $bp-w4096, 15px);
           }
         }
+
+        .active .plan-free__features {
+          margin-top: pxtovh(65);
+          margin-bottom: pxtovh(15);
+        }
+
         .card-header {
           margin-top: pxtovh(49);
           margin-bottom: pxtovh(39);
