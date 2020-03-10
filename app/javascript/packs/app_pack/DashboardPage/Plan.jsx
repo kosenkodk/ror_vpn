@@ -5,7 +5,8 @@ class Plan extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      hover_class: ''
+      hover_class: '',
+      active_class: ''
     }
   }
 
@@ -33,19 +34,27 @@ class Plan extends React.Component {
     return (this.props.index === 0) ? 'active' : ''
   }
 
+  isPlanCurrent() {
+    const isCurrent = ((this.props.planCurrent && this.props.planCurrent.id) === (this.props.item && this.props.item.id)) ? true : false
+    return isCurrent
+  }
+
+  isActiveClass() {
+    return this.isPlanCurrent() ? 'active' : ''
+  }
+
   render() {
-    let { item, index } = this.props
-    let { active_class } = item
-    let { hover_class } = this.state
+    let { item, index, currentPlan } = this.props
+    let { active_class, hover_class } = this.state
     return (
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
         onClick={(e) => this.props.onPlanSelect(e, item.id, index)}
         className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <div className={`card ${active_class} ${hover_class}`}>
+        <div className={`card ${this.isActiveClass()} ${hover_class}`}>
           <div className="card-header py-0">
             {this.isBestOffer() ?
-              <div className={`plan__best-offer ${active_class} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
+              <div className={`plan__best-offer ${this.isActiveClass()} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
               :
               <div className="plan__best-offer-hidden" />
             }
@@ -76,7 +85,7 @@ class Plan extends React.Component {
 
             {item.price > 0 &&
               <div className="plan__discount">
-                <a className={`btn btn-pink-dark-blue ${active_class} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
+                <a className={`btn btn-pink-dark-blue ${this.isActiveClass()} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
                 <h5 className="plan__price-duration text-info"><strike>$ {item.price_duration} </strike></h5>
                 <h6 className="plan__price-comment">{item.price_comment}</h6>
               </div>
@@ -93,7 +102,7 @@ class Plan extends React.Component {
           </div>
 
           <div className="card-footer">
-            {item.price > 0 ?
+            {!this.isPlanCurrent() ?
               <button type="button" className={`btn btn-outline-primary btn-block plan__btn-change align-self-center`}>
                 Start today
               </button>
