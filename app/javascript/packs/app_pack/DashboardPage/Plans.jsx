@@ -6,14 +6,14 @@ class Plans extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: this.props.plans || [],
+      plans: this.props.plans || [],
       preselectedIndex: 3
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.onPlanSelect = this.onPlanSelect.bind(this)
   }
 
-  handleClick(e, id, index) {
-    // this.selectItemInCollectionByIndex(this.state.items, index)
+  onPlanSelect(e, id, index) {
+    // this.selectItemInCollectionByIndex(this.state.plans, index)
     this.props.onPlanChange(e, id)
     e.preventDefault()
   }
@@ -23,22 +23,22 @@ class Plans extends React.Component {
       item.active_class = item_index === selected_index ? 'active' : ''
       return item
     })
-    this.setState({ items: itemList })
+    this.setState({ plans: itemList })
+  }
+
+  UNSAFE_componentWillReceiveProps() {
+    this.setState({ plans: this.props.plans })
   }
 
   render() {
-    const { plans } = this.props;
+    const { plans } = this.state;
     return (
       <div id="plans" className="plans card-deck text-center align-items-center">
         {plans && plans.map((item, index) => (
-          <Plan handleClick={this.handleClick} key={`plan-${item.id}`} index={index} item={item} />
+          <Plan onPlanSelect={this.onPlanSelect} key={`plan-${item.id}`} index={index} item={item} />
         ))}
       </div>
     )
-  }
-
-  componentDidMount() {
-    // this.setState({ items: this.props.plans })
   }
 }
 
