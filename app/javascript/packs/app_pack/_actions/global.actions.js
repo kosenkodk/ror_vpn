@@ -6,6 +6,7 @@ import { prepareAttachmentForJsonApi, prepareAttachmentForJsonApiAsync } from '.
 
 export const globalActions = {
   getDepartments,
+  getPlans,
   getPaymentMethods,
   getAccountCancellationReasons,
   setModalShow,
@@ -14,6 +15,27 @@ export const globalActions = {
   deleteAttachment,
   setStep,
   getReferLink
+}
+
+function getPlans() {
+  return dispatch => {
+    dispatch(request(JSON.parse(localStorage.getItem('tariff_plans'))))
+    userService.getPlans()
+      .then(
+        items => {
+          localStorage.setItem('tariff_plans', JSON.stringify(items))
+          dispatch(success(items))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request(plans) { return { type: globalConstants.GET_PLANS_REQUEST, plans } }
+  function success(plans) { return { type: globalConstants.GET_PLANS_SUCCESS, plans } }
+  // function failure(error) { return { type: globalConstants.GET_PLANS_FAILURE, error } }
 }
 
 function getReferLink() {

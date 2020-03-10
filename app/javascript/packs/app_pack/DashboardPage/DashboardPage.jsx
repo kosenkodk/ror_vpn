@@ -72,8 +72,13 @@ class DashboardPage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.dispatch(globalActions.getPlans())
+  }
+
   render() {
-    const { loggingIn, user, step } = this.props;
+    const { loggingIn, user, step, plans } = this.props;
+    const { tariff_plan } = user;
     return (
       <div className="container-fluid dashboard pt-0">
         <div>
@@ -81,7 +86,7 @@ class DashboardPage extends React.Component {
 
           <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." optionalCssClasses="py-1" />
 
-          <Plans onPlanChange={this.onPlanChange} />
+          <Plans plans={plans} onPlanChange={this.onPlanChange} />
         </div>
         <div id="subscriptions" className="subscriptions">
           <h1>{I18n.t('pages.dashboard.subscription.title')}</h1>
@@ -119,7 +124,7 @@ class DashboardPage extends React.Component {
                 </tr>
                 <tr className="font-weight-bold">
                   <td>Total</td>
-                  <td className="text-right">$2.99 / month</td>
+                  <td className="text-right"> $2.99 / month</td>
                 </tr>
                 <tr>
                   <td colSpan="2">
@@ -174,10 +179,10 @@ class DashboardPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { step } = state.global;
+  const { step, plans } = state.global;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, step
+    loggingIn, user, step, plans
   };
 }
 
