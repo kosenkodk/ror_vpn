@@ -17,11 +17,13 @@ class DashboardPage extends React.Component {
     this.state = {
       title: '',
       isForm: false,
+      planSelected: null,
     };
     this.onPlanChange = this.onPlanChange.bind(this);
   }
 
-  onPlanChange(e, id) {
+  onPlanChange(e, id, index) {
+    this.setState({ planSelected: this.props.plans[index] })
     if (e) {
       e.preventDefault();
       this.setStep(e, 1);
@@ -78,6 +80,7 @@ class DashboardPage extends React.Component {
 
   render() {
     const { loggingIn, user, step, plans } = this.props;
+    const { planSelected } = this.state;
     const { tariff_plan } = user;
     return (
       <div className="container-fluid dashboard pt-0">
@@ -120,11 +123,11 @@ class DashboardPage extends React.Component {
               <tbody>
                 <tr>
                   <td>VegaVPN</td>
-                  <td className="text-right">Free</td>
+                  <td className="text-right">{planSelected.title}</td>
                 </tr>
                 <tr className="font-weight-bold">
                   <td>Total</td>
-                  <td className="text-right"> $2.99 / month</td>
+                  <td className="text-right"> ${planSelected.price} / month</td>
                 </tr>
                 <tr>
                   <td colSpan="2">
@@ -143,11 +146,11 @@ class DashboardPage extends React.Component {
               <tbody>
                 <tr className="font-weight-bold">
                   <td>Total (annual billing)</td>
-                  <td className="text-right">$48</td>
+                  <td className="text-right">${planSelected.price * 12}</td>
                 </tr>
                 <tr className="font-weight-bold">
                   <td>Amount due</td>
-                  <td className="text-right">$45.01</td>
+                  <td className="text-right">${planSelected.price * 11}</td>
                 </tr>
               </tbody>
             </table>

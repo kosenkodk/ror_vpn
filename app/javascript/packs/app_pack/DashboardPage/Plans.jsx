@@ -14,7 +14,7 @@ class Plans extends React.Component {
 
   onPlanSelect(e, id, index) {
     // this.selectItemInCollectionByIndex(this.state.plans, index)
-    this.props.onPlanChange(e, id)
+    this.props.onPlanChange(e, id, index)
     e.preventDefault()
   }
 
