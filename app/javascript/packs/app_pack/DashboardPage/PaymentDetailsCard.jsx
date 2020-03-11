@@ -107,9 +107,12 @@ class PaymentDetailsCard extends React.Component {
                 {currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
-                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
-                // placeholder={I18n.t('pages.account.cancel.form.message')}
-                ></textarea>
+                <InfoBlock optionalCssClasses="my-0">
+                  After making your Bitcoin payment, please follow the instructions below to upgrade.
+                  <p className="mt-1 mb-0">
+                    <Link to="#" className="mt-1 text-blue"> Learn more</Link>
+                  </p>
+                </InfoBlock>
               </div>
               <div className="col-sm-2"></div>
             </div>
