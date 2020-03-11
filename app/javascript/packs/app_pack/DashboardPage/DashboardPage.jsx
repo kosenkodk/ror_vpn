@@ -112,7 +112,8 @@ class DashboardPage extends React.Component {
           btnClasses={''}>
           {step === 1 && <React.Fragment>
             <InfoBlock>
-              A 20% discount for annual billing has been automatically applied.
+              {/* A 20% discount for annual billing has been automatically applied. */}
+              Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
             </InfoBlock>
             <table className="table">
               <thead>
