@@ -120,9 +120,11 @@ class PaymentDetailsCard extends React.Component {
                 {currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
-                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
-                // placeholder={I18n.t('pages.account.cancel.form.message')}
-                ></textarea>
+                <div className="row">
+                  {currentPaymentMethod.icon_urls && currentPaymentMethod.icon_urls.map((icon_url, index) =>
+                    <img key={`pw-key${index}`} src={icon_url} className="img-fluid col-3 px-1 py-1" />
+                  )}
+                </div>
               </div>
               <div className="col-sm-2"></div>
             </div>
