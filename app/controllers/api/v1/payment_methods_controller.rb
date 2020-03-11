@@ -6,7 +6,7 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   end
 
   def index
-    items = PaymentMethod.all
+    items = PaymentMethod.where(is_for_signup: false)
     render json: items.as_json(only: [:id, :title, :icons], methods: [ :active_class, :icon_urls])
   end
 
