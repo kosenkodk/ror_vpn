@@ -94,9 +94,14 @@ class PaymentDetailsCard extends React.Component {
                 {currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
-                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
-                // placeholder={I18n.t('pages.account.cancel.form.message')}
-                ></textarea>
+                <InfoBlock optionalCssClasses="my-0">
+                  We will rediret you to PayPal in a new browser tab to complete this transaction. If you use any pop-up blockers, please disable them to continue.
+                </InfoBlock>
+                <button className="btn btn-pink my-3">Check out with PayPal</button>
+                <InfoBlock optionalCssClasses="my-0">
+                  You must have a credit card or bank account linked with your PayPal account. If your PayPal account. If your PayPal account doesn’t have that, please
+                  <Link to="#" className="mt-1 text-blue"> click here.</Link>
+                </InfoBlock>
               </div>
               <div className="col-sm-2"></div>
             </div>
