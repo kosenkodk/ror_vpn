@@ -144,13 +144,13 @@ class DashboardPage extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr className="font-weight-bold">
+                {/* <tr className="font-weight-bold">
                   <td>Total (annual billing)</td>
                   <td className="text-right">${planSelected.price * 12}</td>
-                </tr>
+                </tr> */}
                 <tr className="font-weight-bold">
                   <td>Amount due</td>
-                  <td className="text-right">${planSelected.price * 11}</td>
+                  <td className="text-right">${planSelected.price}</td>
                 </tr>
               </tbody>
             </table>
@@ -160,7 +160,7 @@ class DashboardPage extends React.Component {
             <InfoBlock>
               Your payment details are protected with TLS encryption and Swiss privacy laws
             </InfoBlock>
-            <PaymentDetailsCard onFormSubmit={(e) => this.setStep(e, 2)} />
+            <PaymentDetailsCard planSelected={planSelected} onFormSubmit={(e) => this.setStep(e, 2)} />
           </React.Fragment>
           }
           {step === 3 && <React.Fragment>

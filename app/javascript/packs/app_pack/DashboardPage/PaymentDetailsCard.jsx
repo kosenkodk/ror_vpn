@@ -41,7 +41,7 @@ class PaymentDetailsCard extends React.Component {
 
   render() {
     const { email, currentPaymentMethod, currentPaymentMethodId } = this.state;
-    const { loading, error, notice } = this.props;
+    const { loading, error, notice, planSelected } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
         <div className="modal-body">
@@ -52,7 +52,7 @@ class PaymentDetailsCard extends React.Component {
               Amount due
               </label>
             <div className="col-sm-6">
-              <input type="text" id="message" name="message" className="form-control" defaultValue={this.props.text || ''} required={false} placeholder={I18n.t('pages.tickets.form.help.text')} />
+              <input type="text" id="message" name="message" className="form-control" defaultValue={`$${planSelected && planSelected.price}`} required={false} />
             </div>
             <div className="col-sm-2"></div>
           </div>
