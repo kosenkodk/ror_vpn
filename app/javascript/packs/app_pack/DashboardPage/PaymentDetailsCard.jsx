@@ -47,12 +47,11 @@ class PaymentDetailsCard extends React.Component {
         <div className="modal-body">
 
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label">
-              {/* {I18n.t('pages.tickets.form.text')} */}
+            <label className="col-sm-4 col-form-label" htmlFor="amount_due">
               Amount due
-              </label>
+            </label>
             <div className="col-sm-6">
-              <input type="text" id="message" name="message" className="form-control" defaultValue={`$${planSelected && planSelected.price}`} required={false} />
+              <input type="text" name="amount_due" aria-describedby="amount_due" required={false} className="form-control" defaultValue={`$${planSelected.price}`} placeholder='' />
             </div>
             <div className="col-sm-2"></div>
           </div>
@@ -76,17 +75,56 @@ class PaymentDetailsCard extends React.Component {
             <div className="col-sm-2"></div>
           </div>
           {(currentPaymentMethod.pay_id === 'bank_card') &&
-            <div className="form-group row">
-              <label className="col-sm-4 col-form-label">
-                {currentPaymentMethod.title}
+
+            <React.Fragment>
+              <div className="form-group row">
+                <label className="col-sm-4 col-form-label" htmlFor="full_name">
+                  Full name
               </label>
-              <div className="col-sm-6">
-                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
-                // placeholder={I18n.t('pages.account.cancel.form.message')}
-                ></textarea>
+                <div className="col-sm-6">
+                  <input type="text" name="full_name" aria-describedby="full_name" required={true} className="form-control" placeholder='' onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-2"></div>
               </div>
-              <div className="col-sm-2"></div>
-            </div>
+
+              <div className="form-group row">
+                <label className="col-sm-4 col-form-label" htmlFor="card_no">
+                  Card number
+              </label>
+                <div className="col-sm-6">
+                  <input type="text" name="card_no" aria-describedby="card_no" required={true} className="form-control" placeholder='' onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-2"></div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-4 col-form-label" htmlFor="card_details">
+                  MM/YY / Security code
+                </label>
+                <div className="col-sm-3">
+                  <input type="text" name="card_date" aria-describedby="card_details" required={true} className="form-control" placeholder='MM/YY' onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-3">
+                  <input type="text" name="card_code" aria-describedby="card_details" required={true} className="form-control" placeholder='Security code' onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-2"></div>
+              </div>
+              <div className="form-group row">
+                <label className="col-sm-4 col-form-label" htmlFor="state_details">
+                  State
+                </label>
+                <div className="col-sm-3">
+                  <select className="form-control" id="departmentSelectBox">
+                    <option>Please select</option>
+                    <option>United States</option>
+                  </select>
+                </div>
+                <div className="col-sm-3">
+                  <input type="text" name="zip_code" aria-describedby="state_details" required={true} className="form-control" placeholder='Security code' onChange={this.handleChange} />
+                </div>
+                <div className="col-sm-2"></div>
+              </div>
+            </React.Fragment>
           }
           {(currentPaymentMethod.pay_id === 'paypal') &&
             <div className="form-group row">
