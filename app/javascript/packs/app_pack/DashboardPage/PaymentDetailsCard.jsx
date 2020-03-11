@@ -75,7 +75,7 @@ class PaymentDetailsCard extends React.Component {
             </div>
             <div className="col-sm-2"></div>
           </div>
-          {(currentPaymentMethod.id === 1) &&
+          {(currentPaymentMethod.pay_id === 'bank_card') &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
                 {currentPaymentMethod.title}
@@ -88,7 +88,7 @@ class PaymentDetailsCard extends React.Component {
               <div className="col-sm-2"></div>
             </div>
           }
-          {(currentPaymentMethod.id === 2) &&
+          {(currentPaymentMethod.pay_id === 'paypal') &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
                 {currentPaymentMethod.title}
@@ -101,7 +101,20 @@ class PaymentDetailsCard extends React.Component {
               <div className="col-sm-2"></div>
             </div>
           }
-          {(currentPaymentMethod.id === 3) &&
+          {(currentPaymentMethod.pay_id === 'bitcoin') &&
+            <div className="form-group row">
+              <label className="col-sm-4 col-form-label">
+                {currentPaymentMethod.title}
+              </label>
+              <div className="col-sm-6">
+                <textarea readOnly type="text" id="cancel_account_reason_text" name="cancel_account_reason_text" className="form-control" defaultValue={this.props.text || ''} required={false}
+                // placeholder={I18n.t('pages.account.cancel.form.message')}
+                ></textarea>
+              </div>
+              <div className="col-sm-2"></div>
+            </div>
+          }
+          {(currentPaymentMethod.pay_id === 'paymentwall') &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
                 {currentPaymentMethod.title}

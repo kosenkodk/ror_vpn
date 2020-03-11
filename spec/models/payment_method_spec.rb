@@ -6,4 +6,8 @@ RSpec.describe PaymentMethod, type: :model do
     payment_method2 = create(:payment_method)
     expect(PaymentMethod.for_signup.count).to eq(1)
   end
+  it 'check payment id' do
+    payment_method = create(:payment_method, pay_id: 'paypal')
+    expect(payment_method.pay_id).to eq('paypal')
+  end
 end

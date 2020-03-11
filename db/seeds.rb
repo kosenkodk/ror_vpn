@@ -101,12 +101,12 @@ payment_methods = [
   {is_for_signup: true, title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
   {is_for_signup: true, title: I18n.t('payment_method.qiwi'), icons: ['qiwi.png']},
   {is_for_signup: true, title: I18n.t('payment_method.credit_card'), icons: [ 'credit_card/discover.png', 'credit_card/mastercard.png', 'credit_card/visa.png', 'credit_card/amex.png' ]},
-  {title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
-  {title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
-  {title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
-  {title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'paypal.png' ]},
+  {pay_id: 'bank_card', title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
+  {pay_id: 'paypal', title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
+  {pay_id: 'bitcoin', title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
+  {pay_id: 'paymentwall', title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png', 'qiwi.png' ]},
 ].each do |item|
-  payment_method = PaymentMethod.find_or_create_by(title: item[:title], is_for_signup: item[:is_for_signup] || false)
+  payment_method = PaymentMethod.find_or_create_by(pay_id: item[:pay_id], title: item[:title], is_for_signup: item[:is_for_signup] || false)
   puts payment_method.try(:title)
   # icons = []
   item[:icons].each do |icon|
