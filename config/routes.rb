@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :departments, only: [:index]
+      resources :countries, only: [:index]
       
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
