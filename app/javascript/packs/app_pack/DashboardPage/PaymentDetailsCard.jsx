@@ -43,7 +43,7 @@ class PaymentDetailsCard extends React.Component {
     const { email, currentPaymentMethod, currentPaymentMethodId } = this.state;
     const { loading, error, notice, planSelected } = this.props;
     return (
-      <form onSubmit={this.props.onFormSubmit} className="account-delete-form">
+      <form onSubmit={this.props.onFormSubmit} className="dashboard-payment-details">
         <div className="modal-body">
 
           <div className="form-group row">
