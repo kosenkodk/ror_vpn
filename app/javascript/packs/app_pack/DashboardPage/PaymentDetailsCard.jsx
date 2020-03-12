@@ -120,7 +120,7 @@ class PaymentDetailsCard extends React.Component {
                   </select>
                 </div>
                 <div className="col-sm-3">
-                  <input type="text" name="zip_code" aria-describedby="state_details" required={true} className="form-control" placeholder='Security code' onChange={this.handleChange} />
+                  <input type="text" name="zip_code" aria-describedby="state_details" required={true} className="form-control" placeholder='ZIP' onChange={this.handleChange} />
                 </div>
                 <div className="col-sm-2"></div>
               </div>
