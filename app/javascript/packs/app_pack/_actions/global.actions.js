@@ -5,6 +5,7 @@ import { globalConstants } from '../_constants';
 import { prepareAttachmentForJsonApi, prepareAttachmentForJsonApiAsync } from '../_helpers';
 
 export const globalActions = {
+  getCountries,
   getDepartments,
   getPlans,
   getPaymentMethods,
@@ -15,6 +16,27 @@ export const globalActions = {
   deleteAttachment,
   setStep,
   getReferLink
+}
+
+function getCountries() {
+  return dispatch => {
+    dispatch(request(JSON.parse(localStorage.getItem('countries'))))
+    userService.getCountries()
+      .then(
+        items => {
+          localStorage.setItem('countries', JSON.stringify(items))
+          dispatch(success(items))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request(countries) { return { type: globalConstants.GET_COUNTRIES_REQUEST, countries } }
+  function success(countries) { return { type: globalConstants.GET_COUNTRIES_SUCCESS, countries } }
+  // function failure(error) { return { type: globalConstants.GET_COUNTRIES_FAILURE, error } }
 }
 
 function getPlans() {

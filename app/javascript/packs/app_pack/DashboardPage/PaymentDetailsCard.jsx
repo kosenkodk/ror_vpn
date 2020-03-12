@@ -25,6 +25,7 @@ class PaymentDetailsCard extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(globalActions.getPaymentMethods());
+    // this.props.dispatch(globalActions.getCountries());
   }
 
   onPaymentMethodChange = (e) => {
@@ -41,7 +42,7 @@ class PaymentDetailsCard extends React.Component {
 
   render() {
     const { email, currentPaymentMethod, currentPaymentMethodId } = this.state;
-    const { loading, error, notice, planSelected } = this.props;
+    const { loading, error, notice, planSelected, countries } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit} className="dashboard-payment-details">
         <div className="modal-body">
@@ -116,7 +117,9 @@ class PaymentDetailsCard extends React.Component {
                 <div className="col-sm-3">
                   <select className="form-control" id="departmentSelectBox">
                     <option>Please select</option>
-                    <option>United States</option>
+                    {countries && countries.map((item) =>
+                      <option key={`${item.code}`} value={item.code}>{item.name}</option>
+                    )}
                   </select>
                 </div>
                 <div className="col-sm-3">
@@ -197,9 +200,10 @@ PaymentDetailsCard.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { payment_methods } = state.global;
+  const { payment_methods, countries } = state.global;
   const { loading, error, notice } = state.account;
   return {
+    countries,
     payment_methods,
     loading,
     error,
