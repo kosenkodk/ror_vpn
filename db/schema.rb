@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_192955) do
+ActiveRecord::Schema.define(version: 2020_03_12_105109) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 2020_03_11_192955) do
     t.string "title"
     t.text "message"
     t.string "message_short"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -162,6 +169,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_192955) do
     t.string "salt"
     t.boolean "is2fa", default: false
     t.integer "referrer_id"
+    t.integer "country_id"
     t.index ["cancel_reason_id"], name: "index_users_on_cancel_reason_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["payment_method_id"], name: "index_users_on_payment_method_id"
