@@ -24,6 +24,7 @@ export const userService = {
   getAccountCancellationReasons,
   changeLoginPassword,
   changeLoginEmail,
+  changePlan,
   deleteAccount,
   getQrCodeUrl,
   enable2FA,
@@ -280,6 +281,19 @@ function changeLoginPassword(data) {
       localStorage.setItem('csrf', JSON.stringify(response.csrf));
       return response
     });
+}
+
+function changePlan(data) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/change_plan`, 'POST', data)
+
+  const requestOptions = {
+    method: 'POST',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  }
+  return fetch(`${config.apiUrl}/change_plan`, requestOptions).then(handleResponse);
 }
 
 function changeLoginEmail(data) {

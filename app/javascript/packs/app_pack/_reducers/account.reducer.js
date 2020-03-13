@@ -30,6 +30,19 @@ export function account(state = {}, action) {
       return {
         error: action.error,
       }
+    case accountConstants.CHANGE_PLAN_REQUEST:
+      return {
+        loading: true
+      };
+    case accountConstants.CHANGE_PLAN_SUCCESS:
+      return {
+        notice: action.notice,
+        user: action.user
+      }
+    case accountConstants.CHANGE_PLAN_FAILURE:
+      return {
+        error: action.error
+      }
     case accountConstants.DELETE_ACCOUNT_REQUEST:
       return {
         loading: true,

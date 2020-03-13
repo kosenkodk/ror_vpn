@@ -5,13 +5,13 @@ class Api::V1::UsersController < Api::V1::ApiController
     render json: current_user
   end
 
-  def plan_change
+  def change_plan
     plan_id = params[:plan_id]
     if (TariffPlan.exists?(plan_id))
       plan = TariffPlan.find(plan_id)
       current_user.tariff_plan = plan
       if current_user.save
-        render json: { success: 'Plan has been changed successfully'}
+        render json: { notice: 'Plan has been changed successfully', user: current_user }
         return
       end
     end

@@ -9,6 +9,7 @@ export const accountActions = {
   cancelAccount,
   changePassword,
   changeEmail,
+  changePlan,
   deleteAccount,
   clearAlerts,
   getQrCodeUrl,
@@ -134,6 +135,30 @@ function changePassword(data) {
   function request() { return { type: accountConstants.UPDATE_REQUEST } }
   function success(notice) { return { type: accountConstants.UPDATE_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.UPDATE_FAILURE, error } }
+}
+
+function changePlan(data) {
+  return dispatch => {
+    dispatch(request(data))
+    userService.changePlan(data)
+      .then(
+        response => {
+          dispatch(globalActions.setStep(4)) // success message
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(alertActions.success(response.notice))
+          dispatch(success(response.notice))
+          dispatch(userActions.setUser(response.user))
+        },
+        error => {
+          dispatch(globalActions.setStep(2)); // display an error and stay on the same page
+          dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.CHANGE_PLAN_REQUEST } }
+  function success(notice) { return { type: accountConstants.CHANGE_PLAN_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.CHANGE_PLAN_FAILURE, error } }
 }
 
 function changeEmail(data) {
