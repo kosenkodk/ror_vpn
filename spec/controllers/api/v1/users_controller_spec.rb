@@ -32,7 +32,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     let!(:plan_free) {create(:tariff_plan_free)}
     it 'success' do
       expect(user.tariff_plan).to eq(tariff_plan)
-      post :plan_change, params: {plan_id: plan_free.id}
+      post :change_plan, params: {plan_id: plan_free.id}
       user.reload
       expect(user.tariff_plan).to eq(plan_free)
     end

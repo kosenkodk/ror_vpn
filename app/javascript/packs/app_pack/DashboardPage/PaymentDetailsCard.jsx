@@ -50,7 +50,7 @@ class PaymentDetailsCard extends React.Component {
     return (
       <form onSubmit={this.props.onFormSubmit} className="dashboard-payment-details">
         <div className="modal-body">
-
+          <input type="hidden" name="plan_id" value={currentPaymentMethodId} />
           <div className="form-group row">
             <label className="col-sm-4 col-form-label" htmlFor="amount_due">
               Amount due

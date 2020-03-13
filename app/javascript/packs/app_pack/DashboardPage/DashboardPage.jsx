@@ -62,8 +62,8 @@ class DashboardPage extends React.Component {
         // upgrading account (loading indicator)
         this.setState({ isForm: false });
         this.setState({ title: 'Upgrading account' });
-        // const data = FormDataAsJsonFromEvent(e);
-        //TODO: this.props.dispatch(accountActions.changePlan(data))
+        const data = FormDataAsJsonFromEvent(e);
+        this.props.dispatch(accountActions.changePlan(data))
         break;
       case 4:
         this.setState({ title: 'Success' });
@@ -159,7 +159,7 @@ class DashboardPage extends React.Component {
             <InfoBlock>
               Your payment details are protected with TLS encryption and Swiss privacy laws
             </InfoBlock>
-            <PaymentDetailsCard planSelected={planSelected} onFormSubmit={(e) => this.setStep(e, 2)} />
+            <PaymentDetailsCard planSelected={planSelected} onFormSubmit={(e) => this.setStep(e, step + 1)} />
           </React.Fragment>
           }
           {step === 3 && <React.Fragment>
