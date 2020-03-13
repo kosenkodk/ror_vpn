@@ -62,7 +62,7 @@ class Plan extends React.Component {
             <h6 className="m-0">{item.title}</h6>
           </div>
 
-          <div className="card-body py-0">
+          <div className={`card-body py-0 ${item.price > 0 ? '' : 'plan-free'}`}>
             {item.price > 0 ?
               <div className="d-flex flex-row align-items-start justify-content-center">
                 <div className="mr-lg-3">

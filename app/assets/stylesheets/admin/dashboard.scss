@@ -68,9 +68,12 @@
           }
           .card-body {
             margin-top: unset;//pxtovh(5);
-            margin-bottom: pxtovh(45);
+            margin-bottom: pxtovh(20);
             padding-left: pxtovw($padding-x);
             padding-right: pxtovw($padding-x);
+            &.plan-free {
+              margin-bottom: pxtovh(45);
+            }
           }
           .card-footer {
             // padding-top: pxtovh(18);
