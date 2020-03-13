@@ -143,8 +143,8 @@ function changePlan(data) {
     userService.changePlan(data)
       .then(
         response => {
-          dispatch(globalActions.setStep(4)) // success message
-          // dispatch(globalActions.setModalShow(false)) // hide modal show after success response
+          dispatch(globalActions.setStep(3)) // 3 - loading indicator 4 - success message
+          dispatch(globalActions.setModalShow(false)) // hide modal show after success response
           dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
           dispatch(userActions.setUser(response.user))
