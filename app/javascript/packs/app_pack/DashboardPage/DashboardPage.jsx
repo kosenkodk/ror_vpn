@@ -44,6 +44,11 @@ class DashboardPage extends React.Component {
     this.props.dispatch(globalActions.setModalShow(false));
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.step)
+      this.setStep(null, nextProps.step);
+  }
+
   setStep(e, step) {
     if (e) e.preventDefault();
     this.props.dispatch(globalActions.setStep(step));
@@ -66,8 +71,10 @@ class DashboardPage extends React.Component {
         // upgrading account (loading indicator)
         this.setState({ isForm: false });
         this.setState({ title: 'Upgrading account' });
-        const data = FormDataAsJsonFromEvent(e);
-        this.props.dispatch(accountActions.changePlan(data))
+        if (e) {
+          const data = FormDataAsJsonFromEvent(e);
+          this.props.dispatch(accountActions.changePlan(data))
+        }
         break;
       case 4:
         this.setState({ title: 'Success' });
