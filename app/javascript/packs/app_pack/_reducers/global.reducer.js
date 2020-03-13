@@ -38,6 +38,11 @@ export function global(state = {}, action) {
         ...state,
         plans: action.plans
       };
+    case globalConstants.GET_PLANS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     case globalConstants.GET_DEPARTMENTS_SUCCESS:
       return {
         ...state,
