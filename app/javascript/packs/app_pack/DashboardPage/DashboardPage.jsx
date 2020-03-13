@@ -7,7 +7,7 @@ import { I18n } from 'helpers';
 import Plans from '../DashboardPage/Plans';
 import { InfoBlock } from '../_components/admin';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
-import { accountActions, globalActions } from '../_actions';
+import { accountActions, globalActions, alertActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { PaymentDetailsCard } from './PaymentDetailsCard';
 
@@ -23,6 +23,10 @@ class DashboardPage extends React.Component {
   }
 
   onPlanChange(e, id, index) {
+    if (this.props.user.tariff_plan.id === id) {
+      this.props.dispatch(alertActions.error('You already have this tariff plan'))
+      return
+    }
     this.setState({ planSelected: this.props.plans[index] })
     if (e) {
       e.preventDefault();
