@@ -27,4 +27,14 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       # expect(response_json).to eq user.as_json.stringify_keys
     end
   end
+
+  describe 'change plan' do
+    let!(:plan_free) {create(:tariff_plan_free)}
+    it 'success' do
+      expect(user.tariff_plan).to eq(tariff_plan)
+      post :plan_change, params: {plan_id: plan_free.id}
+      user.reload
+      expect(user.tariff_plan).to eq(plan_free)
+    end
+  end
 end
