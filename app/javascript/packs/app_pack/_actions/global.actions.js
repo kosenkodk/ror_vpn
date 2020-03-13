@@ -36,7 +36,7 @@ function getCountries() {
 
   function request(countries) { return { type: globalConstants.GET_COUNTRIES_REQUEST, countries } }
   function success(countries) { return { type: globalConstants.GET_COUNTRIES_SUCCESS, countries } }
-  // function failure(error) { return { type: globalConstants.GET_COUNTRIES_FAILURE, error } }
+  function failure(error) { return { type: globalConstants.GET_COUNTRIES_FAILURE, error } }
 }
 
 function getPlans() {
@@ -57,7 +57,7 @@ function getPlans() {
 
   function request(plans) { return { type: globalConstants.GET_PLANS_REQUEST, plans } }
   function success(plans) { return { type: globalConstants.GET_PLANS_SUCCESS, plans } }
-  // function failure(error) { return { type: globalConstants.GET_PLANS_FAILURE, error } }
+  function failure(error) { return { type: globalConstants.GET_PLANS_FAILURE, error } }
 }
 
 function getReferLink() {
