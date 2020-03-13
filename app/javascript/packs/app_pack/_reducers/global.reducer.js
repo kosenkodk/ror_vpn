@@ -16,12 +16,12 @@ export function global(state = {}, action) {
     case globalConstants.GET_COUNTRIES_REQUEST:
       return {
         ...state,
-        plans: action.countries
+        countries: action.countries
       };
     case globalConstants.GET_COUNTRIES_SUCCESS:
       return {
         ...state,
-        plans: action.countries
+        countries: action.countries
       };
     case globalConstants.GET_COUNTRIES_FAILURE:
       return {

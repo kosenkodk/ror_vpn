@@ -33,6 +33,9 @@ class PaymentDetailsCard extends React.Component {
       const currentPaymentMethod = this.props.payment_methods.filter(item => item.id == e.target.value);
       this.setState({ currentPaymentMethodId: currentPaymentMethod[0].id });
       this.setState({ currentPaymentMethod: currentPaymentMethod[0] });
+
+      if (currentPaymentMethod[0].pay_id === 'bank_card')
+        this.props.dispatch(globalActions.getCountries());
       return;
     }
     this.setState({ currentPaymentMethod: '' });
