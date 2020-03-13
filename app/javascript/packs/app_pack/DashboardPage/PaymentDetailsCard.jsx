@@ -14,6 +14,7 @@ class PaymentDetailsCard extends React.Component {
       email: '',
       currentPaymentMethodId: 0, // || this.props.payment_methods && this.props.payment_methods[0].id
       currentPaymentMethod: '',
+      countryCode: 'US',
     };
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -44,7 +45,7 @@ class PaymentDetailsCard extends React.Component {
   }
 
   render() {
-    const { email, currentPaymentMethod, currentPaymentMethodId } = this.state;
+    const { email, currentPaymentMethod, currentPaymentMethodId, countryCode } = this.state;
     const { loading, error, notice, planSelected, countries } = this.props;
     return (
       <form onSubmit={this.props.onFormSubmit} className="dashboard-payment-details">
@@ -118,7 +119,7 @@ class PaymentDetailsCard extends React.Component {
                   State
                 </label>
                 <div className="col-sm-3">
-                  <select className="form-control" id="departmentSelectBox">
+                  <select className="form-control" id="countrySelectBox" onChange={this.handleChange} name="countryCode" value={countryCode}>
                     <option>Please select</option>
                     {countries && countries.map((item) =>
                       <option key={`${item.code}`} value={item.code}>{item.name}</option>
