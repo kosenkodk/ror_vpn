@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 import { InfoBlock } from '../_components/admin';
-import { globalActions } from '../_actions';
+import { globalActions, alertActions } from '../_actions';
 
 class PaymentDetailsCard extends React.Component {
 
@@ -44,11 +44,19 @@ class PaymentDetailsCard extends React.Component {
     if (e) e.preventDefault();
   }
 
+  onFormSubmit = (e) => {
+    if (this.state.currentPaymentMethod)
+      this.props.onFormSubmit(e);
+    else
+      this.props.dispatch(alertActions.error('Please chose a payment method first'));
+    e.preventDefault();
+  }
+
   render() {
     const { email, currentPaymentMethod, currentPaymentMethodId, countryCode } = this.state;
     const { loading, error, notice, planSelected, countries } = this.props;
     return (
-      <form onSubmit={this.props.onFormSubmit} className="dashboard-payment-details">
+      <form onSubmit={this.onFormSubmit} className="dashboard-payment-details">
         <div className="modal-body">
           <input type="hidden" name="plan_id" value={planSelected.id} />
           <div className="form-group row">
