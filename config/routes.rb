@@ -40,7 +40,8 @@ Rails.application.routes.draw do
       delete '/signin', to: 'signin#destroy'
       # delete 'signin', controller: :signin, action: :destroy
       get '/me', to: 'users#me'
-
+      post '/plan_change', to: 'users#plan_change'
+      
       # account page for logged in users
       get '/account_cancellation_reasons', to: 'account#account_cancellation_reasons'
       delete '/delete', to: 'account#delete'
