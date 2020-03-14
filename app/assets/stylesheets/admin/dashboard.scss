@@ -130,6 +130,7 @@
         .plan__best-offer {
           font-size: 12px;
           line-height: 15px;
+          font-weight: 500;// $font-normal;
           padding: pxtovh(11) pxtovw(20);
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
