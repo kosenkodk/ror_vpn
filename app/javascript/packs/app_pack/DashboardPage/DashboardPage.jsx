@@ -52,7 +52,6 @@ class DashboardPage extends React.Component {
   setStep(e, step) {
     if (e) e.preventDefault();
     this.props.dispatch(globalActions.setStep(step));
-
     switch (step) {
       case 0:
         // close modal popup
