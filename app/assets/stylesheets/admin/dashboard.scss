@@ -132,6 +132,7 @@
         .plan__best-offer {
           font-size: 12px;
           line-height: 15px;
+          font-weight: normal;//$font-normal;
           padding: pxtovh(11) pxtovw(20);
           @media (min-width: $bp-w1400) {
             @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
@@ -182,6 +183,7 @@
         .plan__discount {
           margin-bottom: pxtovh(5);
           .plan__btn-save {
+            font-weight: normal;
             padding: pxtovh(6) pxtovw(15);
             // min-height: pxtovh(29);
             font-size: 12px;
