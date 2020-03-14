@@ -12,8 +12,6 @@ class PaymentDetailsCard extends React.Component {
     super(props);
     this.state = {
       email: '',
-      currentPaymentMethodId: 0, // || this.props.payment_methods && this.props.payment_methods[0].id
-      currentPaymentMethod: '',
       countryCode: 'US',
     };
     // this.handleChange = this.handleChange.bind(this);
@@ -31,21 +29,17 @@ class PaymentDetailsCard extends React.Component {
 
   onPaymentMethodChange = (e) => {
     if (e && e.target.value > 0) {
+      e.preventDefault();
       const currentPaymentMethod = this.props.payment_methods.filter(item => item.id == e.target.value);
-      this.setState({ currentPaymentMethodId: currentPaymentMethod[0].id });
-      this.setState({ currentPaymentMethod: currentPaymentMethod[0] });
+      this.props.dispatch(globalActions.setPaymentMethod(currentPaymentMethod[0]));
 
       if (currentPaymentMethod[0].pay_id === 'bank_card')
         this.props.dispatch(globalActions.getCountries());
-      return;
     }
-    this.setState({ currentPaymentMethod: '' });
-    this.setState({ currentPaymentMethodId: 0 });
-    if (e) e.preventDefault();
   }
 
   onFormSubmit = (e) => {
-    if (this.state.currentPaymentMethod)
+    if (this.props.currentPaymentMethod)
       this.props.onFormSubmit(e);
     else
       this.props.dispatch(alertActions.error('Please chose a payment method first'));
@@ -53,8 +47,8 @@ class PaymentDetailsCard extends React.Component {
   }
 
   render() {
-    const { email, currentPaymentMethod, currentPaymentMethodId, countryCode } = this.state;
-    const { loading, error, notice, planSelected, countries } = this.props;
+    const { email, countryCode } = this.state;
+    const { currentPaymentMethod, loading, error, notice, planSelected, countries } = this.props;
     return (
       <form onSubmit={this.onFormSubmit} className="dashboard-payment-details">
         <div className="modal-body">
@@ -75,7 +69,7 @@ class PaymentDetailsCard extends React.Component {
               {/* {I18n.t('pages.tickets.form.title')} */}
             </label>
             <div className="col-sm-6">
-              <select name="payment_methods" onChange={this.onPaymentMethodChange} value={currentPaymentMethodId} className="form-control">
+              <select name="payment_methods" onChange={this.onPaymentMethodChange} value={currentPaymentMethod && currentPaymentMethod.id} className="form-control">
                 <option value={0}>Please select</option>
                 {this.props.payment_methods && this.props.payment_methods.map((item) =>
                   <option key={`payment_method${item.id}`} value={item.id}>{item.title}</option>
@@ -87,7 +81,7 @@ class PaymentDetailsCard extends React.Component {
             </div>
             <div className="col-sm-2"></div>
           </div>
-          {(currentPaymentMethod.pay_id === 'bank_card') &&
+          {(currentPaymentMethod && currentPaymentMethod.pay_id === 'bank_card') &&
 
             <React.Fragment>
               <div className="form-group row">
@@ -141,10 +135,10 @@ class PaymentDetailsCard extends React.Component {
               </div>
             </React.Fragment>
           }
-          {(currentPaymentMethod.pay_id === 'paypal') &&
+          {(currentPaymentMethod && currentPaymentMethod.pay_id === 'paypal') &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
-                {currentPaymentMethod.title}
+                {currentPaymentMethod && currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
                 <InfoBlock optionalCssClasses="my-0">
@@ -159,10 +153,10 @@ class PaymentDetailsCard extends React.Component {
               <div className="col-sm-2"></div>
             </div>
           }
-          {(currentPaymentMethod.pay_id === 'bitcoin') &&
+          {(currentPaymentMethod && currentPaymentMethod.pay_id === 'bitcoin') &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
-                {currentPaymentMethod.title}
+                {currentPaymentMethod && currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
                 <InfoBlock optionalCssClasses="my-0">
@@ -175,10 +169,10 @@ class PaymentDetailsCard extends React.Component {
               <div className="col-sm-2"></div>
             </div>
           }
-          {(currentPaymentMethod.pay_id === 'paymentwall') &&
+          {(currentPaymentMethod && currentPaymentMethod.pay_id === 'paymentwall') &&
             <div className="form-group row">
               <label className="col-sm-4 col-form-label">
-                {currentPaymentMethod.title}
+                {currentPaymentMethod && currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
                 <div className="row">
@@ -212,7 +206,7 @@ PaymentDetailsCard.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { payment_methods, countries } = state.global;
+  const { payment_methods, countries, currentPaymentMethod } = state.global;
   const { loading, error, notice } = state.account;
   return {
     countries,
@@ -220,6 +214,7 @@ function mapStateToProps(state) {
     loading,
     error,
     notice,
+    currentPaymentMethod,
   };
 }
 

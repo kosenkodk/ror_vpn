@@ -8,6 +8,7 @@ export const globalActions = {
   getCountries,
   getDepartments,
   getPlans,
+  setPaymentMethod,
   getPaymentMethods,
   getAccountCancellationReasons,
   setModalShow,
@@ -105,6 +106,10 @@ function setModalShow(isModalShow) {
     dispatch(setModalShow(isModalShow))
   }
   function setModalShow(isModalShow) { return { type: globalConstants.IS_MODAL_SHOW, isModalShow } }
+}
+
+function setPaymentMethod(payment_method) {
+  return { type: globalConstants.SET_PAYMENT_METHOD, payment_method }
 }
 
 function getPaymentMethods() {

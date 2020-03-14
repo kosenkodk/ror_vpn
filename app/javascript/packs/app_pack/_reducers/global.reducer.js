@@ -13,6 +13,11 @@ export function global(state = {}, action) {
         ...state,
         payment_methods: action.payment_methods
       }
+    case globalConstants.SET_PAYMENT_METHOD:
+      return {
+        ...state,
+        currentPaymentMethod: action.payment_method
+      }
     case globalConstants.GET_COUNTRIES_REQUEST:
       return {
         ...state,
