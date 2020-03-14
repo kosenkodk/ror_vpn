@@ -24,7 +24,7 @@ class DashboardPage extends React.Component {
 
   onPlanChange(e, id, index) {
     this.props.dispatch(globalActions.setPaymentMethod(null))
-    if (this.props.user.tariff_plan.id === id) {
+    if (this.props.user && this.props.user.tariff_plan && this.props.user.tariff_plan.id === id) {
       this.props.dispatch(alertActions.error('You already have this tariff plan'))
       return
     }
