@@ -8,6 +8,8 @@
     $card-padding-x: 5;
     $padding-x: 32;
 
+    padding-top: pxtovh(60);
+
     @media (min-width: 1401px) {
       zoom: 0.9;
       -moz-transform: scale(0.9);
@@ -23,7 +25,7 @@
     }
 
     .plans {
-      margin-top: pxtovh($padding-x); // break height of the plan items
+      // margin-top: pxtovh($padding-x); // break height of the plan items
       margin-left: pxtovw(-$card-padding-x);
       .best-offer {
         background: $pink_gradient;
