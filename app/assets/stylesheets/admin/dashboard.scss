@@ -21,12 +21,13 @@
         max-width: pxtovw(690);
       }
       max-width: pxtovw(1030);
-      float: left;
+      // float: left;
     }
 
     .plans {
       // margin-top: pxtovh($padding-x); // break height of the plan items
       margin-left: pxtovw(-$card-padding-x);
+      margin-right: pxtovw(-$card-padding-x);
       .best-offer {
         background: $pink_gradient;
         border-radius: pxtovw(20);
