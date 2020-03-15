@@ -89,6 +89,10 @@ class DashboardPage extends React.Component {
     this.props.dispatch(globalActions.getPlans())
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(globalActions.setPaymentMethod(null))
+  }
+
   render() {
     const { loggingIn, user, step, plans } = this.props;
     const { planSelected } = this.state;
