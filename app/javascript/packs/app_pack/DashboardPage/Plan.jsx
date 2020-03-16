@@ -50,9 +50,9 @@ class Plan extends React.Component {
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
         onClick={(e) => this.props.onPlanSelect(e, item.id, index)}
-        className="plan col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        className="plan col-xs-12 col-sm-6 col-lg-3">
         <div className={`card ${this.isActiveClass()} ${hover_class}`}>
-          <div className="card-header py-0">
+          <div className="card-header p-0">
             {this.isBestOffer() ?
               <div className={`plan__best-offer ${this.isActiveClass()} ${hover_class} d-flex flex-column justify-content-center`}>Best offer</div>
               :
