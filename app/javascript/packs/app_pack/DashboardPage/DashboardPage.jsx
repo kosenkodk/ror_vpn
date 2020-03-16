@@ -62,6 +62,7 @@ class DashboardPage extends React.Component {
       case 1:
         // start today
         this.setState({ title: 'Start today' });
+        this.setState({ isForm: false });
         break;
       case 2:
         // payment details
