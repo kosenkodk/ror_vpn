@@ -10,6 +10,7 @@ import { ModalPopupForm } from '../_components/ModalPopupForm';
 import { accountActions, globalActions, alertActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { PaymentDetailsCard } from './PaymentDetailsCard';
+import loadingIndicator from 'images/dashboard/upgrading_loading_indicators.svg';
 
 class DashboardPage extends React.Component {
   constructor(props) {
@@ -69,7 +70,7 @@ class DashboardPage extends React.Component {
         break;
       case 3:
         // upgrading account (loading indicator)
-        this.setState({ isForm: false });
+        this.setState({ isForm: true });
         this.setState({ title: 'Upgrading account' });
         if (e) {
           const data = FormDataAsJsonFromEvent(e);
@@ -78,6 +79,7 @@ class DashboardPage extends React.Component {
         break;
       case 4:
         this.setState({ title: 'Success' });
+        this.setState({ isForm: false });
         // success message ?
         break;
       default:
@@ -181,6 +183,9 @@ class DashboardPage extends React.Component {
             <InfoBlock>
               Your account is being upgraded, this may take up to 30 seconds.
             </InfoBlock>
+            <div className="text-center">
+              <img src={loadingIndicator} className="img-fluid" />
+            </div>
           </React.Fragment>
           }
           {step >= 4 && <React.Fragment>
