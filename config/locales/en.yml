@@ -153,6 +153,13 @@ en:
       twitter: "Twitter"
       contact_us: "Contact Us"
   pages:
+    payments:
+      payment_methods:
+        title: "Payment methods"
+        add_bank_card: "Add debit / credit card"
+        add_paypal: "Add PayPal"
+      invoices:
+        title: "Invoices"
     account:
       2fa:
         pls_scan_qr_code: "Please scan QR code"
