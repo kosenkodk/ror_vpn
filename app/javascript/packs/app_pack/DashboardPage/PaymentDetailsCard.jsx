@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { I18n } from 'helpers';
 import { InfoBlock } from '../_components/admin';
 import { globalActions, alertActions } from '../_actions';
+import PayPal from './PayPal';
+import BankCard from './BankCard';
 
 class PaymentDetailsCard extends React.Component {
 
@@ -52,13 +54,13 @@ class PaymentDetailsCard extends React.Component {
     return (
       <form onSubmit={this.onFormSubmit} className="dashboard-payment-details">
         <div className="modal-body">
-          <input type="hidden" name="plan_id" value={planSelected.id} />
+          <input type="hidden" name="plan_id" value={planSelected && planSelected.id} />
           <div className="form-group row">
             <label className="col-sm-4 col-form-label" htmlFor="amount_due">
               Amount due
             </label>
             <div className="col-sm-6">
-              <input type="text" name="amount_due" aria-describedby="amount_due" required={false} className="form-control" defaultValue={`$${planSelected.price}`} placeholder='' />
+              <input type="text" name="amount_due" aria-describedby="amount_due" required={false} className="form-control" defaultValue={`$${planSelected && planSelected.price}`} placeholder='' />
             </div>
             <div className="col-sm-2"></div>
           </div>
@@ -82,76 +84,10 @@ class PaymentDetailsCard extends React.Component {
             <div className="col-sm-2"></div>
           </div>
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'bank_card') &&
-
-            <React.Fragment>
-              <div className="form-group row">
-                <label className="col-sm-4 col-form-label" htmlFor="full_name">
-                  Full name
-              </label>
-                <div className="col-sm-6">
-                  <input type="text" name="full_name" aria-describedby="full_name" required={true} className="form-control" placeholder='' onChange={this.handleChange} />
-                </div>
-                <div className="col-sm-2"></div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-sm-4 col-form-label" htmlFor="card_no">
-                  Card number
-              </label>
-                <div className="col-sm-6">
-                  <input type="text" name="card_no" aria-describedby="card_no" required={true} className="form-control" placeholder='' onChange={this.handleChange} />
-                </div>
-                <div className="col-sm-2"></div>
-              </div>
-
-              <div className="form-group row">
-                <label className="col-sm-4 col-form-label" htmlFor="card_details">
-                  MM/YY / Security code
-                </label>
-                <div className="col-sm-3">
-                  <input type="text" name="card_date" aria-describedby="card_details" required={true} className="form-control" placeholder='MM/YY' onChange={this.handleChange} />
-                </div>
-                <div className="col-sm-3">
-                  <input type="text" name="card_code" aria-describedby="card_details" required={true} className="form-control" placeholder='Security code' onChange={this.handleChange} />
-                </div>
-                <div className="col-sm-2"></div>
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-4 col-form-label" htmlFor="state_details">
-                  State
-                </label>
-                <div className="col-sm-3">
-                  <select className="form-control" id="countrySelectBox" onChange={this.handleChange} name="countryCode" value={countryCode}>
-                    <option>Please select</option>
-                    {countries && countries.map((item) =>
-                      <option key={`${item.code}`} value={item.code}>{item.name}</option>
-                    )}
-                  </select>
-                </div>
-                <div className="col-sm-3">
-                  <input type="text" name="zip_code" aria-describedby="state_details" required={true} className="form-control" placeholder='ZIP' onChange={this.handleChange} />
-                </div>
-                <div className="col-sm-2"></div>
-              </div>
-            </React.Fragment>
+            <BankCard countries={countries} />
           }
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'paypal') &&
-            <div className="form-group row">
-              <label className="col-sm-4 col-form-label">
-                {currentPaymentMethod && currentPaymentMethod.title}
-              </label>
-              <div className="col-sm-6">
-                <InfoBlock optionalCssClasses="my-0">
-                  We will rediret you to PayPal in a new browser tab to complete this transaction. If you use any pop-up blockers, please disable them to continue.
-                </InfoBlock>
-                <button className="btn btn-pink my-3">Check out with PayPal</button>
-                <InfoBlock optionalCssClasses="my-0">
-                  You must have a credit card or bank account linked with your PayPal account. If your PayPal account. If your PayPal account doesn’t have that, please
-                  <Link to="#" className="mt-1 text-blue"> click here.</Link>
-                </InfoBlock>
-              </div>
-              <div className="col-sm-2"></div>
-            </div>
+            <PayPal item={currentPaymentMethod} />
           }
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'bitcoin') &&
             <div className="form-group row">
