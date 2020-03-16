@@ -1,29 +1,51 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NavHashLink as Link } from 'react-router-hash-link';
+import React from 'react'
+import { connect } from 'react-redux'
+import { NavHashLink as Link } from 'react-router-hash-link'
 
-// import { userActions } from '../_actions';
-import { I18n } from 'helpers';
-import { InfoBlock } from '../_components/admin';
-import { ModalPopupForm } from '../_components/ModalPopupForm';
-import { accountActions, globalActions, alertActions } from '../_actions';
-import { FormDataAsJsonFromEvent } from '../_helpers';
-import icInfoSrc from 'images/admin/ic_warning.svg';
+import { I18n } from 'helpers'
+import { InfoBlock } from '../_components/admin'
+import { ModalPopupForm } from '../_components/ModalPopupForm'
+import { accountActions, globalActions, alertActions } from '../_actions'
+import { FormDataAsJsonFromEvent } from '../_helpers'
+import icInfoSrc from 'images/admin/ic_warning.svg'
+import PayPal from '../DashboardPage/PayPal'
+import BankCard from '../DashboardPage/BankCard'
 
 class PaymentsPage extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      isForm: false,
-      planSelected: null,
-    };
+    super(props)
+  }
+
+  addBankCard = (e) => {
+    if (e) e.preventDefault()
+    this.props.dispatch(globalActions.setModalShow('addPaymentMethod'))
+    this.setState({ isForm: true })
+  }
+
+  addPayPal = (e) => {
+    if (e) e.preventDefault()
+    this.setState({ isForm: false })
+    this.props.dispatch(globalActions.setModalShow('addPayPal'))
+  }
+
+  onModalClose = (e) => {
+    if (e) e.preventDefault()
+    this.props.dispatch(accountActions.clearAlerts())
+
+    this.setState({ isForm: false })
+    this.props.dispatch(globalActions.setModalShow(false))
+  }
+
+  onSaveBankCard = (e) => {
+    e.preventDefault()
+  }
+
+  onSavePayPal = (e) => {
+    e.preventDefault()
   }
 
   render() {
-    const { loggingIn, user, step, plans } = this.props;
-    const { planSelected } = this.state;
-    const { tariff_plan } = user;
+    const { user } = this.props
     return (
       <div className="container-fluid payments">
         <div className="row">
@@ -35,8 +57,8 @@ class PaymentsPage extends React.Component {
             </InfoBlock>
 
             <div className=" ">
-              <button className="btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
-              <button className="btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
+              <button onClick={this.addBankCard} className="btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
+              <button onClick={this.addPayPal} className="btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
             </div>
 
             <InfoBlock optionalCssClasses="my-5">
@@ -57,19 +79,34 @@ class PaymentsPage extends React.Component {
             </div>
 
             <ModalPopupForm
-              // onClose={this.onModalClose}
-              id='changePlan'
-              isForm={this.state.isForm}
+              onClose={this.onModalClose}
+              id='addPaymentMethod'
+              isForm={false}
               isHideBtn={true}
               isNextBtnOnly={true}
-              // onBtnSave={(e) => this.setStep(e, step + 1)}
-              title={this.state.title}
+              onBtnSave={this.onSaveBankCard}
+              title={I18n.t('pages.payments.payment_methods.add_bank_card')}
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.next')}
               btnClasses={''}>
               <InfoBlock>
                 Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
               </InfoBlock>
+              <BankCard />
+            </ModalPopupForm>
+
+            <ModalPopupForm
+              onClose={this.onModalClose}
+              id='addPayPal'
+              isForm={false}
+              isHideBtn={true}
+              isNextBtnOnly={true}
+              onBtnSave={this.onSavePayPal}
+              title={I18n.t('pages.payments.payment_methods.add_paypal')}
+              btnCloseText={I18n.t('buttons.cancel')}
+              btnSaveText={I18n.t('buttons.next')}
+              btnClasses={''}>
+              <PayPal item={{ title: 'PayPal' }} />
             </ModalPopupForm>
           </div>
         </div>
@@ -79,12 +116,11 @@ class PaymentsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { step, plans } = state.global;
-  const { loggingIn, user } = state.authentication;
+  const { loggingIn, user } = state.authentication
   return {
-    loggingIn, user, step, plans
-  };
+    loggingIn, user
+  }
 }
 
-const connectedPage = connect(mapStateToProps)(PaymentsPage);
-export { connectedPage as PaymentsPage }; 
+const connectedPage = connect(mapStateToProps)(PaymentsPage)
+export { connectedPage as PaymentsPage }
