@@ -106,7 +106,7 @@ class DashboardPage extends React.Component {
         </div>
         <div id="subscriptions" className="subscriptions">
           <h1>{I18n.t('pages.dashboard.subscription.title')}</h1>
-          <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} linkTitle='Change' optionalCssClasses="py-1" />
+          <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} optionalCssClasses="py-1" />
         </div>
         {/* <div id="billing" className="">
           <h1>{I18n.t('pages.dashboard.billing.title')}</h1>
