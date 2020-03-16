@@ -137,11 +137,11 @@ class DashboardPage extends React.Component {
               <tbody>
                 <tr>
                   <td>VegaVPN</td>
-                  <td className="text-right">{planSelected.title}</td>
+                  <td className="text-right">{planSelected && planSelected.title}</td>
                 </tr>
                 <tr className="font-weight-bold">
                   <td>Total</td>
-                  <td className="text-right"> ${planSelected.price} / month</td>
+                  <td className="text-right"> ${planSelected && planSelected.price} / month</td>
                 </tr>
                 <tr>
                   <td colSpan="2">
@@ -164,7 +164,7 @@ class DashboardPage extends React.Component {
                 </tr> */}
                 <tr className="font-weight-bold">
                   <td>Amount due</td>
-                  <td className="text-right">${planSelected.price}</td>
+                  <td className="text-right">${planSelected && planSelected.price}</td>
                 </tr>
               </tbody>
             </table>
