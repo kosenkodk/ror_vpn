@@ -1,5 +1,6 @@
 class Api::V1::PaymentMethodsController < Api::V1::ApiController
-  
+  before_action :authorize_access_request!, only: [:create]
+
   def for_signup
     items = PaymentMethod.for_signup
     render json: items.as_json(only: [:id, :pay_id, :title, :icons], methods: [ :active_class, :icon_urls])
@@ -16,7 +17,7 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   end
 
   def create
-    item = PaymentMethod.create(payment_method_params)
+    item = PaymentMethod.create!(payment_method_params)
     render json: item
   end
 
