@@ -74,6 +74,7 @@ RSpec.describe User, type: :model do
   it 'create user' do
     user = User.create email: 'email@ex.com', password: 'password', password_confirmation: 'password'
     user.payment_method = payment_method
+    user.payment_methods << payment_method
     user.tariff_plan = plan
     # user.payment_method_id = payment_method.id
     # user.tariff_plan_id = plan.id
@@ -82,6 +83,9 @@ RSpec.describe User, type: :model do
     user.save!
     expect(user.tariff_plan.id).to eq(plan.id)
     expect(user.payment_method.id).to eq(payment_method.id)
+    expect(user.payment_methods.count).to eq(1)
+    expect(user.payment_methods.first.id).to eq(payment_method.id)
+
     expect(user.tickets.first).to eq(ticket)
     expect(user.tickets.count).to eq(1)
   end
