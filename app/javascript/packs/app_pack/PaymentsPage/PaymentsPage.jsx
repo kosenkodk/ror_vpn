@@ -5,7 +5,7 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import { I18n } from 'helpers'
 import { InfoBlock } from '../_components/admin'
 import { ModalPopupForm } from '../_components/ModalPopupForm'
-import { accountActions, globalActions, alertActions } from '../_actions'
+import { accountActions, userActions, globalActions, alertActions } from '../_actions'
 import { FormDataAsJsonFromEvent } from '../_helpers'
 import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
@@ -50,7 +50,8 @@ class PaymentsPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(globalActions.getPaymentMethods())
+    // this.props.dispatch(globalActions.getPaymentMethods())
+    this.props.dispatch(userActions.getUser())
   }
 
   render() {
@@ -80,8 +81,8 @@ class PaymentsPage extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {(payment_methods && (payment_methods.length > 0)) ?
-                  payment_methods.map(item =>
+                {(user && user.payment_methods && (user.payment_methods.length > 0)) ?
+                  user.payment_methods.map(item =>
                     <tr>
                       <td>{item.title}</td>
                       <td></td>
@@ -155,9 +156,9 @@ class PaymentsPage extends React.Component {
 
 function mapStateToProps(state) {
   const { payment_methods } = state.global
-  const { loggingIn, user } = state.authentication
+  const { user } = state.users
   return {
-    loggingIn, user, payment_methods
+    user, payment_methods
   }
 }
 
