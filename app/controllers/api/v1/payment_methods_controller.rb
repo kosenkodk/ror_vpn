@@ -1,5 +1,5 @@
 class Api::V1::PaymentMethodsController < Api::V1::ApiController
-
+  
   def for_signup
     items = PaymentMethod.for_signup
     render json: items.as_json(only: [:id, :pay_id, :title, :icons], methods: [ :active_class, :icon_urls])
@@ -13,6 +13,16 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   def show
     item = PaymentMethod.find(params[:id])
     render json: item #.attributes.merge({icon_url: url_for(item.icon)})
+  end
+
+  def create
+    item = PaymentMethod.create(payment_method_params)
+    render json: item
+  end
+
+  private
+  def payment_method_params
+    params.permit(:title)
   end
 
 end
