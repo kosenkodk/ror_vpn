@@ -11,6 +11,11 @@ import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
 import BankCard from '../DashboardPage/BankCard'
 
+import icEditSrc from 'images/icons/ic_edit.svg'
+import icTrashSrc from 'images/icons/ic_trash.svg'
+import icLockSrc from 'images/icons/ic_lock.svg'
+import icDownloadSrc from 'images/icons/ic_download.svg'
+
 class PaymentsPage extends React.Component {
   constructor(props) {
     super(props)
@@ -45,7 +50,7 @@ class PaymentsPage extends React.Component {
   }
 
   render() {
-    const { user } = this.props
+    const { payment_methods, user } = this.props
     return (
       <div className="container-fluid payments">
         <div className="row">
@@ -60,6 +65,36 @@ class PaymentsPage extends React.Component {
               <button onClick={this.addBankCard} className="btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
               <button onClick={this.addPayPal} className="btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
             </div>
+
+
+            <table className="table">
+              <thead>
+                <tr>
+                  <th className="font-weight-bold">Method</th>
+                  <th className="font-weight-bold">Status</th>
+                  <th className="font-weight-bold">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(payment_methods && (payment_methods.length > 0)) ?
+                  payment_methods.map(item =>
+                    <tr>
+                      <td>{item.title}</td>
+                      <td></td>
+                      <td className="text-right"></td>
+                      <td>
+                        <Link to="#" className=""><img src={icEditSrc} /></Link>
+                        <Link to="#" className=""><img src={icTrashSrc} /></Link>
+                        <Link to="#" className=""><img src={icLockSrc} /></Link>
+                      </td>
+                    </tr>
+                  ) :
+                  <tr>
+                    <td rowSpan="3">Payment methods are not found</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
 
             {/* <InfoBlock optionalCssClasses="my-5">
               <div className="row">
@@ -110,15 +145,16 @@ class PaymentsPage extends React.Component {
             </ModalPopupForm>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
 
 function mapStateToProps(state) {
+  const { payment_methods } = state.global
   const { loggingIn, user } = state.authentication
   return {
-    loggingIn, user
+    loggingIn, user, payment_methods
   }
 }
 
