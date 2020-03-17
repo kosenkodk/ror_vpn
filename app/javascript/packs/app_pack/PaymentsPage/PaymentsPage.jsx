@@ -50,29 +50,29 @@ class PaymentsPage extends React.Component {
       <div className="container-fluid payments">
         <div className="row">
           <div className="col-md-12 col-lg-8">
-            <h1>{I18n.t('pages.payments.payment_methods.title')}</h1>
+            <h1 className="">{I18n.t('pages.payments.payment_methods.title')}</h1>
             <InfoBlock>
               If you wish to pay by credit card, you can add your card below. Learn about other payment options.
               <Link to="#" className="mt-1 text-blue"> Learn more</Link>
             </InfoBlock>
 
-            <div className=" ">
+            <div className="">
               <button onClick={this.addBankCard} className="btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
               <button onClick={this.addPayPal} className="btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
             </div>
 
-            <InfoBlock optionalCssClasses="my-5">
+            {/* <InfoBlock optionalCssClasses="my-5">
               <div className="row">
                 <img src={icInfoSrc} className="col-1 img-fluid" />
                 <p className="col">
                   To settle your invoice(s) via Crypto or Qiwi, you need to manually trigger the pay button in “Invoices” section.
                 </p>
               </div>
-            </InfoBlock>
+            </InfoBlock> */}
 
 
-            <div id="subscriptions" className="invoices">
-              <h1>{I18n.t('pages.payments.invoices.title')}</h1>
+            <div className="invoices">
+              <h1 className="">{I18n.t('pages.payments.invoices.title')}</h1>
               <InfoBlock>
                 You can customize and download your invoices for accounting purposes.
               </InfoBlock>
