@@ -12,4 +12,12 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
       expect(response_json[0]['title']).to eq(payment_method_title)
     end
   end
+  describe 'create a payment method' do
+    context 'success' do
+      it do
+        post :create, params: {title:'paypal'}
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
