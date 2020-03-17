@@ -49,6 +49,10 @@ class PaymentsPage extends React.Component {
     e.preventDefault()
   }
 
+  componentDidMount() {
+    this.props.dispatch(globalActions.getPaymentMethods())
+  }
+
   render() {
     const { payment_methods, user } = this.props
     return (
@@ -72,7 +76,7 @@ class PaymentsPage extends React.Component {
                 <tr>
                   <th className="font-weight-bold">Method</th>
                   <th className="font-weight-bold">Status</th>
-                  <th className="font-weight-bold">Actions</th>
+                  <th className="font-weight-bold text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,11 +85,10 @@ class PaymentsPage extends React.Component {
                     <tr>
                       <td>{item.title}</td>
                       <td></td>
-                      <td className="text-right"></td>
-                      <td>
-                        <Link to="#" className=""><img src={icEditSrc} /></Link>
-                        <Link to="#" className=""><img src={icTrashSrc} /></Link>
-                        <Link to="#" className=""><img src={icLockSrc} /></Link>
+                      <td className="text-right">
+                        <img src={icEditSrc} className="img-fluid" />
+                        <img src={icTrashSrc} className="img-fluid" />
+                        <img src={icLockSrc} className="img-fluid" />
                       </td>
                     </tr>
                   ) :
