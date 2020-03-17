@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def attributes
-    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text }
+    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, payment_methods: payment_methods }
   end
 
   def generate_password_token!
