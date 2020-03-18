@@ -13,9 +13,32 @@ export const userActions = {
   getAll,
   getUser,
   setUser,
+  addPaymentMethod,
   contactUs,
   refer_friend,
 };
+
+function addPaymentMethod(data) {
+  return dispatch => {
+    dispatch(request());
+
+    userService.addPaymentMethod(data)
+      .then(
+        response => {
+          dispatch(success(response.notice));
+          dispatch(alertActions.success(response.notice));
+        },
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request() { return { type: userConstants.ADD_PAYMENT_METHOD_REQUEST } }
+  function success(notice) { return { type: userConstants.ADD_PAYMENT_METHOD_SUCCESS, notice } }
+  function failure(error) { return { type: userConstants.ADD_PAYMENT_METHOD_FAILURE, error } }
+}
 
 function refer_friend(emails) {
   return dispatch => {

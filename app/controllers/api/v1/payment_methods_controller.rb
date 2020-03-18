@@ -18,7 +18,7 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
 
   def create
     item = PaymentMethod.create!(payment_method_params)
-    render json: item
+    render json: { payment_method: item, notice: I18n.t('pages.payments.payment_methods.add.success') }
   end
 
   private

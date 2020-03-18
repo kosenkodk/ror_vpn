@@ -158,6 +158,9 @@ en:
         title: "Payment methods"
         add_bank_card: "Add debit / credit card"
         add_paypal: "Add PayPal"
+        add:
+          success: "Payment method has been added successfully"
+          error: "Error. Can't add a new payment method."
       invoices:
         title: "Invoices"
     account:
