@@ -15,6 +15,7 @@ export const userService = {
   addTicket,
   viewTicket,
   updateTicket,
+  addPaymentMethod,
   getPaymentMethods,
   getPlans,
   getCountries,
@@ -307,6 +308,19 @@ function changeLoginEmail(data) {
     body: JSON.stringify(data)
   }
   return fetch(`${config.apiUrl}/change_email`, requestOptions).then(handleResponse);
+}
+
+function addPaymentMethod(data) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/payment_methods`, 'POST', data)
+
+  const requestOptions = {
+    method: 'POST',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify(data)
+  }
+  return fetch(`${config.apiUrl}/payment_methods`, requestOptions).then(handleResponse);
 }
 
 function addTicket(ticket) {

@@ -19,6 +19,12 @@ import icDownloadSrc from 'images/icons/ic_download.svg'
 class PaymentsPage extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {}
+  }
+
+  onInputChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   addBankCard = (e) => {
@@ -43,6 +49,7 @@ class PaymentsPage extends React.Component {
 
   onSaveBankCard = (e) => {
     e.preventDefault()
+    this.props.dispatch(userActions.addPaymentMethod(this.state))
   }
 
   onSavePayPal = (e) => {
@@ -131,7 +138,7 @@ class PaymentsPage extends React.Component {
               <InfoBlock>
                 Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
               </InfoBlock>
-              <BankCard />
+              <BankCard onInputChange={this.onInputChange} />
             </ModalPopupForm>
 
             <ModalPopupForm
