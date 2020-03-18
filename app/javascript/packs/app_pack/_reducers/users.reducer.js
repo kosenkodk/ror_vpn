@@ -44,14 +44,18 @@ export function users(state = {}, action) {
       };
     case userConstants.ADD_PAYMENT_METHOD_REQUEST:
       return {
+        user: state.user,
         loading: true
       };
     case userConstants.ADD_PAYMENT_METHOD_SUCCESS:
       return {
-        notice: action.notice
+        user: { ...state.user, payment_methods: [...state.user.payment_methods, action.payment_method] },
+        notice: action.notice,
+        payment_method: action.payment_method
       };
     case userConstants.ADD_PAYMENT_METHOD_FAILURE:
       return {
+        user: state.user,
         error: action.error
       };
     default:
