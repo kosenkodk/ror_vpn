@@ -35,8 +35,9 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
       context 'success' do
         it do
           post :create, params: {title: 'paypal'}
-          expect(response_json.keys.sort).to include('title')
-          expect(response_json.values).to include('paypal')
+          expect(response_json.keys.sort).to eq(['notice', 'payment_method'])
+          expect(response_json['payment_method'].values).to include('paypal')
+          expect(response_json['notice']).to eq(I18n.t('pages.payments.payment_methods.add.success'))
           expect(response).to have_http_status(200)
         end
       end
