@@ -149,7 +149,7 @@ class PaymentsPage extends React.Component {
             </ModalPopupForm>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
