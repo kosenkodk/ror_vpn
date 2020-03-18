@@ -3,6 +3,7 @@ import { userService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
 import { urls, config } from 'config';
+import { globalActions } from './global.actions';
 
 export const userActions = {
   login,
@@ -25,7 +26,8 @@ function addPaymentMethod(data) {
     userService.addPaymentMethod(data)
       .then(
         response => {
-          dispatch(success(response.notice));
+          dispatch(globalActions.setModalShow(false));
+          dispatch(success(response.notice, response.payment_method));
           dispatch(alertActions.success(response.notice));
         },
         error => {
@@ -36,7 +38,7 @@ function addPaymentMethod(data) {
   };
 
   function request() { return { type: userConstants.ADD_PAYMENT_METHOD_REQUEST } }
-  function success(notice) { return { type: userConstants.ADD_PAYMENT_METHOD_SUCCESS, notice } }
+  function success(notice, payment_method) { return { type: userConstants.ADD_PAYMENT_METHOD_SUCCESS, notice, payment_method } }
   function failure(error) { return { type: userConstants.ADD_PAYMENT_METHOD_FAILURE, error } }
 }
 

@@ -19,7 +19,7 @@ import icDownloadSrc from 'images/icons/ic_download.svg'
 class PaymentsPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { title: '' }
   }
 
   onInputChange = (e) => {
@@ -31,11 +31,13 @@ class PaymentsPage extends React.Component {
     if (e) e.preventDefault()
     this.props.dispatch(globalActions.setModalShow('addPaymentMethod'))
     this.setState({ isForm: true })
+    this.setState({ title: 'Credit/Debit Card' })
   }
 
   addPayPal = (e) => {
     if (e) e.preventDefault()
     this.setState({ isForm: false })
+    this.setState({ title: 'PayPal' })
     this.props.dispatch(globalActions.setModalShow('addPayPal'))
   }
 
@@ -54,6 +56,7 @@ class PaymentsPage extends React.Component {
 
   onSavePayPal = (e) => {
     e.preventDefault()
+    this.props.dispatch(userActions.addPaymentMethod(this.state))
   }
 
   componentDidMount() {
