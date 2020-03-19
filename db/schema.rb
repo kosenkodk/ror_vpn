@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_110658) do
+ActiveRecord::Schema.define(version: 2020_03_19_073103) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_110658) do
     t.boolean "is_active"
     t.string "pay_id"
     t.integer "user_id"
+    t.integer "bank_card_id"
+    t.index ["bank_card_id"], name: "index_payment_methods_on_bank_card_id"
     t.index ["payment_group_id"], name: "index_payment_methods_on_payment_group_id"
     t.index ["user_id"], name: "index_payment_methods_on_user_id"
   end
@@ -196,6 +198,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_110658) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "messages", "tickets"
   add_foreign_key "messages", "users"
+  add_foreign_key "payment_methods", "bank_cards"
   add_foreign_key "payment_methods", "users"
   add_foreign_key "tickets", "users"
   add_foreign_key "todos", "users"
