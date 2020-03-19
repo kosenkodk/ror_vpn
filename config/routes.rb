@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       # get 'features', to: 'features#index'
       resources :features, only: [:index, :show]
       resources :tariff_plans#, only: [:index, :show]
-      resources :payment_methods, only: [:index, :show, :create] 
+      resources :payment_methods, only: [:index, :show, :create, :destroy] 
       get '/payment_methods_for_signup', to: "payment_methods#for_signup"
       resources :payment_groups, only: [:index]
       resources :contacts, only: [:new, :show, :create]

@@ -161,6 +161,10 @@ en:
         add:
           success: "Payment method has been added successfully"
           error: "Error. Can't add a new payment method."
+        delete:
+          success: "Payment method has been deleted successfully"
+          error: "Error. Can't delete a payment method."
+          not_found: "Error. Invalid payment method ID."
       invoices:
         title: "Invoices"
     account:

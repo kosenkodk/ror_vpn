@@ -1,5 +1,5 @@
 class Api::V1::PaymentMethodsController < Api::V1::ApiController
-  before_action :authorize_access_request!, only: [:create]
+  before_action :authorize_access_request!, only: [:create, :destroy]
 
   def for_signup
     items = PaymentMethod.for_signup
@@ -25,6 +25,20 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
       return
     end
     render json: { error: I18n.t('pages.payments.payment_methods.add.error') }
+  end
+
+  def destroy
+    if PaymentMethod.exists?(params[:id])
+      if PaymentMethod.find(params[:id]).destroy!
+        render json: { notice: I18n.t('pages.payments.payment_methods.delete.success') }
+        return
+      else
+        render json: { error: I18n.t('pages.payments.payment_methods.delete.error') }, status: 422
+        return
+      end
+    else
+      render json: { error: I18n.t('pages.payments.payment_methods.delete.not_found') }, status: 404
+    end
   end
 
   private
