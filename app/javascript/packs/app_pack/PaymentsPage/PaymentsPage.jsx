@@ -19,7 +19,7 @@ import icDownloadSrc from 'images/icons/ic_download.svg'
 class PaymentsPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { title: '' }
+    this.state = { title: '', selectedPaymentMethodId: 0 }
   }
 
   onInputChange = (e) => {
@@ -57,6 +57,18 @@ class PaymentsPage extends React.Component {
   onSavePayPal = (e) => {
     e.preventDefault()
     this.props.dispatch(userActions.addPaymentMethod(this.state))
+  }
+
+  onDeletePaymentMethod = (e, id) => {
+    if (e) e.preventDefault()
+    this.setState({ selectedPaymentMethodId: id })
+    this.props.dispatch(globalActions.setModalShow('deletePaymentMethod'))
+  }
+
+  deletePaymentMethod = (e) => {
+    e.preventDefault()
+    console.log('deletePaymentMethod id', this.state.selectedPaymentMethodId)
+    this.props.dispatch(userActions.deletePaymentMethodById(this.state.selectedPaymentMethodId))
   }
 
   componentDidMount() {
@@ -98,7 +110,7 @@ class PaymentsPage extends React.Component {
                       <td></td>
                       <td className="text-right">
                         <img src={icEditSrc} className="img-fluid" />
-                        <img src={icTrashSrc} className="img-fluid" />
+                        <img onClick={(e) => this.onDeletePaymentMethod(e, item.id)} id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
                         <img src={icLockSrc} className="img-fluid" />
                       </td>
                     </tr>
@@ -156,6 +168,22 @@ class PaymentsPage extends React.Component {
               btnSaveText={I18n.t('buttons.next')}
               btnClasses={''}>
               <PayPal item={{ title: 'PayPal' }} />
+            </ModalPopupForm>
+
+            <ModalPopupForm
+              onClose={this.onModalClose}
+              id='deletePaymentMethod'
+              isForm={false}
+              isHideBtn={true}
+              isNextBtnOnly={true}
+              onBtnSave={this.deletePaymentMethod}
+              title={I18n.t('pages.payments.payment_methods.delete.title')}
+              btnCloseText={I18n.t('buttons.cancel')}
+              btnSaveText={I18n.t('buttons.confirm')}
+              btnClasses={''}>
+              <InfoBlock>
+                Are you sure you want to delete this payment method?
+              </InfoBlock>
             </ModalPopupForm>
           </div>
         </div>

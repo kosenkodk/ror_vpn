@@ -162,6 +162,7 @@ en:
           success: "Payment method has been added successfully"
           error: "Error. Can't add a new payment method."
         delete:
+          title: "Delete payment method"
           success: "Payment method has been deleted successfully"
           error: "Error. Can't delete a payment method."
           not_found: "Error. Invalid payment method ID."
@@ -361,6 +362,7 @@ en:
     back: "Back"
     next: "Next"
     cancel: "Cancel"
+    confirm: "Confirm"
     "yes": "Yes"
     "no": "No"
 
