@@ -71,7 +71,7 @@ class PaymentDetailsCard extends React.Component {
               {/* {I18n.t('pages.tickets.form.title')} */}
             </label>
             <div className="col-sm-6">
-              <select name="payment_methods" onChange={this.onPaymentMethodChange} value={currentPaymentMethod && currentPaymentMethod.id} className="form-control">
+              <select id="payment_methods" name="payment_methods" onChange={this.onPaymentMethodChange} value={(currentPaymentMethod && currentPaymentMethod.id) || ''} className="form-control">
                 <option value={0}>Please select</option>
                 {this.props.payment_methods && this.props.payment_methods.map((item) =>
                   <option key={`payment_method${item.id}`} value={item.id}>{item.title}</option>

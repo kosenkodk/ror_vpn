@@ -11,10 +11,10 @@ class Api::V1::UsersController < Api::V1::ApiController
       plan = TariffPlan.find(plan_id)
       current_user.tariff_plan = plan
       if current_user.save
-        render json: { notice: 'Plan has been changed successfully', user: current_user }
+        render json: { notice: I18n.t('pages.dashboard.plans.change.success'), user: current_user }
         return
       end
     end
-    render json: { error: 'Plan can not be changed' }, status: :bad_request
+    render json: { error: I18n.t('pages.dashboard.plans.change.error') }, status: :bad_request
   end
 end
