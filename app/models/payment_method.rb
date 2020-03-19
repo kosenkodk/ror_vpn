@@ -1,8 +1,12 @@
 class PaymentMethod < ApplicationRecord
   include Rails.application.routes.url_helpers
+  # has_many :users, dependent: :destroy
+  # has_many :user_payment_methods, through: :user_payment_methods
+  has_one :user
+  has_many :user_payment_methods, through: :user_payment_methods
+
   # scope :for_signup, -> { where(is_for_signup: true) }
   validates :title, presence: true
-  has_one :user
   has_one_attached :icon, dependent: :destroy
   has_many_attached :icons, dependent: :destroy
   # has_many :bank_cards, dependent: :destroy

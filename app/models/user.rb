@@ -12,9 +12,11 @@ class User < ApplicationRecord
   has_secure_password
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
+  
   has_many :payment_methods, dependent: :destroy
+  # has_many :user_payment_methods, through: :user_payment_methods
 
-  belongs_to :payment_method, required: false, optional: true #, inverse_of: :user
+  # belongs_to :payment_method, required: false, optional: true #, inverse_of: :user
   belongs_to :tariff_plan, required: false, optional: true #, inverse_of: :user
   belongs_to :cancel_reason, required: false, optional: true #, inverse_of: :user
   belongs_to :country, optional: true
