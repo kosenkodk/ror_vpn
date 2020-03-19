@@ -58,6 +58,21 @@ export function users(state = {}, action) {
         user: state.user,
         error: action.error
       };
+    case userConstants.DELETE_PAYMENT_METHOD_REQUEST:
+      return {
+        user: state.user,
+        loading: true
+      };
+    case userConstants.DELETE_PAYMENT_METHOD_SUCCESS:
+      return {
+        user: { ...state.user, payment_methods: state.user.payment_methods.filter(item => item.id !== action.id) },
+        notice: action.notice,
+      };
+    case userConstants.DELETE_PAYMENT_METHOD_FAILURE:
+      return {
+        user: state.user,
+        error: action.error
+      };
     default:
       return state
   }

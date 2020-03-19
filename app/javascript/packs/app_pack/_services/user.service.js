@@ -17,6 +17,7 @@ export const userService = {
   updateTicket,
   addPaymentMethod,
   getPaymentMethods,
+  deletePaymentMethodById,
   getPlans,
   getCountries,
   getDepartments,
@@ -47,7 +48,6 @@ function refer_friend(emails) {
 
   return fetch(`${config.apiUrl}/refer_friend`, requestOptions).then(handleResponse);
 }
-
 
 function getReferLink() {
   if (autoRefreshToken)
@@ -321,6 +321,21 @@ function addPaymentMethod(data) {
     body: JSON.stringify(data)
   }
   return fetch(`${config.apiUrl}/payment_methods`, requestOptions).then(handleResponse);
+}
+
+function deletePaymentMethodById(id) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/payment_methods/${id}`, 'DELETE', { id: id })
+
+  const requestOptions = {
+    method: 'DELETE',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify({ id: id })
+  };
+
+  return fetch(`${config.apiUrl}/payment_methods/${id}`, requestOptions).then(handleResponse);
+
 }
 
 function addTicket(ticket) {

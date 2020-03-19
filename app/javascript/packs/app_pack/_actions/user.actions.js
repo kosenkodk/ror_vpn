@@ -15,9 +15,33 @@ export const userActions = {
   getUser,
   setUser,
   addPaymentMethod,
+  deletePaymentMethodById,
   contactUs,
   refer_friend,
 };
+
+function deletePaymentMethodById(id) {
+  return dispatch => {
+    dispatch(request());
+
+    userService.deletePaymentMethodById(id)
+      .then(
+        response => {
+          dispatch(globalActions.setModalShow(false));
+          dispatch(success(response.notice, id));
+          dispatch(alertActions.success(response.notice));
+        },
+        error => {
+          dispatch(failure(error));
+          dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request() { return { type: userConstants.DELETE_PAYMENT_METHOD_REQUEST } }
+  function success(notice, id) { return { type: userConstants.DELETE_PAYMENT_METHOD_SUCCESS, notice, id } }
+  function failure(error) { return { type: userConstants.DELETE_PAYMENT_METHOD_FAILURE, error } }
+}
 
 function addPaymentMethod(data) {
   return dispatch => {
