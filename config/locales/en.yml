@@ -215,6 +215,15 @@ en:
         title: "Subscriptions"
       plans:
         title: "Plans"
+        change:
+          success: "Plan has been changed successfully"
+          error: "Plan can not be changed"
+        create:
+          success: "Tariff plan was successfully created."
+        update:
+          success: "Tariff plan was successfully updated."
+        destroy:
+          success: "Tariff plan was successfully destroyed"
     tickets:
       ticket: "Ticket"
       title: "Tickets"
@@ -363,6 +372,7 @@ en:
     next: "Next"
     cancel: "Cancel"
     confirm: "Confirm"
+    start_today: "Start today"
     "yes": "Yes"
     "no": "No"
 

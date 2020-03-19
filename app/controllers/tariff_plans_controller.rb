@@ -28,7 +28,7 @@ class TariffPlansController < ApplicationController
 
     respond_to do |format|
       if @tariff_plan.save
-        format.html { redirect_to @tariff_plan, notice: 'Tariff plan was successfully created.' }
+        format.html { redirect_to @tariff_plan, notice: I18n.t('pages.dashboard.plans.create.success') }
         format.json { render :show, status: :created, location: @tariff_plan }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TariffPlansController < ApplicationController
   def update
     respond_to do |format|
       if @tariff_plan.update(tariff_plan_params)
-        format.html { redirect_to @tariff_plan, notice: 'Tariff plan was successfully updated.' }
+        format.html { redirect_to @tariff_plan, notice: I18n.t('pages.dashboard.plans.update.success') }
         format.json { render :show, status: :ok, location: @tariff_plan }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class TariffPlansController < ApplicationController
   def destroy
     @tariff_plan.destroy
     respond_to do |format|
-      format.html { redirect_to tariff_plans_url, notice: 'Tariff plan was successfully destroyed.' }
+      format.html { redirect_to tariff_plans_url, notice: I18n.t('pages.dashboard.plans.destroy.success') }
       format.json { head :no_content }
     end
   end
