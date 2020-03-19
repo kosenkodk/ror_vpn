@@ -53,13 +53,13 @@ RSpec.describe 'Payments', type: :feature, js: true do
       let!(:payment_method_of_user2) {create(:payment_method, user: user2)}
       
       before {
-        user.payment_methods << payment_method_of_user
-        user.save
-        user.reload
+        # user.payment_methods << payment_method_of_user
+        # user.save
+        # user.reload
         
-        user2.payment_methods << payment_method_of_user2
-        user2.save
-        user2.reload
+        # user2.payment_methods << payment_method_of_user2
+        # user2.save
+        # user2.reload
         
         fsign_in_as(user)
         visit('/user/payments')
