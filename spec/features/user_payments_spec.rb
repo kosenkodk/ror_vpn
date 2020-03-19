@@ -31,15 +31,15 @@ RSpec.describe 'Payments', type: :feature, js: true do
           fill_in :zip_code, with: 'zip_code'
           click_on(I18n.t('buttons.next'))
           alert_have_text(I18n.t('pages.payments.payment_methods.success'))
-          expect(page).to have_content(full_name)
+          # expect(page).to have_content(full_name)
         end
       end
       context 'failure' do
         it 'with empty data' do
           click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
           click_on(I18n.t('buttons.next'))
-          alert_have_text('Title can\'t be blank')
-          # alert_have_text(I18n.t('pages.payments.payment_methods.error'))
+          # alert_have_text('Title can\'t be blank')
+          alert_have_text(I18n.t('pages.payments.payment_methods.error'))
         end
       end
     end
