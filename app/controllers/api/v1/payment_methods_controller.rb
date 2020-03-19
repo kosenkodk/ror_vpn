@@ -17,10 +17,8 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   end
 
   def create
-    item = PaymentMethod.create!(payment_method_params)
-    # item = PaymentMethod.create!(title:params[:name])
-    current_user.payment_methods << item
-    if current_user.save
+    item = PaymentMethod.create!(title: params[:title], user_id: current_user.id)
+    if item
       render json: { payment_method: item, notice: I18n.t('pages.payments.payment_methods.add.success') }
       return
     end

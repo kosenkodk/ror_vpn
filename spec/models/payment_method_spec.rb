@@ -18,4 +18,8 @@ RSpec.describe PaymentMethod, type: :model do
     expect(payment_method.user).to eq(user)
     expect(payment_method.bank_card).to eq(bank_card)
   end
+  it 'delete' do
+    payment_method = create(:payment_method, user_id:user)
+    payment_method.destroy!
+  end
 end
