@@ -93,7 +93,7 @@ class PaymentsPage extends React.Component {
               <tbody>
                 {(user && user.payment_methods && (user.payment_methods.length > 0)) ?
                   user.payment_methods.map(item =>
-                    <tr>
+                    <tr key={`pm${item.id}`}>
                       <td>{item.title}</td>
                       <td></td>
                       <td className="text-right">

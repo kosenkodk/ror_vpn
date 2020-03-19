@@ -54,7 +54,7 @@ module FeatureHelper
 
   def alert_have_text text
     expect(page).to have_css('.alert', visible: :all, text: text)
-
+ 
     # it works for permanent alerts/flash messages
     # expect(find('.alert')).to have_text(text)
 
