@@ -27,11 +27,11 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
   end
   
   describe 'logged in users' do
+    before {
+      request.cookies[JWTSessions.access_cookie] = access_cookie
+      request.headers[JWTSessions.csrf_header] = csrf_token
+    }
     describe 'create a payment method' do
-      before {
-        request.cookies[JWTSessions.access_cookie] = access_cookie
-        request.headers[JWTSessions.csrf_header] = csrf_token
-      }
       context 'success' do
         it do
           post :create, params: {title: 'paypal'}
@@ -48,12 +48,40 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
         end
       end
     end
+    describe 'delete' do
+      context 'success' do
+        it 'with valid param' do 
+          delete :destroy, params: { id: payment_method.id }
+          expect(response).to have_http_status(200)
+          expect(response_json.keys.sort).to eq(['notice'])
+          expect(response_json.values).to include(I18n.t('pages.payments.payment_methods.delete.success'))
+        end
+      end
+      context 'failure' do
+        it 'with invalid params' do
+          delete :destroy, params: {id: ''}
+          expect(response).to have_http_status(404)
+          expect(response_json.keys.sort).to eq(['error'])
+          expect(response_json.values).to include(I18n.t('pages.payments.payment_methods.delete.not_found'))
+        end
+      end
+    end
   end
 
   describe 'guests' do
     describe 'can not create a payment method' do
       it do
         post :create, params: {title: 'paypal'}
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+    describe 'can not delete a payment method' do
+      it 'with valid id' do
+        delete :destroy, params: {id: payment_method.id}
+        expect(response).to have_http_status(:unauthorized)
+      end
+      it 'with empty id' do
+        delete :destroy, params: {id: ''}
         expect(response).to have_http_status(:unauthorized)
       end
     end

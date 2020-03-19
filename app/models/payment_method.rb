@@ -5,6 +5,7 @@ class PaymentMethod < ApplicationRecord
   has_one :user
   has_one_attached :icon, dependent: :destroy
   has_many_attached :icons, dependent: :destroy
+  # has_many :bank_cards, dependent: :destroy
   belongs_to :bank_card, optional: true, dependent: :destroy
 
   # belongs_to :payment_method_group, optional: true
