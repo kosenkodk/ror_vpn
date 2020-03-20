@@ -49,7 +49,7 @@ export function users(state = {}, action) {
       };
     case userConstants.ADD_PAYMENT_METHOD_SUCCESS:
       return {
-        user: { ...state.user, payment_methods: [...state.user.payment_methods, action.payment_method] },
+        user: { ...state.user, payment_methods: [...state.user && state.user.payment_methods && state.user.payment_methods, action.payment_method] },
         notice: action.notice,
         payment_method: action.payment_method
       };
@@ -65,7 +65,7 @@ export function users(state = {}, action) {
       };
     case userConstants.DELETE_PAYMENT_METHOD_SUCCESS:
       return {
-        user: { ...state.user, payment_methods: state.user.payment_methods.filter(item => item.id !== action.id) },
+        user: { ...state.user, payment_methods: state.user && state.user.payment_methods && state.user.payment_methods.filter(item => item.id !== action.id) },
         notice: action.notice,
       };
     case userConstants.DELETE_PAYMENT_METHOD_FAILURE:
