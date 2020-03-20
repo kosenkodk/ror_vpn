@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 // import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 // import Alert from 'react-bootstrap/Alert';
+import { TouchButton } from '../_components/admin';
 
 class ModalPopupForm extends React.Component {
   constructor(props) {
@@ -118,12 +119,16 @@ class ModalPopupForm extends React.Component {
                 <Modal.Footer className="pt-0">
                   {this.props.isNextBtnOnly ?
                     <div className="d-flex w-100 justify-content-center">
-                      <button type="submit"
+                      {/* <button type="submit"
                         onClick={this.onBtnSave}
                         className="btn btn-pink active btn-next-only" disabled={loading ? true : false}>
                         {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         {' ' + btnSaveText}
-                      </button>
+                      </button> */}
+                      <TouchButton clickWait={2000} className="btn btn-pink active btn-next-only"
+                        onClick={this.onBtnSave}
+                        value={' ' + btnSaveText}
+                      />
                     </div>
                     :
                     <div className="d-flex w-100">
@@ -132,12 +137,16 @@ class ModalPopupForm extends React.Component {
                         className="mr-auto btn btn-outline-danger" data-dismiss="modal">
                         {btnCloseText}
                       </button>
-                      <button type="submit"
+                      <TouchButton clickWait={2000} className="btn btn-pink active"
+                        onClick={this.onBtnSave}
+                        value={' ' + btnSaveText}
+                      />
+                      {/* <button type="submit"
                         onClick={this.onBtnSave}
                         className="btn btn-pink active" disabled={loading ? true : false}>
                         {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         {' ' + btnSaveText}
-                      </button>
+                      </button> */}
                     </div>
                   }
                 </Modal.Footer>
