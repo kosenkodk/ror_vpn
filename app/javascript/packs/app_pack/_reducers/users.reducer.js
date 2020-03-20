@@ -49,7 +49,7 @@ export function users(state = {}, action) {
       };
     case userConstants.ADD_PAYMENT_METHOD_SUCCESS:
       return {
-        user: { ...state.user, payment_methods: [...state.user && state.user.payment_methods && state.user.payment_methods, action.payment_method] },
+        user: { ...state.user, payment_methods: (state.user && state.user.payment_methods) ? [...state.user.payment_methods, action.payment_method] : [action.payment_method] },
         notice: action.notice,
         payment_method: action.payment_method
       };
