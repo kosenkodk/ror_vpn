@@ -16,6 +16,12 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
     
     describe 'change plan' do
       context 'success' do
+
+        xit 'with bitcoin' do
+          # qr code:
+          # bitcoin:<bitcoin_address>?amount=<bitcoin_amount>
+        end
+
         it 'with paypal' do
           click_on(I18n.t('buttons.start_today'), match: :first)
           click_on(I18n.t('buttons.next'))
