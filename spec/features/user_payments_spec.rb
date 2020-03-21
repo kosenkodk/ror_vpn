@@ -50,7 +50,6 @@ RSpec.describe 'Payments', type: :feature, js: true do
         visit('/user/payments')
       }
       context 'success' do
-
         it 'for current user' do
           # expect(page).to have_content(payment_method_of_user.title)
           find('#payment_method_delete', match: :first).click
