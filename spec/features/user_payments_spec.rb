@@ -67,6 +67,10 @@ RSpec.describe 'Payments', type: :feature, js: true do
       }
       context 'success' do
         it 'for current user' do
+          
+          click_on I18n.t('pages.payments.payment_methods.add_paypal')
+          click_on I18n.t('buttons.next')
+          
           # expect(page).to have_content(payment_method_of_user.title)
           find('#payment_method_delete', match: :first).click
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.delete.title'))
