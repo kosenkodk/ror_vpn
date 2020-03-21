@@ -29,8 +29,8 @@ class BankCard extends React.Component {
           value: '',
           valid: true,
           rules: {
+            minLength: 5,
             maxLength: 5,
-            // isNumber: true
           }
         },
         card_code: {
@@ -47,7 +47,6 @@ class BankCard extends React.Component {
           valid: true,
           rules: {
             minLength: 4,
-            // maxLength: 6,
             isNumber: true
           }
         }
@@ -57,14 +56,14 @@ class BankCard extends React.Component {
 
   onChangeHandler = (key, value) => {
     if (key === 'card_date') {
-      console.log(value)
-      if (value.length === 2)
-        if (this.state.form.card_date.value.includes('/'))
-          value = value.replace('/', '')
+      const prevItem = this.state.form.card_date
+      if (value.length >= prevItem.rules.maxLength)
+        value = value.substring(0, prevItem.rules.maxLength)
+      else if (value.length === 2)
+        if (prevItem.value.includes('/'))
+          value = value[0]
         else
           value += '/'
-      // if (value.length >= 2 && value.length <)
-      //   value = value.replace('/', '')
     }
     this.setState(state => ({
       ...state,
