@@ -57,13 +57,36 @@ class BankCard extends React.Component {
   onChangeHandler = (key, value) => {
     if (key === 'card_date') {
       const prevItem = this.state.form.card_date
-      if (value.length >= prevItem.rules.maxLength)
+      let error = ''
+
+      if (value.length >= prevItem.rules.maxLength) {
         value = value.substring(0, prevItem.rules.maxLength)
+        const [mm, yy] = value.split('/')
+        const date = new Date()
+        const yy_now = date.getFullYear().toString().substr(2)
+        var mm_now = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
+        if ((yy < yy_now) && (mm < mm_now))
+          error = "Invalid expiration date"
+      }
       else if (value.length === 2)
         if (prevItem.value.includes('/'))
           value = value[0]
         else
           value += '/'
+
+      this.setState(state => ({
+        ...state,
+        form: {
+          ...state.form,
+          [key]: {
+            ...state.form[key],
+            value,
+            valid: error ? false : this.validate(value, state.form[key].rules),
+            error: error,
+          }
+        }
+      }))
+      return
     }
     this.setState(state => ({
       ...state,
@@ -72,7 +95,7 @@ class BankCard extends React.Component {
         [key]: {
           ...state.form[key],
           value,
-          valid: this.validate(value, state.form[key].rules)
+          valid: this.validate(value, state.form[key].rules),
         }
       }
     }))
@@ -161,8 +184,8 @@ class BankCard extends React.Component {
           <input type="text" name="card_date" aria-describedby="card_details" required={true} className="form-control" placeholder='MM/YY'
             value={form.card_date.value} onChange={e => this.onChangeHandler('card_date', e.target.value)}
           />
-          {!form.card_date.valid && <small className="text-muted text-red">
-            Invalid expiration date
+          {!form.card_date.error && <small className="text-muted text-red">
+            {form.card_date.error}
           </small>
           }
         </div>
