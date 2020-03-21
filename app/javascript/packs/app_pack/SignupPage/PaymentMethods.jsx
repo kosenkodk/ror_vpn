@@ -63,7 +63,6 @@ class PaymentMethods extends React.Component {
                       />
                     }
                     <PaymentMethodDetails onFormSubmit={this.props.onFormSubmit} item={item} />
-                    {/* <%= render partial: 'payment_methods_item1_details', locals: {f: f, active_class: ''} %> */}
                   </div>
                 ))}
               </div>
