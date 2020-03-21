@@ -10,26 +10,13 @@ RSpec.describe 'Payments', type: :feature, js: true do
       visit('/user/payments')
     }
     
-    let(:full_name) {'Test Test'}
     describe 'create' do
       context 'success' do
         it 'with valid data' do
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.title'))
           click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.add_bank_card'))
-          expect(page).to have_field('full_name')
-          expect(page).to have_field('card_no')
-          expect(page).to have_field('card_date')
-          expect(page).to have_field('card_code')
-          expect(page).to have_field('country_code')
-          expect(page).to have_field('zip_code')
-
-          fill_in :full_name, with: full_name
-          fill_in :card_no, with: '1234123412341234'
-          fill_in :card_date, with: DateTime.now.strftime('%m%y')
-          fill_in :card_code, with: '123'
-          # fill_in :country_code, with: 'country_code'
-          fill_in :zip_code, with: '123123'
+          bank_card_fillout
           click_on(I18n.t('buttons.save'))
           alert_have_text(I18n.t('pages.payments.payment_methods.add.success'))
         end
