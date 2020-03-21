@@ -31,6 +31,7 @@ class BankCard extends React.Component {
           rules: {
             minLength: 5,
             maxLength: 5,
+            isDateExpired: false
           }
         },
         card_code: {
@@ -57,36 +58,14 @@ class BankCard extends React.Component {
   onChangeHandler = (key, value) => {
     if (key === 'card_date') {
       const prevItem = this.state.form.card_date
-      let error = ''
-
       if (value.length >= prevItem.rules.maxLength) {
         value = value.substring(0, prevItem.rules.maxLength)
-        const [mm, yy] = value.split('/')
-        const date = new Date()
-        const yy_now = date.getFullYear().toString().substr(2)
-        var mm_now = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
-        if ((yy < yy_now) && (mm < mm_now))
-          error = "Invalid expiration date"
       }
       else if (value.length === 2)
         if (prevItem.value.includes('/'))
           value = value[0]
         else
           value += '/'
-
-      this.setState(state => ({
-        ...state,
-        form: {
-          ...state.form,
-          [key]: {
-            ...state.form[key],
-            value,
-            valid: error ? false : this.validate(value, state.form[key].rules),
-            error: error,
-          }
-        }
-      }))
-      return
     }
     this.setState(state => ({
       ...state,
@@ -106,7 +85,6 @@ class BankCard extends React.Component {
 
     for (let key in rules) {
       switch (key) {
-
         case 'minLength':
           valid = valid && this.minLengthValidator(value, rules[key])
           break
@@ -116,7 +94,9 @@ class BankCard extends React.Component {
         case 'isNumber':
           valid = valid && this.isNumberValidator(value)
           break
-
+        case 'isDateExpired':
+          valid = valid && this.isDateExpired(value)
+          break
         default: break
       }
     }
@@ -127,7 +107,29 @@ class BankCard extends React.Component {
   minLengthValidator = (value, rule) => (value.length >= rule)
   maxLengthValidator = (value, rule) => (value.length <= rule)
   isNumberValidator = value => !isNaN(parseFloat(value)) && isFinite(value)
+  isDateExpired = value => {
+    let isValid = true
+    const [mm, yy] = value.split('/')
+    const date = new Date()
+    const yy_now = date.getFullYear().toString().substr(2)
+    const mm_now = date.getMonth() + 1 //((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1)
 
+    const month = parseInt(mm)
+    const year = parseInt(yy)
+    const year_now = parseInt(yy_now)
+    const month_now = parseInt(mm_now)
+
+    if (year < year_now)
+      isValid = false
+
+    if (month > 12)
+      isValid = false
+
+    if ((year == year_now) && (month < month_now))
+      isValid = false
+
+    return isValid
+  }
 
   onSaveBankCard = (e) => {
     e.preventDefault()
@@ -184,8 +186,8 @@ class BankCard extends React.Component {
           <input type="text" name="card_date" aria-describedby="card_details" required={true} className="form-control" placeholder='MM/YY'
             value={form.card_date.value} onChange={e => this.onChangeHandler('card_date', e.target.value)}
           />
-          {!form.card_date.error && <small className="text-muted text-red">
-            {form.card_date.error}
+          {!form.card_date.valid && <small className="text-muted text-red">
+            Invalid expiration date
           </small>
           }
         </div>
