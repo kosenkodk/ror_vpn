@@ -125,7 +125,7 @@ class ModalPopupForm extends React.Component {
                         {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         {' ' + btnSaveText}
                       </button> */}
-                      <TouchButton clickWait={2000} className="btn btn-pink active btn-next-only"
+                      <TouchButton clickWait={1000} className="btn btn-pink active btn-next-only"
                         onClick={this.onBtnSave}
                         value={' ' + btnSaveText}
                       />
@@ -137,16 +137,16 @@ class ModalPopupForm extends React.Component {
                         className="mr-auto btn btn-outline-danger" data-dismiss="modal">
                         {btnCloseText}
                       </button>
-                      <TouchButton clickWait={2000} className="btn btn-pink active"
+                      {/* <TouchButton clickWait={1000} className="btn btn-pink active"
                         onClick={this.onBtnSave}
                         value={' ' + btnSaveText}
-                      />
-                      {/* <button type="submit"
+                      /> */}
+                      <button type="submit"
                         onClick={this.onBtnSave}
                         className="btn btn-pink active" disabled={loading ? true : false}>
                         {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         {' ' + btnSaveText}
-                      </button> */}
+                      </button>
                     </div>
                   }
                 </Modal.Footer>
