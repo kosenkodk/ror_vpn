@@ -67,7 +67,6 @@ class PaymentsPage extends React.Component {
 
   deletePaymentMethod = (e) => {
     e.preventDefault()
-    console.log('deletePaymentMethod id', this.state.selectedPaymentMethodId)
     this.props.dispatch(userActions.deletePaymentMethodById(this.state.selectedPaymentMethodId))
   }
 
@@ -142,10 +141,10 @@ class PaymentsPage extends React.Component {
             <ModalPopupForm
               onClose={this.onModalClose}
               id='addPaymentMethod'
-              isForm={false}
+              isForm={true}
               isHideBtn={true}
               isNextBtnOnly={true}
-              onBtnSave={this.onSaveBankCard}
+              // onBtnSave={this.onSaveBankCard}
               title={I18n.t('pages.payments.payment_methods.add_bank_card')}
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.next')}
@@ -153,7 +152,7 @@ class PaymentsPage extends React.Component {
               <InfoBlock>
                 Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
               </InfoBlock>
-              <BankCard onInputChange={this.onInputChange} />
+              <BankCard onSaveBankCard={this.onSaveBankCard} onInputChange={this.onInputChange} />
             </ModalPopupForm>
 
             <ModalPopupForm

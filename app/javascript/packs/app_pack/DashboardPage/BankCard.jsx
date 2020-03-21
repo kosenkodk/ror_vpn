@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { InfoBlock } from '../_components/admin';
 import { NavHashLink as Link } from 'react-router-hash-link';
+import { I18n } from 'helpers';
 
 class BankCard extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      fullnameError: '',
       form: {
         full_name: {
           value: '',
@@ -97,37 +97,32 @@ class BankCard extends React.Component {
   isNumberValidator = value => !isNaN(parseFloat(value)) && isFinite(value)
 
 
-  onInputChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-    // console.log('this.state', this.state)
-    if (this.state.full_name && this.state.full_name.length > 1) {
-      this.setState({ fullnameError: '' })
-    } else {
-      this.setState({ fullnameError: 'Name on card required' })
-      return
-    }
-    this.props.onInputChange(e)
+  onSaveBankCard = (e) => {
+    e.preventDefault()
+    if (this.isValidForm())
+      this.props.onSaveBankCard(e)
+  }
+
+  isValidForm() {
+    const isValid = Object.values(this.state.form).filter(item => !item.valid).length > 0 ? false : true
+    return isValid
   }
 
   render() {
     const { countries, item, defaultCountryCode } = this.props
     const { form } = this.state
-    return (<React.Fragment>
+    return (<form onSubmit={this.onSaveBankCard}>
       <div className="form-group row">
         <label className="col-sm-4 col-form-label" htmlFor="full_name">
           Full name
         </label>
         <div className="col-sm-6">
           <input type="text" name="full_name" aria-describedby="full_name" required={true} className="form-control" placeholder=''
-            // onChange={this.onInputChange}
             value={form.full_name.value} onChange={e => this.onChangeHandler('full_name', e.target.value)}
           />
           {!form.full_name.valid && <small className="text-muted text-red">
             Name on card required
           </small>
-            // {this.state.fullnameError && <small id="fullNameInline" className="text-muted text-red">
-            //   {this.state.fullnameError}
-            // </small>
           }
         </div>
         <div className="col-sm-2"></div>
@@ -139,7 +134,6 @@ class BankCard extends React.Component {
         </label>
         <div className="col-sm-6">
           <input type="number" name="card_no" aria-describedby="card_no" required={true} className="form-control" placeholder=''
-            // onChange={this.onInputChange}
             value={form.card_no.value} onChange={e => this.onChangeHandler('card_no', e.target.value)}
           />
           {!form.card_no.valid && <small className="text-muted text-red">
@@ -156,7 +150,6 @@ class BankCard extends React.Component {
         </label>
         <div className="col-sm-3">
           <input type="text" name="card_date" aria-describedby="card_details" required={true} className="form-control" placeholder='MM/YY'
-            // onChange={this.onInputChange} 
             value={form.card_date.value} onChange={e => this.onChangeHandler('card_date', e.target.value)}
           />
           {!form.card_date.valid && <small className="text-muted text-red">
@@ -166,7 +159,6 @@ class BankCard extends React.Component {
         </div>
         <div className="col-sm-3">
           <input type="number" name="card_code" aria-describedby="card_details" required={true} className="form-control" placeholder='Security code'
-            // onChange={this.onInputChange}
             value={form.card_code.value} onChange={e => this.onChangeHandler('card_code', e.target.value)}
           />
           {!form.card_code.valid && <small className="text-muted text-red">
@@ -190,7 +182,6 @@ class BankCard extends React.Component {
         </div>
         <div className="col-sm-3">
           <input type="number" name="zip_code" aria-describedby="state_details" required={true} className="form-control" placeholder='ZIP'
-            // onChange={this.onInputChange}
             value={form.zip_code.value} onChange={e => this.onChangeHandler('zip_code', e.target.value)}
           />
           {!form.zip_code.valid && <small className="text-muted text-red">
@@ -200,7 +191,15 @@ class BankCard extends React.Component {
         </div>
         <div className="col-sm-2"></div>
       </div>
-    </React.Fragment>
+      <div className="form-group row">
+        <div className="col-sm-4">
+        </div>
+        <div className="col-sm-6">
+          <button type="submit" className="btn btn-outline-primary btn-block">{I18n.t('buttons.save')}</button>
+        </div>
+        <div className="col-sm-2"></div>
+      </div>
+    </form>
     )
   }
 }

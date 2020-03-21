@@ -10,7 +10,6 @@ RSpec.describe 'Payments', type: :feature, js: true do
       visit('/user/payments')
     }
     
-    # let(:payment_method) {create(:payment_method)}
     let(:full_name) {'Test Test'}
     describe 'create' do
       context 'success' do
@@ -26,22 +25,21 @@ RSpec.describe 'Payments', type: :feature, js: true do
           expect(page).to have_field('zip_code')
 
           fill_in :full_name, with: full_name
-          fill_in :card_no, with: 'card_no'
-          fill_in :card_date, with: 'card_date'
-          fill_in :card_code, with: 'card_code'
+          fill_in :card_no, with: '1234123412341234'
+          fill_in :card_date, with: DateTime.now.strftime('%m%y')
+          fill_in :card_code, with: '123'
           # fill_in :country_code, with: 'country_code'
-          fill_in :zip_code, with: 'zip_code'
-          click_on(I18n.t('buttons.next'))
-          alert_have_text(I18n.t('pages.payments.payment_methods.success'))
-          # expect(page).to have_content(full_name)
+          fill_in :zip_code, with: '123123'
+          click_on(I18n.t('buttons.save'))
+          alert_have_text(I18n.t('pages.payments.payment_methods.add.success'))
         end
       end
       context 'failure' do
         it 'with empty data' do
           click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
-          click_on(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.save'))
           # alert_have_text('Title can\'t be blank')
-          alert_have_text(I18n.t('pages.payments.payment_methods.error'))
+          alert_have_text(I18n.t('pages.payments.payment_methods.add.error'))
         end
       end
     end
