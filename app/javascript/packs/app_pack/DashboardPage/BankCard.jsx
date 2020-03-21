@@ -119,7 +119,7 @@ class BankCard extends React.Component {
     const year_now = parseInt(yy_now)
     const month_now = parseInt(mm_now)
 
-    if (year <= year_now + 20)
+    if (year >= year_now + 20)
       isValid = false
 
     if (year < year_now)
