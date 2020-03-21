@@ -52,6 +52,22 @@ module FeatureHelper
     expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason.id)
   end
 
+  def bank_card_fillout
+    expect(page).to have_field('full_name')
+    expect(page).to have_field('card_no')
+    expect(page).to have_field('card_date')
+    expect(page).to have_field('card_code')
+    expect(page).to have_field('country_code')
+    expect(page).to have_field('zip_code')
+
+    fill_in :full_name, with: 'Mr Test'
+    fill_in :card_no, with: '1234123412341234'
+    fill_in :card_date, with: DateTime.now.strftime('%m%y')
+    fill_in :card_code, with: '123'
+    # fill_in :country_code, with: 'country_code'
+    fill_in :zip_code, with: '123123'
+  end
+
   def alert_have_text text
     expect(page).to have_css('.alert', visible: :all, text: text)
  
