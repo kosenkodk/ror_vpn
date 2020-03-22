@@ -9,7 +9,7 @@ import { accountActions, userActions, globalActions, alertActions } from '../_ac
 import { FormDataAsJsonFromEvent } from '../_helpers'
 import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
-import BankCard from '../DashboardPage/BankCard'
+import BankCardForm from '../DashboardPage/BankCardForm'
 
 import icEditSrc from 'images/icons/ic_edit.svg'
 import icTrashSrc from 'images/icons/ic_trash.svg'
@@ -153,7 +153,7 @@ class PaymentsPage extends React.Component {
               <InfoBlock>
                 Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
               </InfoBlock>
-              <BankCard countries={countries} onSaveBankCard={this.onSaveBankCard} onInputChange={this.onInputChange} />
+              <BankCardForm countries={countries} onSaveBankCard={this.onSaveBankCard} onInputChange={this.onInputChange} />
             </ModalPopupForm>
 
             <ModalPopupForm
