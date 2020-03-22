@@ -54,7 +54,38 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
       end
 
       context 'failure' do
-        
+        it 'with invalid bank card details' do
+          click_on(I18n.t('buttons.start_today'), match: :first)
+          click_on(I18n.t('buttons.next'))
+          click_on(I18n.t('buttons.next'))
+          
+          id_of_select_box = 'payment_methods'
+          select(bank_card.title, from: id_of_select_box)
+          # find('#'+id_of_select_box).select(cancel_reason.title)
+          expect(find('#'+id_of_select_box).value.to_i).to eq(bank_card.id)
+          
+          expect(page).to have_field('full_name')
+
+          fill_in :full_name, with: ' '
+          fill_in :full_name, with: ''
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_fullname'))
+          fill_in :full_name, with: ' '
+          fill_in :card_no, with: '1'
+          fill_in :card_date, with: '1'
+          fill_in :card_code, with: '1'
+          # fill_in :country_code, with: 'country_code'
+          fill_in :zip_code, with: '1'
+
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_card_no'))
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_date'))
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_cvc'))
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_zip'))
+          
+          # expect(page).to have_content('Please fill out this field')
+          click_on(I18n.t('buttons.next'))
+
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_form'))
+        end
       end
     end
   end

@@ -42,10 +42,17 @@ class PaymentDetailsCard extends React.Component {
 
   onFormSubmit = (e) => {
     if (this.props.currentPaymentMethod)
-      this.props.onFormSubmit(e);
+      if (this.state.isBankCardFormValid)
+        this.props.onFormSubmit(e);
+      else
+        this.props.dispatch(alertActions.error(I18n.t('bank_card.errors.invalid_form')));
     else
       this.props.dispatch(alertActions.error('Please chose a payment method first'));
     e.preventDefault();
+  }
+
+  onChangeBankCardHandler = (e, isValidForm) => {
+    this.setState({ isBankCardFormValid: isValidForm })
   }
 
   render() {
@@ -84,7 +91,7 @@ class PaymentDetailsCard extends React.Component {
             <div className="col-sm-2"></div>
           </div>
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'bank_card') &&
-            <BankCard countries={countries} />
+            <BankCard onChangeHandler={this.onChangeBankCardHandler} countries={countries} />
           }
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'paypal') &&
             <PayPal item={currentPaymentMethod} />
