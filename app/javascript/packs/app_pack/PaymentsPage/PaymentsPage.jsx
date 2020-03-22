@@ -73,10 +73,11 @@ class PaymentsPage extends React.Component {
   componentDidMount() {
     // this.props.dispatch(globalActions.getPaymentMethods())
     this.props.dispatch(userActions.getUser())
+    this.props.dispatch(globalActions.getCountries())
   }
 
   render() {
-    const { payment_methods, user } = this.props
+    const { payment_methods, user, countries } = this.props
     return (
       <div className="container-fluid payments">
         <div className="row">
@@ -152,7 +153,7 @@ class PaymentsPage extends React.Component {
               <InfoBlock>
                 Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
               </InfoBlock>
-              <BankCard onSaveBankCard={this.onSaveBankCard} onInputChange={this.onInputChange} />
+              <BankCard countries={countries} onSaveBankCard={this.onSaveBankCard} onInputChange={this.onInputChange} />
             </ModalPopupForm>
 
             <ModalPopupForm
@@ -192,10 +193,10 @@ class PaymentsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { payment_methods } = state.global
+  const { payment_methods, countries } = state.global
   const { user } = state.users
   return {
-    user, payment_methods
+    user, payment_methods, countries
   }
 }
 
