@@ -84,6 +84,12 @@ en:
       month: "11"
       year: "2019"
       cvc: "For example: 123"
+    errors:
+      invalid_fullname: "Name on card required"
+      invalid_card_no: "Invalid Card Number"
+      invalid_date: "Invalid expiration date"
+      invalid_cvc: "Invalid CVC Code"
+      invalid_zip: "Invalid ZIP Code"
   payment_method:
     cryptocurrencies: "Cryptocurrencies"
     qiwi: "Qiwi"

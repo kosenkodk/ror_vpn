@@ -1,5 +1,5 @@
 import React from 'react'
-// import { I18n } from 'helpers'
+import { I18n } from 'helpers'
 
 class BankCard extends React.Component {
 
@@ -154,7 +154,7 @@ class BankCard extends React.Component {
             value={form.full_name.value} onChange={e => this.onChangeHandler('full_name', e.target.value)}
           />
           {!form.full_name.valid && <small className="text-muted text-red">
-            Name on card required
+            {I18n.t('bank_card.errors.invalid_fullname')}
           </small>
           }
         </div>
@@ -170,7 +170,7 @@ class BankCard extends React.Component {
             value={form.card_no.value} onChange={e => this.onChangeHandler('card_no', e.target.value)}
           />
           {!form.card_no.valid && <small className="text-muted text-red">
-            Invalid Card Number
+            {I18n.t('bank_card.errors.invalid_card_no')}
           </small>
           }
         </div>
@@ -186,7 +186,7 @@ class BankCard extends React.Component {
             value={form.card_date.value} onChange={e => this.onChangeHandler('card_date', e.target.value)}
           />
           {!form.card_date.valid && <small className="text-muted text-red">
-            Invalid expiration date
+            {I18n.t('bank_card.errors.invalid_date')}
           </small>
           }
         </div>
@@ -195,7 +195,7 @@ class BankCard extends React.Component {
             value={form.card_code.value} onChange={e => this.onChangeHandler('card_code', e.target.value)}
           />
           {!form.card_code.valid && <small className="text-muted text-red">
-            Invalid CVC Code
+            {I18n.t('bank_card.errors.invalid_cvc')}
           </small>
           }
         </div>
@@ -218,7 +218,7 @@ class BankCard extends React.Component {
             value={form.zip_code.value} onChange={e => this.onChangeHandler('zip_code', e.target.value)}
           />
           {!form.zip_code.valid && <small className="text-muted text-red">
-            Invalid ZIP Code
+            {I18n.t('bank_card.errors.invalid_zip')}
           </small>
           }
         </div>
