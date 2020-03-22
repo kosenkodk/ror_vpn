@@ -76,10 +76,7 @@ class BankCard extends React.Component {
         }
       }
     }))
-    const isValidForm = this.isValidForm()
-    if (isValidForm) {
-      this.props.onChangeHandler(isValidForm)
-    }
+    this.props.onChangeHandler(null, this.isValidForm())
   }
 
   validate = (value, rules) => {

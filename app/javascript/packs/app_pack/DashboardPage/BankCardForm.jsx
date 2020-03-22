@@ -9,7 +9,7 @@ class BankCardForm extends React.Component {
     this.state = {}
   }
 
-  onChangeHandler = (isValidForm) => {
+  onChangeHandler = (e, isValidForm) => {
     this.setState({ isValidForm: isValidForm })
   }
 

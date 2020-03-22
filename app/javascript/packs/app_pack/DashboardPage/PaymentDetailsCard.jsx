@@ -15,6 +15,7 @@ class PaymentDetailsCard extends React.Component {
     this.state = {
       email: '',
       countryCode: 'US',
+      isBankCardFormValid: false
     };
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -41,12 +42,15 @@ class PaymentDetailsCard extends React.Component {
   }
 
   onFormSubmit = (e) => {
-    if (this.props.currentPaymentMethod)
-      if (this.state.isBankCardFormValid)
-        this.props.onFormSubmit(e);
+    if (this.props.currentPaymentMethod) {
+      if (this.props.currentPaymentMethod.pay_id === 'bank_card')
+        if (this.state.isBankCardFormValid)
+          this.props.onFormSubmit(e);
+        else
+          this.props.dispatch(alertActions.error(I18n.t('bank_card.errors.invalid_form')));
       else
-        this.props.dispatch(alertActions.error(I18n.t('bank_card.errors.invalid_form')));
-    else
+        this.props.onFormSubmit(e);
+    } else
       this.props.dispatch(alertActions.error('Please chose a payment method first'));
     e.preventDefault();
   }
