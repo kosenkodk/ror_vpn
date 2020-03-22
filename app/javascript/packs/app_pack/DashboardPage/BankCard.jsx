@@ -1,7 +1,5 @@
-import React from 'react';
-import { InfoBlock } from '../_components/admin';
-import { NavHashLink as Link } from 'react-router-hash-link';
-import { I18n } from 'helpers';
+import React from 'react'
+// import { I18n } from 'helpers'
 
 class BankCard extends React.Component {
 
@@ -78,6 +76,10 @@ class BankCard extends React.Component {
         }
       }
     }))
+    const isValidForm = this.isValidForm()
+    if (isValidForm) {
+      this.props.onChangeHandler(isValidForm)
+    }
   }
 
   validate = (value, rules) => {
@@ -134,12 +136,6 @@ class BankCard extends React.Component {
     return isValid
   }
 
-  onSaveBankCard = (e) => {
-    e.preventDefault()
-    if (this.isValidForm())
-      this.props.onSaveBankCard(e)
-  }
-
   isValidForm() {
     const isValid = Object.values(this.state.form).filter(item => !item.valid).length > 0 ? false : true
     return isValid
@@ -148,7 +144,7 @@ class BankCard extends React.Component {
   render() {
     const { countries, item, defaultCountryCode } = this.props
     const { form } = this.state
-    return (<form onSubmit={this.onSaveBankCard}>
+    return (<React.Fragment>
       <div className="form-group row">
         <label className="col-sm-4 col-form-label" htmlFor="full_name">
           Full name
@@ -228,15 +224,7 @@ class BankCard extends React.Component {
         </div>
         <div className="col-sm-2"></div>
       </div>
-      <div className="form-group row">
-        <div className="col-sm-4">
-        </div>
-        <div className="col-sm-6">
-          <button type="submit" className="btn btn-outline-primary btn-block">{I18n.t('buttons.save')}</button>
-        </div>
-        <div className="col-sm-2"></div>
-      </div>
-    </form>
+    </React.Fragment>
     )
   }
 }

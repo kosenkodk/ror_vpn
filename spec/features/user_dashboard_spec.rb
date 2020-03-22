@@ -52,6 +52,10 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
           alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
         end
       end
+
+      context 'failure' do
+        
+      end
     end
   end
 end
