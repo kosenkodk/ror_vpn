@@ -90,6 +90,7 @@ en:
       invalid_date: "Invalid expiration date"
       invalid_cvc: "Invalid CVC Code"
       invalid_zip: "Invalid ZIP Code"
+      invalid_form: "Invalid form details"
   payment_method:
     cryptocurrencies: "Cryptocurrencies"
     qiwi: "Qiwi"
