@@ -52,6 +52,13 @@ module FeatureHelper
     expect(find('#'+id_of_select_box).value.to_i).to eq(cancel_reason.id)
   end
 
+  def bank_card_fillout_with items
+    items.each do |key, value|
+      expect(page).to have_field(key)
+      fill_in key, with: value
+    end
+  end
+  
   def bank_card_fillout
     expect(page).to have_field('full_name')
     expect(page).to have_field('card_no')
