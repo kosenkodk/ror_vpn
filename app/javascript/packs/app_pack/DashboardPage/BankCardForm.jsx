@@ -9,7 +9,7 @@ class BankCardForm extends React.Component {
     this.state = {}
   }
 
-  onChangeHandler = (e, isValidForm) => {
+  onBankCardInputChange = (e, isValidForm) => {
     this.setState({ isValidForm: isValidForm })
   }
 
@@ -22,7 +22,7 @@ class BankCardForm extends React.Component {
   render() {
     const { countries } = this.props
     return (<form onSubmit={this.onSaveBankCard}>
-      <BankCard onChangeHandler={this.onChangeHandler} countries={countries} />
+      <BankCard onBankCardInputChange={this.onBankCardInputChange} countries={countries} />
       <div className="form-group row">
         <div className="col-sm-4">
         </div>

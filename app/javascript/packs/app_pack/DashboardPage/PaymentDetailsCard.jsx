@@ -55,7 +55,7 @@ class PaymentDetailsCard extends React.Component {
     e.preventDefault();
   }
 
-  onChangeBankCardHandler = (e, isValidForm) => {
+  onBankCardInputChange = (e, isValidForm) => {
     this.setState({ isBankCardFormValid: isValidForm })
   }
 
@@ -95,7 +95,7 @@ class PaymentDetailsCard extends React.Component {
             <div className="col-sm-2"></div>
           </div>
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'bank_card') &&
-            <BankCard onChangeHandler={this.onChangeBankCardHandler} countries={countries} />
+            <BankCard onBankCardInputChange={this.onBankCardInputChange} countries={countries} />
           }
           {(currentPaymentMethod && currentPaymentMethod.pay_id === 'paypal') &&
             <PayPal item={currentPaymentMethod} />
