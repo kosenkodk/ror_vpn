@@ -102,4 +102,9 @@
       max-width: pxtovw(155);
     }
   }
+
+  @media (min-width: 1401px) {
+    zoom: 0.9;
+    -moz-transform: scale(0.9);
+  }
 }
