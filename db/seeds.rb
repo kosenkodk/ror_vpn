@@ -104,7 +104,7 @@ payment_methods = [
   {pay_id: 'bank_card', title: I18n.t('pay_with.credit_card'), icons: ['credit_card/visa.png']},
   {pay_id: 'paypal', title: I18n.t('pay_with.paypal'), icons: ['paypal.png']},
   {pay_id: 'bitcoin', title: I18n.t('pay_with.bitcoin'), icons: ['bitcoin.png']},
-  {pay_id: 'paymentwall', title: I18n.t('pay_with.other_payments'), icons: ['webmoney.png', 'im.png', 'ideal.png', 'klarna.png', 'yandex_money.png', 'giropay.png' ]},
+  {pay_id: 'paymentwall', title: I18n.t('pay_with.other_payments'), icons: ['webmoney3x.png', 'im3x.png', 'ideal3x.png', 'klarna3x.png', 'yandex_money3x.png', 'giropay3x.png' ]},
 ].each do |item|
   payment_method = PaymentMethod.find_or_create_by(pay_id: item[:pay_id], title: item[:title], is_for_signup: item[:is_for_signup] || false)
   puts payment_method.try(:title)
