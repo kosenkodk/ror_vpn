@@ -47,7 +47,7 @@ class PaymentsPage extends React.Component {
   onSaveBankCard = (e, isValidForm) => {
     e.preventDefault()
     const data = FormDataAsJsonFromEvent(e);
-    // this.props.dispatch(userActions.addPaymentMethod(this.state))
+    data['title'] = this.state.title
     if (isValidForm)
       this.props.dispatch(userActions.addPaymentMethod(data))
     else
