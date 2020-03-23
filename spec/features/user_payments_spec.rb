@@ -28,6 +28,20 @@ RSpec.describe 'Payments', type: :feature, js: true do
           # alert_have_text('Title can\'t be blank')
           alert_have_text(I18n.t('pages.payments.payment_methods.add.error'))
         end
+        it 'check validator - with invalid/valid zip code' do
+          click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
+          bank_card_fillout
+          fill_in :zip_code, with: "123"
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_zip'))
+          click_on(I18n.t('buttons.save'))
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_form'))
+
+          fill_in :zip_code, with: "1234"
+          expect(page).not_to have_content(I18n.t('bank_card.errors.invalid_zip'))
+          click_on(I18n.t('buttons.save'))
+          expect(page).not_to have_content(I18n.t('bank_card.errors.invalid_form'))
+          alert_have_text(I18n.t('pages.payments.payment_methods.add.success'))
+        end
         it 'with invalid card date' do
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.title'))
           click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
@@ -36,16 +50,16 @@ RSpec.describe 'Payments', type: :feature, js: true do
           year_now = DateTime.now.strftime('%y').to_i
           month_now = DateTime.now.month
           fill_in :card_date, with: "#{month_now}#{year_now-1}"
-          expect(page).to have_content('Invalid expiration date')
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_date'))
           fill_in :card_date, with: "#{month_now-1}#{year_now}"
-          expect(page).to have_content('Invalid expiration date')
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_date'))
           fill_in :card_date, with: "#{13}#{year_now}"
-          expect(page).to have_content('Invalid expiration date')
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_date'))
           fill_in :card_date, with: "#{12}#{year_now+20}"
-          expect(page).to have_content('Invalid expiration date')
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_date'))
           
           click_on(I18n.t('buttons.save'))
-          expect(page).to have_content('Invalid expiration date')
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_date'))
           expect(page).to have_content(I18n.t('bank_card.errors.invalid_form'))
         end
       end

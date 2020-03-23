@@ -65,18 +65,21 @@ class BankCard extends React.Component {
         else
           value += '/'
     }
-    this.setState(state => ({
-      ...state,
-      form: {
-        ...state.form,
-        [key]: {
-          ...state.form[key],
-          value,
-          valid: this.validate(value, state.form[key].rules),
+    this.setState(prevState => {
+      const state = {
+        ...prevState,
+        form: {
+          ...prevState.form,
+          [key]: {
+            ...prevState.form[key],
+            value,
+            valid: this.validate(value, prevState.form[key].rules),
+          }
         }
       }
-    }))
-    this.props.onChangeHandler(null, this.isValidForm())
+      this.props.onChangeHandler(null, this.isValidForm(state))
+      return state;
+    })
   }
 
   validate = (value, rules) => {
@@ -133,8 +136,8 @@ class BankCard extends React.Component {
     return isValid
   }
 
-  isValidForm() {
-    const isValid = Object.values(this.state.form).filter(item => !item.valid).length > 0 ? false : true
+  isValidForm(state) {
+    const isValid = Object.values(state.form).filter(item => !item.valid).length > 0 ? false : true
     return isValid
   }
 
