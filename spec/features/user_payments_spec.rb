@@ -11,12 +11,13 @@ RSpec.describe 'Payments', type: :feature, js: true do
     }
     
     describe 'create' do
+      let(:valid_bank_card_params) {{full_name: 'Mr Test', card_no: '1234123412341234', card_date: DateTime.now.strftime('%m%y'), card_code: '123', zip_code: '123123'}}
       context 'success' do
         it 'with valid data' do
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.title'))
           click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.add_bank_card'))
-          bank_card_fillout
+          bank_card_fillout_with valid_bank_card_params
           click_on(I18n.t('buttons.save'))
           alert_have_text(I18n.t('pages.payments.payment_methods.add.success'))
           expect(page).to have_content('Visa (... 1234)')
