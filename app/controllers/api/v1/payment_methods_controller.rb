@@ -17,7 +17,8 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   end
 
   def create
-    item = PaymentMethod.create!(title: params[:title], user_id: current_user.id)
+    title = params[:card_no].present? ? "Visa (... #{params[:card_no].try(:last,4)})" : params[:title]
+    item = PaymentMethod.create!(title: title, user_id: current_user.id)
     if item
       render json: { payment_method: item, notice: I18n.t('pages.payments.payment_methods.add.success') }
       return
