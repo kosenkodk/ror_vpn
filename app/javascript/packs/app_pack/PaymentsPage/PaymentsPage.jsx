@@ -22,11 +22,6 @@ class PaymentsPage extends React.Component {
     this.state = { title: '', selectedPaymentMethodId: 0 }
   }
 
-  onInputChange = (e) => {
-    e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
   addBankCard = (e) => {
     if (e) e.preventDefault()
     this.props.dispatch(globalActions.setModalShow('addPaymentMethod'))
@@ -49,9 +44,14 @@ class PaymentsPage extends React.Component {
     this.props.dispatch(globalActions.setModalShow(false))
   }
 
-  onSaveBankCard = (e) => {
+  onSaveBankCard = (e, isValidForm) => {
     e.preventDefault()
-    this.props.dispatch(userActions.addPaymentMethod(this.state))
+    const data = FormDataAsJsonFromEvent(e);
+    // this.props.dispatch(userActions.addPaymentMethod(this.state))
+    if (isValidForm)
+      this.props.dispatch(userActions.addPaymentMethod(data))
+    else
+      this.props.dispatch(alertActions.error(I18n.t('bank_card.errors.invalid_form')));
   }
 
   onSavePayPal = (e) => {
