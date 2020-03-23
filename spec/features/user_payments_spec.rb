@@ -19,6 +19,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
           bank_card_fillout
           click_on(I18n.t('buttons.save'))
           alert_have_text(I18n.t('pages.payments.payment_methods.add.success'))
+          expect(page).to have_content('Visa (... 1234)')
         end
       end
       context 'failure' do
