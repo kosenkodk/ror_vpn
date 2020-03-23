@@ -43,6 +43,10 @@ RSpec.describe 'Payments', type: :feature, js: true do
           expect(page).to have_content('Invalid expiration date')
           fill_in :card_date, with: "#{12}#{year_now+20}"
           expect(page).to have_content('Invalid expiration date')
+          
+          click_on(I18n.t('buttons.save'))
+          expect(page).to have_content('Invalid expiration date')
+          expect(page).to have_content(I18n.t('bank_card.errors.invalid_form'))
         end
       end
     end

@@ -14,8 +14,9 @@ class BankCardForm extends React.Component {
   }
 
   onSaveBankCard = (e) => {
-    if (this.state.isValidForm)
-      this.props.onSaveBankCard(e)
+    e.preventDefault()
+    // if (this.state.isValidForm)
+    this.props.onSaveBankCard(e, this.state.isValidForm)
   }
 
   render() {
