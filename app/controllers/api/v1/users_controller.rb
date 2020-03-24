@@ -10,7 +10,27 @@ class Api::V1::UsersController < Api::V1::ApiController
     if (TariffPlan.exists?(plan_id))
       plan = TariffPlan.find(plan_id)
       current_user.tariff_plan = plan
-      current_user.update(expired_at: 1.month.from_now)
+      current_user.expired_at = 1.month.from_now
+      if current_user.referrer_id && User.exists?(referrer_id: current_user.referrer_id)
+      # if User.exists?(current_user.referrer_id)
+        @user_referrer = User.find(current_user.referrer_id)
+        @user_referrer.tariff_plan = current_user.tariff_plan # если  1 месяц уже был на одном плане то + 1 месяц на другом ?
+        if current_user.tariff_plan.title === 'Plan for 1 year'
+          @user_referrer.expired_at = DateTime.now() if !@user_referrer.expired_at.present?
+          @user_referrer.expired_at = DateTime.now() if @user_referrer.expired_at < DateTime.now()
+          @user_referrer.expired_at += 2.month
+        elsif current_user.tariff_plan.title === 'Free'
+        else
+          @user_referrer.expired_at = DateTime.now() if !@user_referrer.expired_at.present?
+          @user_referrer.expired_at = DateTime.now() if @user_referrer.expired_at < DateTime.now()
+          @user_referrer.expired_at += 1.month
+        end
+        if @user_referrer.save
+          # todo: send success message to referrer
+        else
+          # todo: send error message to referrer
+        end
+      end
       if current_user.save
         render json: { notice: I18n.t('pages.dashboard.plans.change.success'), user: current_user }
         return
