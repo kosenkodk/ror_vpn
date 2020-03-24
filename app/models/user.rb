@@ -33,8 +33,16 @@ class User < ApplicationRecord
     /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   end
 
+  def expired_at_int
+    self.expired_at.try(:to_i) #.try(:strftime, "%d/%m/%y %H:%M")#.try(:strftime, "%d %B %Y at %H:%M") #to_formatted_s(:short) #strftime("%Y-%m-%d %H:%M:%S %Z")
+  end
+
+  def expired_at_humanize
+    self.expired_at.try(:strftime, "%d/%m/%y %H:%M")
+  end
+
   def attributes
-    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, payment_methods: payment_methods }
+    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, payment_methods: payment_methods, expired_at: expired_at, expired_at_humanize: expired_at_humanize, expired_at_int: expired_at_int }
   end
 
   def generate_password_token!
