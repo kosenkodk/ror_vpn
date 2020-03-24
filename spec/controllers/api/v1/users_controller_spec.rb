@@ -70,10 +70,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     
     context 'if reffered friend bought a paid subscription' do
       let!(:user_refered) { create(:user, referrer_id: user.id, expired_at: DateTime.now()) }
+      let!(:tariff_plan_3mo) { create(:tariff_plan, title: 'Quartely plan') }
+      let!(:tariff_plan_1mo) { create(:tariff_plan, title: 'Plan for 1 month') }
+
       before { sign_in_as(user_refered) }
 
       it 'add bonus: free 1/1/2 month(-s) trial of paid subscription [1mo/3mo/year] for both users'
-      it 'add 2 month bonus for referrer user' do
+      it 'add 2 month bonus for referrer user if user subscribed on year plan' do
         expiration_date_before_upgrade = user_refered.expired_at
 
         post :change_plan, params: {plan_id: tariff_plan.id}
@@ -94,6 +97,24 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(user_refered.tariff_plan).to eq(tariff_plan)
         expect(user.tariff_plan).to eq(tariff_plan)
       end
+      
+      it 'add 1 month bonus for referrer user if user subscribed on quartely or month plan' do
+        expiration_date_before_upgrade = user_refered.expired_at
+        post :change_plan, params: {plan_id: tariff_plan_3mo.id}
+        expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 1.month
+        user_refered.reload
+        user.reload
+        expect(user_refered.tariff_plan).to eq(tariff_plan_3mo)
+        expect(user.tariff_plan).to eq(tariff_plan_3mo)
+
+        post :change_plan, params: {plan_id: tariff_plan_1mo.id}
+        expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 2.month
+        user_refered.reload
+        user.reload
+        expect(user_refered.tariff_plan).to eq(tariff_plan_1mo)
+        expect(user.tariff_plan).to eq(tariff_plan_1mo)
+      end
+
       it 'reset to datetime.now if already expired'
       it 'upgrade referrer from free to the paid subscription (1-2 mo for free)'
       it 'display a bonus message in notifications for both users'
