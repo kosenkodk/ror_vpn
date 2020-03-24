@@ -16,14 +16,10 @@ class Api::V1::UsersController < Api::V1::ApiController
         @user_referrer = User.find(current_user.referrer_id)
         @user_referrer.tariff_plan = current_user.tariff_plan # если  1 месяц уже был на одном плане то + 1 месяц на другом ?
         if current_user.tariff_plan.title === 'Plan for 1 year'
-          @user_referrer.expired_at = DateTime.now() if !@user_referrer.expired_at.present?
-          @user_referrer.expired_at = DateTime.now() if @user_referrer.expired_at < DateTime.now()
-          @user_referrer.expired_at += 2.month
+          @user_referrer.prolongate_on(2.month)
         elsif current_user.tariff_plan.title === 'Free'
         else
-          @user_referrer.expired_at = DateTime.now() if !@user_referrer.expired_at.present?
-          @user_referrer.expired_at = DateTime.now() if @user_referrer.expired_at < DateTime.now()
-          @user_referrer.expired_at += 1.month
+          @user_referrer.prolongate_on(1.month)
         end
         if @user_referrer.save
           # todo: send success message to referrer

@@ -44,6 +44,12 @@ class User < ApplicationRecord
   def attributes
     { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, payment_methods: payment_methods, expired_at: expired_at, expired_at_humanize: expired_at_humanize, expired_at_int: expired_at_int }
   end
+  
+  def prolongate_on duration_time
+    self.expired_at = DateTime.now() if !self.expired_at.present?
+    self.expired_at = DateTime.now() if self.expired_at < DateTime.now()
+    self.expired_at += duration_time
+  end
 
   def generate_password_token!
     begin
