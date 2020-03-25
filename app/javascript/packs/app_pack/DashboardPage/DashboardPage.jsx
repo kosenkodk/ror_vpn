@@ -109,7 +109,9 @@ class DashboardPage extends React.Component {
         </div>
         <div id="subscriptions" className="subscriptions">
           <h1>{I18n.t('pages.dashboard.subscription.title')}</h1>
-          <InfoBlock text={(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} optionalCssClasses="py-1" />
+          <InfoBlock optionalCssClasses="py-1" >
+            {(user && user.tariff_plan && user.tariff_plan.title) || 'Free plan'} {user.expired_at_humanize && `till ${user.expired_at_humanize}`}
+          </InfoBlock>
         </div>
         {/* <div id="billing" className="">
           <h1>{I18n.t('pages.dashboard.billing.title')}</h1>
