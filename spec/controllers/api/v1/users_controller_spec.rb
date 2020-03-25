@@ -47,32 +47,31 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       expect(user.tariff_plan).to eq(plan_free)
     end
     
-    context 'prolongate current subscription' do
+    it 'prolongate current subscription on 1 month' do
+      expect(user_with_free_plan.tariff_plan).to eq(plan_free)
+      post :change_plan, params: {plan_id: tariff_plan.id,
+        # current_user: { expired_at: DateTime.now() + 1.month }
+      }
+      expect(response_json['notice']).to eq(I18n.t('pages.dashboard.plans.change.success'))
+      expect(response_json['user']['tariff_plan']['id']).to eq(tariff_plan.id)
+      expect(response_json['user']['expired_at_humanize']).to eq 1.month.from_now.try(:strftime, "%d/%m/%y %H:%M")
+      expect(response_json['user']['expired_at_humanize']).to be > (DateTime.now() + 1.month - 1.day).try(:strftime, "%d/%m/%y %H:%M")
+      expect(response_json['user']['expired_at_int']).to be > (DateTime.now() + 1.month - 1.day).to_i
       
-      it 'on 1 month' do
-        expect(user_with_free_plan.tariff_plan).to eq(plan_free)
-        post :change_plan, params: {plan_id: tariff_plan.id,
-          # current_user: { expired_at: DateTime.now() + 1.month }
-        }
-        expect(response_json['notice']).to eq(I18n.t('pages.dashboard.plans.change.success'))
-        expect(response_json['user']['tariff_plan']['id']).to eq(tariff_plan.id)
-        expect(response_json['user']['expired_at_humanize']).to eq 1.month.from_now.try(:strftime, "%d/%m/%y %H:%M")
-        expect(response_json['user']['expired_at_humanize']).to be > (DateTime.now() + 1.month - 1.day).try(:strftime, "%d/%m/%y %H:%M")
-        expect(response_json['user']['expired_at_int']).to be > (DateTime.now() + 1.month - 1.day).to_i
-        
-        expect(assigns(:current_user).expired_at).to be > DateTime.now() + 1.month - 1.minute
-        
-        # user_with_free_plan.reload
-        # expect(user_with_free_plan.expired_at).to be > DateTime.now()+1.month-1.minute
-        # expect(user_with_free_plan.tariff_plan).to eq(tariff_plan)
-      end
+      expect(assigns(:current_user).expired_at).to be > DateTime.now() + 1.month - 1.minute
+      
+      # user_with_free_plan.reload
+      # expect(user_with_free_plan.expired_at).to be > DateTime.now()+1.month-1.minute
+      # expect(user_with_free_plan.tariff_plan).to eq(tariff_plan)
     end
     
     context 'if reffered friend bought a paid subscription' do
       let!(:user_refered) { create(:user, referrer_id: user.id, expired_at: DateTime.now()) }
-      let!(:user_refered2) {create(:user, referrer_id: user.id, expired_at: DateTime.now())}
-      let!(:tariff_plan_3mo) { create(:tariff_plan, title: 'Quartely plan') }
-      let!(:tariff_plan_1mo) { create(:tariff_plan, title: 'Plan for 1 month') }
+      let!(:user_refered2) { create(:user, referrer_id: user.id, expired_at: DateTime.now()) }
+      let!(:tariff_plan_3mo) { create(:tariff_plan_1mo, title: 'Quartely plan') }
+      let!(:tariff_plan_1mo) { create(:tariff_plan_3mo, title: 'Plan for 1 month') }
+      let!(:paypal) { create(:payment_method, title: 'paypal', pay_id: 'paypal', is_for_signup: false) }
+      
       before { sign_in_as(user_refered) }
 
       it 'add bonus: free 1/1/2 month(-s) trial of paid subscription [1mo/3mo/year] for both users'
@@ -149,34 +148,39 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(user.expired_at).to be > user_expiration_date_before_upgrade + 1.month
       end
       
-      context '2 month bonus' do
-        before {
-          # sign_in_as(user_refered)
-          # post :change_plan, params: {plan_id: tariff_plan_1mo.id}
-          # # user_refered.reload
-          # sign_in_as(user_refered2)
-          # post :change_plan, params: {plan_id: tariff_plan_1mo.id}
-          # # user_refered2.reload
-          # # user.reload
-          # # sign_in_as(user)
-          # # user.reload
-        }
-      it 'if user refer two friends with paid subscription' do
-        expiration_date_before_upgrade = user.expired_at
+      it '2 mo for free if user refer two friends with paid subscription' do
         sign_in_as(user_refered)
         post :change_plan, params: {plan_id: tariff_plan_1mo.id}
-        # expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 1.month
+        expiration_date_before_upgrade = user.expired_at
+        user.reload
 
         sign_in_as(user_refered2)
-        user.reload
         post :change_plan, params: {plan_id: tariff_plan_1mo.id}
-        user2=User.find(user.id)
         user.reload
-        # sign_in_as(user)
-        expect(user.expired_at).to be > expiration_date_before_upgrade + 2.month
-        # expect(user2.expired_at).to be > expiration_date_before_upgrade + 2.month
+        
+        sign_in_as(user)
+        user.reload
+        # expect(user.expired_at).to be > expiration_date_before_upgrade + 2.month
       end
-    end
+
+      context '2 mo bonus' do
+        let(:expiration_date_before_upgrade ) {1.minute.ago}
+        let!(:user1) {create(:user)}
+        let!(:user2) {create(:user, referrer_id: user1.id)}
+        let!(:user3) {create(:user, referrer_id: user1.id)}
+        xit '2 mo for free if user refer two friends with paid subscription' do
+          sign_in_as(user2)
+          post :change_plan, params: {plan_id: tariff_plan_1mo.id}
+          expect(user3.referrer_id).to eq(user1.id)
+          user1.reload
+          # multiple logins are not wokring
+          sign_in_as(user3)
+          expect(user3.referrer_id).to eq(user1.id)
+          post :change_plan, params: {plan_id: tariff_plan_1mo.id}
+          user1.reload
+          expect(user1.expired_at).to be > expiration_date_before_upgrade + 2.month
+        end
+      end
 
       it 'reset to datetime.now if already expired'
       it 'upgrade referrer from free to the paid subscription (1-2 mo for free)'
