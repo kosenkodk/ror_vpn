@@ -47,8 +47,10 @@ class User < ApplicationRecord
   
   def prolongate_on duration_time
     self.expired_at = DateTime.now() if !self.expired_at.present?
-    self.expired_at = DateTime.now() if self.expired_at < DateTime.now()
+    self.expired_at = DateTime.now() if self.expired_at < 1.month.before # DateTime.now() - 1.month
     self.expired_at += duration_time
+    # self.save!
+    # save!
   end
 
   def generate_password_token!

@@ -89,4 +89,13 @@ RSpec.describe User, type: :model do
     expect(user.tickets.first).to eq(ticket)
     expect(user.tickets.count).to eq(1)
   end
+
+  it 'prolongate subscription' do
+    user = create(:user)
+    expect(user.expired_at).to eq(nil)
+    user.prolongate_on(1.month)
+    expect(user.expired_at).to be > 1.month.from_now-5.seconds
+    user.prolongate_on(1.month)
+    expect(user.expired_at).to be > 2.month.from_now-5.seconds
+  end
 end
