@@ -29,6 +29,22 @@ class User < ApplicationRecord
   before_save {|record| record.salt = SecureRandom.hex unless record.salt }
   after_create {|record| record.set_google_secret }
 
+  def is_plan_yearly
+    self.tariff_plan.title === 'Plan for 1 year'
+  end
+
+  def is_plan_quartely
+    self.tariff_plan.title === 'Quartely Plan'
+  end
+
+  def is_plan_monthly
+    self.tariff_plan.title === 'Plan for 1 month'
+  end
+  
+  def is_plan_free
+    self.tariff_plan.title === 'Free'
+  end
+
   def self.email_regex
     /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   end
