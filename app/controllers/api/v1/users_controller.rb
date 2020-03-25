@@ -10,9 +10,8 @@ class Api::V1::UsersController < Api::V1::ApiController
     if (TariffPlan.exists?(plan_id))
       plan = TariffPlan.find(plan_id)
       current_user.tariff_plan = plan
-      if current_user.referrer_id && User.exists?(referrer_id: current_user.referrer_id)
-      # if User.exists?(current_user.referrer_id)
       current_user.prolongate_on(1.month)
+      if User.exists?(current_user.referrer_id)
         @user_referrer = User.find(current_user.referrer_id)
         @user_referrer.tariff_plan = current_user.tariff_plan # если  1 месяц уже был на одном плане то + 1 месяц на другом ?
         if current_user.tariff_plan.title === 'Plan for 1 year'
