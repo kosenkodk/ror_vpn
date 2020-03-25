@@ -44,4 +44,38 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
       # expect(user.referrals).to contains(user_referral)
     end
   end
+
+  describe 'refer program' do
+    let!(:user2) {create(:user, referrer_id: user.id)}
+    let!(:user3) {create(:user, referrer_id: user.id)}
+    let!(:payment_method) { create(:payment_method, is_for_signup: false)}
+    let!(:paypal) { create(:payment_method, title: 'paypal', pay_id: 'paypal', is_for_signup: false) }
+    let!(:plan) { create(:tariff_plan_1mo)}
+    let!(:plan_free) { create(:tariff_plan_free)}
+    it '2 month bonus - if user refer two friends with paid subscription' do
+      fsign_in_as(user2)
+      visit('/user/dashboard')
+      click_on(I18n.t('buttons.start_today'), match: :first)
+      click_on(I18n.t('buttons.next'))
+      select_by "payment_methods", payment_method.title
+      click_on(I18n.t('buttons.next'))
+      alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
+      expect(page).to have_content(user2.expired_at_humanize)
+
+      fsign_in_as(user3)
+      visit('/user/dashboard')
+      click_on(I18n.t('buttons.start_today'), match: :first)
+      click_on(I18n.t('buttons.next'))
+      select_by "payment_methods", payment_method.title
+      click_on(I18n.t('buttons.next'))
+      alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
+      expect(page).to have_content(user3.expired_at_humanize)
+
+      user.reload
+      fsign_in_as(user)
+      visit('/user/dashboard')
+      expect(page).to have_content(user.expired_at_humanize)
+      expect(user.expired_at).to be > 2.month.from_now - 1.minute
+    end
+  end
 end

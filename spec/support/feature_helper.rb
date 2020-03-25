@@ -45,6 +45,12 @@ module FeatureHelper
     find('#cancel_account_link').click
   end
 
+  def select_by id_of_select_box, title#, id
+    select(title, from: id_of_select_box)
+    find('#'+id_of_select_box).select(title)
+    # expect(find('#'+id_of_select_box).value.to_i).to eq(id)
+  end
+
   def select_cancel_account_reason cancel_reason
     id_of_select_box = 'cancel_account_select_box'
     select(cancel_reason.title, from: id_of_select_box)
