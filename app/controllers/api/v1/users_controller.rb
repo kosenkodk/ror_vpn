@@ -13,7 +13,7 @@ class Api::V1::UsersController < Api::V1::ApiController
       current_user.prolongate_on(1.month)
       if current_user.referrer_id && User.exists?(current_user.referrer_id)
         @user_referrer = User.find(current_user.referrer_id)
-        @user_referrer.tariff_plan = current_user.tariff_plan # если  1 месяц уже был на одном плане то + 1 месяц на другом ?
+        @user_referrer.tariff_plan = current_user.tariff_plan #if @user_referrer.is_plan_free # если  1 месяц уже был на одном плане то + 1 месяц на другом ?
         if current_user.is_plan_yearly
           @user_referrer.prolongate_on(2.month) if !current_user.is_refer_bonus_used
           current_user.is_refer_bonus_used = true

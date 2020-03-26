@@ -46,6 +46,28 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       user.reload
       expect(user.tariff_plan).to eq(plan_free)
     end
+
+    describe 'of user with expired subscription' do
+      let!(:plan_yearly) {create(:tariff_plan_12mo)}
+      let!(:plan_monthly) {create(:tariff_plan_1mo)}
+      let!(:plan_quartely) {create(:tariff_plan_3mo)}
+      let!(:user_with_expired_subscription) { create(:user, tariff_plan: plan_monthly, expired_at: 2.month.ago) }
+      it 'from monthly up to quartely plan' do
+        sign_in_as(user_with_expired_subscription)
+        post :change_plan, params: {plan_id: plan_quartely.id}
+        user_with_expired_subscription.reload
+        expect(user_with_expired_subscription.expired_at).to be > 1.month.from_now - 1.minute
+      end
+    end
+
+    describe 'refer program' do
+      it 'check for refer bonus after signup'
+      it '12 mo - refer friend with 1 mo'
+    end
+
+    describe 'of referrer user with 12 mo/yearly plan' do
+
+    end
     
     it 'prolongate current subscription on 1 month' do
       expect(user_with_free_plan.tariff_plan).to eq(plan_free)
