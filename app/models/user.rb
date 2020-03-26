@@ -30,19 +30,19 @@ class User < ApplicationRecord
   after_create {|record| record.set_google_secret }
 
   def is_plan_yearly
-    self.tariff_plan.title === 'Plan for 1 year'
+    self.tariff_plan.title === 'Plan for 1 year' if self.tariff_plan
   end
 
   def is_plan_quartely
-    self.tariff_plan.title === 'Quartely Plan'
+    self.tariff_plan.title === 'Quartely Plan' if self.tariff_plan
   end
 
   def is_plan_monthly
-    self.tariff_plan.title === 'Plan for 1 month'
+    self.tariff_plan.title === 'Plan for 1 month' if self.tariff_plan
   end
   
   def is_plan_free
-    self.tariff_plan.title === 'Free'
+    self.tariff_plan.title === 'Free' if self.tariff_plan
   end
 
   def self.email_regex
