@@ -98,4 +98,10 @@ RSpec.describe User, type: :model do
     user.prolongate_on(1.month)
     expect(user.expired_at).to be > 2.month.from_now-5.seconds
   end
+  
+  it 'prolongate expired subscription' do
+    user = create(:user, expired_at: 2.month.ago)
+    user.prolongate_on(1.month)
+    expect(user.expired_at).to be > 1.month.from_now-5.seconds
+  end
 end

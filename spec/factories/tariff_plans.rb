@@ -22,5 +22,10 @@ FactoryBot.define do
       title { 'Quartely plan' }
       price { 3.99 }
     end
+
+    factory :tariff_plan_12mo do
+      title { 'Plan for 1 year' }
+      price { 2.99 }
+    end
   end
 end
