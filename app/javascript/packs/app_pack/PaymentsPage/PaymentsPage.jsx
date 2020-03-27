@@ -88,13 +88,12 @@ class PaymentsPage extends React.Component {
               <Link to="#" className="mt-1 text-blue"> Learn more</Link>
             </InfoBlock>
 
-            <div className="">
+            <div className="mt-30">
               <button onClick={this.addBankCard} className="mt-2 mt-sm-0 btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
               <button onClick={this.addPayPal} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
             </div>
 
-
-            <table className="table">
+            <table className="table mt-30">
               <thead>
                 <tr>
                   <th className="font-weight-bold">Method</th>

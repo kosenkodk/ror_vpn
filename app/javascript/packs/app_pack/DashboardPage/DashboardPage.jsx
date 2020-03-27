@@ -102,7 +102,7 @@ class DashboardPage extends React.Component {
     const { tariff_plan } = user;
     return (
       <div className="container-fluid dashboard">
-        <div>
+        <div className="mt-30">
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
           {/* <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." optionalCssClasses="py-1" /> */}
           <Plans plans={plans} onPlanChange={this.onPlanChange} planCurrent={user.tariff_plan} />
@@ -133,7 +133,7 @@ class DashboardPage extends React.Component {
               {/* A 20% discount for annual billing has been automatically applied. */}
               Your current subscription: {(user && user.tariff_plan && user.tariff_plan.title)}
             </InfoBlock>
-            <table className="table">
+            <table className="table mt-30">
               <thead>
                 <tr>
                   <th colSpan="2">SUBSCRIPTION DETAILS</th>
