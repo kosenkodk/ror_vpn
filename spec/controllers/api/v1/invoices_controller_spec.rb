@@ -4,7 +4,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   let(:user) { create(:user) }
 
   let(:valid_attributes) {
-    {no: 1234, invoice_type: 0, status: 'pay', amount: 1, currency: '$', user_id: user.id}
+    { no: 1234, invoice_type: 0, status: 'pay', amount: 1, currency: '$', user_id: user.id }
   }
 
   let(:invalid_attributes) {

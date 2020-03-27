@@ -33,6 +33,21 @@ export function global(state = {}, action) {
         ...state,
         error: action.error
       };
+    case globalConstants.GET_INVOICES_REQUEST:
+      return {
+        ...state,
+        invoices: action.invoices
+      };
+    case globalConstants.GET_INVOICES_SUCCESS:
+      return {
+        ...state,
+        invoices: action.invoices
+      };
+    case globalConstants.GET_INVOICES_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     case globalConstants.GET_PLANS_REQUEST:
       return {
         ...state,
