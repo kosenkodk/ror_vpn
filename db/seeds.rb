@@ -401,3 +401,9 @@ tickets = [
     end
   end
 end
+
+
+puts "\nInvoices\n\n"
+User.all.each do |user|
+  Invoice.create({ no: '1000', amount: 6.99, currency: '$', status: 'pay', user_id: user.id })
+end
