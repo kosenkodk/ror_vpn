@@ -191,7 +191,7 @@ class BankCard extends React.Component {
           }
         </div>
         <div className="col-sm-3">
-          <input type="number" name="card_code" aria-describedby="card_details" required={true} className="form-control" placeholder='Security code'
+          <input type="password" name="card_code" aria-describedby="card_details" required={true} className="form-control" placeholder='Security code'
             value={form.card_code.value} onChange={e => this.onBankCardInputChange('card_code', e.target.value)}
           />
           {!form.card_code.valid && <small className="text-muted text-red">
