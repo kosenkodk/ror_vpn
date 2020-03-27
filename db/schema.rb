@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_200354) do
+ActiveRecord::Schema.define(version: 2020_03_27_113645) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(version: 2020_03_25_200354) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "no"
+    t.float "amount"
+    t.string "currency"
+    t.integer "type"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "payment_groups", force: :cascade do |t|
     t.string "title"
     t.integer "order"
@@ -147,6 +158,8 @@ ActiveRecord::Schema.define(version: 2020_03_25_200354) do
     t.text "features"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "refer_bonus_in_days"
+    t.integer "referrer_bonus_in_days"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -200,6 +213,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_200354) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "messages", "tickets"
   add_foreign_key "messages", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "payment_methods", "bank_cards"
   add_foreign_key "payment_methods", "users"
   add_foreign_key "tickets", "users"
