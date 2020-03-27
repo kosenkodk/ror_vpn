@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_113645) do
+ActiveRecord::Schema.define(version: 2020_03_27_115033) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -98,6 +98,18 @@ ActiveRecord::Schema.define(version: 2020_03_27_113645) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.string "no"
+    t.integer "invoice_type"
+    t.integer "status"
+    t.float "amount"
+    t.string "currency"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_invoices_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -110,17 +122,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_113645) do
     t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id"
     t.index ["ticket_id"], name: "index_messages_on_ticket_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.string "no"
-    t.float "amount"
-    t.string "currency"
-    t.integer "type"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "payment_groups", force: :cascade do |t|
@@ -158,8 +159,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_113645) do
     t.text "features"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "refer_bonus_in_days"
-    t.integer "referrer_bonus_in_days"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -211,9 +210,9 @@ ActiveRecord::Schema.define(version: 2020_03_27_113645) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "invoices", "users"
   add_foreign_key "messages", "tickets"
   add_foreign_key "messages", "users"
-  add_foreign_key "orders", "users"
   add_foreign_key "payment_methods", "bank_cards"
   add_foreign_key "payment_methods", "users"
   add_foreign_key "tickets", "users"
