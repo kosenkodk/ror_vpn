@@ -23,6 +23,14 @@ class PaymentsPage extends React.Component {
     this.state = { title: '', selectedPaymentMethodId: 0 }
   }
 
+  payCurrentInvoice() {
+
+  }
+
+  customizeInvoice() {
+
+  }
+
   addBankCard = (e) => {
     if (e) e.preventDefault()
     this.props.dispatch(globalActions.setModalShow('addPaymentMethod'))
@@ -138,6 +146,11 @@ class PaymentsPage extends React.Component {
               <InfoBlock>
                 You can customize and download your invoices for accounting purposes.
               </InfoBlock>
+            </div>
+
+            <div className="mt-30 d-flex">
+              <button onClick={this.customizeInvoice} className="mt-2 mt-sm-0 btn btn-pink mr-auto">{I18n.t('pages.payments.invoices.customize')}</button>
+              <button onClick={this.payCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice')}</button>
             </div>
 
             <table className="table mt-30">

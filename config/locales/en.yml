@@ -175,6 +175,8 @@ en:
           not_found: "Error. Invalid payment method ID."
       invoices:
         title: "Invoices"
+        customize: "Customize"
+        pay_current_invoice: "Pay current invoice"
     account:
       2fa:
         pls_scan_qr_code: "Please scan QR code"
