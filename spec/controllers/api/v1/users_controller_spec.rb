@@ -65,8 +65,9 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     describe 'refer bonus program' do
-      it 'check for refer bonus after signup'
+      it 'check for refer bonus after signup or after referrer login'
       it '12 mo - refer friend with 1 mo'
+      it 'downgrade to free plan if subscription has been expired'
       context 'referrer user with 12 mo/yearly plan' do
         let(:user_with_plan_year) {create(:user, tariff_plan: plan_yearly, expired_at: 1.month.from_now)}
         let(:user_refered) {create(:user, referrer_id: user_with_plan_year.id)}
@@ -95,9 +96,9 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       
       expect(assigns(:current_user).expired_at).to be > DateTime.now() + 1.month - 1.minute
       
-      # user_with_free_plan.reload
-      # expect(user_with_free_plan.expired_at).to be > DateTime.now()+1.month-1.minute
-      # expect(user_with_free_plan.tariff_plan).to eq(plan_monthly)
+      user_with_free_plan.reload
+      expect(user_with_free_plan.expired_at).to be > DateTime.now()+1.month-1.minute
+      expect(user_with_free_plan.tariff_plan).to eq(plan_monthly)
     end
     
     context 'if reffered friend bought a paid subscription' do
@@ -184,7 +185,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       xit '2 mo for free if user refer two friends with paid subscription' do
         sign_in_as(user_refered)
         post :change_plan, params: {plan_id: plan_monthly.id}
-        expiration_date_before_upgrade = user.expired_at - 1.minute
+        expiration_date_before_upgrade = 1.minute.ago
         user.reload
 
         # multiple logins are not wokring
