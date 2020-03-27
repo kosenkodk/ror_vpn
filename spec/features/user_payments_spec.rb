@@ -14,7 +14,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
     }
     
     describe 'index' do
-      let!(:invoice) { create(:invoice, no: '123', amount: 10.01, currency: '$', status: 'pay', user_id: user.id) }
+      let!(:invoice) { create(:invoice, no: '123', amount: 6.99, currency: '$', status: 'pay', user_id: user.id) }
       context 'success' do
         it 'with valid data' do
           expect(page).to have_content(I18n.t('pages.payments.invoices.title'))
