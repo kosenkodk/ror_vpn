@@ -1,10 +1,11 @@
-class CreateOrders < ActiveRecord::Migration[6.0]
+class CreateInvoices < ActiveRecord::Migration[6.0]
   def change
-    create_table :orders do |t|
-      t.string :no
+    create_table :invoices do |t|
+      t.number :no
+      t.integer :type
+      t.integer :status
       t.float :amount
       t.string :currency
-      t.integer :type
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
