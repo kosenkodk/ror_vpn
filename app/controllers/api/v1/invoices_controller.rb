@@ -2,12 +2,12 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   before_action :authorize_access_request!
 
   def show
-    item = Invoice.find(params[:id])
+    item = Invoice.find(params[:id]).where(user_id: current_user)
     render json: item
   end
 
   def index
-    items = Invoice.all
+    items = Invoice.where(user_id: current_user)
     render json: items
   end
 
