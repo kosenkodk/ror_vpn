@@ -1,14 +1,19 @@
 class Api::V1::InvoicesController < Api::V1::ApiController
   before_action :authorize_access_request!
 
+  def show
+    item = Invoice.find(params[:id])
+    render json: item
+  end
+
   def index
     items = Invoice.all
-    render items
+    render json: items
   end
 
   def create
     item = Invoice.create!(invoice_params)
-    render json: item
+    render json: item, status: :created, location: api_v1_invoice_url(item)
   end
 
   private
