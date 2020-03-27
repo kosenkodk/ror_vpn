@@ -13,8 +13,20 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
   before { sign_in_as(user) }
 
-  describe 'POST #create' do
+  describe 'POST #index' do
+    let!(:invoice_of_user) { create(:invoice, user_id: user.id) }
 
+    let!(:user2) { create(:user) }
+    let!(:invoice_of_user2) { create(:invoice, user_id: user2.id) }
+
+    it 'display user\'s invoices' do
+      get :index
+      expect(response_json.count).to eq(1)
+    end
+  end
+
+  describe 'POST #create' do
+    
     context 'with valid params' do
       it 'creates a new Invoice' do
         expect {
