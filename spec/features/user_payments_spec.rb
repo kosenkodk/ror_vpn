@@ -2,6 +2,31 @@ require 'rails_helper'
 
 RSpec.describe 'Payments', type: :feature, js: true do
   let(:user) { create(:user) }
+  
+  describe 'invoices' do
+    let(:valid_attributes) {
+      { no: 1234, invoice_type: 0, status: 'pay', amount: 1, currency: '$', user_id: user.id }
+    }
+
+    before {
+      fsign_in_as(user)
+      visit('/user/payments')
+    }
+    
+    describe 'index' do
+      let!(:invoice) { create(:invoice, no: '123', amount: 10.01, currency: '$', status: 'pay', user_id: user.id) }
+      context 'success' do
+        it 'with valid data' do
+          expect(page).to have_content(I18n.t('pages.payments.invoices.title'))
+          expect(page).to have_content(invoice.no)
+          expect(page).to have_content("#{invoice.currency}#{invoice.amount}")
+          expect(page).to have_content(invoice.status)
+          expect(page).to have_content(invoice.invoice_type)
+          # expect(page).to have_content(invoice.created_at_humanize)
+        end
+      end
+    end
+  end
 
   describe 'payment methods' do
 

@@ -15,6 +15,7 @@ import icEditSrc from 'images/icons/ic_edit.svg'
 import icTrashSrc from 'images/icons/ic_trash.svg'
 import icLockSrc from 'images/icons/ic_lock.svg'
 import icDownloadSrc from 'images/icons/ic_download.svg'
+import icViewSrc from 'images/icons/ic_view.svg'
 
 class PaymentsPage extends React.Component {
   constructor(props) {
@@ -74,10 +75,11 @@ class PaymentsPage extends React.Component {
     // this.props.dispatch(globalActions.getPaymentMethods())
     this.props.dispatch(userActions.getUser())
     this.props.dispatch(globalActions.getCountries())
+    this.props.dispatch(globalActions.getInvoices())
   }
 
   render() {
-    const { payment_methods, user, countries } = this.props
+    const { payment_methods, invoices, user, countries } = this.props
     return (
       <div className="container-fluid payments">
         <div className="row">
@@ -138,6 +140,39 @@ class PaymentsPage extends React.Component {
               </InfoBlock>
             </div>
 
+            <table className="table mt-30">
+              <thead>
+                <tr>
+                  <th className="font-weight-bold">ID</th>
+                  <th className="font-weight-bold">Amount</th>
+                  <th className="font-weight-bold">Type</th>
+                  <th className="font-weight-bold">Status</th>
+                  <th className="font-weight-bold">Date</th>
+                  <th className="font-weight-bold text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(invoices && invoices.length > 0) ?
+                  invoices.map(item =>
+                    <tr key={`invoice${item.id}`}>
+                      <td>{item.no}</td>
+                      <td>{item.currency}{item.amount}</td>
+                      <td>{item.invoice_type}</td>
+                      <td>{item.status}</td>
+                      <td>{item.created_at_humanize}</td>
+                      <td className="text-right">
+                        <img src={icViewSrc} className="img-fluid" />
+                        <img src={icDownloadSrc} className="img-fluid" />
+                      </td>
+                    </tr>
+                  ) :
+                  <tr>
+                    <td rowSpan="6">Invoices are not found</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+
             <ModalPopupForm
               onClose={this.onModalClose}
               id='addPaymentMethod'
@@ -192,10 +227,10 @@ class PaymentsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { payment_methods, countries } = state.global
+  const { payment_methods, countries, invoices } = state.global
   const { user } = state.users
   return {
-    user, payment_methods, countries
+    user, payment_methods, countries, invoices
   }
 }
 

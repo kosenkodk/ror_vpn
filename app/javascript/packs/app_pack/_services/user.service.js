@@ -15,6 +15,7 @@ export const userService = {
   addTicket,
   viewTicket,
   updateTicket,
+  getInvoices,
   addPaymentMethod,
   getPaymentMethods,
   deletePaymentMethodById,
@@ -373,6 +374,18 @@ function getTickets({ page = 1, status = '' } = {}) {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/tickets`, requestOptions).then(handleResponse);
+}
+
+function getInvoices() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/invoices`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/invoices`, requestOptions).then(handleResponse);
 }
 
 function getPaymentMethods() {
