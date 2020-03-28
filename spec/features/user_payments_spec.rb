@@ -4,7 +4,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
   let!(:user) { create(:user) }
   
   describe 'invoices' do
-    let!(:invoice) { create(:invoice, no: '123', amount: 6.99, currency: '$', status: 'pay', user_id: user.id) }
+    let!(:invoice) { create(:invoice, no: '123', amount: 6.99, currency: '$', invoice_type: 'subscription', status: 'pay', user_id: user.id) }
 
     let(:valid_attributes) {
       { no: 1234, invoice_type: 0, status: 'pay', amount: 1, currency: '$', user_id: user.id }
