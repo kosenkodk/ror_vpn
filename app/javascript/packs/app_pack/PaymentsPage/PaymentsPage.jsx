@@ -90,7 +90,6 @@ class PaymentsPage extends React.Component {
     // this.props.dispatch(globalActions.getPaymentMethods())
     this.props.dispatch(userActions.getUser())
     this.props.dispatch(globalActions.getCountries())
-    // this.props.dispatch(globalActions.getInvoices())
     this.props.dispatch(invoiceActions.getAll())
   }
 
