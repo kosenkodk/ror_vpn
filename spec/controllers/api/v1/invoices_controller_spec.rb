@@ -15,13 +15,14 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
   describe 'POST #index' do
     let!(:invoice_of_user) { create(:invoice, user_id: user.id) }
+    let!(:invoice2_of_user) { create(:invoice, user_id: user.id) }
 
     let!(:user2) { create(:user) }
     let!(:invoice_of_user2) { create(:invoice, user_id: user2.id) }
 
     it 'display user\'s invoices' do
       get :index
-      expect(response_json.count).to eq(1)
+      expect(response_json.count).to eq(2)
     end
 
     it 'customize all invoices (add name and address to all invoices)' do
@@ -29,6 +30,14 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
       invoice_of_user.reload
       expect(invoice_of_user.details_from).to eq('name and address')
       # expect(invoice_of_user.title).to eq new_invoice_attributes[:details_from]
+      expect(response_json.values).to include('name and address')
+    end
+
+    it 'customize last invoice' do
+      put :update, params: { id: invoice_of_user.id, invoice_details: "name and address", invoice: {id:nil, invoice_details: "name and address"} }
+      invoice_of_user.reload
+      invoice2_of_user.reload
+      expect(invoice2_of_user.details_from).to eq('name and address')
       expect(response_json.values).to include('name and address')
     end
   end

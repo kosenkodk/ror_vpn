@@ -17,9 +17,22 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   end
 
   def update
-    item = Invoice.find(params[:id])
-    item.update!(invoice_params)
-    render json: item
+    invoice_details = params[:invoice_details]
+    if invoice_details.present?
+      # add name and address (customize all invoices)
+      # Invoice.all.each do |item|
+      item = Invoice.where(user_id: current_user.id).last
+      item.update(details_from: invoice_details)
+      # end
+      # self.index()
+      render json: item
+      return
+    else
+      item = Invoice.where(user_id: current_user.id).find( params[:id])
+      item.update!(invoice_params)
+      render json: item
+      return
+    end
   end
 
   private
