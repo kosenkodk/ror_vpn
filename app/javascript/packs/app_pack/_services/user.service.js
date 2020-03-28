@@ -34,6 +34,7 @@ export const userService = {
   disable2FA,
   getReferLink,
   refer_friend,
+  updateInvoice,
 };
 
 function refer_friend(emails) {
@@ -247,6 +248,19 @@ function contactUs(contact) {
     // body: JSON.stringify({ contact })
   }
   return fetch(`${config.apiUrl}/contacts`, requestOptions).then(handleResponse);
+}
+
+function updateInvoice(invoice) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/invoices/${invoice.id}`, 'PATCH', { invoice: invoice })
+
+  const requestOptions = {
+    method: 'PATCH',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify({ invoice })
+  }
+  return fetch(`${config.apiUrl}/invoices/${invoice.id}`, requestOptions).then(handleResponse);
 }
 
 function updateTicket(ticket) {

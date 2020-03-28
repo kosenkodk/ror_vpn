@@ -10,7 +10,7 @@ import { FormDataAsJsonFromEvent } from '../_helpers'
 import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
 import BankCardForm from '../DashboardPage/BankCardForm'
-import { InvoiceCustomization } from './InvoiceCustomization'
+import { InvoiceCustomizationForm } from './InvoiceCustomizationForm'
 
 import icEditSrc from 'images/icons/ic_edit.svg'
 import icTrashSrc from 'images/icons/ic_trash.svg'
@@ -34,6 +34,7 @@ class PaymentsPage extends React.Component {
   }
 
   onCustomizeInvoices = (e) => {
+    e.preventDefault()
 
   }
 
@@ -242,7 +243,7 @@ class PaymentsPage extends React.Component {
             <ModalPopupForm
               onClose={this.onModalClose}
               id='customizeInvoices'
-              isForm={false}
+              isForm={true}
               isHideBtn={true}
               isNextBtnOnly={true}
               onBtnSave={this.onCustomizeInvoices}
@@ -254,7 +255,8 @@ class PaymentsPage extends React.Component {
                 {I18n.t('pages.payments.invoices.customize.info')}
               </InfoBlock>
               <p>Customize invoices</p>
-              <InvoiceCustomization />
+              <InvoiceCustomizationForm />
+
             </ModalPopupForm>
           </div>
         </div>
