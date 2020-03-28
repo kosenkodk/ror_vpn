@@ -32,7 +32,10 @@
     border-color: $pink;
     &:hover, &:active {
       color: $white !important;
-      background-color: $pink;
+      background: $pink_button_gradient;
+    }
+    &:hover {
+      opacity: 0.7;
     }
   }
 
