@@ -10,7 +10,6 @@ export const globalActions = {
   getPlans,
   setPaymentMethod,
   getPaymentMethods,
-  getInvoices,
   getAccountCancellationReasons,
   setModalShow,
   setAttachments,
@@ -60,27 +59,6 @@ function getPlans() {
   function request(plans) { return { type: globalConstants.GET_PLANS_REQUEST, plans } }
   function success(plans) { return { type: globalConstants.GET_PLANS_SUCCESS, plans } }
   function failure(error) { return { type: globalConstants.GET_PLANS_FAILURE, error } }
-}
-
-function getInvoices() {
-  return dispatch => {
-    dispatch(request(JSON.parse(localStorage.getItem('invoices'))))
-    userService.getInvoices()
-      .then(
-        items => {
-          localStorage.setItem('invoices', JSON.stringify(items))
-          dispatch(success(items))
-        },
-        error => {
-          // dispatch(failure(error))
-          dispatch(alertActions.error(error))
-        }
-      )
-  }
-
-  function request(invoices) { return { type: globalConstants.GET_INVOICES_REQUEST, invoices } }
-  function success(invoices) { return { type: globalConstants.GET_INVOICES_SUCCESS, invoices } }
-  function failure(error) { return { type: globalConstants.GET_INVOICES_FAILURE, error } }
 }
 
 function getReferLink() {
