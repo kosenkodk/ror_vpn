@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Payments', type: :feature, js: true do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
   
   describe 'invoices' do
+    let!(:invoice) { create(:invoice, no: '123', amount: 6.99, currency: '$', status: 'pay', user_id: user.id) }
+
     let(:valid_attributes) {
       { no: 1234, invoice_type: 0, status: 'pay', amount: 1, currency: '$', user_id: user.id }
     }
@@ -14,7 +16,6 @@ RSpec.describe 'Payments', type: :feature, js: true do
     }
     
     describe 'index' do
-      let!(:invoice) { create(:invoice, no: '123', amount: 6.99, currency: '$', status: 'pay', user_id: user.id) }
       context 'success' do
         it 'with valid data' do
           expect(page).to have_content(I18n.t('pages.payments.invoices.title'))
@@ -22,7 +23,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
           expect(page).to have_content("#{invoice.currency}#{invoice.amount}")
           expect(page).to have_content(invoice.status)
           expect(page).to have_content(invoice.invoice_type)
-          # expect(page).to have_content(invoice.created_at_humanize)
+          expect(page).to have_content(invoice.created_at_humanize)
         end
       end
     end
