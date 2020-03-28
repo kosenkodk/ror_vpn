@@ -37,13 +37,15 @@ function addDetailsToInvoices(data) {
   function failure(error) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_FAILURE, error } }
 }
 
-function getAll(page) {
+function getAll() {
   return dispatch => {
-    dispatch(request())
-
-    userService.getInvoices(page)
+    dispatch(request(JSON.parse(localStorage.getItem('invoices'))))
+    userService.getInvoices()
       .then(
-        invoices => dispatch(success(invoices)),
+        items => {
+          localStorage.setItem('invoices', JSON.stringify(items))
+          dispatch(success(items))
+        },
         error => {
           dispatch(failure(error))
           dispatch(alertActions.error(error))
@@ -51,7 +53,7 @@ function getAll(page) {
       )
   }
 
-  function request() { return { type: invoiceConstants.GETALL_REQUEST } }
+  function request(invoices) { return { type: invoiceConstants.GETALL_REQUEST, invoices } }
   function success(invoices) { return { type: invoiceConstants.GETALL_SUCCESS, invoices } }
   function failure(error) { return { type: invoiceConstants.GETALL_FAILURE, error } }
 }

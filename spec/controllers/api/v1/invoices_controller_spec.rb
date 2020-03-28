@@ -33,7 +33,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
       expect(response_json.values).to include('name and address')
     end
 
-    it 'customize last invoice' do
+    it 'customize (change name with address) last invoice' do
       put :update, params: { id: invoice_of_user.id, invoice_details: "name and address", invoice: {id:nil, invoice_details: "name and address"} }
       invoice_of_user.reload
       invoice2_of_user.reload
