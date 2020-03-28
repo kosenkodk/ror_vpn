@@ -5,7 +5,7 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import { I18n } from 'helpers'
 import { InfoBlock } from '../_components/admin'
 import { ModalPopupForm } from '../_components/ModalPopupForm'
-import { accountActions, userActions, globalActions, alertActions } from '../_actions'
+import { invoiceActions, accountActions, userActions, globalActions, alertActions } from '../_actions'
 import { FormDataAsJsonFromEvent } from '../_helpers'
 import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
@@ -90,7 +90,8 @@ class PaymentsPage extends React.Component {
     // this.props.dispatch(globalActions.getPaymentMethods())
     this.props.dispatch(userActions.getUser())
     this.props.dispatch(globalActions.getCountries())
-    this.props.dispatch(globalActions.getInvoices())
+    // this.props.dispatch(globalActions.getInvoices())
+    this.props.dispatch(invoiceActions.getAll())
   }
 
   render() {
@@ -256,6 +257,23 @@ class PaymentsPage extends React.Component {
               </InfoBlock>
               <p>Customize invoices</p>
               <InvoiceCustomizationForm />
+            </ModalPopupForm>
+
+            <ModalPopupForm
+              onClose={this.onModalClose}
+              id='viewInvoice'
+              isForm={true}
+              isHideBtn={true}
+              isNextBtnOnly={true}
+              // onBtnSave={this.onCustomizeInvoices}
+              title={I18n.t('pages.payments.invoices.customize.title')}
+              btnCloseText={I18n.t('buttons.cancel')}
+              btnSaveText={I18n.t('buttons.save')}
+              btnClasses={''}>
+              <InfoBlock>
+                {I18n.t('pages.payments.invoices.customize.info')}
+              </InfoBlock>
+              <p>Customize invoices</p>
 
             </ModalPopupForm>
           </div>
@@ -266,7 +284,8 @@ class PaymentsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { payment_methods, countries, invoices } = state.global
+  const { invoices } = state.invoices
+  const { payment_methods, countries } = state.global
   const { user } = state.users
   return {
     user, payment_methods, countries, invoices
