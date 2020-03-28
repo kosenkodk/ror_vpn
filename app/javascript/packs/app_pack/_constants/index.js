@@ -5,3 +5,4 @@ export * from './bgClass.constants';
 export * from './account.constants';
 export * from './page.constants';
 export * from './global.constants';
+export * from './invoices.constants';

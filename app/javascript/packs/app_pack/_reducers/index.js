@@ -8,6 +8,7 @@ import { bgClass } from './bgClass.reducer';
 import { account } from './account.reducer';
 import { page } from './page.reducer';
 import { global } from './global.reducer';
+import { invoices } from './invoices.reducer';
 
 const rootReducer = combineReducers({
   account,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   alert,
   bgClass,
   page,
-  global
+  global,
+  invoices,
 });
 
 export default rootReducer;
