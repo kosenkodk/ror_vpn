@@ -10,6 +10,7 @@ import { FormDataAsJsonFromEvent } from '../_helpers'
 import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
 import BankCardForm from '../DashboardPage/BankCardForm'
+import { InvoiceCustomization } from './InvoiceCustomization'
 
 import icEditSrc from 'images/icons/ic_edit.svg'
 import icTrashSrc from 'images/icons/ic_trash.svg'
@@ -27,7 +28,12 @@ class PaymentsPage extends React.Component {
 
   }
 
-  customizeInvoice() {
+  onShowCustomizeInvoices = (e) => {
+    e.preventDefault()
+    this.props.dispatch(globalActions.setModalShow('customizeInvoices'))
+  }
+
+  onCustomizeInvoices = (e) => {
 
   }
 
@@ -149,8 +155,8 @@ class PaymentsPage extends React.Component {
             </div>
 
             <div className="mt-30 d-flex">
-              <button onClick={this.customizeInvoice} className="mt-2 mt-sm-0 btn btn-pink mr-auto">{I18n.t('pages.payments.invoices.customize')}</button>
-              <button onClick={this.payCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice')}</button>
+              <button onClick={this.onShowCustomizeInvoices} className="mt-2 mt-sm-0 btn btn-pink mr-auto">{I18n.t('pages.payments.invoices.customize.btn')}</button>
+              <button onClick={this.payCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
             </div>
 
             <table className="table mt-30">
@@ -229,8 +235,26 @@ class PaymentsPage extends React.Component {
               btnSaveText={I18n.t('buttons.confirm')}
               btnClasses={''}>
               <InfoBlock>
-                Are you sure you want to delete this payment method?
+                {I18n.t('pages.payments.payment_methods.delete.info')}
               </InfoBlock>
+            </ModalPopupForm>
+
+            <ModalPopupForm
+              onClose={this.onModalClose}
+              id='customizeInvoices'
+              isForm={false}
+              isHideBtn={true}
+              isNextBtnOnly={true}
+              onBtnSave={this.onCustomizeInvoices}
+              title={I18n.t('pages.payments.invoices.customize.title')}
+              btnCloseText={I18n.t('buttons.cancel')}
+              btnSaveText={I18n.t('buttons.save')}
+              btnClasses={''}>
+              <InfoBlock>
+                {I18n.t('pages.payments.invoices.customize.info')}
+              </InfoBlock>
+              <p>Customize invoices</p>
+              <InvoiceCustomization />
             </ModalPopupForm>
           </div>
         </div>

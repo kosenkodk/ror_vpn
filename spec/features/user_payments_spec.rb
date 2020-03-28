@@ -15,17 +15,23 @@ RSpec.describe 'Payments', type: :feature, js: true do
       visit('/user/payments')
     }
     
-    describe 'index' do
-      context 'success' do
-        it 'with valid data' do
-          expect(page).to have_content(I18n.t('pages.payments.invoices.title'))
-          expect(page).to have_content(invoice.no)
-          expect(page).to have_content("#{invoice.currency}#{invoice.amount}")
-          expect(page).to have_content(invoice.status)
-          expect(page).to have_content(invoice.invoice_type)
-          expect(page).to have_content(invoice.created_at_humanize)
-        end
-      end
+    it 'table' do
+      expect(page).to have_content(I18n.t('pages.payments.invoices.title'))
+      expect(page).to have_content(invoice.no)
+      expect(page).to have_content("#{invoice.currency}#{invoice.amount}")
+      expect(page).to have_content(invoice.status)
+      expect(page).to have_content(invoice.invoice_type)
+      expect(page).to have_content(invoice.created_at_humanize)
+    end
+
+    it 'customize invoice' do
+      click_on(I18n.t('pages.payments.invoices.customize.btn'))
+      expect(page).to have_content(I18n.t('pages.payments.invoices.customize.title'))
+    end
+
+    it 'pay current invoice' do
+      click_on(I18n.t('pages.payments.invoices.pay_current_invoice.btn'))
+      click_on(I18n.t('pages.payments.invoices.pay_current_invoice.title'))
     end
   end
 
