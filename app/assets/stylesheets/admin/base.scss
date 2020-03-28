@@ -27,6 +27,15 @@
     }
   }
 
+  .btn-outline-pink {
+    color: $pink !important;
+    border-color: $pink;
+    &:hover, &:active {
+      color: $white !important;
+      background-color: $pink;
+    }
+  }
+
   .col-form-label {
     font-weight: $font-bold;
   }

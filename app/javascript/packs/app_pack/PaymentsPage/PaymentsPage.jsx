@@ -155,7 +155,7 @@ class PaymentsPage extends React.Component {
             </div>
 
             <div className="mt-30 d-flex">
-              <button onClick={this.onShowCustomizeInvoices} className="mt-2 mt-sm-0 btn btn-pink mr-auto">{I18n.t('pages.payments.invoices.customize.btn')}</button>
+              <button onClick={this.onShowCustomizeInvoices} className="mt-2 mt-sm-0 btn btn-outline-pink mr-auto">{I18n.t('pages.payments.invoices.customize.btn')}</button>
               <button onClick={this.payCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
             </div>
 
