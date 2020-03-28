@@ -4,7 +4,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   let(:user) { create(:user) }
 
   let(:valid_attributes) {
-    { no: 1234, invoice_type: 0, status: 'pay', amount: 1, currency: '$', user_id: user.id }
+    { no: 1234, invoice_type: 'subscription', status: 'pay', amount: 1, currency: '$', user_id: user.id }
   }
 
   let(:invalid_attributes) {
@@ -22,6 +22,14 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     it 'display user\'s invoices' do
       get :index
       expect(response_json.count).to eq(1)
+    end
+
+    it 'customize all invoices (add name and address to all invoices)' do
+      put :update, params: { id: invoice_of_user.id, invoice: {details_from: "name and address"} }
+      invoice_of_user.reload
+      expect(invoice_of_user.details_from).to eq('name and address')
+      # expect(invoice_of_user.title).to eq new_invoice_attributes[:details_from]
+      expect(response_json.values).to include('name and address')
     end
   end
 

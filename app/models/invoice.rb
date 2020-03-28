@@ -8,6 +8,6 @@ class Invoice < ApplicationRecord
   end
 
   def attributes
-    { id: id, no: no, amount: amount, currency: currency, invoice_type: invoice_type, status: status, created_at_humanize: created_at_humanize }
+    { id: id, no: no, amount: amount, currency: currency, invoice_type: invoice_type, status: status, created_at_humanize: created_at_humanize, details_from: details_from }
   end
 end
