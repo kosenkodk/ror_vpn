@@ -16,8 +16,14 @@ class Api::V1::InvoicesController < Api::V1::ApiController
     render json: item, status: :created, location: api_v1_invoice_url(item)
   end
 
+  def update
+    item = Invoice.find(params[:id])
+    item.update!(invoice_params)
+    render json: item
+  end
+
   private
   def invoice_params
-    params.require(:invoice).permit(:no, :type, :status, :amount, :currency, :user_id)
+    params.require(:invoice).permit(:no, :invoice_type, :status, :amount, :currency, :user_id, :details_from)
   end
 end

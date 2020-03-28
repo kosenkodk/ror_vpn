@@ -31,7 +31,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
 
     it 'pay current invoice' do
       click_on(I18n.t('pages.payments.invoices.pay_current_invoice.btn'))
-      click_on(I18n.t('pages.payments.invoices.pay_current_invoice.title'))
+      expect(page).to have_content(I18n.t('pages.payments.invoices.pay_current_invoice.title'))
     end
   end
 
