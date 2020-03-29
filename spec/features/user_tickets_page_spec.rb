@@ -39,7 +39,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       it "select department drop down" do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         select(department_billing.title, from: 'departmentSelectBox')
         # find("#departmentSelectBox").select(department_billing.title)
         expect(find('#departmentSelectBox').value.to_i).to eq(department_billing.id)
@@ -50,7 +50,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       it "preview multiple attachments of ticket new page" do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket with multiple attachments'
         
         attach_file('attachments', [file, file2], visible: :all) # input element that has a name, id, or label_text
@@ -62,7 +62,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       xit "attach single file or image" do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket with attachment'
         attach_file('attachment', file) # input element that has a name, id, or label_text
         click_on(I18n.t('buttons.submit'))
@@ -180,7 +180,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
   describe 'add ticket' do
     context 'success' do
       it 'with attachments' do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
         
@@ -202,7 +202,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       it 'clear previews when come back from another page' do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket 1'
 
         # add attachments
@@ -211,14 +211,14 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content(file_name2)
 
         click_on_btn_back
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
 
         expect(page).not_to have_content(file_name)
         expect(page).not_to have_content(file_name2)
       end
 
       xit 'add item with default department to list' do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
@@ -235,7 +235,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
 
       xit 'add item with sales department to list' do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         
         select(department_sales.title, from: 'departmentSelectBox') # find option by text
         # find("#departmentSelectBox").select("Sales") # find option by text
@@ -256,7 +256,7 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
       end
       
       xit 'with comments' do
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket with comment'
         fill_in :comment, with: 'comment'
         click_on(I18n.t('buttons.submit'))
@@ -342,11 +342,11 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         find('#next').click
         expect(page).to have_content(ticket_on_page2.title)
 
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         click_on_btn_back
         expect(page).to have_content(ticket_on_page2.title)
 
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket'
         fill_in :text, with: 'text'
         click_on(I18n.t('buttons.submit'))
