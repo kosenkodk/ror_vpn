@@ -7,7 +7,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   end
 
   def index
-    items = Invoice.where(user_id: current_user)
+    items = Invoice.where(user_id: current_user).reverse
     render json: items
   end
 
