@@ -19,12 +19,14 @@ export function invoices(state = {}, action) {
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_REQUEST:
       return {
-        invoices: action.invoices,
+        ...state,
+        // invoices: action.invoices,
         loading: true
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_SUCCESS:
       return {
-        invoices: action.invoices,
+        ...state,
+        // invoices: action.invoices,
         notice: action.notice,
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_FAILURE:

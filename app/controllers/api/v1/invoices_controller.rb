@@ -17,7 +17,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   end
 
   def update
-    invoice_details = params[:invoice_details]
+    invoice_details = params[:invoice][:invoice_details]
     if invoice_details.present?
       item = Invoice.where(user_id: current_user.id).last
       item.update(details_from: invoice_details)
