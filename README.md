@@ -19,6 +19,9 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
+* Cron tab
+whenever --update-crontab
+
 * Deployment instructions
 * Development
 export NODE_OPTIONS="--max-old-space-size=2048"
