@@ -18,12 +18,17 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minute do
+
+ENV['RAILS_ENV'] = 'development'
+set :output, 'log/whenever.log'
+
+every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
   runner "User.check_invoices"
 end
 
 every 1.day do
   runner "User.check_invoices"
+  # runner "User.check_invoices"
   # User.all.each do |user|
   #   user.check_invoice
   # end

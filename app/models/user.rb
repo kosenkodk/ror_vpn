@@ -87,8 +87,9 @@ class User < ApplicationRecord
     save!
   end
 
-  def check_invoices
+  def self.check_invoices
     User.all.each do |user|
+      user.update(expired_at: DateTime.now()) if user.expired_at.nil?
       if (user.expired_at < DateTime.now())
         item = Invoice.create(user_id: user.id)
         item.amount = user.tariff_plan.price if user.tariff_plan
