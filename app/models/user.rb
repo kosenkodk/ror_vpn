@@ -86,5 +86,27 @@ class User < ApplicationRecord
     self.reset_password_token_expires_at = nil
     save!
   end
+
+  def check_invoices
+    User.all.each do |user|
+      if (user.expired_at < DateTime.now())
+        item = Invoice.create(user_id: user.id)
+        item.amount = user.tariff_plan.price if user.tariff_plan
+        item.save
+      end
+    end
+  end
+
+  def check_invoice
+    if self.expired_at < DateTime.now()
+      item = Invoice.create(user_id: self.id)
+      # item.title = self.tariff_plan.title
+      item.amount = self.tariff_plan.price
+      # self.prolongate_on(1.month)
+      item.save
+      self.save
+      # TODO: generate pdf and mail invoice to user
+    end
+  end
 end
 

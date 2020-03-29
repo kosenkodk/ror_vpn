@@ -18,3 +18,13 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+every 1.minute do
+  runner "User.check_invoices"
+end
+
+every 1.day do
+  runner "User.check_invoices"
+  # User.all.each do |user|
+  #   user.check_invoice
+  # end
+end
