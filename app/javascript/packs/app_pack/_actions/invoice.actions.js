@@ -1,9 +1,7 @@
 
 import { invoiceConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions } from './'
-import { history } from '../_helpers';
-import { urls } from 'config';
+import { globalActions, alertActions } from './'
 
 export const invoiceActions = {
   addDetailsToInvoices,
@@ -22,6 +20,7 @@ function addDetailsToInvoices(data) {
       .then(
         response => {
           dispatch(globalActions.setModalShow(false));
+          // localStorage.setItem('invoices', JSON.stringify(response.invoices))
           dispatch(success(response.notice, response.invoices));
           dispatch(alertActions.success(response.notice));
         },
