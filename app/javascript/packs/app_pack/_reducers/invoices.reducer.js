@@ -2,6 +2,21 @@ import { invoiceConstants } from '../_constants';
 
 export function invoices(state = {}, action) {
   switch (action.type) {
+    case invoiceConstants.INVOICES_VIEW_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case invoiceConstants.INVOICES_VIEW_SUCCESS:
+      return {
+        ...state,
+        notice: action.notice,
+      };
+    case invoiceConstants.INVOICES_VIEW_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     case invoiceConstants.ADD_INVOICE_DETAILS_REQUEST:
       return {
         invoices: action.invoices,

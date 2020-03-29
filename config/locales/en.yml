@@ -183,6 +183,8 @@ en:
         pay_current_invoice:
           title: "Pay current invoice"
           btn: "Pay current invoice"
+        view:
+          title: "View invoice details"
     account:
       2fa:
         pls_scan_qr_code: "Please scan QR code"

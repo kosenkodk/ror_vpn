@@ -21,11 +21,19 @@ import icViewSrc from 'images/icons/ic_view.svg'
 class PaymentsPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { title: '', selectedPaymentMethodId: 0 }
+    this.state = { title: '', selectedPaymentMethodId: 0, invoice: null }
   }
 
   payCurrentInvoice() {
 
+  }
+
+  onShowViewInvoice = (e, id) => {
+    e.preventDefault()
+    const invoices = this.props.invoices.filter(item => item.id === id)
+    this.setState({ invoice: invoices[0] })
+    this.props.dispatch(globalActions.setModalShow('viewInvoice'))
+    // this.props.dispatch(invoiceActions.view(id))
   }
 
   onShowCustomizeInvoices = (e) => {
@@ -94,6 +102,7 @@ class PaymentsPage extends React.Component {
   }
 
   render() {
+    const { invoice } = this.state
     const { payment_methods, invoices, user, countries } = this.props
     return (
       <div className="container-fluid payments">
@@ -181,7 +190,7 @@ class PaymentsPage extends React.Component {
                       <td>{item.status}</td>
                       <td>{item.created_at_humanize}</td>
                       <td className="text-right">
-                        <img src={icViewSrc} className="img-fluid" />
+                        <img src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
                         <img src={icDownloadSrc} className="img-fluid" />
                       </td>
                     </tr>
@@ -264,16 +273,49 @@ class PaymentsPage extends React.Component {
               isForm={true}
               isHideBtn={true}
               isNextBtnOnly={true}
-              // onBtnSave={this.onCustomizeInvoices}
-              title={I18n.t('pages.payments.invoices.customize.title')}
+              // onBtnSave={this.onViewInvoice}
+              title={I18n.t('pages.payments.invoices.view.title')}
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.save')}
               btnClasses={''}>
-              <InfoBlock>
-                {I18n.t('pages.payments.invoices.customize.info')}
-              </InfoBlock>
-              <p>Customize invoices</p>
+              {invoice &&
+                <div>
+                  <div className="row">
+                    <div className="col">
+                      {invoice.details_from}
+                    </div>
+                    <div className="col">
+                      <p>Invoice #: {invoice.no}</p>
+                      <p>Date: {invoice.created_at_humanize}</p>
+                      {/* <p>Period: </p>
+                      <p>Due: </p> */}
+                    </div>
+                  </div>
 
+                  <table className="table mt-30">
+                    <thead>
+                      <tr>
+                        <th className="font-weight-bold">Services</th>
+                        <th className="font-weight-bold">Date</th>
+                        <th className="font-weight-bold">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {invoice ?
+                        <tr key={`invoice${invoice.id}`}>
+                          <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
+                          <td>{invoice.created_at_humanize}</td>
+                          <td>{invoice.currency}{invoice.amount}</td>
+                        </tr>
+                        :
+                        <tr>
+                          <td rowSpan="6">Services are not found</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              }
             </ModalPopupForm>
           </div>
         </div>
