@@ -14,6 +14,7 @@ export function invoices(state = {}, action) {
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_FAILURE:
       return {
+        ...state,
         error: action.error
       };
     case invoiceConstants.GETALL_REQUEST:
@@ -28,6 +29,7 @@ export function invoices(state = {}, action) {
       };
     case invoiceConstants.GETALL_FAILURE:
       return {
+        ...state,
         error: action.error
       };
     default:
