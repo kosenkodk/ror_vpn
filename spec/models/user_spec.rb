@@ -104,4 +104,14 @@ RSpec.describe User, type: :model do
     user.prolongate_on(1.month)
     expect(user.expired_at).to be > 1.month.from_now-5.seconds
   end
+
+  it 'check_invoices' do
+    user = create(:user)
+    user2 = create(:user)
+    User.check_invoices
+    user.reload
+    user2.reload
+    expect(user.expired_at).not_to eq(nil)
+    expect(user2.expired_at).not_to eq(nil)
+  end
 end
