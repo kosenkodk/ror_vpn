@@ -281,14 +281,23 @@ class PaymentsPage extends React.Component {
               {invoice &&
                 <div>
                   <div className="row">
+                    <div className="col-4 offset-4 text-center">
+                      Vega VPN <br />
+                      123 Grienfield Drive<br />
+                      Yardville, NM 49990<br />
+                      (555) 555-0198<br />
+                      sale@vega.com<br />
+                    </div>
+                  </div>
+                  <div className="row mt-30">
                     <div className="col">
                       {invoice.details_from}
                     </div>
                     <div className="col">
-                      <p>Invoice #: {invoice.no}</p>
-                      <p>Date: {invoice.created_at_humanize}</p>
-                      {/* <p>Period: </p>
-                      <p>Due: </p> */}
+                      Invoice #: {invoice.no}<br />
+                      Date: {invoice.created_at_humanize}<br />
+                      {/* Period: <br/>
+                      Due: <br/> */}
                     </div>
                   </div>
 
@@ -302,11 +311,17 @@ class PaymentsPage extends React.Component {
                     </thead>
                     <tbody>
                       {invoice ?
-                        <tr key={`invoice${invoice.id}`}>
-                          <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
-                          <td>{invoice.created_at_humanize}</td>
-                          <td>{invoice.currency}{invoice.amount}</td>
-                        </tr>
+                        <React.Fragment>
+                          <tr key={`invoice${invoice.id}`}>
+                            <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
+                            <td>{invoice.created_at_humanize}</td>
+                            <td>{invoice.currency}{invoice.amount}</td>
+                          </tr>
+                          <tr>
+                            <td colSpan="2" className="font-weight-bold">Total</td>
+                            <td className="font-weight-bold">{invoice.currency}{invoice.amount}</td>
+                          </tr>
+                        </React.Fragment>
                         :
                         <tr>
                           <td rowSpan="6">Services are not found</td>
