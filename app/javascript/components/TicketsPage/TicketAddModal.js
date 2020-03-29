@@ -19,7 +19,7 @@ class TicketAddModal extends React.Component {
     return (
       <div>
         <button type="button" className="btn btn-sm btn-outline-success" data-toggle="modal" data-target={`#${idModal}`}>
-          {I18n.t('buttons.add')}
+          {I18n.t('buttons.new')}
         </button>
 
         <div className="modal fade" data-backdrop={false} id={idModal} tabIndex="-1" role="dialog" aria-labelledby={idModalTitle} aria-hidden="true">
