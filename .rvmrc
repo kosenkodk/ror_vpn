@@ -1,1 +1,2 @@
+rvm use ruby-2.5.3@vegaVPN
 rvm_trust_rvmrcs_flag=1
