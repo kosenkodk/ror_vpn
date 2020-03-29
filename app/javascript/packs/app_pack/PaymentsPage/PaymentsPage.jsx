@@ -258,7 +258,7 @@ class PaymentsPage extends React.Component {
               onBtnSave={this.onCustomizeInvoices}
               title={I18n.t('pages.payments.invoices.customize.title')}
               btnCloseText={I18n.t('buttons.cancel')}
-              btnSaveText={I18n.t('buttons.save')}
+              btnSaveText={I18n.t('buttons.new')}
               btnClasses={''}>
               <InfoBlock>
                 {I18n.t('pages.payments.invoices.customize.info')}

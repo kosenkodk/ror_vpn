@@ -28,7 +28,7 @@ RSpec.xdescribe 'Api::V1:TicketsController', type: :feature, js: true do
 
       it 'add item to list' do
 
-        click_on(I18n.t('buttons.add'))
+        click_on(I18n.t('buttons.new'))
         fill_in :title, with: 'ticket 1'
         fill_in :text, with: 'text 1'
         # click_on(I18n.t('buttons.save'))
