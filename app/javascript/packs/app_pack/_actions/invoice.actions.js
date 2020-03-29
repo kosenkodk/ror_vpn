@@ -16,7 +16,7 @@ export const invoiceActions = {
 
 function addDetailsToInvoices(data) {
   return dispatch => {
-    dispatch(request());
+    dispatch(request(JSON.parse(localStorage.getItem('invoices'))));
 
     userService.updateInvoice(data)
       .then(
@@ -32,7 +32,7 @@ function addDetailsToInvoices(data) {
       );
   };
 
-  function request() { return { type: invoiceConstants.ADD_INVOICE_DETAILS_REQUEST } }
+  function request(invoices) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_REQUEST, invoices } }
   function success(notice, invoices) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_SUCCESS, notice, invoices } }
   function failure(error) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_FAILURE, error } }
 }
