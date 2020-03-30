@@ -9,7 +9,7 @@ class PayCurrentInvoice extends React.Component {
   onPay = (e) => {
     e.preventDefault();
     this.props.dispatch(globalActions.setModalShow(false));
-    this.props.dispatch(invoiceActions.update({ id: this.props.invoice.id, invoice: { status: 'paid' } }));
+    this.props.dispatch(invoiceActions.update({ id: this.props.invoice.id, status: 'paid' }));
   }
 
   render() {

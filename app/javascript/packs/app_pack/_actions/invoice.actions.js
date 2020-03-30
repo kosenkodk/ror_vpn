@@ -83,12 +83,12 @@ function update(item) {
     dispatch(request())
     userService.updateInvoice(item)
       .then(
-        item => {
-          dispatch(success(item))
+        response => {
+          dispatch(success(response.invoice))
           dispatch(alertActions.success(I18n.t('pages.payments.invoices.pay_current_invoice.success')))
         },
         error => {
-          dispatch(failure(item))
+          dispatch(failure(error))
           dispatch(alertActions.error(error))
         }
       )
