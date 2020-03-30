@@ -14,13 +14,13 @@ export const invoiceActions = {
 
 function addDetailsToInvoices(data) {
   return dispatch => {
-    dispatch(request(JSON.parse(localStorage.getItem('invoices'))));
+    dispatch(request());
 
     userService.updateInvoice(data)
       .then(
         response => {
           dispatch(globalActions.setModalShow(false));
-          // localStorage.setItem('invoices', JSON.stringify(response.invoices))
+          localStorage.setItem('invoices', JSON.stringify(response.invoices))
           dispatch(success(response.notice, response.invoices));
           dispatch(alertActions.success(response.notice));
         },
@@ -31,14 +31,14 @@ function addDetailsToInvoices(data) {
       );
   };
 
-  function request(invoices) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_REQUEST, invoices } }
+  function request() { return { type: invoiceConstants.ADD_INVOICE_DETAILS_REQUEST } }
   function success(notice, invoices) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_SUCCESS, notice, invoices } }
   function failure(error) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_FAILURE, error } }
 }
 
 function getAll() {
   return dispatch => {
-    dispatch(request(JSON.parse(localStorage.getItem('invoices'))))
+    dispatch(request())
     userService.getInvoices()
       .then(
         items => {
@@ -52,7 +52,7 @@ function getAll() {
       )
   }
 
-  function request(invoices) { return { type: invoiceConstants.GETALL_REQUEST, invoices } }
+  function request() { return { type: invoiceConstants.GETALL_REQUEST } }
   function success(invoices) { return { type: invoiceConstants.GETALL_SUCCESS, invoices } }
   function failure(error) { return { type: invoiceConstants.GETALL_FAILURE, error } }
 }
