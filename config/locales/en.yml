@@ -183,6 +183,8 @@ en:
         pay_current_invoice:
           title: "Pay current invoice"
           btn: "Pay current invoice"
+          success: "Invoice has been paid successfully"
+          error: "Error. Can't pay for the current invoice."
         view:
           title: "View invoice details"
     account:

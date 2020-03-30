@@ -11,13 +11,13 @@ import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
 import BankCardForm from '../DashboardPage/BankCardForm'
 import { InvoiceCustomizationForm } from './InvoiceCustomizationForm'
+import { InvoiceDetails } from './InvoiceDetails'
 
 import icEditSrc from 'images/icons/ic_edit.svg'
 import icTrashSrc from 'images/icons/ic_trash.svg'
 import icLockSrc from 'images/icons/ic_lock.svg'
 import icDownloadSrc from 'images/icons/ic_download.svg'
 import icViewSrc from 'images/icons/ic_view.svg'
-import { NewLineToBr } from '../_components'
 
 class PaymentsPage extends React.Component {
   constructor(props) {
@@ -279,59 +279,7 @@ class PaymentsPage extends React.Component {
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.save')}
               btnClasses={''}>
-              {invoice &&
-                <div>
-                  <div className="row">
-                    <div className="col-4 offset-4 text-center">
-                      Vega VPN <br />
-                      123 Grienfield Drive<br />
-                      Yardville, NM 49990<br />
-                      (555) 555-0198<br />
-                      sale@vega.com<br />
-                    </div>
-                  </div>
-                  <div className="row mt-30">
-                    <div className="col">
-                      <NewLineToBr>{invoice.details_from}</NewLineToBr>
-                    </div>
-                    <div className="col">
-                      Invoice #: {invoice.no}<br />
-                      Date: {invoice.created_at_humanize}<br />
-                      {/* Period: <br/>
-                      Due: <br/> */}
-                    </div>
-                  </div>
-
-                  <table className="table mt-30">
-                    <thead>
-                      <tr>
-                        <th className="font-weight-bold">Services</th>
-                        <th className="font-weight-bold">Date</th>
-                        <th className="font-weight-bold">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {invoice ?
-                        <React.Fragment>
-                          <tr key={`invoice${invoice.id}`}>
-                            <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
-                            <td>{invoice.created_at_humanize}</td>
-                            <td>{invoice.currency}{invoice.amount}</td>
-                          </tr>
-                          <tr>
-                            <td colSpan="2" className="font-weight-bold">Total</td>
-                            <td className="font-weight-bold">{invoice.currency}{invoice.amount}</td>
-                          </tr>
-                        </React.Fragment>
-                        :
-                        <tr>
-                          <td rowSpan="6">Services are not found</td>
-                        </tr>
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              }
+              <InvoiceDetails invoice={invoice} />
             </ModalPopupForm>
           </div>
         </div>
