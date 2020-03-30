@@ -40,6 +40,13 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
       expect(invoice2_of_user.details_from).to eq('name and address')
       expect(response_json['invoices'][0].values).to include('name and address')
     end
+
+    it 'pay current invoice' do
+      put :update, params: { id: invoice2_of_user.id, invoice: { status: 'paid'}}
+      invoice2_of_user.reload
+      expect(response_json.values).to include('paid')
+      expect(invoice2_of_user.status).to eq('paid')
+    end
   end
 
   describe 'POST #create' do

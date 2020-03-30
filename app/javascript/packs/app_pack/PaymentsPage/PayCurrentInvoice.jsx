@@ -16,7 +16,7 @@ class PayCurrentInvoice extends React.Component {
     const { invoice, user } = this.props
     return (
       <React.Fragment>
-        Invoice #: {invoice && invoice.no}
+        {/* Invoice #: {invoice && invoice.no} */}
         <PaymentDetailsCard planSelected={user && user.tariff_plan} onFormSubmit={this.onPay} />
       </React.Fragment>
     )
