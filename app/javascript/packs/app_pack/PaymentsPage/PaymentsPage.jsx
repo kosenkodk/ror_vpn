@@ -190,7 +190,7 @@ class PaymentsPage extends React.Component {
                       <td>{item.status}</td>
                       <td>{item.created_at_humanize}</td>
                       <td className="text-right">
-                        <img src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
+                        <img id="viewInvoice" src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
                         <img src={icDownloadSrc} className="img-fluid" />
                       </td>
                     </tr>
