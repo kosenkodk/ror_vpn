@@ -280,13 +280,12 @@ class PaymentsPage extends React.Component {
               isForm={true}
               isHideBtn={true}
               isNextBtnOnly={true}
-              onBtnSave={this.onCustomizeInvoices}
+              // onBtnSave={this.onPayCurrentInvoice}
               title={I18n.t('pages.payments.invoices.pay_current_invoice.title')}
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.new')}
               btnClasses={''}>
-              <PayCurrentInvoice invoice={invoice_current} />
-
+              <PayCurrentInvoice user={user} invoice={invoice_current} />
             </ModalPopupForm>
 
             <ModalPopupForm
