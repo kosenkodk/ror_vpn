@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { PaymentDetailsCard } from '../DashboardPage/PaymentDetailsCard';
-import { alertActions } from '../_actions';
-import { I18n } from 'helpers';
+import { globalActions, invoiceActions } from '../_actions';
 
 class PayCurrentInvoice extends React.Component {
 
   onPay = (e) => {
-    e.preventDefault()
-    this.props.dispatch(alertActions.success(I18n.t('pages.payments.invoices.pay_current_invoice.success')))
+    e.preventDefault();
+    this.props.dispatch(globalActions.setModalShow(false));
+    this.props.dispatch(invoiceActions.update({ id: this.props.invoice.id, invoice: { status: 'paid' } }));
   }
 
   render() {
-    const { invoice, user } = this.props
+    const { invoice, user } = this.props;
     return (
       <React.Fragment>
         {/* Invoice #: {invoice && invoice.no} */}
@@ -28,7 +28,7 @@ function mapStateToProps(state) {
   // return {
   //   user
   // };
-  return state
+  return state;
 }
 
 const connectedForm = connect(mapStateToProps)(PayCurrentInvoice);

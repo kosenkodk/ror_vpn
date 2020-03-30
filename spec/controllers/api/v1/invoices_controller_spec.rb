@@ -45,7 +45,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
       put :update, params: { id: invoice2_of_user.id, invoice: { status: 'paid'}}
       invoice2_of_user.reload
       user.reload
-      expect(response_json.values).to include('paid')
+      expect(response_json['invoice'].values).to include('paid')
       expect(invoice2_of_user.status).to eq('paid')
       expect(user.expired_at).to be > 1.month.from_now - 1.minute
     end
