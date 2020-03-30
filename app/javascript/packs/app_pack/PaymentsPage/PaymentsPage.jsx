@@ -17,6 +17,7 @@ import icTrashSrc from 'images/icons/ic_trash.svg'
 import icLockSrc from 'images/icons/ic_lock.svg'
 import icDownloadSrc from 'images/icons/ic_download.svg'
 import icViewSrc from 'images/icons/ic_view.svg'
+import { NewLineToBr } from '../_components'
 
 class PaymentsPage extends React.Component {
   constructor(props) {
@@ -190,7 +191,7 @@ class PaymentsPage extends React.Component {
                       <td>{item.status}</td>
                       <td>{item.created_at_humanize}</td>
                       <td className="text-right">
-                        <img src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
+                        <img id="viewInvoice" src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
                         <img src={icDownloadSrc} className="img-fluid" />
                       </td>
                     </tr>
@@ -291,7 +292,7 @@ class PaymentsPage extends React.Component {
                   </div>
                   <div className="row mt-30">
                     <div className="col">
-                      {invoice.details_from}
+                      <NewLineToBr>{invoice.details_from}</NewLineToBr>
                     </div>
                     <div className="col">
                       Invoice #: {invoice.no}<br />
