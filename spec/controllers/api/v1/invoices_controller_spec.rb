@@ -26,7 +26,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     end
 
     it 'customize all invoices (add name and address to all invoices)' do
-      put :update, params: { id: invoice_of_user.id, invoice: {details_from: "name and address"} }
+      put :update, params: { id: user.id, invoice: {details_from: "name and address"} }
       invoice_of_user.reload
       expect(invoice_of_user.details_from).to eq('name and address')
       # expect(invoice_of_user.title).to eq new_invoice_attributes[:details_from]
@@ -34,11 +34,11 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     end
 
     it 'customize (change name with address) last invoice' do
-      put :update, params: { id: invoice_of_user.id, invoice_details: "name and address", invoice: {id:nil, invoice_details: "name and address"} }
+      put :update, params: { id: user.id, invoice: {invoice_details: "name and address"} }
       invoice_of_user.reload
       invoice2_of_user.reload
       expect(invoice2_of_user.details_from).to eq('name and address')
-      expect(response_json.values).to include('name and address')
+      expect(response_json['invoices'][0].values).to include('name and address')
     end
   end
 
