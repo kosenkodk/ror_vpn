@@ -35,7 +35,7 @@ class InvoiceCustomizationForm extends React.Component {
               {I18n.t('pages.account.cancel.form.message')}
             </label>
             <div className="col-sm-6">
-              <textarea required={true} type="text" id="invoice_details" name="invoice_details" className="form-control" value={this.state.invoice_details || ''} onChange={this.handleChange} required={false}
+              <textarea type="text" id="invoice_details" name="invoice_details" className="form-control" value={this.state.invoice_details || ''} onChange={this.handleChange} required={true}
               // placeholder={I18n.t('pages.account.cancel.form.message')}
               ></textarea>
             </div>
