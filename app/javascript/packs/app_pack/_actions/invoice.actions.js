@@ -1,7 +1,8 @@
 
 import { invoiceConstants } from '../_constants';
 import { userService } from '../_services';
-import { globalActions, alertActions } from './'
+import { globalActions, alertActions } from './';
+import { I18n } from 'helpers';
 
 export const invoiceActions = {
   addDetailsToInvoices,
@@ -79,12 +80,12 @@ function add(item) {
 
 function update(item) {
   return dispatch => {
-    dispatch(request({ item }))
+    dispatch(request())
     userService.updateInvoice(item)
       .then(
         item => {
           dispatch(success(item))
-          dispatch(alertActions.success(item.notice))
+          dispatch(alertActions.success(I18n.t('pages.payments.invoices.pay_current_invoice.success')))
         },
         error => {
           dispatch(failure(item))
@@ -93,7 +94,7 @@ function update(item) {
       )
   }
   function request() { return { type: invoiceConstants.UPDATE_REQUEST } }
-  function success(item) { return { type: invoiceConstants.UPDATE_SUCCESS, item } }
+  function success(invoice) { return { type: invoiceConstants.UPDATE_SUCCESS, invoice } }
   function failure(error) { return { type: invoiceConstants.UPDATE_FAILURE, error } }
 }
 
