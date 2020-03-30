@@ -37,6 +37,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
 
     it 'pay current invoice' do
       paypal = create(:pay_with_paypal) 
+      expect(page).to have_content('pay')
       click_on(I18n.t('pages.payments.invoices.pay_current_invoice.btn'))
 
       expect(page).to have_content(I18n.t('pages.payments.invoices.pay_current_invoice.title'))
@@ -48,6 +49,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
 
       click_on(I18n.t('buttons.next'))
       alert_have_text I18n.t('pages.payments.invoices.pay_current_invoice.success')
+      expect(page).to have_content('paid')
     end
   end
 
