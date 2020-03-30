@@ -66,7 +66,8 @@ InvoiceCustomizationForm.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { loading, error, notice } = state.account;
+  const { loading } = state.invoices
+  const { error, notice } = state.account;
   return {
     loading,
     error,

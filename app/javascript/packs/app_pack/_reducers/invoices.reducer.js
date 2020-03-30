@@ -18,27 +18,31 @@ export function invoices(state = initialState, action) {
       return {
         ...state,
         notice: action.notice,
+        loading: false,
       };
     case invoiceConstants.INVOICES_VIEW_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        loading: false,
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_SUCCESS:
       return {
         ...state,
         invoices: action.invoices,
         notice: action.notice,
+        loading: false,
       };
     case invoiceConstants.ADD_INVOICE_DETAILS_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        loading: false,
       };
     case invoiceConstants.GETALL_REQUEST:
       return {
@@ -48,11 +52,13 @@ export function invoices(state = initialState, action) {
       return {
         invoices: action.invoices,
         notice: action.notice,
+        loading: false,
       };
     case invoiceConstants.GETALL_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        loading: false,
       };
     default:
       return state
