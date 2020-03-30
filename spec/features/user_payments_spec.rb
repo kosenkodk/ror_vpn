@@ -27,6 +27,10 @@ RSpec.describe 'Payments', type: :feature, js: true do
     it 'customize invoice' do
       click_on(I18n.t('pages.payments.invoices.customize.btn'))
       expect(page).to have_content(I18n.t('pages.payments.invoices.customize.title'))
+      fill_in :invoice_details, with: 'name'
+      click_on(I18n.t('buttons.save'))
+      invoice.reload
+      expect(invoice.details_from).to eq('name')
     end
 
     it 'pay current invoice' do
