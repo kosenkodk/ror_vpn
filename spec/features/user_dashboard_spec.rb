@@ -4,10 +4,10 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
   let!(:tariff_plan_free) { create(:tariff_plan_free) }
   let!(:tariff_plan) { create(:tariff_plan) }
   let!(:user) { create(:user, tariff_plan_id: tariff_plan_free) }
-  let!(:paypal) { create(:payment_method, title: 'paypal', pay_id: 'paypal', is_for_signup: false) }
-  let!(:bitcoin) { create(:payment_method, title: 'bitcoin', pay_id: 'bitcoin', is_for_signup: false) }
-  let!(:bank_card) { create(:payment_method, title: 'bank card', pay_id: 'bank_card', is_for_signup: false) }
-
+  let!(:bank_card) { create(:pay_with_bank_card) }
+  let!(:bitcoin) { create(:pay_with_bitcoin) }
+  let!(:paypal) { create(:pay_with_paypal) }
+  
   describe 'plans' do
     before {
       fsign_in_as(user)
