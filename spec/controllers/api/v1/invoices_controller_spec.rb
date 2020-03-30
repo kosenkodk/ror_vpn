@@ -25,7 +25,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
       expect(response_json.count).to eq(2)
     end
 
-    it 'customize all invoices (add name and address to all invoices)' do
+    xit 'customize all invoices (add name and address to all invoices)' do
       put :update, params: { id: user.id, invoice: {details_from: "name and address"} }
       invoice_of_user.reload
       expect(invoice_of_user.details_from).to eq('name and address')
