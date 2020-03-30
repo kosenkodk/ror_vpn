@@ -20,7 +20,7 @@ import React from 'react';
 class NewLineToBr extends React.Component {
   render() {
     return (
-      this.props.children.split("\n").map((line, index) => (
+      this.props.children && this.props.children.split("\n").map((line, index) => (
         <React.Fragment key={`newLineToBr${index}`}>
           {line}
           <br />
