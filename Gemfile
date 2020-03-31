@@ -79,3 +79,4 @@ gem 'griddler'#, '1.3.1'
 gem 'griddler-sendgrid'#, '1.0.0'
 
 gem 'google-authenticator-rails'
+gem 'wicked_pdf'
