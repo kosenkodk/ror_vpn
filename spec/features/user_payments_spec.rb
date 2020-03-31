@@ -35,9 +35,21 @@ RSpec.describe 'Payments', type: :feature, js: true do
       expect(page).to have_content('name')
     end
 
-    xit 'pay current invoice' do
+    it 'pay current invoice' do
+      paypal = create(:pay_with_paypal) 
+      expect(page).to have_content('pay')
       click_on(I18n.t('pages.payments.invoices.pay_current_invoice.btn'))
+
       expect(page).to have_content(I18n.t('pages.payments.invoices.pay_current_invoice.title'))
+      expect(page).to have_content(invoice.no)
+      click_on(I18n.t('buttons.next'))
+      
+      id_of_select_box = 'payment_methods'
+      select(paypal.title, from: id_of_select_box)
+
+      click_on(I18n.t('buttons.next'))
+      alert_have_text I18n.t('pages.payments.invoices.pay_current_invoice.success')
+      expect(page).to have_content('paid')
     end
   end
 
