@@ -69,11 +69,11 @@ group :development, :test do
 end
 
 # gem 'exception_handler', '~> 0.8.0.0'
-gem 'font-awesome-rails'
-gem 'i18n-js'
+gem 'font-awesome-rails'#, '4.7.0.5'
+gem 'i18n-js'#, '3.3.0'
 
-gem 'bootstrap-email'
-gem 'will_paginate'
+gem 'bootstrap-email'#, '0.2.6
+gem 'will_paginate'#, '3.2.1'
 
 gem 'griddler'#, '1.3.1'
 gem 'griddler-sendgrid'#, '1.0.0'
