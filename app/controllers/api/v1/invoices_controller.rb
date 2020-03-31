@@ -4,7 +4,9 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   def to_pdf
     invoice = Invoice.first
     pdf = invoice.to_pdf
-    filename = "invoice#{invoice.created_at}.pdf"
+    # render json: { pdf: pdf.html_safe }
+    # return
+    filename = "invoice#{invoice.try(:created_at)}.pdf"
     invoice.pdf.attach(io: StringIO.new(pdf), filename: filename)
     # invoice.save
     # send_data to_pdf, filename: filename # download file
