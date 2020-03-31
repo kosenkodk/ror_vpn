@@ -1,0 +1,41 @@
+<table style="width:100%;">
+  <tr className='row'>
+    <td colspan="2" align="center">
+      Vega VPN <br />
+      123 Grienfield Drive<br />
+      Yardville, NM 49990<br />
+      (555) 555-0198<br />
+      sale@vega.com<br />
+    </td>
+  </tr>
+  <tr className='row mt-30'>
+    <td style='width:50%'>
+      Your details: <%=@invoice.details_from%>
+    </td>
+    <td style='width:50%'>
+      Invoice #: <%=@invoice.no%><br />
+      Date: <%=@invoice.created_at_humanize%><br />
+    </td>
+  </tr>
+
+  <table border="1" style="width:100%;">
+    <thead>
+      <tr>
+        <th className='font-weight-bold'>Services</th>
+        <th className='font-weight-bold'>Date</th>
+        <th className='font-weight-bold'>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%=@invoice.title%></td>
+        <td><%=@invoice.created_at_humanize%></td>
+        <td><%=@invoice.currency%><%=@invoice.amount%></td>
+      </tr>
+      <tr>
+        <td colSpan='2' className='font-weight-bold'>Total</td>
+        <td className='font-weight-bold'><%=@invoice.currency%><%=@invoice.amount%></td>
+      </tr>
+    </tbody>
+  </table>
+</table>
