@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(version: 2020_03_28_115509) do
 
   create_table "invoices", force: :cascade do |t|
     t.string "no"
-    t.integer "invoice_type"
-    t.integer "status"
+    t.integer "invoice_type", default: 0
+    t.integer "status", default: 0
     t.float "amount"
     t.string "currency"
     t.integer "user_id", null: false
