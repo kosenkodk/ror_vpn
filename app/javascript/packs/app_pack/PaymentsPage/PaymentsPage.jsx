@@ -11,18 +11,24 @@ import icInfoSrc from 'images/admin/ic_warning.svg'
 import PayPal from '../DashboardPage/PayPal'
 import BankCardForm from '../DashboardPage/BankCardForm'
 import { InvoiceCustomizationForm } from './InvoiceCustomizationForm'
+import { InvoiceDetails } from './InvoiceDetails'
+import { PayCurrentInvoice } from './PayCurrentInvoice'
 
 import icEditSrc from 'images/icons/ic_edit.svg'
 import icTrashSrc from 'images/icons/ic_trash.svg'
 import icLockSrc from 'images/icons/ic_lock.svg'
 import icDownloadSrc from 'images/icons/ic_download.svg'
 import icViewSrc from 'images/icons/ic_view.svg'
-import { NewLineToBr } from '../_components'
 
 class PaymentsPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = { title: '', selectedPaymentMethodId: 0, invoice: null }
+  }
+
+  onShowModalOfPayCurrentInvoice = (e) => {
+    e.preventDefault()
+    this.props.dispatch(globalActions.setModalShow('payCurrentInvoice'))
   }
 
   payCurrentInvoice() {
@@ -104,7 +110,7 @@ class PaymentsPage extends React.Component {
 
   render() {
     const { invoice } = this.state
-    const { payment_methods, invoices, user, countries } = this.props
+    const { payment_methods, invoice_current, invoices, user, countries } = this.props
     return (
       <div className="container-fluid payments">
         <div className="row">
@@ -167,7 +173,7 @@ class PaymentsPage extends React.Component {
 
             <div className="mt-30 d-flex">
               <button onClick={this.onShowCustomizeInvoices} className="mt-2 mt-sm-0 btn btn-outline-pink2 mr-auto">{I18n.t('pages.payments.invoices.customize.btn')}</button>
-              <button onClick={this.payCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
+              <button disabled={(invoice_current && (invoice_current.status === 'paid')) ? true : false} onClick={this.onShowModalOfPayCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
             </div>
 
             <table className="table mt-30">
@@ -270,6 +276,20 @@ class PaymentsPage extends React.Component {
 
             <ModalPopupForm
               onClose={this.onModalClose}
+              id='payCurrentInvoice'
+              isForm={true}
+              isHideBtn={true}
+              isNextBtnOnly={true}
+              // onBtnSave={this.onPayCurrentInvoice}
+              title={I18n.t('pages.payments.invoices.pay_current_invoice.title')}
+              btnCloseText={I18n.t('buttons.cancel')}
+              btnSaveText={I18n.t('buttons.new')}
+              btnClasses={''}>
+              <PayCurrentInvoice user={user} invoice={invoice_current} />
+            </ModalPopupForm>
+
+            <ModalPopupForm
+              onClose={this.onModalClose}
               id='viewInvoice'
               isForm={true}
               isHideBtn={true}
@@ -279,59 +299,7 @@ class PaymentsPage extends React.Component {
               btnCloseText={I18n.t('buttons.cancel')}
               btnSaveText={I18n.t('buttons.save')}
               btnClasses={''}>
-              {invoice &&
-                <div>
-                  <div className="row">
-                    <div className="col-4 offset-4 text-center">
-                      Vega VPN <br />
-                      123 Grienfield Drive<br />
-                      Yardville, NM 49990<br />
-                      (555) 555-0198<br />
-                      sale@vega.com<br />
-                    </div>
-                  </div>
-                  <div className="row mt-30">
-                    <div className="col">
-                      <NewLineToBr>{invoice.details_from}</NewLineToBr>
-                    </div>
-                    <div className="col">
-                      Invoice #: {invoice.no}<br />
-                      Date: {invoice.created_at_humanize}<br />
-                      {/* Period: <br/>
-                      Due: <br/> */}
-                    </div>
-                  </div>
-
-                  <table className="table mt-30">
-                    <thead>
-                      <tr>
-                        <th className="font-weight-bold">Services</th>
-                        <th className="font-weight-bold">Date</th>
-                        <th className="font-weight-bold">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {invoice ?
-                        <React.Fragment>
-                          <tr key={`invoice${invoice.id}`}>
-                            <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
-                            <td>{invoice.created_at_humanize}</td>
-                            <td>{invoice.currency}{invoice.amount}</td>
-                          </tr>
-                          <tr>
-                            <td colSpan="2" className="font-weight-bold">Total</td>
-                            <td className="font-weight-bold">{invoice.currency}{invoice.amount}</td>
-                          </tr>
-                        </React.Fragment>
-                        :
-                        <tr>
-                          <td rowSpan="6">Services are not found</td>
-                        </tr>
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              }
+              <InvoiceDetails invoice={invoice} />
             </ModalPopupForm>
           </div>
         </div>
@@ -342,10 +310,12 @@ class PaymentsPage extends React.Component {
 
 function mapStateToProps(state) {
   const { invoices } = state.invoices
+  const invoice_current = invoices && invoices[0]
   const { payment_methods, countries } = state.global
   const { user } = state.users
   return {
-    user, payment_methods, countries, invoices
+    invoices, invoice_current,
+    user, payment_methods, countries
   }
 }
 

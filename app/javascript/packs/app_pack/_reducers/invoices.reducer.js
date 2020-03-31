@@ -60,6 +60,25 @@ export function invoices(state = initialState, action) {
         error: action.error,
         loading: false,
       };
+    case invoiceConstants.UPDATE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case invoiceConstants.UPDATE_SUCCESS:
+      return {
+        ...state,
+        invoice: action.invoice,
+        invoices: state.invoices && state.invoices.map(itemPrev => itemPrev.id === action.invoice.id ? action.invoice : itemPrev),
+        notice: action.notice,
+        loading: false,
+      };
+    case invoiceConstants.UPDATE_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+      };
     default:
       return state
   }
