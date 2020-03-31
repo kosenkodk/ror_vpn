@@ -81,3 +81,4 @@ gem 'griddler-sendgrid'#, '1.0.0'
 gem 'google-authenticator-rails'#, '2.0.0
 gem 'wicked_pdf'#, '2.0.2'
 gem 'wkhtmltopdf-binary'#, '0.12.5.4
+gem 'erubis'
