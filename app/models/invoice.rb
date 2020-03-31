@@ -22,19 +22,15 @@ class Invoice < ApplicationRecord
   end
  
   def to_pdf
-    # # todo: increase perfomance
-    # # layout = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_layout.html.erb')))
-    # # body = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_body.html.erb')))
-    # layout = File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_layout.html.erb'))
-    # body = File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_body.html.erb'))
-    # # body_html = body.result(binding)
-    # # pdf_html = layout.result(body: body_html) # replace `yield` in layout with `body`
-    # pdf_html = "<h1>Invoice</h1>"
-    # # pdf_html = ActionController::Base.new.render_to_string(template: 'app/views/invoices/invoice.html.erb', layout: 'app/views/api/v1/invoices/invoice_pdf_layout.html')
+    @invoice = self
+    layout = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_layout.html.erb')))
+    body = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_body.html.erb')))
+    body_html = body.result(binding)
+    pdf_html = layout.result(body: body_html) # replace `yield` in layout with `body`
+    # pdf_html = ActionController::Base.new.render_to_string(template: 'app/views/invoices/invoice.html.erb', layout: 'app/views/api/v1/invoices/invoice_pdf_layout.html')
+    pdf = WickedPdf.new.pdf_from_string(pdf_html)
 
-    # pdf = WickedPdf.new.pdf_from_string(pdf_html)
-
-    generate_pdf
+    # generate_pdf
   end
 
   private
