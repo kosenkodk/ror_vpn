@@ -40,6 +40,7 @@ class Invoice < ApplicationRecord
     if self.user && self.user.tariff_plan
       self.title = self.user.tariff_plan.title
       self.amount = self.user.tariff_plan.price
+      self.no = self.id # generate_invoice_no
     end
   end
 
