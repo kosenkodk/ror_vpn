@@ -8,15 +8,18 @@
       sale@vega.com<br />
     </div>
   </div>
-  <div class='row mt-5'>
-    <div class='col-6'>
-      Your details: <%=@invoice.details_from%>
-    </div>
-    <div class='col-6'>
-      Invoice #: <%=@invoice.no%><br />
-      Date: <%=@invoice.created_at_humanize%><br />
-    </div>
-  </div>
+  <table class='table mt-5'>
+    <tr class=''>
+      <td style='width:50%'>
+        Your details:<br />
+        <%=@invoice.details_from.gsub("\n",'<br/>') if @invoice.details_from  %>
+      </td>
+      <td style='width:50%'>
+        Invoice #: <%=@invoice.no%><br />
+        Date: <%=@invoice.created_at_humanize%><br />
+      </td>
+    </tr>
+  </table>
 
   <table class='table table-bordered mt-5'>
     <thead>
