@@ -88,12 +88,19 @@ class User < ApplicationRecord
   end
 
   def self.check_invoices
+    date = DateTime.now #Date.today
+    start_date = date.at_beginning_of_month
+    end_date = date.at_end_of_month
+
     User.all.each do |user|
-      user.update(expired_at: DateTime.now()) if user.expired_at.nil?
-      if (user.expired_at < DateTime.now())
-        item = Invoice.create(user_id: user.id)
-        item.amount = user.tariff_plan.price if user.tariff_plan
-        item.save
+      user.update(expired_at: date) if user.expired_at.nil?
+      if (user.expired_at <= date)
+        invoices = Invoice.where(created_at: start_date..end_date)
+        if invoices.count === 0
+          item = Invoice.create(user_id: user.id)
+          item.amount = user.tariff_plan.price if user.tariff_plan
+          item.save
+        end
       end
     end
   end
