@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get '/invoice_to_pdf', to: "invoices#to_pdf"
       resources :departments, only: [:index]
       resources :countries, only: [:index]
       

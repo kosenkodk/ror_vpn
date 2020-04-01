@@ -1,65 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NewLineToBr } from '../_components';
+import icDownloadSrc from 'images/icons/ic_download.svg';
+import icOpenInNewTabSrc from 'images/icons/ic_open_in_new_tab.svg';
 
 class InvoiceDetails extends React.Component {
+
+
+  onDownloadInvoice = (e, invoice) => {
+    e.preventDefault()
+    // window.open(invoice.pdf_url, '_blank') // open in a new tab
+    window.open(invoice.pdf_url) // open in a new tab
+    // window.location.href = invoice.pdf_url; // open in the current page
+  }
+
   render() {
     const { invoice, user } = this.props
     return (
       <React.Fragment>
         {invoice &&
-          <div>
-            <div className="row">
-              <div className="col-4 offset-4 text-center">
-                Vega VPN <br />
-              123 Grienfield Drive<br />
-              Yardville, NM 49990<br />
-              (555) 555-0198<br />
-              sale@vega.com<br />
-              </div>
+          <React.Fragment>
+            <div className="vh-50">
+              <iframe scrolling="yes" className="w-100 h-100" src={invoice.pdf_url} ></iframe>
             </div>
-            <div className="row mt-30">
+            {/* <div className="row justify-content-center align-items-center"> */}
+            <div className="row text-center mt-10">
               <div className="col">
-                <NewLineToBr>{invoice.details_from}</NewLineToBr>
+                {invoice.created_at_humanize} - {(invoice.pdf_size > 0) && `${invoice.pdf_size / 1000} KB`}
               </div>
               <div className="col">
-                Invoice #: {invoice.no}<br />
-                      Date: {invoice.created_at_humanize}<br />
-                {/* Period: <br/>
-                      Due: <br/> */}
+                <a href={invoice.pdf_url} target="_blank">
+                  <img src={icOpenInNewTabSrc} className="img-fluid" />
+                &nbsp;
+                Open in new tab
+              </a>
+              </div>
+              <div className="col">
+                <a className="px-1"
+                  // href="#" onClick={(e) => this.onDownloadInvoice(e, invoice)} 
+                  href={invoice.pdf_url} target="_blank" download
+                >
+                  <img src={icDownloadSrc} className="img-fluid" />
+                &nbsp;
+                Download
+              </a>
               </div>
             </div>
-
-            <table className="table mt-30">
-              <thead>
-                <tr>
-                  <th className="font-weight-bold">Services</th>
-                  <th className="font-weight-bold">Date</th>
-                  <th className="font-weight-bold">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {invoice ?
-                  <React.Fragment>
-                    <tr key={`invoice${invoice.id}`}>
-                      <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
-                      <td>{invoice.created_at_humanize}</td>
-                      <td>{invoice.currency}{invoice.amount}</td>
-                    </tr>
-                    <tr>
-                      <td colSpan="2" className="font-weight-bold">Total</td>
-                      <td className="font-weight-bold">{invoice.currency}{invoice.amount}</td>
-                    </tr>
-                  </React.Fragment>
-                  :
-                  <tr>
-                    <td rowSpan="6">Services are not found</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </div>
+          </React.Fragment>
         }
       </React.Fragment>
     )

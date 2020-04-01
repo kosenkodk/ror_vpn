@@ -1,5 +1,21 @@
 class Api::V1::InvoicesController < Api::V1::ApiController
-  before_action :authorize_access_request!
+  before_action :authorize_access_request!, except: :to_pdf
+
+  def to_pdf
+    # invoice = Invoice.first
+    # pdf = invoice.to_pdf
+    # # render json: { pdf: pdf.html_safe }
+    # # return
+    # filename = "invoice#{invoice.try(:created_at)}.pdf"
+    # invoice.pdf.attach(io: StringIO.new(pdf), filename: filename)
+    # # invoice.save
+    # # send_data to_pdf, filename: filename # download file
+    # send_data pdf, filename: filename # download file
+    # # render json: { invoice: invoice }
+    invoice = Invoice.first
+    filename = "invoice#{invoice.try(:created_at)}.pdf"
+    send_data invoice.to_pdf, filename: filename # download file
+  end
 
   def show
     item = Invoice.find(params[:id]).where(user_id: current_user)
