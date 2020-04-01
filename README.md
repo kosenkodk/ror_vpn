@@ -20,7 +20,8 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Cron tab
-whenever --update-crontab
+whenever -l
+whenever --update-crontab --set environment=development
 
 * Deployment instructions
 * Development

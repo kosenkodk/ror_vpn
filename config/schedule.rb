@@ -19,17 +19,19 @@
 
 # Learn more: http://github.com/javan/whenever
 
-ENV['RAILS_ENV'] = 'development'
-set :output, 'log/whenever.log'
-
-every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
-  runner "User.check_invoices"
-end
-
-every 1.day do
-  runner "User.check_invoices"
-  # runner "User.check_invoices"
-  # User.all.each do |user|
-  #   user.check_invoice
-  # end
-end
+# case @environment
+# when 'production'
+  set :environment, 'production' # ENV['RAILS_ENV'] = 'production'
+  set :output, 'log/whenever.log'
+  every 1.day do
+    runner "User.check_invoices"
+    # User.all.each do |user|
+    #   user.check_invoice
+    # end
+  end
+# when 'development'
+  set :environment, 'development' # ENV['RAILS_ENV'] = 'development'
+  set :output, 'log/whenever.dev.log'
+  every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
+    runner "User.check_invoices"
+  end
