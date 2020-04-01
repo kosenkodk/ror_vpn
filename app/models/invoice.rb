@@ -10,11 +10,11 @@ class Invoice < ApplicationRecord
   has_one_attached :pdf, dependent: :destroy
 
   def pdf_size
-    self.pdf.blob.byte_size if self.pdf && self.pdf.blob && self.pdf.byte_size > 0
+    self.try(:pdf).try(:blob).try(:byte_size) || 0  
   end
 
   def pdf_url
-    rails_blob_url(self.pdf) if self.pdf.attached?
+    rails_blob_url(self.pdf) if self.pdf && self.pdf.attached?
   end
   
   def created_at_humanize

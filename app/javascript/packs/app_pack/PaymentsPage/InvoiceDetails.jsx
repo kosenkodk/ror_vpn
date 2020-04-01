@@ -36,8 +36,9 @@ class InvoiceDetails extends React.Component {
               </a>
               </div>
               <div className="col">
-                <a onClick={(e) => this.onDownloadInvoice(e, invoice)} className="px-1" href="#"
-                // href={invoice.pdf_url} target="_blank"
+                <a className="px-1"
+                  // href="#" onClick={(e) => this.onDownloadInvoice(e, invoice)} 
+                  href={invoice.pdf_url} target="_blank" download
                 >
                   <img src={icDownloadSrc} className="img-fluid" />
                 &nbsp;
