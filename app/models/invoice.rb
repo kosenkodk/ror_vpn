@@ -37,6 +37,10 @@ class Invoice < ApplicationRecord
   def generate_pdf
     filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
     self.pdf.attach(io: StringIO.new(to_pdf), filename: filename)
+    if self.user && self.user.tariff_plan
+      self.title = self.user.tariff_plan.title
+      self.amount = self.user.tariff_plan.price
+    end
   end
 
   def generate_test_pdf
