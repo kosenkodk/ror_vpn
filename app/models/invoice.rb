@@ -1,7 +1,7 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
   
-  before_create :generate_pdf
+  before_save :generate_pdf
   after_save_commit :check_status
 
   belongs_to :user
