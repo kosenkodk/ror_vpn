@@ -198,7 +198,9 @@ class PaymentsPage extends React.Component {
                       <td>{item.created_at_humanize}</td>
                       <td className="text-right">
                         <img id="viewInvoice" src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
-                        <img src={icDownloadSrc} className="img-fluid" />
+                        <a href={item.pdf_url} target="_blank">
+                          <img src={icDownloadSrc} className="img-fluid" />
+                        </a>
                       </td>
                     </tr>
                   ) :
