@@ -9,7 +9,7 @@ class Invoice < ApplicationRecord
   enum status: { pay: 0, paid: 1 }#, _scopes: false
   has_one_attached :pdf, dependent: :destroy
 
-  def attachment_url
+  def pdf_url
     rails_blob_url(self.pdf) if self.pdf.attached?
   end
   
@@ -18,7 +18,7 @@ class Invoice < ApplicationRecord
   end
 
   def attributes
-    { id: id, no: no, title: title, amount: amount, currency: currency, invoice_type: invoice_type, status: status, created_at_humanize: created_at_humanize, details_from: details_from, attachment_url: attachment_url }
+    { id: id, no: no, title: title, amount: amount, currency: currency, invoice_type: invoice_type, status: status, created_at_humanize: created_at_humanize, details_from: details_from, pdf_url: pdf_url }
   end
  
   def to_pdf
@@ -35,6 +35,11 @@ class Invoice < ApplicationRecord
 
   private
   def generate_pdf
+    filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
+    self.pdf.attach(io: StringIO.new(to_pdf), filename: filename)
+  end
+
+  def generate_test_pdf
     pdf_html = """
     <div>
       <div className='row'>
