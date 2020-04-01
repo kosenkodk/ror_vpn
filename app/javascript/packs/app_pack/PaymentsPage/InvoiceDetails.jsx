@@ -9,56 +9,8 @@ class InvoiceDetails extends React.Component {
     return (
       <React.Fragment>
         {invoice &&
-          <div>
-            <div className="row">
-              <div className="col-4 offset-4 text-center">
-                Vega VPN <br />
-              123 Grienfield Drive<br />
-              Yardville, NM 49990<br />
-              (555) 555-0198<br />
-              sale@vega.com<br />
-              </div>
-            </div>
-            <div className="row mt-30">
-              <div className="col">
-                <NewLineToBr>{invoice.details_from}</NewLineToBr>
-              </div>
-              <div className="col">
-                Invoice #: {invoice.no}<br />
-                      Date: {invoice.created_at_humanize}<br />
-                {/* Period: <br/>
-                      Due: <br/> */}
-              </div>
-            </div>
-
-            <table className="table mt-30">
-              <thead>
-                <tr>
-                  <th className="font-weight-bold">Services</th>
-                  <th className="font-weight-bold">Date</th>
-                  <th className="font-weight-bold">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {invoice ?
-                  <React.Fragment>
-                    <tr key={`invoice${invoice.id}`}>
-                      <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
-                      <td>{invoice.created_at_humanize}</td>
-                      <td>{invoice.currency}{invoice.amount}</td>
-                    </tr>
-                    <tr>
-                      <td colSpan="2" className="font-weight-bold">Total</td>
-                      <td className="font-weight-bold">{invoice.currency}{invoice.amount}</td>
-                    </tr>
-                  </React.Fragment>
-                  :
-                  <tr>
-                    <td rowSpan="6">Services are not found</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
+          <div className="vh-50">
+            <iframe scrolling="yes" className="w-100 h-100" src={invoice.pdf_url} ></iframe>
           </div>
         }
       </React.Fragment>
