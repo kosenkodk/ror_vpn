@@ -9,6 +9,10 @@ class Invoice < ApplicationRecord
   enum status: { pay: 0, paid: 1 }#, _scopes: false
   has_one_attached :pdf, dependent: :destroy
 
+  def pdf_size
+    self.pdf.blob.byte_size if self.pdf && self.pdf.blob && self.pdf.byte_size > 0
+  end
+
   def pdf_url
     rails_blob_url(self.pdf) if self.pdf.attached?
   end
@@ -18,7 +22,7 @@ class Invoice < ApplicationRecord
   end
 
   def attributes
-    { id: id, no: no, title: title, amount: amount, currency: currency, invoice_type: invoice_type, status: status, created_at_humanize: created_at_humanize, details_from: details_from, pdf_url: pdf_url }
+    { id: id, no: no, title: title, amount: amount, currency: currency, invoice_type: invoice_type, status: status, created_at_humanize: created_at_humanize, details_from: details_from, pdf_url: pdf_url, pdf_size: pdf_size }
   end
  
   def to_pdf
