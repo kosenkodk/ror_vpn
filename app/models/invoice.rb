@@ -1,8 +1,8 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
   
-  before_save :generate_pdf
-  after_save_commit :check_status
+  # after_commit :generate_pdf
+  after_save_commit :check_status, :generate_pdf
 
   belongs_to :user
   enum invoice_type: { subscription: 0, cancellation: 1 }
@@ -26,26 +26,35 @@ class Invoice < ApplicationRecord
   end
  
   def to_pdf
-    @invoice = self
-    layout = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_layout.html.erb')))
-    body = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_body.html.erb')))
-    body_html = body.result(binding)
-    pdf_html = layout.result(body: body_html) # replace `yield` in layout with `body`
-    # pdf_html = ActionController::Base.new.render_to_string(template: 'app/views/invoices/invoice.html.erb', layout: 'app/views/api/v1/invoices/invoice_pdf_layout.html')
-    pdf = WickedPdf.new.pdf_from_string(pdf_html)
-
-    # generate_pdf
+    begin
+      @invoice = self
+      layout = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_layout.html.erb')))
+      body = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_body.html.erb')))
+      body_html = body.result(binding)
+      pdf_html = layout.result(body: body_html) # replace `yield` in layout with `body`
+      # pdf_html = ActionController::Base.new.render_to_string(template: 'app/views/invoices/invoice.html.erb', layout: 'app/views/api/v1/invoices/invoice_pdf_layout.html')
+      pdf = WickedPdf.new.pdf_from_string(pdf_html)
+    rescue StandardError => e
+      puts e
+    end
   end
 
   private
   def generate_pdf
-    filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
-    self.pdf.attach(io: StringIO.new(to_pdf), filename: filename)
-    if self.user && self.user.tariff_plan
-      self.title = self.user.tariff_plan.title
-      self.amount = self.user.tariff_plan.price
+    begin
+      if self.user && self.user.tariff_plan
+        self.title = self.user.tariff_plan.title
+        self.amount = self.user.tariff_plan.price
+      end
+      self.no = self.id # generate_invoice_no
+      
+      filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
+      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
+    rescue StandardError => e
+      puts e
+      # puts e.message
+      # puts e.backtrace.inspect
     end
-    self.no = self.id # generate_invoice_no
   end
 
   def generate_test_pdf
