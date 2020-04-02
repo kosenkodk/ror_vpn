@@ -26,6 +26,7 @@ whenever --update-crontab --set environment=development
 * Deployment instructions
 * Development
 export NODE_OPTIONS="--max-old-space-size=2048"
+kill -9 $(lsof -i tcp:3000 -t)
 
 * Testing
 # NODE_ENV is development by default
