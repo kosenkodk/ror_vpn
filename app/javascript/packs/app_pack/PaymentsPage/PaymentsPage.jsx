@@ -171,10 +171,12 @@ class PaymentsPage extends React.Component {
               </InfoBlock>
             </div>
 
-            <div className="mt-30 d-flex">
-              <button onClick={this.onShowCustomizeInvoices} className="mt-2 mt-sm-0 btn btn-outline-pink2 mr-auto">{I18n.t('pages.payments.invoices.customize.btn')}</button>
-              <button disabled={(invoice_current && (invoice_current.status === 'paid')) ? true : false} onClick={this.onShowModalOfPayCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
-            </div>
+            {invoices && (invoices.length > 0) &&
+              <div className="mt-30 d-flex">
+                <button onClick={this.onShowCustomizeInvoices} className="mt-2 mt-sm-0 btn btn-outline-pink2 mr-auto">{I18n.t('pages.payments.invoices.customize.btn')}</button>
+                <button disabled={(invoice_current && (invoice_current.status === 'paid')) ? true : false} onClick={this.onShowModalOfPayCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
+              </div>
+            }
 
             <table className="table mt-30">
               <thead>

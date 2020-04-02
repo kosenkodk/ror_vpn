@@ -7,7 +7,6 @@ import { InvoiceDetailsHtml } from './InvoiceDetailsHtml';
 
 class InvoiceDetails extends React.Component {
 
-
   onDownloadInvoice = (e, invoice) => {
     e.preventDefault()
     // window.open(invoice.pdf_url, '_blank') // open in a new tab
