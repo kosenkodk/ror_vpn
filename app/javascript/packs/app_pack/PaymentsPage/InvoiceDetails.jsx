@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import icDownloadSrc from 'images/icons/ic_download.svg';
 import icOpenInNewTabSrc from 'images/icons/ic_open_in_new_tab.svg';
+import { InvoiceDetailsHtml } from './InvoiceDetailsHtml';
 
 class InvoiceDetails extends React.Component {
 
@@ -20,9 +21,13 @@ class InvoiceDetails extends React.Component {
       <React.Fragment>
         {invoice &&
           <React.Fragment>
-            <div className="vh-50">
-              <iframe scrolling="yes" className="w-100 h-100" src={invoice.pdf_url} ></iframe>
-            </div>
+            {invoice.pdf_url ?
+              <div className="vh-50">
+                <iframe scrolling="yes" className="w-100 h-100" src={invoice.pdf_url} ></iframe>
+              </div>
+              :
+              <InvoiceDetailsHtml invoice={invoice} />
+            }
             {/* <div className="row justify-content-center align-items-center"> */}
             <div className="row text-center mt-10">
               <div className="col">
