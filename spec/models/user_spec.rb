@@ -105,13 +105,25 @@ RSpec.describe User, type: :model do
     expect(user.expired_at).to be > 1.month.from_now-5.seconds
   end
 
-  it 'check_invoices' do
-    user = create(:user)
-    user2 = create(:user)
+  it 'check invoices' do
+    user = create(:user, tariff_plan: plan)
+    user2 = create(:user, tariff_plan: plan)
     User.check_invoices
+    
     user.reload
-    user2.reload
     expect(user.expired_at).not_to eq(nil)
+    expect(user.tariff_plan.title).to eq(plan.title)
+    expect(user.tariff_plan.price).to eq(plan.price)
+    expect(user.invoices.count).to eq(1)
+    expect(user.invoices.last.title).to eq(plan.title)
+    expect(user.invoices.last.amount).to eq(plan.price)
+  
+    user2.reload
     expect(user2.expired_at).not_to eq(nil)
+    expect(user2.tariff_plan.title).to eq(plan.title)
+    expect(user2.tariff_plan.price).to eq(plan.price)
+    expect(user2.invoices.count).to eq(1)
+    expect(user2.invoices.last.title).to eq(plan.title)
+    expect(user2.invoices.last.amount).to eq(plan.price)
   end
 end

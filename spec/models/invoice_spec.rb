@@ -9,7 +9,6 @@ RSpec.describe Invoice, type: :model do
     # expect(item.pdf.attached?).to eq true
     expect(item.title).to eq(user.tariff_plan.title)
     expect(item.amount).to eq(user.tariff_plan.price)
-    item.save
     expect(item.no.to_i).to eq(item.id)
   end
   it 'create single/one invoice per month' do # invoice.is_exists_for_current_month?
