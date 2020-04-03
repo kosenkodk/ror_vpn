@@ -1,7 +1,7 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
   
-  before_save :add_invoice_details
+  after_save :add_invoice_details
   after_create :generate_pdf
   after_update :generate_pdf
   after_save_commit :check_status

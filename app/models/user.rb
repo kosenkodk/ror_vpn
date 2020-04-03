@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
   has_many :payment_methods, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 
   belongs_to :payment_method, required: false, optional: true #, inverse_of: :user
   belongs_to :tariff_plan, required: false, optional: true #, inverse_of: :user
@@ -98,8 +99,12 @@ class User < ApplicationRecord
         invoices = Invoice.where(created_at: start_date..end_date, user_id: user.id)
         amount = 0
         if invoices.count === 0
-          amount = user.tariff_plan.price if user.tariff_plan
-          item = Invoice.create(user_id: user.id, amount: amount)
+          item = Invoice.new(user_id: user.id)
+          if user.tariff_plan
+            item.amount = user.tariff_plan.price 
+            item.title = user.tariff_plan.title
+          end
+          item.save
         end
       end
     end
