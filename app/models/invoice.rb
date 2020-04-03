@@ -2,8 +2,9 @@ class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
   
   before_save :add_invoice_details
-  # after_commit :generate_pdf
-  after_save_commit :check_status, :generate_pdf
+  after_create :generate_pdf
+  after_update :generate_pdf
+  after_save_commit :check_status
 
   belongs_to :user
   enum invoice_type: { subscription: 0, cancellation: 1 }
