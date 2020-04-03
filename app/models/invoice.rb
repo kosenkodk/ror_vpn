@@ -43,11 +43,11 @@ class Invoice < ApplicationRecord
 
   private
   def add_invoice_details
-    if self.user && self.user.tariff_plan
-      self.title = self.user.tariff_plan.title
-      self.amount = self.user.tariff_plan.price
-    end
-    self.no = self.id # generate_invoice_no
+    # if self.user && self.user.tariff_plan
+    #   self.title = self.user.tariff_plan.title if self.title.blank?
+    #   self.amount = self.user.tariff_plan.price #if self.amount.blank?
+    # end
+    self.no = self.id if self.no.blank? # generate_invoice_no
   end
   
   def generate_pdf

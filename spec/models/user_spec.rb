@@ -126,4 +126,11 @@ RSpec.describe User, type: :model do
     expect(user2.invoices.last.title).to eq(plan.title)
     expect(user2.invoices.last.amount).to eq(plan.price)
   end
+
+  it 'don not send invoice for free plan' do
+    user = create(:user, tariff_plan: create(:tariff_plan_free))
+    User.check_invoices
+    user.reload
+    expect(user.invoices.count).to eq(0)
+  end
 end

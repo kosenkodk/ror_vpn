@@ -4,7 +4,7 @@ RSpec.describe Invoice, type: :model do
   it 'create with invoice pdf' do
     plan = create(:tariff_plan_1mo)
     user = create(:user, tariff_plan: plan)
-    item = create(:invoice, user: user)
+    item = create(:invoice, user: user, title: plan.title, amount: plan.price)
     expect(item.pdf).not_to be nil
     # expect(item.pdf.attached?).to eq true
     expect(item.title).to eq(user.tariff_plan.title)
