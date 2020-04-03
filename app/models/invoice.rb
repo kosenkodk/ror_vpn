@@ -53,7 +53,7 @@ class Invoice < ApplicationRecord
   def generate_pdf
     begin
       filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
-      # self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
+      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
     rescue StandardError => e
       puts e
       # puts e.message
