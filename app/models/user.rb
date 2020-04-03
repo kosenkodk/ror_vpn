@@ -95,16 +95,15 @@ class User < ApplicationRecord
 
     User.all.each do |user|
       user.update(expired_at: date) if user.expired_at.nil?
-      if (user.expired_at <= date && !user.is_plan_free)
+      if ((user.expired_at <= date) && !user.is_plan_free)
         invoices = Invoice.where(created_at: start_date..end_date, user_id: user.id)
-        amount = 0
         if invoices.count === 0
           item = Invoice.new(user_id: user.id)
           if user.tariff_plan
             item.amount = user.tariff_plan.price 
             item.title = user.tariff_plan.title
           end
-          item.save
+          item.save!
         end
       end
     end

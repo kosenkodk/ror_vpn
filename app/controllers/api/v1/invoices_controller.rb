@@ -58,6 +58,6 @@ class Api::V1::InvoicesController < Api::V1::ApiController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:id, :no, :invoice_type, :status, :amount, :currency, :user_id, :details_from)
+    params.require(:invoice).permit(:id, :no, :title, :invoice_type, :status, :amount, :currency, :user_id, :details_from)
   end
 end
