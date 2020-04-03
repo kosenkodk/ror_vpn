@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
   
+  before_save :add_invoice_details
   # after_commit :generate_pdf
   after_save_commit :check_status, :generate_pdf
 
@@ -40,16 +41,18 @@ class Invoice < ApplicationRecord
   end
 
   private
+  def add_invoice_details
+    if self.user && self.user.tariff_plan
+      self.title = self.user.tariff_plan.title
+      self.amount = self.user.tariff_plan.price
+    end
+    self.no = self.id # generate_invoice_no
+  end
+  
   def generate_pdf
     begin
-      if self.user && self.user.tariff_plan
-        self.title = self.user.tariff_plan.title
-        self.amount = self.user.tariff_plan.price
-      end
-      self.no = self.id # generate_invoice_no
-      
       filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
-      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
+      # self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
     rescue StandardError => e
       puts e
       # puts e.message
