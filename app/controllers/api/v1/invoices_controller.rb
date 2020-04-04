@@ -29,6 +29,8 @@ class Api::V1::InvoicesController < Api::V1::ApiController
 
   def create
     item = Invoice.create!(invoice_params)
+    item.generate_pdf
+    item.save
     render json: item, status: :created, location: api_v1_invoice_url(item)
   end
 
@@ -36,7 +38,9 @@ class Api::V1::InvoicesController < Api::V1::ApiController
     invoice_details = params[:invoice][:invoice_details]
     if invoice_details.present?
       item = Invoice.where(user_id: current_user.id).last
-      item.update(details_from: invoice_details)
+      item.details_from = invoice_details
+      item.generate_pdf
+      item.save
       invoices = get_invoices
       # add name and address (customize all invoices or last invoice ?)
       # invoices.each do |item|
