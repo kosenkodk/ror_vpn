@@ -71,7 +71,7 @@ class Invoice < ApplicationRecord
       puts filename
       pdf = to_pdf
       # puts pdf
-      # self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
+      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
     rescue StandardError => e
       puts e
       # puts e.message
