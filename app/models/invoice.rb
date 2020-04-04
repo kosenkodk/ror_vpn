@@ -61,7 +61,7 @@ class Invoice < ApplicationRecord
     #   self.title = self.user.tariff_plan.title if title.blank?
     #   self.amount = self.user.tariff_plan.price #if amount.blank?
     # end
-    self.no = Invoice.count+1#self.id #if no.blank? # generate_invoice_no
+    self.no = Invoice.count + 1 if no.blank? # generate_invoice_no
   end
   
   def generate_pdf

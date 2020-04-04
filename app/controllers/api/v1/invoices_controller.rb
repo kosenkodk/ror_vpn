@@ -38,7 +38,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
     invoice_details = params[:invoice][:invoice_details]
     if invoice_details.present?
       item = Invoice.where(user_id: current_user.id).last
-      item.details_from = invoice_details
+      item.update(details_from: invoice_details)
       item.generate_pdf
       item.save
       invoices = get_invoices
