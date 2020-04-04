@@ -41,7 +41,10 @@ class InvoiceDetailsHtml extends React.Component {
                 {invoice ?
                   <React.Fragment>
                     <tr key={`invoice${invoice.id}`}>
-                      <td>{user && user.tariff_plan && user.tariff_plan.title}</td>
+                      <td>
+                        {invoice.title}
+                        {/* {user && user.tariff_plan && user.tariff_plan.title} */}
+                      </td>
                       <td>{invoice.created_at_humanize}</td>
                       <td>{invoice.currency}{invoice.amount}</td>
                     </tr>

@@ -30,7 +30,7 @@ class InvoiceDetails extends React.Component {
             {/* <div className="row justify-content-center align-items-center"> */}
             <div className="row text-center mt-10">
               <div className="col">
-                {invoice.created_at_humanize} - {(invoice.pdf_size > 0) && `${invoice.pdf_size / 1000} KB`}
+                {invoice.created_at_humanize} {(invoice.pdf_size > 0) && ` - ${invoice.pdf_size / 1000} KB`}
               </div>
               <div className="col">
                 <a href={invoice.pdf_url} target="_blank">
