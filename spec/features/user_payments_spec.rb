@@ -51,6 +51,14 @@ RSpec.describe 'Payments', type: :feature, js: true do
       alert_have_text I18n.t('pages.payments.invoices.pay_current_invoice.success')
       expect(page).to have_content('paid')
     end
+
+    it 'view invoice' do
+      find("#viewInvoice", match: :first).click
+      expect(page).to have_content(invoice.title)
+      expect(page).to have_content(invoice.amount)
+      expect(page).to have_content(invoice.created_at_humanize)
+      expect(page).to have_content(invoice.pdf_size)
+    end
   end
 
   describe 'payment methods' do
