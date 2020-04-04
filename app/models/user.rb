@@ -98,12 +98,23 @@ class User < ApplicationRecord
       if ((user.expired_at <= date) && !user.is_plan_free)
         invoices = Invoice.where(created_at: start_date..end_date, user_id: user.id)
         if invoices.count === 0
-          item = Invoice.new(user_id: user.id)
-          if user.tariff_plan
-            item.amount = user.tariff_plan.price 
-            item.title = user.tariff_plan.title
+          if (user.tariff_plan)
+            item = Invoice.create!(user_id: user.id, amount: user.tariff_plan.price, title: user.tariff_plan.title)
+            item.generate_pdf
+            # item.save
+          else
+            item = Invoice.create!(user_id: user.id)
+            item.generate_pdf
+            # item.save
           end
-          item.save!
+          # item = Invoice.new(user_id: user.id)
+          # if user.tariff_plan
+          #   item.amount = user.tariff_plan.price 
+          #   item.title = user.tariff_plan.title
+          # end
+          # item.save!
+          # item.generate_pdf
+          # item.save!
         end
       end
     end

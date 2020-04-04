@@ -1,18 +1,19 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
+
+  before_save :add_invoice_details#, :generate_pdf
+  # after_save_commit :generate_pdf, :check_status
+  # after_commit :generate_pdf, on: [:create, :update]
   
-  after_save :add_invoice_details
-  after_create :generate_pdf
-  after_update :generate_pdf
   after_save_commit :check_status
 
-  belongs_to :user
+  belongs_to :user#, optional: true
   enum invoice_type: { subscription: 0, cancellation: 1 }
   enum status: { pay: 0, paid: 1 }#, _scopes: false
   has_one_attached :pdf, dependent: :destroy
 
   def pdf_size
-    self.try(:pdf).try(:blob).try(:byte_size) || 0  
+    self.try(:pdf).try(:blob).try(:byte_size) || 0
   end
 
   def pdf_url
@@ -30,6 +31,7 @@ class Invoice < ApplicationRecord
   def to_pdf
     begin
       @invoice = self
+      puts "to_pdf @invoice #{@invoice.title} #{@invoice.amount}"
       layout = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_layout.html.erb')))
       body = Erubis::Eruby.new(File.read(Rails.root.join('app/views/api/v1/invoices/invoice_pdf_body.html.erb')))
       body_html = body.result(binding)
@@ -40,27 +42,43 @@ class Invoice < ApplicationRecord
       puts e
     end
   end
-
-  private
+  
   def add_invoice_details
+    puts "add_invoice_details user_id #{self.user_id} #{user_id}"
+    # user_id = self.user.id if self.user && user_id.blank?
+    # user_id = current_user.id if user_id.blank?
+    # # user_id = user_id.present? : user_id ? self.user
+    if User.exists?(user_id)
+      user = User.find(user_id)
+      puts "user exists #{user_id}"
+      if user.tariff_plan
+        puts "plan #{user.tariff_plan.title}"
+        self.title = user.tariff_plan.title #if title.blank?
+        self.amount = user.tariff_plan.price #if amount.blank?
+      end
+    end
     # if self.user && self.user.tariff_plan
-    #   self.title = self.user.tariff_plan.title if self.title.blank?
-    #   self.amount = self.user.tariff_plan.price #if self.amount.blank?
+    #   self.title = self.user.tariff_plan.title if title.blank?
+    #   self.amount = self.user.tariff_plan.price #if amount.blank?
     # end
-    self.no = self.id if self.no.blank? # generate_invoice_no
+    self.no = Invoice.count+1#self.id #if no.blank? # generate_invoice_no
   end
   
   def generate_pdf
+    puts 'generate_pdf'
     begin
-      filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}.pdf"
-      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
+      filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}_#{self.no}.pdf"
+      puts filename
+      pdf = to_pdf
+      # puts pdf
+      # self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
     rescue StandardError => e
       puts e
       # puts e.message
       # puts e.backtrace.inspect
     end
   end
-
+  private
   def generate_test_pdf
     pdf_html = """
     <div>
@@ -115,9 +133,11 @@ class Invoice < ApplicationRecord
   end
 
   def check_status
+    puts 'check_status'
     if self.status === 'paid'
       if self.user
-        self.user.prolongate_on(1.month) 
+        self.user.prolongate_on(1.month)
+        # self.user.add_refer_bonus todo: add refer bonus to both users
         self.user.save
       end
       # TODO: send mail with 'Invoice was paid'

@@ -4,9 +4,19 @@ RSpec.describe Invoice, type: :model do
   it 'create with invoice pdf' do
     plan = create(:tariff_plan_1mo)
     user = create(:user, tariff_plan: plan)
-    item = create(:invoice, user: user, title: plan.title, amount: plan.price)
+    item = create(:invoice, user: user, amount: plan.price, title: plan.title)
     expect(item.pdf).not_to be nil
     # expect(item.pdf.attached?).to eq true
+    expect(item.title).to eq(user.tariff_plan.title)
+    expect(item.amount).to eq(user.tariff_plan.price)
+    expect(item.no.to_i).to eq(item.id)
+  end
+  it 'create invoice without params' do
+    plan = create(:tariff_plan_1mo)
+    user = create(:user, tariff_plan: plan)
+    item = create(:invoice, user: user)
+    expect(item.user_id).to eq(user.id)
+    expect(item.user).to eq(user)
     expect(item.title).to eq(user.tariff_plan.title)
     expect(item.amount).to eq(user.tariff_plan.price)
     expect(item.no.to_i).to eq(item.id)

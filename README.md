@@ -27,7 +27,8 @@ whenever --update-crontab --set environment=development
 * Development
 export NODE_OPTIONS="--max-old-space-size=2048"
 kill -9 $(lsof -i tcp:3000 -t)
-
+kill -9 $(ps aux | grep ruby | grep -v grep | awk '{print $2}')
+kill -9 $(ps aux | grep wkhtmltopdf | grep -v grep | awk '{print $2}')
 * Testing
 # NODE_ENV is development by default
 RAILS_ENV=test ./bin/webpack

@@ -11,7 +11,7 @@
 puts "\nTariff Plans\n\n"
 features = 'All Countries,5 Devices simultaneously,High Speed,Unlimited traffic'
 features_free = '1 Country,1 Device,Simultaneously,Medium speed,No torrenting,IKEv2 or OpenVPN'
-[
+plans = [
   # { title: 'Annual', price: 2.99, duration: 0, price_duration: 430.20, price_duration_sale: 322.65, price_comment: '$ 107.55 every 3 years', features: features },
   # { title: 'Quarterly', price: 3.99, duration: 0, price_duration: 286.80, price_duration_sale: 191.05, price_comment: '$ 95.75 every 2 years', features: features },
   # { title: 'Monthly', price: 6.99, duration: 0, price_duration: 143.40, price_duration_sale: 59.52, price_comment: '$ 83.88 every year', features: features },
@@ -20,7 +20,8 @@ features_free = '1 Country,1 Device,Simultaneously,Medium speed,No torrenting,IK
   { title: 'Quarterly plan', price: 3.99, duration: 0, price_duration: 286.80, price_duration_sale: 191.05, price_comment: '$ 95.75 every 2 years', features: features },
   { title: 'Plan for 1 month', price: 6.99, duration: 0, price_duration: 143.40, price_duration_sale: 59.52, price_comment: '$ 83.88 every year', features: features },
   { title: 'Free plan', price: 0.00, duration: 0, price_duration: 0.00, price_duration_sale: 0.00, price_comment: '', features: features_free }
-].each do |item|
+]
+plans.each do |item|
 TariffPlan.find_or_create_by(
   title: item[:title], price: item[:price], 
   duration: item[:duration], price_duration: item[:price_duration], 
@@ -382,9 +383,10 @@ end
 
 puts "\nTickets\n\n"
 users = []
-users << User.find_or_create_by(email:'user@ex.com', password:'123', role:0)
-users << User.find_or_create_by(email:'manager@ex.com', password:'123', role:1)
-users << User.find_or_create_by(email:'admin@ex.com', password:'123', role:2)
+plan = TariffPlan.first
+users << User.find_or_create_by(email:'user@ex.com', password:'123', role:0, tariff_plan: plan)
+users << User.find_or_create_by(email:'manager@ex.com', password:'123', role:1, tariff_plan: plan)
+users << User.find_or_create_by(email:'admin@ex.com', password:'123', role:2, tariff_plan: plan)
 departments = []
 departments << Department.find_or_create_by(order:10, title:'Billing', email:"VegaVPN <billing@#{Rails.application.config.host}>")
 departments << Department.find_or_create_by(order:20, title:'Sales', email:"VegaVPN <sales@#{Rails.application.config.host}>")
@@ -405,5 +407,5 @@ end
 
 puts "\nInvoices\n\n"
 User.all.each do |user|
-  Invoice.create({ no: '1000', amount: 6.99, currency: '$', status: 'pay', user_id: user.id })
+  Invoice.create({ no: '1000', title: plans.try(:first).try(:title), amount: 6.99, currency: '$', status: 'pay', user_id: user.id })
 end
