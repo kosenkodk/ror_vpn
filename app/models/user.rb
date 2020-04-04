@@ -101,11 +101,11 @@ class User < ApplicationRecord
           if (user.tariff_plan)
             item = Invoice.create!(user_id: user.id, amount: user.tariff_plan.price, title: user.tariff_plan.title)
             item.generate_pdf
-            # item.save
+            item.save
           else
             item = Invoice.create!(user_id: user.id)
             item.generate_pdf
-            # item.save
+            item.save
           end
           # item = Invoice.new(user_id: user.id)
           # if user.tariff_plan
