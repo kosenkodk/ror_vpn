@@ -89,7 +89,7 @@ class User < ApplicationRecord
   end
 
   def self.check_invoices
-    date = DateTime.now #Date.today
+    date = DateTime.now
     start_date = date.at_beginning_of_month
     end_date = date.at_end_of_month
 
