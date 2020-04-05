@@ -17,8 +17,8 @@ class Api::V1::UsersController < Api::V1::ApiController
         if current_user.is_plan_yearly
           if !current_user.is_refer_bonus_used
             @user_referrer.prolongate_on(2.month)
-            current_user.is_refer_bonus_used = true
             current_user.prolongate_on(2.month)
+            current_user.is_refer_bonus_used = true
           end
         elsif current_user.is_plan_free
         else
