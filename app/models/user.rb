@@ -71,6 +71,33 @@ class User < ApplicationRecord
     save
   end
 
+  def check_refer_bonus
+    current_user = self
+    if current_user.referrer_id && User.exists?(current_user.referrer_id)
+      @user_referrer = User.find(current_user.referrer_id)
+      @user_referrer.tariff_plan = current_user.tariff_plan if @user_referrer.is_plan_free
+      if current_user.is_plan_yearly
+        if !current_user.is_refer_bonus_used
+          @user_referrer.prolongate_on(2.month)
+          current_user.prolongate_on(2.month)
+          current_user.is_refer_bonus_used = true
+        end
+      elsif current_user.is_plan_free
+      else
+        if !current_user.is_refer_bonus_used
+          @user_referrer.prolongate_on(1.month)
+          current_user.prolongate_on(1.month)
+          current_user.is_refer_bonus_used = true
+        end
+      end
+      if @user_referrer.save
+        # todo: send success message to referrer
+      else
+        # todo: send error message to referrer
+      end
+    end
+  end
+
   def generate_password_token!
     begin
       self.reset_password_token = SecureRandom.urlsafe_base64

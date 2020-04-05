@@ -162,10 +162,8 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         referrer = User.find(user_refered.referrer_id)
         expect(referrer).to eq(user)
         expect(assigns(:current_user)).to eq(user_refered)
-        expect(assigns(:user_referrer)).to eq(user)
         
         user_refered.reload
-        expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 2.month
         expect(referrer.expired_at).to be > expiration_date_before_upgrade + 2.month
 
         expect(user_refered.tariff_plan).to eq(plan_yearly)
@@ -175,7 +173,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it 'add 1 month bonus for referrer user if user subscribed on quartely plan' do
         expiration_date_before_upgrade = user_refered.expired_at-1.minute
         post :change_plan, params: {plan_id: plan_quartely.id}
-        expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 1.month
         
         user_refered.reload
         user.reload
@@ -190,7 +187,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it 'add 1 month bonus for referrer user if user subscribed on monthly plan' do
         expiration_date_before_upgrade = user_refered.expired_at - 1.minute
         post :change_plan, params: {plan_id: plan_monthly.id}
-        expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 1.month
         
         user_refered.reload
         user.reload
@@ -208,7 +204,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         
         post :change_plan, params: {plan_id: plan_monthly.id}
         post :change_plan, params: {plan_id: plan_monthly.id}
-        expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 1.month
         
         user_refered.reload
         user.reload
