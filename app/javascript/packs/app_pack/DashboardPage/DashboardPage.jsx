@@ -105,7 +105,7 @@ class DashboardPage extends React.Component {
         <div className="">
           <h1>{I18n.t('pages.dashboard.plans.title')}</h1>
           {/* <InfoBlock text="Get 20% bundle discount when you purchase VPNMail and VEGAVPN together." optionalCssClasses="py-1" /> */}
-          <Plans plans={plans} onPlanChange={this.onPlanChange} planCurrent={user.tariff_plan} />
+          <Plans plans={this.props.plans} onPlanChange={this.onPlanChange} planCurrent={user.tariff_plan} />
         </div>
         <div id="subscriptions" className="subscriptions">
           <h1>{I18n.t('pages.dashboard.subscription.title')}</h1>
