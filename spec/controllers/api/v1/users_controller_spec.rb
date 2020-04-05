@@ -158,6 +158,20 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(user_refered.tariff_plan).to eq(plan_monthly)
         expect(user.tariff_plan).to eq(plan_monthly)
       end
+
+      it 'add 2 month bonus to both users if user subscribed on monthly plan' do
+        expiration_date_before_upgrade = user_refered.expired_at - 1.minute
+        post :change_plan, params: {plan_id: plan_monthly.id}
+        
+        user_refered.reload
+        user.reload
+        
+        expect(user_refered.expired_at).to be > expiration_date_before_upgrade + 2.month
+        expect(user.expired_at).to be > expiration_date_before_upgrade + 1.month
+        
+        expect(user_refered.tariff_plan).to eq(plan_monthly)
+        expect(user.tariff_plan).to eq(plan_monthly)
+      end
       
       it 'get bonus for refer friend at once (one time only)' do
         user_expiration_date_before_upgrade = 1.minute.before
