@@ -11,7 +11,7 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
   describe 'plans' do
     before {
       fsign_in_as(user)
-      visit('/user/dashboard')
+      # visit('/user/dashboard')
     }
     
     describe 'change plan' do
