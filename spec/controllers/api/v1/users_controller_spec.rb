@@ -43,7 +43,9 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     let!(:plan_quartely) {create(:tariff_plan_3mo)}
     
     let!(:user) { FactoryBot.create(:user, tariff_plan: plan_monthly) }
+    let!(:user_with_yearly_plan) { FactoryBot.create(:user, tariff_plan: plan_yearly) }
     let!(:user_with_quartely_plan) { FactoryBot.create(:user, tariff_plan: plan_quartely) }
+    let!(:user_with_monthly_plan) { FactoryBot.create(:user, tariff_plan: plan_monthly) }
     let!(:user_with_free_plan) { FactoryBot.create(:user, tariff_plan: plan_free) }
 
     it 'success' do
@@ -68,16 +70,47 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it 'check for refer bonus after signup or after referrer login'
       it '12 mo - refer friend with 1 mo'
       it 'downgrade to free plan if subscription has been expired'
-      context 'referrer user with 12 mo/yearly plan' do
-        let(:user_with_plan_year) {create(:user, tariff_plan: plan_yearly, expired_at: 1.month.from_now)}
-        let(:user_refered) {create(:user, referrer_id: user_with_plan_year.id)}
-        it 'get 1 mo for free of current subscription (after invite friend with paid subscription)' do
-          sign_in_as(user_refered)
-          post :change_plan, params: {plan_id: plan_quartely.id}
-          user_with_plan_year.reload
-          expect(user_with_plan_year.expired_at).to be > 2.month.from_now - 1.minute
-          expect(user_with_plan_year.tariff_plan).to eq(plan_yearly)
-        end
+    end
+
+    context 'plan for 1 month' do
+      let(:user_refered) {create(:user, referrer_id: user_with_yearly_plan.id, expired_at: 1.minute.ago)}
+      it 'add 1 month bonus to both users if user subscribed on monthly plan' do
+        expiration_date_before_upgrade = user_refered.expired_at - 1.minute
+        post :change_plan, params: {plan_id: plan_monthly.id}
+        
+        user_refered.reload
+        user.reload
+        
+        expect(user_refered.expired_at).to be > expiration_date_before_upgrade + 2.month
+        expect(user.expired_at).to be > expiration_date_before_upgrade + 1.month
+        
+        expect(user_refered.tariff_plan).to eq(plan_monthly)
+        expect(user.tariff_plan).to eq(plan_monthly)
+      end
+    end
+
+    context 'plan for 1 year' do
+      let(:user_refered) {create(:user, referrer_id: user_with_yearly_plan.id, expired_at: 1.minute.from_now)}
+      before { sign_in_as(user_refered) }
+
+      it 'referrer user with 12 mo/yearly plan get 1 mo for free of current subscription (after invite friend with paid quartely subscription)' do
+        post :change_plan, params: {plan_id: plan_quartely.id}
+        user_with_yearly_plan.reload
+        expect(user_with_yearly_plan.expired_at).to be > 2.month.from_now - 1.minute
+        expect(user_with_yearly_plan.tariff_plan).to eq(plan_yearly)
+      end
+        
+      it 'add 2 month bonus to both users if user subscribed on monthly plan' do
+        post :change_plan, params: {plan_id: plan_yearly.id}
+        
+        user_refered.reload
+        user_with_yearly_plan.reload
+        
+        expect(user_refered.expired_at).to be > 3.month.from_now - 1.minute
+        expect(user_with_yearly_plan.expired_at).to be > 2.month.from_now - 1.minute
+        
+        expect(user_refered.tariff_plan).to eq(plan_yearly)
+        expect(user_with_yearly_plan.tariff_plan).to eq(plan_yearly)
       end
     end
 
@@ -129,7 +162,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
       
       it 'add 1 month bonus for referrer user if user subscribed on quartely plan' do
-        sign_in_as(user_refered)
         expiration_date_before_upgrade = user_refered.expired_at-1.minute
         post :change_plan, params: {plan_id: plan_quartely.id}
         expect(assigns(:user_referrer).expired_at).to be > expiration_date_before_upgrade + 1.month
@@ -159,20 +191,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(user.tariff_plan).to eq(plan_monthly)
       end
 
-      it 'add 2 month bonus to both users if user subscribed on monthly plan' do
-        expiration_date_before_upgrade = user_refered.expired_at - 1.minute
-        post :change_plan, params: {plan_id: plan_monthly.id}
-        
-        user_refered.reload
-        user.reload
-        
-        expect(user_refered.expired_at).to be > expiration_date_before_upgrade + 2.month
-        expect(user.expired_at).to be > expiration_date_before_upgrade + 1.month
-        
-        expect(user_refered.tariff_plan).to eq(plan_monthly)
-        expect(user.tariff_plan).to eq(plan_monthly)
-      end
-      
       it 'get bonus for refer friend at once (one time only)' do
         user_expiration_date_before_upgrade = 1.minute.before
         expiration_date_before_upgrade = 1.minute.before
