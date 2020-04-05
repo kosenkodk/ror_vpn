@@ -68,6 +68,7 @@ class User < ApplicationRecord
     self.expired_at += duration_time
     # self.save!
     # save!
+    save
   end
 
   def generate_password_token!
