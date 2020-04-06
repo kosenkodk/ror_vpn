@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Dashboard', type: :feature, js: true do
+  let!(:tariff_plan_12mo) { create(:tariff_plan_12mo) }
+  let!(:tariff_plan_3mo) { create(:tariff_plan_3mo) }
+  let!(:tariff_plan_1mo) { create(:tariff_plan_1mo) }
   let!(:tariff_plan_free) { create(:tariff_plan_free) }
-  let!(:tariff_plan) { create(:tariff_plan) }
   let!(:user) { create(:user, tariff_plan_id: tariff_plan_free) }
   let!(:bank_card) { create(:pay_with_bank_card) }
   let!(:bitcoin) { create(:pay_with_bitcoin) }
@@ -14,6 +16,55 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
       # visit('/user/dashboard')
     }
     
+    describe 'refer program' do
+      let(:user_refered) { create(:user, referrer_id: user.id)}
+      it 'get 2 month extra bonus to both users (when upgrade on 1 year plan)' do
+        fsign_in_as(user_refered)
+        click_on(I18n.t('buttons.start_today'), match: :first)
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.next'))
+        
+        id_of_select_box = 'payment_methods'
+        select(paypal.title, from: id_of_select_box)
+        # find('#'+id_of_select_box).select(cancel_reason.title)
+        expect(find('#'+id_of_select_box).value.to_i).to eq(paypal.id)
+        
+        click_on(I18n.t('buttons.next'))
+        alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
+        
+        user_refered.reload
+        expect(user_refered.expired_at).to be > 3.month.from_now - 1.minute
+
+        user.reload
+        fsign_in_as(user)
+        expect(user.expired_at).to be > 2.month.from_now - 1.minute
+      end
+
+      it 'get 1 month refer bonus to both users (when upgrade on other plans)' do
+        fsign_in_as(user_refered)
+        within all('.plan')[1] do
+          click_on(I18n.t('buttons.start_today'))
+        end
+        click_on(I18n.t('buttons.next'))
+        click_on(I18n.t('buttons.next'))
+        
+        id_of_select_box = 'payment_methods'
+        select(paypal.title, from: id_of_select_box)
+        # find('#'+id_of_select_box).select(cancel_reason.title)
+        expect(find('#'+id_of_select_box).value.to_i).to eq(paypal.id)
+        
+        click_on(I18n.t('buttons.next'))
+        alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
+        
+        user_refered.reload
+        expect(user_refered.expired_at).to be > 2.month.from_now - 1.minute
+
+        user.reload
+        fsign_in_as(user)
+        expect(user.expired_at).to be > 1.month.from_now - 1.minute
+      end
+    end
+
     describe 'change plan' do
       context 'success' do
 
