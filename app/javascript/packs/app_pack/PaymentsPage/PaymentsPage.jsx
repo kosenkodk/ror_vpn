@@ -140,7 +140,7 @@ class PaymentsPage extends React.Component {
                       <tr key={`pm${item.id}`}>
                         <td>{item.title}</td>
                         <td></td>
-                        <td className="text-right">
+                        <td className="text-right table-actions">
                           <a href="#"><img src={icEditSrc} className="img-fluid" /></a>
                           <a href="#" onClick={(e) => this.onDeletePaymentMethod(e, item.id)} >
                             <img id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
@@ -201,7 +201,7 @@ class PaymentsPage extends React.Component {
                         <td>{item.invoice_type}</td>
                         <td>{item.status}</td>
                         <td>{item.created_at_humanize}</td>
-                        <td className="text-right">
+                        <td className="text-right table-actions">
                           <a href="#" onClick={(e) => this.onShowViewInvoice(e, item.id)}>
                             <img id="viewInvoice" src={icViewSrc} className="img-fluid" />
                           </a>
