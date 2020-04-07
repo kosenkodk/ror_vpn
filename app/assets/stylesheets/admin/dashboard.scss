@@ -240,6 +240,7 @@
           min-height: pxtovh(50);
           &:hover {
             opacity: 1;
+            cursor: unset;
           }
         }
         .plan__features {
