@@ -31,8 +31,12 @@ class PaymentsPage extends React.Component {
     this.props.dispatch(globalActions.setModalShow('payCurrentInvoice'))
   }
 
-  payCurrentInvoice() {
+  lockPaymentMethod = e => {
+    e.preventDefault()
+  }
 
+  editPaymentMethod = (e, id) => {
+    e.preventDefault()
   }
 
   onShowViewInvoice = (e, id) => {
@@ -141,11 +145,15 @@ class PaymentsPage extends React.Component {
                         <td>{item.title}</td>
                         <td></td>
                         <td className="text-right table-actions">
-                          <a href="#"><img src={icEditSrc} className="img-fluid" /></a>
+                          <a href="#" onClick={e => this.editPaymentMethod(e, item.id)}>
+                            <img src={icEditSrc} className="img-fluid" />
+                          </a>
                           <a href="#" onClick={(e) => this.onDeletePaymentMethod(e, item.id)} >
                             <img id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
                           </a>
-                          <a href="#"><img src={icLockSrc} className="img-fluid" /></a>
+                          <a href="#" onClick={this.lockPaymentMethod}>
+                            <img src={icLockSrc} className="img-fluid" />
+                          </a>
                         </td>
                       </tr>
                     ) :
