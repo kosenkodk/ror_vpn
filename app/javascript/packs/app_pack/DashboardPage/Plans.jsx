@@ -19,7 +19,7 @@ class Plans extends React.Component {
   render() {
     const { plans } = this.props;
     return (
-      <div id="plans" className="plans card-deck text-center align-items-center">
+      <div id="plans" className="plans card-deck text-center">
         {plans && plans.map((item, index) => (
           <Plan planCurrent={this.props.planCurrent} onPlanSelect={this.onPlanSelect} key={`plan-${item.id}`} index={index} item={item} />
         ))}

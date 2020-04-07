@@ -39,6 +39,7 @@
         border-radius: pxtovw(20);
       }
       .card {
+        min-width: 100%;
         padding-left: pxtovw($padding-x);
         padding-right: pxtovw($padding-x);
         margin: 2px auto;
@@ -96,6 +97,14 @@
         padding-left: pxtovw(-$card-padding-x);
       }
       .plan {
+        display: flex;
+        flex: 1 0 0%;
+        margin-top: pxtovh(17);
+        margin-bottom: pxtovh(17);
+        &.active {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
         .plan__price {
           // @extend .pricing-card-title;
           font-size: 53px;
@@ -159,7 +168,7 @@
         .plan__best-offer-hidden {}
         
         .plan-free__features {
-          margin-top: pxtovh(77);
+          margin-top: pxtovh(76);
           margin-bottom: pxtovh(29);
 
           font-size: 12px;
