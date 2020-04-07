@@ -5,7 +5,9 @@
     }
     input[name='amount_due'] {
       background-color: $white;
-      border: 1px solid $pink;
+      border: thin solid $pink;
+      border-radius: pxtovw(5);
+      box-sizing: border-box;
     }
   }
   .dashboard {
