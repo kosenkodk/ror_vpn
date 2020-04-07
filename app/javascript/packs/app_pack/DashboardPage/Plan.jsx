@@ -49,7 +49,7 @@ class Plan extends React.Component {
     return (
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
-        className="plan col-xs-12 col-sm-6 col-lg-3">
+        className={`plan col-xs-12 col-sm-6 col-lg-3 ${this.isActiveClass()}`}>
         <div className={`card ${this.isActiveClass()} ${hover_class}`}>
           <div className="card-header p-0">
             {this.isBestOffer() ?
