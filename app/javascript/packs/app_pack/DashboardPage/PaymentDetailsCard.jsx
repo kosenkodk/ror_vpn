@@ -71,7 +71,7 @@ class PaymentDetailsCard extends React.Component {
               Amount due
             </label>
             <div className="col-sm-6">
-              <input type="text" name="amount_due" aria-describedby="amount_due" required={false} className="form-control" defaultValue={`$${planSelected && planSelected.price}`} placeholder='' />
+              <input type="text" name="amount_due" aria-describedby="amount_due" required={false} className="form-control" defaultValue={`$${planSelected && planSelected.price}`} disabled placeholder='' />
             </div>
             <div className="col-sm-2"></div>
           </div>

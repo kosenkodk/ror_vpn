@@ -3,6 +3,10 @@
     .form-control {
       background-color: $bgGray;
     }
+    input[name='amount_due'] {
+      background-color: $white;
+      border: 1px solid $pink;
+    }
   }
   .dashboard {
     $card-padding-x: 5;
