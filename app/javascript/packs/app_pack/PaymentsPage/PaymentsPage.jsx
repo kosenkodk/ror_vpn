@@ -141,9 +141,11 @@ class PaymentsPage extends React.Component {
                       <td>{item.title}</td>
                       <td></td>
                       <td className="text-right">
-                        <img src={icEditSrc} className="img-fluid" />
-                        <img onClick={(e) => this.onDeletePaymentMethod(e, item.id)} id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
-                        <img src={icLockSrc} className="img-fluid" />
+                        <a href="#"><img src={icEditSrc} className="img-fluid" /></a>
+                        <a href="#" onClick={(e) => this.onDeletePaymentMethod(e, item.id)} >
+                          <img id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
+                        </a>
+                        <a href="#"><img src={icLockSrc} className="img-fluid" /></a>
                       </td>
                     </tr>
                   ) :
@@ -199,7 +201,9 @@ class PaymentsPage extends React.Component {
                       <td>{item.status}</td>
                       <td>{item.created_at_humanize}</td>
                       <td className="text-right">
-                        <img id="viewInvoice" src={icViewSrc} onClick={(e) => this.onShowViewInvoice(e, item.id)} className="img-fluid" />
+                        <a href="#" onClick={(e) => this.onShowViewInvoice(e, item.id)}>
+                          <img id="viewInvoice" src={icViewSrc} className="img-fluid" />
+                        </a>
                         <a href={item.pdf_url} target="_blank" download>
                           <img src={icDownloadSrc} className="img-fluid" />
                         </a>
