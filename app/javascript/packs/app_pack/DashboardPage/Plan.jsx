@@ -49,7 +49,6 @@ class Plan extends React.Component {
     return (
       <div onMouseLeave={(e) => this.handleMouseLeave(e)}
         onMouseEnter={(e) => this.handleMouseEnter(e)}
-        onClick={(e) => this.props.onPlanSelect(e, item.id, index)}
         className="plan col-xs-12 col-sm-6 col-lg-3">
         <div className={`card ${this.isActiveClass()} ${hover_class}`}>
           <div className="card-header p-0">
@@ -103,7 +102,9 @@ class Plan extends React.Component {
 
           <div className="card-footer">
             {!this.isPlanCurrent() ?
-              <button type="button" className={`btn btn-outline-primary btn-block plan__btn-change align-self-center`}>
+              <button type="button" className={`btn btn-outline-primary btn-block plan__btn-change align-self-center`}
+                onClick={(e) => this.props.onPlanSelect(e, item.id, index)}
+              >
                 Start today
               </button>
               :
