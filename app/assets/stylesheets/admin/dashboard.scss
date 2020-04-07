@@ -209,6 +209,9 @@
             margin-top: pxtovh(6);
             margin-bottom: pxtovh(20);
             background-color: #3F0E4D;
+            &.active {
+              background-color: #2cb0b5;
+            }
           }
           .plan__price-duration {
             font-size: 14px;
@@ -235,6 +238,9 @@
           margin-bottom: pxtovh(53);
           border-radius: 0;
           min-height: pxtovh(50);
+          &:hover {
+            opacity: 1;
+          }
         }
         .plan__features {
           margin-top: pxtovh(13);
@@ -250,6 +256,9 @@
           margin-bottom: pxtovh(40);
           min-height: pxtovh(50);
           border-radius: pxtovw(20);
+          // &:hover {
+          //   opacity: 1;
+          // }
         }
       }
     }

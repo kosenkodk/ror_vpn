@@ -84,7 +84,7 @@ class Plan extends React.Component {
 
             {item.price > 0 &&
               <div className="plan__discount">
-                <a className={`btn btn-pink-dark-blue ${this.isActiveClass()} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
+                <a className={`btn ${this.isActiveClass()} ${hover_class} rounded-pill plan__btn-save ${this.bestOfferClass()}`}>Save $ {item.price_duration_sale}</a>
                 <h5 className="plan__price-duration text-info"><strike>$ {item.price_duration} </strike></h5>
                 <h6 className="plan__price-comment">{item.price_comment}</h6>
               </div>
