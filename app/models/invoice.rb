@@ -1,11 +1,8 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  before_save :add_invoice_details#, :generate_pdf
-  # after_save_commit :generate_pdf, :check_status
-  # after_commit :generate_pdf, on: [:create, :update]
-  
-  after_save_commit :check_status
+  before_save :add_invoice_details
+  # after_save_commit :check_status
 
   belongs_to :user#, optional: true
   enum invoice_type: { subscription: 0, cancellation: 1 }
@@ -45,9 +42,6 @@ class Invoice < ApplicationRecord
   
   def add_invoice_details
     puts "add_invoice_details user_id #{self.user_id} #{user_id}"
-    # user_id = self.user.id if self.user && user_id.blank?
-    # user_id = current_user.id if user_id.blank?
-    # # user_id = user_id.present? : user_id ? self.user
     if User.exists?(user_id)
       user = User.find(user_id)
       puts "user exists #{user_id}"
