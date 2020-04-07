@@ -668,7 +668,7 @@ button:focus {
   // margin-right: 5px;
   // width: 1px;
   height: 100%;
-  border-left: 1px solid gray;
+  border-left: thin solid gray;
 }
 
 .h-divider{
@@ -677,7 +677,7 @@ button:focus {
   // width: 1px;
   height: 100%;
   border: 0;
-  border-top: 1px solid gray;
+  border-top: thin solid gray;
 }
 
 .shadow-vega {
@@ -910,11 +910,11 @@ button:focus {
       }
     }
     .modal-header {
-      border-bottom: 1px solid $pink;
+      border-bottom: thin solid $pink;
       border-image: $pink_gradient;
     }
     .modal-footer {
-      border-top: 1px solid $pink;
+      border-top: thin solid $pink;
       border-image: $pink_gradient;
     }
   }
@@ -925,7 +925,7 @@ button:focus {
 
 // .ticket_message {
   
-//   border: 1px solid $pink2;
+//   border: thin solid $pink2;
 //   border-radius: $pricing_border_radius;
 //   padding: 20px;
 //   margin-bottom: 20px;
@@ -949,7 +949,7 @@ button:focus {
 
   &.card {
     margin-bottom: 15px;
-    border: 1px solid $pink2;
+    border: thin solid $pink2;
     .card-header {
       // background: $pink_gradient;
       background: $bg_color_black_gradient32; //#582b53
