@@ -6,6 +6,20 @@
     max-width: pxtovw(754);
   }
 }
+
+.invoice-view-actions {
+  .invoice-view-actions__new-tab {
+    img {
+      min-width: pxtovw(12);
+    }
+  }
+  .invoice-view-actions__download {
+    img {
+      min-width: pxtovw(20);
+    }
+  }
+}
+
 .preview-container {
   // display: inline;
   // position: relative;
