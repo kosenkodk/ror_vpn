@@ -125,36 +125,37 @@ class PaymentsPage extends React.Component {
               <button onClick={this.addBankCard} className="mt-2 mt-sm-0 btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
               <button onClick={this.addPayPal} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
             </div>
-
-            <table className="table mt-30">
-              <thead>
-                <tr>
-                  <th className="font-weight-bold">Method</th>
-                  <th className="font-weight-bold">Status</th>
-                  <th className="font-weight-bold text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(user && user.payment_methods && (user.payment_methods.length > 0)) ?
-                  user.payment_methods.map(item =>
-                    <tr key={`pm${item.id}`}>
-                      <td>{item.title}</td>
-                      <td></td>
-                      <td className="text-right">
-                        <a href="#"><img src={icEditSrc} className="img-fluid" /></a>
-                        <a href="#" onClick={(e) => this.onDeletePaymentMethod(e, item.id)} >
-                          <img id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
-                        </a>
-                        <a href="#"><img src={icLockSrc} className="img-fluid" /></a>
-                      </td>
-                    </tr>
-                  ) :
+            <div class="table-responsive">
+              <table className="table mt-30">
+                <thead>
                   <tr>
-                    <td rowSpan="3">Payment methods are not found</td>
+                    <th className="font-weight-bold">Method</th>
+                    <th className="font-weight-bold">Status</th>
+                    <th className="font-weight-bold text-right">Actions</th>
                   </tr>
-                }
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {(user && user.payment_methods && (user.payment_methods.length > 0)) ?
+                    user.payment_methods.map(item =>
+                      <tr key={`pm${item.id}`}>
+                        <td>{item.title}</td>
+                        <td></td>
+                        <td className="text-right">
+                          <a href="#"><img src={icEditSrc} className="img-fluid" /></a>
+                          <a href="#" onClick={(e) => this.onDeletePaymentMethod(e, item.id)} >
+                            <img id="payment_method_delete" src={icTrashSrc} className="img-fluid" />
+                          </a>
+                          <a href="#"><img src={icLockSrc} className="img-fluid" /></a>
+                        </td>
+                      </tr>
+                    ) :
+                    <tr>
+                      <td rowSpan="3">Payment methods are not found</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
 
             {/* <InfoBlock optionalCssClasses="my-5">
               <div className="row">
@@ -179,43 +180,44 @@ class PaymentsPage extends React.Component {
                 <button disabled={(invoice_current && (invoice_current.status === 'paid')) ? true : false} onClick={this.onShowModalOfPayCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
               </div>
             }
-
-            <table className="table mt-30">
-              <thead>
-                <tr>
-                  <th className="font-weight-bold">ID</th>
-                  <th className="font-weight-bold">Amount</th>
-                  <th className="font-weight-bold">Type</th>
-                  <th className="font-weight-bold">Status</th>
-                  <th className="font-weight-bold">Date</th>
-                  <th className="font-weight-bold text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(invoices && invoices.length > 0) ?
-                  invoices.map(item =>
-                    <tr key={`invoice${item.id}`}>
-                      <td>{item.no}</td>
-                      <td>{item.currency}{item.amount}</td>
-                      <td>{item.invoice_type}</td>
-                      <td>{item.status}</td>
-                      <td>{item.created_at_humanize}</td>
-                      <td className="text-right">
-                        <a href="#" onClick={(e) => this.onShowViewInvoice(e, item.id)}>
-                          <img id="viewInvoice" src={icViewSrc} className="img-fluid" />
-                        </a>
-                        <a href={item.pdf_url} target="_blank" download>
-                          <img src={icDownloadSrc} className="img-fluid" />
-                        </a>
-                      </td>
-                    </tr>
-                  ) :
+            <div class="table-responsive">
+              <table className="table mt-30">
+                <thead>
                   <tr>
-                    <td rowSpan="6">Invoices are not found</td>
+                    <th className="font-weight-bold">ID</th>
+                    <th className="font-weight-bold">Amount</th>
+                    <th className="font-weight-bold">Type</th>
+                    <th className="font-weight-bold">Status</th>
+                    <th className="font-weight-bold">Date</th>
+                    <th className="font-weight-bold text-right">Actions</th>
                   </tr>
-                }
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {(invoices && invoices.length > 0) ?
+                    invoices.map(item =>
+                      <tr key={`invoice${item.id}`}>
+                        <td>{item.no}</td>
+                        <td>{item.currency}{item.amount}</td>
+                        <td>{item.invoice_type}</td>
+                        <td>{item.status}</td>
+                        <td>{item.created_at_humanize}</td>
+                        <td className="text-right">
+                          <a href="#" onClick={(e) => this.onShowViewInvoice(e, item.id)}>
+                            <img id="viewInvoice" src={icViewSrc} className="img-fluid" />
+                          </a>
+                          <a href={item.pdf_url} target="_blank" download>
+                            <img src={icDownloadSrc} className="img-fluid" />
+                          </a>
+                        </td>
+                      </tr>
+                    ) :
+                    <tr>
+                      <td rowSpan="6">Invoices are not found</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
 
             <ModalPopupForm
               onClose={this.onModalClose}
