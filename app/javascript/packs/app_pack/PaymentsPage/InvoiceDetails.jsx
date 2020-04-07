@@ -28,19 +28,19 @@ class InvoiceDetails extends React.Component {
               <InvoiceDetailsHtml invoice={invoice} />
             }
             {/* <div className="row justify-content-center align-items-center"> */}
-            <div className="row text-center mt-10">
+            <div className="row text-center mt-10 invoice-view-actions">
               <div className="col">
                 {invoice.created_at_humanize} {(invoice.pdf_size > 0) && ` - ${invoice.pdf_size / 1000} KB`}
               </div>
               <div className="col">
-                <a href={invoice.pdf_url} target="_blank">
+                <a href={invoice.pdf_url} target="_blank" className="invoice-view-actions__new-tab">
                   <img src={icOpenInNewTabSrc} className="img-fluid" />
                 &nbsp;
                 Open in new tab
               </a>
               </div>
               <div className="col">
-                <a className="px-1"
+                <a className="px-1 invoice-view-actions__download"
                   // href="#" onClick={(e) => this.onDownloadInvoice(e, invoice)} 
                   href={invoice.pdf_url} target="_blank" download
                 >
