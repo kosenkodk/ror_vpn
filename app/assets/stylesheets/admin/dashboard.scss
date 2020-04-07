@@ -36,8 +36,7 @@
         padding-left: pxtovw($padding-x);
         padding-right: pxtovw($padding-x);
         margin: 2px auto;
-        /* border: medium solid #713980; //4px */
-        border: 2px solid $pink2;
+        border: thin solid $pink2;
         border-radius: pxtovw(20);
         &:hover {
           cursor: unset;
