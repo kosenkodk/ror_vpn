@@ -162,7 +162,7 @@ class AccountPage extends React.Component {
   render() {
     const { loggingIn, user, qr_code_url, step } = this.props;
     return (
-      <div className="container-fluid">
+      <div className="container-fluid account">
         <div className="row">
           <div className="col-lg-7">
 
