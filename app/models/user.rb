@@ -133,31 +133,12 @@ class User < ApplicationRecord
           else
             item = Invoice.create!(user_id: user.id)
             item.generate_pdf
+            # TODO: mail invoice to user
             item.save
           end
-          # item = Invoice.new(user_id: user.id)
-          # if user.tariff_plan
-          #   item.amount = user.tariff_plan.price 
-          #   item.title = user.tariff_plan.title
-          # end
-          # item.save!
-          # item.generate_pdf
-          # item.save!
         end
       end
     end
   end
-
-  # def check_invoice
-  #   if self.expired_at < DateTime.now()
-  #     item = Invoice.create(user_id: self.id)
-  #     # item.title = self.tariff_plan.title
-  #     item.amount = self.tariff_plan.price
-  #     # self.prolongate_on(1.month)
-  #     item.save
-  #     self.save
-  #     # TODO: generate pdf and mail invoice to user
-  #   end
-  # end
 end
 
