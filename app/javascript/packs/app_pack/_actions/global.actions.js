@@ -114,7 +114,7 @@ function setPaymentMethod(payment_method) {
 
 function getPaymentMethods() {
   return dispatch => {
-    dispatch(request(JSON.parse(localStorage.getItem('paymet_methods'))))
+    dispatch(request(JSON.parse(localStorage.getItem('payment_methods'))))
     userService.getPaymentMethods()
       .then(
         items => dispatch(success(items)),
@@ -127,7 +127,7 @@ function getPaymentMethods() {
 
   function request(payment_methods) { return { type: globalConstants.GET_PAYMENT_METHODS_REQUEST, payment_methods } }
   function success(payment_methods) {
-    localStorage.setItem('tariff_plans', JSON.stringify(items))
+    localStorage.setItem('payment_methods', JSON.stringify(payment_methods))
     return { type: globalConstants.GET_PAYMENT_METHODS_SUCCESS, payment_methods }
   }
   function failure(error) { return { type: globalConstants.GET_PAYMENT_METHODS_FAILURE, error } }
