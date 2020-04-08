@@ -9,9 +9,12 @@ class Api::V1::UsersController < Api::V1::ApiController
     plan_id = params[:plan_id].to_i
     if (TariffPlan.exists?(plan_id))
       plan = TariffPlan.find(plan_id)
-      current_user.tariff_plan = plan
-      current_user.prolongate_on(1.month)
-      current_user.check_refer_bonus
+      if (current_user.is_last_invoice_paid)
+        current_user.tariff_plan = plan
+      else
+        render json: { notice: I18n.t('invoice_is_not_paid'), user: current_user }
+        return
+      end
       if current_user.save
         render json: { notice: I18n.t('pages.dashboard.plans.change.success'), user: current_user }
         return

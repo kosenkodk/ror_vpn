@@ -53,6 +53,10 @@ class Invoice < ApplicationRecord
     end
   end
 
+  def is_paid
+    self.status === 'paid' ? true : false
+  end
+
   private
 
   def add_invoice_details
@@ -71,10 +75,11 @@ class Invoice < ApplicationRecord
 
   def check_status
     puts 'check_status'
-    if self.status === 'paid'
+    if is_paid
       if self.user
         self.user.prolongate_on(1.month)
         self.user.check_refer_bonus
+        # self.user.tariff_plan = self.tariff_plan # todo: remove users_controller.change_plan 
         # self.user.save
       end
       # TODO: send mail with 'Invoice was paid'
