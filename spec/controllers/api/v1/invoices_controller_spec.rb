@@ -42,7 +42,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     end
 
     it 'pay current invoice' do
-      put :update, params: { id: invoice2_of_user.id, invoice: { status: 'paid'}}
+      put :update, params: { id: invoice2_of_user.id, invoice: {status: 'paid'} }
       invoice2_of_user.reload
       user.reload
       expect(response_json['invoice'].values).to include('paid')
