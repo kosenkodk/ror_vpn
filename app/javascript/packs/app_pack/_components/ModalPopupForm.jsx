@@ -83,6 +83,7 @@ class ModalPopupForm extends React.Component {
           </React.Fragment>
         }
         <Modal
+          id={this.props.id}
           // show={this.state.isModalShow}
           show={this.props.isModalShow === this.props.id}
           onHide={this.Hide}
