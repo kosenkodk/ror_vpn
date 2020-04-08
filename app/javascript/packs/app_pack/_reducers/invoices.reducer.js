@@ -5,7 +5,7 @@ function get_local_invoices() {
   try { invoices = JSON.parse(localStorage.getItem('invoices')) } catch (e) { }
   return invoices
 }
-const initialState = get_local_invoices ? { invoices: get_local_invoices } : {};
+const initialState = get_local_invoices ? { invoices: get_local_invoices() } : {};
 
 export function invoices(state = initialState, action) {
   switch (action.type) {

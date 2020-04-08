@@ -28,7 +28,10 @@ function getAll(page) {
   }
 
   function request() { return { type: ticketConstants.GETALL_REQUEST } }
-  function success(tickets) { return { type: ticketConstants.GETALL_SUCCESS, tickets } }
+  function success(tickets) {
+    localStorage.setItem('tickets', JSON.stringify(tickets))
+    return { type: ticketConstants.GETALL_SUCCESS, tickets }
+  }
   function failure(error) { return { type: ticketConstants.GETALL_FAILURE, error } }
 }
 
