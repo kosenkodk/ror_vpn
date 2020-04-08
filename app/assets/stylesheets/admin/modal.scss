@@ -7,6 +7,13 @@
   }
 }
 
+@media (min-width: 1401px) {
+  #changePlan {
+    zoom: 0.8;
+    -moz-transform: scale(0.8);
+  }
+}
+
 .invoice-view-actions {
   .invoice-view-actions__new-tab {
     img {
@@ -48,7 +55,7 @@
   font-weight: normal;
   
   h1 {
-    // font-size: $font24;
+    // font-si  e: $font24;
     // line-height: $font34;
   }
   .form-control {
