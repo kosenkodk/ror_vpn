@@ -1,6 +1,14 @@
 import { ticketConstants } from '../_constants';
 
-export function tickets(state = {}, action) {
+function get_local_tickets() {
+  let initialState = {}
+  try {
+    initialState = { items: JSON.parse(localStorage.getItem('tickets')) }
+  } catch (e) { }
+  return initialState
+}
+const initialState = get_local_tickets()
+export function tickets(state = initialState, action) {
   switch (action.type) {
     case ticketConstants.ADD_REQUEST:
       return {
