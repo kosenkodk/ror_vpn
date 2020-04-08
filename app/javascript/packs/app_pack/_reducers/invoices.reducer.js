@@ -46,6 +46,7 @@ export function invoices(state = initialState, action) {
       };
     case invoiceConstants.GETALL_REQUEST:
       return {
+        ...state,
         loading: true
       };
     case invoiceConstants.GETALL_SUCCESS:

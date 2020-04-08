@@ -21,7 +21,6 @@ function addDetailsToInvoices(data) {
       .then(
         response => {
           dispatch(globalActions.setModalShow(false));
-          localStorage.setItem('invoices', JSON.stringify(response.invoices))
           dispatch(success(response.notice, response.invoices));
           dispatch(alertActions.success(response.notice));
         },
@@ -33,7 +32,10 @@ function addDetailsToInvoices(data) {
   };
 
   function request() { return { type: invoiceConstants.ADD_INVOICE_DETAILS_REQUEST } }
-  function success(notice, invoices) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_SUCCESS, notice, invoices } }
+  function success(notice, invoices) {
+    localStorage.setItem('invoices', JSON.stringify(invoices))
+    return { type: invoiceConstants.ADD_INVOICE_DETAILS_SUCCESS, notice, invoices }
+  }
   function failure(error) { return { type: invoiceConstants.ADD_INVOICE_DETAILS_FAILURE, error } }
 }
 
