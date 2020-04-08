@@ -2,7 +2,7 @@ class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   before_save :add_invoice_details
-  # after_save_commit :check_status
+  after_save_commit :check_status
 
   belongs_to :user#, optional: true
   enum invoice_type: { subscription: 0, cancellation: 1 }
@@ -40,6 +40,21 @@ class Invoice < ApplicationRecord
     end
   end
   
+  def generate_pdf
+    puts 'generate_pdf'
+    begin
+      filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}_#{self.no}.pdf"
+      puts filename
+      pdf = to_pdf
+      # puts pdf
+      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
+    rescue StandardError => e
+      puts e
+    end
+  end
+
+  private
+
   def add_invoice_details
     puts "add_invoice_details user_id #{self.user_id} #{user_id}"
     if User.exists?(user_id)
@@ -51,28 +66,9 @@ class Invoice < ApplicationRecord
         self.amount = user.tariff_plan.price #if amount.blank?
       end
     end
-    # if self.user && self.user.tariff_plan
-    #   self.title = self.user.tariff_plan.title if title.blank?
-    #   self.amount = self.user.tariff_plan.price #if amount.blank?
-    # end
     self.no = Invoice.count + 1 if no.blank? # generate_invoice_no
   end
-  
-  def generate_pdf
-    puts 'generate_pdf'
-    begin
-      filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}_#{self.no}.pdf"
-      puts filename
-      pdf = to_pdf
-      # puts pdf
-      self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
-    rescue StandardError => e
-      puts e
-      # puts e.message
-      # puts e.backtrace.inspect
-    end
-  end
-  private
+
   def generate_test_pdf
     pdf_html = """
     <div>
@@ -131,8 +127,8 @@ class Invoice < ApplicationRecord
     if self.status === 'paid'
       if self.user
         self.user.prolongate_on(1.month)
-        # self.user.add_refer_bonus todo: add refer bonus to both users
-        self.user.save
+        self.user.check_refer_bonus
+        # self.user.save
       end
       # TODO: send mail with 'Invoice was paid'
     end

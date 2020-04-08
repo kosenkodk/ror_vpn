@@ -39,7 +39,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
       render json: {invoices: invoices}
       return
     else
-      item = Invoice.where(user_id: current_user.id).find(params[:id])
+      item = Invoice.where(user_id: current_user.id).find(params[:id].to_i)
       item.update!(invoice_params)
       render json: {invoice: item}
       return
