@@ -97,10 +97,11 @@ function setUser(user) {
 
 function getUser() {
   return dispatch => {
-    dispatch(request())
+    dispatch(request(JSON.parse(localStorage.getItem('user'))))
     userService.getUser()
       .then(
         user => {
+          // localStorage.setItem('user', JSON.stringify(user));
           dispatch(success(user))
         },
         error => {
@@ -108,7 +109,7 @@ function getUser() {
         }
       )
   }
-  function request() { return { type: userConstants.GET_USER_REQUEST } }
+  function request(user) { return { type: userConstants.GET_USER_REQUEST, user } }
   function success(user) { return { type: userConstants.GET_USER_SUCCESS, user } }
   function failure(error) { return { type: userConstants.GET_USER_FAILURE, error } }
 }
