@@ -7,7 +7,7 @@ function get_local_tickets() {
   } catch (e) { }
   return initialState
 }
-const initialState = get_local_tickets()
+const initialState = {} //get_local_tickets()
 export function tickets(state = initialState, action) {
   switch (action.type) {
     case ticketConstants.ADD_REQUEST:
@@ -90,6 +90,7 @@ export function tickets(state = initialState, action) {
         page: state.page,
         pages: state.pages,
         status: state.status,
+        items: action.tickets.tickets,
       };
     case ticketConstants.GETALL_SUCCESS:
       return {

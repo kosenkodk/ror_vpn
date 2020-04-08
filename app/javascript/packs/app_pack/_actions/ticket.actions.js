@@ -19,7 +19,9 @@ function getAll(page) {
 
     userService.getTickets(page)
       .then(
-        tickets => dispatch(success(tickets)),
+        tickets => {
+          dispatch(success(tickets))
+        },
         error => {
           dispatch(failure(error))
           dispatch(alertActions.error(error))
@@ -27,7 +29,11 @@ function getAll(page) {
       )
   }
 
-  function request() { return { type: ticketConstants.GETALL_REQUEST } }
+  function request() {
+    let tickets = {}
+    try { tickets = JSON.parse(localStorage.getItem('tickets')) } catch (e) { }
+    return { type: ticketConstants.GETALL_REQUEST, tickets }
+  }
   function success(tickets) {
     localStorage.setItem('tickets', JSON.stringify(tickets))
     return { type: ticketConstants.GETALL_SUCCESS, tickets }
