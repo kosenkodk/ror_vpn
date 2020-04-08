@@ -90,7 +90,7 @@ export function tickets(state = initialState, action) {
         page: state.page,
         pages: state.pages,
         status: state.status,
-        items: action.tickets.tickets,
+        items: action.tickets && action.tickets.tickets,
       };
     case ticketConstants.GETALL_SUCCESS:
       return {
