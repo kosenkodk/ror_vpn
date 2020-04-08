@@ -20,7 +20,8 @@ export function users(state = {}, action) {
       };
     case userConstants.GET_USER_REQUEST:
       return {
-        loading: true
+        loading: true,
+        user: action.user
       };
     case userConstants.GET_USER_SUCCESS:
       return {
