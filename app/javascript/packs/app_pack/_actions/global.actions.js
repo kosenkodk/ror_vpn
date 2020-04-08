@@ -114,20 +114,23 @@ function setPaymentMethod(payment_method) {
 
 function getPaymentMethods() {
   return dispatch => {
-    // dispatch(request())
+    dispatch(request(JSON.parse(localStorage.getItem('paymet_methods'))))
     userService.getPaymentMethods()
       .then(
         items => dispatch(success(items)),
         error => {
-          // dispatch(failure(error))
+          dispatch(failure(error))
           dispatch(alertActions.error(error))
         }
       )
   }
 
-  // function request() { return { type: globalConstants.GET_PAYMENT_METHODS_REQUEST } }
-  function success(payment_methods) { return { type: globalConstants.GET_PAYMENT_METHODS_SUCCESS, payment_methods } }
-  // function failure(error) { return { type: globalConstants.GET_PAYMENT_METHODS_FAILURE, error } }
+  function request(payment_methods) { return { type: globalConstants.GET_PAYMENT_METHODS_REQUEST, payment_methods } }
+  function success(payment_methods) {
+    localStorage.setItem('tariff_plans', JSON.stringify(items))
+    return { type: globalConstants.GET_PAYMENT_METHODS_SUCCESS, payment_methods }
+  }
+  function failure(error) { return { type: globalConstants.GET_PAYMENT_METHODS_FAILURE, error } }
 }
 
 function getDepartments() {

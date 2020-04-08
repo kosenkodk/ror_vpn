@@ -8,16 +8,26 @@ export function global(state = {}, action) {
         ...state,
         account_cancellation_reasons: action.account_cancellation_reasons
       };
+    case globalConstants.GET_PAYMENT_METHODS_REQUEST:
+      return {
+        ...state,
+        payment_methods: action.payment_methods
+      };
     case globalConstants.GET_PAYMENT_METHODS_SUCCESS:
       return {
         ...state,
         payment_methods: action.payment_methods
-      }
+      };
+    case globalConstants.GET_PAYMENT_METHODS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     case globalConstants.SET_PAYMENT_METHOD:
       return {
         ...state,
         currentPaymentMethod: action.payment_method
-      }
+      };
     case globalConstants.GET_COUNTRIES_REQUEST:
       return {
         ...state,
