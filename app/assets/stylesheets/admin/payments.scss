@@ -4,6 +4,12 @@
   }
 }
 
+#addPaymentMethod {
+  .form-control {
+    background-color: $bgGray;
+  }
+}
+
 .payments {
   margin-top: pxtovh(20);
 }
