@@ -62,6 +62,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
   end
 
   describe 'payment methods' do
+    let!(:country) {create(:country, name: 'United States', code: 'US')}
 
     before {
       fsign_in_as(user)
@@ -76,9 +77,12 @@ RSpec.describe 'Payments', type: :feature, js: true do
           click_on(I18n.t('pages.payments.payment_methods.add_bank_card'))
           expect(page).to have_content(I18n.t('pages.payments.payment_methods.add_bank_card'))
           bank_card_fillout_with valid_bank_card_params
+          select_by 'country_code', country.name
           click_on(I18n.t('buttons.save'))
           alert_have_text(I18n.t('pages.payments.payment_methods.add.success'))
           expect(page).to have_content('Visa (... 1234)')
+          user.reload
+          expect(user.country_id).to eq(country.id)
         end
       end
       context 'failure' do
