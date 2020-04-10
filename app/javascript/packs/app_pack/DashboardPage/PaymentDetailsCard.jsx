@@ -122,7 +122,7 @@ class PaymentDetailsCard extends React.Component {
                 {currentPaymentMethod && currentPaymentMethod.title}
               </label>
               <div className="col-sm-6">
-                <div className="row">
+                <div className="row px-2">
                   {currentPaymentMethod.icon_urls && currentPaymentMethod.icon_urls.map((icon_url, index) =>
                     <img key={`pw-key${index}`} src={icon_url} className="img-fluid col-3 px-1 py-1" />
                   )}
