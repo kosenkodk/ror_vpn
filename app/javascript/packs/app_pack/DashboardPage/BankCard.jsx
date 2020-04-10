@@ -41,6 +41,10 @@ class BankCard extends React.Component {
             isNumber: true
           }
         },
+        country_code: {
+          value: '',
+          valid: true,
+        },
         zip_code: {
           value: '',
           valid: true,
@@ -209,7 +213,7 @@ class BankCard extends React.Component {
           State
         </label>
         <div className="col-sm-3">
-          <select className="form-control" id="countrySelectBox" onChange={this.onInputChange} name="country_code" value={defaultCountryCode || 'US'}>
+          <select className="form-control" id="country_code" name="country_code" value={form.country_code.value} onChange={e => this.onBankCardInputChange('country_code', e.target.value)}>
             <option>Please select</option>
             {countries && countries.map((item) =>
               <option key={`${item.code}`} value={item.code}>{item.name}</option>

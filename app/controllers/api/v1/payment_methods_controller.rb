@@ -12,13 +12,17 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   end
 
   def show
-    item = PaymentMethod.find(params[:id])
+    item = PaymentMethod.find(params[:id].to_i)
     render json: item #.attributes.merge({icon_url: url_for(item.icon)})
   end
 
   def create
     title = params[:card_no].present? ? "Visa (... #{params[:card_no].try(:last,4)})" : params[:title]
     item = PaymentMethod.create!(title: title, user_id: current_user.id)
+    if params[:country_code].present?
+      country = Country.find_by_code(params[:country_code]) 
+      current_user.update(country: country) if country
+    end
     if item
       render json: { payment_method: item, notice: I18n.t('pages.payments.payment_methods.add.success') }
       return
@@ -27,8 +31,9 @@ class Api::V1::PaymentMethodsController < Api::V1::ApiController
   end
 
   def destroy
-    if PaymentMethod.exists?(params[:id])
-      if PaymentMethod.find(params[:id]).destroy!
+    id = params[:id].to_i
+    if PaymentMethod.exists?(id)
+      if PaymentMethod.find(id).destroy!
         render json: { notice: I18n.t('pages.payments.payment_methods.delete.success') }
         return
       else

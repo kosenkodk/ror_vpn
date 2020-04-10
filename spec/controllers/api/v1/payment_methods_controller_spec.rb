@@ -32,13 +32,17 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
       request.headers[JWTSessions.csrf_header] = csrf_token
     }
     describe 'create a payment method' do
+      let!(:country) {create(:country, code: 'US')}
       context 'success' do
         it do
-          post :create, params: {title: 'paypal'}
+          expect(user.country_id).to eq(nil)
+          post :create, params: {title: 'paypal', country_code: country.code}
           expect(response_json.keys.sort).to eq(['notice', 'payment_method'])
           expect(response_json['payment_method'].values).to include('paypal')
           expect(response_json['notice']).to eq(I18n.t('pages.payments.payment_methods.add.success'))
           expect(response).to have_http_status(200)
+          user.reload
+          expect(user.country.code).to eq(country.code)
         end
       end
       context 'failure' do
