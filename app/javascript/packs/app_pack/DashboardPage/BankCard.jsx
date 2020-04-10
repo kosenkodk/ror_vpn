@@ -55,6 +55,9 @@ class BankCard extends React.Component {
 
   onBankCardInputChange = (key, value) => {
     if (key === 'card_date') {
+      let lastItem = value.slice(-1)
+      if (!Number(lastItem) && (lastItem !== '/') && (lastItem !== '') && (lastItem !== '0')) return
+
       const prevItem = this.state.form.card_date
       if (value.length >= prevItem.rules.maxLength) {
         value = value.substring(0, prevItem.rules.maxLength)
