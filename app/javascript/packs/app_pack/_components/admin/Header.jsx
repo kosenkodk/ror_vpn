@@ -47,37 +47,41 @@ class Header extends React.Component {
         <li className="nav-item">
           <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
             <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
-          </NavHashLink>
-          <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
-            <div className="notifications-arrow"></div>
-            <div className="row notifications-header">
-              <h6 className="col text-left">Notifications</h6>
-              <div className="col text-right">
-                <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
+            <div className="notifications-wrapper">
+              <div className={`notifications-arrow ${this.state.isOpenNotifications ? 'show' : 'fade'}`}></div>
+
+              <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`}>
+                <div className="row notifications-header">
+                  <h6 className="col text-left">Notifications</h6>
+                  <div className="col text-right">
+                    <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
+                  </div>
+                </div>
+                <div className="notifications-body">
+                  <table className="table text-left">
+                    <tr>
+                      <td>
+                        Added 2 tickets to dashboard
+                    </td>
+                      <td className="notifications-item-date">
+                        2 min ago
+                  </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Added a new ticket to dashboard
+                  </td>
+                      <td className="notifications-item-date">
+                        Yesterday
+                  </td>
+                    </tr>
+                  </table>
+                </div>
+                <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
               </div>
             </div>
-            <div className="notifications-body">
-              <table className="table text-left">
-                <tr>
-                  <td>
-                    Added 2 tickets to dashboard
-                    </td>
-                  <td className="notifications-item-date">
-                    2 min ago
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Added a new ticket to dashboard
-                  </td>
-                  <td className="notifications-item-date">
-                    Yesterday
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
-          </div>
+          </NavHashLink>
+
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>

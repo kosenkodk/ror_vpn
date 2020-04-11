@@ -1,52 +1,62 @@
 
-  .notifications {
-    position: absolute;
-    // will-change: transform;
-    top: pxtovh(64);
-    right: pxtovw(10);
-    // transform: translate3d(543px, 2139px, 0px);
-    background-color: $black;
-    color: $white;
-    padding: pxtovw(10);
-    max-width: pxtovw(430);
-    width: 100%;
-    z-index: 1060;
-    display: block;
-    border-radius: pxtovw($border_radius_admin);
+.notifications-wrapper {
+  position: relative;
+}
+.notifications {
+  cursor: unset;
+  position: absolute;
+  top: pxtovh(24);
+  // left: pxtovw((-430/2) - 20);
+  right: -140px;
+  background-color: $black;
+  color: $white;
+  padding: pxtovw(10);
+  max-width: pxtovw(430);
+  width: pxtovw(430);
+  z-index: 1060;
+  display: block;
+  border-radius: pxtovw($border_radius_admin);
 
-    &-header {
-      padding: pxtovh(12px) pxtovw(10px) pxtovh(3px) pxtovw(10px);
-    }
-
-    &-body {
-      background-color: $white;
-      color: $black;
-      padding: pxtovw(10);
-      margin-bottom: pxtovh(10);
-      border-radius: pxtovw($border_radius_admin);
-    }
-
-    &-arrow {
-      right: pxtovw(120);
-      position: absolute;
-      display: block;
-      width: 1rem;
-      height: .5rem;
-      margin: 0 .3rem;
-      top: calc((.5rem + 1px) * -1);
-  
-      border-left: 2rem solid transparent;
-      border-right: 2rem solid transparent;
-      border-bottom: 1rem solid $black;
-    }
-    &-close {
-      // font-style: normal;
-      // font-weight: bold;
-      // font-size: 14px;
-      // line-height: 18px;
-      cursor: pointer;
-    }
-    &-item-date {
-      color: #949599;
-    }
+  &-header {
+    padding: pxtovh(12px) pxtovw(10px) pxtovh(3px) pxtovw(10px);
   }
+
+  &-body {
+    background-color: $white;
+    color: $black;
+    font-weight: normal;
+    // font-size: 14px;
+    // line-height: 25px;
+    padding: pxtovw(10);
+    margin-bottom: pxtovh(10);
+    border-radius: pxtovw($border_radius_admin);
+  }
+
+  &-arrow {
+    // right: pxtovw(120);
+    right: pxtovw(-20); 
+    position: absolute;
+    display: block;
+    // width: 1rem;
+    // height: .5rem;
+    width: pxtovw(20);
+    height: pxtovw(10);
+    // margin: 0 .3rem;
+    top: pxtovh(15);
+    // top: calc((.5rem + 1px) * -1);
+
+    border-left: pxtovw(40) solid transparent;
+    border-right: pxtovw(40) solid transparent;
+    border-bottom: pxtovw(20) solid $black;
+  }
+  &-close {
+    // font-style: normal;
+    // font-weight: bold;
+    // font-size: 14px;
+    // line-height: 18px;
+    cursor: pointer;
+  }
+  &-item-date {
+    color: #949599;
+  }
+}
