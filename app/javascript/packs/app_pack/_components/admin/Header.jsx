@@ -74,22 +74,16 @@ class Header extends React.Component {
               {/* <NotificationRoom></NotificationRoom> */}
               <table className="table text-left">
                 <tbody>
-                  <tr>
-                    <td>
-                      Added 2 tickets to dashboard
-                    </td>
-                    <td className="notifications-item-date">
-                      2 min ago
-                  </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Added a new ticket to dashboard
-                  </td>
-                    <td className="notifications-item-date">
-                      Yesterday
-                  </td>
-                  </tr>
+                  {user && user.messages && user.messages.map((item, index) =>
+                    <tr key={`notification${index}`}>
+                      <td className="text-left">>
+                        {item.title}
+                      </td>
+                      <td className="text-right notifications-item-date">
+                        {item.created_at_humanize}
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
