@@ -11,7 +11,8 @@ class Ticket < ApplicationRecord
   has_many_attached :attachments, dependent: :destroy
   has_many_attached :files, dependent: :destroy
   
-  has_many :messages, as: :messageable, inverse_of: 'ticket', dependent: :destroy
+  # has_many :messages, as: :messageable, inverse_of: 'ticket', dependent: :destroy
+  has_many :messages, as: :messageable, dependent: :destroy
   
   def attachment_path
     rails_blob_path(self.attachment, only_path: true) if self.attachment.attached?

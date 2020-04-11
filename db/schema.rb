@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_201900) do
+ActiveRecord::Schema.define(version: 2020_04_11_141929) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2020_03_31_201900) do
   create_table "messages", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "ticket_id"

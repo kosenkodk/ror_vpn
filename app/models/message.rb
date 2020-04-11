@@ -3,7 +3,7 @@ class Message < ApplicationRecord
   include Rails.application.routes.url_helpers
   
   belongs_to :messageable, polymorphic: true, optional: true
-  belongs_to :user, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :user, class_name: 'User', foreign_key: 'user_id', optional: true
   belongs_to :ticket, class_name: 'Ticket', foreign_key: 'ticket_id', optional: true
   has_one_attached :attachment, dependent: :destroy
   has_many_attached :attachments, dependent: :destroy
