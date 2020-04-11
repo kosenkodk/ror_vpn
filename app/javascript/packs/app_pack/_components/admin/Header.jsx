@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { userActions } from '../../_actions';
 import { urls } from 'config';
 import { Link } from 'react-router-dom';
+import notificationSrc from 'images/admin/notification.svg';
+import notificationNewSrc from 'images/admin/notification_new.svg';
+import { NotificationRoom } from '../../_components';
 
 class Header extends React.Component {
 
@@ -19,6 +22,10 @@ class Header extends React.Component {
 
   openNotifications = (e) => {
     e.preventDefault();
+
+    // let jsonData = FormDataAsJsonFromEvent(e)
+    // this.notificationChannel.reply(jsonData)
+
     // this.setState({ isOpenNotifications: true });
     this.setState({ isOpenNotifications: !this.state.isOpenNotifications });
   }
@@ -57,6 +64,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
+              <NotificationRoom></NotificationRoom>
               <table className="table text-left">
                 <tr>
                   <td>
