@@ -7,20 +7,23 @@
     // transform: translate3d(543px, 2139px, 0px);
     background-color: $black;
     color: $white;
-    padding: 1rem;
+    padding: pxtovw(10);
     max-width: pxtovw(430);
+    width: 100%;
     z-index: 1060;
     display: block;
-    
+    border-radius: pxtovw($border_radius_admin);
+
     &-header {
-      margin-top: pxtovh(30);
+      padding: pxtovh(12px) pxtovw(10px) pxtovh(3px) pxtovw(10px);
     }
 
     &-body {
       background-color: $white;
       color: $black;
-      padding: 1rem;
-      margin-bottom: 1rem;
+      padding: pxtovw(10);
+      margin-bottom: pxtovh(10);
+      border-radius: pxtovw($border_radius_admin);
     }
 
     &-arrow {

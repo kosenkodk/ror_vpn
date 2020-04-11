@@ -132,7 +132,7 @@
   }
 
   .main-content {
-    border-radius: pxtovw($admin_border_radius);
+    border-radius: pxtovw($border_radius_admin);
     // padding: $padding+0px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -245,7 +245,7 @@
 
   .btn {
     font-weight: $font-bold;
-    border-radius: pxtovw($admin_border_radius);
+    border-radius: pxtovw($border_radius_admin);
     // font-size: $font14;
     // line-height: $font18;
   }

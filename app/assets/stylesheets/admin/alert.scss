@@ -6,7 +6,7 @@
     transform: translateX(-50%);
   
   .alert {
-    border-radius: pxtovw($admin_border_radius_alert);
+    border-radius: pxtovw($border_radius_admin_alert);
     font-size: $font18;
     line-height: $font24;
     z-index: 1000;
