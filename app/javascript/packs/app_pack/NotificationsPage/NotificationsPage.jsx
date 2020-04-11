@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { globalActions } from '../_actions'
+import { NotificationRoom } from '../_components'
 
 class NotificationsPage extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class NotificationsPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(globalActions.getNotifications(5))
+    this.props.dispatch(globalActions.getNotifications(12))
   }
 
   render() {
@@ -19,14 +20,7 @@ class NotificationsPage extends React.Component {
         <h1>Notifications</h1>
         <div className="row">
           <div className="col-8">
-            {notifications && notifications.map((item, index) => <div key={`message${index}`} className="row">
-              <div className="col-8">
-                {item.title || item.text}
-              </div>
-              <div className="col text-right notifications-page__item-date">
-                {item.created_at_humanize}
-              </div>
-            </div>)}
+            <NotificationRoom notifications={notifications} />
           </div>
         </div>
       </div>
