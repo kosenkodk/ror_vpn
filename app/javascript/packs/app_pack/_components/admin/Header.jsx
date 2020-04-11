@@ -47,8 +47,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { notifications, loggedIn, user, title } = this.props;
-
+    const { loggedIn, user, title, notifications } = this.props;
     return (
       <nav className="nav justify-content-end d-flex align-items-center">
         <li className="nav-item mr-auto">
@@ -75,7 +74,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
-              <NotificationRoom notifications={this.props.notifications}></NotificationRoom>
+              <NotificationRoom notifications={notifications} />
             </div>
             <button onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
@@ -90,7 +89,7 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   const { title } = state.page;
-  const { notifications } = state.global
+  const { notifications } = state.global;
   const { loggedIn, user } = state.authentication;
   return {
     notifications,

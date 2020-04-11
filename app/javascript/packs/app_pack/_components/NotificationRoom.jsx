@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Messages, MessageForm } from './'
 import consumer from 'channels/consumer'
-import { FormDataAsJsonFromEvent } from '../_helpers'
-// import { prepareAttachmentForJsonApiAsync } from '../_helpers'
 import { globalActions } from '../_actions'
 
 class NotificationRoom extends React.Component {
@@ -11,23 +8,18 @@ class NotificationRoom extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: [],
-      message_text: '',
+      notifications: [],
     }
     this.notificationChannel = ''
-    this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
   }
 
-  async onMessageFormSubmit(e, item) {
+  onCreateNotification = (e, item) => {
     e.preventDefault()
-    let jsonData = FormDataAsJsonFromEvent(e)
-    this.notificationChannel.reply(jsonData)
-    // this.notificationChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text })
-    this.props.dispatch(globalActions.clearAttachments());
+    this.notificationChannel.reply({ user_id: item.user_id, title: item.title })
   }
 
   componentDidMount() {
-    const user_id = this.props.id
+    const user_id = this.props.user.id
 
     this.notificationChannel = consumer.subscriptions.create(
       {
@@ -38,11 +30,12 @@ class NotificationRoom extends React.Component {
         received: data => {
           switch (data.type) {
             case 'message':
-              const messages = [data.message, ...this.state.messages]
-              this.setState({ messages: messages })
+              const notifications = [data.message, ...this.state.notifications]
+              this.setState({ notifications: notifications })
+              this.props.dispatch(globalActions.addNotification(this.props.limit))
               break
             case 'messages':
-              this.setState({ messages: data.messages })
+              this.setState({ notifications: data.messages })
               break
           }
         },
@@ -54,17 +47,17 @@ class NotificationRoom extends React.Component {
         },
       }
     );
-    // this.notificationChannel.load();
   }
 
-  loadChat(e) {
-    e.preventDefault()
-    this.notificationChannel.load()
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    // console.log(nextProps)
+    // if (nextProps.notifications.length > this.props.limit)
+    // this.setState({ notifications: this.props.notifications })
   }
 
   render() {
-    // const { notifications } = this.state
-    const { notifications } = this.props
+    // const notifications = this.state.notifications
+    const { user, notifications } = this.props
     return (
       <React.Fragment>
         <table className="table text-left">
@@ -81,11 +74,7 @@ class NotificationRoom extends React.Component {
             )}
           </tbody>
         </table>
-        {/* <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} /> */}
-        {/* load chat history <button className="btn btn-outline-info"
-          onClick={this.loadChat.bind(this)}>
-          {I18n.t('pages.tickets.chat.load')}
-        </button> */}
+        <button className="btn btn-pink" onClick={(e) => this.onCreateNotification(e, { title: 'Notification', user_id: user.id })} />
       </React.Fragment>
     )
   }
@@ -93,9 +82,10 @@ class NotificationRoom extends React.Component {
 
 function mapStateToProps(state) {
   // const { notifications } = state.global
-  const { loading, item } = state.tickets
+  const { user } = state.authentication
   return {
-    loading, item
+    user,
+    // notifications
   }
 }
 
