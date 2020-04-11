@@ -76,7 +76,7 @@ class Header extends React.Component {
                 <tbody>
                   {user && user.messages && user.messages.map((item, index) =>
                     <tr key={`notification${index}`}>
-                      <td className="text-left">>
+                      <td className="text-left">
                         {item.title}
                       </td>
                       <td className="text-right notifications-item-date">
