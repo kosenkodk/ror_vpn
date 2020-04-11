@@ -8,6 +8,7 @@ export const globalActions = {
   getCountries,
   getDepartments,
   getPlans,
+  createNotifier,
   addNotification,
   getNotifications,
   setPaymentMethod,
@@ -19,6 +20,10 @@ export const globalActions = {
   deleteAttachment,
   setStep,
   getReferLink
+}
+
+function createNotifier(notifier) {
+  return { type: globalConstants.CREATE_NOTIFIER, notifier }
 }
 
 function addNotification(item) {

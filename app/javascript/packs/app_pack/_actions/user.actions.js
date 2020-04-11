@@ -4,6 +4,7 @@ import { alertActions } from './';
 import { history } from '../_helpers';
 import { urls, config } from 'config';
 import { globalActions } from './global.actions';
+import consumer from 'channels/consumer';
 
 export const userActions = {
   login,
@@ -122,6 +123,33 @@ function login({ email, password, code2fa }) {
       .then(
         user => {
           dispatch(success(user));
+
+          const user_id = user.id;
+          const notificationChannel = consumer.subscriptions.create(
+            {
+              channel: 'NotificationsChannel',
+              room: `Room${user_id}`
+            },
+            {
+              received: data => {
+                switch (data.type) {
+                  case 'message':
+                    dispatch(globalActions.addNotification(data.message))
+                    break
+                  case 'messages':
+                    break
+                }
+              },
+              reply: function (data) {
+                return this.perform("reply", data)
+              },
+              load: function () {
+                return this.perform("load", { user_id: user_id })
+              },
+            });
+
+          dispatch(globalActions.createNotifier(notificationChannel));
+
           history.push(config.userUrlAfterSignin);
         },
         error => {
