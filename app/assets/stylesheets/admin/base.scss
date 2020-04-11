@@ -97,6 +97,16 @@
       border-right: 2rem solid transparent;
       border-bottom: 1rem solid $black;
     }
+    &-close {
+      // font-style: normal;
+      // font-weight: bold;
+      // font-size: 14px;
+      // line-height: 18px;
+      cursor: pointer;
+    }
+    &-item-date {
+      color: #949599;
+    }
   }
 
   .header__alert {
