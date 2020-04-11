@@ -8,6 +8,7 @@ export const globalActions = {
   getCountries,
   getDepartments,
   getPlans,
+  addNotification,
   getNotifications,
   setPaymentMethod,
   getPaymentMethods,
@@ -18,6 +19,29 @@ export const globalActions = {
   deleteAttachment,
   setStep,
   getReferLink
+}
+
+function addNotification(item) {
+  return success(item)
+
+  return dispatch => {
+    dispatch(request())
+    userService.addNotification(item)
+      .then(
+        response => {
+          // localStorage.setItem('notifications', JSON.stringify(response.notification))
+          dispatch(success(response.notification))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request() { return { type: globalConstants.ADD_NOTIFICATION_REQUEST } }
+  function success(notification) { return { type: globalConstants.ADD_NOTIFICATION_SUCCESS, notification } }
+  function failure(error) { return { type: globalConstants.ADD_NOTIFICATION_FAILURE, error } }
 }
 
 function getNotifications(limit) {

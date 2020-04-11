@@ -32,7 +32,7 @@ class NotificationRoom extends React.Component {
             case 'message':
               const notifications = [data.message, ...this.state.notifications]
               this.setState({ notifications: notifications })
-              this.props.dispatch(globalActions.addNotification(this.props.limit))
+              this.props.dispatch(globalActions.addNotification(data.message))
               break
             case 'messages':
               this.setState({ notifications: data.messages })
