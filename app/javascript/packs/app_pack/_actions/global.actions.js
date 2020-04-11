@@ -27,7 +27,7 @@ function getNotifications(limit) {
       .then(
         response => {
           localStorage.setItem('notifications', JSON.stringify(response.notifications))
-          dispatch(success(reponse.notifications))
+          dispatch(success(response.notifications))
         },
         error => {
           // dispatch(failure(error))

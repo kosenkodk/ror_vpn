@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
-import { userActions } from '../../_actions';
+import { globalActions, userActions } from '../../_actions';
 import { urls } from 'config';
 import { Link } from 'react-router-dom';
 import notificationSrc from 'images/admin/notification.svg';
@@ -42,8 +42,12 @@ class Header extends React.Component {
     this.closeNotifications(e)
   }
 
+  componentDidMount() {
+    this.props.dispatch(globalActions.getNotifications(5))
+  }
+
   render() {
-    const { loggedIn, user, title } = this.props;
+    const { notifications, loggedIn, user, title } = this.props;
 
     return (
       <nav className="nav justify-content-end d-flex align-items-center">
@@ -71,21 +75,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
-              {/* <NotificationRoom></NotificationRoom> */}
-              <table className="table text-left">
-                <tbody>
-                  {user && user.messages && user.messages.map((item, index) =>
-                    <tr key={`notification${index}`}>
-                      <td className="text-left">
-                        {item.title}
-                      </td>
-                      <td className="text-right notifications-item-date">
-                        {item.created_at_humanize}
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+              <NotificationRoom notifications={this.props.notifications}></NotificationRoom>
             </div>
             <button onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
@@ -100,8 +90,10 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   const { title } = state.page;
+  const { notifications } = state.global
   const { loggedIn, user } = state.authentication;
   return {
+    notifications,
     loggedIn, user, title
   };
 }

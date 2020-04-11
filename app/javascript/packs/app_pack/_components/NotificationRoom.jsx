@@ -21,11 +21,6 @@ class NotificationRoom extends React.Component {
   async onMessageFormSubmit(e, item) {
     e.preventDefault()
     let jsonData = FormDataAsJsonFromEvent(e)
-    // if (this.props.attachments && this.props.attachments.attachmentsForApi) {
-    //   // const items = await Promise.all([...this.props.attachments.files].map(async (item) => await prepareAttachmentForJsonApiAsync(item)));
-    //   const items = await Promise.all(this.props.attachments.attachmentsForApi)
-    //   jsonData['attachments'] = items
-    // }
     this.notificationChannel.reply(jsonData)
     // this.notificationChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text })
     this.props.dispatch(globalActions.clearAttachments());
@@ -68,30 +63,39 @@ class NotificationRoom extends React.Component {
   }
 
   render() {
-    const { messages } = this.state
-    // const { item } = this.props
+    // const { notifications } = this.state
+    const { notifications } = this.props
     return (
       <React.Fragment>
-        <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} />
+        <table className="table text-left">
+          <tbody>
+            {notifications && notifications.map((item, index) =>
+              <tr key={`notification${index}`}>
+                <td className="text-left">
+                  {item.title || item.text}
+                </td>
+                <td className="text-right notifications-item-date">
+                  {item.created_at_humanize}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+        {/* <MessageForm onMessageFormSubmit={this.onMessageFormSubmit} /> */}
         {/* load chat history <button className="btn btn-outline-info"
           onClick={this.loadChat.bind(this)}>
           {I18n.t('pages.tickets.chat.load')}
         </button> */}
-        <div className="mt-3 mb-3">
-          <div className="border border-gray" />
-          {/* <Messages items={item && item.messages} /> */}
-          <Messages items={messages} />
-        </div>
       </React.Fragment>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { attachments } = state.global
+  // const { notifications } = state.global
   const { loading, item } = state.tickets
   return {
-    loading, item, attachments
+    loading, item
   }
 }
 
