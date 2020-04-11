@@ -47,36 +47,38 @@ class Header extends React.Component {
         <li className="nav-item">
           <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
             <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
-            <div className={`header__notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
-              <div className="header__notifications-arrow"></div>
-              <div className="row">
-                <h3 className="col text-left">Notifications</h3>
-                <a onClick={this.closeNotifications} className="col text-right">x</a>
-              </div>
-              <div className="header__notifications-body">
-                <table className="table text-left">
-                  <tr>
-                    <td>
-                      Added 2 tickets to dashboard
-                    </td>
-                    <td>
-                      2 min ago
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Added a new ticket to dashboard
-                    </td>
-                    <td>
-                      Yesterday
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              {/* <button className="btn btn-pink btn-block">See all incoming activities</button> */}
-              <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
-            </div>
           </NavHashLink>
+          <div className={`header__notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
+            <div className="header__notifications-arrow"></div>
+            <div className="row">
+              <h6 className="col text-left">Notifications</h6>
+              <div className="col text-right">
+                <h6 onClick={this.closeNotifications} className="header__notifications-close">x</h6>
+              </div>
+            </div>
+            <div className="header__notifications-body">
+              <table className="table text-left">
+                <tr>
+                  <td>
+                    Added 2 tickets to dashboard
+                    </td>
+                  <td className="header__notifications-item-date">
+                    2 min ago
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Added a new ticket to dashboard
+                  </td>
+                  <td className="header__notifications-item-date">
+                    Yesterday
+                  </td>
+                </tr>
+              </table>
+            </div>
+            {/* <button className="btn btn-pink btn-block">See all incoming activities</button> */}
+            <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
+          </div>
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
