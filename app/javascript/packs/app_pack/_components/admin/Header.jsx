@@ -48,21 +48,21 @@ class Header extends React.Component {
           <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
             <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
           </NavHashLink>
-          <div className={`header__notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
-            <div className="header__notifications-arrow"></div>
-            <div className="row">
+          <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
+            <div className="notifications-arrow"></div>
+            <div className="row notifications-header">
               <h6 className="col text-left">Notifications</h6>
               <div className="col text-right">
-                <h6 onClick={this.closeNotifications} className="header__notifications-close">x</h6>
+                <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
               </div>
             </div>
-            <div className="header__notifications-body">
+            <div className="notifications-body">
               <table className="table text-left">
                 <tr>
                   <td>
                     Added 2 tickets to dashboard
                     </td>
-                  <td className="header__notifications-item-date">
+                  <td className="notifications-item-date">
                     2 min ago
                   </td>
                 </tr>
@@ -70,13 +70,12 @@ class Header extends React.Component {
                   <td>
                     Added a new ticket to dashboard
                   </td>
-                  <td className="header__notifications-item-date">
+                  <td className="notifications-item-date">
                     Yesterday
                   </td>
                 </tr>
               </table>
             </div>
-            {/* <button className="btn btn-pink btn-block">See all incoming activities</button> */}
             <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
           </div>
         </li>
