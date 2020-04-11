@@ -1,4 +1,9 @@
 
+  .notifications-page {
+    &__item-date {
+      color: #949599;
+    }
+  }
   .notifications {
     position: absolute;
     // will-change: transform;

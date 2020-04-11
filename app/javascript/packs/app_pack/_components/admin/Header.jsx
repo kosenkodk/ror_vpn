@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import notificationSrc from 'images/admin/notification.svg';
 import notificationNewSrc from 'images/admin/notification_new.svg';
 import { NotificationRoom } from '../../_components';
+import { history } from '../../_helpers';
 
 class Header extends React.Component {
 
@@ -33,6 +34,12 @@ class Header extends React.Component {
   closeNotifications = (e) => {
     e.preventDefault();
     this.setState({ isOpenNotifications: false });
+  }
+
+  viewAllNotifications = (e) => {
+    e.preventDefault()
+    history.push(urls.notifications.path)
+    this.closeNotifications(e)
   }
 
   render() {
@@ -66,25 +73,27 @@ class Header extends React.Component {
             <div className="notifications-body">
               {/* <NotificationRoom></NotificationRoom> */}
               <table className="table text-left">
-                <tr>
-                  <td>
-                    Added 2 tickets to dashboard
+                <tbody>
+                  <tr>
+                    <td>
+                      Added 2 tickets to dashboard
                     </td>
-                  <td className="notifications-item-date">
-                    2 min ago
+                    <td className="notifications-item-date">
+                      2 min ago
                   </td>
-                </tr>
-                <tr>
-                  <td>
-                    Added a new ticket to dashboard
+                  </tr>
+                  <tr>
+                    <td>
+                      Added a new ticket to dashboard
                   </td>
-                  <td className="notifications-item-date">
-                    Yesterday
+                    <td className="notifications-item-date">
+                      Yesterday
                   </td>
-                </tr>
+                  </tr>
+                </tbody>
               </table>
             </div>
-            <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
+            <button onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
         </li>
         <li className="nav-item">
