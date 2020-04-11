@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
   let!(:ticket) { create(:ticket, user: user) }
-  let!(:message) { create(:message, user_id: user.id, ticket_id: ticket.id) }
+  let!(:message) { create(:message, user: user, ticket: ticket) }
   let!(:plan) { create(:tariff_plan) }
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }

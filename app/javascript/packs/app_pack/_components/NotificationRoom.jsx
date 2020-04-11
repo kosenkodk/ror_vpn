@@ -21,11 +21,11 @@ class NotificationRoom extends React.Component {
   async onMessageFormSubmit(e, item) {
     e.preventDefault()
     let jsonData = FormDataAsJsonFromEvent(e)
-    if (this.props.attachments && this.props.attachments.attachmentsForApi) {
-      // const items = await Promise.all([...this.props.attachments.files].map(async (item) => await prepareAttachmentForJsonApiAsync(item)));
-      const items = await Promise.all(this.props.attachments.attachmentsForApi)
-      jsonData['attachments'] = items
-    }
+    // if (this.props.attachments && this.props.attachments.attachmentsForApi) {
+    //   // const items = await Promise.all([...this.props.attachments.files].map(async (item) => await prepareAttachmentForJsonApiAsync(item)));
+    //   const items = await Promise.all(this.props.attachments.attachmentsForApi)
+    //   jsonData['attachments'] = items
+    // }
     this.notificationChannel.reply(jsonData)
     // this.notificationChannel.reply({ message_user_id: jsonData.message_user_id, message_text: jsonData.message_text })
     this.props.dispatch(globalActions.clearAttachments());

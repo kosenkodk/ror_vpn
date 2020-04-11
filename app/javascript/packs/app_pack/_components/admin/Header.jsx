@@ -64,7 +64,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
-              <NotificationRoom></NotificationRoom>
+              {/* <NotificationRoom></NotificationRoom> */}
               <table className="table text-left">
                 <tr>
                   <td>
