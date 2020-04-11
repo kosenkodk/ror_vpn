@@ -22,6 +22,7 @@ export const userService = {
   getPlans,
   getCountries,
   getDepartments,
+  getNotifications,
   contactUs,
   cancelAccount,
   getAccountCancellationReasons,
@@ -436,6 +437,18 @@ function getCountries() {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/countries`, requestOptions).then(handleResponse);
+}
+
+function getNotifications(limit) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/notifications?limit=${limit}`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/notifications?limit=${limit}`, requestOptions).then(handleResponse);
 }
 
 function getDepartments() {

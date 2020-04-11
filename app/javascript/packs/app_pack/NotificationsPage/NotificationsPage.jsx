@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
+import { globalActions } from '../_actions'
 
 class NotificationsPage extends React.Component {
   constructor(props) {
@@ -8,22 +9,22 @@ class NotificationsPage extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.dispatch(userActions.getUser())
+    this.props.dispatch(globalActions.getNotifications(5))
   }
 
   render() {
-    const { user } = this.props
+    const { notifications } = this.props
     return (
       <div className="container-fluid notifications-page">
         <h1>Notifications</h1>
         <div className="row">
           <div className="col-8">
-            {user.messages && user.messages.map(message => <div className="row">
+            {notifications && notifications.map((item, index) => <div key={`message${index}`} className="row">
               <div className="col-8">
-                {message.title}
+                {item.title || item.text}
               </div>
               <div className="col text-right notifications-page__item-date">
-                {message.created_at_humanize}
+                {item.created_at_humanize}
               </div>
             </div>)}
           </div>
@@ -34,9 +35,9 @@ class NotificationsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { user } = state.authentication
+  const { notifications } = state.global
   return {
-    user
+    notifications
   }
 }
 
