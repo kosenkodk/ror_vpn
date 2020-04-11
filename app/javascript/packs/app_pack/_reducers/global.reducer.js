@@ -8,6 +8,11 @@ export function global(state = {}, action) {
         ...state,
         account_cancellation_reasons: action.account_cancellation_reasons
       };
+    case globalConstants.CREATE_NOTIFIER:
+      return {
+        ...state,
+        notifier: action.notifier
+      };
     case globalConstants.ADD_NOTIFICATION_REQUEST:
       return {
         ...state,
