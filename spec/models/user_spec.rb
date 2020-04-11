@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
   let!(:ticket) { create(:ticket, user: user) }
-  let!(:message) { create(:message, user: user, ticket: ticket) }
+  let!(:message) { create(:message, user_id: user.id, ticket_id: ticket.id) }
   let!(:plan) { create(:tariff_plan) }
   let!(:payment_method) { create(:payment_method) }
   let!(:cancel_reason) { create(:cancel_reason) }
@@ -103,6 +103,28 @@ RSpec.describe User, type: :model do
     user = create(:user, expired_at: 2.month.ago)
     user.prolongate_on(1.month)
     expect(user.expired_at).to be > 1.month.from_now-5.seconds
+  end
+  
+  context 'notifications' do
+    it do
+      user = create(:user)
+      expect(user.messages.count).to eq(0)
+      message = create(:message)
+      user.messages << message
+      expect(user.messages).to include(message)
+      expect(user.messages.count).to eq(1)
+      user.messages.create(title: 'title')
+      expect(user.messages.count).to eq(2)
+      expect(message.messageable.id).to eq(user.id)
+      
+      # message2 = create(:message, messageable_type: User, messageable_id: user.id)
+      # message2 = create(:message, messageable_type: 'User', messageable_id: user.id)
+      message2 = create(:message, messageable: user)
+      expect(message2.messageable.id).to eq(user.id)
+      expect(message2.messageable).to eq(user)
+      expect(user.messages.count).to eq(3)
+      expect(Message.where(messageable_id:user.id).count).to eq(3)
+    end
   end
 
   context 'invoices' do
