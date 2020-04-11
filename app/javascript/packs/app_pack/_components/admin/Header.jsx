@@ -3,12 +3,29 @@ import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { userActions } from '../../_actions';
 import { urls } from 'config';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { isOpenNotifications: false }
+  }
 
   signOut = (e) => {
     this.props.dispatch(userActions.logout());
     e.preventDefault();
+  }
+
+  openNotifications = (e) => {
+    e.preventDefault();
+    // this.setState({ isOpenNotifications: true });
+    this.setState({ isOpenNotifications: !this.state.isOpenNotifications });
+  }
+
+  closeNotifications = (e) => {
+    e.preventDefault();
+    this.setState({ isOpenNotifications: false });
   }
 
   render() {
@@ -29,7 +46,36 @@ class Header extends React.Component {
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
-            <img src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
+            <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
+            <div className={`header__notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
+              <div className="header__notifications-arrow"></div>
+              <div className="row">
+                <h3 className="col text-left">Notifications</h3>
+                <a onClick={this.closeNotifications} className="col text-right">x</a>
+              </div>
+              <div className="header__notifications-body">
+                <table className="table text-left">
+                  <tr>
+                    <td>
+                      Added 2 tickets to dashboard
+                    </td>
+                    <td>
+                      2 min ago
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Added a new ticket to dashboard
+                    </td>
+                    <td>
+                      Yesterday
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              {/* <button className="btn btn-pink btn-block">See all incoming activities</button> */}
+              <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
+            </div>
           </NavHashLink>
         </li>
         <li className="nav-item">
