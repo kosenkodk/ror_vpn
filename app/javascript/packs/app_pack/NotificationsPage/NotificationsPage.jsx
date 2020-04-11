@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { globalActions } from '../_actions'
-import { NotificationRoom } from '../_components'
+import { NotificationRoom } from '../NotificationsPage/NotificationRoom'
 
 class NotificationsPage extends React.Component {
   constructor(props) {

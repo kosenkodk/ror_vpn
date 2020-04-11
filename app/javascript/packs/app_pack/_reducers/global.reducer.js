@@ -15,7 +15,7 @@ export function global(state = {}, action) {
     case globalConstants.ADD_NOTIFICATION_SUCCESS:
       return {
         ...state,
-        notifications: [...state.notifications, action.notification]
+        notifications: [action.notification, ...state.notifications]
       };
     case globalConstants.ADD_NOTIFICATION_FAILURE:
       return {
