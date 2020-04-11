@@ -6,7 +6,7 @@ import { urls } from 'config';
 import { Link } from 'react-router-dom';
 import notificationSrc from 'images/admin/notification.svg';
 import notificationNewSrc from 'images/admin/notification_new.svg';
-import { NotificationRoom } from '../../_components';
+import { Notifications } from '../../NotificationsPage/Notifications';
 import { history } from '../../_helpers';
 
 class Header extends React.Component {
@@ -74,7 +74,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
-              <NotificationRoom notifications={notifications} />
+              <Notifications notifications={notifications} />
             </div>
             <button onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>

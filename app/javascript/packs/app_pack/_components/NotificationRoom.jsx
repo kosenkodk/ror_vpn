@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import consumer from 'channels/consumer'
 import { globalActions } from '../_actions'
+import { Notifications } from '../NotificationsPage/Notifications'
 
 class NotificationRoom extends React.Component {
 
@@ -60,20 +61,7 @@ class NotificationRoom extends React.Component {
     const { user, notifications } = this.props
     return (
       <React.Fragment>
-        <table className="table text-left">
-          <tbody>
-            {notifications && notifications.map((item, index) =>
-              <tr key={`notification${index}`}>
-                <td className="text-left">
-                  {item.title || item.text}
-                </td>
-                <td className="text-right notifications-item-date">
-                  {item.created_at_humanize}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Notifications notifications={notifications} />
         <button className="btn btn-pink" onClick={(e) => this.onCreateNotification(e, { title: 'Notification', user_id: user.id })} />
       </React.Fragment>
     )
