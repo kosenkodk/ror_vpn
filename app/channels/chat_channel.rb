@@ -27,10 +27,7 @@ class ChatChannel < ApplicationCable::Channel
 
   def reply(data)
     if Ticket.exists?(data['message_ticket_id'])
-      # message = Message.create(text: data['message_text']) if data['message_text']
-      # message.update(user_id: data['message_user_id']) if data['message_user_id']
-      # message.update(ticket_id: data['message_ticket_id'])
-      message = Message.create(text: data['message_text'], ticket_id: data['message_ticket_id'], user_id: data['message_user_id']) if data['message_user_id']
+      message = Message.create(title: data['message_title'], text: data['message_text'], ticket_id: data['message_ticket_id'], user_id: data['message_user_id']) if data['message_user_id']
       ticket = Ticket.find(data['message_ticket_id'])
       
       attachments = data['attachments']

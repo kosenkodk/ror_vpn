@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ChatChannel, type: :channel do
   let!(:user) {create(:user)}
   let!(:ticket) {create(:ticket, user: user)}
-  let!(:message) {create(:message, user: user, ticket_id: ticket.id)}
+  let!(:message) {create(:message, user: user, ticket: ticket)}
   let(:room) {"Room#{ticket.id}"}
   let(:ticket_channel) {"ticket_channel#{room}"}
   let(:chat_channel) {"ChatChannel"}
@@ -50,7 +50,7 @@ RSpec.describe ChatChannel, type: :channel do
     }
 
     it "return message when send all params" do
-      request_params = {message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
+      request_params = {message_title: message.title, message_text: message.text, message_user_id: message.user_id, message_ticket_id: message.ticket_id}
       # perform :reply, request_params
       # expect(transmissions.last).to eq({'message': request_params}) # transmissions is always nil
       expect {
