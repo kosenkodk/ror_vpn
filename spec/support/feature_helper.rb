@@ -39,7 +39,19 @@ module FeatureHelper
     # click_on(I18n.t('buttons.view'), match: :first)
     find('.ticket-table-item', match: :first).click
   end
+
+  def check_notifications
+    click_on_notification_popup
+    expect(page).to have_content(I18n.t('pages.account.cancel.success'))
+
+    visit('/user/notifications')
+    expect(page).to have_content(I18n.t('pages.account.cancel.success'))
+  end
   
+  def click_on_notification_popup
+    find("#notification_popup").click
+  end
+
   def click_on_cancel_account_link
     # click_on(I18n.t('pages.account.cancel.title'))
     find('#cancel_account_link').click
