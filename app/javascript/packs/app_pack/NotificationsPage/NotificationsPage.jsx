@@ -19,7 +19,7 @@ class NotificationsPage extends React.Component {
       <div className="container-fluid notifications-page">
         <h1>Notifications</h1>
         <div className="row">
-          <div className="col-8">
+          <div className="col-md-8">
             <NotificationRoom notifications={notifications} />
           </div>
         </div>
