@@ -39,7 +39,7 @@ RSpec.describe ChatChannel, type: :channel do
     }
     
     let(:message_json_without_user) {
-      message.as_json({only: [:text], methods: [:attachment_url, :attachment_name]})
+      message.as_json({only: [:title, :text], methods: [:attachment_url, :attachment_name]})
     }
 
     before(:each) {

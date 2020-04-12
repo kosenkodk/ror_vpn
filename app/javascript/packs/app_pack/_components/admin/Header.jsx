@@ -65,7 +65,7 @@ class Header extends React.Component {
           <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
             <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
           </NavHashLink>
-          <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`} role="tooltip" id="popover496112" x-placement="bottom">
+          <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
             <div className="notifications-arrow"></div>
             <div className="row notifications-header">
               <h6 className="col text-left">Notifications</h6>

@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe Api::V1::NotificationsController, type: :controller do
   let!(:user) { create(:user) }
   let!(:user2) { create(:user) }
-  let!(:user_notification) { create(:message, user_id: user.id) }
-  let!(:user_notification2) { create(:message, user_id: user.id) }
-  let!(:user2_notification) { create(:message, user_id: user2.id) }
+  let!(:user_notification) { create(:message, messageable: user) }
+  let!(:user_notification2) { create(:message, messageable: user) }
+  let!(:user2_notification) { create(:message, messageable: user2) }
 
   before { sign_in_as(user) }
 
   it 'display user\'s notifications' do
     get :index
-    expect(response_json['notifications'][0]['text']).to include(user_notification.text)
+    expect(response_json['notifications'][0]['text']).to include(user_notification2.text)
     expect(response_json['notifications'].count).to eq(2)
   end
 
