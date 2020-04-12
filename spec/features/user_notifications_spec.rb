@@ -14,8 +14,7 @@ RSpec.describe 'Notifications', type: :feature, js: true do
       visit('/user/account')
       click_on_cancel_account_link
       click_on(I18n.t('buttons.submit'))
-      visit('/user/notifications')
-      expect(page).to have_content(I18n.t('pages.account.cancel.success'))
+      check_notifications
     end
   end
 

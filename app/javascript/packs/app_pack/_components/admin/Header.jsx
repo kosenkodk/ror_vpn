@@ -63,7 +63,7 @@ class Header extends React.Component {
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
-            <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
+            <img id="notification_popup" onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
           </NavHashLink>
           <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
             <div className="notifications-arrow"></div>
