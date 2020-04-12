@@ -1,4 +1,5 @@
 class Api::V1::AccountController < Api::V1::ApiController
+  # require NotificationsChannel
   before_action :authorize_access_request!
   before_action :find_user, only: [:change_password, :change_email, :delete, :cancel]
   KEYS = [:password, :password_confirmation, :password_old].freeze
@@ -17,11 +18,18 @@ class Api::V1::AccountController < Api::V1::ApiController
     @user.cancel_account_reason_text = params[:cancel_account_reason_text]
     @user.cancel_reason = CancelReason.find(params[:cancel_account_reason_id])
     @user.tariff_plan = TariffPlan.find_by(price: 0)
-    # @user.tariff_plan_id = TariffPlan.find_by(price: 0.00).id
-    # @user.update(tariff_plan: TariffPlan.find_by(price: 0))
     if @user.save
       # todo: return title of current plan to display in mobile client
       render json: { user: @user, notice: I18n.t('pages.account.cancel.success') }
+      
+      # item = {title: I18n.t('pages.account.cancel.success'), text: I18n.t('pages.account.cancel.success'), user_id: @user.id}
+      ## NotificationsChannel.reply(item)
+      
+      user_id =  @user.id
+      message = Message.create(title: I18n.t('pages.account.cancel.success'), text: '', messageable_id: user_id, messageable_type: User) if user_id > 0
+      item = message.as_json
+      socket = {type: 'message', message: item}
+      ActionCable.server.broadcast "notifications:notifications_channel#{@user.id}", socket
     else
       render json: { error: I18n.t('pages.account.cancel.error') }
     end
