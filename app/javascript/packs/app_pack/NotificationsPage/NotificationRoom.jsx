@@ -7,9 +7,6 @@ class NotificationRoom extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      notifications: [],
-    }
     this.notificationChannel = ''
   }
 
@@ -18,23 +15,12 @@ class NotificationRoom extends React.Component {
     this.props.notifier && this.props.notifier.reply({ user_id: item.user_id, title: item.title })
   }
 
-  componentDidMount() {
-
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    // console.log(nextProps)
-    // if (nextProps.notifications.length > this.props.limit)
-    // this.setState({ notifications: this.props.notifications })
-  }
-
   render() {
-    // const notifications = this.state.notifications
     const { user, notifications } = this.props
     return (
       <React.Fragment>
         <Notifications notifications={notifications} />
-        <button className="btn btn-pink" onClick={(e) => this.onCreateNotification(e, { title: 'Notification', user_id: user.id })} />
+        {/* <button className="btn btn-pink" onClick={(e) => this.onCreateNotification(e, { title: 'Notification', user_id: user.id })} /> */}
       </React.Fragment>
     )
   }
