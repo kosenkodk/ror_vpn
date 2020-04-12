@@ -35,6 +35,9 @@ RSpec.describe 'User Account', type: :feature, js: true do
           user.reload
           expect(user.is2fa).to eq(true)
           expect(page).to have_field('customSwitch2fa', visible: :all, checked: true)
+
+          check_notification_with_title I18n.t('pages.account.2fa.enable.success')
+
           # should save 'enable 2fa' checkbox's state after page reload
           visit('/user/account')
           expect(page).to have_field('customSwitch2fa', visible: :all, checked: true)
@@ -75,6 +78,8 @@ RSpec.describe 'User Account', type: :feature, js: true do
           uncheck('customSwitch2fa', allow_label_click: true, visible: :all)
           user_2fa_enabled.reload
           expect(user_2fa_enabled.is2fa).to eq(false)
+
+          check_notification_with_title I18n.t('pages.account.2fa.disable.success')
         end
        end
     end
@@ -114,13 +119,15 @@ RSpec.describe 'User Account', type: :feature, js: true do
       click_on(I18n.t('buttons.submit'))
       expect(find('.alert')).to have_text(I18n.t('pages.account.cancel.success'))
 
-      click_on(I18n.t('buttons.cancel'))
+      # click_on(I18n.t('buttons.cancel')) # auto close modal popup
       expect(page).to have_content(tariff_plan_free.title)
       
       user.reload
       expect(user.tariff_plan.title).to eq(tariff_plan_free.title)
       expect(user.tariff_plan.price).to eq(tariff_plan_free.price)
       expect(user.cancel_account_reason_text).to eq(cancel_account_reason_text)
+
+      check_notification_with_title I18n.t('pages.account.cancel.success')
     end
 
     it 'select cancellation reason' do
@@ -164,6 +171,9 @@ RSpec.describe 'User Account', type: :feature, js: true do
         expect(page).to have_field('email_recovery', with: email_new)
         expect(find('#emailInHeader')).to have_text(email_new)
         user.email = email_new
+
+        check_notification_with_title I18n.t('pages.account.change_email.success')
+
         fsign_in_as(user)
         visit('/user/account')
         expect(page).to have_content('Account')
@@ -229,6 +239,8 @@ RSpec.describe 'User Account', type: :feature, js: true do
         expect(page).to have_selector('.modal.fade.show')
         click_on(I18n.t('buttons.submit'))
         alert_have_text(I18n.t('pages.account.change_password.success'))
+
+        check_notification_with_title I18n.t('pages.account.change_password.success')
       end
       it 'relogin in background after change password' do
         click_on(I18n.t('pages.account.change_password.button'))
