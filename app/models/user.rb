@@ -31,6 +31,10 @@ class User < ApplicationRecord
   before_save {|record| record.salt = SecureRandom.hex unless record.salt }
   after_create {|record| record.set_google_secret }
 
+  def can_access room
+    self.id === room
+  end
+
   def is_plan_yearly
     self.tariff_plan.title === 'Plan for 1 year' if self.tariff_plan
   end
