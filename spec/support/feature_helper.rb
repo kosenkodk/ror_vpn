@@ -40,12 +40,12 @@ module FeatureHelper
     find('.ticket-table-item', match: :first).click
   end
 
-  def check_notifications
+  def check_notification_with_title title 
     click_on_notification_popup
-    expect(page).to have_content(I18n.t('pages.account.cancel.success'))
+    expect(page).to have_content(title)
 
     visit('/user/notifications')
-    expect(page).to have_content(I18n.t('pages.account.cancel.success'))
+    expect(page).to have_content(title)
   end
   
   def click_on_notification_popup
