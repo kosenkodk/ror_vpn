@@ -28,8 +28,12 @@ import { AccountPage } from '../AccountPage'
 import { FriendInvitePage } from '../FriendInvitePage'
 import { PaymentsPage } from '../PaymentsPage'
 import { NotificationsPage } from '../NotificationsPage'
+
 // layouts
 import { GuestLayout, AdminLayout, LayoutWithSidebar } from '../App'
+
+// channels
+import consumer from 'channels/consumer';
 
 class App extends React.Component {
   constructor(props) {
@@ -85,11 +89,41 @@ class App extends React.Component {
     this.setPageTitle(history.location)
   }
 
+  createNotifier() {
+    if (!this.props.user) return;
+    const user_id = this.props.user.id;
+    const notificationChannel = consumer.subscriptions.create(
+      {
+        channel: `NotificationsChannel`,
+        room: `${user_id}`
+      },
+      {
+        received: data => {
+          switch (data.type) {
+            case 'message':
+              this.props.dispatch(globalActions.addNotification(data.message))
+              break
+            case 'messages':
+              break
+          }
+        },
+        reply: function (data) {
+          return this.perform("reply", data)
+        },
+        load: function () {
+          return this.perform("load", { user_id: user_id })
+        },
+      });
+
+    this.props.dispatch(globalActions.createNotifier(notificationChannel));
+  }
+
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
     this.props.dispatch(globalActions.getDepartments())
     this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
     this.isFooterVisible()
+    this.createNotifier()
   }
 
   render() {
@@ -308,10 +342,11 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { loggedIn } = state.authentication
+  const { loggedIn, user } = state.authentication
   const { page } = state.tickets;
   const { departments } = state.global;
   return {
+    user,
     loggedIn,
     departments,
     page // tickets page
