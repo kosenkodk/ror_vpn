@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def send_notification(title, text, user_id)
+    message = Message.create(title: title, text: text, messageable_id: user_id, messageable_type: User) if user_id > 0
+    socket = {type: 'message', message: message.as_json}
+    ActionCable.server.broadcast "notifications:notifications_channel#{user_id}", socket
+  end
+
   def get_attachment_base64(params_base64)
     begin
       if params_base64.present? && params_base64['file'].present? && params_base64['name'].present? && params_base64['type'].present?
