@@ -127,8 +127,8 @@ function login({ email, password, code2fa }) {
           const user_id = user.id;
           const notificationChannel = consumer.subscriptions.create(
             {
-              channel: 'NotificationsChannel',
-              room: `Room${user_id}`
+              channel: `NotificationsChannel`,
+              room: `${user_id}`
             },
             {
               received: data => {
