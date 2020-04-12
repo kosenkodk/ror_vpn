@@ -17,6 +17,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
 
   it 'limit notifications' do
     sign_in_as(user)
+    get :index, params: {page: 1, per_page: 2}
+    expect(response_json['notifications'].count).to eq(2)
     get :index, params: {limit: 0}
     expect(response_json['notifications'].count).to eq(2)
     get :index, params: {limit: 1}
