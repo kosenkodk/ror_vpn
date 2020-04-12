@@ -74,7 +74,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
-              <Notifications notifications={notifications} />
+              <Notifications notifications={notifications && notifications.filter((item, index) => index < 5)} />
             </div>
             <button onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
