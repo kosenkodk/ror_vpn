@@ -20,13 +20,13 @@
 # Learn more: http://github.com/javan/whenever
 
 set :environment, 'production' # ENV['RAILS_ENV'] = 'production'
-set :output, 'log/whenever.log'
+set :output, File.join(Whenever.path, "log", "whenever.log")
 every 1.day do
   runner "User.check_invoices"
 end
 
 set :environment, 'development' # ENV['RAILS_ENV'] = 'development'
-set :output, 'log/whenever.dev.log'
+set :output, File.join(Whenever.path, "log", "whenever.dev.log")
 every 3.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
   runner "User.check_invoices"
 end
