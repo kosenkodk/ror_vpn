@@ -27,7 +27,7 @@ class NotificationRoom extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { notifier } = state.global
+  const { notifier } = state.notifications
   const { user } = state.authentication
   return {
     user,

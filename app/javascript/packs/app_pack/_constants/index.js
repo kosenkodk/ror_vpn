@@ -6,3 +6,4 @@ export * from './account.constants';
 export * from './page.constants';
 export * from './global.constants';
 export * from './invoices.constants';
+export * from './notification.constants';

@@ -8,9 +8,6 @@ export const globalActions = {
   getCountries,
   getDepartments,
   getPlans,
-  createNotifier,
-  addNotification,
-  getNotifications,
   setPaymentMethod,
   getPaymentMethods,
   getAccountCancellationReasons,
@@ -20,54 +17,6 @@ export const globalActions = {
   deleteAttachment,
   setStep,
   getReferLink
-}
-
-function createNotifier(notifier) {
-  return { type: globalConstants.CREATE_NOTIFIER, notifier }
-}
-
-function addNotification(item) {
-  return success(item)
-
-  return dispatch => {
-    dispatch(request())
-    userService.addNotification(item)
-      .then(
-        response => {
-          // localStorage.setItem('notifications', JSON.stringify(response.notification))
-          dispatch(success(response.notification))
-        },
-        error => {
-          // dispatch(failure(error))
-          dispatch(alertActions.error(error))
-        }
-      )
-  }
-
-  function request() { return { type: globalConstants.ADD_NOTIFICATION_REQUEST } }
-  function success(notification) { return { type: globalConstants.ADD_NOTIFICATION_SUCCESS, notification } }
-  function failure(error) { return { type: globalConstants.ADD_NOTIFICATION_FAILURE, error } }
-}
-
-function getNotifications(limit) {
-  return dispatch => {
-    dispatch(request(JSON.parse(localStorage.getItem('notifications'))))
-    userService.getNotifications(limit)
-      .then(
-        response => {
-          localStorage.setItem('notifications', JSON.stringify(response.notifications))
-          dispatch(success(response.notifications))
-        },
-        error => {
-          // dispatch(failure(error))
-          dispatch(alertActions.error(error))
-        }
-      )
-  }
-
-  function request(notifications) { return { type: globalConstants.GET_NOTIFICATIONS_REQUEST, notifications } }
-  function success(notifications) { return { type: globalConstants.GET_NOTIFICATIONS_SUCCESS, notifications } }
-  function failure(error) { return { type: globalConstants.GET_NOTIFICATIONS_FAILURE, error } }
 }
 
 function getCountries() {

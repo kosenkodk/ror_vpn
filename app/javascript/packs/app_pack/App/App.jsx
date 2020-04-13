@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import { history } from '../_helpers'
-import { ticketActions, pageActions, alertActions, bgClassActions, globalActions } from '../_actions'
+import { notificationActions, ticketActions, pageActions, alertActions, bgClassActions, globalActions } from '../_actions'
 import { urls } from 'config'
 
 // components
@@ -101,7 +101,7 @@ class App extends React.Component {
         received: data => {
           switch (data.type) {
             case 'message':
-              this.props.dispatch(globalActions.addNotification(data.message))
+              this.props.dispatch(notificationActions.addNotification(data.message))
               break
             case 'messages':
               break
@@ -115,7 +115,7 @@ class App extends React.Component {
         },
       });
 
-    this.props.dispatch(globalActions.createNotifier(notificationChannel));
+    this.props.dispatch(notificationActions.createNotifier(notificationChannel));
   }
 
   componentDidMount() {

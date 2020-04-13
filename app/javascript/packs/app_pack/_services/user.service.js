@@ -439,16 +439,16 @@ function getCountries() {
   return fetch(`${config.apiUrl}/countries`, requestOptions).then(handleResponse);
 }
 
-function getNotifications(limit) {
+function getNotifications(params) {
   if (autoRefreshToken)
-    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/notifications?limit=${limit}`, 'GET', {})
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/notifications?${params}`, 'GET', {})
 
   const requestOptions = {
     method: 'GET',
     credentials: credentials,
     headers: authHeader()
   }
-  return fetch(`${config.apiUrl}/notifications?limit=${limit}`, requestOptions).then(handleResponse);
+  return fetch(`${config.apiUrl}/notifications?${params}`, requestOptions).then(handleResponse);
 }
 
 function getDepartments() {

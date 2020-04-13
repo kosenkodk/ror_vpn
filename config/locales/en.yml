@@ -160,6 +160,8 @@ en:
       twitter: "Twitter"
       contact_us: "Contact Us"
   pages:
+    notifications:
+      title: "Notifications"
     payments:
       payment_methods:
         title: "Payment methods"
