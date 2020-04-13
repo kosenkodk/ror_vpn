@@ -7,6 +7,11 @@ export const notificationActions = {
   createNotifier,
   addNotification,
   getNotifications,
+  setPage,
+}
+
+function setPage(page) {
+  return { type: notificationConstants.SET_PAGE, page }
 }
 
 function createNotifier(notifier) {
@@ -43,7 +48,7 @@ function getNotifications(params) {
     userService.getNotifications(params)
       .then(
         response => {
-          // localStorage.setItem('notifications', JSON.stringify(response))
+          localStorage.setItem('notifications', JSON.stringify(response))
           dispatch(success(response))
         },
         error => {
