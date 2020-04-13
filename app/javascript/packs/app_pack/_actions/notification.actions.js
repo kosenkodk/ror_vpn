@@ -44,7 +44,7 @@ function addNotification(item) {
 function getNotifications(params) {
   return dispatch => {
     const notifications = request(JSON.parse(localStorage.getItem('notifications')))
-    dispatch(request(notifications))
+    dispatch(request(notifications.notifications))
     userService.getNotifications(params)
       .then(
         response => {
