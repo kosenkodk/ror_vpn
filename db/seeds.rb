@@ -409,3 +409,8 @@ puts "\nInvoices\n\n"
 User.all.each do |user|
   Invoice.create({ no: '1000', title: plans.try(:first).try(:title), amount: 6.99, currency: '$', status: 'pay', user_id: user.id })
 end
+
+puts "\nNotifications\n\n"
+User.all.each do |user|
+  (0..25).map { |no| user.messages.create(title: "Notification #{no}") }
+end

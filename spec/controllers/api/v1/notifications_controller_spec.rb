@@ -19,11 +19,9 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     sign_in_as(user)
     get :index, params: {page: 1, per_page: 2}
     expect(response_json['notifications'].count).to eq(2)
-    get :index, params: {limit: 0}
+    get :index, params: {page: 1}
     expect(response_json['notifications'].count).to eq(2)
-    get :index, params: {limit: 1}
-    expect(response_json['notifications'].count).to eq(1)
-    get :index, params: {limit: 2}
+    get :index
     expect(response_json['notifications'].count).to eq(2)
   end
 end

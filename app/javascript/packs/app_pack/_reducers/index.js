@@ -9,6 +9,7 @@ import { account } from './account.reducer';
 import { page } from './page.reducer';
 import { global } from './global.reducer';
 import { invoices } from './invoices.reducer';
+import { notifications } from './notifications.reducer';
 
 const rootReducer = combineReducers({
   account,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   page,
   global,
   invoices,
+  notifications,
 });
 
 export default rootReducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
-import { globalActions, userActions } from '../../_actions';
+import { notificationActions, userActions } from '../../_actions';
 import { urls } from 'config';
 import { Link } from 'react-router-dom';
 import notificationSrc from 'images/admin/notification.svg';
@@ -43,7 +43,7 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(globalActions.getNotifications(5))
+    this.props.dispatch(notificationActions.getNotifications('limit=5'))
   }
 
   render() {
@@ -74,7 +74,7 @@ class Header extends React.Component {
               </div>
             </div>
             <div className="notifications-body">
-              <Notifications notifications={notifications && notifications.filter((item, index) => index < 5)} />
+              <Notifications notifications={(notifications && (notifications.length > 0)) && notifications.filter((item, index) => index < 5)} />
             </div>
             <button onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
@@ -89,7 +89,7 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   const { title } = state.page;
-  const { notifications } = state.global;
+  const { notifications } = state.notifications;
   const { loggedIn, user } = state.authentication;
   return {
     notifications,

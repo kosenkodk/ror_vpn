@@ -8,40 +8,6 @@ export function global(state = {}, action) {
         ...state,
         account_cancellation_reasons: action.account_cancellation_reasons
       };
-    case globalConstants.CREATE_NOTIFIER:
-      return {
-        ...state,
-        notifier: action.notifier
-      };
-    case globalConstants.ADD_NOTIFICATION_REQUEST:
-      return {
-        ...state,
-      };
-    case globalConstants.ADD_NOTIFICATION_SUCCESS:
-      return {
-        ...state,
-        notifications: [action.notification, ...state.notifications]
-      };
-    case globalConstants.ADD_NOTIFICATION_FAILURE:
-      return {
-        ...state,
-        error: action.error
-      };
-    case globalConstants.GET_NOTIFICATIONS_REQUEST:
-      return {
-        ...state,
-        notifications: action.notifications
-      };
-    case globalConstants.GET_NOTIFICATIONS_SUCCESS:
-      return {
-        ...state,
-        notifications: action.notifications
-      };
-    case globalConstants.GET_NOTIFICATIONS_FAILURE:
-      return {
-        ...state,
-        error: action.error
-      };
     case globalConstants.GET_PAYMENT_METHODS_REQUEST:
       return {
         ...state,
