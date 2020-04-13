@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { I18n } from 'helpers'
 import { notificationActions } from '../_actions'
-import { NotificationRoom } from '../NotificationsPage/NotificationRoom'
 import { Paginator } from '../_components'
 import { Notifications } from '../NotificationsPage/Notifications'
 
@@ -28,7 +27,6 @@ class NotificationsPage extends React.Component {
         <h1>{I18n.t('pages.notifications.title')}</h1>
         <div className="row">
           <div className="col-md-8">
-            {/* <NotificationRoom notifications={this.props.notifications} /> */}
             <Notifications notifications={notifications} />
             <Paginator onPageChange={this.onPageChange} pageCurrent={page} pageTotal={pages} />
           </div>
