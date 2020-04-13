@@ -20,6 +20,10 @@ class NotificationsPage extends React.Component {
     this.props.dispatch(notificationActions.getNotifications(`page=${this.props.page}&per_page=${this.props.per_page}`))
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(notificationActions.setPage(1))
+  }
+
   render() {
     const { notifications, pages, page } = this.props
     return (
@@ -34,6 +38,10 @@ class NotificationsPage extends React.Component {
       </div>
     );
   }
+}
+
+NotificationsPage.defaultProps = {
+  per_page: 11
 }
 
 function mapStateToProps(state) {

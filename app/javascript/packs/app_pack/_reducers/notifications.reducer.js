@@ -40,6 +40,11 @@ export function notifications(state = {}, action) {
         ...state,
         error: action.error
       };
+    case notificationConstants.SET_PAGE:
+      return {
+        ...state,
+        page: action.page
+      }
     default:
       return state
   }
