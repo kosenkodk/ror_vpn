@@ -43,7 +43,7 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(notificationActions.getNotifications('limit=5'))
+    this.props.dispatch(notificationActions.getNotifications('per_page=5'))
   }
 
   render() {
