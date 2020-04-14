@@ -19,10 +19,14 @@ class TicketsViewPage extends React.Component {
 
   componentDidUpdate() {
     this.setTitle()
+    if (this.state.id != this.props.match.params.id) {
+      this.setState({ id: this.props.match.params.id })
+      this.props.dispatch(ticketActions.view(this.props.match.params.id))
+    }
   }
 
   componentDidMount() {
-    this.props.dispatch(ticketActions.view(this.state.id))
+    this.props.dispatch(ticketActions.view(this.props.match.params.id))
     this.setTitle()
     this.setState({ subTitle: `${I18n.t("pages.tickets.form.title")}: ${I18n.t("pages.tickets.ticket")} ${this.state.id}` })
   }
@@ -36,7 +40,7 @@ class TicketsViewPage extends React.Component {
   }
 
   getTitle() {
-    return `${I18n.t("pages.tickets.ticket")} #${this.state.id}`
+    return `${I18n.t("pages.tickets.ticket")} #${this.props.match.params.id}`
   }
 
   render() {

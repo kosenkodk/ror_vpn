@@ -26,4 +26,30 @@ RSpec.describe 'Notifications', type: :feature, js: true do
     end
   end
     
+  describe 'view ticket' do
+    # let(:ticket) {create(:ticket, user: user)}
+    it 'create ticket 1 and ticket 2 > check ticket navigation' do
+      title = 'ticket 1'
+      
+      visit('/user/tickets')
+      click_on(I18n.t('buttons.new'))
+      
+      fill_in :title, with: title
+      click_on(I18n.t('buttons.submit'))
+
+      # notifications modal popup
+      click_on_notification_popup
+      expect(page).to have_content(title)
+      
+      # notifications page
+      find('#btn-view-all-notifications').click
+      click_on(I18n.t('buttons.view'), match: :first)
+      expect(page).to have_content(title)
+
+      # notifications modal popup
+      click_on_notification_popup
+      # click_on(I18n.t('buttons.view'), match: :first) # todo: fix Selenium::WebDriver::Error::ElementNotInteractableError: 
+      # expect(page).to have_content(title)
+    end
+  end
 end
