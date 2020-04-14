@@ -1,9 +1,19 @@
 import React from 'react'
 import icUnreadSrc from 'images/icons/ic_unread.svg'
 import { NavHashLink } from 'react-router-hash-link'
+import { Link } from 'react-router-dom'
 import { I18n } from 'helpers'
+import { history } from '../_helpers'
 
 class Notifications extends React.Component {
+
+  viewTicket(e, url) {
+    // viewTicket = (e, url) => {
+    e.preventDefault()
+    // console.log('viewticket', e.target.value, url)
+    history.push(url)
+  }
+
   render() {
     const { notifications } = this.props
     return (
@@ -19,7 +29,9 @@ class Notifications extends React.Component {
                 </td>
                 <td className="text-left">
                   {item.title || item.text}
-                  {item.url && <NavHashLink to={item.url}> {I18n.t('buttons.view')} </NavHashLink>}
+                  {item.url && <Link to={item.url}> {I18n.t('buttons.view')} </Link>}
+                  {/* {item.url && <a href="#" value={item.url} onClick={(e) => this.viewTicket(e, item.url)}> {I18n.t('buttons.view')} </a>} */}
+                  {item.url && <a href="#" value={item.url} onClick={(e) => this.viewTicket(e, item.url)}> {I18n.t('buttons.view')} </a>}
                 </td>
                 <td className="text-right notifications_item-date">
                   {item.created_at_humanize}

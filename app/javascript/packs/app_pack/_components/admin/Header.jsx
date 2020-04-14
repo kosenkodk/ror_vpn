@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavHashLink } from 'react-router-hash-link';
+
 import { connect } from 'react-redux';
 import { notificationActions, userActions } from '../../_actions';
 import { urls } from 'config';

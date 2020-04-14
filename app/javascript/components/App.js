@@ -62,23 +62,18 @@ class App extends React.Component {
   }
 
   unsetCurrentUser() {
-    // console.log('unsetCurrentUser')
     this.setState({ user: [], csrf: '', isSignedIn: false })
   }
 
   setCurrentUser(user, csrf) {
-    // user fields: email, id, role
-    // console.log('setCurrentUser', user, csrf)
     this.setState({ user: user, csrf: csrf, isSignedIn: true })
   }
 
   setAppState(state) {
-    // console.log('setAppState > app state', state)
     this.setState({ ...state })
   }
 
   render() {
-    // console.log('render > app state', this.state)
     return (
       <Router path={this.props.path} context={{}} >
 
@@ -114,9 +109,7 @@ class App extends React.Component {
             <Route exact path="/200" render={() => <SuccessPage />} />
             <Route exact path="/204" render={() => <ComingSoonPage />} />
             <Route exact path="/coming_soon" render={() => <ComingSoonPage />} />
-
             {/* <Route exact path="/500" render={() => <InternalErrorPage />} /> */}
-
             <Route exact path="/features" render={() => <Features />} />
             <Route exact path="/tickets" render={() => <TicketsPage appState={this.state} setAppState={this.setAppState} />} />
 
@@ -125,10 +118,6 @@ class App extends React.Component {
         {this.state.isFooterVisible && <FooterSection />}
       </Router>
     );
-  }
-  componentDidUpdate() {
-    // console.log('app > componentDidUpdate')
-    // this.setState({ bgClass: this.getBackgdroundClass() })
   }
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
