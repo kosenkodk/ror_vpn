@@ -2,8 +2,10 @@ class Api::V1::NotificationsController < Api::V1::ApiController
   before_action :authorize_access_request!
 
   def read_all
-    messages = Message.read_all(current_user)
-    render json: {notice: '', notifications: messages, is_read_all: Message.is_read_all(current_user)}
+    Message.read_all(current_user)
+    render json: {notice: '', 
+      # notifications: messages, 
+      is_read_all: Message.is_read_all(current_user)}
   end
 
   def index

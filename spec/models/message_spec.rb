@@ -59,8 +59,7 @@ RSpec.describe Message, type: :model do
       message = create(:message, messageable: user, status: 'unread')
       expect(message.is_read).to eq(false)
       message_unread = create(:message, status: 'read')
-      messages = Message.read_all(user)
-      expect(messages.count).to eq(2)
+      Message.read_all(user)
       message.reload
       expect(message.is_read).to eq(true)
       expect(message.status).to eq('read')
