@@ -26,5 +26,10 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     expect(response_json.keys).to include('is_read_all')
     expect(response_json.keys).to include('page')
     expect(response_json.keys).to include('pages')
+    expect(response_json['notifications'][0].keys).to include('is_read')
+    expect(response_json['notifications'][0].keys).to include('attachment_url')
+    expect(response_json['notifications'][0].keys).to include('attachment_name')
+    expect(response_json['notifications'][0].keys).to include('created_at_humanize')
+    expect(response_json['notifications'][0].keys).to include('attachmentList')
   end
 end

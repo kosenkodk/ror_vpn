@@ -9,6 +9,10 @@ class Message < ApplicationRecord
   has_many_attached :attachments, dependent: :destroy
   enum status: { unread: 0, read: 1 }#, _scopes: false
 
+  def is_read
+    self.read?
+  end
+
   def self.is_read_all
     Message.unread.count === 0
   end
@@ -43,11 +47,11 @@ class Message < ApplicationRecord
     if self.user.present?
       super(only: [:title, :text, :status],
         include: :user,
-        methods: [:attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
+        methods: [:is_read, :attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )#.merge(options || {})
     else
       super(only: [:title, :text, :status],
-        methods: [:attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
+        methods: [:is_read, :attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )
     end
   end
