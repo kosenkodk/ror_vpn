@@ -23,5 +23,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     expect(response_json['notifications'].count).to eq(2)
     get :index
     expect(response_json['notifications'].count).to eq(2)
+    expect(response_json.keys).to include('is_read_all')
+    expect(response_json.keys).to include('page')
+    expect(response_json.keys).to include('pages')
   end
 end

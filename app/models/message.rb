@@ -7,6 +7,15 @@ class Message < ApplicationRecord
   belongs_to :ticket, class_name: 'Ticket', foreign_key: 'ticket_id', optional: true
   has_one_attached :attachment, dependent: :destroy
   has_many_attached :attachments, dependent: :destroy
+  enum status: { unread: 0, read: 1 }#, _scopes: false
+
+  def self.is_read_all
+    Message.unread.count === 0
+  end
+
+  def self.read_all
+    Message.all.each {|message| message.update(status: statuses[:read])}
+  end
 
   def attachmentList
     self.attachments.map { |item| {id: item.id, url: rails_blob_url(item), name: item.blob.filename, content_type: item.blob.content_type } }
@@ -32,12 +41,12 @@ class Message < ApplicationRecord
 
   def as_json(options = nil)
     if self.user.present?
-      super(only: [:title, :text],
+      super(only: [:title, :text, :status],
         include: :user,
         methods: [:attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )#.merge(options || {})
     else
-      super(only: [:title, :text],
+      super(only: [:title, :text, :status],
         methods: [:attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )
     end

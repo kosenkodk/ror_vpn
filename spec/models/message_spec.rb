@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Message, type: :model do
   let(:email) {'user@email.com'}
   let(:user) {create(:user, email: email)}
-  let!(:message) { create(:message, user: user)}
-  let!(:message2) { create(:message, user: user)}
 
   it 'create a message without user' do
     message = Message.create(title: 'title', text: 'text')
@@ -24,15 +22,46 @@ RSpec.describe Message, type: :model do
   end
 
   it 'get message with user as json' do
+    message = create(:message, user: user)
     message_json = message.as_json(include: :user)
     expect(message_json.keys).to include 'user'
   end
 
   it 'get latest message first' do
-    # new_message
+    message = create(:message, user: user)
+    message2 = create(:message, user: user)
     messages = Message.order(created_at: :desc)
     expect(messages.first).to eq(message2)
     expect(messages.second).to eq(message)
+  end
+  
+  describe 'message status' do
+    describe 'is read all messages' do
+      context 'true' do
+        let(:message) { create(:message, status: 1) }
+        it do
+          message = create(:message, status: 1)
+          message2 = create(:message, status: 'read')
+          expect(Message.is_read_all).to eq(true)
+        end
+      end
+      context 'false' do
+        it do
+          message = create(:message)
+          message2 = create(:message, status: 0)
+          message3 = create(:message, status: 'unread')
+          expect(Message.is_read_all).to eq(false)
+        end
+      end
+    end
+    
+    it 'read all' do
+      message = create(:message, status: 'unread')
+      message_unread = create(:message, status: 'read')
+      Message.read_all
+      message.reload
+      expect(message.status).to eq('read')
+    end
   end
   
 end
