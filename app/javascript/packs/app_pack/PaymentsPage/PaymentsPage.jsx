@@ -129,7 +129,7 @@ class PaymentsPage extends React.Component {
               <button onClick={this.addBankCard} className="mt-2 mt-sm-0 btn btn-pink mr-2">{I18n.t('pages.payments.payment_methods.add_bank_card')}</button>
               <button onClick={this.addPayPal} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.payment_methods.add_paypal')}</button>
             </div>
-            <div class="table-responsive">
+            <div className="table-responsive">
               <table className="table mt-30">
                 <thead>
                   <tr>
@@ -188,7 +188,7 @@ class PaymentsPage extends React.Component {
                 <button disabled={(invoice_current && (invoice_current.status === 'paid')) ? true : false} onClick={this.onShowModalOfPayCurrentInvoice} className="mt-2 mt-sm-0 btn btn-pink">{I18n.t('pages.payments.invoices.pay_current_invoice.btn')}</button>
               </div>
             }
-            <div class="table-responsive">
+            <div className="table-responsive">
               <table className="table mt-30">
                 <thead>
                   <tr>
