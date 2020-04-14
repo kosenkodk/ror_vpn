@@ -48,8 +48,10 @@ class ChatChannel < ApplicationCable::Channel
 
     socket = {type: 'message', message: item}
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
-
-    send_notification(message.title, message.text, data['message_user_id'].to_i)
+    if ticket
+      url = "/user/tickets/#{ticket.id}"
+      send_notification(title: message.title, text: message.text, user_id: data['message_user_id'].to_i, url: url)
+    end
   end
 
   def load(data)

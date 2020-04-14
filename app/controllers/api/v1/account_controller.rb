@@ -20,7 +20,7 @@ class Api::V1::AccountController < Api::V1::ApiController
     if @user.save
       # todo: return title of current plan to display in mobile client
       render json: { user: @user, notice: I18n.t('pages.account.cancel.success') }
-      send_notification(I18n.t('pages.account.cancel.success'), '', @user.id)
+      send_notification(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
     else
       render json: { error: I18n.t('pages.account.cancel.error') }
     end
@@ -35,7 +35,7 @@ class Api::V1::AccountController < Api::V1::ApiController
         BlackListEmail.create(email: current_user.email, email_contact: email_contact, message: message)
         if current_user.destroy
           render json: { notice: I18n.t('pages.account.delete.success') }
-          send_notification(I18n.t('pages.account.delete.success'), '', current_user.id)
+          send_notification(title: I18n.t('pages.account.delete.success'), user_id: current_user.id)
         else
           render json: { error: I18n.t('pages.account.delete.error') }
         end
@@ -57,7 +57,7 @@ class Api::V1::AccountController < Api::V1::ApiController
       end
       @user.update!(email_params)
       render json: { user: @user, notice: I18n.t('pages.account.change_email.success') }
-      send_notification(I18n.t('pages.account.change_email.success'), '', @user.id)
+      send_notification(title: I18n.t('pages.account.change_email.success'), user_id: @user.id)
     else
       render json: { error: I18n.t('api.errors.invalid_password') } #, status: 401 - force logout client 
     end
@@ -84,7 +84,7 @@ class Api::V1::AccountController < Api::V1::ApiController
           secure: Rails.env.production?)
 
         render json: {csrf: tokens[:csrf], notice: I18n.t('pages.account.change_password.success') }
-        send_notification(I18n.t('pages.account.change_password.success'), '', @user.id)
+        send_notification(title: I18n.t('pages.account.change_password.success'), user_id: @user.id)
         return
       end
     end
