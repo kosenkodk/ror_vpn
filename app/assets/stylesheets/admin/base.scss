@@ -532,13 +532,13 @@
     }
   }
   
-  @import "notifications";
   @import "admin/account";
   @import "admin/dashboard";
   @import "admin/payments";
   @import "admin/mobiles";
   @import "admin/desktop";
-  
+  @import "notifications";
+
   /*
   // media queries
   @media #{$mq-w1400} {
