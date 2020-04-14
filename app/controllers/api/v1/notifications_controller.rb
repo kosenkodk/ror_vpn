@@ -13,6 +13,7 @@ class Api::V1::NotificationsController < Api::V1::ApiController
       notifications: messages,
       pages: messages.try(:total_pages),
       page: messages.try(:current_page),
+      is_read_all: Message.is_read_all
     }
   end
 end

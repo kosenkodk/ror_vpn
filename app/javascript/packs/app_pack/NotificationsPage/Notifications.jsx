@@ -9,6 +9,9 @@ class Notifications extends React.Component {
           <tbody>
             {notifications.map((item, index) =>
               <tr key={`notification${index}`}>
+                <td>
+                  {item.status === 'read' ? '' : '+'}
+                </td>
                 <td className="text-left">
                   {item.title || item.text}
                 </td>
