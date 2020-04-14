@@ -17,7 +17,7 @@ function readAll() {
     userService.readAllNotifications()
       .then(
         response => {
-          dispatch(success(response.is_read_all))
+          dispatch(success(response))
         },
         error => {
           // dispatch(failure(error))
@@ -29,8 +29,8 @@ function readAll() {
   function request() {
     return { type: notificationConstants.READ_ALL_REQUEST }
   }
-  function success(is_read_all) {
-    return { type: notificationConstants.READ_ALL_SUCCESS, is_read_all }
+  function success(response) {
+    return { type: notificationConstants.READ_ALL_SUCCESS, response }
   }
   function failure(error) {
     return { type: notificationConstants.READ_ALL_FAILURE, error }
