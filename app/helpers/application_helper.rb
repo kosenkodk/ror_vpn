@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def send_notification(title, text, user_id)
-    message = Message.create(title: title, text: text, messageable_id: user_id, messageable_type: User) if user_id > 0
+  def send_notification(title: '', text: '', user_id: '', url: '')
+    message = Message.create(title: title, text: text, messageable_id: user_id, messageable_type: User, url: url) if user_id > 0
     socket = {type: 'message', message: message.as_json}
     ActionCable.server.broadcast "notifications:notifications_channel#{user_id}", socket
   end
@@ -27,7 +27,7 @@ module ApplicationHelper
         return {io: file, filename: attachmentFileName, content_type: attachmentContentType}
       end
     rescue => exception
-      error= exception
+      error = exception
     end
     {}
   end
