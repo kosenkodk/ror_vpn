@@ -38,8 +38,10 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     expect(response_json['is_read_all']).to eq(true)
     expect(response_json.keys).to include('notice')
     expect(response_json.keys).to include('is_read_all')
+    expect(response_json.keys).to include('notifications')
+    expect(response_json['notifications'].count).to eq(2)
     expect(response_json['is_read_all']).to eq(true)
-    expect(Message.is_read_all).to eq(true)
+    expect(Message.is_read_all(user)).to eq(true)
     
     expect(user_notification.unread?).to eq(true)
     expect(user_notification2.unread?).to eq(true)
