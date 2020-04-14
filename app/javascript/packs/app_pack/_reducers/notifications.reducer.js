@@ -7,6 +7,20 @@ export function notifications(state = {}, action) {
         ...state,
         notifier: action.notifier
       };
+    case notificationConstants.READ_ALL_REQUEST:
+      return {
+        ...state,
+      };
+    case notificationConstants.READ_ALL_SUCCESS:
+      return {
+        ...state,
+        is_read_all: action.is_read_all
+      };
+    case notificationConstants.READ_ALL_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     case notificationConstants.ADD_NOTIFICATION_REQUEST:
       return {
         ...state,

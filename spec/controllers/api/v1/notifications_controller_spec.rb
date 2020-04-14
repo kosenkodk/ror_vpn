@@ -15,7 +15,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     expect(response_json['notifications'].count).to eq(2)
   end
 
-  it 'limit notifications' do
+  it 'paginate and limit notifications' do
     sign_in_as(user)
     get :index, params: {page: 1, per_page: 2}
     expect(response_json['notifications'].count).to eq(2)
@@ -31,5 +31,22 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     expect(response_json['notifications'][0].keys).to include('attachment_name')
     expect(response_json['notifications'][0].keys).to include('created_at_humanize')
     expect(response_json['notifications'][0].keys).to include('attachmentList')
+  end
+
+  it 'read all notifications' do
+    post :read_all
+    expect(response_json['is_read_all']).to eq(true)
+    expect(response_json.keys).to include('notice')
+    expect(response_json.keys).to include('is_read_all')
+    expect(response_json['is_read_all']).to eq(true)
+    expect(Message.is_read_all).to eq(true)
+    
+    expect(user_notification.unread?).to eq(true)
+    expect(user_notification2.unread?).to eq(true)
+
+    user_notification.reload
+    expect(user_notification.read?).to eq(true)
+    user_notification2.reload
+    expect(user_notification2.read?).to eq(true)
   end
 end

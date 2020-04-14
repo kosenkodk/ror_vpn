@@ -8,6 +8,33 @@ export const notificationActions = {
   addNotification,
   getNotifications,
   setPage,
+  readAll,
+}
+
+function readAll() {
+  return dispatch => {
+    dispatch(request())
+    userService.readAllNotifications()
+      .then(
+        response => {
+          dispatch(success(response.is_read_all))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request() {
+    return { type: notificationConstants.READ_ALL_REQUEST }
+  }
+  function success(is_read_all) {
+    return { type: notificationConstants.READ_ALL_SUCCESS, is_read_all }
+  }
+  function failure(error) {
+    return { type: notificationConstants.READ_ALL_FAILURE, error }
+  }
 }
 
 function setPage(page) {

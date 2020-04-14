@@ -23,11 +23,8 @@ class Header extends React.Component {
 
   openNotifications = (e) => {
     e.preventDefault();
-
-    // let jsonData = FormDataAsJsonFromEvent(e)
-    // this.notificationChannel.reply(jsonData)
-
-    // this.setState({ isOpenNotifications: true });
+    if (!this.props.is_read_all)
+      this.props.dispatch(notificationActions.readAll())
     this.setState({ isOpenNotifications: !this.state.isOpenNotifications });
   }
 

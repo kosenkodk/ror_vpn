@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/notifications', to: 'notifications#index'
+      post '/notifications/read_all', to: 'notifications#read_all'
 
       get '/invoice_to_pdf', to: "invoices#to_pdf"
       resources :departments, only: [:index]

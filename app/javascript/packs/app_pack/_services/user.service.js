@@ -22,6 +22,7 @@ export const userService = {
   getPlans,
   getCountries,
   getDepartments,
+  readAllNotifications,
   getNotifications,
   contactUs,
   cancelAccount,
@@ -37,6 +38,20 @@ export const userService = {
   refer_friend,
   updateInvoice,
 };
+
+function readAllNotifications() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/notifications/read_all`, 'POST', {})
+
+  const requestOptions = {
+    method: 'POST',
+    credentials: credentials,
+    headers: authHeader(),
+  };
+
+  return fetch(`${config.apiUrl}/notifications/read_all`, requestOptions).then(handleResponse);
+
+}
 
 function refer_friend(emails) {
   if (autoRefreshToken)
