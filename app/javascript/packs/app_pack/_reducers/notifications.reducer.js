@@ -14,8 +14,8 @@ export function notifications(state = {}, action) {
     case notificationConstants.READ_ALL_SUCCESS:
       return {
         ...state,
-        is_read_all: action.is_read_all,
-        // notifications: action.notifications,
+        is_read_all: action.response.is_read_all,
+        // notifications: action.response.notifications,
         notifications: state.notifications && state.notifications.map(item => {
           item.is_read = true
           return item
