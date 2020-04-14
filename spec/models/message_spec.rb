@@ -42,7 +42,7 @@ RSpec.describe Message, type: :model do
         it do
           message = create(:message, status: 1)
           message2 = create(:message, status: 'read')
-          expect(Message.is_read_all).to eq(true)
+          expect(Message.is_read_all(user)).to eq(true)
         end
       end
       context 'false' do
@@ -50,17 +50,19 @@ RSpec.describe Message, type: :model do
           message = create(:message)
           message2 = create(:message, status: 0)
           message3 = create(:message, status: 'unread')
-          expect(Message.is_read_all).to eq(false)
+          expect(Message.is_read_all(user)).to eq(false)
         end
       end
     end
     
     it 'read all' do
-      message = create(:message, status: 'unread')
+      message = create(:message, messageable: user, status: 'unread')
       expect(message.is_read).to eq(false)
       message_unread = create(:message, status: 'read')
-      Message.read_all
+      messages = Message.read_all(user)
+      expect(messages.count).to eq(2)
       message.reload
+      expect(message.is_read).to eq(true)
       expect(message.status).to eq('read')
     end
   end

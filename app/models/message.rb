@@ -13,12 +13,13 @@ class Message < ApplicationRecord
     self.read?
   end
 
-  def self.is_read_all
-    Message.unread.count === 0
+  def self.is_read_all user
+    Message.where(messageable: user).unread.count === 0
   end
 
-  def self.read_all
-    Message.all.each {|message| message.update(status: statuses[:read])}
+  def self.read_all user
+    Message.where(messageable: user).each {|message| message.update(status: statuses[:read])}
+    messages = Message.all
   end
 
   def attachmentList
