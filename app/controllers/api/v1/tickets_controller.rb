@@ -81,6 +81,8 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
       message.save
       @ticket.messages << message
+
+      send_notification(title: I18n.t('pages.tickets.create'), user_id: current_user.id, url: "/user/tickets/#{@ticket.id}") if @ticket && current_user
     rescue => exception
       render json: { error: "can't create a message", status: 400 }
       return
