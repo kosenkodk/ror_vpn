@@ -50,7 +50,6 @@ function readAllNotifications() {
   };
 
   return fetch(`${config.apiUrl}/notifications/read_all`, requestOptions).then(handleResponse);
-
 }
 
 function refer_friend(emails) {
