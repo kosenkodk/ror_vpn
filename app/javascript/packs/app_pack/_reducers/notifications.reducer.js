@@ -43,18 +43,18 @@ export function notifications(state = {}, action) {
     case notificationConstants.GET_NOTIFICATIONS_REQUEST:
       return {
         ...state,
-        notifications: action.notifications.notifications,
-        pages: action.notifications.pages,
-        page: action.notifications.page,
-        is_read_all: action.notifications.is_read_all,
+        notifications: action.notifications && action.notifications.notifications,
+        pages: action.notifications && action.notifications.pages,
+        page: action.notifications && action.notifications.page,
+        is_read_all: action.notifications && action.notifications.is_read_all,
       };
     case notificationConstants.GET_NOTIFICATIONS_SUCCESS:
       return {
         ...state,
-        notifications: action.notifications.notifications,
-        pages: action.notifications.pages,
-        page: action.notifications.page,
-        is_read_all: action.notifications.is_read_all,
+        notifications: action.notifications && action.notifications.notifications,
+        pages: action.notifications && action.notifications.pages,
+        page: action.notifications && action.notifications.page,
+        is_read_all: action.notifications && action.notifications.is_read_all,
       };
     case notificationConstants.GET_NOTIFICATIONS_FAILURE:
       return {
