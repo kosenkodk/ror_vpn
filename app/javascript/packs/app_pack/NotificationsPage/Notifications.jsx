@@ -16,7 +16,7 @@ class Notifications extends React.Component {
                   }
                 </td>
                 <td className="text-left">
-                  {item.title}
+                  {item.title || item.text}
                 </td>
                 <td className="text-right notifications_item-date">
                   {item.created_at_humanize}

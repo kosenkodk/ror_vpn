@@ -45,8 +45,11 @@ class ChatChannel < ApplicationCable::Channel
     end
 
     item = message.as_json
+
     socket = {type: 'message', message: item}
     ChatChannel.broadcast_to("ticket_channel#{params[:room]}", socket)
+
+    send_notification(message.title, message.text, data['message_user_id'].to_i)
   end
 
   def load(data)
