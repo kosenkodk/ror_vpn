@@ -1,4 +1,5 @@
 import React from 'react'
+import icUnreadSrc from 'images/icons/ic_unread.svg'
 
 class Notifications extends React.Component {
   render() {
@@ -9,11 +10,15 @@ class Notifications extends React.Component {
           <tbody>
             {notifications.map((item, index) =>
               <tr key={`notification${index}`}>
-                <td className="text-left">
-                  {!item.is_read && '+'}
-                  {item.title || item.text}
+                <td className="notifications-status">
+                  {!item.is_read &&
+                    <img className="ic-unread" src={icUnreadSrc} />
+                  }
                 </td>
-                <td className="text-right notifications-item-date">
+                <td className="text-left">
+                  {item.title}
+                </td>
+                <td className="text-right notifications_item-date">
                   {item.created_at_humanize}
                 </td>
               </tr>
