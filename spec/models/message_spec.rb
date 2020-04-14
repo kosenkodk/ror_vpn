@@ -40,16 +40,16 @@ RSpec.describe Message, type: :model do
       context 'true' do
         let(:message) { create(:message, status: 1) }
         it do
-          message = create(:message, status: 1)
-          message2 = create(:message, status: 'read')
+          message = create(:message, messageable: user, status: 1)
+          message2 = create(:message, messageable: user, status: 'read')
           expect(Message.is_read_all(user)).to eq(true)
         end
       end
       context 'false' do
         it do
           message = create(:message)
-          message2 = create(:message, status: 0)
-          message3 = create(:message, status: 'unread')
+          message2 = create(:message, messageable: user, status: 0)
+          message3 = create(:message, messageable: user, status: 'unread')
           expect(Message.is_read_all(user)).to eq(false)
         end
       end
