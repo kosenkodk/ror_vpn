@@ -18,8 +18,9 @@ class Message < ApplicationRecord
   end
 
   def self.read_all user
-    Message.where(messageable: user).each {|message| message.update(status: statuses[:read])}
-    messages = Message.all
+    messages = []
+    Message.where(messageable: user).each {|message| messages << message.update(status: statuses[:read])}
+    messages
   end
 
   def attachmentList
