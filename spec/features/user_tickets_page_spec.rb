@@ -199,6 +199,8 @@ RSpec.describe 'Api::V1:TicketsController', type: :feature, js: true do
         expect(page).to have_content('text 1')
         expect(page).not_to have_content(file_name)
         expect(page).to have_content(file_name2)
+
+        check_notification_with_title I18n.t('pages.tickets.create')
       end
 
       it 'clear previews when come back from another page' do
