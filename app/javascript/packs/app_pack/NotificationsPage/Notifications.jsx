@@ -1,6 +1,7 @@
 import React from 'react'
 import icUnreadSrc from 'images/icons/ic_unread.svg'
 import { NavHashLink } from 'react-router-hash-link'
+import { I18n } from 'helpers'
 
 class Notifications extends React.Component {
   render() {
@@ -18,7 +19,7 @@ class Notifications extends React.Component {
                 </td>
                 <td className="text-left">
                   {item.title || item.text}
-                  {item.url && <NavHashLink to={item.url}> {I18n.t('buttons.view')}</NavHashLink>}
+                  {item.url && <NavHashLink to={item.url}> {I18n.t('buttons.view')} </NavHashLink>}
                 </td>
                 <td className="text-right notifications_item-date">
                   {item.created_at_humanize}
