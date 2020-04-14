@@ -33,12 +33,13 @@ export function notifications(state = {}, action) {
     case notificationConstants.ADD_NOTIFICATION_SUCCESS:
       return {
         ...state,
-        notifications: [action.notification, ...state.notifications]
+        notifications: [action.notification, ...state.notifications],
+        is_read_all: false,
       };
     case notificationConstants.ADD_NOTIFICATION_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
       };
     case notificationConstants.GET_NOTIFICATIONS_REQUEST:
       return {
