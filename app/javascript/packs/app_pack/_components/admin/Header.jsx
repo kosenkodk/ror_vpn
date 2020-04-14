@@ -47,7 +47,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { loggedIn, user, title, notifications } = this.props;
+    const { loggedIn, user, title, notifications, is_read_all } = this.props;
     return (
       <nav className="nav justify-content-end d-flex align-items-center">
         <li className="nav-item mr-auto">
@@ -64,7 +64,7 @@ class Header extends React.Component {
         <li className="nav-item">
           <NavHashLink to="#" activeClassName="" className="nav-link">
             <img id="notification_popup" onClick={this.openNotifications}
-              src={notifications && notifications.is_read_all ? urls.notifications.imgSrc : notificationNewSrc}
+              src={is_read_all ? notificationSrc : notificationNewSrc}
               className="img-fluid" alt="User's Notification" />
           </NavHashLink>
           <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
@@ -91,10 +91,10 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   const { title } = state.page;
-  const { notifications } = state.notifications;
+  const { notifications, is_read_all } = state.notifications;
   const { loggedIn, user } = state.authentication;
   return {
-    notifications,
+    notifications, is_read_all,
     loggedIn, user, title
   };
 }

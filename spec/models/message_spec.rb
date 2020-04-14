@@ -57,6 +57,7 @@ RSpec.describe Message, type: :model do
     
     it 'read all' do
       message = create(:message, status: 'unread')
+      expect(message.is_read).to eq(false)
       message_unread = create(:message, status: 'read')
       Message.read_all
       message.reload
