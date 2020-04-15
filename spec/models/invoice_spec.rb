@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
+  describe 'notification' do
+    it 'after create' do
+      user = create(:user)
+      Notifier.message(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments")
+      expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))
+    end
+  end
+
   it 'create with invoice pdf' do
     plan = create(:tariff_plan_1mo)
     user = create(:user, tariff_plan: plan)
