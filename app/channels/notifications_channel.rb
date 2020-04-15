@@ -5,7 +5,7 @@ class NotificationsChannel < ApplicationCable::Channel
     @room = params[:room].to_i
     @channel = 'notifications_channel'
     stream_for "#{@channel}#{@room}"
-    reject unless current_user.can_access(@room)
+    # reject unless current_user.can_access(@room)
   end
   
   def reply(data)
