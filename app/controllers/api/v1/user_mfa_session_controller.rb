@@ -20,7 +20,7 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
       # UserMfaSession.create(current_user)
       current_user.update(is2fa: true)
       render json: { is2fa: current_user.is2fa, notice: I18n.t('pages.account.2fa.enable.success') }
-      send_notification(title: I18n.t('pages.account.2fa.enable.success'), user_id: current_user.id)
+      ApplicationHelper.send_notification(title: I18n.t('pages.account.2fa.enable.success'), user_id: current_user.id)
     else
       render json: { error: I18n.t('pages.account.2fa.enable.error'), status: 400 }
     end
@@ -30,7 +30,7 @@ class Api::V1::UserMfaSessionController < Api::V1::ApiController
     if (current_user && current_user.update(is2fa: false))
       # current_user.clear_google_secret!
       render json: { is2fa: current_user.is2fa, notice: I18n.t('pages.account.2fa.disable.success') }
-      send_notification(title: I18n.t('pages.account.2fa.disable.success'), user_id: current_user.id)
+      ApplicationHelper.send_notification(title: I18n.t('pages.account.2fa.disable.success'), user_id: current_user.id)
     else
       render json: { error: I18n.t('pages.account.2fa.disable.error'), status: 400 }
     end
