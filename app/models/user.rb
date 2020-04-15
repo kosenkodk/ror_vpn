@@ -9,6 +9,8 @@ end
 
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
+  include Notification
+
   has_secure_password
   has_many :tickets, dependent: :destroy
   has_many :todos, dependent: :destroy
@@ -125,21 +127,24 @@ class User < ApplicationRecord
     date = DateTime.now
     start_date = date.at_beginning_of_month
     end_date = date.at_end_of_month
-
+    notifier = Notifier.new
     User.all.each do |user|
       user.update(expired_at: date) if user.expired_at.nil?
       if ((user.expired_at <= date) && !user.is_plan_free)
         invoices = Invoice.where(created_at: start_date..end_date, user_id: user.id)
         if invoices.count === 0
           if (user.tariff_plan)
-            item = Invoice.create!(user_id: user.id, amount: user.tariff_plan.price, title: user.tariff_plan.title)
-            item.generate_pdf
-            item.save
+            invoice_params = {user_id: user.id, amount: user.tariff_plan.price, title: user.tariff_plan.title}
           else
-            item = Invoice.create!(user_id: user.id)
-            item.generate_pdf
+            invoice_params = {user_id: user.id}
+          end
+          invoice = Invoice.create!(invoice_params)
+          invoice.generate_pdf
+          if invoice.save
             # TODO: mail invoice to user
-            item.save
+            # Notifier.new.message(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/invoices/#{invoice.id}") if user && invoice
+            notifier.message(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments") if user
+          else
           end
         end
       end

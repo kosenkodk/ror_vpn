@@ -162,6 +162,8 @@ en:
   pages:
     notifications:
       title: "Notifications"
+      invoice:
+        new: "You have a new invoice"
     payments:
       payment_methods:
         title: "Payment methods"

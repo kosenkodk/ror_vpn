@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module VegaVPN
   class Application < Rails::Application
+    config.eager_load_paths += %W(#{config.root}/lib)
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.exceptions_app = self.routes

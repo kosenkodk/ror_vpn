@@ -15,6 +15,14 @@ RSpec.describe 'Payments', type: :feature, js: true do
       visit('/user/payments')
     }
     
+    it 'create invoice' do
+      user.update(expired_at: 1.month.ago, tariff_plan: create(:tariff_plan_1mo))
+      user.reload
+      User.check_invoices
+      click_on_notification_popup
+      check_notification_with_title I18n.t('pages.notifications.invoice.new')
+    end
+
     it 'table' do
       expect(page).to have_content(I18n.t('pages.payments.invoices.title'))
       expect(page).to have_content(invoice.no)
