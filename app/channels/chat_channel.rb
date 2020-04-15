@@ -1,4 +1,5 @@
 class ChatChannel < ApplicationCable::Channel
+  include ApplicationHelper
 
   def subscribed
     # stream_from "ticket_channel#{params[:room]}"
