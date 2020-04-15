@@ -9,7 +9,6 @@ end
 
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
-  include Notification
 
   has_secure_password
   has_many :tickets, dependent: :destroy
@@ -127,7 +126,7 @@ class User < ApplicationRecord
     date = DateTime.now
     start_date = date.at_beginning_of_month
     end_date = date.at_end_of_month
-
+    
     User.all.each do |user|
       user.update(expired_at: date) if user.expired_at.nil?
       if ((user.expired_at <= date) && !user.is_plan_free)
@@ -142,7 +141,7 @@ class User < ApplicationRecord
           invoice.generate_pdf
           if invoice.save
             # TODO: mail invoice to user
-            Notifier.message(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments") if user
+            ApplicationHelper.send_notification(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments") if user
           else
           end
         end

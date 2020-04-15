@@ -1,10 +1,8 @@
 class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
-  include Notification
 
   before_save :add_invoice_details
   after_save_commit :check_status
-  after_create_commit :notification
 
   belongs_to :user#, optional: true
   enum invoice_type: { subscription: 0, cancellation: 1 }
@@ -57,10 +55,6 @@ class Invoice < ApplicationRecord
 
   private
 
-  def notification
-    puts 'invoice notification'
-  end
-
   def add_invoice_details
     puts "add_invoice_details user_id #{self.user_id} #{user_id}"
     if User.exists?(user_id)
@@ -77,12 +71,10 @@ class Invoice < ApplicationRecord
 
   def check_status
     puts 'check_status'
-
     if self.status === 'paid'
       if self.user
         self.user.prolongate_on(1.month)
         self.user.check_refer_bonus
-
         # self.user.save
       end
       # TODO: send mail with 'Invoice was paid'
