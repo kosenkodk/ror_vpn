@@ -4,6 +4,8 @@ class Api::V1::AccountController < Api::V1::ApiController
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
+  include Notification
+
   def account_cancellation_reasons
     items = CancelReason.all
     render json: items
@@ -20,7 +22,8 @@ class Api::V1::AccountController < Api::V1::ApiController
     if @user.save
       # todo: return title of current plan to display in mobile client
       render json: { user: @user, notice: I18n.t('pages.account.cancel.success') }
-      send_notification(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
+      # send_notification(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
+      Notifier.new.message(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
     else
       render json: { error: I18n.t('pages.account.cancel.error') }
     end
