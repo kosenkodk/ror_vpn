@@ -22,6 +22,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
     item.generate_pdf
     item.save
     render json: item, status: :created, location: api_v1_invoice_url(item)
+    send_notification(title: I18n.t('pages.notifications.invoice.new'), user_id: current_user.id, url: "/user/invoices/#{item.id}") if current_user && item
   end
 
   def update
