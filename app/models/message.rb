@@ -9,6 +9,8 @@ class Message < ApplicationRecord
   has_many_attached :attachments, dependent: :destroy
   enum status: { unread: 0, read: 1 }#, _scopes: false
 
+  after_create_commit :notification
+
   def is_read
     self.read?
   end
@@ -54,5 +56,10 @@ class Message < ApplicationRecord
         methods: [:is_read, :attachment_url, :attachment_name, :created_at_humanize, :attachmentList]
       )
     end
+  end
+
+  private
+  def notification
+    Notifier.message_only(title: I18n.t('pages.notifications.invoice.new'), user_id: self.messageable_id, url: "/user/payments")
   end
 end
