@@ -4,7 +4,7 @@ RSpec.describe Invoice, type: :model do
   describe 'notification' do
     it 'after create' do
       user = create(:user)
-      Notifier.message(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments")
+      ApplicationHelper.send_notification(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments")
       expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))
     end
   end

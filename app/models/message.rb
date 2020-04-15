@@ -60,6 +60,6 @@ class Message < ApplicationRecord
 
   private
   def notification
-    Notifier.message_only(title: I18n.t('pages.notifications.invoice.new'), user_id: self.messageable_id, url: "/user/payments")
+    # ApplicationHelper.send_notification(title: I18n.t('pages.notifications.invoice.new'), user_id: self.messageable_id, url: "/user/payments")
   end
 end

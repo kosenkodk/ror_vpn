@@ -126,13 +126,9 @@ RSpec.describe User, type: :model do
       expect(Message.where(messageable_id:user.id).count).to eq(3)
     end
     
-    # include Notification
     it 'notification' do
       params = {title: I18n.t('pages.notifications.invoice.new'), user_id: user.id} if user
-      # expect(create_notification(params)).to eq('send')
-      # expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))
-      # expect(Notifier.new.message(params)).to eq('send')
-      expect(Notifier.message(params)).to eq('send')
+      ApplicationHelper.send_notification(params)
       expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))
     end
   end
