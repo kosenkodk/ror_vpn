@@ -23,7 +23,7 @@ class Api::V1::AccountController < Api::V1::ApiController
       # todo: return title of current plan to display in mobile client
       render json: { user: @user, notice: I18n.t('pages.account.cancel.success') }
       # send_notification(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
-      Notifier.new.message(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
+      Notifier.message(title: I18n.t('pages.account.cancel.success'), user_id: @user.id)
     else
       render json: { error: I18n.t('pages.account.cancel.error') }
     end
