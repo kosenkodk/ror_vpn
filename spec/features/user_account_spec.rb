@@ -108,7 +108,7 @@ RSpec.describe 'User Account', type: :feature, js: true do
   end
 
   describe 'Cancel Account' do
-    let(:cancel_account_reason_text) {'too expensive'}
+    let!(:cancel_account_reason_text) {'too expensive'}
 
     it 'reset from paid to free plan' do
       expect(page).to have_content(tariff_plan.title)

@@ -17,9 +17,9 @@ RSpec.describe 'Payments', type: :feature, js: true do
     
     it 'create invoice' do
       user.update(expired_at: 1.month.ago, tariff_plan: create(:tariff_plan_1mo))
+      user.invoices.destroy_all
       user.reload
       User.check_invoices
-      click_on_notification_popup
       check_notification_with_title I18n.t('pages.notifications.invoice.new')
     end
 
