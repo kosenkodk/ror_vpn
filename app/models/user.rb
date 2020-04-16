@@ -144,7 +144,7 @@ class User < ApplicationRecord
             invoice_params = {user_id: user.id}
           end
           invoice = Invoice.create!(invoice_params)
-          ApplicationHelper.send_notification(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments") if user && invoice
+          ApplicationHelper.send_notification(title: I18n.t('pages.notifications.invoice.new'), user_id: user.id, url: "/user/payments") if user
           invoice.generate_pdf
           if invoice.save
             # TODO: mail invoice to user

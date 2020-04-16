@@ -76,7 +76,7 @@ class Invoice < ApplicationRecord
         self.user.prolongate_on(1.month)
         self.user.check_refer_bonus
         # self.user.save
-        ApplicationHelper.send_notification(title: I18n.t('pages.dashboard.plans.change.success'), user_id: self.user.id, url: "/user/dashboard")
+        ApplicationHelper.send_notification(title: I18n.t('pages.payments.invoices.pay_current_invoice.success'), user_id: self.user.id, url: "/user/dashboard")
       end
       # TODO: send mail with 'Invoice was paid'
     end
