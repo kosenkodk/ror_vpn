@@ -44,7 +44,9 @@ module FeatureHelper
     click_on_notification_popup
     expect(page).to have_content(title)
 
-    visit('/user/notifications')
+    # visit('/user/notifications')
+    find('#btn-view-all-notifications').click
+
     expect(page).to have_content(title)
   end
   

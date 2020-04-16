@@ -85,6 +85,8 @@ RSpec.describe 'Dashboard', type: :feature, js: true do
           
           click_on(I18n.t('buttons.next'))
           alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
+
+          check_notification_with_title I18n.t('pages.dashboard.plans.change.success')
         end
 
         it 'pay with bank card' do
