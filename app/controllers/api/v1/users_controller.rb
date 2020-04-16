@@ -14,6 +14,7 @@ class Api::V1::UsersController < Api::V1::ApiController
       current_user.check_refer_bonus
       if current_user.save
         render json: { notice: I18n.t('pages.dashboard.plans.change.success'), user: current_user }
+        ApplicationHelper.send_notification(title: I18n.t('pages.dashboard.plans.change.success'), user_id: current_user.id, url: "/user/dashboard") if current_user
         return
       end
     end

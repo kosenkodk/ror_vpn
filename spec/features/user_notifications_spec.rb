@@ -45,7 +45,7 @@ RSpec.describe 'Notifications', type: :feature, js: true do
       click_on(I18n.t('buttons.view'), match: :first)
       expect(page).to have_content(title)
 
-      # notifications modal popup
+      # # notifications modal popup
       # click_on_notification_popup
       # click_on(I18n.t('buttons.view'), match: :first) # todo: fix Selenium::WebDriver::Error::ElementNotInteractableError: 
       # expect(page).to have_content(title)
@@ -58,6 +58,7 @@ RSpec.describe 'Notifications', type: :feature, js: true do
       User.check_invoices
       expect(Message.count).to eq(2)
       expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))
+      
       click_on_notification_popup
       expect(page).to have_content(I18n.t('pages.notifications.invoice.new'))
       find('#btn-view-all-notifications').click
