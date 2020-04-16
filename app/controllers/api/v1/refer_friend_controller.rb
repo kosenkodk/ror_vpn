@@ -30,5 +30,6 @@ class Api::V1::ReferFriendController < Api::V1::ApiController
       return
     end
     render json: {notice: I18n.t('pages.refer_friend.send_invites.success')}
+    ApplicationHelper.send_notification(title: I18n.t('pages.refer_friend.send_invites.success'), user_id: current_user.id)
   end
 end
