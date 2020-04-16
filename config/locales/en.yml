@@ -280,6 +280,8 @@ en:
       department:
         subject: "New ticket."
     refer_friend:
+      bonus:
+        success: "You got a refer bonus"
       send_invites:
         btn: "Send Invites"
         error: "Error. Can not refer friend (-s)"

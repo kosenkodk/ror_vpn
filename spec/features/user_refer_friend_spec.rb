@@ -61,6 +61,7 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
       click_on(I18n.t('buttons.next'))
       alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
       expect(page).to have_content(user2.expired_at_humanize)
+      check_notification_with_title I18n.t('pages.refer_friend.bonus.success')
 
       fsign_in_as(user3)
       visit('/user/dashboard')
@@ -70,12 +71,14 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
       click_on(I18n.t('buttons.next'))
       alert_have_text(I18n.t('pages.dashboard.plans.change.success'))
       expect(page).to have_content(user3.expired_at_humanize)
+      check_notification_with_title I18n.t('pages.refer_friend.bonus.success')
 
       user.reload
       fsign_in_as(user)
       visit('/user/dashboard')
       expect(page).to have_content(user.expired_at_humanize)
       expect(user.expired_at).to be > 2.month.from_now - 1.minute
+      check_notification_with_title I18n.t('pages.refer_friend.bonus.success')
     end
   end
 end
