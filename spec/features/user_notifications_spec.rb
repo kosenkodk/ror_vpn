@@ -59,6 +59,7 @@ RSpec.describe 'Notifications', type: :feature, js: true do
       expect(Message.count).to eq(2)
       expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))
       click_on_notification_popup
+      expect(page).to have_content(I18n.t('pages.notifications.invoice.new'))
       find('#btn-view-all-notifications').click
       expect(page).to have_content(I18n.t('pages.notifications.invoice.new'))
     end
