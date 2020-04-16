@@ -17,6 +17,7 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
       fill_in :emails, with: emails
       click_on(I18n.t('buttons.send_invites'))      
       alert_have_text I18n.t('pages.refer_friend.send_invites.success')
+      check_notification_with_title I18n.t('pages.refer_friend.send_invites.success')
     end
   end
 
