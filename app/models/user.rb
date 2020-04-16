@@ -87,6 +87,9 @@ class User < ApplicationRecord
           @user_referrer.prolongate_on(2.month)
           current_user.prolongate_on(2.month)
           current_user.is_refer_bonus_used = true
+          
+          ApplicationHelper.send_notification(title: I18n.t('pages.refer_friend.bonus.success'), user_id: @user_referrer.id)
+          ApplicationHelper.send_notification(title: I18n.t('pages.refer_friend.bonus.success'), user_id: self.id)
         end
       elsif current_user.is_plan_free
       else
@@ -94,6 +97,9 @@ class User < ApplicationRecord
           @user_referrer.prolongate_on(1.month)
           current_user.prolongate_on(1.month)
           current_user.is_refer_bonus_used = true
+
+          ApplicationHelper.send_notification(title: I18n.t('pages.refer_friend.bonus.success'), user_id: @user_referrer.id)
+          ApplicationHelper.send_notification(title: I18n.t('pages.refer_friend.bonus.success'), user_id: self.id)
         end
       end
       if @user_referrer.save
