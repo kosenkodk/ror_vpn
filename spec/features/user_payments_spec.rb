@@ -58,6 +58,8 @@ RSpec.describe 'Payments', type: :feature, js: true do
       click_on(I18n.t('buttons.next'))
       alert_have_text I18n.t('pages.payments.invoices.pay_current_invoice.success')
       expect(page).to have_content('paid')
+
+      check_notification_with_title I18n.t('pages.payments.invoices.pay_current_invoice.success')
     end
 
     it 'view invoice' do
