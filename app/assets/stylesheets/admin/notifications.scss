@@ -29,11 +29,11 @@
   &-arrow {
     position: absolute;
     display: block;
-    width: pxtovw(40);
-    height: pxtovh(10);
-    border-left: pxtovw(20) solid transparent;
-    border-right: pxtovw(20) solid transparent;
-    border-bottom: pxtovw(8) solid $black;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
+    border-bottom: 0.5em solid $black;
+    right: 0.25em;
+    top:.1em;
   }
   &-close {
     cursor: pointer;
