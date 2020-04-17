@@ -27,6 +27,27 @@ class Header extends React.Component {
     if (!this.props.is_read_all)
       this.props.dispatch(notificationActions.readAll())
     this.setState({ isOpenNotifications: !this.state.isOpenNotifications });
+
+    const btnSignout = document.getElementById('header-nav-signout')
+    const btnNotification = document.getElementById('header-nav-notifications-popup')
+    const btnArrow = document.getElementById('notifications-arrow')
+
+    if (btnSignout) {
+      let right = btnSignout.offsetWidth
+      if (btnNotification) right += btnNotification.offsetWidth
+      if (btnArrow) {
+        right -= btnArrow.offsetWidth
+        let left = btnArrow.offsetLeft
+        let width = btnArrow.offsetWidth
+        if (width > 0) left -= width / 2
+        console.log('right', right)
+        console.log('left', left)
+
+        // btnArrow.setAttribute('style', `right:${right}px;`)
+        btnArrow.setAttribute('style', `right:${left}px;`)
+      }
+
+    }
   }
 
   closeNotifications = (e) => {
@@ -47,42 +68,46 @@ class Header extends React.Component {
   render() {
     const { loggedIn, user, title, notifications, is_read_all } = this.props;
     return (
-      <nav className="nav justify-content-end d-flex align-items-center">
-        <li className="nav-item mr-auto">
-          <h1 className="p-0 m-0 mt-xl-2">{title}</h1>
-        </li>
-        <li className="nav-item d-none d-sm-block">
-          <a id="emailInHeader" className="nav-link text-white">{user && user.email}</a>
-        </li>
-        <li className="nav-item">
-          <NavHashLink to={urls.user_account.path} activeClassName="" className="">
-            <img src={urls.user_account.imgSrc} className="img-fluid" alt="User's Profile" />
-          </NavHashLink>
-        </li>
-        <li className="nav-item">
-          <NavHashLink to="#" activeClassName="" className="nav-link">
-            <img id="notification_popup" onClick={this.openNotifications}
-              src={is_read_all ? notificationSrc : notificationNewSrc}
-              className="img-fluid" alt="User's Notification" />
-          </NavHashLink>
-          <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
-            <div className="notifications-arrow"></div>
-            <div className="row notifications-header">
-              <h6 className="col text-left">Notifications</h6>
-              <div className="col text-right">
-                <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
-              </div>
+      <React.Fragment>
+        <nav className="nav justify-content-end d-flex align-items-center">
+          <li className="nav-item mr-auto">
+            <h1 className="p-0 m-0 mt-xl-2">{title}</h1>
+          </li>
+          <li className="nav-item d-none d-sm-block">
+            <a id="emailInHeader" className="nav-link text-white">{user && user.email}</a>
+          </li>
+          <li className="nav-item">
+            <NavHashLink to={urls.user_account.path} activeClassName="" className="">
+              <img src={urls.user_account.imgSrc} className="img-fluid" alt="User's Profile" />
+            </NavHashLink>
+          </li>
+          <li className="nav-item">
+            <NavHashLink id="header-nav-notifications-popup" to="#" activeClassName="" className="nav-link">
+              <img id="notification_popup" onClick={this.openNotifications}
+                src={is_read_all ? notificationSrc : notificationNewSrc}
+                className="img-fluid" alt="User's Notification" />
+            </NavHashLink>
+          </li>
+          <li className="nav-item">
+            <NavHashLink id="header-nav-signout" to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
+          </li>
+        </nav>
+        {/* Notification modal popup */}
+        <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
+          <div id="notifications-arrow" className="notifications-arrow"></div>
+          <div className="row notifications-header">
+            <h6 className="col text-left">Notifications</h6>
+            <div className="col text-right">
+              <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
             </div>
-            <div className="notifications-body">
-              <Notifications notifications={(notifications && (notifications.length > 0)) && notifications.filter((item, index) => index < 5)} />
-            </div>
-            <button id="btn-view-all-notifications" onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
-        </li>
-        <li className="nav-item">
-          <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
-        </li>
-      </nav>
+          <div className="notifications-body">
+            <Notifications notifications={(notifications && (notifications.length > 0)) && notifications.filter((item, index) => index < 5)} />
+          </div>
+          <button id="btn-view-all-notifications" onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
+        </div>
+
+      </React.Fragment>
     );
   }
 }
