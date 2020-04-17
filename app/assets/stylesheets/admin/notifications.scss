@@ -5,7 +5,8 @@
 .notifications {
   cursor: unset;
   position: absolute;
-  right: pxtovw(-10);
+  // right: pxtovw(-10);
+  right: pxtovw(12);
   background-color: $black;
   color: $white;
   padding: pxtovw(10);
@@ -33,8 +34,9 @@
     border-right: 1em solid transparent;
     border-bottom: 0.5em solid $black;
     right: 0.25em;
-    top:.1em;
+    top: -0.5em;
   }
+
   &-close {
     cursor: pointer;
   }

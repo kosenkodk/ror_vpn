@@ -19,7 +19,33 @@ class Header extends React.Component {
 
   openNotifications = (e) => {
     e.preventDefault();
+
     // this.setState({ isOpenNotifications: true });
+    let left = 0
+    if (document.getElementById('ic_notification') != null) {
+      const notification = document.getElementById('ic_notification')
+      console.log('offsetTop', notification.offsetTop);
+      console.log('offset parent', notification.offsetParent);
+      console.log('offset height', notification.getY);
+      console.log('offset width', notification.offsetWidth);
+      console.log('offset left', notification.offsetLeft);
+      left = notification.offsetLeft
+      // notification.style.cssText = 'color: green; font-size: 30px;';
+      // document.getElementById('header-signout').offsetWidth
+      if (document.getElementById('notifications-wrapper') != null) {
+        // const notificationWrapper = document.getElementById('notifications-wrapper')
+        // const notificationPosition = notification.offsetLeft;
+        // document.getElementById('notifications-wrapper').css('top', notificationPosition);
+        // notificationWrapper.style.top = notification.offsetTop;
+        // notificationWrapper.setAttribute("style", `color: blue; top: ${left}px;`)
+      }
+
+      if (document.getElementById('notifications-arrow') != null) {
+        const notificationArrow = document.getElementById('notifications-arrow');
+        notificationArrow.setAttribute("style", `color: blue; top: ${left}px;`);
+      }
+    }
+
     this.setState({ isOpenNotifications: !this.state.isOpenNotifications });
   }
 
@@ -47,47 +73,45 @@ class Header extends React.Component {
           </li>
           <li className="nav-item">
             <NavHashLink to={urls.notifications.path} activeClassName="" className="nav-link">
-              <img onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
-              <div className="notifications-wrapper">
-                <div className={`notifications-arrow ${this.state.isOpenNotifications ? 'show' : 'fade'}`}></div>
-              </div>
+              <img id="ic_notification" onClick={this.openNotifications} src={urls.notifications.imgSrc} className="img-fluid" alt="User's Notification" />
             </NavHashLink>
           </li>
           <li className="nav-item">
-            <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
+            <NavHashLink id="header-signout" to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
           </li>
         </nav>
-        <div className="notifications-wrapper">
-          <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`}>
-            <div className="row notifications-header">
-              <h6 className="col text-left">Notifications</h6>
-              <div className="col text-right">
-                <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
-              </div>
+        {/* <div className="notifications-wrapper" id="notifications-wrapper"> */}
+        <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`}>
+          <div className={`notifications-arrow`}></div>
+          <div className="row notifications-header">
+            <h6 className="col text-left">Notifications</h6>
+            <div className="col text-right">
+              <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
             </div>
-            <div className="notifications-body">
-              <table className="table text-left">
-                <tr>
-                  <td>
-                    Added 2 tickets to dashboard
-                  </td>
-                  <td className="notifications-item-date">
-                    2 min ago
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Added a new ticket to dashboard
-                  </td>
-                  <td className="notifications-item-date">
-                    Yesterday
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
           </div>
+          <div className="notifications-body">
+            <table className="table text-left">
+              <tr>
+                <td>
+                  Added 2 tickets to dashboard
+                  </td>
+                <td className="notifications-item-date">
+                  2 min ago
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  Added a new ticket to dashboard
+                  </td>
+                <td className="notifications-item-date">
+                  Yesterday
+                  </td>
+              </tr>
+            </table>
+          </div>
+          <Link to={urls.notifications.path} className="btn btn-pink btn-block">See all incoming activities</Link>
         </div>
+        {/* </div> */}
       </React.Fragment>
     );
   }
