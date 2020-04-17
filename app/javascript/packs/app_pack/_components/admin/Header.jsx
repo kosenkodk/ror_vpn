@@ -58,7 +58,6 @@ class Header extends React.Component {
           </li>
         </nav>
         <div className="notifications-wrapper">
-
           <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`}>
             <div className="row notifications-header">
               <h6 className="col text-left">Notifications</h6>
@@ -71,18 +70,18 @@ class Header extends React.Component {
                 <tr>
                   <td>
                     Added 2 tickets to dashboard
-                </td>
+                  </td>
                   <td className="notifications-item-date">
                     2 min ago
-              </td>
+                  </td>
                 </tr>
                 <tr>
                   <td>
                     Added a new ticket to dashboard
-              </td>
+                  </td>
                   <td className="notifications-item-date">
                     Yesterday
-              </td>
+                  </td>
                 </tr>
               </table>
             </div>
