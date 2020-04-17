@@ -42,7 +42,7 @@ module FeatureHelper
 
   def check_notification_with_title title 
     click_on_notification_popup
-    # expect(page).to have_content(title)
+    expect(page).to have_content(title)
 
     # visit('/user/notifications')
     find('#btn-view-all-notifications').click
