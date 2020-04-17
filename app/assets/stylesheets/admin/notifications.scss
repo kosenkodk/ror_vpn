@@ -29,8 +29,8 @@
   &-arrow {
     position: absolute;
     display: block;
-    width: pxtovw(20);
-    height: pxtovw(10);
+    width: pxtovw(40);
+    height: pxtovh(10);
     border-left: pxtovw(20) solid transparent;
     border-right: pxtovw(20) solid transparent;
     border-bottom: pxtovw(8) solid $black;
