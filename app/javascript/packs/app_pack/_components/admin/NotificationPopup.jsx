@@ -23,6 +23,7 @@ class NotificationPopup extends React.Component {
   }
 
   handleClickOutside = e => {
+    if (e.target.closest('#notification_popup')) return;
     if (!this.myRef.current.contains(e.target)) {
       this.setState({ clickedOutside: true })
       this.closeNotifications(e)
@@ -36,13 +37,6 @@ class NotificationPopup extends React.Component {
   signOut = (e) => {
     this.props.dispatch(userActions.logout())
     e.preventDefault()
-  }
-
-  openNotifications = (e) => {
-    e.preventDefault();
-    if (!this.props.is_read_all)
-      this.props.dispatch(notificationActions.readAll())
-    this.props.dispatch(notificationActions.isOpen(!this.props.isOpen))
   }
 
   closeNotifications = (e) => {
@@ -68,7 +62,7 @@ class NotificationPopup extends React.Component {
             </div>
           </div>
           <div className="notifications-body">
-            <Notifications notifications={(notifications && (notifications.length > 0)) && notifications.filter((item, index) => index < 5)} />
+            <Notifications notifications={notifications} />
           </div>
           <button id="btn-view-all-notifications" onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
         </div>
@@ -79,10 +73,10 @@ class NotificationPopup extends React.Component {
 
 function mapStateToProps(state) {
   const { title } = state.page
-  const { notifications, is_read_all, isOpen } = state.notifications
+  const { is_read_all, isOpen } = state.notifications
   const { loggedIn, user } = state.authentication;
   return {
-    notifications, is_read_all, isOpen,
+    is_read_all, isOpen,
     loggedIn, user, title
   }
 }
