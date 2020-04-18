@@ -32,7 +32,7 @@ class Notifications extends React.Component {
                   {item.url && <Link id="view-ticket" to={item.url}> {I18n.t('buttons.view')} </Link>}
                   {/* {item.url && <a href="#" value={item.url} onClick={(e) => this.viewTicket(e, item.url)}> {I18n.t('buttons.view')} </a>} */}
                 </td>
-                <td className="text-right notifications_item-date">
+                <td className="text-right notifications__item-date">
                   {item.created_at_humanize}
                 </td>
               </tr>

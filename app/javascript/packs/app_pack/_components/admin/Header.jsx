@@ -47,26 +47,35 @@ class Header extends React.Component {
   render() {
     const { loggedIn, user, title, notifications, is_read_all } = this.props;
     return (
-      <nav className="nav justify-content-end d-flex align-items-center">
-        <li className="nav-item mr-auto">
-          <h1 className="p-0 m-0 mt-xl-2">{title}</h1>
-        </li>
-        <li className="nav-item d-none d-sm-block">
-          <a id="emailInHeader" className="nav-link text-white">{user && user.email}</a>
-        </li>
-        <li className="nav-item">
-          <NavHashLink to={urls.user_account.path} activeClassName="" className="">
-            <img src={urls.user_account.imgSrc} className="img-fluid" alt="User's Profile" />
-          </NavHashLink>
-        </li>
-        <li className="nav-item">
-          <NavHashLink to="#" activeClassName="" className="nav-link">
-            <img id="notification_popup" onClick={this.openNotifications}
-              src={is_read_all ? notificationSrc : notificationNewSrc}
-              className="img-fluid" alt="User's Notification" />
-          </NavHashLink>
-          <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
-            <div className="notifications-arrow"></div>
+      <React.Fragment>
+        <nav className="nav justify-content-end d-flex align-items-center">
+          <li className="nav-item mr-auto">
+            <h1 className="p-0 m-0 mt-xl-2">{title}</h1>
+          </li>
+          <li className="nav-item d-none d-sm-block">
+            <a id="emailInHeader" className="nav-link text-white">{user && user.email}</a>
+          </li>
+          <li className="nav-item">
+            <NavHashLink to={urls.user_account.path} activeClassName="" className="">
+              <img src={urls.user_account.imgSrc} className="img-fluid" alt="User's Profile" />
+            </NavHashLink>
+          </li>
+          <li className="nav-item">
+            <NavHashLink to="#" activeClassName="" className="nav-link">
+              <img id="notification_popup" onClick={this.openNotifications}
+                src={is_read_all ? notificationSrc : notificationNewSrc}
+                className="img-fluid" alt="User's Notification" />
+              <div className="notifications-wrapper">
+                <div className={`notifications-arrow ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}></div>
+              </div>
+            </NavHashLink>
+          </li>
+          <li className="nav-item">
+            <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
+          </li>
+        </nav>
+        <div className="notifications-wrapper">
+          <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`}>
             <div className="row notifications-header">
               <h6 className="col text-left">Notifications</h6>
               <div className="col text-right">
@@ -78,11 +87,8 @@ class Header extends React.Component {
             </div>
             <button id="btn-view-all-notifications" onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
-        </li>
-        <li className="nav-item">
-          <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
-        </li>
-      </nav>
+        </div>
+      </React.Fragment>
     );
   }
 }
