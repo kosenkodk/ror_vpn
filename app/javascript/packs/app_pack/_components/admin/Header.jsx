@@ -75,7 +75,7 @@ class Header extends React.Component {
           </li>
         </nav>
         <div className="notifications-wrapper">
-          <div className={`notifications ${this.state.isOpenNotifications ? 'show' : 'fade'}`}>
+          <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
             <div className="row notifications-header">
               <h6 className="col text-left">Notifications</h6>
               <div className="col text-right">
