@@ -17,13 +17,13 @@ class Header extends React.Component {
 
   openNotifications = (e) => {
     e.preventDefault();
-    if (!this.props.is_read_all);
-    this.props.dispatch(notificationActions.readAll());
     this.props.dispatch(notificationActions.isOpen(!this.props.isOpen));
+    if (!this.props.is_read_all)
+      this.props.dispatch(notificationActions.readAll());
   }
 
   render() {
-    const { user, title, is_read_all, isOpen } = this.props;
+    const { user, title, is_read_all, isOpen, notifications } = this.props;
     return (
       <React.Fragment>
         <nav className="nav justify-content-end d-flex align-items-center">
@@ -54,7 +54,7 @@ class Header extends React.Component {
           </li>
         </nav>
         {/* modal popup content */}
-        <NotificationPopup />
+        <NotificationPopup notifications={(notifications && (notifications.length > 0)) && notifications.filter((item, index) => index < 5)} />
       </React.Fragment>
     );
   }
@@ -62,10 +62,10 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   const { title } = state.page;
-  const { is_read_all, isOpen } = state.notifications;
+  const { notifications, is_read_all, isOpen } = state.notifications;
   const { user } = state.authentication;
   return {
-    is_read_all, isOpen,
+    is_read_all, isOpen, notifications,
     user, title
   };
 }
