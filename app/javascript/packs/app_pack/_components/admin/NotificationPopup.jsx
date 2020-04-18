@@ -14,7 +14,7 @@ class NotificationPopup extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { isOpenNotifications: false }
+    this.state = { isOpenNotifications: true }
   }
 
   openNotifications = (e) => {
@@ -43,11 +43,11 @@ class NotificationPopup extends React.Component {
     const { notifications, is_read_all } = this.props;
     return (
       <React.Fragment>
-        <NavHashLink to="#" activeClassName="" className="nav-link">
+        {/* <NavHashLink to="#" activeClassName="" className="nav-link">
           <img id="notification_popup" onClick={this.openNotifications}
             src={is_read_all ? notificationSrc : notificationNewSrc}
             className="img-fluid" alt="User's Notification" />
-        </NavHashLink>
+        </NavHashLink> */}
         <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
           <div className="notifications-arrow"></div>
           <div className="row notifications-NotificationPopup">

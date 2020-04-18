@@ -8,7 +8,7 @@ import { I18n } from 'helpers';
 // import { ModalPopup } from '../_components';
 // import Modal from 'react-bootstrap/Modal';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
-import { InfoBlock } from '../_components/admin';
+import { InfoBlock, NotificationPopover } from '../_components/admin';
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -165,7 +165,7 @@ class AccountPage extends React.Component {
       <div className="container-fluid account">
         <div className="row">
           <div className="col-lg-7">
-
+            <NotificationPopover />
             <div className="mb-60">
               <h1>Username</h1>
               <div className="row align-items-center">

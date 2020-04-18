@@ -18,3 +18,4 @@ export * from './MultiFileUpload';
 export * from './InfoBlock';
 export * from './TouchButton';
 export * from './NotificationPopup';
+export * from './NotificationPopover';
