@@ -1,16 +1,37 @@
 import React from 'react'
-import { NavHashLink } from 'react-router-hash-link'
-
 import { connect } from 'react-redux'
 import { notificationActions, userActions } from '../../_actions'
 import { urls } from 'config'
-import { Link } from 'react-router-dom'
-import notificationSrc from 'images/admin/notification.svg'
-import notificationNewSrc from 'images/admin/notification_new.svg'
 import { history } from '../../_helpers'
 import { Notifications } from '../../NotificationsPage/Notifications'
 
 class NotificationPopup extends React.Component {
+
+  state = {
+    clickedOutside: false
+  }
+
+  myRef = React.createRef()
+
+  componentDidMount() {
+    this.props.dispatch(notificationActions.getNotifications('per_page=5'))
+    document.addEventListener("mousedown", this.handleClickOutside)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside)
+  }
+
+  handleClickOutside = e => {
+    if (!this.myRef.current.contains(e.target)) {
+      this.setState({ clickedOutside: true })
+      this.closeNotifications(e)
+    }
+  }
+
+  handleClickInside = () => {
+    this.setState({ clickedOutside: false })
+  }
 
   signOut = (e) => {
     this.props.dispatch(userActions.logout())
@@ -35,14 +56,10 @@ class NotificationPopup extends React.Component {
     this.closeNotifications(e)
   }
 
-  componentDidMount() {
-    this.props.dispatch(notificationActions.getNotifications('per_page=5'))
-  }
-
   render() {
     const { loggedIn, user, title, notifications, is_read_all, isOpen } = this.props;
     return (
-      <div className="notifications-wrapper">
+      <div ref={this.myRef} onClick={this.handleClickInside} className="notifications-wrapper">
         <div className={`notifications ${isOpen ? 'd-block' : 'd-none'}`}>
           <div className="row notifications-header">
             <h6 className="col text-left">Notifications</h6>

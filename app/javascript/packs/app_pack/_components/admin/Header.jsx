@@ -4,10 +4,8 @@ import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { notificationActions, userActions } from '../../_actions';
 import { urls } from 'config';
-import { Link } from 'react-router-dom';
 import notificationSrc from 'images/admin/notification.svg';
 import notificationNewSrc from 'images/admin/notification_new.svg';
-import { history } from '../../_helpers';
 import { NotificationPopup } from './NotificationPopup';
 
 class Header extends React.Component {
