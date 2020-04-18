@@ -40,7 +40,7 @@ class NotificationPopover extends React.Component {
     );
 
     return (
-      <OverlayTrigger trigger="focus,click" placement="bottom" overlay={popover}>
+      <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
         {/* <Button variant="success">Notifications</Button> */}
         <NavHashLink to="#" activeClassName="" className="nav-link">
           <img id="notification_popup"
