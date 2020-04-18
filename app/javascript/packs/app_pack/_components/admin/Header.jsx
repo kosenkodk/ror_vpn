@@ -9,6 +9,7 @@ import notificationSrc from 'images/admin/notification.svg';
 import notificationNewSrc from 'images/admin/notification_new.svg';
 import { Notifications } from '../../NotificationsPage/Notifications';
 import { history } from '../../_helpers';
+import { NotificationPopup } from '../../_components/admin';
 
 class Header extends React.Component {
 
@@ -60,24 +61,7 @@ class Header extends React.Component {
           </NavHashLink>
         </li>
         <li className="nav-item">
-          <NavHashLink to="#" activeClassName="" className="nav-link">
-            <img id="notification_popup" onClick={this.openNotifications}
-              src={is_read_all ? notificationSrc : notificationNewSrc}
-              className="img-fluid" alt="User's Notification" />
-          </NavHashLink>
-          <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
-            <div className="notifications-arrow"></div>
-            <div className="row notifications-header">
-              <h6 className="col text-left">Notifications</h6>
-              <div className="col text-right">
-                <h6 onClick={this.closeNotifications} className="notifications-close">x</h6>
-              </div>
-            </div>
-            <div className="notifications-body">
-              <Notifications notifications={(notifications && (notifications.length > 0)) && notifications.filter((item, index) => index < 5)} />
-            </div>
-            <button id="btn-view-all-notifications" onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
-          </div>
+          <NotificationPopup />
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
