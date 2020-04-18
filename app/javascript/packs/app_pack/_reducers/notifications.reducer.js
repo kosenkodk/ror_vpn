@@ -2,6 +2,11 @@ import { notificationConstants } from '../_constants';
 
 export function notifications(state = {}, action) {
   switch (action.type) {
+    case notificationConstants.SET_IS_OPEN:
+      return {
+        ...state,
+        isOpen: action.isOpen
+      }
     case notificationConstants.CREATE_NOTIFIER:
       return {
         ...state,
