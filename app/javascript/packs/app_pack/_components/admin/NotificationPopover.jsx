@@ -8,6 +8,8 @@ import { history } from '../../_helpers';
 
 import { NotificationPopup } from '../../_components/admin';
 
+import notificationSrc from 'images/admin/notification.svg';
+import notificationNewSrc from 'images/admin/notification_new.svg';
 
 import Popover from 'react-bootstrap/Popover'
 import Button from 'react-bootstrap/Button'
@@ -27,37 +29,25 @@ class NotificationPopover extends React.Component {
     this.setState({ isOpenNotifications: !this.state.isOpenNotifications });
   }
 
-  closeNotifications = (e) => {
-    e.preventDefault();
-    this.setState({ isOpenNotifications: false });
-  }
-
-  viewAllNotifications = (e) => {
-    e.preventDefault()
-    history.push(urls.notifications.path)
-    this.closeNotifications(e)
-  }
-
-  componentDidMount() {
-    this.props.dispatch(notificationActions.getNotifications('per_page=5'))
-  }
-
   render() {
     const popover = (
       <Popover id="popover-basic">
         <Popover.Title as="h3">Popover right</Popover.Title>
         <Popover.Content>
-          And here's some <strong>amazing</strong> content. It's very engaging.
-          right?
           <NotificationPopup />
-
         </Popover.Content>
       </Popover>
     );
 
     return (
-      <OverlayTrigger trigger="focus" placement="bottom" overlay={popover}>
-        <Button variant="success">Notifications</Button>
+      <OverlayTrigger trigger="focus,click" placement="bottom" overlay={popover}>
+        {/* <Button variant="success">Notifications</Button> */}
+        <NavHashLink to="#" activeClassName="" className="nav-link">
+          <img id="notification_popup"
+            // onClick={this.openNotifications}
+            src={this.props.is_read_all ? notificationSrc : notificationNewSrc}
+            className="img-fluid" alt="User's Notification" />
+        </NavHashLink>
       </OverlayTrigger>
     );
   }

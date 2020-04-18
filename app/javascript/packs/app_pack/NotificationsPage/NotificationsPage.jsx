@@ -4,7 +4,6 @@ import { I18n } from 'helpers'
 import { notificationActions } from '../_actions'
 import { Paginator } from '../_components'
 import { Notifications } from '../NotificationsPage/Notifications'
-import { NotificationPopup, NotificationPopover } from '../_components/admin'
 
 class NotificationsPage extends React.Component {
   constructor(props) {
@@ -31,9 +30,6 @@ class NotificationsPage extends React.Component {
     return (
       <div className="container-fluid notifications-page">
         <h1>{I18n.t('pages.notifications.title')}</h1>
-
-        <NotificationPopover />
-
         <div className="row">
           <div className="col-md-8">
             <Notifications notifications={notifications} />

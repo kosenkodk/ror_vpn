@@ -9,7 +9,7 @@ import notificationSrc from 'images/admin/notification.svg';
 import notificationNewSrc from 'images/admin/notification_new.svg';
 import { Notifications } from '../../NotificationsPage/Notifications';
 import { history } from '../../_helpers';
-import { NotificationPopup } from '../../_components/admin';
+import { NotificationPopover } from '../../_components/admin';
 
 class Header extends React.Component {
 
@@ -61,7 +61,7 @@ class Header extends React.Component {
           </NavHashLink>
         </li>
         <li className="nav-item">
-          <NotificationPopup />
+          <NotificationPopover />
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
