@@ -9,6 +9,7 @@ export const notificationActions = {
   getNotifications,
   setPage,
   readAll,
+  isOpen,
 }
 
 function readAll() {
@@ -35,6 +36,10 @@ function readAll() {
   function failure(error) {
     return { type: notificationConstants.READ_ALL_FAILURE, error }
   }
+}
+
+function isOpen(isOpen) {
+  return { type: notificationConstants.SET_IS_OPEN, isOpen }
 }
 
 function setPage(page) {

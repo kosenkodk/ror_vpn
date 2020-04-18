@@ -13,4 +13,5 @@ export const notificationConstants = {
   READ_ALL_FAILURE: 'READ_ALL_FAILURE',
 
   SET_PAGE: 'SET_PAGE',
+  SET_IS_OPEN: 'SET_IS_OPEN',
 };
