@@ -29,6 +29,12 @@ class NotificationsPage extends React.Component {
     return (
       <div className="container-fluid notifications-page">
         <h1>{I18n.t('pages.notifications.title')}</h1>
+
+        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+          Popover on bottom
+</button>
+
         <div className="row">
           <div className="col-md-8">
             <Notifications notifications={notifications} />

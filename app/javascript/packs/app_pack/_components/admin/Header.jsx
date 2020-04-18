@@ -59,12 +59,25 @@ class Header extends React.Component {
             <img src={urls.user_account.imgSrc} className="img-fluid" alt="User's Profile" />
           </NavHashLink>
         </li>
+        {/* <li className="nav-item">
+          <a type="button" data-container="body" data-toggle="popover" data-html="true" data-placement="right" data-content='<ul class="nav"><li><a href="#">hola</li><li><a href="#">hola2</li></ul>'>
+            hi
+          </a>
+        </li>
+        <li className="nav-item">
+          <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">
+            Dismissible popover
+          </a>
+        </li> */}
+
         <li className="nav-item">
           <NavHashLink to="#" activeClassName="" className="nav-link">
             <img id="notification_popup" onClick={this.openNotifications}
               src={is_read_all ? notificationSrc : notificationNewSrc}
               className="img-fluid" alt="User's Notification" />
           </NavHashLink>
+
+
           <div className={`notifications ${this.state.isOpenNotifications ? 'd-block' : 'd-none'}`}>
             <div className="notifications-arrow"></div>
             <div className="row notifications-header">
@@ -78,10 +91,12 @@ class Header extends React.Component {
             </div>
             <button id="btn-view-all-notifications" onClick={this.viewAllNotifications} className="btn btn-pink btn-block">See all incoming activities</button>
           </div>
+
         </li>
         <li className="nav-item">
           <NavHashLink to={urls.signout.path} onClick={this.signOut} activeClassName="" className="nav-link btn btn-sm btn-black">{urls.signout.name}</NavHashLink>
         </li>
+
       </nav>
     );
   }
