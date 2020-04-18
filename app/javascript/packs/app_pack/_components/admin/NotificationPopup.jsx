@@ -26,7 +26,7 @@ class NotificationPopup extends React.Component {
     if (e.target.closest('#notification_popup')) return;
     if (!this.myRef.current.contains(e.target)) {
       this.setState({ clickedOutside: true })
-      this.closeNotifications(e)
+      this.props.dispatch(notificationActions.isOpen(false))
     }
   }
 
