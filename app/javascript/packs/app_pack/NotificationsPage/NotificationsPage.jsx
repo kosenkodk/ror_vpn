@@ -4,6 +4,9 @@ import { I18n } from 'helpers'
 import { notificationActions } from '../_actions'
 import { Paginator } from '../_components'
 import { Notifications } from '../NotificationsPage/Notifications'
+import Popover from 'react-bootstrap/Popover'
+import Button from 'react-bootstrap/Button'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
 class NotificationsPage extends React.Component {
   constructor(props) {
@@ -26,9 +29,23 @@ class NotificationsPage extends React.Component {
 
   render() {
     const { notifications, pages, page } = this.props
+    const popover = (
+      <Popover id="popover-basic">
+        <Popover.Title as="h3">Popover right</Popover.Title>
+        <Popover.Content>
+          And here's some <strong>amazing</strong> content. It's very engaging.
+          right?
+        </Popover.Content>
+      </Popover>
+    );
     return (
       <div className="container-fluid notifications-page">
         <h1>{I18n.t('pages.notifications.title')}</h1>
+
+        <OverlayTrigger trigger="focus" placement="bottom" overlay={popover}>
+          <Button variant="success">Click me to see</Button>
+        </OverlayTrigger>
+
         <div className="row">
           <div className="col-md-8">
             <Notifications notifications={notifications} />
