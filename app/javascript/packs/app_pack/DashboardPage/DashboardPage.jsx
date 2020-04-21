@@ -25,10 +25,10 @@ class DashboardPage extends React.Component {
 
   onPlanChange(e, id, index) {
     this.props.dispatch(globalActions.setPaymentMethod(null))
-    // if (this.props.user && this.props.user.tariff_plan && this.props.user.tariff_plan.id === id) {
-    //   this.props.dispatch(alertActions.error('You already have this tariff plan'))
-    //   return
-    // }
+    if (this.props.user && this.props.user.tariff_plan && this.props.user.tariff_plan.id === id) {
+      this.props.dispatch(alertActions.error('You already have this tariff plan'))
+      return
+    }
     this.setState({ planSelected: this.props.plans[index] })
     if (e) {
       e.preventDefault();
@@ -67,11 +67,7 @@ class DashboardPage extends React.Component {
       case 2:
         // payment details
         const planSelected = this.state.planSelected
-        if (
-          // this.props.user && this.props.user.is_plan_free && 
-          // this.state.planSelected && this.state.planSelected.title === this.props.user.tariff_plan.title
-          planSelected && planSelected.is_free
-        ) {
+        if (planSelected && planSelected.is_free) {
           this.props.dispatch(accountActions.changePlan({ plan_id: planSelected.id }))
           this.setState({ isForm: true });
         } else {
