@@ -36,4 +36,13 @@ RSpec.describe Invoice, type: :model do
     User.check_invoices
     expect(Invoice.count).to eq(1)
   end
+  it 'pay' do
+    user = create(:user)
+    invoice = create(:invoice, user: user)
+    expect(invoice.status).to eq('pay')
+    invoice.update(status: 1)
+    expect(invoice.status).to eq('paid')
+    expect(user.expired_at).to be > 1.month.from_now - 1.minute
+    expect(user.expired_at).to be < 2.month.from_now - 1.minute
+  end
 end

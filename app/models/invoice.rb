@@ -2,7 +2,7 @@ class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   before_save :add_invoice_details
-  after_save_commit :check_status#, if: :status_changed?
+  before_save :check_status, if: :will_save_change_to_status?
 
   belongs_to :user#, optional: true
   enum invoice_type: { subscription: 0, cancellation: 1 }
@@ -72,13 +72,10 @@ class Invoice < ApplicationRecord
 
   def check_status
     puts 'check_status'
-    # if self.attribute_changed?('status') && self.status === 'paid'
-    # if saved_change_to_status && 
     if self.status === 'paid'
       if self.user
         self.user.prolongate_on(1.month)
         self.user.check_refer_bonus
-        # self.user.save
         ApplicationHelper.send_notification(title: I18n.t('pages.payments.invoices.pay_current_invoice.success'), user_id: self.user.id, url: "/user/dashboard")
       end
       # TODO: send mail with 'Invoice was paid'
