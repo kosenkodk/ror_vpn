@@ -2,7 +2,7 @@ class Invoice < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   before_save :add_invoice_details
-  after_save_commit :check_status
+  after_save_commit :check_status#, if: :status_changed?
 
   belongs_to :user#, optional: true
   enum invoice_type: { subscription: 0, cancellation: 1 }
@@ -71,6 +71,8 @@ class Invoice < ApplicationRecord
 
   def check_status
     puts 'check_status'
+    # if self.attribute_changed?('status') && self.status === 'paid'
+    # if saved_change_to_status && 
     if self.status === 'paid'
       if self.user
         self.user.prolongate_on(1.month)
