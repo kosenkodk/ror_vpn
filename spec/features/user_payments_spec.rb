@@ -20,6 +20,7 @@ RSpec.describe 'Payments', type: :feature, js: true do
       user.invoices.destroy_all
       user.reload
       User.check_invoices
+      visit('/user/notifications')
       check_notification_with_title I18n.t('pages.notifications.invoice.new')
     end
 

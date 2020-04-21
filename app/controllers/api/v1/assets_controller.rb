@@ -10,7 +10,7 @@ class Api::V1::AssetsController < Api::V1::ApiController
     # url = rails_blob_url(asset) #if asset.attached?
     # file = File.open(url).read
 
-    # method 2
+    # method 2 (save file to temp folder and then read)
     # path = File.join(Rails.root, 'tmp', 'invoice'+asset.id.to_s)
     # file = File.open(path, 'wb') do |file|
     #   file.write(asset.blob.download)
@@ -22,7 +22,6 @@ class Api::V1::AssetsController < Api::V1::ApiController
     
     if params[:download]
       send_data(file, type: asset.blob.content_type, filename: asset.blob.filename.to_s, disposition: 'attachment') # download
-      # send_data asset.blob.download, filename: asset.blob.filename.to_s, type: asset.blob.content_type # download
     else
       send_data(file, type: asset.blob.content_type, filename: asset.blob.filename.to_s, disposition: 'inline') # view
     end
