@@ -10,8 +10,10 @@ class Api::V1::UsersController < Api::V1::ApiController
     if (TariffPlan.exists?(plan_id))
       plan = TariffPlan.find(plan_id)
       current_user.tariff_plan = plan
-      current_user.prolongate_on(1.month)
-      current_user.check_refer_bonus
+      if !plan.is_free
+        current_user.prolongate_on(1.month)
+        current_user.check_refer_bonus
+      end
       if current_user.save
         render json: { notice: I18n.t('pages.dashboard.plans.change.success'), user: current_user }
         ApplicationHelper.send_notification(title: I18n.t('pages.dashboard.plans.change.success'), user_id: current_user.id, url: "/user/dashboard") if current_user
