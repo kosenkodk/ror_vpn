@@ -21,6 +21,7 @@ class InvoiceCustomizationForm extends React.Component {
   onFormSubmit = (e) => {
     e.preventDefault();
     const data = FormDataAsJsonFromEvent(e);
+    data['id'] = this.props.id
     this.props.dispatch(invoiceActions.addDetailsToInvoices(data));
   }
 

@@ -14,7 +14,8 @@ class Invoice < ApplicationRecord
   end
 
   def pdf_url
-    rails_blob_url(self.pdf) if self.pdf && self.pdf.attached?
+    api_v1_asset_url(self.pdf.id) if self.pdf && self.pdf.attached?
+    # rails_blob_url(self.pdf) if self.pdf && self.pdf.attached?
   end
   
   def created_at_humanize
