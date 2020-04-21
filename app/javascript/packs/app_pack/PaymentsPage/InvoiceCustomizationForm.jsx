@@ -61,7 +61,7 @@ class InvoiceCustomizationForm extends React.Component {
 }
 
 InvoiceCustomizationForm.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.integer,
   error: PropTypes.string,
   notice: PropTypes.string,
 }

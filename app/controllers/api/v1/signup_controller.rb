@@ -25,10 +25,11 @@ class Api::V1::SignupController < Api::V1::ApiController
 
     if user.save
       # refer friend
-      if params[:rid].present?
-        if User.exists?(params[:rid])
-          referrer = User.find(params[:rid])
-          user.referrer_id = referrer.id #params[:rid]
+      rid = params[:rid].to_i
+      if rid > 0
+        if User.exists?(rid)
+          referrer = User.find(rid)
+          user.referrer_id = referrer.id
           user.save
           user.check_refer_bonus
         end
