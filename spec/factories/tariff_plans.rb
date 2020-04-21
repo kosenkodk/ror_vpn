@@ -9,7 +9,7 @@ FactoryBot.define do
     features { '1 Country,1 Device,Simultaneously,Medium speed,No torrenting,IKEv2 or OpenVPN' }
     
     factory :tariff_plan_free do
-      title { 'Free' }
+      title { 'Free plan' }
       price { 0.00 }
     end
 
