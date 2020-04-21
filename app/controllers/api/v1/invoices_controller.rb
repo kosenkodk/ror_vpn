@@ -27,7 +27,7 @@ class Api::V1::InvoicesController < Api::V1::ApiController
 
   def update
     invoice_details = params[:invoice][:invoice_details]
-    if invoice_details.present?
+    if invoice_details.present? # customize invoice
       item = Invoice.where(user_id: current_user.id).last
       item.update(details_from: invoice_details)
       item.generate_pdf
