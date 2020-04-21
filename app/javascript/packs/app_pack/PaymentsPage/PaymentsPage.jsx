@@ -289,7 +289,7 @@ class PaymentsPage extends React.Component {
                 {I18n.t('pages.payments.invoices.customize.info')}
               </InfoBlock>
               <p>Customize invoices</p>
-              <InvoiceCustomizationForm />
+              <InvoiceCustomizationForm id={invoice_current && invoice_current.id} />
             </ModalPopupForm>
 
             <ModalPopupForm
