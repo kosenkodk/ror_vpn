@@ -39,7 +39,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
   # POST /tickets
   def create
     @ticket = current_user.tickets.build(item_params.except(:department, :attachments, :attachment, :attachment2))
-    department_id = params[:ticket][:department]
+    department_id = params[:ticket][:department].to_i
     attachment_error = ''
     attachments = params[:ticket][:attachments]
     
@@ -117,7 +117,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
   private
 
   def set_item
-    @ticket = current_user.tickets.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id].to_i)
   end
 
   def item_params

@@ -5,7 +5,7 @@ class Api::V1::TariffPlansController < Api::V1::ApiController
   end
 
   def show
-    item = TariffPlan.find(params[:id])
+    item = TariffPlan.find(params[:id].to_i)
     render json: item #.attributes.merge({icon_url: url_for(item.icon)})
   end
 end
