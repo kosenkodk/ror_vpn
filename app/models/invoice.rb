@@ -47,7 +47,6 @@ class Invoice < ApplicationRecord
       filename = "invoice#{DateTime.try(:now).try(:strftime, "%d%m%Y")}_#{self.no}.pdf"
       puts filename
       pdf = to_pdf
-      # puts pdf
       self.pdf.attach(io: StringIO.new(to_pdf), filename: filename) if !Rails.env.test?
     rescue StandardError => e
       puts e
