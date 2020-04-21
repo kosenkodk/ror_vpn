@@ -37,19 +37,19 @@ class User < ApplicationRecord
   end
 
   def is_plan_yearly
-    self.tariff_plan.title === 'Plan for 1 year' if self.tariff_plan
+    self.tariff_plan.is_yearly if self.tariff_plan
   end
 
   def is_plan_quartely
-    self.tariff_plan.title === 'Quartely Plan' if self.tariff_plan
+    self.tariff_plan.is_quartely if self.tariff_plan
   end
 
   def is_plan_monthly
-    self.tariff_plan.title === 'Plan for 1 month' if self.tariff_plan
+    self.tariff_plan.is_monthly if self.tariff_plan
   end
   
   def is_plan_free
-    self.tariff_plan.title === 'Free' if self.tariff_plan
+    self.tariff_plan.is_free if self.tariff_plan
   end
 
   def self.email_regex
@@ -65,7 +65,7 @@ class User < ApplicationRecord
   end
 
   def attributes
-    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, payment_methods: payment_methods, expired_at: expired_at, expired_at_humanize: expired_at_humanize, expired_at_int: expired_at_int }
+    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, payment_methods: payment_methods, expired_at: expired_at, expired_at_humanize: expired_at_humanize, expired_at_int: expired_at_int, is_plan_free: is_plan_free }
   end
   
   def prolongate_on duration_time
