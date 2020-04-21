@@ -213,7 +213,7 @@ class PaymentsPage extends React.Component {
                           <a href="#" onClick={(e) => this.onShowViewInvoice(e, item.id)}>
                             <img id="viewInvoice" src={icViewSrc} className="img-fluid" />
                           </a>
-                          <a href={item.pdf_url} target="_blank" download>
+                          <a href={item.pdf_url + '?download'} target="_blank" download>
                             <img src={icDownloadSrc} className="img-fluid" />
                           </a>
                         </td>
