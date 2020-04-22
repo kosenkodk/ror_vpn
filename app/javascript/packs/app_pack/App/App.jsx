@@ -28,7 +28,7 @@ import { AccountPage } from '../AccountPage'
 import { FriendInvitePage } from '../FriendInvitePage'
 import { PaymentsPage } from '../PaymentsPage'
 import { NotificationsPage } from '../NotificationsPage'
-
+import { DownloadsPage } from '../DownloadsPage'
 // layouts
 import { GuestLayout, AdminLayout, LayoutWithSidebar } from '../App'
 
@@ -157,7 +157,7 @@ class App extends React.Component {
                 {/* <PrivateRouteWithRightSidebar path={urls.user_payment.path} component={ComingSoonPage}
                   sidebarUrls={Object.values(urls.user_payment.urls)} /> */}
 
-                <PrivateRoute exact path={urls.user_downloads.path} component={ComingSoonPage} />
+                <PrivateRoute exact path={urls.user_downloads.path} component={DownloadsPage} />
                 {/* <PrivateRouteWithRightSidebar path={urls.user_downloads.path} component={ComingSoonPage}
                   sidebarUrls={Object.values(urls.user_downloads.urls)} /> */}
 

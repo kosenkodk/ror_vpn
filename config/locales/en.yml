@@ -167,6 +167,8 @@ en:
       title: "Notifications"
       invoice:
         new: "You have a new invoice"
+    downloads:
+      title: "Downloads"
     payments:
       payment_methods:
         title: "Payment methods"
