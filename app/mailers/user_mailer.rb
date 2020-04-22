@@ -11,4 +11,9 @@ class UserMailer < ApplicationMailer
     @user = user
     make_bootstrap_mail(to: email, subject: 'Referral link for VegaVPN account.')
   end
+  def invoice(user, invoice)
+    @user = user
+    @invoice = invoice
+    make_bootstrap_mail(to: @user.email, subject: "[Vega VPN] Invoice ##{@invoice.no} notification")
+  end
 end
