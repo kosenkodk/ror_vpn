@@ -5,9 +5,12 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   def get
     ca = get_ca
     post_tls ca
-    config = get_ovpn_config
+    ovpn_config = get_ovpn_config
+    filename = 'config.ovpn'
+    config = Config.find_or_create_by(title: filename)
+    config.ovpn.attach(io: StringIO.new(ovpn_config), filename: filename)
 
-    send_data config, filename: 'config.ovpn'
+    send_data ovpn_config, filename: filename
   end
 
   private
