@@ -31,6 +31,9 @@
 
 en:
   api:
+    email_notifications:
+      invoice:
+        new: "[Vega VPN] Invoice #%{invoice_no} notification"
     notices:
       item_added: "Item has been added successfully"
       item_deleted: "Item has been deleted successfully"
