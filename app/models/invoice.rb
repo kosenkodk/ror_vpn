@@ -9,6 +9,10 @@ class Invoice < ApplicationRecord
   enum status: { pay: 0, paid: 1 }#, _scopes: false
   has_one_attached :pdf, dependent: :destroy
 
+  def is_paid
+    self.status === 'paid'
+  end
+
   def pdf_size
     self.try(:pdf).try(:blob).try(:byte_size) || 0
   end
@@ -71,7 +75,7 @@ class Invoice < ApplicationRecord
 
   def check_status
     puts 'check_status'
-    if self.status === 'paid'
+    if self.is_paid
       if self.user
         self.user.prolongate_on(1.month)
         self.user.check_refer_bonus

@@ -134,6 +134,17 @@ RSpec.describe User, type: :model do
   end
 
   context 'invoices' do
+
+    it 'downgrade up to free plan if invoice was not paid' do
+      plan = create(:tariff_plan_1mo)
+      plan_free = create(:tariff_plan_free)
+      user = create(:user, expired_at: 1.day.ago, tariff_plan: plan)
+      invoice = create(:invoice, user: user)
+      User.check_invoices
+      user.reload
+      expect(user.tariff_plan).to eq(plan_free)
+    end
+
     it 'check notification' do
       User.check_invoices
       expect(Message.first.title).to eq(I18n.t('pages.notifications.invoice.new'))

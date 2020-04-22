@@ -137,7 +137,15 @@ class User < ApplicationRecord
       user.update(expired_at: date) if user.expired_at.nil?
       if ((user.expired_at <= date) && !user.is_plan_free)
         invoices = Invoice.where(created_at: start_date..end_date, user_id: user.id)
-        if invoices.count === 0
+        if invoices.count > 0
+          invoice = invoices.last
+          if ((user.expired_at < date) && !invoice.is_paid)
+            # UserMailer.invoice_reminder(user, invoice).deliver_now # todo: ? send reminder
+            tariff_plan = TariffPlan.find_by(price: 0)
+            user.update(tariff_plan: tariff_plan)
+          end
+        else
+          # new invoice
           if (user.tariff_plan)
             invoice_params = {user_id: user.id, amount: user.tariff_plan.price, title: user.tariff_plan.title}
           else
