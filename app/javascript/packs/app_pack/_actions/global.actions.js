@@ -16,7 +16,29 @@ export const globalActions = {
   clearAttachments,
   deleteAttachment,
   setStep,
-  getReferLink
+  getReferLink,
+  getConfigs,
+}
+
+function getConfigs() {
+  return dispatch => {
+    dispatch(request(JSON.parse(localStorage.getItem('configs'))))
+    userService.getConfigs()
+      .then(
+        response => {
+          localStorage.setItem('configs', JSON.stringify(response.items))
+          dispatch(success(response.items))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request(configs) { return { type: globalConstants.GET_CONFIGS_REQUEST, configs } }
+  function success(configs) { return { type: globalConstants.GET_CONFIGS_SUCCESS, configs } }
+  function failure(error) { return { type: globalConstants.GET_CONFIGS_FAILURE, error } }
 }
 
 function getCountries() {

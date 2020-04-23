@@ -169,6 +169,8 @@ en:
         new: "You have a new invoice"
     downloads:
       title: "Downloads"
+      configs:
+        title: "OpenVPN configuration files"
     payments:
       payment_methods:
         title: "Payment methods"

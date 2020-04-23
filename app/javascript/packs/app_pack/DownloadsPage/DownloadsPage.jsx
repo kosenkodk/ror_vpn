@@ -9,7 +9,7 @@ import icDownloadSrc from 'images/icons/ic_download.svg'
 class DownloadsPage extends React.Component {
 
   componentDidMount() {
-    this.props.dispatch(globalActions.getCountries())
+    this.props.dispatch(globalActions.getConfigs())
   }
 
   onDownload = (e) => {
@@ -17,12 +17,12 @@ class DownloadsPage extends React.Component {
   }
 
   render() {
-    const { countries } = this.props
+    const { configs } = this.props
     return (
       <div className="container-fluid downloads">
         <div className="row">
           <div className="col-md-12 col-lg-8">
-            <h1 className="">{I18n.t('pages.downloads.title')}</h1>
+            <h1 className="">{I18n.t('pages.downloads.configs.title')}</h1>
 
             <div className="table-responsive">
               <table className="table mt-30">
@@ -34,13 +34,13 @@ class DownloadsPage extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {(countries && countries.length > 0) ?
-                    countries.map(item =>
+                  {(configs && configs.length > 0) ?
+                    configs.map(item =>
                       <tr key={`invoice${item.id}`}>
-                        <td>{item.name}</td>
+                        <td>{item.title}</td>
                         <td>{item.status}</td>
                         <td className="text-right table-actions">
-                          <a href={item.pdf_url + '?download'} target="_blank" download>
+                          <a href={item.url} target="_blank" download>
                             <img src={icDownloadSrc} className="img-fluid" />
                           </a>
                         </td>
@@ -61,9 +61,9 @@ class DownloadsPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { countries } = state.global
+  const { configs } = state.global
   return {
-    countries
+    configs
   }
 }
 

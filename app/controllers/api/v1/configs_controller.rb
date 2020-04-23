@@ -10,6 +10,11 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     end
   end
 
+  def index
+    items = Config.all.reverse
+    render json: {items: items}
+  end
+
   private
   def download_ovpn config
     create_user(current_user)
