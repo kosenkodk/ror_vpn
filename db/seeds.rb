@@ -414,3 +414,16 @@ puts "\nNotifications\n\n"
 User.all.each do |user|
   (0..25).map { |no| user.messages.create(title: "Notification #{no}") }
 end
+
+puts "\nConfigs\n\n"
+[
+  {title: 'Australia', vpn_host: 'au.vega.com'}, 
+  {title: 'France', vpn_host: 'fr.vega.com'}, 
+  {title: 'Canada', vpn_host: 'ca.vega.com'}
+  {title: 'Germany', vpn_host: 'de.vega.com'}, 
+  {title: 'Netherlands', vpn_host: 'nl.vega.com'}, 
+  {title: 'United Kingdom', vpn_host: 'uk.vega.com'}, 
+  {title: 'United States', vpn_host: 'us.vega.com'}
+].each do |params|
+  Config.find_or_create_by(params)
+end

@@ -2,17 +2,12 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   before_action :authorize_access_request!
   before_action :get_vpn_url
   
-  def download
+  def show
     id = params[:id].to_i
-    if Config.exists(id)
+    if Config.exists?(id)
       item = Config.find(id)
       download_ovpn item
     end
-  end
-
-  def get
-    item = Config.find_or_create_by(title: 'USA', vpn_host: 'localhost')
-    download_ovpn item
   end
 
   private
