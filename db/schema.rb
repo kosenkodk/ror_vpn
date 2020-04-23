@@ -33,13 +33,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_205145) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "api_v1_configs", force: :cascade do |t|
-    t.string "title"
-    t.integer "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "bank_cards", force: :cascade do |t|
     t.integer "user_id"
     t.string "full_name"
@@ -73,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_205145) do
   create_table "configs", force: :cascade do |t|
     t.string "title"
     t.integer "status"
+    t.string "vpn_host"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
