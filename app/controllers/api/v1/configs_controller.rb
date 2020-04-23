@@ -11,7 +11,7 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   end
 
   def index
-    items = Config.all.reverse
+    items = Config.order(title: :asc)
     render json: {items: items}
   end
 
