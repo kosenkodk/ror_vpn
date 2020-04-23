@@ -2,8 +2,21 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   before_action :authorize_access_request!
   before_action :get_vpn_url
   
+  def download
+    id = params[:id].to_i
+    if Config.exists(id)
+      item = Config.find(id)
+      download_ovpn item
+    end
+  end
+
   def get
-    config = Config.find_or_create_by(title: 'USA', vpn_host: 'localhost')
+    item = Config.find_or_create_by(title: 'USA', vpn_host: 'localhost')
+    download_ovpn item
+  end
+
+  private
+  def download_ovpn config
     create_user(current_user)
     ca = get_ca
     post_tls_key(ca, config.vpn_host)
@@ -13,7 +26,6 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     send_data ovpn_config, filename: filename
   end
 
-  private
   def block_user
 
   end
