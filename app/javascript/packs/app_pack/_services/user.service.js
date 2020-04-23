@@ -20,6 +20,7 @@ export const userService = {
   getPaymentMethods,
   deletePaymentMethodById,
   getPlans,
+  getConfigs,
   getCountries,
   getDepartments,
   readAllNotifications,
@@ -439,6 +440,18 @@ function getPlans() {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/tariff_plans`, requestOptions).then(handleResponse);
+}
+
+function getConfigs() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/configs`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/configs`, requestOptions).then(handleResponse);
 }
 
 function getCountries() {
