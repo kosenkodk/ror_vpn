@@ -96,8 +96,20 @@ services:
       - "1194:1194/udp"
     volumes:
       - openvpn-data:/data
-
+  
+  web-app:
+    build: ./web-app
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '127.0.0.1'"
+    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 'localhost'"
+    ports:
+      - "3000:3000"
+      # - "127.0.0.1:3000:3000"
+    volumes:
+      - web-app-data:/data
+    
 volumes:
   mongo-data:
   openvpn-pki-data:
   openvpn-data:
+  web-app-data:
