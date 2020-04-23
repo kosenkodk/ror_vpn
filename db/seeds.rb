@@ -419,7 +419,7 @@ puts "\nConfigs\n\n"
 [
   {title: 'Australia', vpn_host: 'au.vega.com'}, 
   {title: 'France', vpn_host: 'fr.vega.com'}, 
-  {title: 'Canada', vpn_host: 'ca.vega.com'}
+  {title: 'Canada', vpn_host: 'ca.vega.com'},
   {title: 'Germany', vpn_host: 'de.vega.com'}, 
   {title: 'Netherlands', vpn_host: 'nl.vega.com'}, 
   {title: 'United Kingdom', vpn_host: 'uk.vega.com'}, 
