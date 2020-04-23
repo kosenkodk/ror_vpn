@@ -3,6 +3,7 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   # require 'net/http'
 
   def get
+    # todo: create user on vpn server
     ca = get_ca
     post_tls ca
     ovpn_config = get_ovpn_config
