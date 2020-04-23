@@ -97,34 +97,23 @@ services:
     volumes:
       - openvpn-data:/data
   
-  redis:
-    image: "redis:4.0-alpine"
-    command: redis-server --requirepass yourpassword
-    # ports:
-    #   - "6379:6379"
-    volumes:
-      - $PWD/redis-data:/var/lib/redis    
-      # - $PWD/redis.conf:/usr/local/etc/redis/redis.conf    
-    env_file:
-      - '.env'
-
-  # cable:
-  #   depends_on:
-  #     - 'redis'
-  #   build: .
-  #   command: puma -p 28080 config.ru
-  #   ports:
-  #     - '28080:28080'
+  # redis:
+  #   image: "redis:5.0.9-alpine"
+  #   # command: redis-server --requirepass yourpassword
+  #   command: redis-server
+  #   # ports:
+  #   #   - "6379:6379"
   #   volumes:
-  #     - 'web-app-data:/data'
+  #     - $PWD/redis-data:/var/lib/redis    
+  #     - $PWD/redis.conf:/usr/local/etc/redis/redis.conf    
   #   env_file:
   #     - '.env'
 
   web-app:
     build: ./web-app
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    depends_on:
-      - 'redis'
+    # depends_on:
+    #   - 'redis'
     # environment:
     #   REDIS_URL: "redis://0.0.0.0:6379"
     ports:
