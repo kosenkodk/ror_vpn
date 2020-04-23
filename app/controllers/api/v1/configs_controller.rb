@@ -1,19 +1,15 @@
 class Api::V1::ConfigsController < Api::V1::ApiController
   before_action :authorize_access_request!
-  # require 'net/http'
   before_action :get_vpn_url
   
   def get
-    # todo: create user on vpn server
     config = Config.find_or_create_by(title: 'USA', vpn_host: 'localhost')
     create_user(current_user)
     ca = get_ca
     post_tls_key(ca, config.vpn_host)
     ovpn_config = get_ovpn_config(config.vpn_host, current_user.email)
-    # sign_server_cert @$EASYRSA_PKI/reqs/${OPENVPN_HOST}.req
-    filename = 'config.ovpn'
+    filename = "#{config.vpn_host}.ovpn"
     config.ovpn.attach(io: StringIO.new(ovpn_config), filename: filename)
-
     send_data ovpn_config, filename: filename
   end
 
