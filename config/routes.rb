@@ -20,8 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      # resources :configs
-      get '/configs/get', to: 'configs#get'
+      resources :configs
 
       resources :assets
       get '/notifications', to: 'notifications#index'
