@@ -1,5 +1,0 @@
-export const pageConstants = {
-  SET_TITLE: 'PAGE_SET_TITLE',
-  SET_SECTION_HEIGHT: 'PAGE_SET_SECTION_HEIGHT',
-  CLEAR: 'PAGE_CLEAR',
-};

@@ -1,2 +1,0 @@
-class BankCard < ApplicationRecord
-end

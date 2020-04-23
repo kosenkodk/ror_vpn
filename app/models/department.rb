@@ -1,3 +1,0 @@
-class Department < ApplicationRecord
-  
-end
