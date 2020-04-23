@@ -18,6 +18,8 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   end
 
   private
+  def block_user
+  end
   def create_user user
     url = "#{@vpn_url}/create_user"
     uri = URI(url)
