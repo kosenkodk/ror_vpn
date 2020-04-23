@@ -19,9 +19,11 @@ class Api::V1::ConfigsController < Api::V1::ApiController
 
   private
   def block_user
+
   end
+
   def create_user user
-    url = "#{@vpn_url}/create_user"
+    url = "#{@vpn_url}/server/users/create"
     uri = URI(url)
     http = Net::HTTP.new(uri.host, uri.port)
     # http.use_ssl = true
