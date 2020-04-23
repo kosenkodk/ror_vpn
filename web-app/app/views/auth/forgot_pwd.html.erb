@@ -1,0 +1,24 @@
+<div class="container forgot_pwd">
+  <div class="featurette text-center">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 text-center">
+        <h1 class="featurette-heading">
+          <%= t('pages.forgot_pwd.title') %>
+        </h1>
+        <p class="lead">
+          <%= t('pages.forgot_pwd.subtitle') %>
+        </p>
+      </div>
+
+      <div class="col-md-8 offset-md-2 ">
+        <div class="text-right">
+          <%= render 'auth/forgot_pwd_form' %>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <%#= image_tag 'coming_soon/mars_with_spaceship.png', {class:'img-fluid'} #%>
+      </div>
+    </div>
+  </div>
+</div>

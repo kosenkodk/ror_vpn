@@ -1,0 +1,18 @@
+<h5 class="card-title">Hi <%=@contact.email%></h5>
+<p class="card-text">
+  <%=@contact.try(:department).try(:title)%>
+</p>
+<p class="card-text">
+  <%=@contact.title%>
+</p>
+<p class="card-text">
+  <%=@contact.message_short%>
+</p>
+
+<p class="card-text">
+  <%=@contact.message%>
+</p>
+
+<!-- <a href="<%#=api_v1_contact_url(@contact.id)#%>" class="btn btn-outline-secondary">
+  view more details
+</a> -->

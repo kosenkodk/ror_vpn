@@ -1,0 +1,46 @@
+<%= form_for @user, url: signup_path, html: {class:'container'}, remote: false do |f| %>
+
+<div class="row signup text-center">
+  <div class="col-md-8 offset-md-2">
+    <h1 class="m-0">
+      <%= t('pages.signup.steps.title1') %>
+    </h1>
+
+    <p class="">
+      <%= link_to image_tag('signup/step1.png', class:'img-fluid'), '#step2', {id: 'step1'} %>
+    </p>
+  </div>
+
+  <div class="col-md-8 offset-md-2">
+    <div class="text-right">
+      <%= render partial: 'auth/signup_form', locals: {f: f} %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <h1 class="m-0 pt-0">
+      <%= t('pages.signup.steps.title2') %>
+    </h1>
+    <p class="mb-4">
+      <%= link_to image_tag('signup/step2.png', class:'img-fluid'), '#step3', {id: 'step2'} %>
+    </p>
+    <div class="container">
+      <%= render partial: 'auth/step2_plans', locals: { items: @plans } %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <h1 class="m-0">
+      <%= t('pages.signup.steps.title3') %>
+    </h1>
+    <p class="mb-4">
+      <%= link_to image_tag('signup/step3.png', class:'img-fluid'), '#', {id: 'step3'} %>
+    </p>
+  </div>
+
+  <div class="col-md-12">
+    <%= render partial: 'auth/step3_payment_methods', locals: {f: f} %>
+  </div>
+</div>
+
+<% end %>

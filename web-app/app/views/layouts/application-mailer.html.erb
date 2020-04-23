@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag "application-mailer", media: "all" %>
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <div class="card">
+      <div class="card-header" style="background-color: #eee">
+        <%= email_inline_image_tag 'logo_mail_black.png', class: 'pl-3', style:"height:50px;" %>
+        <%#= email_image_tag 'logo_mail_black.png', class: 'pl-3', style:"height:50px;" #%>
+        <%#= image_tag attachments['logo_mail_black.png'].url, class: 'pl-3', style:"height:50px;" #%>
+        <%#= image_tag attachments.inline['logo_mail_black.png'].url, class: 'pl-3', style:"height:50px;" #%>
+      </div>
+      <div class="card-body">
+        <%= yield %>
+      </div>
+      <div class="card-footer text-muted text-center" style="">
+        <%=link_to 'visit our website', root_url, class: '' %> |
+        <%=link_to 'sign in to your account', root_url+'signin', class: '' %> |
+        <%=link_to 'contact us', root_url+'contact_us', class: '' %>
+        <br />
+        Copyright &copy; VegaVPN, All rights reserved
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

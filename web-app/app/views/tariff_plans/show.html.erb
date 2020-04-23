@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tariff_plan.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @tariff_plan.price %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @tariff_plan.duration %>
+</p>
+
+<p>
+  <strong>Price duration:</strong>
+  <%= @tariff_plan.price_duration %>
+</p>
+
+<p>
+  <strong>Price duration sale:</strong>
+  <%= @tariff_plan.price_duration_sale %>
+</p>
+
+<p>
+  <strong>Price comment:</strong>
+  <%= @tariff_plan.price_comment %>
+</p>
+
+<p>
+  <strong>Features:</strong>
+  <%= @tariff_plan.features %>
+</p>
+
+<%= link_to 'Edit', edit_tariff_plan_path(@tariff_plan), { class: 'btn btn-sm btn-outline-primary' } %> |
+<%= link_to 'Back', tariff_plans_path, { class: 'btn btn-sm btn-outline-primary' } %>

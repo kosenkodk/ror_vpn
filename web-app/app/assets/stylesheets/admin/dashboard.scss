@@ -1,0 +1,273 @@
+
+  .dashboard-payment-details {
+    .form-control {
+      background-color: $bgGray;
+    }
+    input[name='amount_due'] {
+      background-color: $white;
+      border: thin solid $pink;
+      border-radius: pxtovw(5);
+      box-sizing: border-box;
+    }
+  }
+  .dashboard {
+    $card-padding-x: 5;
+    $padding-x: 32;
+
+    padding-top: pxtovh(40);
+
+    @media (min-width: 1401px) {
+      zoom: 0.9;
+      -moz-transform: scale(0.9);
+    }
+
+    @media (min-width: $lg-width) {
+      .border-left-pink {
+        // max-width: 70%;
+        max-width: pxtovw(690);
+      }
+      max-width: pxtovw(1030);
+      // float: left;
+    }
+
+    .plans {
+      // margin-top: pxtovh($padding-x); // break height of the plan items
+      margin-left: pxtovw(-$card-padding-x);
+      margin-right: pxtovw(-$card-padding-x);
+      .best-offer {
+        background: $pink_gradient;
+        border-radius: pxtovw(20);
+      }
+      .card {
+        min-width: 100%;
+        padding-left: pxtovw($padding-x);
+        padding-right: pxtovw($padding-x);
+        margin: 0px auto;
+        border: 2.3px solid $pink2;
+        border-radius: pxtovw(20);
+        &:hover {
+          cursor: unset;
+          box-shadow: 0px 0px 25px $shadow-vega;
+        }
+        .card-body {
+          padding-right: 0;
+          padding-left: 0;
+        }
+        .card-footer {
+          padding: 0;
+        }
+        
+        &.active {
+          padding-right: 0;
+          padding-left: 0;
+          // square corners
+          // border: 3px solid;
+          // border-image: $pink_button_gradient;
+          // border-image-slice: 60 30;
+          // border-radius: pxtovw(20);
+
+          background-image: $pink_button_gradient;
+          border-radius: pxtovw(20);
+          color: $white;
+
+          .card-header {
+            // padding-top: pxtovh(36);
+          }
+          .card-body {
+            margin-top: unset;//pxtovh(5);
+            margin-bottom: pxtovh(20);
+            padding-left: pxtovw($padding-x);
+            padding-right: pxtovw($padding-x);
+            &.plan-free {
+              margin-bottom: pxtovh(45);
+            }
+          }
+          .card-footer {
+            // padding-top: pxtovh(18);
+            // padding-bottom: pxtovh(32);
+          }
+        }
+      }
+      .col-xs-12, .col-sm-6, .col-md-4, .col-lg-3, .mb-3 {
+        padding-right: pxtovw($card-padding-x);
+        padding-left: pxtovw($card-padding-x);
+      }
+      .card-deck {
+        padding-right: pxtovw(-$card-padding-x);
+        padding-left: pxtovw(-$card-padding-x);
+      }
+      .plan {
+        display: flex;
+        // flex: 1 0 0%;
+        margin-top: pxtovh(17);
+        margin-bottom: pxtovh(17);
+        &.active {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+        .plan__price {
+          // @extend .pricing-card-title;
+          font-size: 53px;
+          line-height: 30px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(56px, 160px, $bp-w1400, $bp-w4096, 56px);
+          }
+          @media (min-width: $bp-w1920) {
+            @include fluidLineHeight(45px, 120px, $bp-w1920, $bp-w4096, 62px);
+          }
+          
+          font-weight: $font-bold;
+          margin-bottom: pxtovh(12);
+        }
+
+        .plan__price-currency {
+          font-size: 18px;
+          line-height: 7px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(18px, 52px, $bp-w1400, $bp-w4096, 14px);
+            @include fluidLineHeight(7px, 7px, $bp-w1400, $bp-w4096, 7px);
+          }
+          font-weight: $font-bold;
+        }
+        
+        .plan__per-mo {
+          // padding-top: pxtovh(4px);
+          // @extend .plan__price-currency;
+          font-size: 14px;
+          line-height: 18px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(14px, 42px, $bp-w1400, $bp-w4096, 14px);
+            @include fluidLineHeight(18px, 21px, $bp-w1400, $bp-w4096, 18px);
+          }
+          font-weight: $font-bold;
+        }
+        
+        .plan__best-offer {
+          font-size: 12px;
+          line-height: 15px;
+          font-weight: normal;//$font-normal;
+          padding: pxtovh(11) pxtovw(20);
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 50px, $bp-w1400, $bp-w4096, 15px);
+          }
+          
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          min-width: pxtovw(100);
+          min-height: pxtovh(38);
+          background: $pink_button_gradient;
+          color: $white;
+          
+          border-bottom-left-radius: pxtovw(18);
+          border-top-right-radius: pxtovw(18);
+        }
+
+        .plan__best-offer-hidden {}
+        
+        .plan-free__features {
+          margin-top: pxtovh(76);
+          margin-bottom: pxtovh(29);
+
+          font-size: 12px;
+          line-height: 15px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 42px, $bp-w1400, $bp-w4096, 15px);
+          }
+        }
+
+        .active .plan-free__features {
+          margin-top: pxtovh(65);
+          margin-bottom: pxtovh(15);
+        }
+
+        .card-header {
+          margin-top: pxtovh(49);
+          margin-bottom: pxtovh(39);
+        }
+        .card-header, .card-footer {
+          border: unset;
+          background: unset;
+        }
+
+        .plan__discount {
+          margin-bottom: pxtovh(5);
+          .plan__btn-save {
+            font-weight: normal;
+            padding: pxtovh(6) pxtovw(15);
+            // min-height: pxtovh(29);
+            font-size: 12px;
+            line-height: 15px;
+            @media (min-width: $bp-w1400) {
+              @include fluidFontSize(12px, 41px, $bp-w1400, $bp-w4096, 12px);
+              @include fluidLineHeight(15px, 50px, $bp-w1400, $bp-w4096, 15px);
+            }
+            color: $white;
+            margin-top: pxtovh(6);
+            margin-bottom: pxtovh(20);
+            background-color: #3F0E4D;
+            &.active {
+              background-color: #2cb0b5;
+            }
+          }
+          .plan__price-duration {
+            font-size: 14px;
+            @media (min-width: $bp-w1400) {
+              @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+            }
+            margin-bottom: pxtovh(1px);
+          }
+          .plan__price-comment {
+            // font-size: 14px;
+            // @media (min-width: $bp-w1400) {
+            //   @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+            // }
+          }
+        }
+
+        .plan__my-plan {
+          // margin-left: pxtovw(-5);
+          // margin-right: pxtovw(-5);
+        }
+        .plan__btn-my-plan {
+          background: $white;
+          color: #3F0E4D;
+          margin-bottom: pxtovh(53);
+          border-radius: 0;
+          min-height: pxtovh(50);
+          &:hover {
+            opacity: 1;
+            cursor: unset;
+          }
+        }
+        .plan__features {
+          margin-top: pxtovh(13);
+          margin-bottom: pxtovh(29);
+          font-size: 12px;
+          line-height: 15px;
+          @media (min-width: $bp-w1400) {
+            @include fluidFontSize(12px, 35px, $bp-w1400, $bp-w4096, 12px);
+            @include fluidLineHeight(15px, 42px, $bp-w1400, $bp-w4096, 15px);
+          }
+        }
+        .plan__btn-change {
+          margin-bottom: pxtovh(40);
+          min-height: pxtovh(50);
+          border-radius: pxtovw(20);
+          // &:hover {
+          //   opacity: 1;
+          // }
+        }
+      }
+    }
+    
+    .subscriptions {
+      margin-top: pxtovh(64); //4em;
+      h1 {
+        margin-bottom: pxtovh(23);
+      }
+    }
+  }

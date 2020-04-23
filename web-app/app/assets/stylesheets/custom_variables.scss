@@ -1,0 +1,120 @@
+@import "bootstrap/scss/bootstrap-grid.scss";
+
+$bg_color_black: #0F0216;
+$bg_color_black2: #16041f;
+$bg_color_black3: #2b0c29;
+$bg_color_black_gradient32: linear-gradient(90deg, $bg_color_black3 20%, $bg_color_black2 100%);
+$bg_color_black_gradient23: linear-gradient(90deg, $bg_color_black2 20%, $bg_color_black3 100%);
+$pink: #8C5362;
+$pink2: #713980;
+$pink3: #792761;
+$pink4: #7D2864;
+$pink_gradient: linear-gradient(to right, $pink, $pink2 ) 47% 0%; //linear-gradient(90deg, $pink2 0%, $pink 100%);
+$pink_button_gradient: linear-gradient(90deg, $pink 0%, $pink2 100%);
+$opacity: 0.7;
+$opacity01: 0.1;
+$opacity03: 0.3;
+$opacity05: 0.5;
+$opacity06: 0.6;
+$opacity08: 0.8;
+
+$border_rounded: 20px;
+$pricing_border_radius: 15px;
+$pricing_border_width: 3px;
+
+$shadow-vega: #5C1D49;
+$footer_bg_color: $pink4;
+
+$xs-width: 320px;
+$sm-width: 576px; //540px; by default
+$md-width: 720px;
+$lg-width: 960px;
+$xl-width: 1140px; // 1020px by ui design (public website)
+$fullhd-width: 1921px;
+$k4-width: 3840px;
+
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px
+// ) !default;
+
+$header_navbar_height: 70; // 70px +  unquote("px");
+$padding: 15;
+$home_padding_bottom: 5rem;
+
+$enable-responsive-font-sizes: true;
+$font-bold: 700; //600;
+$font-normal: 600; //500;
+//TODO: make mixin like thid: gradient-linear: rgba(#8C5362 0%, #713980 100%);
+
+// @mixin linear-gradient($direction, $fromColor, $toColor)
+//   background-color: $toColor
+//   background-image: -webkit-gradient(linear, $direction, from($fromColor), to($toColor)) /* Saf4+, Chrome */
+//   background-image: -webkit-linear-gradient($direction, $fromColor, $toColor) /* Chrome 10+, Saf5.1+, iOS 5+ */
+//   background-image:    -moz-linear-gradient($direction, $fromColor, $toColor) /* FF3.6 */
+//   background-image:     -ms-linear-gradient($direction, $fromColor, $toColor) /* IE10 */
+//   background-image:      -o-linear-gradient($direction, $fromColor, $toColor) /* Opera 11.10+ */
+//   background-image:         linear-gradient($direction, $fromColor, $toColor)
+//   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+
+// $body-bg: #0F0216;
+// $body-color: rgba(255,255,255, 0.7);
+
+// $danger: rgba(255, 0, 0, 0.7);
+// $white: rgba(255,255,255, 0.8);
+
+// $theme-colors: (
+//   "danger": $danger,
+//   "white": $white,
+// );
+
+$container-max-widths: (
+  xs: $xs-width,
+  sm: $sm-width,
+  md: $md-width,
+  lg: $lg-width,
+  xl: $xl-width,
+  w1400: 1400px, // for admin panel
+  fullhd: 1920px,
+  k4: $k4-width,
+);
+
+$sizes: (
+  38: 38%,
+  62: 62%,
+  
+  37: 37%,
+  63: 63%,
+
+  10: 10%,
+  15: 15%,
+  16: 16%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  35: 35%,
+  40: 40%,
+  43: 43%,
+  45: 45%,
+  50: 50%,
+  55: 55%,
+  60: 60%,
+  65: 65%,
+  70: 70%,
+  75: 75%,
+  100: 100%,
+  60px: 60px,
+  80px: 80px,
+  100px: 100px
+);
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @each $size, $length in $sizes {
+    @include media-breakpoint-up($breakpoint) {
+      .w-#{$breakpoint}-#{$size} {width: $length !important;}
+    }
+  }
+}

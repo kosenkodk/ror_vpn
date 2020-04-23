@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="featurette">
+    <div class="row status_page text-center">
+      <div class="col-md-4">
+        <%= image_tag 'coming_soon/astronaut.png', { class:'img-fluid', alt: '' } %>
+      </div>
+      <div class="col-md-4">
+        <h1 class="featurette-heading">
+
+        </h1>
+        <h2 class="featurette-heading">
+          Success!
+        </h2>
+        <p class="lead">
+          <%=flash[:error] if flash[:error]%>
+          <%=flash[:notice] if flash[:notice]%>
+        </p>
+        <a href="/" class="btn btn-outline-primary btn-block">
+          <span class="glyphicon glyphicon-circle-arrow-right ">Ok</span></a>
+      </div>
+      <div class="col-md-4 justify-content-center align-self-center">
+        <%= image_tag 'star.png', {class:'img-fluid'} %>
+      </div>
+      <div class="col-md-12">
+        <%= image_tag 'coming_soon/mars_with_spaceship.png', {class:'img-fluid'} %>
+      </div>
+    </div>
+  </div>
+</div>

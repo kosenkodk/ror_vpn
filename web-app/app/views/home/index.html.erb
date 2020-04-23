@@ -1,0 +1,31 @@
+<div class="container">
+
+  <%= render partial: 'shared/product_with_btn_pricing' %>
+
+  <%#= render partial: 'shared/reviews_section' #%>
+  <%= render partial: 'shared/reviews_section_tab' %>
+
+  <%= render partial: 'shared/security_and_trust' %>
+
+  <!-- features section - client side rendering only (js only) -->
+  <%#= react_component('Features', { features: @features }, { prerender: true }) #%>
+  <%#= react_component('Features', { prerender: true }) #%>
+
+  <!-- features section - server side rendering -->
+  <%#= render partial: 'shared/features', locals: {items: @features} #%>
+  <div id="features" class="features row">
+    <% @features.each do |item| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= react_component('Feature', {id: item.id, title: item.title, subtitle: item.subtitle, text: item.text, icon_url: item.icon_url}, { prerender: true }) %>
+    </div>
+    <% end %>
+  </div>
+
+  <%#= render partial: 'shared/pricing' #%>
+</div>
+
+<div class="container-fluid bg2">
+  <div class="container">
+    <%= render partial: 'shared/app_downloads' %>
+  </div>
+</div>

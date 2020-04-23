@@ -1,0 +1,18 @@
+<ul class="nav nav-pills mb-3" id="pills-tabPlan" role="tablist">
+  <% @plans.each_with_index do |item, index| %>
+  <li class="nav-item col-sm-6 col-md-3">
+    <button class="btn btn-pink-dark btn-block rounded-pill <%= get_active_class_by_index(index, @plan_active_index) %>"
+      id="pills-plan<%= index %>-tab" data-toggle="pill" href="#pills-plan<%= index %>" role="tab"
+      aria-controls="pills-plan<%= index %>" aria-selected="true"><%=item.try(:title)%></button>
+  </li>
+  <% end %>
+</ul>
+
+<div class="tab-content" id="pills-tabPlanContent">
+  <% @plans.each_with_index do |item, index| %>
+  <div class="tab-pane fade show <%= get_active_class_by_index(index, @plan_active_index) %>"
+    id="pills-plan<%= index %>" role="tabpanel" aria-labelledby="pills-plan<%= index %>-tab">
+    <%= render partial: 'home/pricing_tab_item.html.erb', locals: {item: item} %>
+  </div>
+  <% end %>
+</div>

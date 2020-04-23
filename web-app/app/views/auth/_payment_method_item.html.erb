@@ -1,0 +1,12 @@
+<div class="card m-0 mb-3 shadow-vega <%= active_class %>">
+  <div class="card-header">
+    <div class="icon-checkbox <%= active_class %>"></div>
+    <h5 class="pt-3 mb-0 font-weight-normal"><%=t('payment_method.cryptocurrencies')%></h5>
+  </div>
+  <div class="card-body pt-0">
+    <% [ 'bitcoin', 'ripple', 'ethereum' ].each do |image_name| %>
+    <%= image_tag "signup/payment_methods/#{image_name}.png", { class: 'img-fluid' }%>
+    <% end %>
+  </div>
+  <div class="card-footer"></div>
+</div>

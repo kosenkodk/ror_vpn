@@ -1,0 +1,85 @@
+
+@function pxtovw($value, $scale:1) {  
+  $value: strip-unit($value);
+  $width-of-admin-ui-design: strip-unit($width-of-admin-ui-design);
+  $proportion: ($value / $width-of-admin-ui-design)*100;
+  // $proportion: ($value/$width-of-admin-ui-design)*100+0vw;
+  
+  $height-of-admin-ui-design: strip-unit($height-of-admin-ui-design);
+  $k_orig: $height-of-admin-ui-design/$width-of-admin-ui-design;
+  $k_device: 100vh/100vw;
+
+  // proportions for origin ui design (1400x972)
+  @if ($k_orig == $k_device) {
+    @return $proportion + vw;
+  }
+
+  $proportion: ($proportion * $scale) + vw;
+  @return $proportion;
+}
+
+@function pxtovh($value, $scale:1) {
+  $value: strip-unit($value);
+  $width-of-admin-ui-design: strip-unit($width-of-admin-ui-design);
+  $height-of-admin-ui-design: strip-unit($height-of-admin-ui-design);
+  $proportion: ($value/$height-of-admin-ui-design)*100;
+  
+  $k_orig: $height-of-admin-ui-design/$width-of-admin-ui-design;
+  $k_device: 100vh/100vw;
+
+  // proportions for origin ui design (1400x972)
+  @if ($k_orig == $k_device) {
+    @return $proportion + vh;
+  }
+
+  $proportion: $proportion * $k_orig * $scale + vw; // vh to vw
+  @return $proportion;
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@function calcFluidFontSize($f-min, $f-max, $w-min, $w-max, $units: px) {
+  $f-min: strip-unit($f-min);
+  $f-max: strip-unit($f-max);
+  $w-min: strip-unit($w-min);
+  $w-max: strip-unit($w-max);
+
+  $k: ($f-max - $f-min)/($w-max - $w-min);
+  $b: $f-min - $k * $w-min;
+
+  $b: $b + $units;
+
+  @return calc( #{$k} * 100vw + #{$b} );
+}
+
+.fluid-font-size-if-vw-supported {
+  // font-size: calcFluidFontSize(1, 3, 20, 256, rem);
+  // font-size: calcFluidFontSize(24, 68, 1400, 4096, px); // for h1 tag for screens > 1400px
+  // font-size: calcFluidFontSize(16, 68, 320, 4096, px); // for h1 tag for screens > 320px
+}
+
+@mixin fluidFontSize($f-min, $f-max, $w-min, $w-max, $fallback: false) {
+  @if ($fallback) {
+    font-size: $fallback; // for old browsers wich are not support vw)
+  }
+  font-size: calcFluidFontSize($f-min, $f-max, $w-min, $w-max, px);
+}
+
+@mixin fluidLineHeight($f-min, $f-max, $w-min, $w-max, $fallback: false) {
+  @if ($fallback) {
+    line-height: $fallback; // for old browsers wich are not support vw)
+  }
+  line-height: calcFluidFontSize($f-min, $f-max, $w-min, $w-max, px);
+}
+
+.fluid-font-size {
+  // @include fluidFontSize($font-min, $font-max, $width-min, $width-max, $font-avg);
+}

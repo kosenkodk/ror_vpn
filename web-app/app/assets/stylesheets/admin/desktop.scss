@@ -1,0 +1,218 @@
+
+@media (min-width: $lg-width) {
+
+  .friend-invite {
+    .import_email_contacts {
+      p small {
+        @include fluidFontSize(12px, 38px, $bp-w1400, $bp-w4096, 12px);
+      }
+    }
+  }
+
+  .navbar-collapse {
+    position: relative;
+    left: unset;
+    height: auto;
+    &.show {
+      margin-left: 0px;
+    }
+  }
+
+// @media #{$mq-medium} {
+// @media #{$mq-w1400} {
+// @media (min-width:1401px) {
+
+@include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
+@include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
+// @include fluidLineHeight(18px, 74px, $bp-w1400, $bp-w4096, 18px);
+
+$multiplier: 1;
+.main-content {
+  // padding: pxtovh(30px) pxtovw(20px);
+  // padding: pxtovw(20px);
+}
+h1 {
+  // font-size: calcFluidFontSize(24, 68, 1400, $bp-w4096, px); // for h1 tag for screens > $bp-w1400
+  @include fluidFontSize(24px, 68px, $bp-w1400, $bp-w4096, 24px);
+  @include fluidLineHeight(34px, 140px, $bp-w1400, $bp-w4096, 34px);
+  // font-weight: $font-normal;
+}
+h2 {
+  @include fluidLineHeight(22px, 24px, $bp-w1400, $bp-w4096, 22px);
+}
+h3 {
+  @include fluidFontSize(20px, 20px, $bp-w1400, $bp-w4096, 20px);
+}
+h4 {
+  @include fluidFontSize(18px, 53px, $bp-w1400, $bp-w4096, 18px);
+  @include fluidLineHeight(22px, 22px, $bp-w1400, $bp-w4096, 22px);
+}
+h5 {
+  @include fluidFontSize(16px, 16px, $bp-w1400, $bp-w4096, 16px);
+}
+h6 {
+  @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+}
+small {
+  // font-size: $font-small*$multiplier; // 9px
+  // line-height: $line-height-small*$multiplier; // 15px
+  @include fluidFontSize(9px, 26px, $bp-w1400, $bp-w4096, 9px);
+  @include fluidLineHeight(15px, 45px, $bp-w1400, $bp-w4096, 15px);
+}
+
+.form-control {
+  font-size: pxtovh(14px);
+  // line-height: calc(24/14); // 24px
+  // padding: pxtovh(10) pxtovw(15);
+  height: pxtovh(40);
+  padding-left: pxtovw(15);
+  // padding-top: pxtovh(10);
+}
+
+textarea.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.alert {
+  font-size: pxtovh(18px);
+  line-height: pxtovh(24px);
+  z-index: 1000;
+}
+
+button.btn {
+  min-height: pxtovh(40);
+}
+
+.btn {  
+  font-weight: $font-bold;
+  // font-size: pxtovh(14px);
+  // @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  // @include fluidLineHeight(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  @include fluidFontSize(14px, 40px, $bp-w1400, $bp-w4096, 14px);
+  @include fluidLineHeight(18px, 40px, $bp-w1400, $bp-w4096, 18px);
+    // line-height: 18/14;
+  // line-height: pxtovh(18px);
+    // padding: 1rem 2rem;
+  padding: pxtovh(10px) pxtovw(25px);
+  // letter-spacing: 0.02rem; // 
+  // letter-spacing: 0.03rem; // full hd
+}
+
+.header {
+  padding-top: pxtovh(4px);
+  padding-bottom: pxtovh(4px);
+
+  .nav {
+    height: 100%;
+  }
+
+  .nav-item {
+    padding-left: pxtovw(8px);
+  }
+
+  .nav-link {
+    font-size: pxtovh(14px);
+    line-height: pxtovh(18px);
+    &.btn {
+      padding: pxtovh(10px) pxtovw(15px);
+      // margin-left: pxtovw(8px);
+    }
+  }
+
+  img {
+    // height: 4.11vh;
+    width: pxtovw(40);
+    // 22
+    // 18
+    // margin-top: 1.3rem*$multiplier4k;
+    // margin-bottom: 0.5rem*$multiplier4k;
+  }
+  // .img-fluid {
+  //   height: 4.11vh;
+  // }
+}
+
+.navbar-brand {
+  padding: 0;
+  img {
+    // height: 2.4vh;
+    // width: (79/1400)*100+0vw;
+    width: pxtovw(95);
+    max-height: unset;
+    margin-top: pxtovh(28px);
+    margin-bottom: pxtovh(16px);
+  }
+}
+
+aside {
+  max-width: pxtovw(217);
+  padding-right: pxtovw(30);
+  padding-left: pxtovw(30);
+}
+
+section {
+  height: 100vh;
+  padding-left: pxtovw(21px);
+  padding-right: pxtovw(30px);
+}
+
+.pagination {
+  margin-top: pxtovh(20px);
+  .page-link {
+    padding: pxtovh(12px) pxtovw(12.3px);
+  }
+}
+
+.tickets {
+  .btn {
+    padding: pxtovh(10) pxtovw(27);
+    min-width: pxtovw(170);
+  }
+}
+
+.ticket__message {
+  @include fluidLineHeight(25px, 72px, $bp-w1400, $bp-w4096, 25px);
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.friend-invite {
+  // fix for large screen
+  @media (min-width: 960px) and (max-width: 991px) {
+    // padding-right: pxtovw(397);
+    max-width: 68%;
+  }
+  p {
+    @include fluidLineHeight(25px, 35px, $bp-w1400, $bp-w1920, 25px);
+  }
+}
+
+/*
+@media #{$mq-w1920} {
+  section {
+    padding-right: pxtovw(15px);
+    padding-left: pxtovw(15px);
+  }
+  aside {
+    // max-width: pxtovw(217); //217
+  }
+}
+
+
+@media (min-width: 1921px) {
+  section {
+    padding-right: pxtovw(30px);
+    padding-left: pxtovw(15px); //60px
+  }
+  aside {
+    max-width: pxtovw(217); //217
+    padding-right: pxtovw(30);
+    padding-left: pxtovw(30);
+  }
+}
+*/
+
+}
