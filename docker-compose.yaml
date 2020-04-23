@@ -107,18 +107,18 @@ services:
       # - $PWD/redis.conf:/usr/local/etc/redis/redis.conf    
     env_file:
       - '.env'
-      
-  cable:
-    depends_on:
-      - 'redis'
-    build: .
-    command: puma -p 28080 cable/config.ru
-    ports:
-      - '28080:28080'
-    volumes:
-      - 'web-app-data:/data'
-    env_file:
-      - '.env'
+
+  # cable:
+  #   depends_on:
+  #     - 'redis'
+  #   build: .
+  #   command: puma -p 28080 config.ru
+  #   ports:
+  #     - '28080:28080'
+  #   volumes:
+  #     - 'web-app-data:/data'
+  #   env_file:
+  #     - '.env'
 
   web-app:
     build: ./web-app
