@@ -22,8 +22,9 @@ class DownloadsPage extends React.Component {
       <div className="container-fluid downloads">
         <div className="row">
           <div className="col-md-12 col-lg-8">
-            <h1 className="">{I18n.t('pages.downloads.configs.title')}</h1>
+            {/* <h1 className="">{I18n.t('pages.downloads.clients.title')}</h1> */}
 
+            <h1 className="">{I18n.t('pages.downloads.configs.title')}</h1>
             <div className="table-responsive">
               <table className="table mt-30">
                 <thead>
