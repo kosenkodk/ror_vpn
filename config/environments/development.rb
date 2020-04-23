@@ -36,6 +36,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.vpn_host = 'localhost'
+  config.vpn_port = '5000'
+  config.vpn_url = "http://#{config.vpn_host}:#{config.vpn_port}"
+  
   config.host = 'localhost'
   config.port = 3000
   Rails.application.routes.default_url_options[:host] = "#{config.host}:#{config.port}"
