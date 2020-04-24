@@ -17,15 +17,16 @@ RUN bundle install
 
 COPY . $RAILS_ROOT
 
-ENV RAILS_ENV='production'
-ENV RACK_ENV='production' 
-# ENV RAILS_MASTER_KEY=''
+# ENV RAILS_ENV='production'
+# ENV RACK_ENV='production' 
+# ENV RAILS_ENV='development'
+# ENV RACK_ENV='development' 
 
 # RUN redis-server --daemonize yes --bind 0.0.0.0 --protected-mode no
 RUN yarn install --check-files
 RUN bundle exec rake db:migrate
 RUN bundle exec rake db:seed
-RUN bundle exec rake assets:precompile
+# RUN bundle exec rake assets:precompile
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
