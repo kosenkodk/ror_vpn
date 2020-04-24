@@ -6,20 +6,27 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn 
 #redis-server
-RUN mkdir /web-app
-WORKDIR /web-app
-COPY Gemfile /web-app/Gemfile
-COPY Gemfile.lock /web-app/Gemfile.lock
+
+ENV RAILS_ROOT /web-app
+
+
+RUN mkdir $RAILS_ROOT
+WORKDIR $RAILS_ROOT
+COPY Gemfile $RAILS_ROOT/Gemfile
+COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 RUN bundle install
 
-COPY . /web-app
+COPY . $RAILS_ROOT
+
+ENV RAILS_ENV='production'
+ENV RACK_ENV='production' 
+# ENV RAILS_MASTER_KEY=''
 
 # RUN redis-server --daemonize yes --bind 0.0.0.0 --protected-mode no
-
 RUN yarn install --check-files
 RUN bundle exec rake db:migrate
 RUN bundle exec rake db:seed
-# RUN bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
