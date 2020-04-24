@@ -41,3 +41,7 @@ bundle exec rspec
 
 docker-compose run web-app rails new . --force --no-deps --database=postgresql
 docker-compose run web-app rake db:create
+
+redis
+redis-server --bind 0.0.0.0 --daemonize yes
+ps aux | grep redis-server
