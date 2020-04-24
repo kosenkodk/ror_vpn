@@ -9,7 +9,6 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
 
 ENV RAILS_ROOT /web-app
 
-
 RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 COPY Gemfile $RAILS_ROOT/Gemfile
