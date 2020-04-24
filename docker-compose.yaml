@@ -30,8 +30,8 @@ services:
   whoami:
     image: jwilder/whoami
     environment:
-      - VIRTUAL_HOST=${VPN_HOST_NAME}
-      - LETSENCRYPT_HOST=${VPN_HOST_NAME}
+      - VIRTUAL_HOST=${OPENVPN_HOST}
+      - LETSENCRYPT_HOST=${OPENVPN_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
 
   mongo:
@@ -56,7 +56,7 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      IPSEC_HOST_NAME: "${VPN_HOST_NAME}"
+      IPSEC_HOST_NAME: "${OPENVPN_HOST}"
       IPSEC_DNS1: "8.8.8.8"
       IPSEC_DNS2: "8.8.4.4"
 
@@ -86,8 +86,8 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      OPENVPN_PKI_URL: "${VPN_PKI_URL}"
-      OPENVPN_HOST: "${VPN_HOST_NAME}"
+      OPENVPN_PKI_URL: "${OPENVPN_PKI_URL}"
+      OPENVPN_HOST: "${OPENVPN_HOST}"
 
       MONGO_HOST: "mongo"
       MONGO_PORT: "27017"
