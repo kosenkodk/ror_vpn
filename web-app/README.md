@@ -45,3 +45,7 @@ docker-compose run web-app rake db:create
 redis
 redis-server --bind 0.0.0.0 --daemonize yes
 ps aux | grep redis-server
+
+production
+cp /web-app/config/credentials/production.key 
+cp /web-app/config/master.key
