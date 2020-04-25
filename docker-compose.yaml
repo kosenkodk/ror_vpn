@@ -116,7 +116,8 @@ services:
     # command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=8192" && yarn && rm -rf /web-app/public/packs && /web-app/bin/webpack-dev-server' #["./scripts/start_webpack_dev.sh"]
     command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=8192" && yarn && rm -rf public/packs && bin/webpack-dev-server'
     volumes:
-      - ./web-app:/web-app:cached
+      # - ./web-app:/web-app:cached
+      - ./web-app:/web-app
     depends_on:
       - web-app
     ports:
@@ -130,14 +131,14 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - redis
-      # - webpacker
     # environment:
     #   REDIS_URL: "redis://0.0.0.0:6379"
     ports:
       - "3000:3000"
     volumes:
       - web-app-data:/data
-      - ./web-app:/web-app:cached
+      # - ./web-app:/web-app:cached
+      - ./web-app:/web-app
     env_file:
       - '.env'
 
