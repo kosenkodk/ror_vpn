@@ -113,10 +113,8 @@ services:
   webpacker:
     image: vega_web-app
     # command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && rm -rf /web-app/public/packs && /web-app/bin/webpack-dev-server --host 0.0.0.0 --hot' #["./scripts/start_webpack_dev.sh"]
-    # command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=8192" && yarn && rm -rf /web-app/public/packs && /web-app/bin/webpack-dev-server' #["./scripts/start_webpack_dev.sh"]
     command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=8192" && yarn && rm -rf public/packs && bin/webpack-dev-server'
     volumes:
-      # - ./web-app:/web-app:cached
       - ./web-app:/web-app
     depends_on:
       - web-app
@@ -137,7 +135,6 @@ services:
       - "3000:3000"
     volumes:
       - web-app-data:/data
-      # - ./web-app:/web-app:cached
       - ./web-app:/web-app
     env_file:
       - '.env'

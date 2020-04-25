@@ -16,14 +16,13 @@ RUN bundle install
 
 COPY . $RAILS_ROOT
 
-# ENV RAILS_ENV='production'
-# ENV RACK_ENV='production' 
-# ENV RAILS_ENV='development'
-# ENV RACK_ENV='development' 
+ENV RAILS_ENV=production
+ENV RACK_ENV=production 
+ENV NODE_ENV=production
 
-# RUN yarn install --check-files
-RUN bundle exec rake db:migrate
-RUN bundle exec rake db:seed
+# RUN yarn install --check-files --ignore-engines
+# RUN bundle exec rake db:migrate
+# RUN bundle exec rake db:seed
 # RUN bundle exec rake assets:precompile
 
 # Add a script to be executed every time the container starts.
