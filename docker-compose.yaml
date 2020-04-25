@@ -80,6 +80,7 @@ services:
       - "127.0.0.1:5000:5000"
     volumes:
       - openvpn-pki-data:/data
+      - ./openvpn-pki:/openvpn-pki
 
   openvpn:
     build: ./openvpn
@@ -109,23 +110,45 @@ services:
     env_file:
       - '.env'
 
+  webpacker:
+    image: vega_web-app
+    # command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && rm -rf /web-app/public/packs && /web-app/bin/webpack-dev-server --host 0.0.0.0 --hot' #["./scripts/start_webpack_dev.sh"]
+    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=8192" && yarn && rm -rf /web-app/public/packs && /web-app/bin/webpack-dev-server' #["./scripts/start_webpack_dev.sh"]
+    volumes:
+      - ./web-app:/web-app
+      # - ./web-app:/web-app:cached
+    ports:
+      - 3035:3035
+    env_file:
+      - '.env'
+
   web-app:
-    build: ./web-app
+    image: vega_web-app
+    build:
+      context: ./web-app
+    # build: ./web-app
+    # command: bash -c "rm -f tmp/pids/server.pid && bin/webpack-dev-server && bundle exec rails s -p 3000 -b '0.0.0.0'"
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # links:
+    #   - webpacker
     depends_on:
-      - 'redis'
+      - redis
+      - webpacker
     # environment:
     #   REDIS_URL: "redis://0.0.0.0:6379"
     ports:
       - "3000:3000"
     volumes:
       - web-app-data:/data
+      - ./web-app:/web-app
     env_file:
       - '.env'
 
 volumes:
   mongo-data:
   openvpn-pki-data:
+  openvpn-pki:
   openvpn-data:
   web-app-data:
+  web-app:
   redis-data:

@@ -55,15 +55,17 @@ development:
   compile: true
 
   # Verifies that correct packages and versions are installed by inspecting package.json, yarn.lock, and node_modules
-  check_yarn_integrity: true
+  check_yarn_integrity: false
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
-    host: localhost
-    port: 3035
+    host: webpacker #<%=ENV["WEBPACKER_HOST"]||"webpacker"%>
+    port: 3035 #<%=ENV["WEBPACKER_PORT"]||3035%>
     public: localhost:3035
-    hmr: false
+    hmr: true
+    # public: webpacker:3035 #<%=ENV["WEBPACKER_URL]||"webpacker:3035"%>
+    # hmr: true
     # Inline should be set to true if using HMR
     inline: true
     overlay: true
@@ -74,6 +76,7 @@ development:
     headers:
       'Access-Control-Allow-Origin': '*'
     watch_options:
+      # ignored: /node_modules/
       ignored: '**/node_modules/**'
 
 
