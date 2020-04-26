@@ -20,11 +20,11 @@ ENV RAILS_ENV=production
 ENV RACK_ENV=production 
 ENV NODE_ENV=production
 
-# RUN yarn install --check-files --ignore-engines
-# RUN bundle exec rake db:migrate
-# # RUN bundle exec rake db:seed
-# RUN bundle exec rake assets:precompile
-# RUN export NODE_OPTIONS="--max-old-space-size=4096"
+RUN yarn install --check-files --ignore-engines
+RUN bundle exec rake db:migrate
+# RUN bundle exec rake db:seed
+RUN bundle exec rake assets:precompile
+RUN export NODE_OPTIONS="--max-old-space-size=4096"
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
