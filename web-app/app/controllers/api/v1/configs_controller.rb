@@ -37,7 +37,8 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     # http.use_ssl = true
 
     request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-    request.body = { username: user.email }.to_json
+    # request.body = { login: user.email, password: user }.to_json
+    request.body = { login: user.email }.to_json
 
     response = http.request(request)
     body = response.body

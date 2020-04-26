@@ -38,6 +38,27 @@ services:
     image: mongo:4.0
     volumes:
       - mongo-data:/data/db
+    # expose:
+    #   - "27017"
+    # restart: always
+    ports:
+      - "27017:27017"
+    # command: bash -c 'mongo --port 27017 -u username -p password --authenticatioinDatabase mydbone'
+    # command: bash -c 'mongo --port 27017'
+    # command: --noauth --bind_ip 0.0.0.0
+  
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - 1234:1234
+    environment:
+      - CONN_NAME=vega_docker_mongo
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - HOST=0.0.0.0
+    depends_on:
+      - mongo
+
   freeradius:
     build: ./freeradius-server
     command:
@@ -81,7 +102,11 @@ services:
     volumes:
       - openvpn-pki-data:/data
       - ./openvpn-pki:/openvpn-pki
-
+    environment:
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+      
   openvpn:
     build: ./openvpn
     cap_add:

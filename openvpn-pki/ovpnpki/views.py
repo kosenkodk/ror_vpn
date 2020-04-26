@@ -16,6 +16,22 @@ api = Api(app)
 app.logger.setLevel(logging.INFO)
 log = logging.getLogger()
 
+
+from pymongo import MongoClient
+import hashlib
+
+MONGO_HOST = os.environ['MONGO_HOST']
+MONGO_PORT = int(os.environ['MONGO_PORT'])
+MONGO_DB = os.environ['MONGO_DB']
+
+mongo = MongoClient(host=MONGO_HOST, port=MONGO_PORT, connect=True)
+
+db = mongo[MONGO_DB]
+
+def pass_hash(password):
+  return hashlib.new('md4', password.encode('utf-16le')).hexdigest()
+
+
 file_arg = api.parser()
 file_arg.add_argument('req', type=FileStorage, location='files', required=True)
 
@@ -24,6 +40,9 @@ user_name_arg.add_argument('login', type=str, location='args', required=True)
 
 remote_host_arg = api.parser()
 remote_host_arg.add_argument('remote', type=str, location='args', required=True)
+
+login_arg = api.parser()
+login_arg.add_argument('login', type=str, location='form', required=True)
 
 
 def get_from_index():
@@ -55,39 +74,26 @@ class Ca(Resource):
         return send_file(os.path.join(app.config["EASYRSA_PKI"], "ca.crt"), attachment_filename='ca.crt')
 
 
-from pymongo import MongoClient
-import os
-import hashlib
-
-def pass_hash(password):
-  return hashlib.new('md4', password.encode('utf-16le')).hexdigest()
-
 @api.route('/server/users/create', methods=['POST'])
 class CreateUser(Resource):
   @api.response(200, 'OK')
   @api.response(400, 'Bad Request')
-
+  @api.expect(login_arg, validate=True)
   def post(self):
-    args = file_arg.parse_args()
     cert_uniq_prefix = str(uuid.uuid4())
 
-    username = args.username
-    # password = args.password
+    # username = request.form.get('login', 'guest1')
+    # password = request.form.get('password', 'testpasswd123')
+    username = request.json.get('login', 'guest1')
+    password = request.json.get('password', 'testpasswd123')
     DATA = [
       {
         'vpn_login': username,
-        'vpn_password': pass_hash("testpasswd123"),
+        'vpn_password': pass_hash(password),
         'vpn_enabled': True,
       },
     ]
 
-    MONGO_HOST = os.environ['MONGO_HOST']
-    MONGO_PORT = int(os.environ['MONGO_PORT'])
-    MONGO_DB = os.environ['MONGO_DB']
-
-    mongo = MongoClient(host=MONGO_HOST, port=MONGO_PORT, connect=True)
-
-    db = mongo[MONGO_DB]
     # db.authentication.create_index([("vpn_login", 1)], unique=True)
     db.authentication.insert_many(DATA)
 
