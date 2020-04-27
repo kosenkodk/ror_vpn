@@ -12,9 +12,9 @@ RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 COPY Gemfile $RAILS_ROOT/Gemfile
 COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
-RUN bundle install
 
 COPY . $RAILS_ROOT
+RUN bundle install
 
 ENV RAILS_ENV=production
 ENV RACK_ENV=production 

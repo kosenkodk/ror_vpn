@@ -31,18 +31,22 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   end
 
   def create_user user
-    url = "#{@vpn_url}/server/users/create"
-    uri = URI(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
+    if VpnUser.where(vpn_login:user.email).count == 0
+      VpnUser.create(vpn_login:user.email, vpn_password: 'test', vpn_enabled: true)
+    end
+    # # create user via api
+    # url = "#{@vpn_url}/server/users/create"
+    # uri = URI(url)
+    # http = Net::HTTP.new(uri.host, uri.port)
+    # # http.use_ssl = true
 
-    request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-    # request.body = { login: user.email, password: user }.to_json
-    request.body = { login: user.email }.to_json
+    # request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
+    # # request.body = { login: user.email, password: user }.to_json
+    # request.body = { login: user.email }.to_json
 
-    response = http.request(request)
-    body = response.body
-    # body = JSON.parse(response.body)
+    # response = http.request(request)
+    # body = response.body
+    # # body = JSON.parse(response.body)
   end
 
   def get_ca
