@@ -38,14 +38,9 @@ services:
     image: mongo:4.0
     volumes:
       - mongo-data:/data/db
-    # expose:
-    #   - "27017"
     # restart: always
     ports:
       - "27017:27017"
-    # command: bash -c 'mongo --port 27017 -u username -p password --authenticatioinDatabase mydbone'
-    # command: bash -c 'mongo --port 27017'
-    # command: --noauth --bind_ip 0.0.0.0
   
   adminmongo:
     image: mrvautin/adminmongo
@@ -100,8 +95,10 @@ services:
     ports:
       - "127.0.0.1:5000:5000"
     volumes:
-      - openvpn-pki-data:/data
+      # - openvpn-pki-data:/data
+      - /data
       - ./openvpn-pki:/openvpn-pki
+
     environment:
       MONGO_HOST: "mongo"
       MONGO_PORT: "27017"

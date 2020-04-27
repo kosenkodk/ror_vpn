@@ -49,3 +49,7 @@ ps aux | grep redis-server
 production
 cp /web-app/config/credentials/production.key 
 cp /web-app/config/master.key
+
+
+docker-compose exec openvpn-pki mkdir /data/pki/tls
+docker-compose exec openvpn-pki ls /data/pki/tls/

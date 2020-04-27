@@ -54,14 +54,22 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   def post_tls_key ca, host='localhost'
     url = "#{@vpn_url}/server/tls?remote=#{host}"
     uri = URI(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    # http.use_ssl = true
+    
+    ca_file_path = "/tmp/#{host}"
+    File.write(ca_file_path, ca)
+    ca_file = File.open(ca_file_path)
+    
+    http = Net::HTTP.new uri.host, uri.port
+    request = Net::HTTP::Post.new uri
+    form_data = [
+      ['req', ca_file]
+    ]
+    request.set_form form_data, 'multipart/form-data'
+    response = http.request request
+    
+    ca_file.close
 
-    request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-    request.body = { req: ca }.to_json
-
-    response = http.request(request)
-    body = JSON.parse(response.body)
+    response.body
   end
 
   def get_ovpn_config host='localhost', username='user1'
