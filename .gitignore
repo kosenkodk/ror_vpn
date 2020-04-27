@@ -106,3 +106,8 @@ venv.bak/
 .idea/
 
 docker-compose-*
+
+dump.rdb
+yarn.lock
+node_modules
+certs
