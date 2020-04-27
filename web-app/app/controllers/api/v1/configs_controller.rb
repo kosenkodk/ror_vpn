@@ -94,8 +94,7 @@ class Api::V1::ConfigsController < Api::V1::ApiController
   private
   def get_vpn_url
     # @vpn_url = Rails.application.credentials.config.vpn_url
-    # @vpn_url = Rails.application.credentials.vpn_url
-    @vpn_url = ENV.fetch("OPENVPN_PKI_URL")
+    @vpn_url = ENV.fetch('OPENVPN_PKI_URL', Rails.application.credentials.vpn_url)
     # @vpn_url = Rails.application.credentials.vpn[:url]
   end
 end
