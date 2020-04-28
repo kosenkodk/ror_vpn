@@ -67,6 +67,7 @@ services:
       MONGO_HOST: "mongo"
       MONGO_PORT: "27017"
       MONGO_DB: "vpnUsers"
+
   ipsec-vpn:
     build: ./ipsec-vpn
     cap_add:
@@ -134,8 +135,7 @@ services:
 
   webpacker:
     image: vega_web-app
-    # command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && rm -rf /web-app/public/packs && /web-app/bin/webpack-dev-server --host 0.0.0.0 --hot' #["./scripts/start_webpack_dev.sh"]
-    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=8192" && yarn && rm -rf public/packs && bin/webpack-dev-server'
+    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && rm -rf public/packs && bin/webpack-dev-server'
     volumes:
       - ./web-app:/web-app
     depends_on:
@@ -156,7 +156,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - web-app-data:/data
       - ./web-app:/web-app
     env_file:
       - '.env'
@@ -164,8 +163,7 @@ services:
 volumes:
   mongo-data:
   openvpn-pki-data:
-  openvpn-pki:
   openvpn-data:
-  web-app-data:
+  openvpn-pki:
   web-app:
   redis-data:
