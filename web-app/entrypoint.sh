@@ -7,8 +7,11 @@ if [ -f tmp/pids/server.pid ]; then
 fi
 
 # yarn install --check-files --ignore-engines
-
+# rails < 6
 # # bundle exec rake db:migrate 2>/dev/null || bundle exec rake db:setup
+# rails >= 6
+# # bundle exec rake db:prepare
+
 # bundle exec rake db:migrate
 
 # export NODE_OPTIONS="--max-old-space-size=4096"

@@ -53,3 +53,10 @@ cp /web-app/config/master.key
 
 docker-compose exec openvpn-pki mkdir /data/pki/tls
 docker-compose exec openvpn-pki ls /data/pki/tls/
+
+
+docker-compose exec web-app bundle install -j8
+
+docker-compose build
+docker-compose run --rm web-app bundle install -j8
+docker-compose run --rm web-app bundle exec rails db:setup

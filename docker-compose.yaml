@@ -135,9 +135,12 @@ services:
 
   webpacker:
     image: vega_web-app
-    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && rm -rf public/packs && bin/webpack-dev-server'
-    volumes:
-      - ./web-app:/web-app
+    # command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && rm -rf public/packs && bin/webpack-dev-server'
+    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && bin/webpack-dev-server'
+    # volumes:
+    #   - ./web-app:/web-app
+    volumes_from:
+      - web-app
     depends_on:
       - web-app
     ports:
@@ -156,7 +159,12 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./web-app:/web-app
+      - ./web-app:/web-app:cached
+      # - ~/.rvm/gems/ruby-2.5.3@vegaVPN/gems:/gems
+      - gems:/gems
+      - node_modules:/web-app/node_modules
+      - packs:/web-app/public/packs
+      - rails_cache:/web-app/tmp/cache
     env_file:
       - '.env'
 
@@ -166,4 +174,8 @@ volumes:
   openvpn-data:
   openvpn-pki:
   web-app:
+  gems:
+  node_modules:
+  packs:
+  rails_cache:
   # redis-data:
