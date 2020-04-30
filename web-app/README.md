@@ -66,4 +66,6 @@ docker-compose run --rm web-app bundle exec rails db:setup
 cp .env.prod .env
 docker-compose run web-app bundle install
 docker-compose run web-app bundle exec rake db:prepare
+
 docker-compose up --build -d
+docker-compose exec web-app bundle exec rails webpacker:install

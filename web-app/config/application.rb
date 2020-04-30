@@ -18,7 +18,7 @@ module VegaVPN
     config.hosts << '127.0.0.1'
     config.hosts << 'www.example.com'
     config.hosts << 'web.vega.local'
-    config.hosts << 'web.vega.isit.su'
+    config.hosts << /[a-z0-9]+\.vega\.isit\.su/
     WillPaginate.per_page = 4
     # config.routes.default_url_options = {host:'vega.isit.su'}
     # Settings in config/environments/* take precedence over those specified here.

@@ -1,0 +1,211 @@
+version: '2.1'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "8081:80"
+      - "4431:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - /etc/nginx/conf.d/
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+    env_file:
+      - '.env.prod'
+
+  letsencrypt:
+    container_name: letsencrypt
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes_from:
+      - "nginx-proxy"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    env_file:
+      - '.env.prod'
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=${OPENVPN_HOST}
+      - LETSENCRYPT_HOST=${OPENVPN_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    env_file:
+      - '.env.prod'
+
+  mongo:
+    image: mongo:4.0
+    volumes:
+      - mongo-data:/data/db
+    # restart: always
+    ports:
+      - "27017:27017"
+    env_file:
+      - '.env.prod'
+
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - 1234:1234
+    environment:
+      - CONN_NAME=vega_docker_mongo
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - HOST=0.0.0.0
+    depends_on:
+      - mongo
+    env_file:
+      - '.env.prod'
+
+  freeradius:
+    build: ./freeradius-server
+    command:
+      - "freeradius"
+      # debug
+      # - "-X"
+    environment:
+      FREERADIUS_CLIENT_NET: "172.16.0.0/12"
+      FREERADIUS_CLIENT_SECRET: "${FREERADIUS_CLIENT_SECRET}"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+    env_file:
+      - '.env.prod'
+
+  ipsec-vpn:
+    build: ./ipsec-vpn
+    cap_add:
+      - NET_ADMIN
+    environment:
+      IPSEC_HOST_NAME: "${OPENVPN_HOST}"
+      IPSEC_DNS1: "8.8.8.8"
+      IPSEC_DNS2: "8.8.4.4"
+
+      FREERADIUS_CLIENT_HOST: "freeradius"
+      FREERADIUS_CLIENT_SECRET: "${FREERADIUS_CLIENT_SECRET}"
+    command:
+      - "/usr/sbin/ipsec"
+      - "start"
+      - "--nofork"
+      # - "--debug"
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    privileged: true
+    volumes:
+      - ./certs:/etc/le/certs:ro
+    env_file:
+      - '.env.prod'
+
+  openvpn-pki:
+    build: ./openvpn-pki
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      # - openvpn-pki-data:/data
+      - /data
+      - ./openvpn-pki:/openvpn-pki
+    environment:
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+    env_file:
+      - '.env.prod'
+
+  openvpn:
+    build: ./openvpn
+    cap_add:
+      - NET_ADMIN
+    environment:
+      OPENVPN_PKI_URL: "${OPENVPN_PKI_URL}"
+      OPENVPN_HOST: "${OPENVPN_HOST}"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - openvpn-data:/data
+    env_file:
+      - '.env.prod'
+
+  redis:
+    image: "redis:5.0.9-alpine"
+    # command: redis-server --daemonize yes --bind 0.0.0.0 --protected-mode no --requirepass yourpassword
+    command: redis-server
+    ports:
+      - "6378:6378"
+    # volumes:
+    # #   - ./redis-data:/var/lib/redis    
+    #   - ./redis/redis.conf:/etc/redis/redis.conf    
+    env_file:
+      - '.env.prod'
+
+  webpacker:
+    image: vega_web-app
+    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && bin/webpack-dev-server'
+    volumes_from:
+      - web-app
+    depends_on:
+      - web-app
+    ports:
+      - 3035:3035
+    # environment:
+    #   WEBPACKER_URL: 'http://web.vega.isit.su:3035'
+    env_file:
+      - '.env.prod'
+
+  web-app:
+    image: vega_web-app
+    build: ./web-app
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
+      - redis
+    # environment:
+    #   REDIS_URL: "redis://0.0.0.0:6378"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web-app:/web-app:cached
+      - gems:/gems
+      - node_modules:/web-app/node_modules
+      - packs:/web-app/public/packs
+      - rails_cache:/web-app/tmp/cache
+    env_file:
+      - '.env.prod'
+      
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile.nginx
+    environment:
+      - RAILS_ROOT=/web-app
+    ports:
+      - 8080:8080
+      - 1443:1443
+    depends_on:
+      - web-app
+    volumes:
+      - ./web-app:/web-app:cached
+    env_file:
+      - '.env.prod'
+      
+volumes:
+  mongo-data:
+  openvpn-pki-data:
+  openvpn-data:
+  openvpn-pki:
+  web-app:
+  gems:
+  node_modules:
+  packs:
+  rails_cache:
+  # redis-data:
