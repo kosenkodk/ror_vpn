@@ -112,3 +112,4 @@ yarn.lock
 node_modules
 certs
 .env
+.env.prod
