@@ -1,31 +1,12 @@
 version: '2.1'
 
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile.nginx
-    environment:
-      - RAILS_ROOT=/web-app
-    ports:
-      - 8080:8080
-      - 1443:1443
-    depends_on:
-      - web-app
-    volumes:
-      - ./web-app:/web-app:cached
-      # - /var/run/docker.sock:/tmp/docker.sock:ro
-      # - ./certs:/etc/nginx/certs:ro
-      # - /etc/nginx/conf.d/
-      # - /etc/nginx/vhost.d
-      # - /usr/share/nginx/html
-    
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
     ports:
-      - "80:80"
-      - "443:443"
+      - "8081:80"
+      - "4431:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./certs:/etc/nginx/certs:ro
@@ -181,6 +162,23 @@ services:
       - rails_cache:/web-app/tmp/cache
     env_file:
       - '.env'
+      
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile.nginx
+    environment:
+      - RAILS_ROOT=/web-app
+    ports:
+      - 8080:8080
+      - 1443:1443
+    depends_on:
+      - web-app
+    volumes:
+      - ./web-app:/web-app:cached
+      # - /var/run/docker.sock:/tmp/docker.sock:ro
+      # - ./certs:/etc/nginx/certs:ro
+      # - /etc/nginx/conf.d/
 
 volumes:
   mongo-data:
