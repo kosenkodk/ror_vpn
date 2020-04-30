@@ -61,12 +61,8 @@ development:
   dev_server:
     https: false
     host: webpacker
-    # host: <%=ENV["WEBPACKER_HOST"]||"webpacker"%>
     port: 3035
-    # port: <%=ENV["WEBPACKER_PORT"]||3035%>
     public: localhost:3035
-    # public: webpacker:3035
-    # public: <%=ENV["WEBPACKER_URL]||"webpacker:3035"%>
     hmr: true
     hot: true
     # Inline should be set to true if using HMR
@@ -91,6 +87,8 @@ test:
 
 production:
   <<: *default
+  
+  public: web.vega.isit.su:3035
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false

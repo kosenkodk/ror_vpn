@@ -14,8 +14,9 @@ Rails.application.config.content_security_policy do |policy|
 #   # If you are using webpack-dev-server then specify webpack-dev-server host
   # policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
   # policy.connect_src :self, :http, "http://webpacker:3035", "ws://webpacker:3035" if Rails.env.development?
-  policy.connect_src :self, :http, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
-
+  # policy.connect_src :self, :http, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
+  policy.connect_src :self, :http, ENV.fetch('WEBPACKER_URL', 'localhost'), "ws://#{ENV.fetch('WEBPACKER_HOST', 'localhost')}:#{ENV.fetch('WEBPACKER_PORT', 3035)}" if Rails.env.development?
+  policy.connect_src :self, :http, ENV.fetch('WEBPACKER_URL', 'web.vega.isit.su'), "ws://#{ENV.fetch('WEBPACKER_HOST', 'web.vega.isit.su')}:#{ENV.fetch('WEBPACKER_PORT', 3035)}" if Rails.env.production?
 #   # Specify URI for violation reports
 #   # policy.report_uri "/csp-violation-report-endpoint"
 end

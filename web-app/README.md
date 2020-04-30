@@ -60,3 +60,10 @@ docker-compose exec web-app bundle install -j8
 docker-compose build
 docker-compose run --rm web-app bundle install -j8
 docker-compose run --rm web-app bundle exec rails db:setup
+
+
+* production
+cp .env.prod .env
+docker-compose run web-app bundle install
+docker-compose run web-app bundle exec rake db:prepare
+docker-compose up --build -d
