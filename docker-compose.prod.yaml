@@ -149,23 +149,11 @@ services:
     env_file:
       - '.env.prod'
 
-  webpacker:
-    image: vega_web-app
-    command: bash -c 'echo "starting webpack dev" && export NODE_OPTIONS="--max_old_space_size=4096" && yarn && bin/webpack-dev-server'
-    volumes_from:
-      - web-app
-    depends_on:
-      - web-app
-    ports:
-      - 3035:3035
-    # environment:
-    #   WEBPACKER_URL: 'http://web.vega.isit.su:3035'
-    env_file:
-      - '.env.prod'
-
   web-app:
     image: vega_web-app
-    build: ./web-app
+    build:
+      context: ./web-app
+      dockerfile: prod.Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - redis
@@ -185,7 +173,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./nginx/Dockerfile.nginx
+      dockerfile: ./nginx/nginx.Dockerfile
     environment:
       - RAILS_ROOT=/web-app
     ports:
@@ -197,7 +185,7 @@ services:
       - ./web-app:/web-app:cached
     env_file:
       - '.env.prod'
-      
+
 volumes:
   mongo-data:
   openvpn-pki-data:

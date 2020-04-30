@@ -168,7 +168,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./nginx/Dockerfile.nginx
+      dockerfile: ./nginx/nginx.Dockerfile
     environment:
       - RAILS_ROOT=/web-app
     ports:
