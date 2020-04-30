@@ -111,3 +111,4 @@ dump.rdb
 yarn.lock
 node_modules
 certs
+.env
