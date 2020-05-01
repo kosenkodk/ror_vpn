@@ -22,6 +22,8 @@ ENV PATH /gems/bin:$PATH
 RUN mkdir -p $GEM_HOME
 RUN mkdir -p $RAILS_ROOT
 
+COPY Gemfile* $RAILS_ROOT/
+
 WORKDIR $RAILS_ROOT
 
 RUN mkdir -p node_modules

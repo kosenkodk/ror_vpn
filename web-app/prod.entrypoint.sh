@@ -5,7 +5,7 @@ set -e
 if [ -f tmp/pids/server.pid ]; then
   rm tmp/pids/server.pid
 fi
-
+bundle install
 yarn install --check-files --ignore-engines
 # rails < 6
 # # bundle exec rake db:migrate 2>/dev/null || bundle exec rake db:setup
