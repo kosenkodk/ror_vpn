@@ -76,3 +76,4 @@ docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake webpacke
 # docker-compose -f docker-compose.prod.yaml exec web-app bundle exec rails webpacker:install
 docker-compose -f docker-compose.prod.yaml exec web-app bash
 
+docker run --env-file=.env.prod -ti vega_web-app bash

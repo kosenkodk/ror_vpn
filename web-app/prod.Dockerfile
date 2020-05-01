@@ -23,6 +23,7 @@ RUN mkdir -p $GEM_HOME
 RUN mkdir -p $RAILS_ROOT
 
 COPY Gemfile* $RAILS_ROOT/
+COPY . $RAILS_ROOT/
 
 WORKDIR $RAILS_ROOT
 
