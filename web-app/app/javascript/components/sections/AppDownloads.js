@@ -1,10 +1,10 @@
 import React from 'react'
 import { I18n } from 'helpers'
 
-import Apple from 'images/downloads/Apple'
-import Android from 'images/downloads/Android'
-import WP from 'images/downloads/WP'
-import Linux from 'images/downloads/Linux'
+import Apple from 'images/downloads/Apple.svg'
+import Android from 'images/downloads/Android.svg'
+import WP from 'images/downloads/WP.svg'
+import Linux from 'images/downloads/Linux.svg'
 
 class AppDownloads extends React.Component {
   render() {

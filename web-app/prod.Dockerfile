@@ -11,25 +11,25 @@ ENV RACK_ENV=production
 ENV NODE_ENV=production
 
 ENV RAILS_ROOT /web-app
-ENV BUNDLE_PATH /gems
-ENV BUNDLE_HOME /gems
+# ENV BUNDLE_PATH /gems
+# ENV BUNDLE_HOME /gems
 
-ENV GEM_HOME /gems
-ENV GEM_PATH /gems
-ENV PATH /gems/bin:$PATH
+# ENV GEM_HOME /gems
+# ENV GEM_PATH /gems
+# ENV PATH /gems/bin:$PATH
 
 
-RUN mkdir -p $GEM_HOME
+# RUN mkdir -p $GEM_HOME
 RUN mkdir -p $RAILS_ROOT
 
-COPY Gemfile* $RAILS_ROOT/
+# COPY Gemfile* $RAILS_ROOT/
 COPY . $RAILS_ROOT/
 
 WORKDIR $RAILS_ROOT
 
-RUN mkdir -p node_modules
-RUN mkdir -p public/packs
-RUN mkdir -p tmp/cache
+# RUN mkdir -p node_modules
+# RUN mkdir -p public/packs
+# RUN mkdir -p tmp/cache
 
 RUN gem install bundler
 
