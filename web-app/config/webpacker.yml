@@ -87,9 +87,7 @@ test:
 
 production:
   <<: *default
-  
-  public: web.vega.isit.su:3035
-
+  public_output_path: assets
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
 

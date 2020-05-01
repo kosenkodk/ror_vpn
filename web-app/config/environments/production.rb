@@ -76,7 +76,7 @@ Rails.application.configure do
       :arguments => '-i'
   }
 
-  config.host = 'vega.isit.su'
+  config.host = ENV.fetch('RAILS_HOST', 'web.vega.local')
   Rails.application.routes.default_url_options[:host] = config.host
   Rails.application.routes.default_url_options[:protocol] = 'http'
 
