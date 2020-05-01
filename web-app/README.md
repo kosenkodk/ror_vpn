@@ -63,9 +63,16 @@ docker-compose run --rm web-app bundle exec rails db:setup
 
 
 * production
-cp .env.prod .env
-docker-compose run web-app bundle install
-docker-compose run web-app bundle exec rake db:prepare
+docker-compose -f docker-compose.prod.yaml up --build -V -d
+docker-compose -f docker-compose.prod.yaml down
 
-docker-compose -f docker-compose.prod.yaml up --build -d
-docker-compose exec web-app bundle exec rails webpacker:install
+docker-compose -f docker-compose.prod.yaml run web-app bundle install
+docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake db:prepare
+docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake assets:clear
+docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake assets:clobber
+docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake assets:precompile
+docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake webpacker:precompile
+
+# docker-compose -f docker-compose.prod.yaml exec web-app bundle exec rails webpacker:install
+docker-compose -f docker-compose.prod.yaml exec web-app bash
+
