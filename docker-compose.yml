@@ -37,7 +37,7 @@ services:
   mongo:
     image: mongo:4.0
     ports:
-      - "0.0.0.0:27018:27017"
+      - "27018:27017"
     volumes:
       - mongo-data:/data/db
 
@@ -48,7 +48,7 @@ services:
     environment:
       - CONN_NAME=vega_docker_mongo
       - DB_HOST=mongo
-      - DB_PORT=27018
+      - DB_PORT=27017
       - HOST=0.0.0.0
     depends_on:
       - mongo
