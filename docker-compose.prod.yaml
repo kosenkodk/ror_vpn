@@ -140,9 +140,10 @@ services:
   redis:
     image: "redis:5.0.9-alpine"
     # command: redis-server --daemonize yes --bind 0.0.0.0 --protected-mode no --requirepass yourpassword
+    # command: redis-server --port 6378
     command: redis-server
     ports:
-      - "6378:6378"
+      - "6378:6379"
     # volumes:
     # #   - ./redis-data:/var/lib/redis    
     #   - ./redis/redis.conf:/etc/redis/redis.conf    
@@ -180,6 +181,8 @@ services:
     ports:
       - 8080:8080
       - 1443:1443
+    # volumes_from:
+    #   - web-app
     depends_on:
       - web-app
     volumes:
