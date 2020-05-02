@@ -25,7 +25,7 @@ whenever --update-crontab --set environment=development
 
 * Deployment instructions
 * Development
-export NODE_OPTIONS="--max-old-space-size=2048"
+export NODE_OPTIONS="--max-old-space-size=4096"
 kill -9 $(lsof -i tcp:3000 -t)
 kill -9 $(ps aux | grep ruby | grep -v grep | awk '{print $2}')
 kill -9 $(ps aux | grep wkhtmltopdf | grep -v grep | awk '{print $2}')
