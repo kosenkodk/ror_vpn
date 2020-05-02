@@ -37,3 +37,4 @@ RAILS_ENV=test bundle exec rails webpacker:compile
 RAILS_ENV=test bundle exec rails assets:precompile
 bundle exec rspec
 * ...
+kill -9 $(lsof -i tcp:3000 -t)

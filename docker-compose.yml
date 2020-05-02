@@ -1,0 +1,119 @@
+version: '2.1'
+
+services:
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - /etc/nginx/conf.d/
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+
+  letsencrypt:
+    container_name: letsencrypt
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes_from:
+      - "nginx-proxy"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=${VPN_HOST_NAME}
+      - LETSENCRYPT_HOST=${VPN_HOST_NAME}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+
+  mongo:
+    image: mongo:4.0
+    ports:
+      - "0.0.0.0:27018:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - 1234:1234
+    environment:
+      - CONN_NAME=vega_docker_mongo
+      - DB_HOST=mongo
+      - DB_PORT=27018
+      - HOST=0.0.0.0
+    depends_on:
+      - mongo
+
+  freeradius:
+    build: ./freeradius-server
+    command:
+      - "freeradius"
+      # debug
+      # - "-X"
+    environment:
+      FREERADIUS_CLIENT_NET: "172.16.0.0/12"
+      FREERADIUS_CLIENT_SECRET: "${FREERADIUS_CLIENT_SECRET}"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+
+  ipsec-vpn:
+    build: ./ipsec-vpn
+    cap_add:
+      - NET_ADMIN
+    environment:
+      IPSEC_HOST_NAME: "${VPN_HOST_NAME}"
+      IPSEC_DNS1: "8.8.8.8"
+      IPSEC_DNS2: "8.8.4.4"
+
+      FREERADIUS_CLIENT_HOST: "freeradius"
+      FREERADIUS_CLIENT_SECRET: "${FREERADIUS_CLIENT_SECRET}"
+    command:
+      - "/usr/sbin/ipsec"
+      - "start"
+      - "--nofork"
+      # - "--debug"
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    privileged: true
+    volumes:
+      - ./certs:/etc/le/certs:ro
+
+  openvpn-pki:
+    build: ./openvpn-pki
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - openvpn-pki-data:/data
+
+  openvpn:
+    build: ./openvpn
+    cap_add:
+      - NET_ADMIN
+    environment:
+      OPENVPN_PKI_URL: "http://openvpn-pki:5000"
+      OPENVPN_HOST: "${VPN_HOST_NAME}"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - openvpn-data:/data
+
+volumes:
+  mongo-data:
+  openvpn-pki-data:
+  openvpn-data:
