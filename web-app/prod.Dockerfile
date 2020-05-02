@@ -6,17 +6,20 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 
 RUN apt-get update -qq && apt-get install -y nodejs yarn nano
 
+RUN apt install -y sendmail
+RUN service sendmail start
+
 ENV RAILS_ENV=production
 ENV RACK_ENV=production 
 ENV NODE_ENV=production
 
 ENV RAILS_ROOT /web-app
-# ENV BUNDLE_PATH /gems
-# ENV BUNDLE_HOME /gems
 
-# ENV GEM_HOME /gems
-# ENV GEM_PATH /gems
-# ENV PATH /gems/bin:$PATH
+ENV BUNDLE_PATH /gems
+ENV BUNDLE_HOME /gems
+ENV GEM_HOME /gems
+ENV GEM_PATH /gems
+ENV PATH /gems/bin:$PATH
 
 
 # RUN mkdir -p $GEM_HOME

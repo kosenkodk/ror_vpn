@@ -13,6 +13,7 @@ yarn install --check-files --ignore-engines
 bundle exec rake db:prepare
 
 export NODE_OPTIONS="--max-old-space-size=4096"
+# rm -rf tmp/cache/webpacker/
 bundle exec rake assets:precompile
 bundle exec rake webpacker:compile
 

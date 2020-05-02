@@ -77,3 +77,9 @@ docker-compose -f docker-compose.prod.yaml run web-app bundle exec rake webpacke
 docker-compose -f docker-compose.prod.yaml exec web-app bash
 
 docker run --env-file=.env.prod -ti vega_web-app bash
+
+
+
+docker-compose -f docker-compose.prod.yaml up --build -V web-app
+
+docker-compose -f docker-compose.prod.yaml  stop redis
