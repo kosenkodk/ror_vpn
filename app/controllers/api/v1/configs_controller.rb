@@ -7,7 +7,9 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     if Config.exists?(id)
       item = Config.find(id)
       download_ovpn item
+      return
     end
+    render json: {error: 'error'}, status: 404
   end
 
   def index
@@ -23,6 +25,7 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     ovpn_config = get_ovpn_config(config.vpn_host, current_user.email)
     filename = "#{config.vpn_host}.ovpn"
     config.ovpn.attach(io: StringIO.new(ovpn_config), filename: filename)
+    # send_data ovpn_config, filename: filename, disposition: 'inline'
     send_data ovpn_config, filename: filename
   end
 

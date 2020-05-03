@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavHashLink as Link } from 'react-router-hash-link'
+// import { NavHashLink as Link } from 'react-router-hash-link'
 
 import { I18n } from 'helpers'
-import { globalActions } from '../_actions'
+import { globalActions, alertActions } from '../_actions'
 import icDownloadSrc from 'images/icons/ic_download.svg'
+import { userService } from '../_services';
 
 class DownloadsPage extends React.Component {
 
@@ -12,8 +13,42 @@ class DownloadsPage extends React.Component {
     this.props.dispatch(globalActions.getConfigs())
   }
 
-  onDownload = (e) => {
+  onDownload = (e, item) => {
+    e.preventDefault()
+    userService.getConfig(item.id)
+      .then(response => {
+        let data = {};
+        try {
+          data = JSON.parse(response);
+        } catch (e) { }
 
+        // network error
+        if (!response.ok) {
+          const error = (data && data.error) || (data && data.message) || response.statusText;
+          return Promise.reject(error);
+        }
+        this.props.dispatch(alertActions.success('success'));
+        return response.blob()
+      })
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = item.vpn_host || 'client.ovpn';
+        const clickHandler = () => {
+          setTimeout(() => {
+            URL.revokeObjectURL(url);
+            a.removeEventListener('click', clickHandler);
+          }, 150);
+        };
+        a.addEventListener('click', clickHandler, false);
+        a.click();
+        return a;
+      },
+        error => {
+          this.props.dispatch(alertActions.error(error));
+        }
+      );
   }
 
   render() {
@@ -41,7 +76,11 @@ class DownloadsPage extends React.Component {
                         <td>{item.title}</td>
                         <td>{item.status}</td>
                         <td className="text-right table-actions">
-                          <a href={item.url} target="_blank" download>
+                          <a
+                            href="#"
+                            onClick={(e) => this.onDownload(e, item)}
+                          // href={item.url} target="_blank" download
+                          >
                             <img src={icDownloadSrc} className="img-fluid" />
                           </a>
                         </td>

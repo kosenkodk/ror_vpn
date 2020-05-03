@@ -21,6 +21,7 @@ export const userService = {
   deletePaymentMethodById,
   getPlans,
   getConfigs,
+  getConfig,
   getCountries,
   getDepartments,
   readAllNotifications,
@@ -440,6 +441,15 @@ function getPlans() {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/tariff_plans`, requestOptions).then(handleResponse);
+}
+
+function getConfig(id) {
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader(),
+  }
+  return fetch(`${config.apiUrl}/configs/${id}`, requestOptions)
 }
 
 function getConfigs() {
