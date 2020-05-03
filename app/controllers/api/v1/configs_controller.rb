@@ -62,7 +62,7 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     url = "#{@vpn_url}/server/tls?remote=#{host}"
     uri = URI(url)
     
-    ca_file_path = "/tmp/#{host}"
+    ca_file_path = "/tmp/#{host}.tls"
     File.write(ca_file_path, ca)
     ca_file = File.open(ca_file_path)
     
@@ -73,7 +73,6 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     ]
     request.set_form form_data, 'multipart/form-data'
     response = http.request request
-    
     ca_file.close
 
     response.body
