@@ -31,7 +31,12 @@ class User < ApplicationRecord
 
   before_save {|record| record.salt = SecureRandom.hex unless record.salt }
   after_create {|record| record.set_google_secret }
+  after_destroy_commit :vpn_user_destroy
 
+  def vpn_user_destroy
+    VpnUser.where(vpn_login: self.email).destroy #destroy_all
+  end
+ 
   def can_access room
     self.id === room
   end
@@ -132,7 +137,6 @@ class User < ApplicationRecord
     vpnUsers = VpnUser.where(vpn_login: self.email)
     if vpnUsers.count > 0
       vpnUser = vpnUsers.first
-      # vpnUser = vpnUsers.last
       vpnUser.update(vpn_enabled: false)
     end
   end
@@ -141,7 +145,6 @@ class User < ApplicationRecord
     vpnUsers = VpnUser.where(vpn_login: self.email)
     if vpnUsers.count > 0
       vpnUser = vpnUsers.first
-      # vpnUser = vpnUsers.last
       vpnUser.update(vpn_enabled: true)
     end
   end
