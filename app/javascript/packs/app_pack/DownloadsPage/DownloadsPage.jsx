@@ -34,7 +34,7 @@ class DownloadsPage extends React.Component {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = item.vpn_host || 'client.ovpn';
+        a.download = `${item.vpn_host || 'client'}.ovpn`;
         const clickHandler = () => {
           setTimeout(() => {
             URL.revokeObjectURL(url);
