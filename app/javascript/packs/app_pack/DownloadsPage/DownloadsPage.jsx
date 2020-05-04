@@ -65,7 +65,7 @@ class DownloadsPage extends React.Component {
                 <thead>
                   <tr>
                     <th className="font-weight-bold">Country</th>
-                    <th className="font-weight-bold">Status</th>
+                    {/* <th className="font-weight-bold">Status</th> */}
                     <th className="font-weight-bold text-right">Action</th>
                   </tr>
                 </thead>
@@ -74,7 +74,7 @@ class DownloadsPage extends React.Component {
                     configs.map(item =>
                       <tr key={`invoice${item.id}`}>
                         <td>{item.title}</td>
-                        <td>{item.status}</td>
+                        {/* <td>{item.status}</td> */}
                         <td className="text-right table-actions">
                           <a
                             href="#"
