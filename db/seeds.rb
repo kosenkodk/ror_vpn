@@ -117,6 +117,7 @@ payment_methods = [
   end
 end
 
+not_found_country_icons = ''
 puts "\nCountries\n\n"
 [ 
   {name: 'Afghanistan', code: 'AF'}, 
@@ -363,9 +364,21 @@ puts "\nCountries\n\n"
   {name: 'Zambia', code: 'ZM'}, 
   {name: 'Zimbabwe', code: 'ZW'} 
 ].each do |item|
+  filename = "#{item[:code]}.png"
   country = Country.find_or_create_by(name: item[:name], code: item[:code])
+  path_to_file = Rails.root.join('app', 'assets', 'images', 'icons', 'countries', 'png', filename)
   puts country.name
+  if File.exists?(path_to_file)
+    puts "#{path_to_file}\n"
+    country.icon.attach(io: File.open(path_to_file), filename: filename)
+  else
+    puts "- icon is not found: #{filename}\n"
+    not_found_country_icons += "#{country.code} #{country.name}\n"
+  end
 end
+puts "\n missing country icons\n\n"
+puts not_found_country_icons
+
 
 puts "\nCancellation Reasons\n\n"
 cancel_reasons = [
