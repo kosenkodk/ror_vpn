@@ -117,6 +117,12 @@ payment_methods = [
   end
 end
 
+def create_config country
+  vpn_host = "#{country.code}.vega.com.ovpn".downcase
+  config = Config.find_or_create_by(title: country.name, vpn_host: vpn_host, country: country)
+  puts "- config created: #{config.title} #{config.vpn_host}\n"
+end
+
 not_found_country_icons = ''
 puts "\nCountries\n\n"
 [ 
@@ -367,10 +373,12 @@ puts "\nCountries\n\n"
   filename = "#{item[:code]}.png"
   country = Country.find_or_create_by(name: item[:name], code: item[:code])
   path_to_file = Rails.root.join('app', 'assets', 'images', 'icons', 'countries', 'png', filename)
+  
   puts country.name
   if File.exists?(path_to_file)
     puts "#{path_to_file}\n"
     country.icon.attach(io: File.open(path_to_file), filename: filename)
+    create_config country
   else
     puts "- icon is not found: #{filename}\n"
     not_found_country_icons += "#{country.code} #{country.name}\n"
@@ -428,15 +436,15 @@ User.all.each do |user|
   (0..25).map { |no| user.messages.create(title: "Notification #{no}") }
 end
 
-puts "\nConfigs\n\n"
-[
-  {title: 'Australia', vpn_host: 'au.vega.com'}, 
-  {title: 'France', vpn_host: 'fr.vega.com'}, 
-  {title: 'Canada', vpn_host: 'ca.vega.com'},
-  {title: 'Germany', vpn_host: 'de.vega.com'}, 
-  {title: 'Netherlands', vpn_host: 'nl.vega.com'}, 
-  {title: 'United Kingdom', vpn_host: 'uk.vega.com'}, 
-  {title: 'United States', vpn_host: 'us.vega.com'}
-].each do |params|
-  Config.find_or_create_by(params)
-end
+# puts "\nConfigs\n\n"
+# [
+#   {title: 'Australia', vpn_host: 'au.vega.com'}, 
+#   {title: 'France', vpn_host: 'fr.vega.com'}, 
+#   {title: 'Canada', vpn_host: 'ca.vega.com'},
+#   {title: 'Germany', vpn_host: 'de.vega.com'}, 
+#   {title: 'Netherlands', vpn_host: 'nl.vega.com'}, 
+#   {title: 'United Kingdom', vpn_host: 'uk.vega.com'}, 
+#   {title: 'United States', vpn_host: 'us.vega.com'}
+# ].each do |params|
+#   Config.find_or_create_by(params)
+# end
