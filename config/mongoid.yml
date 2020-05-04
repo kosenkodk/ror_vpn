@@ -4,7 +4,7 @@ development:
     # Defines the default client. (required)
     default:
       # Mongoid can connect to a URI accepted by the driver:
-      # uri: mongodb://user:password@mongodb.domain.com:27017/<%= database_name || app_name %>_development
+      # uri: mongodb://user:password@mongodb.domain.com:27017/<%#= database_name || app_name #%>_development
 
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
@@ -160,7 +160,7 @@ production:
     default:
       database: 'vega_vpn'
       hosts:
-        # - <%=Rails.credentials.mongo_host%>
+        # - <%#=Rails.application.credentials.mongo_host#%>
         - localhost:27017
 test:
   clients:
