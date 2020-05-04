@@ -128,6 +128,24 @@ class User < ApplicationRecord
     save!
   end
 
+  def block_vpn_user
+    vpnUsers = VpnUser.where(vpn_login: self.email)
+    if vpnUsers.count > 0
+      vpnUser = vpnUsers.first
+      # vpnUser = vpnUsers.last
+      vpnUser.update(vpn_enabled: false)
+    end
+  end
+
+  def enable_vpn_user
+    vpnUsers = VpnUser.where(vpn_login: self.email)
+    if vpnUsers.count > 0
+      vpnUser = vpnUsers.first
+      # vpnUser = vpnUsers.last
+      vpnUser.update(vpn_enabled: true)
+    end
+  end
+
   def self.check_invoices
     date = DateTime.now
     start_date = date.at_beginning_of_month
@@ -143,6 +161,7 @@ class User < ApplicationRecord
             # UserMailer.invoice_reminder(user, invoice).deliver_now # todo: ? send reminder
             tariff_plan = TariffPlan.find_by(price: 0)
             user.update(tariff_plan: tariff_plan)
+            user.block_vpn_user
           end
         else
           # new invoice

@@ -13,6 +13,24 @@ RSpec.describe User, type: :model do
       expect(user.get_refer_link).to eq("https://#{Rails.application.config.host}/signup/#{user.id}")
     end
   end
+  
+  context 'vpn user' do
+    before { VpnUser.destroy_all }
+    it 'block' do
+      vpn_user = VpnUser.find_or_create_by(vpn_login: user.email, vpn_enabled: true)
+      user.block_vpn_user
+      vpn_user.reload
+      expect(vpn_user.vpn_login).to eq(user.email)
+      expect(vpn_user.vpn_enabled).to eq(false)
+    end
+    it 'enable' do
+      vpn_user = VpnUser.find_or_create_by(vpn_login: user.email, vpn_enabled: false)
+      user.enable_vpn_user
+      vpn_user.reload
+      expect(vpn_user.vpn_login).to eq(user.email)
+      expect(vpn_user.vpn_enabled).to eq(true)
+    end
+  end
 
   context '2fa' do
     let(:secret) { '5qlcip7azyjuwm36' }
