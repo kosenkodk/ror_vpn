@@ -41,3 +41,5 @@ kill -9 $(lsof -i tcp:3000 -t)
 
 connection string
 mongodb://mongo:27017
+
+RACK_ENV=production RAILS_ENV=production NODE_ENV=production rake assets:precompile
