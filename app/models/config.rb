@@ -8,6 +8,6 @@ class Config < ApplicationRecord
   end
 
   def attributes
-    { id: id, title: title, status: status, url: url }
+    { id: id, title: title, vpn_host: vpn_host, status: status, url: url }
   end
 end
