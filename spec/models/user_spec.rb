@@ -30,6 +30,14 @@ RSpec.describe User, type: :model do
       expect(vpn_user.vpn_login).to eq(user.email)
       expect(vpn_user.vpn_enabled).to eq(true)
     end
+    it 'destroy' do
+      user = create(:user)
+      vpn_user = VpnUser.create(vpn_login: user.email, vpn_enabled: false)
+      vpn_user2 = VpnUser.create(vpn_login: user.email, vpn_enabled: false)
+      expect(VpnUser.where(vpn_login: user.email).count).to eq(2)
+      user.destroy
+      expect(VpnUser.where(vpn_login: user.email).count).to eq(0)
+    end
   end
 
   context '2fa' do
