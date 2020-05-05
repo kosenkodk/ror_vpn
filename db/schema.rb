@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_131437) do
+ActiveRecord::Schema.define(version: 2020_05_05_115458) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,7 +70,9 @@ ActiveRecord::Schema.define(version: 2020_05_04_131437) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "country_id"
+    t.integer "tariff_plan_id"
     t.index ["country_id"], name: "index_configs_on_country_id"
+    t.index ["tariff_plan_id"], name: "index_configs_on_tariff_plan_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -225,6 +227,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_131437) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "configs", "countries"
+  add_foreign_key "configs", "tariff_plans"
   add_foreign_key "invoices", "users"
   add_foreign_key "messages", "tickets"
   add_foreign_key "messages", "users"
