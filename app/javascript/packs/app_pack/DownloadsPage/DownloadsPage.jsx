@@ -76,7 +76,7 @@ class DownloadsPage extends React.Component {
                     configs.map(item =>
                       <tr key={`invoice${item.id}`}>
                         <td>
-                          <img src={item.country && item.country.icon_url} className="img-fluid" alt="" />
+                          <img src={item.country && item.country.icon_url} className="" alt="" />
                         </td>
                         <td>{item.title}</td>
                         {/* <td>{item.status}</td> */}
