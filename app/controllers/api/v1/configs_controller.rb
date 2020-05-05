@@ -25,12 +25,8 @@ class Api::V1::ConfigsController < Api::V1::ApiController
     ovpn_config = get_ovpn_config(config.vpn_host, current_user.email)
     filename = "#{config.vpn_host}.ovpn"
     config.ovpn.attach(io: StringIO.new(ovpn_config), filename: filename)
-    # send_data ovpn_config, filename: filename, disposition: 'inline'
-    send_data ovpn_config, filename: filename
-  end
-
-  def block_user
-
+    # send_data ovpn_config, filename: filename, disposition: 'inline' # view config
+    send_data ovpn_config, filename: filename # download config
   end
 
   def create_user user
