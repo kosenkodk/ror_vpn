@@ -64,6 +64,7 @@ class DownloadsPage extends React.Component {
               <table className="table mt-30">
                 <thead>
                   <tr>
+                    <th className="font-weight-bold"></th>
                     <th className="font-weight-bold">Country</th>
                     {/* <th className="font-weight-bold">Status</th> */}
                     <th className="font-weight-bold text-right">Action</th>
@@ -73,6 +74,9 @@ class DownloadsPage extends React.Component {
                   {(configs && configs.length > 0) ?
                     configs.map(item =>
                       <tr key={`invoice${item.id}`}>
+                        <td>
+                          <img src={item.country && item.country.icon_url} className="img-fluid" alt="" />
+                        </td>
                         <td>{item.title}</td>
                         {/* <td>{item.status}</td> */}
                         <td className="text-right table-actions">
