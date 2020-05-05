@@ -18,36 +18,36 @@ class DownloadsPage extends React.Component {
     e.preventDefault()
     userService.getConfig(item.id)
       .then(response => {
-        let data = {};
+        let data = {}
         try {
-          data = JSON.parse(response);
+          data = JSON.parse(response)
         } catch (e) { }
 
         // network error
         if (!response.ok) {
-          const error = (data && data.error) || (data && data.message) || response.statusText;
-          return Promise.reject(error);
+          const error = (data && data.error) || (data && data.message) || response.statusText
+          return Promise.reject(error)
         }
-        this.props.dispatch(alertActions.success('success'));
+        this.props.dispatch(alertActions.success('success'))
         return response.blob()
       })
       .then(blob => {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${item.vpn_host || 'client'}.ovpn`;
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${item.vpn_host || 'client'}.ovpn`
         const clickHandler = () => {
           setTimeout(() => {
-            URL.revokeObjectURL(url);
-            a.removeEventListener('click', clickHandler);
+            URL.revokeObjectURL(url)
+            a.removeEventListener('click', clickHandler)
           }, 150);
         };
-        a.addEventListener('click', clickHandler, false);
-        a.click();
-        return a;
+        a.addEventListener('click', clickHandler, false)
+        a.click()
+        return a
       },
         error => {
-          this.props.dispatch(alertActions.error(error));
+          this.props.dispatch(alertActions.error(error))
         }
       );
   }
@@ -81,11 +81,7 @@ class DownloadsPage extends React.Component {
                         <td>{item.title}</td>
                         {/* <td>{item.status}</td> */}
                         <td className="text-right table-actions">
-                          <a
-                            href="#"
-                            onClick={(e) => this.onDownload(e, item)}
-                          // href={item.url} target="_blank" download
-                          >
+                          <a href="#" onClick={(e) => this.onDownload(e, item)}>
                             <img src={icDownloadSrc} className="img-fluid" />
                           </a>
                           {/* {
