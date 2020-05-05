@@ -1,7 +1,7 @@
 class Config < ApplicationRecord
   include Rails.application.routes.url_helpers
   
-  belongs_to :country#, optional: true
+  belongs_to :country, optional: true
   belongs_to :tariff_plan, optional: true
   has_one_attached :ovpn, dependent: :destroy
   
@@ -10,6 +10,6 @@ class Config < ApplicationRecord
   end
 
   def attributes
-    { id: id, country: country, title: title, vpn_host: vpn_host, status: status, url: url }
+    { id: id, tariff_plan: tariff_plan, country: country, title: title, vpn_host: vpn_host, status: status, url: url }
   end
 end

@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { NavHashLink as Link } from 'react-router-hash-link'
+import { NavHashLink as Link } from 'react-router-hash-link'
 
 import { I18n } from 'helpers'
 import { globalActions, alertActions } from '../_actions'
 import icDownloadSrc from 'images/icons/ic_download.svg'
-import { userService } from '../_services';
+import { userService } from '../_services'
+import { urls } from 'config'
 
 class DownloadsPage extends React.Component {
 
@@ -52,7 +53,7 @@ class DownloadsPage extends React.Component {
   }
 
   render() {
-    const { configs } = this.props
+    const { user, configs } = this.props
     return (
       <div className="container-fluid downloads">
         <div className="row">
@@ -87,6 +88,23 @@ class DownloadsPage extends React.Component {
                           >
                             <img src={icDownloadSrc} className="img-fluid" />
                           </a>
+                          {/* {
+                            (item.tariff_plan && (user.tariff_plan.id === item.tariff_plan.id)) ?
+                              <a
+                                href="#"
+                                onClick={(e) => this.onDownload(e, item)}
+                              // href={item.url} target="_blank" download
+                              >
+                                <img src={icDownloadSrc} className="img-fluid" />
+                              </a>
+                              :
+                              <Link to={urls.user_dashboard.path} className="btn btn-pink">
+                                upgrade on {item.tariff_plan && item.tariff_plan.title}
+                              </Link>
+                            // <button type="button" className="btn btn-pink" data-toggle="tooltip" data-placement="top" title="Plan upgrade required">
+                            //   Download
+                            // </button>
+                          } */}
                         </td>
                       </tr>
                     ) :
@@ -106,7 +124,9 @@ class DownloadsPage extends React.Component {
 
 function mapStateToProps(state) {
   const { configs } = state.global
+  const { user } = state.authentication
   return {
+    user,
     configs
   }
 }

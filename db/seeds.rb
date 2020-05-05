@@ -11,24 +11,11 @@
 puts "\nTariff Plans\n\n"
 features = 'All Countries,5 Devices simultaneously,High Speed,Unlimited traffic'
 features_free = '1 Country,1 Device,Simultaneously,Medium speed,No torrenting,IKEv2 or OpenVPN'
-plans = [
-  # { title: 'Annual', price: 2.99, duration: 0, price_duration: 430.20, price_duration_sale: 322.65, price_comment: '$ 107.55 every 3 years', features: features },
-  # { title: 'Quarterly', price: 3.99, duration: 0, price_duration: 286.80, price_duration_sale: 191.05, price_comment: '$ 95.75 every 2 years', features: features },
-  # { title: 'Monthly', price: 6.99, duration: 0, price_duration: 143.40, price_duration_sale: 59.52, price_comment: '$ 83.88 every year', features: features },
-  # { title: 'Free', price: 0.00, duration: 0, price_duration: 0.00, price_duration_sale: 0.00, price_comment: '', features: features_free }
-  { title: 'Plan for 1 year', price: 2.99, duration: 0, price_duration: 430.20, price_duration_sale: 322.65, price_comment: '$ 107.55 every 3 years', features: features },
-  { title: 'Quarterly plan', price: 3.99, duration: 0, price_duration: 286.80, price_duration_sale: 191.05, price_comment: '$ 95.75 every 2 years', features: features },
-  { title: 'Plan for 1 month', price: 6.99, duration: 0, price_duration: 143.40, price_duration_sale: 59.52, price_comment: '$ 83.88 every year', features: features },
-  { title: 'Free plan', price: 0.00, duration: 0, price_duration: 0.00, price_duration_sale: 0.00, price_comment: '', features: features_free }
-]
-plans.each do |item|
-TariffPlan.find_or_create_by(
-  title: item[:title], price: item[:price], 
-  duration: item[:duration], price_duration: item[:price_duration], 
-  price_duration_sale: item[:price_duration_sale], 
-  price_comment: item[:price_comment], features: item[:features]
-)
-end
+@plan_12mo = plan_12mo = TariffPlan.find_or_create_by({ title: 'Plan for 1 year', price: 2.99, duration: 0, price_duration: 430.20, price_duration_sale: 322.65, price_comment: '$ 107.55 every 3 years', features: features })
+plan_3mo = TariffPlan.find_or_create_by({ title: 'Quarterly plan', price: 3.99, duration: 0, price_duration: 286.80, price_duration_sale: 191.05, price_comment: '$ 95.75 every 2 years', features: features })
+plan_1mo = TariffPlan.find_or_create_by({ title: 'Plan for 1 month', price: 6.99, duration: 0, price_duration: 143.40, price_duration_sale: 59.52, price_comment: '$ 83.88 every year', features: features })
+plan_free = TariffPlan.find_or_create_by({ title: 'Free plan', price: 0.00, duration: 0, price_duration: 0.00, price_duration_sale: 0.00, price_comment: '', features: features_free })
+
 
 puts "\nFeatures\n\n"
 features = [
@@ -50,6 +37,7 @@ features = [
   puts "#{path_to_file}\n"
   feature.icon.attach(io: File.open(path_to_file), filename: item[:icon_name])
 end
+
 
 # puts "\nPayment Groups:\n\n"
 # payment_groups = [
@@ -97,6 +85,7 @@ end
 #   end
 # end
 
+
 puts "\nPayment Methods\n\n"
 payment_methods = [
   {is_for_signup: true, title: I18n.t('payment_method.cryptocurrencies'), icons: ['bitcoin.png', 'ripple.png', 'ethereum.png']},
@@ -117,11 +106,13 @@ payment_methods = [
   end
 end
 
+
 def create_config country
   vpn_host = "#{country.code}.vega.com.ovpn".downcase
-  config = Config.find_or_create_by(title: country.name, vpn_host: vpn_host, country: country)
+  config = Config.find_or_create_by(title: country.name, vpn_host: vpn_host, country: country, tariff_plan: @plan_12mo)
   puts "- config created: #{config.title} #{config.vpn_host}\n"
 end
+
 
 not_found_country_icons = ''
 puts "\nCountries\n\n"
@@ -388,6 +379,39 @@ puts "\n missing country icons\n\n"
 puts not_found_country_icons
 
 
+puts "\nConfigs for free plan n\n"
+[
+  {name: 'Afghanistan', code: 'AF'},
+  {name: 'Åland Islands', code: 'AX'},
+  {name: 'Albania', code: 'AL'},
+].each do |item|
+  country = Country.find_by(code: item[:code])
+  config = Config.where(country: country).update(tariff_plan: plan_free)
+end
+
+
+puts "\n\configs for monthly plan n\n"
+[
+  {name: 'Algeria', code: 'DZ'},
+  {name: 'American Samoa', code: 'AS'},
+  {name: 'AndorrA', code: 'AD'},
+].each do |item|
+  country = Country.find_by(code: item[:code])
+  config = Config.where(country: country).update(tariff_plan: plan_1mo)
+end
+
+
+puts "\n\configs for quartely plan n\n"
+[
+  {name: 'Angola', code: 'AO'},
+  {name: 'Anguilla', code: 'AI'},
+  {name: 'Antarctica', code: 'AQ'},
+].each do |item|
+  country = Country.find_by(code: item[:code])
+  config = Config.where(country: country).update(tariff_plan: plan_3mo)
+end
+
+
 puts "\nCancellation Reasons\n\n"
 cancel_reasons = [
   {order: 10, title: 'No longer required' },
@@ -428,13 +452,15 @@ end
 
 puts "\nInvoices\n\n"
 User.all.each do |user|
-  Invoice.create({ no: '1000', title: plans.try(:first).try(:title), amount: 6.99, currency: '$', status: 'pay', user_id: user.id })
+  Invoice.create({ no: '1000', title: plan_12mo, amount: 6.99, currency: '$', status: 'pay', user_id: user.id })
 end
+
 
 puts "\nNotifications\n\n"
 User.all.each do |user|
   (0..25).map { |no| user.messages.create(title: "Notification #{no}") }
 end
+
 
 # puts "\nConfigs\n\n"
 # [
