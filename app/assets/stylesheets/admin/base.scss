@@ -2,7 +2,8 @@
   // font-size: $font-size-base-admin;
   // line-height: $base-line-height-admin;
   @include fluidFontSize(14px, 41px, 320px, 4096px, 14px);
-  @include fluidLineHeight(18px, 106px, 320px, 4096px, 18px);
+  // @include fluidLineHeight(18px, 106px, 320px, 4096px, 18px);
+  line-height: 1.5;
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -537,15 +538,14 @@
   @import "admin/payments";
   @import "admin/mobiles";
   @import "admin/desktop";
-  @import "notifications";
-  @import "downloads";
+  @import "admin/notifications";
+  @import "admin/downloads";
 
   /*
   // media queries
   @media #{$mq-w1400} {
     font-size: $font-size-base-admin;
     line-height: $base-line-height-admin;
-
     @import "admin/w1400";
   }
 

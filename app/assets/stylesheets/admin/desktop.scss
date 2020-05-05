@@ -1,6 +1,5 @@
 
 @media (min-width: $lg-width) {
-
   .friend-invite {
     .import_email_contacts {
       p small {
@@ -23,7 +22,9 @@
 // @media (min-width:1401px) {
 
 @include fluidFontSize(14px, 41px, $bp-w1400, $bp-w4096, 14px);
-@include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
+// @include fluidLineHeight(18px, 106px, $bp-w1400, $bp-w4096, 18px);
+line-height: 1.5;
+
 // @include fluidLineHeight(18px, 74px, $bp-w1400, $bp-w4096, 18px);
 
 $multiplier: 1;
