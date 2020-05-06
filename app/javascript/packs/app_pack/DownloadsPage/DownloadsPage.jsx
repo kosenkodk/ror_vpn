@@ -52,12 +52,18 @@ class DownloadsPage extends React.Component {
       );
   }
 
+  is_available(item) {
+    const user = this.props.user
+    const is_available = item.tariff_plan && (user.tariff_plan.id === item.tariff_plan.id)
+    return is_available
+  }
+
   render() {
     const { user, configs } = this.props
     return (
       <div className="container-fluid downloads">
         <div className="row">
-          <div className="col-md-12 col-lg-8">
+          <div className="col">
             {/* <h1 className="">{I18n.t('pages.downloads.clients.title')}</h1> */}
 
             <h1 className="">{I18n.t('pages.downloads.configs.title')}</h1>
@@ -81,26 +87,17 @@ class DownloadsPage extends React.Component {
                         <td>{item.title}</td>
                         {/* <td>{item.status}</td> */}
                         <td className="text-right table-actions">
-                          <a href="#" onClick={(e) => this.onDownload(e, item)}>
+                          {/* <a href="#" onClick={(e) => this.onDownload(e, item)}>
                             <img src={icDownloadSrc} className="img-fluid" />
-                          </a>
-                          {/* {
-                            (item.tariff_plan && (user.tariff_plan.id === item.tariff_plan.id)) ?
-                              <a
-                                href="#"
-                                onClick={(e) => this.onDownload(e, item)}
-                              // href={item.url} target="_blank" download
-                              >
-                                <img src={icDownloadSrc} className="img-fluid" />
-                              </a>
-                              :
-                              <Link to={urls.user_dashboard.path} className="btn btn-pink">
-                                upgrade on {item.tariff_plan && item.tariff_plan.title}
-                              </Link>
-                            // <button type="button" className="btn btn-pink" data-toggle="tooltip" data-placement="top" title="Plan upgrade required">
-                            //   Download
-                            // </button>
-                          } */}
+                          </a> */}
+                          {
+                            <button type="button" className="btn btn-pink" data-toggle="tooltip" rel="tooltip" data-placement="top"
+                              title="Plan upgrade required"
+                              disabled={this.is_available(item)}>
+                              Download
+                              {/* upgrade on {item.tariff_plan && item.tariff_plan.title} */}
+                            </button>
+                          }
                         </td>
                       </tr>
                     ) :

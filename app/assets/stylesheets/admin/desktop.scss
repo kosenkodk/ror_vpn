@@ -28,6 +28,7 @@ line-height: 1.5;
 // @include fluidLineHeight(18px, 74px, $bp-w1400, $bp-w4096, 18px);
 
 $multiplier: 1;
+
 .main-content {
   // padding: pxtovh(30px) pxtovw(20px);
   // padding: pxtovw(20px);
@@ -189,6 +190,10 @@ section {
   p {
     @include fluidLineHeight(25px, 35px, $bp-w1400, $bp-w1920, 25px);
   }
+}
+
+.downloads .table {
+  max-width: pxtovw(700);
 }
 
 /*
