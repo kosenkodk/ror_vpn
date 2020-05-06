@@ -1,10 +1,4 @@
 $(jQuery).on('ready turbolinks:load', function () {
-
-  // enable tooltip
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
   // $('.plans button.active').show();
   $('.signup .plans button.active').removeClass('d-none');
 

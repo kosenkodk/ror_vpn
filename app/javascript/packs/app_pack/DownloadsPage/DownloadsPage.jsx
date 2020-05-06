@@ -5,14 +5,13 @@ import { NavHashLink as Link } from 'react-router-hash-link'
 import { I18n } from 'helpers'
 import { globalActions, alertActions } from '../_actions'
 import icDownloadSrc from 'images/icons/ic_download.svg'
+import icDownload2Src from 'images/icons/ic_download2.svg'
 import { userService } from '../_services'
 import { urls } from 'config'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 
 class DownloadsPage extends React.Component {
-
-  componentDidMount() {
-    this.props.dispatch(globalActions.getConfigs())
-  }
 
   onDownload = (e, item) => {
     e.preventDefault()
@@ -58,6 +57,19 @@ class DownloadsPage extends React.Component {
     return is_available
   }
 
+  componentDidMount() {
+    this.enableTooltip()
+    this.props.dispatch(globalActions.getConfigs())
+  }
+
+  componentDidUpdate() {
+    this.enableTooltip()
+  }
+
+  enableTooltip() {
+    // $('[data-toggle="tooltip"]').tooltip()
+  }
+
   render() {
     const { user, configs } = this.props
     return (
@@ -87,17 +99,30 @@ class DownloadsPage extends React.Component {
                         <td>{item.title}</td>
                         {/* <td>{item.status}</td> */}
                         <td className="text-right table-actions">
-                          {/* <a href="#" onClick={(e) => this.onDownload(e, item)}>
-                            <img src={icDownloadSrc} className="img-fluid" />
-                          </a> */}
-                          {
-                            <button type="button" className="btn btn-pink" data-toggle="tooltip" rel="tooltip" data-placement="top"
-                              title="Plan upgrade required"
-                              disabled={this.is_available(item)}>
-                              Download
-                              {/* upgrade on {item.tariff_plan && item.tariff_plan.title} */}
-                            </button>
+                          {this.is_available(item) ?
+                            <OverlayTrigger
+                              key={'top'}
+                              placement={'top'}
+                              overlay={
+                                <Tooltip id={`tooltip-${'top'}`}>
+                                  Plan upgrade required
+                              </Tooltip>
+                              }
+                            >
+                              <a href="#" onClick={(e) => this.onDownload(e, item)}>
+                                <img src={icDownloadSrc} className="img-fluid" />
+                              </a>
+                            </OverlayTrigger>
+                            :
+                            <a href="#" onClick={(e) => this.onDownload(e, item)}>
+                              <img src={icDownloadSrc} className="img-fluid" />
+                            </a>
                           }
+                          {/* <button type="button" className="btn btn-pink" data-toggle="tooltip" rel="tooltip" data-placement="top"
+                            title="Plan upgrade required"
+                            disabled={this.is_available(item)}>
+                            Download
+                          </button> */}
                         </td>
                       </tr>
                     ) :
@@ -110,7 +135,7 @@ class DownloadsPage extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
