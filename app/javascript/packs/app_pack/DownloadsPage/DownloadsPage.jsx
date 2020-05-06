@@ -54,8 +54,8 @@ class DownloadsPage extends React.Component {
   is_available(item) {
     const user = this.props.user
     let is_available = false
-    // if (item.tariff_plan)
-    //   is_available = user.tariff_plan.id === item.tariff_plan.id
+    if (item.tariff_plan)
+      is_available = user.tariff_plan.id === item.tariff_plan.id
     if (user.tariff_plan && !user.tariff_plan.is_free)
       is_available = true
     return is_available
