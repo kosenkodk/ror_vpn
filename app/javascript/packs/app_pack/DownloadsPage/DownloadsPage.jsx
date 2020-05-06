@@ -7,7 +7,6 @@ import { globalActions, alertActions } from '../_actions'
 import icDownloadSrc from 'images/icons/ic_download.svg'
 import icDownload2Src from 'images/icons/ic_download2.svg'
 import { userService } from '../_services'
-import { urls } from 'config'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 
@@ -62,20 +61,11 @@ class DownloadsPage extends React.Component {
   }
 
   componentDidMount() {
-    this.enableTooltip()
     this.props.dispatch(globalActions.getConfigs())
   }
 
-  componentDidUpdate() {
-    this.enableTooltip()
-  }
-
-  enableTooltip() {
-    // $('[data-toggle="tooltip"]').tooltip()
-  }
-
   render() {
-    const { user, configs } = this.props
+    const { configs } = this.props
     return (
       <div className="container-fluid downloads">
         <div className="row">
@@ -112,7 +102,7 @@ class DownloadsPage extends React.Component {
                               key={'top'}
                               placement={'top'}
                               overlay={
-                                <Tooltip id={`tooltip-${'top'}`}>
+                                <Tooltip id={`tooltip-${item.id}`}>
                                   Plan upgrade required
                                 </Tooltip>
                               }
@@ -122,11 +112,6 @@ class DownloadsPage extends React.Component {
                               </Link>
                             </OverlayTrigger>
                           }
-                          {/* <button type="button" className="btn btn-pink" data-toggle="tooltip" rel="tooltip" data-placement="top"
-                            title="Plan upgrade required"
-                            disabled={this.is_available(item)}>
-                            Download
-                          </button> */}
                         </td>
                       </tr>
                     ) :
