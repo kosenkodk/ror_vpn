@@ -53,7 +53,11 @@ class DownloadsPage extends React.Component {
 
   is_available(item) {
     const user = this.props.user
-    const is_available = item.tariff_plan && (user.tariff_plan.id === item.tariff_plan.id)
+    let is_available = false
+    // if (item.tariff_plan)
+    //   is_available = user.tariff_plan.id === item.tariff_plan.id
+    if (user.tariff_plan && !user.tariff_plan.is_free)
+      is_available = true
     return is_available
   }
 
@@ -100,23 +104,23 @@ class DownloadsPage extends React.Component {
                         {/* <td>{item.status}</td> */}
                         <td className="text-right table-actions">
                           {this.is_available(item) ?
+                            <a href="#" onClick={(e) => this.onDownload(e, item)}>
+                              <img src={icDownloadSrc} className="img-fluid" />
+                            </a>
+                            :
                             <OverlayTrigger
                               key={'top'}
                               placement={'top'}
                               overlay={
                                 <Tooltip id={`tooltip-${'top'}`}>
                                   Plan upgrade required
-                              </Tooltip>
+                                </Tooltip>
                               }
                             >
-                              <a href="#" onClick={(e) => this.onDownload(e, item)}>
-                                <img src={icDownloadSrc} className="img-fluid" />
-                              </a>
+                              <Link to="#">
+                                <img src={icDownload2Src} className="img-fluid" />
+                              </Link>
                             </OverlayTrigger>
-                            :
-                            <a href="#" onClick={(e) => this.onDownload(e, item)}>
-                              <img src={icDownloadSrc} className="img-fluid" />
-                            </a>
                           }
                           {/* <button type="button" className="btn btn-pink" data-toggle="tooltip" rel="tooltip" data-placement="top"
                             title="Plan upgrade required"
