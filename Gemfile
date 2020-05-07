@@ -30,7 +30,7 @@ gem 'jwt_sessions', '~> 2.4.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors', '~> 1.0.3'
+gem 'rack-cors', '~> 1.0.5'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
