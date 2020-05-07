@@ -467,9 +467,12 @@ puts "\nApp Clients\n\n"
   {title: 'Android', url: 'https://play.google.com'}, 
   {title: 'iOS', url: 'https://itunes.apple.com'}, 
   {title: 'Windows', url: 'https://www.microsoft.com/en-us/store/apps/windows'},
-  {title: 'MacOS', url: 'https://support.apple.com/downloads/macos'}, 
-  {title: 'GNU/Linux', url: 'https://www.linux.org/pages/download/'}, 
+  # {title: 'MacOS', url: 'https://support.apple.com/downloads/macos'}, 
+  {title: 'Linux', url: 'https://www.linux.org/pages/download/'}, 
 ].each do |params|
   item = AppClient.find_or_create_by(params)
   puts item.title
+  filename = "#{params[:title].downcase}.png"
+  path_to_file = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'pink', 'x3', filename)
+  item.icon. attach(io: File.open(path_to_file), filename: filename)
 end
