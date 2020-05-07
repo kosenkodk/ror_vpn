@@ -1,0 +1,2 @@
+class AppClient < ApplicationRecord
+end
