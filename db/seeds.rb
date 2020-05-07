@@ -118,7 +118,7 @@ not_found_country_icons = ''
 puts "\nCountries\n\n"
 [ 
   {name: 'Afghanistan', code: 'AF'}, 
-  {name: 'Åland Islands', code: 'AX'}, 
+  {name: 'Aland Islands', code: 'AX'}, 
   {name: 'Albania', code: 'AL'}, 
   {name: 'Algeria', code: 'DZ'}, 
   {name: 'American Samoa', code: 'AS'}, 
@@ -382,7 +382,7 @@ puts not_found_country_icons
 puts "\nConfigs for free plan n\n"
 [
   {name: 'Afghanistan', code: 'AF'},
-  {name: 'Åland Islands', code: 'AX'},
+  {name: 'Aland Islands', code: 'AX'},
   {name: 'Albania', code: 'AL'},
 ].each do |item|
   country = Country.find_by(code: item[:code])
