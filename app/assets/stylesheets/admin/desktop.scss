@@ -192,8 +192,13 @@ section {
   }
 }
 
-.downloads .table {
-  max-width: pxtovw(700);
+.downloads {
+  .table {
+    max-width: pxtovw(700);
+  }
+  .apps {
+    max-width: pxtovw(700);  
+  }
 }
 
 /*

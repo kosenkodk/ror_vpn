@@ -72,29 +72,29 @@ class DownloadsPage extends React.Component {
         <div className="row">
           <div className="col">
             <h1 className="">{I18n.t('pages.downloads.clients.title')}</h1>
-            <div className="row text-center">
+            <div className="row text-center apps">
               {app_clients && app_clients.map(item =>
-                <div className="col">
+                <div className="col-sm-6 col-lg-3">
                   <div className="card" key={`app${item.id}}`}>
-                    <div className="card-header">
-                      <img src={item.icon_url} />
-                    </div>
-                    <div className="card-body">
-                      {item.title}
-                    </div>
-                    <div className="card-footer">
+                    {/* <div className="card-header">
+                    </div> */}
+                    <div className="card-body p-2">
+                      <img src={item.icon_url} className="img-fluid" />
+                      <p>{item.title}</p>
                       <a href={item.url} className="btn btn-pink" target="_blank">
                         Download
                       </a>
                     </div>
+                    {/* <div className="card-footer">                      
+                    </div> */}
                   </div>
                 </div>
               )}
             </div>
 
-            <h1 className="">{I18n.t('pages.downloads.configs.title')}</h1>
+            <h1 className="mt-30">{I18n.t('pages.downloads.configs.title')}</h1>
             <div className="table-responsive">
-              <table className="table mt-30">
+              <table className="table">
                 <thead>
                   <tr>
                     <th className="font-weight-bold"></th>
