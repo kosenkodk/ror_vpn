@@ -62,15 +62,35 @@ class DownloadsPage extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(globalActions.getConfigs())
+    this.props.dispatch(globalActions.getAppClients())
   }
 
   render() {
-    const { configs } = this.props
+    const { configs, app_clients } = this.props
     return (
       <div className="container-fluid downloads">
         <div className="row">
           <div className="col">
-            {/* <h1 className="">{I18n.t('pages.downloads.clients.title')}</h1> */}
+            <h1 className="">{I18n.t('pages.downloads.clients.title')}</h1>
+            <div className="row text-center">
+              {app_clients && app_clients.map(item =>
+                <div className="col">
+                  <div className="card" key={`app${item.id}}`}>
+                    <div className="card-header">
+                      <img src={item.icon_url} />
+                    </div>
+                    <div className="card-body">
+                      {item.title}
+                    </div>
+                    <div className="card-footer">
+                      <a href={item.url} className="btn btn-pink" target="_blank">
+                        Download
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
             <h1 className="">{I18n.t('pages.downloads.configs.title')}</h1>
             <div className="table-responsive">
@@ -124,17 +144,18 @@ class DownloadsPage extends React.Component {
             </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { configs } = state.global
+  const { configs, app_clients } = state.global
   const { user } = state.authentication
   return {
     user,
-    configs
+    configs,
+    app_clients,
   }
 }
 

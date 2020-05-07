@@ -22,6 +22,7 @@ export const userService = {
   getPlans,
   getConfigs,
   getConfig,
+  getAppClients,
   getCountries,
   getDepartments,
   readAllNotifications,
@@ -450,6 +451,18 @@ function getConfig(id) {
     headers: authHeader(),
   }
   return fetch(`${config.apiUrl}/configs/${id}`, requestOptions)
+}
+
+function getAppClients() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/app_clients`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/app_clients`, requestOptions).then(handleResponse);
 }
 
 function getConfigs() {

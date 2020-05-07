@@ -18,6 +18,29 @@ export const globalActions = {
   setStep,
   getReferLink,
   getConfigs,
+  getAppClients,
+}
+
+
+function getAppClients() {
+  return dispatch => {
+    dispatch(request(JSON.parse(localStorage.getItem('apps'))))
+    userService.getAppClients()
+      .then(
+        response => {
+          localStorage.setItem('app_clients', JSON.stringify(response.clients))
+          dispatch(success(response.clients))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request(app_clients) { return { type: globalConstants.GET_APP_CLIENTS_REQUEST, app_clients } }
+  function success(app_clients) { return { type: globalConstants.GET_APP_CLIENTS_SUCCESS, app_clients } }
+  function failure(error) { return { type: globalConstants.GET_APP_CLIENTS_FAILURE, error } }
 }
 
 function getConfigs() {

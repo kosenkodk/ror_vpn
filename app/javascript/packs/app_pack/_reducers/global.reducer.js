@@ -3,6 +3,21 @@ import { globalConstants } from '../_constants';
 
 export function global(state = {}, action) {
   switch (action.type) {
+    case globalConstants.GET_APP_CLIENTS_REQUEST:
+      return {
+        ...state,
+        app_clients: action.app_clients
+      };
+    case globalConstants.GET_APP_CLIENTS_SUCCESS:
+      return {
+        ...state,
+        app_clients: action.app_clients
+      };
+    case globalConstants.GET_APP_CLIENTS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     case globalConstants.GET_CONFIGS_REQUEST:
       return {
         ...state,
