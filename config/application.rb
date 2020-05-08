@@ -26,5 +26,7 @@ module VegaVPN
     config.generators do |g|
       g.orm :active_record
     end
+    config.active_storage.content_types_allowed_inline << "image/svg+xml"
+    config.active_storage.content_types_to_serve_as_binary -= ["image/svg+xml"] 
   end
 end
