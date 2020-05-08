@@ -481,5 +481,3 @@ puts "\nApp Clients\n\n"
   path_to_file_light = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'light2', 'svg', filename)
   item.icon_light.attach(io: File.open(path_to_file_light), filename: filename)
 end
-
-
