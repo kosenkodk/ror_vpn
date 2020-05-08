@@ -8,7 +8,7 @@ RSpec.describe Api::V1::AppClientsController, type: :controller do
       expect(response.status).to eq(200)
       expect(response_json.keys).to include('clients')
       expect(response_json['clients'][0]).to include(client.as_json)
-      expect(response_json['clients'][0].keys).to eq(['id', 'title', 'url', 'icon_url'])
+      expect(response_json['clients'][0].keys).to eq(['id', 'title', 'url', 'icon_url', 'icon_light_url'])
     end
   end
 end
