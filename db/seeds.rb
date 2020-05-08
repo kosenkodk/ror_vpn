@@ -473,10 +473,9 @@ puts "\nApp Clients\n\n"
 ].each do |params|
   item = AppClient.find_or_create_by(params)
   puts item.title
-  filename = "#{params[:title].downcase}.png"
-  path_to_file = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'pink', 'x3', filename)
-  item.icon.attach(io: File.open(path_to_file), filename: filename)
   filename = "#{params[:title].downcase}.svg"
+  path_to_file = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'pink', 'svg', filename)
+  item.icon.attach(io: File.open(path_to_file), filename: filename)
   # path_to_file_light = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'light', 'svg', filename)
   path_to_file_light = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'light2', 'svg', filename)
   item.icon_light.attach(io: File.open(path_to_file_light), filename: filename)
