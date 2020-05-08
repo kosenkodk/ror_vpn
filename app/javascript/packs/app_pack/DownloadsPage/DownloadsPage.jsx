@@ -79,7 +79,10 @@ class DownloadsPage extends React.Component {
                     {/* <div className="card-header">
                     </div> */}
                     <div className="card-body p-2">
-                      <img src={item.icon_url} className="img-fluid" />
+                      <img src={item.icon_url}
+                        width="50" height="50" viewBox="0 0 20 20"
+                      // className="w-sm-25 w-md-50"
+                      />
                       <p>{item.title}</p>
                       <a href={item.url} className="btn btn-pink" target="_blank">
                         Download
