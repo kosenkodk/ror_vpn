@@ -2,14 +2,11 @@ import React from 'react'
 // import { I18n } from 'helpers'
 import ReviewSummary from './ReviewSummary'
 import ReviewOwner from './ReviewOwner'
-// import imgSecuritySrc from 'images/compare/reviews'
 
 class Reviews extends React.Component {
   render() {
     return (
       <div className="row reviews card shadow-vega">
-        {/* <img src={imgSecuritySrc} className=" img-fluid" /> */}
-
         <div className="col-md-10 offset-md-1 text-center">
           <div className="card-header mt-xl-4">
             Why the Media loves VPN
