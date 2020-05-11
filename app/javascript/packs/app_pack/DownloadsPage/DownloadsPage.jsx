@@ -74,14 +74,13 @@ class DownloadsPage extends React.Component {
             <h1 className="">{I18n.t('pages.downloads.clients.title')}</h1>
             <div className="row text-center apps">
               {app_clients && app_clients.map(item =>
-                <div className="col-sm-6 col-lg-3">
-                  <div className="card" key={`app${item.id}}`}>
+                <div className="col-sm-6 col-lg-3" key={`app${item.id}}`}>
+                  <div className="card">
                     {/* <div className="card-header">
                     </div> */}
                     <div className="card-body p-2">
                       <img src={item.icon_url}
                         width="50" height="50" viewBox="0 0 20 20"
-                      // className="w-sm-25 w-md-50"
                       />
                       <p>{item.title}</p>
                       <a href={item.url} className="btn btn-pink" target="_blank">
