@@ -360,6 +360,31 @@ class AccountPage extends React.Component {
             </div>
 
             <div className="mb-60">
+              <h1 id="delete">Email subscriptions</h1>
+              <InfoBlock>
+                <p>
+                  To keep up with the latest development at Vega products, you can subscribe to our various emails and visit our blog from time to time.
+                </p>
+              </InfoBlock>
+              <form>
+                {[
+                  { title: 'Major announcements (2-3 per year)' },
+                  { title: 'Major features (3-4 per year)' },
+                  { title: 'Vega for business (4-5 per year)' },
+                  { title: 'Vega newsletter (5-6 per year)' },
+                  { title: 'Vega Beta (10-12 per year)' },
+                ].map((item, index) =>
+                  <div class="form-check" key={`email_subscription${index}`}>
+                    <input class="form-check-input" type="checkbox" value="" id={`emailSubscriptionCheck${index}`} />
+                    <label class="form-check-label" for={`emailSubscriptionCheck${index}`}>
+                      {item.title}
+                    </label>
+                  </div>
+                )}
+              </form>
+            </div>
+
+            <div className="mb-60">
               <h1 id="delete">Delete Account</h1>
               <InfoBlock>
                 <p>
