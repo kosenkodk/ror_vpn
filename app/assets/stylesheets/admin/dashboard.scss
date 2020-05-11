@@ -208,7 +208,7 @@
             color: $white;
             margin-top: pxtovh(6);
             margin-bottom: pxtovh(20);
-            background-color: #3F0E4D;
+            background-color: $pink2;
             &.active {
               background-color: #2cb0b5;
             }
@@ -234,7 +234,7 @@
         }
         .plan__btn-my-plan {
           background: $white;
-          color: #3F0E4D;
+          color: $pink2;
           margin-bottom: pxtovh(53);
           border-radius: 0;
           min-height: pxtovh(50);
