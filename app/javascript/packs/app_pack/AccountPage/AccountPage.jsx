@@ -384,12 +384,19 @@ class AccountPage extends React.Component {
                 )}
               </form>
 
-              <div class="container">
-                <div class="round">
-                  <input type="checkbox" id="checkbox" />
-                  <label for="checkbox"></label>
+              {/* <div className="container"> */}
+              <div className="row">
+                <div className="col-auto">
+                  <div className="round">
+                    <input type="checkbox" id="checkbox" />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+                <div className="col">
+                  Major announcements (2-3 per year)
                 </div>
               </div>
+              {/* </div> */}
 
             </div>
 
