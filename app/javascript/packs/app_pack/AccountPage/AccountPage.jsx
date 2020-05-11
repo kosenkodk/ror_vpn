@@ -367,7 +367,7 @@ class AccountPage extends React.Component {
                 </p>
               </InfoBlock>
 
-              <form>
+              <form className="">
                 {[
                   { title: 'Major announcements (2-3 per year)' },
                   { title: 'Major features (3-4 per year)' },
@@ -388,9 +388,6 @@ class AccountPage extends React.Component {
                   </div>
                 )}
               </form>
-
-
-
             </div>
 
             <div className="mb-60">

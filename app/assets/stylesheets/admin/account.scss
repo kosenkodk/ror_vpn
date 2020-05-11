@@ -1,6 +1,8 @@
 .account {
   margin-top: pxtovh(20);
   .email_subscriptions {
-    
+    form {
+      font-weight: $font-bold;
+    }
   }
 }
