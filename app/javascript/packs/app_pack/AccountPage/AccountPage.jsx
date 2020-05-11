@@ -366,6 +366,7 @@ class AccountPage extends React.Component {
                   To keep up with the latest development at Vega products, you can subscribe to our various emails and visit our blog from time to time.
                 </p>
               </InfoBlock>
+
               <form>
                 {[
                   { title: 'Major announcements (2-3 per year)' },
@@ -382,6 +383,14 @@ class AccountPage extends React.Component {
                   </div>
                 )}
               </form>
+
+              <div class="container">
+                <div class="round">
+                  <input type="checkbox" id="checkbox" />
+                  <label for="checkbox"></label>
+                </div>
+              </div>
+
             </div>
 
             <div className="mb-60">
