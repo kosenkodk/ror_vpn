@@ -359,7 +359,7 @@ class AccountPage extends React.Component {
               */}
             </div>
 
-            <div className="mb-60">
+            <div className="mb-60 email_subscriptions">
               <h1 id="delete">Email subscriptions</h1>
               <InfoBlock>
                 <p>
@@ -375,28 +375,21 @@ class AccountPage extends React.Component {
                   { title: 'Vega newsletter (5-6 per year)' },
                   { title: 'Vega Beta (10-12 per year)' },
                 ].map((item, index) =>
-                  <div class="form-check" key={`email_subscription${index}`}>
-                    <input class="form-check-input" type="checkbox" value="" id={`emailSubscriptionCheck${index}`} />
-                    <label class="form-check-label" for={`emailSubscriptionCheck${index}`}>
+                  <div className="mt-10 row align-items-center" key={`emailSubscriptionCheck${index}`}>
+                    <div className="col-auto">
+                      <div className="round">
+                        <input type="checkbox" id={`emailSubscriptionCheck${index}`} />
+                        <label htmlFor={`emailSubscriptionCheck${index}`}></label>
+                      </div>
+                    </div>
+                    <div className="col">
                       {item.title}
-                    </label>
+                    </div>
                   </div>
                 )}
               </form>
 
-              {/* <div className="container"> */}
-              <div className="row">
-                <div className="col-auto">
-                  <div className="round">
-                    <input type="checkbox" id="checkbox" />
-                    <label for="checkbox"></label>
-                  </div>
-                </div>
-                <div className="col">
-                  Major announcements (2-3 per year)
-                </div>
-              </div>
-              {/* </div> */}
+
 
             </div>
 
