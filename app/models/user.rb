@@ -31,9 +31,9 @@ class User < ApplicationRecord
 
   before_save {|record| record.salt = SecureRandom.hex unless record.salt }
   after_create {|record| record.set_google_secret }
-  after_destroy_commit :vpn_user_destroy
+  after_destroy_commit :destroy_vpn_user
 
-  def vpn_user_destroy
+  def destroy_vpn_user
     VpnUser.where(vpn_login: self.email).destroy #destroy_all
   end
  
@@ -132,20 +132,18 @@ class User < ApplicationRecord
     self.reset_password_token_expires_at = nil
     save!
   end
-
+  
   def block_vpn_user
     vpnUsers = VpnUser.where(vpn_login: self.email)
     if vpnUsers.count > 0
-      vpnUser = vpnUsers.first
-      vpnUser.update(vpn_enabled: false)
+      vpnUsers.update(vpn_enabled: false)
     end
   end
 
   def enable_vpn_user
     vpnUsers = VpnUser.where(vpn_login: self.email)
     if vpnUsers.count > 0
-      vpnUser = vpnUsers.first
-      vpnUser.update(vpn_enabled: true)
+      vpnUsers.update(vpn_enabled: true)
     end
   end
 
