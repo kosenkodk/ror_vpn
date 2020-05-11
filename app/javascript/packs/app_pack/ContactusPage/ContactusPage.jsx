@@ -1,14 +1,11 @@
 import React from 'react';
 import { I18n } from 'helpers';
 import ContactusForm from './ContactusForm';
-import FlashMessages from '../_sections/FlashMessages';
+// import FlashMessages from '../_sections/FlashMessages';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
-// import imgAstronautSrc from 'images/coming_soon/astronaut';
-// import marsWithSpaceshipImage from 'images/coming_soon/mars_with_spaceship';
 import imgMarsSrc from 'images/coming_soon/mars';
-// import imgCompareSrc from 'images/compare/contactusForm';
 
 class ContactusPage extends React.Component {
   constructor(props) {
@@ -29,11 +26,6 @@ class ContactusPage extends React.Component {
     return (
       <div className="contact_us row">
         <div className="col">
-
-          {/* <div className="row">
-            <img src={imgCompareSrc} className="col img-fluid" />
-          </div> */}
-
           <div className="row text-left bg_astronaut_with_cometa" style={{ minHeight: this.props.height }}>
             <div className="offset-sm-3 col-sm-9 align-self-end">
               <h1 className="mb-3">
