@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       delete '/delete', to: 'account#delete'
       patch '/change_password', to: 'account#change_password'
       patch '/change_email', to: 'account#change_email'
-      patch '/change_email_subscriptions', to: 'account#change_email_subscriptions'
+      patch '/set_email_subscriptions', to: 'account#set_email_subscriptions'
       post '/cancel', to: 'account#cancel'
       
       # invite/refer friend

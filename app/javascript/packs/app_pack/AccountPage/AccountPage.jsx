@@ -104,10 +104,6 @@ class AccountPage extends React.Component {
       this.disable2FA(e);
   }
 
-  changeEmailSubscription(e) {
-    e.preventDefault();
-  }
-
   disable2FA(e) {
     e.preventDefault();
     this.props.dispatch(accountActions.disable2FA());
@@ -139,8 +135,23 @@ class AccountPage extends React.Component {
     this.props.dispatch(accountActions.enable2FA(data));
   }
 
+  changeEmailSubscription(e, id) {
+    e.preventDefault();
+    if (this.props.user && this.props.user.email_subscription_ids) {
+      let ids = []
+      if (e.target.checked) ids.push(id)
+      // if (e.target.checked)
+      //   ids = this.props.email_subscription_ids.filter(item => item !== id)
+      // else
+      // ids = this.props.user.email_subscription_ids.filter(item => item !== id)
+      // ids = ids.filter(item => e.target.checked && item === id)
+      console.log('changeEmailSubscription ids', e.target.checked, id, ids)
+      this.props.dispatch(accountActions.setEmailSubscriptionIds(ids));
+    }
+  }
+
   isEmailSubscriptionChecked(item) {
-    return this.props.email_subscription_ids && this.props.email_subscription_ids.length > 0 && this.props.email_subscription_ids.includes(item.id)
+    return this.props.user && this.props.user.email_subscription_ids && this.props.user.email_subscription_ids.length > 0 && this.props.user.email_subscription_ids.includes(item.id);
   }
 
   render() {
@@ -308,7 +319,7 @@ class AccountPage extends React.Component {
                     <div className="col-auto">
                       <div className="round">
                         <input type="checkbox" id={`email_subscriptions${index}`}
-                          onChange={(e) => this.changeEmailSubscription(e)}
+                          onChange={(e) => this.changeEmailSubscription(e, item.id)}
                           checked={this.isEmailSubscriptionChecked(item)}
                         />
                         <label htmlFor={`email_subscriptions${index}`}></label>

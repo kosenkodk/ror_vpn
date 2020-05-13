@@ -26,6 +26,7 @@ export const userService = {
   getCountries,
   getDepartments,
   getEmailSubscriptions,
+  setEmailSubscriptionIds,
   readAllNotifications,
   getNotifications,
   contactUs,
@@ -357,6 +358,20 @@ function addPaymentMethod(data) {
   return fetch(`${config.apiUrl}/payment_methods`, requestOptions).then(handleResponse);
 }
 
+function setEmailSubscriptionIds(ids) {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/set_email_subscriptions`, 'PATCH', { ids: ids })
+
+  const requestOptions = {
+    method: 'PATCH',
+    credentials: credentials,
+    headers: authHeader(),
+    body: JSON.stringify({ ids: ids })
+  };
+
+  return fetch(`${config.apiUrl}/set_email_subscriptions`, requestOptions).then(handleResponse);
+}
+
 function deletePaymentMethodById(id) {
   if (autoRefreshToken)
     return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/payment_methods/${id}`, 'DELETE', { id: id })
@@ -369,7 +384,6 @@ function deletePaymentMethodById(id) {
   };
 
   return fetch(`${config.apiUrl}/payment_methods/${id}`, requestOptions).then(handleResponse);
-
 }
 
 function addTicket(ticket) {
