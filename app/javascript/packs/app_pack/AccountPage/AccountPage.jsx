@@ -302,11 +302,11 @@ class AccountPage extends React.Component {
                   { title: 'Vega newsletter (5-6 per year)' },
                   { title: 'Vega Beta (10-12 per year)' },
                 ].map((item, index) =>
-                  <div className="mt-10 row align-items-center" key={`emailSubscriptionCheck${index}`}>
+                  <div className="mt-10 row align-items-center" key={`email_subscriptions${index}`}>
                     <div className="col-auto">
                       <div className="round">
-                        <input type="checkbox" id={`emailSubscriptionCheck${index}`} />
-                        <label htmlFor={`emailSubscriptionCheck${index}`}></label>
+                        <input type="checkbox" id={`email_subscriptions${index}`} />
+                        <label htmlFor={`email_subscriptions${index}`}></label>
                       </div>
                     </div>
                     <div className="col">
