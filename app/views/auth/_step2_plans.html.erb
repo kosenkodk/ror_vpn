@@ -1,6 +1,0 @@
-<div class="plans card-deck mb-0 text-dark text-center">
-  <% items.each_with_index do |item, index| %>
-  <% active_image, active_class = get_img_and_class_by_active_item_index(index, @plan_active_index) %>
-  <%= render partial: 'auth/step2_plan_item.html.erb', locals: {item: item, image_name: active_image, active_class: active_class} %>
-  <% end %>
-</div>
