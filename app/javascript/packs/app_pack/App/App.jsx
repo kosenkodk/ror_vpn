@@ -121,6 +121,7 @@ class App extends React.Component {
   componentDidMount() {
     smoothscroll.polyfill(); // native smooth scrolling
     this.props.dispatch(globalActions.getDepartments())
+    this.props.dispatch(globalActions.getEmailSubscriptions())
     this.props.dispatch(bgClassActions.set('bg1', 'bg1'))
     this.isFooterVisible()
     this.createNotifier()

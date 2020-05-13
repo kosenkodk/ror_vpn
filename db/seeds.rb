@@ -490,6 +490,7 @@ puts "\nEmail subscriptions\n\n"
   { title: 'Vega newsletter (5-6 per year)' },
   { title: 'Vega Beta (10-12 per year)' },
 ].each do |params|
-  item = EmailSubscription.find_or_create_by(params)
-  User.all.map { |user| item.update(user: user) }
+  User.all.each do |user|
+    item = EmailSubscription.find_or_create_by(title: params[:title], user: user)
+  end
 end

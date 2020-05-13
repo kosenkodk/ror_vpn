@@ -104,6 +104,10 @@ class AccountPage extends React.Component {
       this.disable2FA(e);
   }
 
+  changeEmailSubscription(e) {
+    e.preventDefault();
+  }
+
   disable2FA(e) {
     e.preventDefault();
     this.props.dispatch(accountActions.disable2FA());
@@ -135,8 +139,14 @@ class AccountPage extends React.Component {
     this.props.dispatch(accountActions.enable2FA(data));
   }
 
+
+  isEmailSubscriptionChecked(item) {
+    // this.props.email_subscriptions.reduce(email_subscription => email_subscription.id === item.id)
+    return true
+  }
+
   render() {
-    const { loggingIn, user, qr_code_url, step } = this.props;
+    const { email_subscriptions, loggingIn, user, qr_code_url, step } = this.props;
     return (
       <div className="container-fluid account">
         <div className="row">
@@ -295,17 +305,14 @@ class AccountPage extends React.Component {
               </InfoBlock>
 
               <form className="">
-                {[
-                  { title: 'Major announcements (2-3 per year)' },
-                  { title: 'Major features (3-4 per year)' },
-                  { title: 'Vega for business (4-5 per year)' },
-                  { title: 'Vega newsletter (5-6 per year)' },
-                  { title: 'Vega Beta (10-12 per year)' },
-                ].map((item, index) =>
+                {user.email_subscriptions.length > 0 && user.email_subscriptions.map((item, index) =>
                   <div className="mt-10 row align-items-center" key={`email_subscriptions${index}`}>
                     <div className="col-auto">
                       <div className="round">
-                        <input type="checkbox" id={`email_subscriptions${index}`} />
+                        <input type="checkbox" id={`email_subscriptions${index}`}
+                          onChange={(e) => this.changeEmailSubscription(e)}
+                          checked={this.isEmailSubscriptionChecked(item)}
+                        />
                         <label htmlFor={`email_subscriptions${index}`}></label>
                       </div>
                     </div>
@@ -338,11 +345,11 @@ class AccountPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { step } = state.global;
+  const { step, email_subscriptions } = state.global;
   const { qr_code_url } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, qr_code_url, step,
+    loggingIn, user, qr_code_url, step, email_subscriptions
   };
 }
 
