@@ -16,7 +16,8 @@ class User < ApplicationRecord
   has_many :payment_methods, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :messages, as: :messageable, dependent: :destroy
-
+  has_many :email_subscriptions, dependent: :destroy
+  
   belongs_to :payment_method, required: false, optional: true #, inverse_of: :user
   belongs_to :tariff_plan, required: false, optional: true #, inverse_of: :user
   belongs_to :cancel_reason, required: false, optional: true #, inverse_of: :user

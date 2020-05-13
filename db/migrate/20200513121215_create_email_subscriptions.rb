@@ -4,6 +4,7 @@ class CreateEmailSubscriptions < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :text
       t.integer :interval
+      t.belongs_to :user
 
       t.timestamps
     end
