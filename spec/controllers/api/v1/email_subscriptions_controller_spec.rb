@@ -10,11 +10,12 @@ RSpec.describe Api::V1::EmailSubscriptionsController, type: :controller do
     it 'returns a success response' do
       get :index
       expect(response).to be_successful
-      expect(response_json.size).to eq 1
-      expect(response_json.first.values).to include(email_subscription.title)
-      expect(response_json.first.keys).to include('title')
-      expect(response_json.first.keys).to include('text')
-      expect(response_json.first.keys).to include('user_id')
+      expect(response_json.keys).to eq(['email_subscriptions', 'email_subscription_ids'])
+      expect(response_json['email_subscriptions'].size).to eq 1
+      expect(response_json['email_subscriptions'].first.values).to include(email_subscription.title)
+      expect(response_json['email_subscriptions'].first.keys).to include('title')
+      expect(response_json['email_subscriptions'].first.keys).to include('text')
+      expect(response_json['email_subscriptions'].first.keys).to include('user_id')
     end
 
     it 'unauth without cookie' do

@@ -39,8 +39,8 @@ function getEmailSubscriptions() {
       )
   }
 
-  function request(email_subscriptions) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_REQUEST, email_subscriptions } }
-  function success(email_subscriptions) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_SUCCESS, email_subscriptions } }
+  function request(response) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_REQUEST, response } }
+  function success(response) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_SUCCESS, response } }
   function failure(error) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_FAILURE, error } }
 }
 

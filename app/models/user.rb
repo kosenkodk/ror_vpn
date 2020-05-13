@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :payment_methods, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :messages, as: :messageable, dependent: :destroy
-  has_many :email_subscriptions, dependent: :destroy
+  has_many :email_subscriptions#, dependent: :destroy
 
   belongs_to :payment_method, required: false, optional: true #, inverse_of: :user
   belongs_to :tariff_plan, required: false, optional: true #, inverse_of: :user
@@ -71,7 +71,9 @@ class User < ApplicationRecord
   end
 
   def attributes
-    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, email_subscriptions: email_subscriptions, payment_methods: payment_methods, expired_at: expired_at, expired_at_humanize: expired_at_humanize, expired_at_int: expired_at_int, is_plan_free: is_plan_free }
+    { id: id, email: email, role: role, is2fa: is2fa, tariff_plan: tariff_plan, cancel_account_reason_text: cancel_account_reason_text, 
+    email_subscription_ids: email_subscription_ids, email_subscriptions: email_subscriptions,
+    payment_methods: payment_methods, expired_at: expired_at, expired_at_humanize: expired_at_humanize, expired_at_int: expired_at_int, is_plan_free: is_plan_free }
   end
   
   def prolongate_on duration_time

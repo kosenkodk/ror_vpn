@@ -139,10 +139,8 @@ class AccountPage extends React.Component {
     this.props.dispatch(accountActions.enable2FA(data));
   }
 
-
   isEmailSubscriptionChecked(item) {
-    // this.props.email_subscriptions.reduce(email_subscription => email_subscription.id === item.id)
-    return true
+    return this.props.email_subscription_ids && this.props.email_subscription_ids.length > 0 && this.props.email_subscription_ids.includes(item.id)
   }
 
   render() {
@@ -305,7 +303,7 @@ class AccountPage extends React.Component {
               </InfoBlock>
 
               <form className="">
-                {user.email_subscriptions.length > 0 && user.email_subscriptions.map((item, index) =>
+                {email_subscriptions && email_subscriptions.length > 0 && email_subscriptions.map((item, index) =>
                   <div className="mt-10 row align-items-center" key={`email_subscriptions${index}`}>
                     <div className="col-auto">
                       <div className="round">
@@ -345,11 +343,12 @@ class AccountPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { step, email_subscriptions } = state.global;
+  const { step, email_subscriptions, email_subscription_ids } = state.global;
   const { qr_code_url } = state.account;
   const { loggingIn, user } = state.authentication;
   return {
-    loggingIn, user, qr_code_url, step, email_subscriptions
+    loggingIn, user, qr_code_url, step,
+    email_subscriptions, email_subscription_ids,
   };
 }
 

@@ -6,12 +6,14 @@ export function global(state = {}, action) {
     case globalConstants.GET_EMAIL_SUBSCRIPTIONS_REQUEST:
       return {
         ...state,
-        email_subscriptions: action.email_subscriptions
+        email_subscriptions: action.response && action.response.email_subscriptions,
+        email_subscription_ids: action.response && action.response.email_subscription_ids,
       };
     case globalConstants.GET_EMAIL_SUBSCRIPTIONS_SUCCESS:
       return {
         ...state,
-        email_subscriptions: action.email_subscriptions
+        email_subscriptions: action.response && action.response.email_subscriptions,
+        email_subscription_ids: action.response && action.response.email_subscription_ids,
       };
     case globalConstants.GET_EMAIL_SUBSCRIPTIONS_FAILURE:
       return {
