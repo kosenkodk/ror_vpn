@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :feature, js: true do
+RSpec.describe 'HomeController', type: :feature, js: true do
   describe 'Pricing Page' do
     
     let!(:plan) { FactoryBot.create :tariff_plan, title: 'Plan for 1 year', price: 1.00 }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :feature, js: true do
+RSpec.describe 'HomeController', type: :feature, js: true do
   let!(:feature) { FactoryBot.create(:feature, title: 'Feature1Title', subtitle: 'Feature1Subtitle', text: 'Feature1Text') }
 
   before(:each) do

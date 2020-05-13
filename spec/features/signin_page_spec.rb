@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AuthController, type: :feature, js: true do
+RSpec.describe 'AuthController', type: :feature, js: true do
   let(:email) {'email@example.com'}
   let(:email_invalid) {'invalid@example.com'}
   let(:password) {'password'}
