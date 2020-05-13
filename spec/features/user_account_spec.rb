@@ -16,6 +16,24 @@ RSpec.describe 'User Account', type: :feature, js: true do
     visit '/user/account'
   }
 
+  describe 'Email Subscriptions' do
+    let!(:email_subscription) { create(:email_subscription) }
+    let!(:email_subscription2) { create(:email_subscription) }
+    context 'check' do
+      it do
+        checkbox1 = "email_subscriptions#{email_subscription.id}"
+        check(checkbox1, allow_label_click: true, visible: :all)
+        expect(page).to have_field(checkbox1, visible: :all, checked: true)
+
+        visit '/user/dashboard'
+        visit '/user/account'
+
+        check(checkbox1, allow_label_click: true, visible: :all)
+        expect(page).to have_field(checkbox1, visible: :all, checked: true)
+      end
+    end
+  end
+
   describe '2FA Setup' do
     describe 'enable 2fa in admin panel' do
       let(:totp) { ROTP::TOTP.new(user.google_secret) }
