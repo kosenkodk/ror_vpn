@@ -58,6 +58,36 @@ RSpec.describe Api::V1::AccountController, type: :controller do
     end
   end
 
+  describe 'change email subscription' do
+    let!(:email_subscription) { create(:email_subscription) }
+    let(:valid_params) {{email_subscription_ids: [email_subscription.id]}}
+    
+    context 'success' do
+      before {
+        request.cookies[JWTSessions.access_cookie] = access_cookie
+        request.headers[JWTSessions.csrf_header] = csrf_token
+      }
+
+      it 'with valid params' do
+        patch :change_email_subscriptions, params: valid_params
+        expect(response_json['notice']).to eq(I18n.t('pages.account.change_email_subscription.success'))
+        expect(response_json.keys).to eq(['user', 'notice'])
+        expect(response).to have_http_status(:success)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+    end
+
+    context 'failure for unauth user' do
+      it 'with valid params' do
+        patch :change_email_subscriptions, params: valid_params
+        expect(response_json.keys).to eq(['error'])
+        expect(response_json['error']).to eq('Unauthorized')
+        expect(response).to have_http_status(401)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+    end
+  end
+  
   describe 'change email' do
     let(:email) { 'new@email.com' }
     let(:email_params_valid) { { email: email, password: password } }
