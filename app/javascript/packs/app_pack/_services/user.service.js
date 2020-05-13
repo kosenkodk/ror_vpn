@@ -25,6 +25,7 @@ export const userService = {
   getAppClients,
   getCountries,
   getDepartments,
+  getEmailSubscriptions,
   readAllNotifications,
   getNotifications,
   contactUs,
@@ -499,6 +500,18 @@ function getNotifications(params) {
     headers: authHeader()
   }
   return fetch(`${config.apiUrl}/notifications?${params}`, requestOptions).then(handleResponse);
+}
+
+function getEmailSubscriptions() {
+  if (autoRefreshToken)
+    return sendRequestAndRetryByUrlMethodData(`${config.apiUrl}/email_subscriptions`, 'GET', {})
+
+  const requestOptions = {
+    method: 'GET',
+    credentials: credentials,
+    headers: authHeader()
+  }
+  return fetch(`${config.apiUrl}/email_subscriptions`, requestOptions).then(handleResponse);
 }
 
 function getDepartments() {

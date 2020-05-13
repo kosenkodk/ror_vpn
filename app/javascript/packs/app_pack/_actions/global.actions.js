@@ -5,6 +5,7 @@ import { globalConstants } from '../_constants';
 import { prepareAttachmentForJsonApi, prepareAttachmentForJsonApiAsync } from '../_helpers';
 
 export const globalActions = {
+  getEmailSubscriptions,
   getCountries,
   getDepartments,
   getPlans,
@@ -19,6 +20,28 @@ export const globalActions = {
   getReferLink,
   getConfigs,
   getAppClients,
+}
+
+
+function getEmailSubscriptions() {
+  return dispatch => {
+    dispatch(request(JSON.parse(localStorage.getItem('email_subscriptions'))))
+    userService.getEmailSubscriptions()
+      .then(
+        response => {
+          localStorage.setItem('email_subscriptions', JSON.stringify(response))
+          dispatch(success(response))
+        },
+        error => {
+          // dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+
+  function request(email_subscriptions) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_REQUEST, email_subscriptions } }
+  function success(email_subscriptions) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_SUCCESS, email_subscriptions } }
+  function failure(error) { return { type: globalConstants.GET_EMAIL_SUBSCRIPTIONS_FAILURE, error } }
 }
 
 
