@@ -14,6 +14,7 @@ RSpec.describe Api::V1::EmailSubscriptionsController, type: :controller do
       expect(response_json.first.values).to include(email_subscription.title)
       expect(response_json.first.keys).to include('title')
       expect(response_json.first.keys).to include('text')
+      expect(response_json.first.keys).to include('user_id')
     end
 
     it 'unauth without cookie' do

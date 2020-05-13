@@ -5,8 +5,6 @@ import { Setup2faStep3Form, DeleteForm, ChangePasswordForm, ChangeEmailForm, Can
 import { accountActions, globalActions } from '../_actions';
 import { FormDataAsJsonFromEvent } from '../_helpers';
 import { I18n } from 'helpers';
-// import { ModalPopup } from '../_components';
-// import Modal from 'react-bootstrap/Modal';
 import { ModalPopupForm } from '../_components/ModalPopupForm';
 import { InfoBlock } from '../_components/admin';
 
@@ -30,7 +28,6 @@ class AccountPage extends React.Component {
     this.setup2faStep2 = this.setup2faStep2.bind(this);
     this.setup2faStep3 = this.setup2faStep3.bind(this);
     this.setup2faStep4 = this.setup2faStep4.bind(this);
-    // this.set2faStep = this.set2faStep.bind(this);
   }
 
   set2faStep(e, step) {
@@ -87,7 +84,7 @@ class AccountPage extends React.Component {
     this.props.dispatch(accountActions.deleteAccount(data));
   }
 
-  clearModalAlerts(e) { // clearModalAlerts = (e) => {
+  clearModalAlerts(e) {
     if (e) e.preventDefault();
     this.props.dispatch(globalActions.setModalShow(false));
     this.props.dispatch(accountActions.clearAlerts());
@@ -136,27 +133,6 @@ class AccountPage extends React.Component {
     // sent password and 2fa code to remote api
     const data = FormDataAsJsonFromEvent(e);
     this.props.dispatch(accountActions.enable2FA(data));
-  }
-
-  componentDidMount() {
-    // this.getUser();
-  }
-
-  UNSAFE_componentWillUpdate() {
-    // this.getUser();
-  }
-
-  getUser() {
-    try {
-      const itemFromLocalStorage = JSON.parse(localStorage.getItem('user'));
-      this.setState({ user: itemFromLocalStorage });
-      // console.log('getUser()', itemFromLocalStorage);
-    } catch (e) {
-      // console.log(e);
-    }
-  }
-
-  componentDidUpdate() {
   }
 
   render() {
@@ -224,7 +200,6 @@ class AccountPage extends React.Component {
                     <input type="checkbox" className="custom-control-input" id="customSwitch2fa"
                       onChange={this.enable2FA}
                       checked={user && user.is2fa}
-                    // checked={(user && user.is2fa) || this.state.is2faEnabled}
                     />
                     <label className="custom-control-label" htmlFor="customSwitch2fa"></label>
                   </div>
@@ -269,54 +244,6 @@ class AccountPage extends React.Component {
                 }
 
               </ModalPopupForm>
-
-              {/* multiple modal popups */}
-              {/* <ModalPopupForm onClose={this.clearModalAlerts}
-                id='setup2faStep1'
-                isHideBtn={true}
-                onBtnSave={this.setup2faStep2}
-                title='Set up two-factor authentication'
-                btnCloseText={I18n.t('buttons.cancel')}
-                btnSaveText={I18n.t('buttons.next')}
-                btnClasses={''}>
-                <p className="mt-0 mb-2">This wizard will enable Two Factor Authentication (2FA) on your Vega account. 2FA will make your Vega account more secure so we recommend enabling it.</p>
-                <InfoBlock>
-                  <p className="mt-0 mb-2">
-                    If you have never used 2FA before, we strongly recommend you &nbsp;
-                    <Link to="#" className="mt-1 text-blue">reading our 2FA Guide first.</Link>
-                  </p>
-                </InfoBlock>
-              </ModalPopupForm> */}
-
-              {/* <ModalPopupForm onClose={this.clearModalAlerts}
-                id='setup2faStep2'
-                isHideBtn={true}
-                onBtnSave={this.setup2faStep3}
-                title='Set up two-factor authentication'
-                btnCloseText={I18n.t('buttons.cancel')}
-                btnSaveText={I18n.t('buttons.next')}
-                btnClasses={''}>
-
-                <InfoBlock>
-                  <p className="mt-0 mb-2">
-                    Scan this code with your two-factor authentication device to set up your account.&nbsp;
-                    <Link to="#" className="mt-1 text-blue">Enter key manually instead.</Link>
-                  </p>
-                </InfoBlock>
-                <div className="text-center">
-                  <img src={qr_code_url} className="img-fluid w-45" />
-                </div>
-              </ModalPopupForm> */}
-
-              {/* <ModalPopupForm onClose={this.clearModalAlerts}
-                id='setup2faStep3'
-                isForm={true}
-                isHideBtn={true}
-                onBtnSave={this.setup2faStep4}
-                title='Set up two-factor authentication'
-                btnClasses={''}>
-                <Setup2faStep3Form onModalCancel={this.setup2faStep2} onFormSubmit={this.setup2faStep4} />
-              </ModalPopupForm> */}
             </div>
           </div>
           <div className="col-lg-8">
