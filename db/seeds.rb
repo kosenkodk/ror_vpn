@@ -491,6 +491,9 @@ puts "\nEmail subscriptions\n\n"
   { title: 'Vega Beta (10-12 per year)' },
 ].each do |params|
   User.all.each do |user|
-    item = EmailSubscription.find_or_create_by(title: params[:title], user: user)
+    item = EmailSubscription.find_or_create_by(title: params[:title])
+    puts "#{user.email}: #{item.title}"
+    user.email_subscriptions << item
+    user.save
   end
 end

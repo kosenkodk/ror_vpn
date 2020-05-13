@@ -8,6 +8,6 @@ RSpec.describe EmailSubscription, type: :model do
     user.email_subscriptions << email_subscription
     expect(user.email_subscriptions.count).to eq(1)
     expect(user.email_subscriptions).to include(email_subscription)
-    expect(email_subscription.user).to eq(user)
+    expect(email_subscription.users).to include(user)
   end
 end
