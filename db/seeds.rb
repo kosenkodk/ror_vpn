@@ -480,3 +480,16 @@ puts "\nApp Clients\n\n"
   path_to_file_light = Rails.root.join('app', 'assets', 'images', 'icons', 'app_clients', 'light2', 'svg', filename)
   item.icon_light.attach(io: File.open(path_to_file_light), filename: filename)
 end
+
+
+puts "\nEmail subscriptions\n\n"
+[
+  { title: 'Major announcements (2-3 per year)' },
+  { title: 'Major features (3-4 per year)' },
+  { title: 'Vega for business (4-5 per year)' },
+  { title: 'Vega newsletter (5-6 per year)' },
+  { title: 'Vega Beta (10-12 per year)' },
+].each do |params|
+  item = EmailSubscription.find_or_create_by(params)
+  User.all.map { |user| item.update(user: user) }
+end

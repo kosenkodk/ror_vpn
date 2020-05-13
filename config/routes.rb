@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :email_subscriptions, only: [:index]
       resources :app_clients, only: [:index]
       resources :configs, only: [:show, :index]
 
