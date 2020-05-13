@@ -227,6 +227,9 @@ en:
         error: "Error. Can't change email"
         errors:
           email_invalid: "Email is invalid"
+      change_email_subscription:
+        success: "Your email subscription has been changed successfully"
+        error: "Error. Can't change email subscription"
       change_password:
         title: "Change login password"
         button: "Change login password"
