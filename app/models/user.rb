@@ -16,8 +16,6 @@ class User < ApplicationRecord
   has_many :payment_methods, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :messages, as: :messageable, dependent: :destroy
-  # has_many :email_subscriptions#, dependent: :destroy
-  # has_and_belongs_to_many :email_subscriptions
   
   has_many :users_email_subscriptions
   has_many :email_subscriptions, through: :users_email_subscriptions
