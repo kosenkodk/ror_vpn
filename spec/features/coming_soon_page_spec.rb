@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ErrorsController, type: :feature, js: true do
+RSpec.describe 'ErrorsController', type: :feature, js: true do
   describe 'Get Coming Soon Page' do
     it 'renders coming_soon template' do
       visit('/coming_soon')

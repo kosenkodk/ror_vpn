@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AuthController, type: :feature, js: true do
+RSpec.describe 'AuthController', type: :feature, js: true do
 
   describe 'GET :login' do
     before do 
