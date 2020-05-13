@@ -14,7 +14,8 @@ export const accountActions = {
   clearAlerts,
   getQrCodeUrl,
   enable2FA,
-  disable2FA
+  disable2FA,
+  setEmailSubscriptionIds,
 }
 
 function enable2FA(data) {
@@ -159,6 +160,27 @@ function changePlan(data) {
   function request() { return { type: accountConstants.CHANGE_PLAN_REQUEST } }
   function success(notice) { return { type: accountConstants.CHANGE_PLAN_SUCCESS, notice } }
   function failure(error) { return { type: accountConstants.CHANGE_PLAN_FAILURE, error } }
+}
+
+function setEmailSubscriptionIds(ids) {
+  return dispatch => {
+    dispatch(request())
+    userService.setEmailSubscriptionIds(ids)
+      .then(
+        response => {
+          dispatch(alertActions.success(response.notice))
+          dispatch(success(response.notice))
+          dispatch(userActions.setUser(response.user))
+        },
+        error => {
+          dispatch(failure(error))
+          dispatch(alertActions.error(error))
+        }
+      )
+  }
+  function request() { return { type: accountConstants.SET_EMAIL_SUBSCRIPTION_REQUEST } }
+  function success(notice) { return { type: accountConstants.SET_EMAIL_SUBSCRIPTION_SUCCESS, notice } }
+  function failure(error) { return { type: accountConstants.SET_EMAIL_SUBSCRIPTION_FAILURE, error } }
 }
 
 function changeEmail(data) {

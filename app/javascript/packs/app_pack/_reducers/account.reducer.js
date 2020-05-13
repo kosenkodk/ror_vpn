@@ -16,6 +16,19 @@ export function account(state = {}, action) {
       return {
         error: action.error,
       }
+    case accountConstants.SET_EMAIL_SUBSCRIPTION_REQUEST:
+      return {
+        loading: true
+      };
+    case accountConstants.SET_EMAIL_SUBSCRIPTION_SUCCESS:
+      return {
+        notice: action.notice,
+        // user: action.user
+      }
+    case accountConstants.SET_EMAIL_SUBSCRIPTION_FAILURE:
+      return {
+        error: action.error
+      }
     case accountConstants.UPDATE_EMAIL_REQUEST:
       return {
         loading: true,

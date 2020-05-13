@@ -1,6 +1,6 @@
 class Api::V1::AccountController < Api::V1::ApiController
   before_action :authorize_access_request!
-  before_action :find_user, only: [:change_password, :change_email, :change_email_subscriptions, :delete, :cancel]
+  before_action :find_user, only: [:change_password, :change_email, :set_email_subscriptions, :delete, :cancel]
   KEYS = [:password, :password_confirmation, :password_old].freeze
   EMAIL_KEYS = [:email].freeze
 
@@ -64,8 +64,8 @@ class Api::V1::AccountController < Api::V1::ApiController
     end
   end
 
-  def change_email_subscriptions
-    if @user.update(email_subscription_ids: params[:email_subscription_ids].to_a)
+  def set_email_subscriptions
+    if @user.update(email_subscription_ids: params[:ids].to_a)
       render json: { user: @user, notice: I18n.t('pages.account.change_email_subscription.success') }
     else
       render json: { user: @user, error: I18n.t('pages.account.change_email_subscription.error') }

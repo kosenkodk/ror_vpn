@@ -69,7 +69,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
       }
 
       it 'with valid params' do
-        patch :change_email_subscriptions, params: valid_params
+        patch :set_email_subscriptions, params: valid_params
         expect(response_json['notice']).to eq(I18n.t('pages.account.change_email_subscription.success'))
         expect(response_json.keys).to eq(['user', 'notice'])
         expect(response).to have_http_status(:success)
@@ -79,7 +79,7 @@ RSpec.describe Api::V1::AccountController, type: :controller do
 
     context 'failure for unauth user' do
       it 'with valid params' do
-        patch :change_email_subscriptions, params: valid_params
+        patch :set_email_subscriptions, params: valid_params
         expect(response_json.keys).to eq(['error'])
         expect(response_json['error']).to eq('Unauthorized')
         expect(response).to have_http_status(401)
