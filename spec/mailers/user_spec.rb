@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe UserMailer, type: :mailer do
   include Rails.application.routes.url_helpers
 
-  let(:user) {create(:user)}
+  let(:user) { create(:user) }
   let(:invoice) { create(:invoice, user: user) }
 
   context 'notify user with a new invoice' do

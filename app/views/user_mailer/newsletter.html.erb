@@ -1,0 +1,7 @@
+<%#=@email_subscription.try(:title)#%>
+<%=@email.try(:title)%>
+<br />
+<br />
+<%=@email.try(:text).try(:html_safe)%>
+<br />
+<br />

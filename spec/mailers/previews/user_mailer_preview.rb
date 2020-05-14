@@ -20,4 +20,11 @@ class UserMailerPreview < ActionMailer::Preview
     @invoice = Invoice.new(no: '123', user: @user)
     UserMailer.invoice(@user, @invoice).deliver_now
   end
+
+  def newsletter
+    @user = FactoryBot.build(:user)
+    @email = FactoryBot.build(:email, title: 'newsletter title', text: 'newsletter text<br/>newsletter text')
+    @email_subscription = FactoryBot.build(:email_subscription)
+    UserMailer.newsletter(@user, @email, @email_subscription).deliver_now
+  end
 end
