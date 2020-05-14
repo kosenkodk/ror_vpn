@@ -30,6 +30,10 @@ class AccountPage extends React.Component {
     this.setup2faStep4 = this.setup2faStep4.bind(this);
   }
 
+  componentDidMount() {
+    this.props.dispatch(globalActions.getEmailSubscriptions())
+  }
+
   set2faStep(e, step) {
     e.preventDefault()
     this.props.dispatch(globalActions.setStep(step));
@@ -145,8 +149,6 @@ class AccountPage extends React.Component {
       // remove from ids
       ids = this.props.user.email_subscription_ids.filter(item => item !== id)
     }
-
-    // console.log('changeEmailSubscription ids', e.target.checked, id, ids);
     this.props.dispatch(accountActions.setEmailSubscriptionIds(ids));
   }
 
