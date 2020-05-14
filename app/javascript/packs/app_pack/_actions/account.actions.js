@@ -168,7 +168,7 @@ function setEmailSubscriptionIds(ids) {
     userService.setEmailSubscriptionIds(ids)
       .then(
         response => {
-          dispatch(alertActions.success(response.notice))
+          // dispatch(alertActions.success(response.notice))
           dispatch(success(response.notice))
           dispatch(userActions.setUser(response.user))
         },
