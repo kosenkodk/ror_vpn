@@ -137,17 +137,17 @@ class AccountPage extends React.Component {
 
   changeEmailSubscription(e, id) {
     e.preventDefault();
-    if (this.props.user && this.props.user.email_subscription_ids) {
-      let ids = []
-      if (e.target.checked) ids.push(id)
-      // if (e.target.checked)
-      //   ids = this.props.email_subscription_ids.filter(item => item !== id)
-      // else
-      // ids = this.props.user.email_subscription_ids.filter(item => item !== id)
-      // ids = ids.filter(item => e.target.checked && item === id)
-      console.log('changeEmailSubscription ids', e.target.checked, id, ids)
-      this.props.dispatch(accountActions.setEmailSubscriptionIds(ids));
+    let ids = []
+    if (e.target.checked) {
+      // add to ids
+      ids = [...this.props.user.email_subscription_ids, id]
+    } else {
+      // remove from ids
+      ids = this.props.user.email_subscription_ids.filter(item => item !== id)
     }
+
+    // console.log('changeEmailSubscription ids', e.target.checked, id, ids);
+    this.props.dispatch(accountActions.setEmailSubscriptionIds(ids));
   }
 
   isEmailSubscriptionChecked(item) {
