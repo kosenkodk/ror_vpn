@@ -3,6 +3,7 @@ import { userService } from '../_services';
 import { alertActions } from './';
 import { globalConstants } from '../_constants';
 import { prepareAttachmentForJsonApi, prepareAttachmentForJsonApiAsync } from '../_helpers';
+import { userActions } from './user.actions';
 
 export const globalActions = {
   getEmailSubscriptions,
@@ -31,6 +32,7 @@ function getEmailSubscriptions() {
         response => {
           localStorage.setItem('email_subscriptions', JSON.stringify(response))
           dispatch(success(response))
+          dispatch(userActions.setUser(response.user))
         },
         error => {
           // dispatch(failure(error))
