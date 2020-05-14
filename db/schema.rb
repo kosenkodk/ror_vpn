@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_175710) do
+ActiveRecord::Schema.define(version: 2020_05_14_172816) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -115,6 +115,16 @@ ActiveRecord::Schema.define(version: 2020_05_13_175710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "emails", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.boolean "is_published"
+    t.integer "email_subscription_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email_subscription_id"], name: "index_emails_on_email_subscription_id"
+  end
+
   create_table "features", force: :cascade do |t|
     t.integer "order"
     t.string "title"
@@ -153,6 +163,16 @@ ActiveRecord::Schema.define(version: 2020_05_13_175710) do
     t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id"
     t.index ["ticket_id"], name: "index_messages_on_ticket_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.boolean "is_published"
+    t.integer "email_subscription_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email_subscription_id"], name: "index_newsletters_on_email_subscription_id"
   end
 
   create_table "payment_groups", force: :cascade do |t|
