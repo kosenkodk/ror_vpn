@@ -16,4 +16,10 @@ class UserMailer < ApplicationMailer
     @invoice = invoice
     make_bootstrap_mail(to: @user.email, subject: "[Vega VPN] Invoice ##{@invoice.no} notification")
   end
+  def newsletter(user, email, email_subscription)
+    @user = user
+    @email = email
+    @email_subscription = email_subscription
+    make_bootstrap_mail(to: @user.email, subject: "[Vega VPN] #{@email.title}")
+  end
 end
