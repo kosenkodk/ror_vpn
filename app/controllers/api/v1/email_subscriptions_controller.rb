@@ -3,7 +3,7 @@ class Api::V1::EmailSubscriptionsController < ApplicationController
 
   def index
     items = EmailSubscription.all
-    render json: { email_subscriptions: items, email_subscription_ids: items.ids  }
+    render json: { email_subscriptions: items, email_subscription_ids: items.ids, user: current_user  }
   end
 
 end
