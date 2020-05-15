@@ -8,7 +8,7 @@ class Email < ApplicationRecord
       puts "email title: #{email.title} users count: #{email_subscription.users.count}"
       email_subscription.users.each do |user|
         puts "email send to user: #{user.email}"
-        UserMailer.newsletter(user, email, email_subscription)
+        UserMailer.newsletter(user, email, email_subscription).deliver_now
       end
     end
   end
