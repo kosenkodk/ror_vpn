@@ -49,7 +49,7 @@ function getEmailSubscriptions() {
 
 function getAppClients() {
   return dispatch => {
-    dispatch(request(JSON.parse(localStorage.getItem('apps'))))
+    dispatch(request(JSON.parse(localStorage.getItem('app_clients'))))
     userService.getAppClients()
       .then(
         response => {
