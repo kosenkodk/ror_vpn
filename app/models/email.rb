@@ -4,11 +4,11 @@ class Email < ApplicationRecord
   belongs_to :email_subscription, optional: true
 
   def send_newsletter_to_users
-    email_subscription.emails.where(is_published: true).each do |email|
-      puts "email title: #{email.title} users count: #{email_subscription.users.count}"
+    if self.is_published
+      puts "email title: #{title} users count: #{email_subscription.users.count}"
       email_subscription.users.each do |user|
         puts "email send to user: #{user.email}"
-        UserMailer.newsletter(user, email, email_subscription).deliver_now
+        UserMailer.newsletter(user, self, email_subscription).deliver_now
       end
     end
   end
