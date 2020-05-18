@@ -165,16 +165,6 @@ ActiveRecord::Schema.define(version: 2020_05_14_172816) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "newsletters", force: :cascade do |t|
-    t.string "title"
-    t.text "text"
-    t.boolean "is_published"
-    t.integer "email_subscription_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email_subscription_id"], name: "index_newsletters_on_email_subscription_id"
-  end
-
   create_table "payment_groups", force: :cascade do |t|
     t.string "title"
     t.integer "order"
