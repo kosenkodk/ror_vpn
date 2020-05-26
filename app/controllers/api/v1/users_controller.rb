@@ -13,6 +13,7 @@ class Api::V1::UsersController < Api::V1::ApiController
       if !plan.is_free
         current_user.prolongate_on(1.month)
         current_user.check_refer_bonus
+        current_user.enable_vpn_user
       end
       if current_user.save
         render json: { notice: I18n.t('pages.dashboard.plans.change.success'), user: current_user }

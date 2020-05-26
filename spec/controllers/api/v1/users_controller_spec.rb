@@ -54,6 +54,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       post :change_plan, params: {plan_id: plan_free.id}
       user.reload
       expect(user.tariff_plan).to eq(plan_free)
+      expect(VpnUser.find_by(vpn_email: user.email).vpn_enabled).to eq(true)
     end
 
     describe 'of user with expired subscription' do
