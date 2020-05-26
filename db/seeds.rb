@@ -108,7 +108,7 @@ end
 
 
 def create_config country
-  vpn_host = "#{country.code}.vega.com.ovpn".downcase
+  vpn_host = "#{country.code}.#{ENV.fetch('OPENVPN_HOST', Rails.application.credentials.vpn_host)}.ovpn".downcase
   config = Config.find_or_create_by(title: country.name, vpn_host: vpn_host, country: country, tariff_plan: @plan_12mo)
   puts "- config created: #{config.title} #{config.vpn_host}\n"
 end
