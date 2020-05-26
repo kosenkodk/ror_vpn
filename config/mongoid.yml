@@ -161,7 +161,7 @@ production:
       database: 'vega_vpn'
       hosts:
         # - <%#=Rails.application.credentials.mongo_host#%>
-        - localhost:27017
+        - <%="#{Rails.application.credentials.vpn_host}:27017"%>
 test:
   clients:
     default:
