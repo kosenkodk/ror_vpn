@@ -167,7 +167,7 @@ class User < ApplicationRecord
             # UserMailer.invoice_reminder(user, invoice).deliver_now # todo: ? send reminder
             tariff_plan = TariffPlan.find_by(price: 0)
             user.update(tariff_plan: tariff_plan)
-            user.block_vpn_user
+            # user.block_vpn_user
           end
         else
           # new invoice
