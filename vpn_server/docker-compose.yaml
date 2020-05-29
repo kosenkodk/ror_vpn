@@ -46,9 +46,12 @@ services:
     env_file:
       - .env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME} 
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PWD} 
-
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME} 
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PWD} 
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+      MONGO_INITDB_USERNAME: $MONGO_USERNAME
+      MONGO_INITDB_PASSWORD: $MONGO_PWD
+  
   adminmongo:
     image: mrvautin/adminmongo
     ports:
