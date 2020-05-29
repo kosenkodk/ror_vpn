@@ -1,0 +1,9 @@
+[template]
+src   = "openvpn.conf"
+dest  = "/etc/openvpn/openvpn.conf"
+uid = 0
+gid = 0
+mode  = "0664"
+keys = [
+  "/",
+]

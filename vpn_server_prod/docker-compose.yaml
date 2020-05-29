@@ -1,0 +1,289 @@
+version: '2.1'
+
+services:
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - /etc/nginx/conf.d/
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+    networks:
+      z-proxy-net:
+
+  letsencrypt:
+    container_name: letsencrypt
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes_from:
+      - "nginx-proxy"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    networks:
+      z-proxy-net:
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=${VPN_HOST_NAME}
+      - LETSENCRYPT_HOST=${VPN_HOST_NAME}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    networks:
+      z-proxy-net:
+
+  mongo:
+    image: mongo:4.0
+    ports:
+      - "127.0.0.1:27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      d-mongo-net:
+
+  adminmongo:
+    image: mrvautin/adminmongo
+    ports:
+      - 1234:1234
+    environment:
+      - CONN_NAME=vega_docker_mongo
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - HOST=0.0.0.0
+    depends_on:
+      - mongo
+    networks:
+      d-mongo-net:
+
+  freeradius:
+    build: ./freeradius-server
+    command:
+      - "freeradius"
+      # debug
+      # - "-X"
+    environment:
+      FREERADIUS_CLIENT_NET: "172.16.0.0/12"
+      FREERADIUS_CLIENT_SECRET: "${FREERADIUS_CLIENT_SECRET}"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+    networks:
+      d-mongo-net:
+      e-freeradius-net:
+
+  ipsec-vpn:
+    build: ./ipsec-vpn
+    cap_add:
+      - NET_ADMIN
+    environment:
+      IPSEC_HOST_NAME: "${VPN_HOST_NAME}"
+      IPSEC_DNS1: "172.31.31.31"
+      # IPSEC_DNS2: "8.8.4.4"
+
+      FREERADIUS_CLIENT_HOST: "freeradius"
+      FREERADIUS_CLIENT_SECRET: "${FREERADIUS_CLIENT_SECRET}"
+    command:
+      - "/usr/sbin/ipsec"
+      - "start"
+      - "--nofork"
+      # - "--debug"
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    privileged: true
+    volumes:
+      - ./certs:/etc/le/certs:ro
+    networks:
+      a-openvpn-net:
+        priority: 1000
+      b-pdns-network:
+        priority: 900
+      e-freeradius-net:
+        priority: 800
+
+  openvpn-pki:
+    build: ./openvpn-pki
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - openvpn-pki-data:/data
+    networks:
+      c-openvpn-pki-net:
+
+  pdns:
+    build: ./pdns
+    read_only: true
+    command:
+      - "pdns_recursor"
+      - "--daemon=no"
+      - "--local-address=0.0.0.0"
+      - "--local-port=53"
+      # Test only
+      #- "--forward-zones-recurse=.=8.8.4.4;8.8.8.8;216.146.35.35;216.146.36.36;84.200.69.80;84.200.70.40;77.88.8.8;77.88.8.1"
+      # https://www.iana.org/domains/root/servers
+      - "--forward-zones-recurse=.=198.41.0.4;199.9.14.201;192.33.4.12;199.7.91.13;192.203.230.10;192.5.5.241;192.112.36.4;198.97.190.53;192.36.148.17;192.58.128.30;193.0.14.129;199.7.83.42;202.12.27.33"
+      - "--webserver=yes"
+      - "--api-key=FpBUihCisbLQUgWggwupB4EtKWh9GQ7ToFvxotbZTLFfrHdeoQo"
+      - "--webserver-address=127.0.0.1"
+      - "--webserver-port=9053"
+      - "--loglevel=6"
+    ports:
+      - "127.0.0.1:53:53/udp"
+    healthcheck:
+      test: "curl -f -H 'X-API-Key: FpBUihCisbLQUgWggwupB4EtKWh9GQ7ToFvxotbZTLFfrHdeoQo' http://127.0.0.1:9053/api/v1/servers/localhost || echo 1"
+      interval: 30s
+      timeout: 15s
+      retries: 3
+    tmpfs:
+      - "/run"
+    networks:
+      b-pdns-network:
+        ipv4_address: 172.31.31.31
+
+  netdata:
+    build: ./netdata
+    image: netdata
+    hostname: "${VPN_HOST_NAME}"
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+      - NET_ADMIN
+    network_mode: host
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - firehol-data:/data:ro
+    volumes_from: 
+      - "firehol"
+
+  firehol:
+    build: ./firehol
+    image: firehol
+    network_mode: host
+    tty: true
+    environment:
+      WAN_IFACE: "${WAN_IFACE}"
+      WAN_INPUT_SPEED: "${WAN_INPUT_SPEED}"
+      WAN_OUTPUT_SPEED: "${WAN_OUTPUT_SPEED}"
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+    volumes:
+      - /etc/firehol
+      - /var/run/fireqos
+      - firehol-data:/data
+    depends_on:
+      - "pdns"
+
+  openvpn-1:
+    image: openvpn-server
+    build: ./openvpn
+    cap_add:
+      - NET_ADMIN
+    environment:
+      OPENVPN_PKI_URL: "http://openvpn-pki:5000"
+      OPENVPN_HOST: "${VPN_HOST_NAME}"
+      # Unique value for identifying OpenVPN instance on a host.
+      OPENVPN_HOST_ID: "XzW3gMcc74HJihyu"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+
+      DNS_1_SERVER: "172.31.31.31"
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - openvpn-data:/data
+    networks:
+      a-openvpn-net:
+        priority: 1000
+      b-pdns-network:
+        priority: 900
+      c-openvpn-pki-net:
+        priority: 800
+      d-mongo-net:
+        priority: 700
+
+  openvpn-1-governor:
+    image: openvpn-governor
+    build: ./openvpn-governor
+    environment:
+      OPENVPN_HOST: "${VPN_HOST_NAME}"
+      # Unique value for identifying OpenVPN instance on a host.
+      OPENVPN_HOST_ID: "XzW3gMcc74HJihyu"
+
+      DELAY_SEC: "30"
+
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DB: "vpnUsers"
+    # volumes_from:
+    #   - "openvpn-1"
+    command:
+      - "python"
+      - "-u"
+      - "cleanup.py"
+    network_mode: "service:openvpn-1"
+
+volumes:
+  mongo-data:
+  openvpn-pki-data:
+  openvpn-data:
+  firehol-data:
+
+networks:
+  # https://github.com/docker/compose/issues/4645
+  # prioritization does not work, but alphabetical order is taken into account
+  a-openvpn-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.27.0.0/24
+  b-pdns-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        # 172.31.0.0 - 172.31.31.255
+        - subnet: 172.31.30.0/19
+          #docker-compose v3+ do not use ip_range
+          ip_range: 172.31.30.0/24
+  c-openvpn-pki-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/24
+  d-mongo-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.29.0.0/24
+  e-freeradius-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/24
+  z-proxy-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/24

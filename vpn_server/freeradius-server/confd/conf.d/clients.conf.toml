@@ -1,0 +1,9 @@
+[template]
+src   = "clients.conf"
+dest  = "/etc/freeradius/clients.conf"
+uid = 0
+gid = 0
+mode  = "0664"
+keys = [
+  "/",
+]
