@@ -54,6 +54,7 @@ services:
   
   adminmongo:
     image: mrvautin/adminmongo
+    entrypoint: '/bin/sh -c "rm /app/user/config/app.json; node app.js"'
     ports:
       - 1234:1234
     environment:
@@ -63,6 +64,7 @@ services:
       - DB_USERNAME=${MONGO_USERNAME}
       - DB_PASSWORD=${MONGO_PWD}
       - HOST=0.0.0.0
+      - PASSWORD=${ADMIN_MONGO}
     depends_on:
       - mongo
 
