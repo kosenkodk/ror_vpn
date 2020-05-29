@@ -43,7 +43,7 @@ services:
   mongo:
     image: mongo:4.0
     ports:
-      - "127.0.0.1:27018:27017"
+      - "0.0.0.0:27017:27017"
     volumes:
       - mongo-data:/data/db
     networks:
@@ -113,7 +113,7 @@ services:
   openvpn-pki:
     build: ./openvpn-pki
     ports:
-      - "127.0.0.1:5000:5000"
+      - "0.0.0.0:5000:5000"
     volumes:
       - openvpn-pki-data:/data
     networks:
