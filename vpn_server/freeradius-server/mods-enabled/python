@@ -1,0 +1,8 @@
+python {
+  module = mongo_auth
+
+  python_path = ${modconfdir}/${.:name}:/usr/lib/python2.7/
+
+  mod_authorize = ${.module}
+  func_authorize = authorize
+}
