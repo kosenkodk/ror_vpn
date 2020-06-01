@@ -44,8 +44,10 @@ DATA = [
 MONGO_HOST = os.environ['MONGO_HOST']
 MONGO_PORT = int(os.environ['MONGO_PORT'])
 MONGO_DB = os.environ['MONGO_DB']
+MONGO_USERNAME = os.environ['MONGO_USERNAME']
+MONGO_PWD = os.environ['MONGO_PWD']
 
-mongo = MongoClient(host=MONGO_HOST, port=MONGO_PORT, connect=True)
+mongo = MongoClient(username=MONGO_USERNAME, password=MONGO_PWD, host=MONGO_HOST, port=MONGO_PORT, connect=True)
 
 db = mongo[MONGO_DB]
 
