@@ -64,7 +64,7 @@ services:
       - DB_USERNAME=${MONGO_USERNAME}
       - DB_PASSWORD=${MONGO_PWD}
       - HOST=0.0.0.0
-      - PASSWORD=${ADMIN_MONGO}
+      - PASSWORD=${ADMIN_MONGO_PWD}
     depends_on:
       - mongo
 
