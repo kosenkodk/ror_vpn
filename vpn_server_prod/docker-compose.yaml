@@ -42,6 +42,8 @@ services:
 
   mongo:
     image: mongo:4.0
+    # network_mode: host # connect to your db from outside this container
+    command: mongod --auth --bind_ip_all
     ports:
       - "0.0.0.0:27017:27017"
     volumes:
@@ -49,15 +51,29 @@ services:
     networks:
       d-mongo-net:
 
+      - ./mongo/:/docker-entrypoint-initdb.d/
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME} 
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PWD} 
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+      MONGO_INITDB_USERNAME: $MONGO_USERNAME
+      MONGO_INITDB_PASSWORD: $MONGO_PWD
+  
   adminmongo:
     image: mrvautin/adminmongo
+    entrypoint: '/bin/sh -c "rm /app/user/config/app.json; node app.js"'
     ports:
       - 1234:1234
     environment:
       - CONN_NAME=vega_docker_mongo
       - DB_HOST=mongo
       - DB_PORT=27017
+      - DB_USERNAME=${MONGO_USERNAME}
+      - DB_PASSWORD=${MONGO_PWD}
       - HOST=0.0.0.0
+      - PASSWORD=${ADMIN_MONGO_PWD}
     depends_on:
       - mongo
     networks:
@@ -76,10 +92,13 @@ services:
       MONGO_HOST: "mongo"
       MONGO_PORT: "27017"
       MONGO_DB: "vpnUsers"
+
+      MONGO_USERNAME: ${MONGO_USERNAME} 
+      MONGO_PWD: ${MONGO_PWD} 
     networks:
       d-mongo-net:
       e-freeradius-net:
-
+      
   ipsec-vpn:
     build: ./ipsec-vpn
     cap_add:
@@ -198,12 +217,14 @@ services:
       OPENVPN_HOST: "${VPN_HOST_NAME}"
       # Unique value for identifying OpenVPN instance on a host.
       OPENVPN_HOST_ID: "XzW3gMcc74HJihyu"
+      DNS_1_SERVER: "172.31.31.31"
 
       MONGO_HOST: "mongo"
       MONGO_PORT: "27017"
       MONGO_DB: "vpnUsers"
 
-      DNS_1_SERVER: "172.31.31.31"
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PWD: ${MONGO_PWD}
     ports:
       - "1194:1194/udp"
     volumes:
