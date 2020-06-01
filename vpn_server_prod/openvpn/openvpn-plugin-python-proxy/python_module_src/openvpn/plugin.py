@@ -226,15 +226,20 @@ def OPENVPN_PLUGIN_TLS_FINAL(*args):
     envp = unpack_argv()
     #print(envp)
     #print("=" * 30)
-    login = envp.get('X509_0_CN')
-    if not login:
+    vpn_login = envp.get('X509_0_CN')
+
+    trusted_ip = envp.get('trusted_ip') or envp['untrusted_ip']
+    trusted_port = envp.get('trusted_port') or envp['untrusted_port']
+    vpn_connection_id = get_connection_id(vpn_login, trusted_ip, trusted_port)
+
+    if not vpn_login:
         print("Unable to get login from certificate X509_0_CN")
         return OPENVPN_PLUGIN_FUNC_ERROR
 
     try:
         res = db.authentication.find_one(
             {
-                'vpn_login': login,
+                'vpn_login': vpn_login,
             }
         )
     except Exception as e:
@@ -242,11 +247,11 @@ def OPENVPN_PLUGIN_TLS_FINAL(*args):
         return OPENVPN_PLUGIN_FUNC_ERROR
 
     if not res:
-        print('user not found: %s' % login)
+        print('user not found: %s' % vpn_login)
         return OPENVPN_PLUGIN_FUNC_ERROR
 
     if not res.get('vpn_enabled'):
-        print('user disabled: %s' % login)
+        print('user disabled: %s' % vpn_login)
         return OPENVPN_PLUGIN_FUNC_ERROR
 
     vpn_max_sessions = get_field(res, 'vpn_max_sessions')
@@ -255,7 +260,11 @@ def OPENVPN_PLUGIN_TLS_FINAL(*args):
         try:
             sessions = db.sessions.find(
                 {
-                    'vpn_login': login,
+                    'vpn_login': vpn_login,
+                    # guess that the client can connect to the same host
+                    # do not take into account that sessions
+                    'vpn_connection_id': {'$ne': vpn_connection_id},
+                    'vpn_host': VPN_HOST,
                 }
             )
         except Exception as e:
@@ -263,10 +272,10 @@ def OPENVPN_PLUGIN_TLS_FINAL(*args):
             return OPENVPN_PLUGIN_FUNC_ERROR
 
         if sessions.count() >= vpn_max_sessions:
-            print('Maximum number of sessions for user %s exceeded %s' %(login, vpn_max_sessions))
+            print('Maximum number of sessions for user %s exceeded %s' %(vpn_login, vpn_max_sessions))
             return OPENVPN_PLUGIN_FUNC_ERROR
 
-    print('OK: %s ' % login)
+    print('OK: %s ' % vpn_login)
     return OPENVPN_PLUGIN_FUNC_SUCCESS
 
 

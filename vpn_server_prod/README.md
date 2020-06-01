@@ -12,3 +12,7 @@
 
 5. Run
     * `docker-compose up -d`
+
+6. Get ovpn connections:
+
+    curl "http://localhost:5000/client/ovpn?remote=vpn.example.com&login=user1"
