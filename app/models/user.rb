@@ -32,12 +32,13 @@ class User < ApplicationRecord
   
   acts_as_google_authenticated column_name: :email, lookup_token: :salt, drift: 30, issuer: 'VegaVPN' # drift is the number of seconds that the client and server are allowed to drift apart (default is 5 seconds)
 
-  before_save {|record| record.salt = SecureRandom.hex unless record.salt }
+  before_save :before_save
   after_create {|record| record.set_google_secret }
   after_destroy_commit :destroy_vpn_user
 
-  def ref_id_of_link
-    Digest::MD5.hexdigest(self.id.to_s)
+  def before_save
+    self.salt = SecureRandom.hex unless self.salt
+    self.ref_code = Digest::MD5.hexdigest(self.id.to_s) unless !self.id
   end
 
   def destroy_vpn_user
@@ -133,7 +134,9 @@ class User < ApplicationRecord
   end
 
   def get_refer_link
-    "https://#{Rails.application.config.host}/signup/#{self.id}"
+    url = Rails.application.config.host
+    url += ":#{Rails.application.config.port}" if Rails.application.config.port
+    "http#{Rails.application.config.force_ssl ? 's' : ''}://#{url}/signup/#{self.ref_code}"
   end
 
   def clear_password_token!

@@ -10,10 +10,10 @@ RSpec.describe User, type: :model do
   
   context 'refer link' do
     it do
-      expect(user.get_refer_link).to eq("https://#{Rails.application.config.host}/signup/#{user.id}")
+      expect(user.get_refer_link).to eq("http://#{Rails.application.config.host}:#{Rails.application.config.port}/signup/#{Digest::MD5.hexdigest(user.id.to_s)}")
     end
-    it 'with secured refer id' do
-      expect(user.ref_id_of_link).to eq(Digest::MD5.hexdigest(user.id.to_s))
+    it 'ref code' do
+      expect(user.ref_code).to eq(Digest::MD5.hexdigest(user.id.to_s))
     end
   end
   

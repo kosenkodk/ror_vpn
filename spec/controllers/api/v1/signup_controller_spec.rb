@@ -14,16 +14,14 @@ RSpec.describe Api::V1::SignupController, type: :controller do
       let!(:user_referrer) {create(:user)}
       context 'success' do
         it 'with referrer id' do
-          post :create, params: { rid: user_referrer.id, email: email, password: 'password', password_confirmation: 'password' }
-
+          post :create, params: { rid: user_referrer.ref_code, email: email, password: 'password', password_confirmation: 'password' }
           user_referral = User.find_by(email: email)
           expect(user_referral.referrer_id).to eq(user_referrer.id)
-    
         end
       end
     end
-    context 'success' do
 
+    context 'success' do
       it 'without ids of tariff plan and payment method' do
         post :create, params: user_params
         # expect(response_json.values).to eq([''])

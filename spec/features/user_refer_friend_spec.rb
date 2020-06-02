@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Refer Friend', type: :feature, js: true do
   let(:password) {'password'}
   let(:email) {'email@ex.com'}
-  let(:emails) { 'email@ex.com,email2@ex.com' }
+  let(:emails) {'email@ex.com,email2@ex.com'}
   let!(:user) {create(:user)}
 
   describe 'send refer link to friends' do
@@ -31,7 +31,8 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
     let!(:payment_method3) { FactoryBot.create :payment_method, title: I18n.t('payment_method.credit_card')  }
     
     before {
-      visit("/signup/#{user.id}")
+      # visit("/signup/#{user.ref_code}")
+      visit(user.get_refer_link)
     }
 
     it 'with refer link' do
