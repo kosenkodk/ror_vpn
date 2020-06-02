@@ -48,10 +48,9 @@ services:
       - "0.0.0.0:27017:27017"
     volumes:
       - mongo-data:/data/db
+      - ./mongo/:/docker-entrypoint-initdb.d/
     networks:
       d-mongo-net:
-
-      - ./mongo/:/docker-entrypoint-initdb.d/
     env_file:
       - .env
     environment:
