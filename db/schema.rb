@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_172816) do
+ActiveRecord::Schema.define(version: 2020_06_02_190144) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 2020_05_14_172816) do
     t.integer "country_id"
     t.datetime "expired_at"
     t.boolean "is_refer_bonus_used"
+    t.string "ref_code"
     t.index ["cancel_reason_id"], name: "index_users_on_cancel_reason_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["payment_method_id"], name: "index_users_on_payment_method_id"
