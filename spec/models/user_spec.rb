@@ -12,6 +12,9 @@ RSpec.describe User, type: :model do
     it do
       expect(user.get_refer_link).to eq("https://#{Rails.application.config.host}/signup/#{user.id}")
     end
+    it 'with secured refer id' do
+      expect(user.ref_id_of_link).to eq(Digest::MD5.hexdigest(user.id.to_s))
+    end
   end
   
   context 'vpn user' do

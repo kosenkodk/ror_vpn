@@ -36,6 +36,10 @@ class User < ApplicationRecord
   after_create {|record| record.set_google_secret }
   after_destroy_commit :destroy_vpn_user
 
+  def ref_id_of_link
+    Digest::MD5.hexdigest(self.id.to_s)
+  end
+
   def destroy_vpn_user
     VpnUser.where(vpn_login: self.email).destroy #destroy_all
   end
