@@ -65,7 +65,7 @@ class FriendInvitePage extends React.Component {
               <div className="w-sm-63">
                 <h6 className="mt-lg-n4 mb-4">Spread the word and earn rewards</h6>
                 <p className="mb-3">
-                  When someone signs up with your unqique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
+                  When someone signs up with your unique referral link, both you and the referred user will receive $10 worth of Blockport Tokens after they have traded $100 or more.
                 </p>
                 <Link to="#" className="text-blue">Terms and conditions apply.</Link>
               </div>
