@@ -31,8 +31,8 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
     let!(:payment_method3) { FactoryBot.create :payment_method, title: I18n.t('payment_method.credit_card')  }
     
     before {
-      # visit("/signup/#{user.ref_code}")
-      visit(user.get_refer_link)
+      visit("/signup/#{user.ref_code}")
+      # visit(user.get_refer_link)
     }
 
     it 'with refer link' do
