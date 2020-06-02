@@ -382,8 +382,8 @@ puts not_found_country_icons
 puts "\nConfigs for free plan n\n"
 [
   {name: 'Afghanistan', code: 'AF'},
-  {name: 'Aland Islands', code: 'AX'},
-  {name: 'Albania', code: 'AL'},
+  # {name: 'Aland Islands', code: 'AX'},
+  # {name: 'Albania', code: 'AL'},
 ].each do |item|
   country = Country.find_by(code: item[:code])
   config = Config.where(country: country).update(tariff_plan: plan_free)
