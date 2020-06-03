@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       post '/cancel', to: 'account#cancel'
       
       # invite/refer friend
+      get '/refer_friend/check_refer_code/:refer_code', to: 'refer_friend#check_refer_code'
       get '/refer_friend/link', to: 'refer_friend#link'
       post '/refer_friend', to: 'refer_friend#create'
       

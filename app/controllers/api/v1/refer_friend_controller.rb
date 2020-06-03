@@ -1,5 +1,14 @@
 class Api::V1::ReferFriendController < Api::V1::ApiController
-  before_action :authorize_access_request!
+  before_action :authorize_access_request!, except: [:check_refer_code]
+
+  def check_refer_code
+    refer_code = params[:refer_code]
+    if User.exists?(ref_code: refer_code)
+      render json: {success: ''}
+      return
+    end
+    render json: {error: I18n.t('pages.refer_friend.invalid_link'), status: 422}
+  end
 
   def link
     render json: {refer_link: current_user.get_refer_link}
