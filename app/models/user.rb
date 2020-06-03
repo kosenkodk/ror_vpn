@@ -136,7 +136,7 @@ class User < ApplicationRecord
   def get_refer_link
     url = Rails.application.config.host
     url += ":#{Rails.application.config.port}" if Rails.application.config.port
-    "http#{Rails.application.config.force_ssl ? 's' : ''}://#{url}/signup/#{self.ref_code}"
+    "http#{Rails.application.config.force_ssl ? 's' : ''}://#{url}/signup/ref=#{self.ref_code}"
   end
 
   def clear_password_token!
