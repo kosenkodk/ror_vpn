@@ -292,6 +292,7 @@ en:
       department:
         subject: "New ticket."
     refer_friend:
+      invalid_link: "Invalid refer link"
       bonus:
         success: "You got a refer bonus"
       send_invites:

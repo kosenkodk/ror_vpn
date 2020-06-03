@@ -13,7 +13,7 @@ import imgStep1 from 'images/signup/step1.svg';
 import imgStep2 from 'images/signup/step2.svg';
 import imgStep3 from 'images/signup/step3.svg';
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
+import { userActions, alertActions } from '../_actions';
 
 class SignupPage extends React.Component {
 
@@ -121,6 +121,15 @@ class SignupPage extends React.Component {
 
   componentDidMount() {
     this.isSignedIn();
+    fetch(`${config.apiUrl}/refer_friend/check_refer_code/${this.state.rid}`)
+      .then(handleErrors)
+      .then((response) => {
+        this.setState({ success: response.success || '' })
+        this.props.dispatch(alertActions.error(response.error))
+      })
+      .catch((error) => {
+        this.setState({ error: error || '' })
+      });
   }
 
   componentDidUpdate() {

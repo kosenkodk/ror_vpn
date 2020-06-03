@@ -21,6 +21,18 @@ RSpec.describe Api::V1::ReferFriendController, type: :controller do
       request.headers[JWTSessions.csrf_header] = csrf_token
     }
 
+    describe 'check refer link' do
+      it 'success' do
+        get :check_refer_code, params: {refer_code: user.ref_code}
+        expect(response).to have_http_status(:success)
+        expect(response_json['success']).to eq('')
+      end
+      it 'failure' do
+        get :check_refer_code, params: {refer_code: 'invalid_code'}
+        expect(response_json['error']).to eq(I18n.t('pages.refer_friend.invalid_link'))
+      end
+    end
+
     describe 'generate refer link' do
       context 'success' do
         it do
