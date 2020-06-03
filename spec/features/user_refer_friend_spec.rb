@@ -29,21 +29,23 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
     let!(:payment_method1) { FactoryBot.create :payment_method, title: I18n.t('payment_method.cryptocurrencies') }
     let!(:payment_method2) { FactoryBot.create :payment_method, title: I18n.t('payment_method.qiwi')  }
     let!(:payment_method3) { FactoryBot.create :payment_method, title: I18n.t('payment_method.credit_card')  }
-    
-    before {
-      visit("/signup/ref=#{user.ref_code}")
-      # visit(user.get_refer_link)
-    }
 
     it 'with refer link' do
+      visit("/signup/ref=#{user.ref_code}")
+
       fill_in :email, with: user_referred.email
       fill_in :password, with: user_referred.password
       fill_in :password_confirmation, with: user_referred.password_confirmation
       click_on(I18n.t('buttons.continue'))
+      
       user_referral = User.find_by(email: user_referred.email)
       expect(user_referral.referrer_id).to eq(user.id)
       # user.reload
       # expect(user.referrals).to contains(user_referral)
+    end
+    it 'display alert: invalid refer link' do
+      visit("/signup/ref=#{'invalid refer code'}")
+      expect(find('.alert', match: :first)).to have_text(I18n.t('pages.refer_friend.invalid_link'))
     end
   end
 
