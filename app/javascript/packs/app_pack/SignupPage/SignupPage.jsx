@@ -121,15 +121,17 @@ class SignupPage extends React.Component {
 
   componentDidMount() {
     this.isSignedIn();
-    fetch(`${config.apiUrl}/refer_friend/check_refer_code/${this.state.rid}`)
-      .then(handleErrors)
-      .then((response) => {
-        this.setState({ success: response.success || '' })
-        this.props.dispatch(alertActions.error(response.error))
-      })
-      .catch((error) => {
-        this.setState({ error: error || '' })
-      });
+    if (this.state.rid) {
+      fetch(`${config.apiUrl}/refer_friend/check_refer_code/${this.state.rid}`)
+        .then(handleErrors)
+        .then((response) => {
+          this.setState({ success: response.success || '' })
+          this.props.dispatch(alertActions.error(response.error))
+        })
+        .catch((error) => {
+          this.setState({ error: error || '' })
+        });
+    }
   }
 
   componentDidUpdate() {

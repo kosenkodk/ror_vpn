@@ -40,12 +40,19 @@ RSpec.describe 'Refer Friend', type: :feature, js: true do
       
       user_referral = User.find_by(email: user_referred.email)
       expect(user_referral.referrer_id).to eq(user.id)
+      
       # user.reload
       # expect(user.referrals).to contains(user_referral)
+      
+      expect(page.has_css?('.alert', wait: 3)).to eq(false)
     end
     it 'display alert: invalid refer link' do
       visit("/signup/ref=#{'invalid refer code'}")
       expect(find('.alert', match: :first)).to have_text(I18n.t('pages.refer_friend.invalid_link'))
+    end
+    it 'do not display alert without ref code' do
+      visit(:signup)
+      expect(page.has_css?('.alert', wait: 3)).to eq(false)
     end
   end
 
